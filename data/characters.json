@@ -1,0 +1,134 @@
+[
+  {
+    "id": "vlcek",
+    "name": "Ministr Vlček",
+    "dialogues": [
+      {
+        "day": 1,
+        "condition": null,
+        "type": "letter",
+        "text": "Vážený pane doktore,\n\nDovolte mi Vás uvítat zpět na lavici. Republika potřebuje soudce Vašich kvalit — moudré, zkušené, schopné kompromisu.\n\nVěřím, že jste muž který rozumí nutnosti kompromisů.\n\nS uctivostí,\nMinistr Vlček"
+      },
+      {
+        "day": 6,
+        "condition": null,
+        "type": "letter",
+        "text": "Pane doktore,\n\nSledoval jsem Vaše rozsudky s pozorností. Potěšila mě Vaše rozvaha.\n\nBrzy přijde případ, na kterém záleží. Věřím, že Vaše rozhodnutí bude — jak to říci — státotvorné.\n\nVlček"
+      },
+      {
+        "day": 14,
+        "condition": null,
+        "type": "visit",
+        "text": "Novák, přestaňme si hrát na zdvořilosti. Oba víme, co se stalo před deseti lety. Jde mi o jeden konkrétní rozsudek. Jen jeden. A pak budeme kvit.\n\nOstatně — náklady na operaci Vaší matky jsou značné, že? Naše vláda má fond pro rodiny veřejných zaměstnanců. Stačí požádat správnou osobu."
+      },
+      {
+        "day": 20,
+        "condition": { "flag": "pravda_odhalena" },
+        "type": "letter",
+        "text": "Novák,\n\nVím, co víte. Víte, co vím. \n\nTento tanec může skončit tiše nebo hlasitě. Volba je Vaše. Máte 48 hodin.\n\n— V."
+      },
+      {
+        "day": 26,
+        "condition": null,
+        "type": "visit",
+        "text": "Jste naivní člověk, Novák. Myslíte, že spravedlnost funguje? Podívejte se kolem sebe. Systém je takový, jaký je — a buď v něm plavete, nebo se topíte. Já vám nabízím záchranný kruh. Naposledy."
+      }
+    ]
+  },
+  {
+    "id": "horakova",
+    "name": "Věra Horáková",
+    "dialogues": [
+      {
+        "day": 10,
+        "condition": null,
+        "type": "visit",
+        "text": "Pane doktore, jmenuji se Věra Horáková. Píši pro Nezávislý deník. Sleduji Vaše rozsudky od prvního dne.\n\nNejsem tu, abych Vám dělala potíže. Jsem tu, protože někdo musí psát pravdu. A pravda — ta čeká na správného člověka, který ji osvobodí."
+      },
+      {
+        "day": 17,
+        "condition": { "trust_min": 1 },
+        "type": "visit",
+        "text": "Vím o Vlčkovi víc, než si myslí. Vím také, proč jste před deseti lety odešel. Ne — nechte mě dokončit. Nepřišla jsem s výhrůžkou. Přišla jsem s nabídkou. Spolupráce. Vaše informace, moje pero."
+      },
+      {
+        "day": 21,
+        "condition": null,
+        "type": "visit",
+        "text": "Musím Vám ukázat něco, co jsem našla. Dokumenty z ministerstva — Vlčkův seznam jmen. Soudci, prokurátori, svědci. Víte, co je tam společné? Všichni dostali případ, který se nehodil do Vlčkova světa. A všechni rozhodli jinak, než čekali.\n\nVčetně Vás. Před deseti lety."
+      },
+      {
+        "day": 21,
+        "condition": { "flag": "horakova_alliance" },
+        "type": "visit",
+        "text": "Věřím Vám, Novák. A to je věc, které nejsem zvyklá říkat. Buďte opatrný v příštích dnech. Vlček se pohybuje."
+      }
+    ]
+  },
+  {
+    "id": "masek",
+    "name": "Kolega soudce Mašek",
+    "dialogues": [
+      {
+        "day": 3,
+        "condition": null,
+        "type": "visit",
+        "text": "Karle! Vítej zpátky. Vypadáš... trochu unaveně. Nebo je to jen ten starý stůl?\n\nPoslouchej — přijde na tebe Vlčkův muž. Nehrdi se. Tohle není o morálce. Je to o přežití."
+      },
+      {
+        "day": 12,
+        "condition": null,
+        "type": "visit",
+        "text": "Karle, zákon není o spravedlnosti. Nikdy nebyl. Je to systém, který udržuje věci pohromadě. My jsme jeho součásti — ne jeho svědomí.\n\nStalo se ti, co se stalo. Mně taky. Nemysli na to každý den — zblázníš se."
+      },
+      {
+        "day": 19,
+        "condition": null,
+        "type": "visit",
+        "text": "Mám pro tebe nabídku. Jeden dokument. Podpíšeš, matce zaplatí operaci, Vlček tě nechá na pokoji. Stačí jeden podpis.\n\nVím, co si teď myslíš. Myslel jsem si to taky. A pak přišla má dcera s tím, že chce jít studovat do Vídně, a já pochopil: systém vždy najde způsob, jak tě přimět."
+      }
+    ]
+  },
+  {
+    "id": "benes",
+    "name": "Starý muž Beneš",
+    "dialogues": [
+      {
+        "day": 12,
+        "condition": null,
+        "type": "visit",
+        "text": "Pane doktore. Jmenuji se Josef Beneš. Přišel jsem vypovídat v případu číslo třiadvacet.\n\nAle... smím říct ještě jednu věc? Jednu větu?\n\nMůj bratr byl vězněm. Zemřel tam. V roce 1924. Jmenoval se Antonín Beneš."
+      },
+      {
+        "day": 20,
+        "condition": { "flag": "benes_identified" },
+        "type": "visit",
+        "text": "Víte. Vidím to na Vás. Věděl jsem, že jednou přijdu před soudce, který ví.\n\nNechci nic. Nechci, abyste se omlouval. Nechci, abyste byl potrestán. Jsem stará troska.\n\nChci jen, abyste věděl, že Antonín byl dobrý člověk."
+      }
+    ]
+  },
+  {
+    "id": "haas",
+    "name": "Průmyslník Haas",
+    "dialogues": [
+      {
+        "day": 7,
+        "condition": null,
+        "type": "visit",
+        "text": "Pane doktore. Jsem Roman Haas. Jsem tu jako poškozená strana. Věřím, že zákon je jasný a Vaše rozhodnutí bude jasné také.\n\nZaujatost? Ale co — já nikoho neznám. Já jen žádám spravedlnost."
+      },
+      {
+        "day": 16,
+        "condition": null,
+        "type": "visit",
+        "text": "Zase se potkáváme, Novák. Tentokrát trochu jiný případ, ale princip stejný — majetek musí být chráněn. Co jiného je zákon?\n\nŘekl bych, že jsme se mezitím poznali lépe. Obálka přišla, ne? Doufám, že jste ji otevřel."
+      },
+      {
+        "day": 24,
+        "condition": null,
+        "type": "visit",
+        "text": "Naposledy sedím v téhle síni, Novák. Tentokrát máte důkazy. Zajímavé, jak se věci mění.\n\nAle víte, co se nezmění? To, co víte o sobě. A to, co o Vás ví Vlček. Zauvažujte."
+      }
+    ]
+  }
+]

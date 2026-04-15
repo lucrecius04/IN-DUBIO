@@ -1,0 +1,302 @@
+[
+  {
+    "id": "case_bozena_4", "title": "Případ slepice Boženy (IV.)", "category": "absurd", "day": 14, "repeating_thread": "bozena",
+    "defendant": { "name": "Pan Kepka", "age": null, "background": "Tentokrát obžalovaný" },
+    "charge": "Neoprávněný vstup — Kepka vlez přes Mrkův plot",
+    "situation": "Mrkva je tentokrát žalobcem. Kepka vlez přes plot a vzal slepici. Přiložen filozofický dopis faráře o slepicích jako metafoře svobodné vůle.",
+    "testimony": [
+      { "source": "A", "label": "Pan Mrkva", "text": "„Vlezl mi na zahradu. Vzal slepici. Mám svědky.“" },
+      { "source": "B", "label": "Pan Kepka, obžalovaný", "text": "„Vzal jsem zpátky co je moje. Farář má pravdu — Božena si zvolila svobodně.“" }
+    ],
+    "hidden_info": [
+      { "id": "hi_boz_4_1", "action": "witness", "reveal": "Farářův dopis: 4 stránky teologie, žádný právní argument.", "changes_narrative": false }
+    ],
+    "verdicts": [
+      { "id": "kepka_pokuta", "text": "Kepka — symbolická pokuta 2 Kč za vstup", "consequences": { "traits": { "Nadeje": 5, "Moudrost": 3 }, "factions": { "Lid": 5 }, "finance": 0, "flags": [] } },
+      { "id": "pripad_uzavrit", "text": "Případ uzavřít — oba napomenutí, slepice do útulku", "consequences": { "traits": { "Moudrost": 8, "Nadeje": 8 }, "factions": { "Lid": 10 }, "finance": 0, "flags": [] } }
+    ],
+    "narrative_link": null
+  },
+  {
+    "id": "case_haas_2", "title": "Daňový podvod Haasovy firmy", "category": "political", "day": 16, "repeating_thread": "haas",
+    "defendant": { "name": "Roman Haas, průmyslník", "age": 56, "background": "Průmyslník" },
+    "charge": "Daňový podvod — nezahrnuté příjmy 15 000 Kč",
+    "situation": "Finanční úřad zjistil chybějící záznamy v Haasově účetnictví za rok 1930. Haas popírá záměr.",
+    "testimony": [
+      { "source": "A", "label": "Inspektor finančního úřadu Krejčí", "text": "„Záznamy chybí systematicky. Toto není účetní chyba. Je to záměr.“" },
+      { "source": "B", "label": "Roman Haas, obžalovaný", "text": "„Moje firma zaměstnává 200 lidí. Pokud jsou chyby, jsou neúmyslné.“" }
+    ],
+    "hidden_info": [
+      { "id": "hi_haas_2_1", "action": "records", "reveal": "Chybějící příjmy odpovídají platbám od státního zadavatele pod Vlčkovým dozorem.", "changes_narrative": true },
+      { "id": "hi_haas_2_2", "action": "informant", "reveal": "Platby šly přes zprostředkovatele, aby obešly zdanění.", "changes_narrative": true }
+    ],
+    "verdicts": [
+      { "id": "haas_pokuta", "text": "Pokuta 3 000 Kč + povinný audit", "consequences": { "traits": { "Integrita": 8, "Odvaha": 8 }, "factions": { "Stat": -10, "Obchodnici": -12, "Lid": 10 }, "trust": { "haas": -1 }, "finance": 0, "flags": [] } },
+      { "id": "jen_upozorneni", "text": "Varování bez pokuty — první případ", "consequences": { "traits": { "Integrita": -5, "Maska": 5 }, "factions": { "Obchodnici": 5 }, "finance": 0, "flags": [] } },
+      { "id": "zamitnut", "text": "Zamítnout — neúmyslná chyba", "consequences": { "traits": { "Integrita": -10, "Vina": 8 }, "factions": { "Stat": 5, "Obchodnici": 10, "Lid": -15 }, "trust": { "haas": 1 }, "finance": 0, "flags": [] } }
+    ],
+    "narrative_link": null
+  },
+  {
+    "id": "case_pozemek_3", "title": "Spor o 34 cm (III.) — Strom", "category": "absurd", "day": 17, "repeating_thread": "pozemek",
+    "defendant": { "name": "Dvořák vs Šimůnek", "age": null, "background": "Sousedé" },
+    "charge": "Nový argument — strom na sporném pozemku",
+    "situation": "Na sporném pozemku roste strom. Šimůnkův advokát tvrdí, že strom 'patří území'. Dvořákův advokát zpochybňuje věk stromu.",
+    "testimony": [
+      { "source": "A", "label": "Advokát Fiala za Šimůnka", "text": "„Strom roste 40 let. Území patří stromu — a tedy Šimůnkovi.“" },
+      { "source": "B", "label": "Advokát Tůma za Dvořáka", "text": "„Dendrologický posudek je aproximace. Strom byl pravděpodobně vysazen Dvořákovým otcem.“" }
+    ],
+    "hidden_info": [
+      { "id": "hi_poz_3_1", "action": "witness", "reveal": "Kronikář pamatuje strom 'po válce' — ale která válka (1866 nebo 1914), neví.", "changes_narrative": false }
+    ],
+    "verdicts": [
+      { "id": "strom_neutral", "text": "Strom je právně neutrální — spor trvá", "consequences": { "traits": { "Moudrost": 5, "Nadeje": 5 }, "factions": {}, "finance": 0, "flags": [] } },
+      { "id": "simunek_vyhrava", "text": "Strom Šimůnkovi — plot přesunout", "consequences": { "traits": { "Moudrost": -3 }, "factions": { "Lid": 3 }, "finance": 0, "flags": [] } }
+    ],
+    "narrative_link": null
+  },
+  {
+    "id": "case_bozena_5", "title": "Případ slepice Boženy (V.)", "category": "absurd", "day": 18, "repeating_thread": "bozena",
+    "defendant": { "name": "Veterinář Skalický", "age": 50, "background": "Veterinář" },
+    "charge": "Vydání neodborného protichůdného posudku",
+    "situation": "Skalický revidoval svůj posudek po argumentech kolegy. Kepka ho žaluje za změnu postoje.",
+    "testimony": [
+      { "source": "A", "label": "Pan Kepka", "text": "„Skalický mi jasně řekl, že Božena je moje. Teď říká, že si není jistý.“" },
+      { "source": "B", "label": "Veterinář Skalický", "text": "„Revize je věda, ne záhada. Horáčkovy argumenty mě přesvědčily.“" }
+    ],
+    "hidden_info": [],
+    "verdicts": [
+      { "id": "zamitnut", "text": "Žalobu zamítnout — veterináři mají právo revidovat", "consequences": { "traits": { "Moudrost": 5, "Nadeje": 5 }, "factions": {}, "finance": 0, "flags": [] } },
+      { "id": "pokuta_sym", "text": "Symbolická pokuta — neodborná komunikace", "consequences": { "traits": { "Nadeje": 3 }, "factions": {}, "finance": 0, "flags": [] } }
+    ],
+    "narrative_link": null
+  },
+  {
+    "id": "case_pozemek_4", "title": "Spor o 34 cm (IV.) — Strom s právní osobností?", "category": "absurd", "day": 21, "repeating_thread": "pozemek",
+    "defendant": { "name": "Strom (přibližně 40 let)", "age": null, "background": "Strom" },
+    "charge": "Určení právního statusu stromu",
+    "situation": "Advokát přišel s anglickým precedentem: strom může mít právní status chráněného subjektu. Oba sousedé jsou tentokrát shodně proti tomuto návrhu.",
+    "testimony": [
+      { "source": "A", "label": "Advokát Fiala", "text": "„V anglickém právu existují precedenty pro ochranu přírodních objektů.“" },
+      { "source": "B", "label": "Šimůnek i Dvořák (shodně)", "text": "„To je nesmysl. Strom je strom. Chceme rozhodnutí o pozemku.“" }
+    ],
+    "hidden_info": [],
+    "verdicts": [
+      { "id": "strom_chraneny", "text": "Strom je chráněný — hranice bez kácení", "consequences": { "traits": { "Moudrost": 8, "Nadeje": 10 }, "factions": { "Lid": 5 }, "finance": 0, "flags": [] } },
+      { "id": "anglicky_precedent_ne", "text": "Anglický precedent v ČSR neplatí — řeším pozemek", "consequences": { "traits": { "Moudrost": 5 }, "factions": {}, "finance": 0, "flags": [] } }
+    ],
+    "narrative_link": null
+  },
+  {
+    "id": "case_bozena_6", "title": "Případ slepice Boženy (VI.)", "category": "absurd", "day": 22, "repeating_thread": "bozena",
+    "defendant": { "name": "Kepka a Mrkva spolu", "age": null, "background": "Věční soupeři" },
+    "charge": "Petice 24 obyvatel za definitivní řešení",
+    "situation": "Dvacet čtyři obyvatel ulice podalo petici. Místní akademik napsal komentář o Boženě jako symbolu soudního systému.",
+    "testimony": [
+      { "source": "A", "label": "Zástupce petice pan Procházka", "text": "„Žijeme vedle těchto dvou mužů. Každý den je o slepici. Prosíme o definitivní rozhodnutí.“" },
+      { "source": "B", "label": "Kepka a Mrkva (tiše)", "text": "„Čekáme na soud.“" }
+    ],
+    "hidden_info": [],
+    "verdicts": [
+      { "id": "bozena_muzeum", "text": "Božena se stane exponátem místního muzea", "consequences": { "traits": { "Moudrost": 8, "Nadeje": 12 }, "factions": { "Lid": 12 }, "finance": 0, "flags": [] } },
+      { "id": "bozena_kepka_definitive", "text": "Definitivně: Božena patří Kepkovi", "consequences": { "traits": { "Nadeje": 5 }, "factions": { "Lid": 5 }, "finance": 0, "flags": [] } }
+    ],
+    "narrative_link": null
+  },
+  {
+    "id": "case_haas_3", "title": "Haasův případ — s důkazy", "category": "political", "day": 24, "repeating_thread": "haas",
+    "defendant": { "name": "Roman Haas, průmyslník", "age": 56, "background": "Průmyslník — třetí přelíčení" },
+    "charge": "Uplácení státních úředníků, korupce — s dokumentárními důkazy",
+    "situation": "Prokuratura předala případ s konkrétními dokumenty: platby úředníkům výměnou za kontrakty. Vlček si Nováka den před procesem zavolal.",
+    "testimony": [
+      { "source": "A", "label": "Vyšetřovatel Žáček", "text": "„Máme platební příkazy, účty zprostředkovatelů a výpovědi dvou svědků. Případ je jasný.“" },
+      { "source": "B", "label": "Roman Haas, obžalovaný", "text": "„Tato obvinění jsou politicky motivovaná. Já jsem podnikatel. Zákon respektuji.“" }
+    ],
+    "hidden_info": [
+      { "id": "hi_haas_3_1", "action": "records", "reveal": "Platební příkazy ověřeny třemi nezávislými auditory. Jméno Haas ve všech.", "changes_narrative": false },
+      { "id": "hi_haas_3_2", "action": "informant", "reveal": "Vlčkův sekretář: 'Haas je důležitý pro republiku. Ujistěte se, že rozumíte co to znamená.'", "changes_narrative": true }
+    ],
+    "verdicts": [
+      { "id": "haas_vinen", "text": "Vinen — vězení 3 roky + pokuta 10 000 Kč", "consequences": { "traits": { "Integrita": 15, "Odvaha": 15 }, "factions": { "Stat": -20, "Obchodnici": -20, "Lid": 20 }, "trust": { "haas": -2, "vlcek": -2 }, "finance": 0, "flags": [{"key": "haas_odsouzen", "value": true}] } },
+      { "id": "odlozit", "text": "Odložit — chybí formální potvrzení jednoho dokumentu", "consequences": { "traits": { "Integrita": -10, "Maska": 10 }, "factions": { "Stat": 5, "Obchodnici": 5, "Lid": -15 }, "finance": 0, "flags": [] } },
+      { "id": "zamitnut_politika", "text": "Zamítnout — respektuji zájem státu", "consequences": { "traits": { "Integrita": -20, "Vina": 15 }, "factions": { "Stat": 15, "Obchodnici": 15, "Lid": -25 }, "finance": 800, "flags": [] } }
+    ],
+    "narrative_link": null
+  },
+  {
+    "id": "case_pozemek_5", "title": "Spor o 34 cm (V.) — Finále", "category": "absurd", "day": 25, "repeating_thread": "pozemek",
+    "defendant": { "name": "Kepka a Dvořák společně", "age": null, "background": "Pět stání, 34 centimetrů" },
+    "charge": "Definitivní rozhodnutí v nejdelším sporu roku 1931",
+    "situation": "Páté a poslední stání. Syn Nováka napsal: na právnické fakultě se o sporu mluví jako o ukázce absurdity justice.",
+    "testimony": [
+      { "source": "A", "label": "Pan Kepka", "text": "„Jen chci rozhodnutí. Jakékoli. Prosím.“" },
+      { "source": "B", "label": "Pan Mrkva", "text": "„Souhlasím s Kepkou. Jen chci konec.“" }
+    ],
+    "hidden_info": [],
+    "verdicts": [
+      { "id": "dvarak_posun", "text": "Dvořák přesune plot — 34 cm Šimůnkovi", "consequences": { "traits": { "Moudrost": 5, "Nadeje": 5 }, "factions": { "Lid": 5 }, "finance": 0, "flags": [{"key": "pozemek_vyresen", "value": true}] } },
+      { "id": "kompromis", "text": "Kompromis — každý dostane 17 cm", "consequences": { "traits": { "Moudrost": 10, "Nadeje": 8 }, "factions": { "Lid": 8 }, "finance": 0, "flags": [{"key": "pozemek_vyresen", "value": true}] } },
+      { "id": "strom_precedent", "text": "Pozemek patří stromu — nový právní precedent", "consequences": { "traits": { "Nadeje": 15, "Moudrost": 8 }, "factions": { "Lid": 10 }, "finance": 0, "flags": [{"key": "pozemek_vyresen", "value": true}] } }
+    ],
+    "narrative_link": null
+  },
+  {
+    "id": "case_bozena_7", "title": "Případ slepice Boženy (VII.)", "category": "absurd", "day": 26, "repeating_thread": "bozena",
+    "defendant": { "name": "Obec Horní Lhota", "age": null, "background": "Místní samospráva" },
+    "charge": "Odmítnutí přijmout Boženu do obecního útulku",
+    "situation": "Obec odmítla přijmout Boženu s odvoláním na 'nedostatek kapacit pro drůbež'. Kepka žaluje obec. Mrkva tentokrát stojí na Kepkově straně.",
+    "testimony": [
+      { "source": "A", "label": "Pan Kepka", "text": "„Soud nařídil neutrální správu. Obec odmítá. Kdo ponese odpovědnost?“" },
+      { "source": "B", "label": "Starosta Horní Lhoty", "text": "„Zákon neříká, že obec musí přijmout slepici do útulku.“" }
+    ],
+    "hidden_info": [],
+    "verdicts": [
+      { "id": "obec_povinnost", "text": "Obec má povinnost — přijmout Boženu", "consequences": { "traits": { "Nadeje": 5 }, "factions": { "Lid": 5 }, "finance": 0, "flags": [] } },
+      { "id": "privatni", "text": "Obec nemá povinnost — Kepka a Mrkva se dohodnou", "consequences": { "traits": { "Moudrost": 5 }, "factions": {}, "finance": 0, "flags": [] } }
+    ],
+    "narrative_link": null
+  },
+  {
+    "id": "case_pospísil_4", "title": "Hostinský Pospíšil jako klíčový svědek", "category": "criminal", "day": 27, "repeating_thread": "pospisil",
+    "defendant": { "name": "Jiří Bárta", "age": 35, "background": "Obchodní zástupce" },
+    "charge": "Podvod — záloha přijata, zboží nedodáno",
+    "situation": "Jiří Bárta přijal zálohu za zboží, které nikdy nedodal. Klíčovým svědkem je hostinský Pospíšil, který byl přítomen dohodě. Celou hrou byl komická postava. Teď záleží na tom, jestli mu Novák věří.",
+    "testimony": [
+      { "source": "A", "label": "Poškozený Holub, obchodník", "text": "„Bárta mi slíbil dodávku a vzal zálohu. Nic nepřišlo. Svědek byl u toho.“" },
+      { "source": "B", "label": "Hostinský Pospíšil, klíčový svědek", "text": "„Vašnosti, byl jsem u toho. Slyšel jsem tu dohodu. Bárta slíbil dodávku do dvou týdnů. Jasně. A to říkám já, Pospíšil — člověk který nikdy nelže. Aspoň ne o věcech, které jsou důležité.” (Pauza.) „Bylo to jen jedno pivo té chvíle, Vašnosti.“" }
+    ],
+    "hidden_info": [
+      { "id": "hi_pospisil_1", "action": "records", "reveal": "Bárta má tři předchozí stížnosti za podobné 'dohody bez dodávky'. Vždy unikl soudu.", "changes_narrative": true }
+    ],
+    "verdicts": [
+      { "id": "barta_vinen", "text": "Věřit Pospíšilovi — Bárta vinen, vrátit zálohu + pokuta", "consequences": { "traits": { "Moudrost": 8, "Integrita": 5 }, "factions": { "Lid": 10, "Obchodnici": -8 }, "finance": 0, "flags": [] } },
+      { "id": "barta_nevinen", "text": "Nedůvěřovat Pospíšilovi — Bárta zproštěn", "consequences": { "traits": { "Vina": 8, "Moudrost": -5 }, "factions": { "Obchodnici": 5, "Lid": -10 }, "finance": 0, "flags": [] } }
+    ],
+    "narrative_link": null
+  },
+  {
+    "id": "case_markova_4", "title": "Záhadná paní Marková — Obžaloba", "category": "personal", "day": 28, "repeating_thread": "markova",
+    "defendant": { "name": "Marta Marková", "age": 42, "background": "Profesionální svědkyně" },
+    "charge": "Křivá přísaha, organizované svědčení za odměnu",
+    "situation": "Paní Marková, která se v průběhu hry objevila jako svědkyně ve třech různých případech, je nyní obžalovaná. Vzorec je jasný. Ale důkazy jsou nepřímé.",
+    "testimony": [
+      { "source": "A", "label": "Prokurátor Malý", "text": "„Paní Marková svědčila přesně ve prospěch zadavatele — třikrát. Tři různé strany. Vzorec je jasný.“" },
+      { "source": "B", "label": "Marta Marková, obžalovaná", "text": "„Jsem jen pečlivá pozorovatelka. Mám dobrou paměť a svědomí. Nic jiného.“" }
+    ],
+    "hidden_info": [
+      { "id": "hi_mark_4_1", "action": "records", "reveal": "Bankovní záznamy: tři platby odpovídající datům procesů. Přes stejný zprostředkovatelský účet.", "changes_narrative": true },
+      { "id": "hi_mark_4_2", "action": "informant", "reveal": "Zprostředkovatelský účet patří advokátní kanceláři, která zastupovala i Haase.", "changes_narrative": true }
+    ],
+    "verdicts": [
+      { "id": "markova_vinna", "text": "Vinna — vězení 1 rok + vyšetřování zprostředkovatele", "consequences": { "traits": { "Integrita": 10, "Odvaha": 8, "Moudrost": 8 }, "factions": { "Stat": -8, "Obchodnici": -15, "Lid": 15 }, "finance": 0, "flags": [{"key": "markova_vyresen", "value": true}] } },
+      { "id": "podminka", "text": "Podmíněný trest + spolupráce s vyšetřováním", "consequences": { "traits": { "Moudrost": 8 }, "factions": { "Lid": 5 }, "finance": 0, "flags": [{"key": "markova_vyresen", "value": true}] } },
+      { "id": "zprosten", "text": "Zproštění — nepřímé důkazy nestačí", "consequences": { "traits": { "Integrita": -5, "Vina": 5 }, "factions": { "Obchodnici": 5, "Lid": -10 }, "finance": 0, "flags": [] } }
+    ],
+    "narrative_link": null
+  },
+  {
+    "id": "case_bozena_8", "title": "Případ slepice Boženy (VIII.) — Finále", "category": "absurd", "day": 29, "repeating_thread": "bozena",
+    "defendant": { "name": "Případ sám o sobě", "age": null, "background": "8 stání, 2 muži, 1 slepice" },
+    "charge": "Definitivní rozhodnutí o osudu Boženy",
+    "situation": "Osmé stání. Kepka a Mrkva přišli v oblecích. Slepice Božena je fyzicky přinesena v košíku. Soudní síň je plná zvědavců. Syn Nováka o případu píše práci.",
+    "testimony": [
+      { "source": "A", "label": "Pan Kepka", "text": "„Choval jsem ji tři roky. Jmenoval jsem ji. Podívejte — Boženo!” (Slepice kvoká.)" },
+      { "source": "B", "label": "Pan Mrkva", "text": "„Krmil jsem ji lépe. Tři roky. Podívejte — Boženo!” (Slepice kvoká stejně.)" }
+    ],
+    "hidden_info": [],
+    "verdicts": [
+      { "id": "bozena_kepka_final", "text": "Božena je Kepkova — jak bylo od počátku", "consequences": { "traits": { "Nadeje": 15, "Vina": -5 }, "factions": { "Lid": 15 }, "finance": 0, "flags": [{"key": "bozena_vyresen", "value": true}] } },
+      { "id": "bozena_mrkva_final", "text": "Božena zůstane u Mrkvy — čas rozhodl", "consequences": { "traits": { "Nadeje": 10, "Moudrost": 5 }, "factions": { "Lid": 10 }, "finance": 0, "flags": [{"key": "bozena_vyresen", "value": true}] } },
+      { "id": "bozena_svobodna", "text": "Božena bude propuštěna na svobodu — volný pohyb", "consequences": { "traits": { "Nadeje": 20, "Moudrost": 10, "Integrita": 5 }, "factions": { "Lid": 20 }, "finance": 0, "flags": [{"key": "bozena_vyresen", "value": true}] } }
+    ],
+    "narrative_link": null
+  },
+  {
+    "id": "case_068", "title": "Protest bez povolení", "category": "political", "day": 29, "repeating_thread": null,
+    "defendant": { "name": "Eva Chládková", "age": 26, "background": "Studentka" },
+    "charge": "Nepovolená demonstrace",
+    "situation": "Eva Chládková organizovala demonstraci proti propouštění. Poklidná. Bez povolení — neměli čas. Policie zasáhla.",
+    "testimony": [
+      { "source": "A", "label": "Komisař Štěpán", "text": "„Shromáždění bylo nepovolené. Policie zasáhla v souladu s předpisy.“" },
+      { "source": "B", "label": "Eva Chládková, obžalovaná", "text": "„Čtyřicet žen přišlo o práci. Zákon vyžaduje 7 dní předem — nestačil čas. Zákon nás nechrání, ale my zákon porušit nemůžeme?“" }
+    ],
+    "hidden_info": [
+      { "id": "hi_068_1", "action": "records", "reveal": "Továrna dostala státní zakázku tři dny před propouštěním. Ministerstvo pod Vlčkem.", "changes_narrative": true }
+    ],
+    "verdicts": [
+      { "id": "acquit", "text": "Zproštění — poklidná demonstrace, mimořádné okolnosti", "consequences": { "traits": { "Integrita": 10, "Odvaha": 10 }, "factions": { "Stat": -15, "Lid": 20 }, "finance": 0, "flags": [] } },
+      { "id": "pokuta_mala", "text": "Pokuta 10 Kč — formální porušení", "consequences": { "traits": { "Moudrost": 3 }, "factions": { "Stat": 3, "Lid": 5 }, "finance": 0, "flags": [] } },
+      { "id": "prison_1m", "text": "Vězení — 1 měsíc, zákon platí", "consequences": { "traits": { "Integrita": -8, "Vina": 8 }, "factions": { "Stat": 10, "Lid": -15 }, "finance": 0, "flags": [] } }
+    ],
+    "narrative_link": null
+  },
+  {
+    "id": "case_069", "title": "Případ jako zrcadlo", "category": "moral_dilemma", "day": 29, "repeating_thread": null,
+    "defendant": { "name": "Správce obecního majetku", "age": 38, "background": "Nový, pod tlakem" },
+    "charge": "Zneužití postavení — zmanipulovaný rozsudek",
+    "situation": "Případ připomíná případ Antonína Beneše do detailu. Jiné jméno. Stejná situace — tlak, rozhodnutí, nevinný člověk. Je to záměrné. Nebo náhoda?",
+    "testimony": [
+      { "source": "A", "label": "Žalobce", "text": "„Důkazy jsou jasné. Správce využil pozici. Nevinný člověk trpí.“" },
+      { "source": "B", "label": "Správce, obžalovaný", "text": "„Byl jsem pod tlakem. Byl jsem nový v funkci. Udělal jsem co se ode mne čekalo.“" }
+    ],
+    "hidden_info": [],
+    "verdicts": [
+      { "id": "spravedlnost", "text": "Vinen — zákon musí platit", "consequences": { "traits": { "Integrita": 12, "Vina": -15, "Odvaha": 10 }, "factions": { "Lid": 10 }, "finance": 0, "flags": [{"key": "vlastni_minulost_uzavrena", "value": true}] } },
+      { "id": "pochopeni", "text": "Podmíněný trest — pochopení pro tlak", "consequences": { "traits": { "Moudrost": 8, "Vina": -5 }, "factions": { "Lid": 5 }, "finance": 0, "flags": [] } }
+    ],
+    "narrative_link": null
+  },
+  {
+    "id": "case_osobni_1", "title": "Syn tvého kolegy", "category": "personal", "day": 30, "repeating_thread": null,
+    "defendant": { "name": "David Mašek", "age": 24, "background": "Syn soudce Mašeka" },
+    "charge": "Krádež přísně důvěrných dokumentů ze soudního archivu",
+    "situation": "David Mašek, syn tvého starého přítele, ukradl dokumenty ze soudního archivu. Pro otce. Dokumenty se týkají případu z roku 1921 — případu Antonína Beneše.",
+    "testimony": [
+      { "source": "A", "label": "Archivář Sedlák", "text": "„David Mašek byl přistižen s dokumenty. Jsou označeny jako přísně důvěrné.“" },
+      { "source": "B", "label": "David Mašek, obžalovaný", "text": "„Vzal jsem je pro otce. On mi řekl, že to potřebuje. Nevím, co v nich je.“" }
+    ],
+    "hidden_info": [
+      { "id": "hi_osobni_1_1", "action": "records", "reveal": "Dokumenty: případ Antonín Beneš 1921. Obsahují svědectví, které nebylo připuštěno k soudu.", "changes_narrative": true },
+      { "id": "hi_osobni_1_2", "action": "witness", "reveal": "Mašek senior byl v kontaktu s Vlčkem den před tím, než žádal syna o dokumenty.", "changes_narrative": true }
+    ],
+    "verdicts": [
+      { "id": "david_podminka", "text": "Podmíněný trest — naivita, ne záměr", "consequences": { "traits": { "Integrita": 5, "Moudrost": 5 }, "factions": { "Stat": -3 }, "finance": 0, "flags": [] } },
+      { "id": "david_vinen", "text": "Vinen — zákon platí i pro soudcovy děti", "consequences": { "traits": { "Integrita": 10, "Odvaha": 8, "Vina": 5 }, "factions": { "Stat": -5, "Lid": 8 }, "finance": 0, "flags": [{"key": "dokumenty_odhaleny", "value": true}] } },
+      { "id": "zprosit", "text": "Zproštění — respektuji přátelství", "consequences": { "traits": { "Integrita": -10, "Vina": 10 }, "factions": { "Stat": 3 }, "finance": 0, "flags": [] } }
+    ],
+    "narrative_link": "fragment_d20_odhaleni"
+  },
+  {
+    "id": "case_070", "title": "Poslední případ — Josef Beneš", "category": "moral_dilemma", "day": 30, "repeating_thread": null,
+    "defendant": { "name": "Josef Beneš — starý muž", "age": 71, "background": "Bratr Antonína Beneše" },
+    "charge": "Žádost o uznání justičního omylu v případu Antonína Beneše (1921)",
+    "situation": "Josef Beneš — starý muž, který mlčel celou hru — podal žalobu. Nechce trest. Chce jen, aby bylo zapsáno, že jeho bratr byl nevinný. Je to poslední den. Je to poslední případ.",
+    "testimony": [
+      { "source": "A", "label": "Josef Beneš", "text": "„Nepřišel jsem kvůli trestu. Přišel jsem kvůli pravdě. Můj bratr byl nevinný. Chtěl bych, aby to bylo zapsáno. Jen to.“" },
+      { "source": "B", "label": "Státní zástupce (pokud aktivní)", "text": "„Případ je promlčen. Nemaže záznamy. Novák jednal v rámci zákonné pravomoci doby.“" }
+    ],
+    "hidden_info": [],
+    "verdicts": [
+      { "id": "uznat_omyl", "text": "Uznat justiční omyl — zapsat do záznamu", "consequences": { "traits": { "Integrita": 20, "Vina": -30, "Odvaha": 20, "Maska": -20, "Nadeje": 20 }, "factions": { "Stat": -20, "Lid": 25 }, "finance": 0, "flags": [{"key": "benes_pravda_uzana", "value": true}] } },
+      { "id": "litovat_neuznat", "text": "Litovat, ale případ neotevřít — je promlčen", "consequences": { "traits": { "Vina": -5, "Integrita": 5, "Moudrost": 5 }, "factions": {}, "finance": 0, "flags": [] } },
+      { "id": "zamitnut", "text": "Zamítnout procesně — zákon to nedovoluje", "consequences": { "traits": { "Integrita": -5, "Vina": 10, "Maska": 5 }, "factions": { "Stat": 5, "Lid": -15 }, "finance": 0, "flags": [] } }
+    ],
+    "narrative_link": null
+  },
+  {
+    "id": "case_071", "title": "Syn a otec", "category": "personal", "day": 30, "repeating_thread": null,
+    "defendant": { "name": "Žádný obžalovaný", "age": null, "background": "Martin Novák — student práv" },
+    "charge": "Osobní volba soudce",
+    "situation": "Martin Novák přišel na soud neohlášeně. Sedí v zadní řadě a pozoruje. Případ je jednoduchý. Ale Martin je tady a vidí každý pohyb.",
+    "testimony": [
+      { "source": "A", "label": "Martin Novák, syn", "text": "(Nic neříká. Píše si poznámky.)" },
+      { "source": "B", "label": "Vnitřní hlas Nováka", "text": "Vidí mě jako člověka, kterým chce být. Nebo jako varování?" }
+    ],
+    "hidden_info": [],
+    "verdicts": [
+      { "id": "pro_nej", "text": "Rozhoduješ tak, jak bys chtěl, aby rozhodoval Martin", "consequences": { "traits": { "Integrita": 10, "Nadeje": 15, "Vina": -10 }, "factions": { "Lid": 10 }, "finance": 0, "flags": [] } },
+      { "id": "jako_vzdy", "text": "Rozhoduješ jak vždy — on je svědek, ne důvod", "consequences": { "traits": { "Moudrost": 8, "Maska": -5 }, "factions": {}, "finance": 0, "flags": [] } }
+    ],
+    "narrative_link": null
+  }
+]

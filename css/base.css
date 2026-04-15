@@ -1,0 +1,211 @@
+/* base.css — Reset, typografie, proměnné, noir paleta */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IM+Fell+English:ital@0;1&family=Special+Elite&family=EB+Garamond:ital,wght@0,400;1,400&display=swap');
+
+:root {
+  /* Barvy — tmavé dřevo a papír */
+  --barva-stul:          #1a0f08;
+  --barva-stul-svetla:   #2d1a0e;
+  --barva-stul-okraj:    #3d2510;
+  --barva-papir:         #f0e8d0;
+  --barva-papir-stary:   #e8d8b0;
+  --barva-papir-tmava:   #d4c090;
+  --barva-text:          #1c1008;
+  --barva-text-slaby:    #5a3e28;
+  --barva-cervena:       #8b1a1a;
+  --barva-cervena-razitko: #a01010;
+  --barva-modra:         #1a3a5c;
+  --barva-zlata:         #8b6914;
+  --barva-svetlo:        #f5d87a;
+  --barva-svetlo-slabe:  #c4952a;
+  --barva-zelena:        #1a3a1a;
+
+  /* Stíny */
+  --stin-papir: 2px 3px 8px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  --stin-hluboky: 4px 6px 16px rgba(0,0,0,0.6);
+  --stin-vnitrni: inset 0 2px 6px rgba(0,0,0,0.3);
+
+  /* Písma */
+  --pismo-serif:  'Playfair Display', 'IM Fell English', Georgia, serif;
+  --pismo-typewriter: 'Special Elite', 'Courier New', monospace;
+  --pismo-telo:   'IM Fell English', 'Playfair Display', Georgia, serif;
+  --pismo-narativ: 'EB Garamond', 'IM Fell English', Georgia, serif;
+
+  /* Přechody */
+  --prechod-rychly: 0.2s ease;
+  --prechod-stredni: 0.4s ease;
+  --prechod-pomaly: 0.8s ease;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0d0804;
+}
+
+body {
+  font-family: var(--pismo-telo);
+  font-size: 16px;
+  color: var(--barva-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Skrytí scrollbaru ale zachování funkce */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--barva-stul);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--barva-stul-okraj);
+  border-radius: 3px;
+}
+
+/* Základní tlačítko — papírový styl */
+.btn {
+  display: inline-block;
+  padding: 8px 20px;
+  background: var(--barva-papir-stary);
+  color: var(--barva-text);
+  font-family: var(--pismo-serif);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border: 1px solid var(--barva-text-slaby);
+  cursor: pointer;
+  transition: all var(--prechod-rychly);
+  text-transform: none;
+  position: relative;
+  user-select: none;
+}
+
+.btn:hover {
+  background: var(--barva-papir);
+  box-shadow: var(--stin-papir);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.btn--razitko {
+  background: var(--barva-cervena);
+  color: #f0d0c0;
+  border-color: #6a0a0a;
+  font-family: var(--pismo-typewriter);
+  letter-spacing: 2px;
+  font-variant: normal;
+  font-size: 11px;
+}
+
+.btn--razitko:hover {
+  background: #a01010;
+}
+
+.btn--propustit {
+  background: var(--barva-zelena);
+  color: #d0e8d0;
+  border-color: #0a2a0a;
+}
+
+.btn--propustit:hover {
+  background: #1e4a1e;
+}
+
+/* Overlay pozadí pro modaly */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--prechod-stredni);
+}
+
+.overlay.aktivni {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Panel na papíru */
+.panel-papir {
+  background: var(--barva-papir);
+  border: 1px solid var(--barva-papir-tmava);
+  box-shadow: var(--stin-hluboky);
+  padding: 32px;
+  position: relative;
+  max-width: 640px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+/* Okrasná linie */
+.panel-papir::before {
+  content: '';
+  position: absolute;
+  top: 10px; left: 10px; right: 10px; bottom: 10px;
+  border: 1px solid rgba(90, 62, 40, 0.2);
+  pointer-events: none;
+}
+
+/* Nadpisy */
+h1, h2, h3 {
+  font-family: var(--pismo-serif);
+  font-weight: 700;
+}
+
+h1 { font-size: 28px; line-height: 1.2; }
+h2 { font-size: 20px; line-height: 1.3; }
+h3 { font-size: 16px; line-height: 1.4; }
+
+p {
+  margin-bottom: 12px;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* Tučný text */
+strong {
+  font-weight: 700;
+  color: var(--barva-text);
+}
+
+/* Kurzíva */
+em {
+  font-style: italic;
+  color: var(--barva-text-slaby);
+}
+
+/* Skryté elementy */
+.skryto {
+  display: none !important;
+}
+
+.neviditelne {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Výběr zakázán pro herní elementy */
+.bez-vyberu {
+  user-select: none;
+  -webkit-user-select: none;
+}

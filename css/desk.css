@@ -1,0 +1,934 @@
+/* desk.css — Layout stolu a všechny fyzické elementy */
+
+/* ==========================================
+   HLAVNÍ STŮL
+   ========================================== */
+
+#stul {
+  width: 100vw;
+  height: 100vh;
+  background:
+    radial-gradient(ellipse at 30% 20%, #3d2510 0%, #1a0f08 60%, #0d0804 100%);
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 220px 1fr 180px;
+  grid-template-rows: 80px 1fr 120px;
+  gap: 0;
+}
+
+/* Textura dřeva — jemné linie */
+#stul::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      88deg,
+      transparent 0px,
+      transparent 18px,
+      rgba(255,255,255,0.012) 18px,
+      rgba(255,255,255,0.012) 19px
+    ),
+    repeating-linear-gradient(
+      92deg,
+      transparent 0px,
+      transparent 30px,
+      rgba(0,0,0,0.06) 30px,
+      rgba(0,0,0,0.06) 31px
+    );
+  pointer-events: none;
+}
+
+/* ==========================================
+   HORNÍ LIŠTA — datum + hodiny
+   ========================================== */
+
+#lista-horni {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  background: rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+/* ==========================================
+   LAMPA — vlevo nahoře
+   ========================================== */
+
+#lampa-wrapper {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 16px 12px;
+  position: relative;
+  background: rgba(0, 0, 0, 0.15);
+  border-right: 1px solid rgba(255, 255, 255, 0.03);
+  overflow-y: auto;
+  gap: 16px;
+}
+
+#lampa {
+  position: relative;
+  cursor: default;
+  transition: filter var(--prechod-pomaly);
+}
+
+#lampa-telo {
+  display: none;
+}
+
+#lampa-tienidlo {
+  width: 90px;
+  height: 50px;
+  background: linear-gradient(180deg, #2a1808 0%, #1a0f05 100%);
+  border: 1px solid #4a2a10;
+  border-radius: 45px 45px 5px 5px;
+  position: absolute;
+  top: -30px;
+  left: -10px;
+  clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+}
+
+/* Světlo lampy — kónus */
+#lampa-svetlo {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 180px solid transparent;
+  border-right: 180px solid transparent;
+  border-top: 280px solid rgba(245, 216, 122, 0.06);
+  pointer-events: none;
+  transition: border-top-color var(--prechod-pomaly),
+              border-left-width var(--prechod-pomaly),
+              border-right-width var(--prechod-pomaly);
+  z-index: 1;
+}
+
+/* Stavy lampy */
+.lampa--vysoka #lampa-svetlo   { border-top-color: rgba(245, 216, 122, 0.12); }
+.lampa--stredni #lampa-svetlo  { border-top-color: rgba(245, 216, 122, 0.07); }
+.lampa--nizka #lampa-svetlo    { border-top-color: rgba(245, 216, 122, 0.03); }
+.lampa--zhasnuta #lampa-svetlo { border-top-color: transparent; }
+
+/* Blikání — nízká Naděje */
+@keyframes blikani {
+  0%, 100% { opacity: 1; }
+  45%       { opacity: 0.4; }
+  50%       { opacity: 0.8; }
+  55%       { opacity: 0.3; }
+}
+
+.lampa--blika {
+  animation: blikani 3s ease-in-out infinite;
+}
+
+/* ==========================================
+   STŘED — aktivní spis
+   ========================================== */
+
+#plocha-stred {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+}
+
+/* Novinový výstřižek — denní nálada */
+#noviny-vystrizek {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 200px;
+  background: var(--barva-papir-stary);
+  padding: 10px 12px;
+  font-family: var(--pismo-typewriter);
+  font-size: 10px;
+  line-height: 1.4;
+  color: var(--barva-text);
+  box-shadow: var(--stin-papir);
+  transform: rotate(1.5deg);
+  border: 1px solid var(--barva-papir-tmava);
+  cursor: default;
+  transition: transform var(--prechod-rychly);
+}
+
+#noviny-vystrizek:hover {
+  transform: rotate(0deg) scale(1.02);
+  z-index: 5;
+}
+
+#noviny-vystrizek .noviny-datum {
+  font-size: 8px;
+  color: var(--barva-text-slaby);
+  border-bottom: 1px solid var(--barva-papir-tmava);
+  margin-bottom: 5px;
+  padding-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Aktivní spis */
+#aktivni-spis {
+  width: 100%;
+  max-width: 520px;
+  min-height: 300px;
+  background: var(--barva-papir);
+  box-shadow: var(--stin-hluboky);
+  border: 1px solid var(--barva-papir-tmava);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow var(--prechod-stredni);
+}
+
+#aktivni-spis:hover {
+  box-shadow: 6px 8px 24px rgba(0,0,0,0.7);
+}
+
+/* Záhlaví spisu */
+#spis-hlavicka {
+  background: var(--barva-papir-stary);
+  padding: 12px 20px;
+  border-bottom: 2px solid var(--barva-papir-tmava);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#spis-hlavicka .spis-cislo {
+  font-family: var(--pismo-typewriter);
+  font-size: 11px;
+  color: var(--barva-text-slaby);
+  letter-spacing: 1px;
+}
+
+#spis-hlavicka .spis-nazev {
+  font-family: var(--pismo-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--barva-text);
+}
+
+/* Tělo spisu */
+#spis-telo {
+  padding: 20px;
+  font-family: var(--pismo-telo);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--barva-text);
+  min-height: 200px;
+}
+
+/* Stav: prázdný stůl */
+#stul-prazdny {
+  text-align: center;
+  color: rgba(240, 220, 180, 0.2);
+  font-family: var(--pismo-serif);
+  font-size: 18px;
+  font-style: italic;
+  padding: 40px;
+}
+
+/* ==========================================
+   VPRAVO — okno
+   ========================================== */
+
+#okno-wrapper {
+  position: absolute;
+  top: 82px;
+  right: 0;
+  width: auto;
+  z-index: 5;
+}
+
+#okno {
+  width: 150px;
+  height: 200px;
+  border: 8px solid #3d2510;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.8), 4px 4px 12px rgba(0,0,0,0.5);
+  cursor: default;
+}
+
+/* Příčky okna */
+#okno::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 48%, #3d2510 48%, #3d2510 52%, transparent 52%),
+    linear-gradient(0deg, transparent 48%, #3d2510 48%, #3d2510 52%, transparent 52%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+#okno-pohled {
+  width: 100%;
+  height: 100%;
+  transition: background var(--prechod-pomaly);
+}
+
+/* Stavy okna — denní doba a nálada */
+.okno--rano #okno-pohled {
+  background: linear-gradient(180deg, #6a8aaa 0%, #8aaa8a 40%, #4a5a3a 100%);
+}
+.okno--dopoledne #okno-pohled {
+  background: linear-gradient(180deg, #4a6a8a 0%, #6a8a6a 40%, #3a4a2a 100%);
+}
+.okno--poledne #okno-pohled {
+  background: linear-gradient(180deg, #3a5a7a 0%, #5a7a5a 40%, #2a3a1a 100%);
+}
+.okno--vecer #okno-pohled {
+  background: linear-gradient(180deg, #1a2a3a 0%, #2a1a0a 50%, #0a0a05 100%);
+}
+.okno--noc #okno-pohled {
+  background: linear-gradient(180deg, #05090d 0%, #0a0508 60%, #000000 100%);
+}
+
+/* Déšť */
+.okno--dest #okno-pohled::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    170deg,
+    transparent 0px,
+    transparent 4px,
+    rgba(120, 160, 200, 0.15) 4px,
+    rgba(120, 160, 200, 0.15) 5px
+  );
+  animation: dest 0.8s linear infinite;
+}
+
+/* Sníh */
+.okno--snih #okno-pohled::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: snezeni 3s linear infinite;
+  opacity: 0.4;
+}
+
+@keyframes dest {
+  from { background-position: 0 -20px; }
+  to   { background-position: 10px 20px; }
+}
+
+@keyframes snezeni {
+  from { background-position: 0 0; }
+  to   { background-position: 20px 40px; }
+}
+
+/* ==========================================
+   SPODNÍ LIŠTA — složky případů + kalamář + šuplík
+   ========================================== */
+
+#lista-dolni {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+  border-top: 2px solid rgba(255,255,255,0.05);
+  background: rgba(0,0,0,0.25);
+  gap: 20px;
+}
+
+/* ==========================================
+   SLOŽKY PŘÍPADŮ
+   ========================================== */
+
+#slozky-wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.slozka {
+  width: 80px;
+  height: 90px;
+  background: linear-gradient(160deg, #c8b878 0%, #a89848 60%, #8a7830 100%);
+  border: 1px solid #7a6820;
+  border-radius: 2px 2px 0 0;
+  position: relative;
+  cursor: pointer;
+  transition: transform var(--prechod-rychly), box-shadow var(--prechod-rychly);
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 6px;
+}
+
+.slozka:hover {
+  transform: translateY(-4px);
+  box-shadow: 2px 6px 12px rgba(0,0,0,0.5);
+}
+
+/* Ouška složky */
+.slozka::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 8px;
+  width: 30px;
+  height: 14px;
+  background: inherit;
+  border: 1px solid #7a6820;
+  border-bottom: none;
+  border-radius: 2px 2px 0 0;
+}
+
+.slozka-cislo {
+  font-family: var(--pismo-typewriter);
+  font-size: 9px;
+  color: #3a2a08;
+  opacity: 0.7;
+  text-align: center;
+}
+
+.slozka-stav {
+  font-family: var(--pismo-typewriter);
+  font-size: 8px;
+  color: #3a2a08;
+  text-align: center;
+  font-variant: normal;
+  letter-spacing: 0.5px;
+}
+
+/* Složka — aktivní */
+.slozka--aktivni {
+  background: linear-gradient(160deg, #d8c888 0%, #b8a858 60%, #9a8840 100%);
+  border-color: #8a7030;
+}
+
+/* Složka — vyřešená (razítko) */
+.slozka--vyresena {
+  opacity: 0.7;
+}
+
+.slozka--vyresena::after {
+  content: 'VYŘEŠENO';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--pismo-typewriter);
+  font-size: 7px;
+  font-weight: bold;
+  color: var(--barva-cervena-razitko);
+  border: 2px solid var(--barva-cervena-razitko);
+  margin: 10px;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  transform: rotate(-15deg);
+}
+
+/* ==========================================
+   KALAMÁŘ — indikátor Integrity
+   ========================================== */
+
+#kalamár-wrapper {
+  display: none;
+}
+
+#kalamár {
+  width: 50px;
+  height: 55px;
+  background: linear-gradient(160deg, #1a1a2a 0%, #0a0a15 100%);
+  border: 2px solid #3a3a4a;
+  border-radius: 4px 4px 2px 2px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.5), 2px 2px 6px rgba(0,0,0,0.4);
+}
+
+/* Hladina inkoustu */
+#kalamár-hladina {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, #1a1a4a 0%, #0a0a2a 100%);
+  transition: height var(--prechod-pomaly);
+  height: 70%;
+}
+
+/* Lesk inkoustu */
+#kalamár::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 8px;
+  height: 3px;
+  background: rgba(100, 100, 200, 0.4);
+  border-radius: 50%;
+  transform: rotate(-20deg);
+}
+
+/* Pero */
+#pero {
+  position: absolute;
+  right: -5px;
+  top: -15px;
+  width: 3px;
+  height: 50px;
+  background: linear-gradient(180deg, #d4a848 0%, #8a6820 60%, #4a2810 100%);
+  transform: rotate(25deg);
+  border-radius: 0 0 2px 1px;
+}
+
+#kalamár-popis {
+  font-family: var(--pismo-typewriter);
+  font-size: 9px;
+  color: rgba(240, 220, 180, 0.3);
+  font-variant: normal;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+/* ==========================================
+   ŠUPLÍK
+   ========================================== */
+
+#suplik-wrapper {
+  /* pozice řídí třída suplik-wrapper--fixed */
+}
+
+#suplik {
+  width: 140px;
+  height: 70px;
+  background: linear-gradient(160deg, #2d1a0e 0%, #1a0f08 100%);
+  border: 2px solid #3d2510;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: transform var(--prechod-rychly), box-shadow var(--prechod-rychly);
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.5), inset 0 1px 3px rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+#suplik:hover {
+  transform: translateY(-2px);
+  box-shadow: 2px 4px 12px rgba(0,0,0,0.6);
+}
+
+/* Madlo šuplíku */
+#suplik::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 8px;
+  background: linear-gradient(180deg, #6a4520 0%, #4a2a10 100%);
+  border: 1px solid #3a1a08;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+#suplik-popis {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--pismo-typewriter);
+  font-size: 9px;
+  color: rgba(240, 220, 180, 0.3);
+  font-variant: normal;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* Indikátor obsahu šuplíku */
+#suplik-indikator {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--barva-cervena);
+  opacity: 0;
+  transition: opacity var(--prechod-stredni);
+  box-shadow: 0 0 6px var(--barva-cervena);
+}
+
+#suplik-indikator.aktivni {
+  opacity: 1;
+}
+
+/* ==========================================
+   FOTOGRAFIE RODINY — vpravo nahoře
+   ========================================== */
+
+#fotografie-wrapper {
+  position: absolute;
+  top: 295px;
+  right: 20px;
+  z-index: 4;
+}
+
+#fotografie {
+  width: 90px;
+  height: 70px;
+  background: linear-gradient(135deg, #1a1008 30%, #0d0804 100%);
+  border: 3px solid #2a1808;
+  box-shadow: 2px 3px 10px rgba(0,0,0,0.7);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: filter var(--prechod-pomaly);
+}
+
+/* Obsah — siluety rodiny */
+#fotografie::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 80%, #3a2810 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, #2a1808 0%, transparent 40%),
+    radial-gradient(ellipse at 70% 80%, #3a2810 0%, transparent 45%);
+  opacity: 0.8;
+}
+
+/* Vina — fotografie se zatemňuje */
+.fotografie--stredni-vina { filter: brightness(0.8); }
+.fotografie--vysoka-vina  { filter: brightness(0.5) blur(0.5px); }
+.fotografie--nizka-nadeje { transform: rotate(5deg); filter: brightness(0.4) blur(1px); }
+
+/* ==========================================
+   HODINY
+   ========================================== */
+
+#hodiny {
+  font-family: var(--pismo-typewriter);
+  font-size: 13px;
+  color: rgba(240, 220, 180, 0.5);
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+/* ==========================================
+   TRHACÍ KALENDÁŘ
+   ========================================== */
+
+#kalendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: default;
+}
+
+#kalendar-den {
+  font-family: var(--pismo-serif);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--barva-papir);
+  line-height: 1;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+#kalendar-mesic {
+  font-family: var(--pismo-typewriter);
+  font-size: 10px;
+  color: rgba(240, 220, 180, 0.5);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Červená tečka u politických dnů */
+#kalendar.politicky-den #kalendar-den::after {
+  content: '•';
+  color: var(--barva-cervena);
+  font-size: 18px;
+  margin-left: 4px;
+  vertical-align: super;
+}
+
+/* ==========================================
+   RAZÍTKA — animace
+   ========================================== */
+
+.razitko-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.razitko-text {
+  font-family: 'Courier New', 'Special Elite', monospace;
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  font-variant: normal;
+  border: 4px solid currentColor;
+  padding: 8px 20px;
+  transform: rotate(-20deg);
+  opacity: 0;
+}
+
+.razitko-text--vinen    { color: var(--barva-cervena-razitko); }
+.razitko-text--zprostit { color: var(--barva-zelena); }
+.razitko-text--odlozit  { color: var(--barva-modra); }
+
+/* ==========================================
+   DOPIS OD VLČKA
+   ========================================== */
+
+#vlcek-dopis {
+  position: absolute;
+  top: 30px;
+  left: 230px;
+  width: 160px;
+  background: var(--barva-papir-stary);
+  padding: 12px;
+  font-family: var(--pismo-telo);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--barva-text);
+  box-shadow: var(--stin-papir);
+  transform: rotate(-2deg);
+  cursor: pointer;
+  border: 1px solid var(--barva-papir-tmava);
+  transition: transform var(--prechod-rychly);
+  z-index: 6;
+}
+
+#vlcek-dopis:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+
+/* Pečeť */
+#vlcek-dopis.zapeceteny::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, var(--barva-cervena) 0%, #6a0a0a 100%);
+  border-radius: 50%;
+  border: 1px solid #4a0505;
+}
+
+/* Zmačkaný dopis */
+.dopis--zmackany {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--barva-papir-stary);
+  border-radius: 50% 40% 60% 30%;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ==========================================
+   PRŮZKUMNÉ AKCE — vizuální indikátor
+   ========================================== */
+
+#akce-wrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.akce-tecka {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--barva-zlata, #8b6914);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all var(--prechod-stredni);
+}
+
+.akce-tecka--pouzita {
+  background: rgba(90, 62, 40, 0.4);
+  border-color: rgba(90, 62, 40, 0.3);
+}
+
+/* ==========================================
+   PROMĚNA STOLU V ČASE
+   ========================================== */
+
+/* Den 7+ */
+.stul--tyden1 #vlcek-dopis-zmackan-1 { display: block; }
+
+/* Den 15+ */
+.stul--tyden2 #aktivni-spis { box-shadow: 8px 10px 28px rgba(0,0,0,0.8); }
+.stul--tyden2 #kalamár-hladina { filter: brightness(0.9); }
+
+/* Den 20+ */
+.stul--tyden3 #lampa-svetlo {
+  border-top-color: rgba(245, 216, 122, 0.05) !important;
+}
+
+/* Den 28 */
+.stul--finale #noviny-vystrizek { opacity: 0.7; }
+.stul--finale #kalamár { filter: brightness(0.7); }
+
+/* ==========================================
+   LEVÝ PANEL — PANEL RYSŮ
+   ========================================== */
+
+#panel-rysy {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rys-radek {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 7px 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  cursor: default;
+  transition: background var(--prechod-rychly);
+}
+
+.rys-radek:last-child {
+  border-bottom: none;
+}
+
+.rys-radek:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.rys-radek-hlavicka {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.rys-radek-ikona {
+  font-size: 11px;
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.rys-radek-nazev {
+  font-family: var(--pismo-typewriter);
+  font-size: 8px;
+  color: rgba(240, 220, 180, 0.35);
+  letter-spacing: 1.5px;
+  font-variant: normal;
+}
+
+.rys-radek-popis {
+  font-family: var(--pismo-telo);
+  font-size: 10.5px;
+  color: rgba(240, 220, 180, 0.55);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* ==========================================
+   SPIS NA STOLE — obsah případu
+   ========================================== */
+
+.spis-obvineni {
+  font-family: var(--pismo-typewriter);
+  font-size: 11px;
+  color: var(--barva-text-slaby);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--barva-papir-tmava);
+}
+
+.spis-situace-kratka {
+  font-family: var(--pismo-telo);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--barva-text);
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ==========================================
+   ARCHIV (ŠUPLÍK) — PRAVÝ DOLNÍ ROH
+   ========================================== */
+
+.suplik-wrapper--fixed {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.suplik-wrapper--fixed #suplik {
+  width: 80px;
+  height: 44px;
+  background: linear-gradient(160deg, #2d1a0e 0%, #1a0f08 100%);
+  border: 2px solid #3d2510;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: transform var(--prechod-rychly), box-shadow var(--prechod-rychly);
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.5), inset 0 1px 3px rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.suplik-wrapper--fixed #suplik:hover {
+  transform: translateY(-2px);
+  box-shadow: 2px 4px 12px rgba(0,0,0,0.6);
+}
+
+.suplik-wrapper--fixed #suplik::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 6px;
+  background: linear-gradient(180deg, #6a4520 0%, #4a2a10 100%);
+  border: 1px solid #3a1a08;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.suplik-wrapper--fixed #suplik-popis {
+  font-family: var(--pismo-typewriter);
+  font-size: 8px;
+  color: rgba(240, 220, 180, 0.3);
+  letter-spacing: 0.5px;
+  text-align: center;
+}

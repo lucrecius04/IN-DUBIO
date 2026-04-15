@@ -1,0 +1,78 @@
+{
+  "integrita": {
+    "visual": "kalamář",
+    "descriptions": [
+      { "range": [0,  15], "text": "Nevzpomínáš si, kdy sis naposledy myslel, že to má smysl." },
+      { "range": [16, 30], "text": "Zákon je nástroj. Otázka je, v čích rukou." },
+      { "range": [31, 50], "text": "Začínáš pochybovat, jestli zákon a spravedlnost jsou totéž." },
+      { "range": [51, 70], "text": "Stále věříš, že zákon může být spravedlivý." },
+      { "range": [71, 85], "text": "Zákon a spravedlnost jsou jedno. Nebo by měly být." },
+      { "range": [86, 100], "text": "I kdyby tě to stálo vše — spravedlnost není vyjednatelná." }
+    ],
+    "effects": {
+      "at_zero": "ending_korupce",
+      "at_hundred": "vlcek_attacks"
+    }
+  },
+  "odvaha": {
+    "visual": "lampa",
+    "descriptions": [
+      { "range": [0,  20], "text": "Každé ráno přichází s novým důvodem mlčet." },
+      { "range": [21, 40], "text": "Víš, co je správné. Říct to nahlas je jiná věc." },
+      { "range": [41, 60], "text": "Kompromis není vždy zbabělost. Říkáš si to dost často." },
+      { "range": [61, 80], "text": "Tlak tě nezlomí. Možná ohne, ale nezlomí." },
+      { "range": [81, 100], "text": "Rozhodl ses. Ať to stojí, co to stojí." }
+    ],
+    "effects": {
+      "at_low": "rozsudky_mizí"
+    }
+  },
+  "moudrost": {
+    "visual": "knihy",
+    "descriptions": [
+      { "range": [0,  20], "text": "Rozhoduješ dřív, než přemýšlíš." },
+      { "range": [21, 40], "text": "Fakta znáš. Pravdu ne vždy." },
+      { "range": [41, 60], "text": "Zkušenost tě naučila, že první verze příběhu bývá ta nejméně pravdivá." },
+      { "range": [61, 80], "text": "Čteš lidi tak, jak čteš spisy — s trpělivostí a skepticismem." },
+      { "range": [81, 100], "text": "Vidíš, co ostatní nevidí. To tě izoluje a chrání zároveň." }
+    ],
+    "effects": {
+      "at_high": "extra_detaily_v_případech"
+    }
+  },
+  "vina": {
+    "visual": "fotografie",
+    "descriptions": [
+      { "range": [0,  30], "text": "Minulost je minulost. Tak si říkáš." },
+      { "range": [31, 50], "text": "Někdy vidíš jeho tvář ve svědcích. V obviněných. Všude." },
+      { "range": [51, 70], "text": "Jeden rozsudek. Před deseti lety. Stále nevíš, jestli jsi to byl ty." },
+      { "range": [71, 85], "text": "Každý případ je zrcadlo. A to, co vidíš, se ti nelíbí." },
+      { "range": [86, 100], "text": "Jsi paralyzován vlastní minulostí. Rozsudky cítíš jako opakování." }
+    ],
+    "starting_value": 60
+  },
+  "maska": {
+    "visual": "zmačkané_dopisy",
+    "descriptions": [
+      { "range": [0,  20], "text": "Všichni vidí, čím jsi unavený. Nedokážeš to skrýt." },
+      { "range": [21, 40], "text": "Tvůj klid je vrstva ledového skla — tenká a praskající." },
+      { "range": [41, 60], "text": "Soudce Novák. Pevný. Nezaujatý. Role, kterou hraješ dobře." },
+      { "range": [61, 80], "text": "Maska sedí tak dobře, že někdy zapomeneš, co je pod ní." },
+      { "range": [81, 100], "text": "Dokonalá fasáda. Ale Vlček tě přesto čte." }
+    ]
+  },
+  "nadeje": {
+    "visual": "okno",
+    "descriptions": [
+      { "range": [0,  10], "text": "Třicet dní. Pak to skončí — tak nebo tak." },
+      { "range": [11, 25], "text": "Svítání je jen tmavší noc, která trvá kratší dobu." },
+      { "range": [26, 45], "text": "Možná se věci zlepší. Možná ne. Zatím jsem tady." },
+      { "range": [46, 65], "text": "Stojí to za to. Přinejmenším někdy." },
+      { "range": [66, 80], "text": "Je šance. Malá, ale skutečná." },
+      { "range": [81, 100], "text": "Věříš, že zákon lze napravit jedním spravedlivým člověkem najednou." }
+    ],
+    "effects": {
+      "at_zero": "nejkratší_epilog"
+    }
+  }
+}

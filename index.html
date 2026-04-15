@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IN DUBIO</title>
+
+  <!-- Fonty -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Styly -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/desk.css">
+  <link rel="stylesheet" href="css/ui.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="bez-vyberu">
+
+<!-- ==========================================
+     ÚVODNÍ OBRAZOVKA
+     ========================================== -->
+<div id="uvod-overlay" style="
+  position: fixed; inset: 0; background: #000;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  z-index: 2000; cursor: pointer;
+  transition: opacity 1.5s ease;
+">
+  <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 52px; font-weight: 700; color: #f0e8d0; letter-spacing: 6px; margin-bottom: 12px; animation: konecHryText 2s ease forwards;">IN DUBIO</div>
+  <div style="font-family: 'Special Elite', monospace; font-size: 12px; color: rgba(240,220,180,0.5); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 48px; animation: konecHryText 2s ease 0.5s both;">Středoevropský stát, 1931</div>
+  <div style="font-family: Georgia, serif; font-size: 14px; color: rgba(240,220,180,0.3); font-style: italic; max-width: 500px; text-align: center; line-height: 2; margin-bottom: 48px; animation: konecHryText 2s ease 1s both;">
+    Dr. Karel Novák. Soudce. Třicet dní. Jedna minulost.<br>Zákon a spravedlnost nejsou vždy totéž.
+  </div>
+  <div style="font-family: monospace; font-size: 10px; color: rgba(240,220,180,0.2); letter-spacing: 2px; animation: blikani 2s ease-in-out infinite;">KLIKNĚTE PRO ZAHÁJENÍ</div>
+  <div id="uvod-ulozena-zprava" style="margin-top: 24px; font-size: 11px; color: rgba(240,220,180,0.3); font-family: monospace;"></div>
+</div>
+
+<!-- ==========================================
+     HLAVNÍ STŮL
+     ========================================== -->
+<div id="stul">
+
+  <!-- HORNÍ LIŠTA -->
+  <div id="lista-horni">
+    <!-- Vlevo: název hry -->
+    <div style="font-family: var(--pismo-serif); font-size: 13px; color: rgba(240,220,180,0.3); letter-spacing: 3px; font-style: italic;">
+      IN DUBIO
+    </div>
+
+    <!-- Střed: kalendář -->
+    <div id="kalendar">
+      <div id="kalendar-den">1</div>
+      <div id="kalendar-mesic">BŘEZEN 1931</div>
+    </div>
+
+    <!-- Vpravo: hodiny + ovládání hudby -->
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div id="hodiny">07:30</div>
+      <div id="hudba-ovladac">
+        <button id="hudba-toggle" title="Ztlumit hudbu">🔊</button>
+        <input id="hudba-hlasitost" type="range" min="0" max="100" value="40">
+      </div>
+    </div>
+  </div>
+
+  <!-- LEVÝ PANEL — lampa + rysy -->
+  <div id="lampa-wrapper">
+    <!-- Lampa -->
+    <div id="lampa" class="lampa--stredni" title="">
+      <div id="lampa-tienidlo"></div>
+      <div id="lampa-telo">
+        <div id="pero"></div>
+      </div>
+      <div id="lampa-svetlo"></div>
+    </div>
+
+    <!-- Panel charakterových rysů -->
+    <div id="panel-rysy">
+      <!-- Dynamicky plněno desk.js -->
+    </div>
+  </div>
+
+  <!-- STŘEDNÍ PLOCHA -->
+  <div id="plocha-stred">
+
+    <!-- Novinový výstřižek -->
+    <div id="noviny-vystrizek">
+      <div id="noviny-datum" class="noviny-datum">1. BŘEZNA 1931</div>
+      <div id="noviny-text">Krize pokračuje. Nezaměstnanost dosáhla rekordních hodnot.</div>
+    </div>
+
+    <!-- Aktivní spis -->
+    <div id="aktivni-spis">
+      <div class="razitko-overlay">
+        <div class="razitko-text razitko-text--vinen"></div>
+      </div>
+
+      <div id="spis-hlavicka">
+        <span class="spis-cislo">SP. ZN. —</span>
+        <span class="spis-nazev">Soudní síň č. 4</span>
+        <span class="spis-cislo">1931</span>
+      </div>
+
+      <div id="spis-telo">
+        <div id="stul-prazdny">
+          Stůl je prázdný.<br>
+          <small style="font-size:13px; opacity:0.7;">Otevřete složku s případem.</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PRAVÝ PANEL — okno + fotografie -->
+  <div id="okno-wrapper">
+    <div id="okno" class="okno--rano">
+      <div id="okno-pohled"></div>
+    </div>
+  </div>
+
+  <!-- Fotografie rodiny — absolutní pozice -->
+  <div id="fotografie-wrapper">
+    <div id="fotografie" title="Rodina"></div>
+  </div>
+
+  <!-- Vlčkův dopis — absolutní pozice, skrytý dokud nepřijde -->
+  <div id="vlcek-dopis" class="skryto zapeceteny">
+    <div style="font-family: var(--pismo-typewriter); font-size: 9px; color: var(--barva-text-slaby); margin-bottom: 6px;">MINISTERSTVO SPRAVEDLNOSTI</div>
+    <div id="vlcek-dopis-preview" style="font-style: italic; font-size: 11px;">„Věřím že jste muž který rozumí nutnosti kompromisů..."</div>
+  </div>
+
+  <!-- Zmačkané dopisy v rohu -->
+  <div id="zmackane-dopisy" style="position: absolute; bottom: 130px; left: 240px; width: 80px; height: 50px; pointer-events: none;"></div>
+
+  <!-- SPODNÍ LIŠTA -->
+  <div id="lista-dolni">
+
+    <!-- Složky případů -->
+    <div id="slozky-wrapper">
+      <div class="slozka" id="slozka-1" data-slot="0">
+        <div class="slozka-cislo">I.</div>
+        <div class="slozka-stav">—</div>
+      </div>
+      <div class="slozka" id="slozka-2" data-slot="1">
+        <div class="slozka-cislo">II.</div>
+        <div class="slozka-stav">—</div>
+      </div>
+      <div class="slozka" id="slozka-3" data-slot="2">
+        <div class="slozka-cislo">III.</div>
+        <div class="slozka-stav">—</div>
+      </div>
+    </div>
+
+    <!-- Kalamář — skrytý, zachován pro desk.js logiku -->
+    <div id="kalamár-wrapper" style="display:none;">
+      <div id="kalamár">
+        <div id="kalamár-hladina"></div>
+      </div>
+    </div>
+
+    <!-- Tlačítko: Další den -->
+    <div style="margin-left: auto;">
+      <button id="btn-dalsi-den" class="btn">Další den →</button>
+    </div>
+
+  </div><!-- /lista-dolni -->
+
+  <!-- ARCHIV — fixní v pravém dolním rohu -->
+  <div id="suplik-wrapper" class="suplik-wrapper--fixed">
+    <div id="suplik">
+      <div id="suplik-indikator"></div>
+    </div>
+    <div id="suplik-popis">ARCHIV</div>
+  </div>
+
+</div><!-- /stul -->
+
+<!-- ==========================================
+     MODAL — PŘÍPAD
+     ========================================== -->
+<div id="modal-pripad" class="overlay" role="dialog" aria-modal="true">
+  <div class="panel-papir pripad-panel panel-papir--nastup">
+    <div class="pripad-zahlavi">
+      <div>
+        <div class="pripad-kategorie" id="pripad-kategorie-text">—</div>
+        <div class="pripad-nazev" id="pripad-nazev-text">Případ</div>
+        <div class="pripad-obvineni" id="pripad-obvineni-text"></div>
+      </div>
+      <button class="pripad-zavrit-x" id="pripad-zavrit-x" title="Zavřít (Esc)">✕</button>
+    </div>
+
+    <div class="pripad-telo">
+      <div class="pripad-situace" id="pripad-situace-text"></div>
+
+      <div class="svedectvi-sekce" id="pripad-svedectvi">
+        <div class="svedectvi-nadpis">Svědectví</div>
+        <!-- Dynamicky plněno -->
+      </div>
+
+      <div id="pripad-odhalene-info">
+        <!-- Odkryté informace z průzkumu -->
+      </div>
+    </div>
+
+    <!-- Průzkum -->
+    <div class="prukzum-panel" id="prukzum-panel">
+      <div class="prukzum-nadpis">
+        <span>Průzkum</span>
+        <span id="prukzum-akce-info" class="prukzum-akce-info">2 akce</span>
+      </div>
+      <div class="prukzum-tlacitka" id="prukzum-tlacitka">
+        <!-- Dynamicky plněno -->
+      </div>
+    </div>
+
+    <!-- Rozsudky -->
+    <div class="rozsudky-panel">
+      <div class="rozsudky-nadpis">Rozsudek</div>
+      <div class="rozsudky-seznam" id="rozsudky-seznam">
+        <!-- Dynamicky plněno -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================
+     MODAL — VEČERNÍ VOLBA
+     ========================================== -->
+<div id="modal-vecer" class="overlay" role="dialog" aria-modal="true">
+  <div class="panel-papir vecer-panel panel-papir--nastup">
+    <div class="vecer-cas">Večer</div>
+    <div class="vecer-text" id="vecer-text">—</div>
+    <div class="vecer-volby" id="vecer-volby">
+      <!-- Dynamicky plněno -->
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================
+     MODAL — NARATIVNÍ FRAGMENT
+     ========================================== -->
+<div id="modal-fragment" class="overlay" role="dialog" aria-modal="true">
+  <div class="panel-papir fragment-panel panel-papir--nastup" id="fragment-panel">
+    <div class="fragment-nadpis" id="fragment-nadpis">—</div>
+    <div class="fragment-text" id="fragment-text">—</div>
+    <button class="fragment-zavrit" id="fragment-zavrit">Zavřít</button>
+  </div>
+</div>
+
+<!-- ==========================================
+     MODAL — ARCHIV (ŠUPLÍK)
+     ========================================== -->
+<div id="modal-archiv" class="overlay" role="dialog" aria-modal="true">
+  <div class="panel-papir archiv-panel panel-papir--nastup">
+    <div class="archiv-zahlavi">
+      <h2>Šuplík</h2>
+      <button class="btn" id="archiv-zavrit">Zavřít</button>
+    </div>
+    <div class="archiv-tabs">
+      <div class="archiv-tab archiv-tab--aktivni" data-tab="finance">Finance</div>
+      <div class="archiv-tab" data-tab="rozsudky">Rozsudky</div>
+      <div class="archiv-tab" data-tab="fragmenty">Záznamy</div>
+    </div>
+    <div class="archiv-obsah" id="archiv-obsah">
+      <!-- Dynamicky plněno -->
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================
+     KONEC HRY
+     ========================================== -->
+<div id="konec-hry-overlay" class="skryto">
+  <div class="konec-titulek" id="konec-titulek">IN DUBIO</div>
+  <div class="konec-typ" id="konec-typ">—</div>
+  <div class="konec-epilog" id="konec-epilog">
+    <!-- Dynamicky plněno — jedna věta na postavu -->
+  </div>
+  <button class="konec-restart" id="konec-restart">Nová hra</button>
+</div>
+
+<!-- ==========================================
+     STAVOVÁ ZPRÁVA
+     ========================================== -->
+<div id="stavova-zprava">—</div>
+
+<!-- ==========================================
+     TOOLTIP — RYSY
+     ========================================== -->
+<div id="rys-tooltip" class="rys-tooltip">
+  <div class="rys-tooltip-nazev">—</div>
+  <div class="rys-tooltip-text">—</div>
+</div>
+
+<!-- ==========================================
+     ZVUKY
+     ========================================== -->
+<audio id="zvuk-stamp"  src="assets/sounds/stamp.wav"  preload="auto"></audio>
+<audio id="zvuk-paper"  src="assets/sounds/paper.mp3"  preload="auto"></audio>
+<audio id="zvuk-clock"  src="assets/sounds/clock.mp3"  preload="auto"></audio>
+
+<!-- ==========================================
+     SCRIPTY — pořadí závisí na vazbách
+     ========================================== -->
+<script src="js/state.js"></script>
+<script src="js/data-loader.js"></script>
+<script src="js/traits.js"></script>
+<script src="js/factions.js"></script>
+<script src="js/finance.js"></script>
+<script src="js/characters.js"></script>
+<script src="js/narrative.js"></script>
+<script src="js/desk.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/cases.js"></script>
+<script src="js/music.js"></script>
+<script src="js/engine.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,305 @@
+/* animations.css — CSS animace, přechody, razítko */
+
+/* ==========================================
+   PŘÍCHOD SPISU ZE ZDOLA
+   ========================================== */
+
+@keyframes prichodSpisu {
+  from {
+    transform: translateY(60px) rotate(1deg);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.spis--prichod {
+  animation: prichodSpisu 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* ==========================================
+   RAZÍTKO
+   ========================================== */
+
+@keyframes razitkoDopad {
+  0%   { transform: rotate(-20deg) scale(1.8); opacity: 0; }
+  30%  { transform: rotate(-20deg) scale(0.9); opacity: 1; }
+  50%  { transform: rotate(-20deg) scale(1.05); opacity: 1; }
+  70%  { transform: rotate(-20deg) scale(1); opacity: 1; }
+  100% { transform: rotate(-20deg) scale(1); opacity: 0.85; }
+}
+
+.razitko-text--animace {
+  animation: razitkoDopad 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+}
+
+/* Zvuk razítka — vizuální otřes */
+@keyframes otresPapirem {
+  0%, 100% { transform: translate(0, 0); }
+  10%       { transform: translate(-2px, 1px); }
+  20%       { transform: translate(2px, -1px); }
+  30%       { transform: translate(-1px, 2px); }
+  40%       { transform: translate(1px, -2px); }
+  50%       { transform: translate(-1px, 1px); }
+}
+
+.spis--otres {
+  animation: otresPapirem 0.3s ease;
+}
+
+/* ==========================================
+   DOPIS — ROZBALENÍ
+   ========================================== */
+
+@keyframes rozbaleniDopisu {
+  from {
+    transform: scaleY(0.1) rotate(-2deg);
+    opacity: 0;
+    transform-origin: top center;
+  }
+  to {
+    transform: scaleY(1) rotate(0deg);
+    opacity: 1;
+    transform-origin: top center;
+  }
+}
+
+.fragment-panel--rozbaleni {
+  animation: rozbaleniDopisu 0.4s ease forwards;
+}
+
+/* ==========================================
+   MODAL — NÁSTUP A ODCHOD
+   ========================================== */
+
+@keyframes modalNastup {
+  from {
+    transform: scale(0.95) translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.panel-papir--nastup {
+  animation: modalNastup 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ==========================================
+   ŠUPLÍK — VYSUNUTÍ
+   ========================================== */
+
+@keyframes vysunuti {
+  from { transform: translateX(-100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+.suplik-obsah--vysunuti {
+  animation: vysunuti 0.35s ease forwards;
+}
+
+/* ==========================================
+   PŘECHOD DNE — STMÍVÁNÍ
+   ========================================== */
+
+@keyframes prechod-dne {
+  0%   { opacity: 1; }
+  40%  { opacity: 0; }
+  60%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+#stul.prechod-dne {
+  animation: prechod-dne 1.5s ease;
+}
+
+/* ==========================================
+   OBJEVENÍ VLČKOVA DOPISU
+   ========================================== */
+
+@keyframes padaniDopisu {
+  from {
+    transform: rotate(-5deg) translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(-2deg) translateY(0);
+    opacity: 1;
+  }
+}
+
+#vlcek-dopis.prisel {
+  animation: padaniDopisu 0.6s ease forwards;
+}
+
+/* ==========================================
+   PULSUJÍCÍ INDIKÁTOR
+   ========================================== */
+
+@keyframes pulsIndikator {
+  0%, 100% { box-shadow: 0 0 4px var(--barva-cervena); opacity: 1; }
+  50%       { box-shadow: 0 0 12px var(--barva-cervena); opacity: 0.7; }
+}
+
+#suplik-indikator.aktivni {
+  animation: pulsIndikator 2s ease-in-out infinite;
+}
+
+/* ==========================================
+   PŘECHOD FÁZE DNE
+   ========================================== */
+
+@keyframes fadeFaze {
+  from { opacity: 0; transform: translateY(-5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+#hodiny.nova-faze {
+  animation: fadeFaze 0.5s ease forwards;
+}
+
+/* ==========================================
+   SEN — PŘECHOD
+   ========================================== */
+
+@keyframes senPrichod {
+  0%   { background: rgba(0,0,0,0); }
+  50%  { background: rgba(10, 5, 20, 0.95); }
+  100% { background: rgba(10, 5, 20, 0.9); }
+}
+
+.overlay--sen {
+  animation: senPrichod 1.5s ease forwards;
+}
+
+/* ==========================================
+   KONCE HRY — ZHASNUTÍ
+   ========================================== */
+
+@keyframes konecHry {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes konecHryText {
+  0%   { opacity: 0; letter-spacing: 8px; }
+  100% { opacity: 1; letter-spacing: 2px; }
+}
+
+#konec-hry-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  overflow-y: auto;
+}
+
+#konec-hry-overlay:not(.skryto) {
+  display: flex;
+}
+
+.konec-titulek {
+  font-family: var(--pismo-serif);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--barva-papir);
+  margin-bottom: 16px;
+  animation: konecHryText 2s ease 0.5s both;
+}
+
+.konec-typ {
+  font-family: var(--pismo-typewriter);
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--barva-text-slaby);
+  margin-bottom: 48px;
+  animation: konecHryText 2s ease 0.8s both;
+}
+
+.konec-epilog {
+  max-width: 600px;
+  text-align: center;
+}
+
+.epilog-radek {
+  font-family: var(--pismo-telo);
+  font-size: 15px;
+  line-height: 2;
+  color: rgba(240, 220, 180, 0.7);
+  margin-bottom: 8px;
+  animation: konecHryText 1.5s ease both;
+}
+
+.epilog-radek--novak {
+  color: var(--barva-papir);
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(240, 220, 180, 0.2);
+}
+
+.konec-restart {
+  margin-top: 48px;
+  padding: 12px 32px;
+  background: transparent;
+  border: 1px solid rgba(240, 220, 180, 0.3);
+  color: rgba(240, 220, 180, 0.5);
+  font-family: var(--pismo-typewriter);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--prechod-stredni);
+  animation: konecHryText 2s ease 3s both;
+}
+
+.konec-restart:hover {
+  border-color: rgba(240, 220, 180, 0.7);
+  color: rgba(240, 220, 180, 0.9);
+}
+
+/* ==========================================
+   RYSY — TOOLTIP
+   ========================================== */
+
+.rys-tooltip {
+  position: fixed;
+  background: rgba(26, 15, 8, 0.97);
+  border: 1px solid rgba(240, 220, 180, 0.15);
+  color: var(--barva-papir-stary);
+  font-family: var(--pismo-telo);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.6;
+  padding: 12px 18px;
+  max-width: 280px;
+  pointer-events: none;
+  z-index: 600;
+  opacity: 0;
+  transition: opacity var(--prechod-rychly);
+}
+
+.rys-tooltip.viditelny {
+  opacity: 1;
+}
+
+.rys-tooltip-nazev {
+  font-style: normal;
+  font-family: var(--pismo-typewriter);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(240, 220, 180, 0.5);
+  margin-bottom: 6px;
+}

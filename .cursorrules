@@ -1,0 +1,6 @@
+In Dubio — textová soudní hra, noir, středoevropský stát 1931.
+- Komentáře a texty v češtině
+- Nikdy nerozbíjet existující logiku
+- Vždy navrhni architekturu před implementací
+- Preferuj čisté oddělené soubory před jedním velkým
+- Testuj funkčnost po každé změně

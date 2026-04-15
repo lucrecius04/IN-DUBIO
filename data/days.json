@@ -1,0 +1,484 @@
+[
+  {
+    "day": 1,
+    "newspaper_headline": "Krize pokračuje. Nezaměstnanost dosáhla rekordních hodnot.",
+    "morning_fragment": "fragment_d1_morning",
+    "cases": ["case_001", "case_002", "case_003"],
+    "vlcek_letter": "vlcek_d1",
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Stůl je čistý. Lampa svítí. Poprvé po roce jsi zpátky. Na stole leží prázdný list papíru a pero. Je čas zapsat něco — nebo ne.",
+      "options": [
+        { "text": "Zapíšeš si: „Budu spravedlivý.“", "effects": { "Integrita": 5, "Nadeje": 5 } },
+        { "text": "Nevypisuješ nic. Slova nic neznamenají.", "effects": { "Maska": 5, "Vina": 3 } }
+      ]
+    },
+    "night_fragment": "fragment_d1_night"
+  },
+  {
+    "day": 2,
+    "newspaper_headline": "Demonstrace v Brně. Policie rozháněla dav vodními děly.",
+    "morning_fragment": null,
+    "cases": ["case_004", "case_005", "case_006"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Na chodbě potkáš Mašeka. Říká: „Karle, dnes jsi mě překvapil. To druhé rozhodnutí — opravdu to tak myslíš?” Počká. Chce odpověď.",
+      "options": [
+        { "text": "„Ano. Zákon musí platit pro všechny.“", "effects": { "Integrita": 5, "Odvaha": 5, "Maska": -3 } },
+        { "text": "„Jen aplikuji paragraf.“", "effects": { "Maska": 8 } },
+        { "text": "„Nevím, Josef. Opravdu nevím.“", "effects": { "Vina": 5, "Nadeje": -3 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 3,
+    "newspaper_headline": "Rozsudek z roku 1921 pod lupou. Právníci žádají přezkoumání.",
+    "morning_fragment": "fragment_d3_noviny",
+    "cases": ["case_007", "case_008", "case_bozena_1"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Na stole je láhev slivovice. Někdo ji nechal — kolega, sekretářka, nevíš. Je otevřená.",
+      "options": [
+        { "text": "Dáš si sklenku.", "effects": { "Maska": -5, "Nadeje": 5, "Vina": -3 } },
+        { "text": "Lahev odložíš stranou. Nejsi ten typ.", "effects": { "Integrita": 3, "Maska": 3 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 4,
+    "newspaper_headline": "Haasova továrna propustila 40 dělníků. Management: nutné kroky.",
+    "morning_fragment": null,
+    "cases": ["case_009", "case_010", "case_pozemek_1"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Syn Martin napsal dopis. Je nadšený z práv, z přednášek, z profesorů. „Otče, kdy mě přijdeš navštívit? Ukázal bych ti fakultu.“",
+      "options": [
+        { "text": "Odpíšeš: „Brzy, Martine.“", "effects": { "Nadeje": 8, "Vina": 3 } },
+        { "text": "Dopis odložíš. Nemáš na to teď sílu.", "effects": { "Vina": 8, "Nadeje": -5 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 5,
+    "newspaper_headline": "Parlament jedná o nouzovém zákoně. Opozice protestuje.",
+    "morning_fragment": null,
+    "cases": ["case_011", "case_012", "case_bozena_2"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "V šatně tě zastaví mladý úředník. Třese se trochu. „Pane doktore — o tom druhém případu dnes — můžu vám říct jednu věc?” Čeká na souhlas.",
+      "options": [
+        { "text": "„Mluvte.“", "effects": { "Moudrost": 5, "Odvaha": 3 } },
+        { "text": "„Ne. Co bylo, bylo.“", "effects": { "Maska": 5, "Vina": 5 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 6,
+    "newspaper_headline": "Ministr Vlček na sjezdu strany: „Zákon musí sloužit republice.“",
+    "morning_fragment": "fragment_d6_morning",
+    "cases": ["case_013", "case_014", "case_015"],
+    "vlcek_letter": "vlcek_d6",
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Vlčkův dopis ti leží na stole celý den. Před odchodem — co s ním?",
+      "options": [
+        { "text": "Zmačkáš ho a hodíš do koše.", "effects": { "Maska": -8, "Odvaha": 5 } },
+        { "text": "Schováš ho. Důkaz — možná.", "effects": { "Moudrost": 5, "Maska": 5 } },
+        { "text": "Přečteš znovu a pomyslíš: možná má pravdu.", "effects": { "Integrita": -5, "Maska": 8, "Vina": 5 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 7,
+    "newspaper_headline": "Haas inauguroval nový závod. Přítomni byli ministři.",
+    "morning_fragment": null,
+    "cases": ["case_016", "case_haas_1", "case_017"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Týden je za tebou. Sedíš sám. Před tebou je deník — starý, nevyplněný. Koupil jsi ho loni s tím, že budeš psát. Ještě jsi nezačal.",
+      "options": [
+        { "text": "Zapíšeš: co se stalo. Pravdivě.", "effects": { "Integrita": 8, "Vina": 8, "Nadeje": 3 } },
+        { "text": "Zavřeš ho. Raději ne.", "effects": { "Maska": 5 } }
+      ]
+    },
+    "night_fragment": null,
+    "special_events": ["tydenni_bilance"]
+  },
+  {
+    "day": 8,
+    "newspaper_headline": "Vlna arrestů v dělnickém hnutí. Ministerstvo vnitra tají detaily.",
+    "morning_fragment": "fragment_d8_morning",
+    "cases": ["case_018", "case_019", "case_020"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Dopis od doktora Síbra. Matka. Operace. 920 korun do tří týdnů. Tvůj plat je 180 korun měsíčně. Obálka od Haasova advokáta leží v šuplíku od dnešního rána.",
+      "options": [
+        { "text": "Otevřeš šuplík a podíváš se na obálku.", "effects": { "Vina": 3 } },
+        { "text": "Šuplík zamkneš. Najdeš jiný způsob.", "effects": { "Integrita": 5, "Odvaha": 3, "Nadeje": -5 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 9,
+    "newspaper_headline": "Sucho na Moravě. Sedláci žádají pomoc.",
+    "morning_fragment": null,
+    "cases": ["case_021", "case_022", "case_bozena_3"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Manželka Božena ti zavolala na soud. Ptala se, jak se máš. Hlas byl jiný než dřív — zdvořilý jako s cizím člověkem. „Večeříme spolu v pátek?” zeptala se nakonec.",
+      "options": [
+        { "text": "„Ano. V pátek.“", "effects": { "Nadeje": 5, "Vina": -3 } },
+        { "text": "„Možná. Závisí na práci.“", "effects": { "Vina": 5, "Maska": 3 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 10,
+    "newspaper_headline": "Horáková: Soudnictví v době krize — investigace.",
+    "morning_fragment": "fragment_d10_morning",
+    "cases": ["case_023", "case_024", "case_025"],
+    "vlcek_letter": null,
+    "noon_event": "horakova_navsteva",
+    "evening_choice": {
+      "text": "Horáková odešla. Zanechala vizitku. Na rubu je napsáno: „Pokud chcete mluvit — jen zavolat.“",
+      "options": [
+        { "text": "Schováš vizitku.", "effects": { "Moudrost": 5 } },
+        { "text": "Zahodíš vizitku. Novináři jsou nebezpeční.", "effects": { "Maska": 5, "Odvaha": -3 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 11,
+    "newspaper_headline": "Vlček jmenován předsedou komise pro reformu soudnictví.",
+    "morning_fragment": null,
+    "cases": ["case_026", "case_027", "case_pozemek_2"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Na dně šuplíku najdeš starý spis. Tvůj vlastní — z roku 1921. Případ Antonín Beneš. Víko tě svírá.",
+      "options": [
+        { "text": "Přečteš ho celý.", "effects": { "Vina": 10, "Moudrost": 8, "Nadeje": -5 } },
+        { "text": "Schováš ho zpátky. Ještě ne.", "effects": { "Vina": 5, "Maska": 5 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 12,
+    "newspaper_headline": "Střet v Ostravě. Stávkující versus policie — raněni.",
+    "morning_fragment": "fragment_d12_morning",
+    "cases": ["case_028", "case_029", "case_030"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Beneš přišel jako svědek. Řekl jen jednu větu o svém bratru. Odešel tiše. Teď sedíš sám a vidíš jeho záda jak odchází chodbou.",
+      "options": [
+        { "text": "Zavoláš na něj: „Pane Beneši!“", "effects": { "Odvaha": 8, "Vina": 5, "Benes_trust": 1 } },
+        { "text": "Necháš ho odejít.", "effects": { "Vina": 10, "Maska": -3 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 13,
+    "newspaper_headline": "Záhadná paní v soudních síních — kdo to je?",
+    "morning_fragment": null,
+    "cases": ["case_031", "case_032", "case_033"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Záhadná paní Marková dnes svědčila. Výpověď byla přesná — příliš přesná. Jako by věděla odpovědi předem. Kdo ji najal?",
+      "options": [
+        { "text": "Požádáš sekretářku, aby zjistila víc.", "effects": { "Moudrost": 5, "Odvaha": 3 } },
+        { "text": "Necháš to být. Nejsi detektiv.", "effects": { "Maska": 3 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 14,
+    "newspaper_headline": "Vlček na obědě s průmyslníky. Přijat zákon o majetku.",
+    "morning_fragment": null,
+    "cases": ["case_034", "case_035", "case_bozena_4"],
+    "vlcek_letter": "vlcek_d14",
+    "noon_event": "vlcek_obed",
+    "evening_choice": {
+      "text": "Vlček ti řekl nahlas, co chce. Podruhé jsi slyšel jméno Antonína Beneše z cizích úst. Domů jdeš pěšky.",
+      "options": [
+        { "text": "Zastavíš se u kostela. Sedíš tam chvíli.", "effects": { "Nadeje": 5, "Vina": -3, "Cirkev": 5 } },
+        { "text": "Jdeš rovnou domů.", "effects": { "Maska": 3 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 15,
+    "newspaper_headline": "Republika slaví 12 let. Slavnostní průvod v Praze.",
+    "morning_fragment": "fragment_d15_night",
+    "cases": ["case_036", "case_037", "case_038"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Uprostřed republiky — polovina her. Stůl je zaneprázdněný. Kalamář je méně plný. Věci se mění.",
+      "options": [
+        { "text": "Pohledíš z okna a pomyslíš: stojí to za to.", "effects": { "Nadeje": 5 } },
+        { "text": "Pracuješ dál. Ještě je mnoho dní.", "effects": { "Moudrost": 3, "Maska": 3 } }
+      ]
+    },
+    "night_fragment": null,
+    "special_events": ["pulka_hry"]
+  },
+  {
+    "day": 16,
+    "newspaper_headline": "Haasova obchodní expanze — nové kontrakty s vládou.",
+    "morning_fragment": null,
+    "cases": ["case_039", "case_haas_2", "case_040"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Haas zmínil obálku. Byl přátelský a výhružný zároveň. Peníze v šuplíku leží.",
+      "options": [
+        { "text": "Vytáhneš obálku a vrátíš ji poštou.", "effects": { "Integrita": 10, "Odvaha": 8, "Obchodnici": -15 } },
+        { "text": "Peníze necháš. Zatím.", "effects": { "Vina": 8, "Integrita": -5 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 17,
+    "newspaper_headline": "Soudnictví a politika — hranice se stírá, varují právníci.",
+    "morning_fragment": null,
+    "cases": ["case_041", "case_042", "case_pozemek_3"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Dnes byl případ, kde zákon a spravedlnost šly přímo proti sobě. Rozhodl jsi. Teď s tím žiješ.",
+      "options": [
+        { "text": "Zapíšeš do deníku, co a proč.", "effects": { "Integrita": 3, "Moudrost": 5, "Vina": 3 } },
+        { "text": "Nezapisuješ. Rozsudek byl vydán. Tečka.", "effects": { "Maska": 8 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 18,
+    "newspaper_headline": "Stávka zastavena. Dělníci přijali podmínky.",
+    "morning_fragment": null,
+    "cases": ["case_043", "case_044", "case_bozena_5"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Přišla Božena. Bez ohlášení. Sedí v předpokoji. Sekretářka tě upozornila. Co uděláš?",
+      "options": [
+        { "text": "Přijmeš ji hned.", "effects": { "Nadeje": 8, "Maska": -5, "Vina": 3 } },
+        { "text": "„Řekněte jí, že jsem v jednání. Za půl hodiny.“", "effects": { "Maska": 8, "Vina": 5 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 19,
+    "newspaper_headline": "Zákon o cenzuře tisku prošel druhým čtením.",
+    "morning_fragment": null,
+    "cases": ["case_045", "case_046", "case_047"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Mašek ti nabídl podpis dokumentu. Řekl: „Jen jeden. Záleží mu na matce.” Stojíš u okna. Venku prší.",
+      "options": [
+        { "text": "Odejdeš bez odpovědi.", "effects": { "Odvaha": 3, "Maska": 5 } },
+        { "text": "„Ne, Josefe. Nikdy.“", "effects": { "Integrita": 10, "Odvaha": 8, "Nadeje": 5, "Masek_trust": -1 } },
+        { "text": "„Nech mi čas přemyslet.“", "effects": { "Vina": 5, "Maska": 3 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 20,
+    "newspaper_headline": "Pátrání po původu anonymních dopisů pokračuje.",
+    "morning_fragment": "fragment_d20_odhaleni",
+    "cases": ["case_048", "case_049", "case_050"],
+    "vlcek_letter": "vlcek_d20",
+    "noon_event": "benes_navrat",
+    "evening_choice": {
+      "text": "Dokument od Horákové. Vlčkovo jméno na okraji papíru z roku 1921. „Novák bude spolupracovat.” Tvé jméno. Tvá minulost.",
+      "options": [
+        { "text": "Zavoláš Horákové.", "effects": { "Odvaha": 10, "Horakova_trust": 1, "Maska": -5, "flags": [{"key": "pravda_odhalena", "value": true}] } },
+        { "text": "Schováš dokument. Ještě ne.", "effects": { "Moudrost": 3, "Vina": 8, "Maska": 5 } }
+      ]
+    },
+    "night_fragment": null,
+    "special_events": ["benes_identified_check"]
+  },
+  {
+    "day": 21,
+    "newspaper_headline": "Horáková: „Systém není náhoda. Je to konstrukce.“",
+    "morning_fragment": null,
+    "cases": ["case_051", "case_052", "case_pozemek_4"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Horáková nabídla alianci. Cena: pravda vyjde ven. Tvoje minulost — veřejně. Případy, které tě formovaly. Všechno.",
+      "options": [
+        { "text": "Přijmeš alianci.", "effects": { "Odvaha": 12, "Integrita": 8, "Maska": -15, "Nadeje": 8, "flags": [{"key": "horakova_alliance", "value": true}] } },
+        { "text": "Odmítneš. Je toho příliš.", "effects": { "Maska": 10, "Nadeje": -8, "Vina": 5 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 22,
+    "newspaper_headline": "Republika v napětí. Komentátoři spekulují o politické krizi.",
+    "morning_fragment": null,
+    "cases": ["case_053", "case_054", "case_bozena_6"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Dcera Anna ti napsala. Provdala se za muže jménem Říha. Říha má kontakty v Haasově firmě. Anna vypadá šťastně na fotografii.",
+      "options": [
+        { "text": "Odpíšeš a popřeješ jí vše dobré.", "effects": { "Nadeje": 8, "Vina": 3 } },
+        { "text": "Nic nepíšeš. Musel by ses ptát na Říhu.", "effects": { "Vina": 8, "Maska": 5 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 23,
+    "newspaper_headline": "Lékařské zprávy: epidemie chřipky v zimě. Nemocnice přetíženy.",
+    "morning_fragment": null,
+    "cases": ["case_055", "case_056", "case_057"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Doktor Síbr volal znovu. Matčin stav je kritický. Operace musí proběhnout do týdne. Stojíš u telefonu.",
+      "options": [
+        { "text": "Sáhneš po obálce v šuplíku.", "effects": { "Integrita": -20, "Vina": 15, "Nadeje": 5, "finance_delta": 800 } },
+        { "text": "Zavoláš Martina — možná si půjčíš.", "effects": { "Nadeje": 5, "Vina": 8 } },
+        { "text": "Zavoláš Horákové — zná lidi.", "effects": { "Horakova_trust": 1, "Odvaha": 5 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 24,
+    "newspaper_headline": "Haasova kauza: nové důkazy předány prokuratuře.",
+    "morning_fragment": null,
+    "cases": ["case_058", "case_haas_3", "case_059"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Haasův případ. Tentokrát s důkazy. Haas na tebe koukal celou dobu. Věděl, že víš.",
+      "options": [
+        { "text": "Vydáš rozsudek podle důkazů.", "effects": { "Integrita": 12, "Odvaha": 10, "Obchodnici": -20, "Stat": -10 } },
+        { "text": "Odložíš případ na neurčito.", "effects": { "Integrita": -8, "Maska": 8 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 25,
+    "newspaper_headline": "Právní bizarnost: strom s právní osobností?",
+    "morning_fragment": null,
+    "cases": ["case_060", "case_061", "case_pozemek_5"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Případ pozemku se vrátil. Tentokrát má na 34 centimetrech půdy právní status strom. Smál ses. Pak sis uvědomil, že to myslí vážně.",
+      "options": [
+        { "text": "Rozhodneš rychle. Tak nebo tak.", "effects": { "Moudrost": -3, "Nadeje": 5 } },
+        { "text": "Odložíš. Zaslouží si přemyšlení.", "effects": { "Moudrost": 5 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 26,
+    "newspaper_headline": "Vlček: „Reformy přinesou stabilitu.” Opozice zpochybňuje.",
+    "morning_fragment": null,
+    "cases": ["case_062", "case_063", "case_bozena_7"],
+    "vlcek_letter": "vlcek_d26",
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Vlček hrál poslední kartu. Explicitně. Bez rukavic. Jméno Antonína Beneše zaznělo třikrát za sebou. Pak vstoupil a odešel.",
+      "options": [
+        { "text": "Sedíš a nedáš mu tu satisfakci.", "effects": { "Odvaha": 10, "Maska": -8 } },
+        { "text": "Zavoláš Horákové té večer.", "effects": { "Odvaha": 12, "Horakova_trust": 1, "Maska": -5 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 27,
+    "newspaper_headline": "Pospíšil znovu před soudem — tentokrát jako svědek.",
+    "morning_fragment": null,
+    "cases": ["case_064", "case_pospísil_4", "case_065"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Pospíšil svědčil v závažném případu. Celou hrou jsi ho nebral vážně. Dnes — musel ses rozhodnout, jestli mu věříš.",
+      "options": [
+        { "text": "Věřil jsi mu.", "effects": { "Moudrost": 5, "Integrita": 5 } },
+        { "text": "Nevěřil jsi. Celý život byl bezvýznamný člověk.", "effects": { "Vina": 8, "Moudrost": -5 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 28,
+    "newspaper_headline": "Záhadná paní Marková zatčena. Kontext stále nejasný.",
+    "morning_fragment": "fragment_d28_rano",
+    "cases": ["case_066", "case_markova_4", "case_067"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Syn Martin napsal — byl na Tebe pyšný. Citoval tě. Citoval tě z případu z roku 1928.\n\nNevíš, co je horší — to, že jsi na sebe tehdy byl hrdý, nebo to, že teď nevíš, jestli ten člověk ještě existuje.",
+      "options": [
+        { "text": "Napíšeš mu pravdu. Celou.", "effects": { "Integrita": 10, "Vina": -10, "Maska": -15, "Nadeje": 8 } },
+        { "text": "Napíšeš mu: „Brzy se uvidíme.“", "effects": { "Nadeje": 5, "Maska": 5, "Vina": 3 } }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 29,
+    "newspaper_headline": "Soudnictví v krizi — výzva k reformě.",
+    "morning_fragment": null,
+    "cases": ["case_068", "case_bozena_8", "case_069"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": {
+      "text": "Poslední noc před posledním dnem. Stůl je zaneprázdněný. Lampa svítí — nebo bliká. Závisí na tobě.",
+      "options": [
+        { "text": "Sedíš a přemýšlíš co bylo. Bez omluv.", "effects": { "Moudrost": 5, "Vina": -5, "Nadeje": 3 } },
+        { "text": "Jdeš spát. Zítra je poslední den.", "effects": {} }
+      ]
+    },
+    "night_fragment": null
+  },
+  {
+    "day": 30,
+    "newspaper_headline": "Konec března. Republika žije dál.",
+    "morning_fragment": null,
+    "cases": ["case_070", "case_osobni_1", "case_071"],
+    "vlcek_letter": null,
+    "noon_event": null,
+    "evening_choice": null,
+    "night_fragment": null,
+    "special_events": ["konec_hry_check"]
+  }
+]
