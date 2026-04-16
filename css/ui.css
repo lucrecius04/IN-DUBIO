@@ -9,11 +9,14 @@
 }
 
 .pripad-panel {
-  max-width: 700px;
-  width: 94vw;
+  min-width: min(740px, 94vw);
+  width: min(740px, 94vw);
+  height: 88vh;
   max-height: 88vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  padding: 0;
 }
 
 /* Záhlaví případu */
@@ -30,7 +33,7 @@
   font-family: var(--pismo-typewriter);
   font-size: 9px;
   letter-spacing: 2px;
-  text-transform: uppercase;
+  font-variant: normal;
   color: var(--barva-text-slaby);
   background: var(--barva-papir-tmava);
   padding: 3px 8px;
@@ -57,6 +60,50 @@
 }
 
 /* Tělo případu */
+/* Záložky */
+.pripad-tabs {
+  display: flex;
+  border-bottom: 1px solid rgba(240, 220, 180, 0.12);
+  background: rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.pripad-tab {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--barva-text-slaby);
+  font-family: var(--pismo-typewriter);
+  font-size: 10px;
+  letter-spacing: 2px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  font-variant: normal;
+}
+
+.pripad-tab:hover {
+  color: var(--barva-papir-stary);
+}
+
+.pripad-tab--aktivni {
+  color: var(--barva-papir-stary);
+  border-bottom-color: var(--barva-zlata);
+}
+
+/* Obsah záložek */
+.pripad-tab-obsah {
+  display: none;
+  flex: 1 1 0;
+  min-height: 0;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.pripad-tab-obsah.aktivni {
+  display: flex;
+}
+
 .pripad-telo {
   flex: 1;
   overflow-y: auto;
@@ -83,7 +130,7 @@
   font-family: var(--pismo-typewriter);
   font-size: 10px;
   letter-spacing: 2px;
-  text-transform: uppercase;
+  font-variant: normal;
   color: var(--barva-text-slaby);
   margin-bottom: 10px;
   padding-bottom: 4px;
@@ -128,7 +175,7 @@
   font-family: var(--pismo-typewriter);
   font-size: 9px;
   color: var(--barva-zlata);
-  text-transform: uppercase;
+  font-variant: normal;
   letter-spacing: 1px;
   margin-bottom: 4px;
 }
@@ -160,7 +207,7 @@
   font-family: var(--pismo-typewriter);
   font-size: 10px;
   letter-spacing: 2px;
-  text-transform: uppercase;
+  font-variant: normal;
   color: var(--barva-text-slaby);
   margin-bottom: 10px;
   display: flex;
@@ -221,7 +268,7 @@
   font-family: var(--pismo-typewriter);
   font-size: 10px;
   letter-spacing: 2px;
-  text-transform: uppercase;
+  font-variant: normal;
   color: var(--barva-text-slaby);
   margin-bottom: 12px;
 }
@@ -244,8 +291,51 @@
   cursor: pointer;
   transition: all var(--prechod-rychly);
   display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+}
+
+.rozsudek-radek-hlavni {
+  display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.rozsudek-nazev {
+  font-weight: 600;
+  flex: 1;
+}
+
+.rozsudek-consequence {
+  font-size: 12px;
+  color: var(--barva-text-slaby);
+  font-style: italic;
+  font-family: var(--pismo-telo);
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.rozsudek-trendy {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+
+.trend-up {
+  color: #4a8a4a;
+  font-size: 10px;
+  font-family: var(--pismo-typewriter);
+  letter-spacing: 0;
+}
+
+.trend-down {
+  color: #8a3a3a;
+  font-size: 10px;
+  font-family: var(--pismo-typewriter);
+  letter-spacing: 0;
 }
 
 .btn-rozsudek:hover {
@@ -283,7 +373,7 @@
   font-size: 10px;
   letter-spacing: 3px;
   color: var(--barva-text-slaby);
-  text-transform: uppercase;
+  font-variant: normal;
   margin-bottom: 12px;
 }
 
@@ -359,7 +449,7 @@
   font-family: var(--pismo-typewriter);
   font-size: 9px;
   letter-spacing: 3px;
-  text-transform: uppercase;
+  font-variant: normal;
   color: var(--barva-text-slaby);
   margin-bottom: 20px;
   text-align: center;
@@ -395,7 +485,7 @@
   font-family: var(--pismo-typewriter);
   font-size: 10px;
   letter-spacing: 2px;
-  text-transform: uppercase;
+  font-variant: normal;
   cursor: pointer;
   transition: all var(--prechod-rychly);
 }
@@ -444,7 +534,7 @@
   font-family: var(--pismo-typewriter);
   font-size: 10px;
   letter-spacing: 1px;
-  text-transform: uppercase;
+  font-variant: normal;
   color: var(--barva-text-slaby);
   cursor: pointer;
   border-bottom: 2px solid transparent;
@@ -760,4 +850,177 @@
   padding: 3px 6px;
   white-space: nowrap;
   font-variant: normal;
+}
+
+/* ==========================================
+   HAMBURGER MENU
+   ========================================== */
+
+.btn-menu {
+  background: transparent;
+  border: 1px solid rgba(240, 220, 180, 0.2);
+  color: rgba(240, 220, 180, 0.5);
+  font-size: 16px;
+  width: 32px;
+  height: 28px;
+  cursor: pointer;
+  font-family: var(--pismo-typewriter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s, border-color 0.2s;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.btn-menu:hover {
+  color: var(--barva-papir-stary);
+  border-color: rgba(240, 220, 180, 0.5);
+}
+
+.modal-menu-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 500;
+  background: rgba(10, 6, 3, 0.75);
+}
+
+.modal-menu-overlay.skryto {
+  display: none;
+}
+
+.menu-panel {
+  background: linear-gradient(180deg, #1a0f06 0%, #120a04 100%);
+  border: 1px solid rgba(240, 220, 180, 0.18);
+  border-left: none;
+  width: 260px;
+  min-height: 100vh;
+  padding: 50px 30px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 4px 0 30px rgba(0,0,0,0.8);
+}
+
+.menu-nazev {
+  font-family: var(--pismo-nadpis);
+  font-size: 26px;
+  color: var(--barva-papir-stary);
+  letter-spacing: 4px;
+  margin-bottom: 4px;
+}
+
+.menu-popis {
+  font-family: var(--pismo-typewriter);
+  font-size: 10px;
+  color: var(--barva-text-slaby);
+  letter-spacing: 2px;
+  margin-bottom: 28px;
+  font-variant: normal;
+}
+
+.menu-polozka {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(240, 220, 180, 0.08);
+  color: rgba(240, 220, 180, 0.75);
+  font-family: var(--pismo-typewriter);
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-align: left;
+  padding: 14px 0;
+  cursor: pointer;
+  transition: color 0.2s, padding-left 0.2s;
+  font-variant: normal;
+}
+
+.menu-polozka:hover {
+  color: var(--barva-papir-stary);
+  padding-left: 8px;
+}
+
+.menu-polozka--zavrit {
+  margin-top: 20px;
+  border: 1px solid rgba(240, 220, 180, 0.2);
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--barva-text-slaby);
+}
+
+.menu-polozka--zavrit:hover {
+  border-color: rgba(240, 220, 180, 0.5);
+  color: var(--barva-papir-stary);
+  padding-left: 16px;
+}
+
+/* ==========================================
+   MODÁL — DETAIL RYSU
+   ========================================== */
+
+.rys-detail-panel {
+  max-width: 380px;
+  width: 90%;
+  text-align: center;
+  padding: 40px 36px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.rys-detail-ikona {
+  font-size: 42px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.rys-detail-nazev {
+  font-family: var(--pismo-typewriter);
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: rgba(240, 220, 180, 0.9);
+  font-variant: normal;
+}
+
+.rys-detail-hvezdicky {
+  font-size: 18px;
+  letter-spacing: 3px;
+  color: #c8a84b;
+  margin: 2px 0;
+}
+
+.rys-detail-popis {
+  font-family: var(--pismo-telo);
+  font-size: 14px;
+  font-style: italic;
+  color: var(--barva-text);
+  line-height: 1.6;
+  max-width: 300px;
+}
+
+.rys-detail-oddelovac {
+  width: 60px;
+  height: 1px;
+  background: rgba(240, 220, 180, 0.2);
+  margin: 6px 0;
+}
+
+.rys-detail-vysvetlivka {
+  font-family: var(--pismo-telo);
+  font-size: 12px;
+  color: rgba(240, 220, 180, 0.55);
+  line-height: 1.7;
+  max-width: 300px;
+}
+
+/* Klikatelný rys-radek — kurzor pointer */
+.rys-radek {
+  cursor: pointer;
+}
+
+.rys-radek:hover .rys-radek-nazev {
+  color: rgba(240, 220, 180, 0.9);
 }

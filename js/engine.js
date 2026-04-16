@@ -65,21 +65,20 @@ const Engine = (() => {
     // Aktualizuj noviny
     if (_denData) Narrative.aktualizujNoviny(_denData);
 
-    // Ranní fragment
+    // Nastav případy dne PŘED dialogy — složky musí být aktivní hned po zavření overlaye
+    const pripadyIds = _denData?.cases || [];
+    Cases.nastavPripadyDne(pripadyIds);
+    const pripady = Cases.getPripady();
+    UI.aktualizujSlozky(pripady, State.get('casesResolvedToday'));
+    Desk.nastavAktivniSpis(null);
+
+    // Ranní fragment (overlay blokuje UI, ale složky jsou už načteny)
     if (_denData?.morning_fragment) {
       await _cekejNaFragment(_denData.morning_fragment);
     }
 
     // Dialogy postav pro tento den
     await _zpracujDialogyDne(den);
-
-    // Nastav případy dne
-    const pripadyIds = _denData?.cases || [];
-    Cases.nastavPripadyDne(pripadyIds);
-
-    const pripady = Cases.getPripady();
-    UI.aktualizujSlozky(pripady, State.get('casesResolvedToday'));
-    Desk.nastavAktivniSpis(null);
 
     State.set('phase', 'forenoon');
     Desk.aktualizujVse();

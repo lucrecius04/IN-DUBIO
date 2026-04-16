@@ -13,9 +13,9 @@
       { "id": "hi_001_2", "action": "witness", "reveal": "Kopecký sám dostával státní dotaci na pekárnu. Vloni dostal 400 Kč od Obchodní komory.", "changes_narrative": true }
     ],
     "verdicts": [
-      { "id": "acquit", "text": "Propustit bez trestu", "consequences": { "traits": { "Integrita": 5, "Odvaha": 3 }, "factions": { "Lid": 10, "Obchodnici": -8 }, "finance": 0, "flags": [] } },
-      { "id": "fine", "text": "Pokuta 5 Kč (splátky)", "consequences": { "traits": { "Integrita": 2 }, "factions": { "Obchodnici": 3 }, "finance": 0, "flags": [] } },
-      { "id": "prison_1", "text": "Vězení — 3 měsíce", "consequences": { "traits": { "Vina": 8, "Integrita": -5 }, "factions": { "Stat": 5, "Lid": -12 }, "finance": 0, "flags": [] } }
+      { "id": "acquit", "text": "Propustit bez trestu", "consequence": "Horák propuštěn. Rodina si ponechá chleba. Kopecký podá stížnost k vyšší instanci.", "consequences": { "traits": { "Integrita": 5, "Odvaha": 3 }, "factions": { "Lid": 10, "Obchodnici": -8 }, "finance": 0, "flags": [] } },
+      { "id": "fine", "text": "Pokuta 5 Kč (splátky)", "consequence": "Horák zaplatí 5 Kč ve splátkách. Záznam zůstane v rejstříku.", "consequences": { "traits": { "Integrita": 2 }, "factions": { "Obchodnici": 3 }, "finance": 0, "flags": [] } },
+      { "id": "prison_1", "text": "Vězení — 3 měsíce", "consequence": "Horák nastoupí do vězení. Tři děti s nemocnou matkou zůstanou bez živitele.", "consequences": { "traits": { "Vina": 8, "Integrita": -5 }, "factions": { "Stat": 5, "Lid": -12 }, "finance": 0, "flags": [] } }
     ],
     "narrative_link": null
   },
@@ -33,9 +33,9 @@
       { "id": "hi_002_2", "action": "records", "reveal": "Procházka má v rejstříku dvě předchozí stížnosti za obtěžování žen. Obě byly odloženy.", "changes_narrative": true }
     ],
     "verdicts": [
-      { "id": "prison_1", "text": "Vězení — 2 týdny", "consequences": { "traits": { "Vina": 3 }, "factions": { "Stat": 5 }, "finance": 0, "flags": [] } },
-      { "id": "fine", "text": "Pokuta 20 Kč", "consequences": { "traits": { "Moudrost": 3 }, "factions": { "Lid": 5 }, "finance": 0, "flags": [] } },
-      { "id": "acquit", "text": "Zproštění — obrana cti", "consequences": { "traits": { "Integrita": 3, "Odvaha": 5 }, "factions": { "Lid": 8, "Cirkev": 5, "Stat": -5 }, "finance": 0, "flags": [] } }
+      { "id": "prison_1", "text": "Vězení — 2 týdny", "consequence": "Šimánek nastoupí do vězení. Procházka odchází bez trestu a bez omluvy.", "consequences": { "traits": { "Vina": 3 }, "factions": { "Stat": 5 }, "finance": 0, "flags": [] } },
+      { "id": "fine", "text": "Pokuta 20 Kč", "consequence": "Šimánek zaplatí 20 Kč. Procházka nepůjde do vězení, jen zaplatí.", "consequences": { "traits": { "Moudrost": 3 }, "factions": { "Lid": 5 }, "finance": 0, "flags": [] } },
+      { "id": "acquit", "text": "Zproštění — obrana cti", "consequence": "Šimánek propuštěn — soud uznal obranu cti manželky. Procházka odejde bez náhrady.", "consequences": { "traits": { "Integrita": 3, "Odvaha": 5 }, "factions": { "Lid": 8, "Cirkev": 5, "Stat": -5 }, "finance": 0, "flags": [] } }
     ],
     "narrative_link": null
   },
@@ -53,9 +53,9 @@
       { "id": "hi_003_2", "action": "witness", "reveal": "Dva předchozí nájemníci: kauce nikdy vrácena, vždy jiný důvod.", "changes_narrative": true }
     ],
     "verdicts": [
-      { "id": "kauci_zpet", "text": "Vrátit kauci celou", "consequences": { "traits": { "Integrita": 5 }, "factions": { "Lid": 8, "Obchodnici": -5 }, "finance": 0, "flags": [] } },
-      { "id": "kauci_polovinu", "text": "Vrátit polovinu kauce — kompromis", "consequences": { "traits": { "Moudrost": 5 }, "factions": {}, "finance": 0, "flags": [] } },
-      { "id": "zamitnut", "text": "Zamítnout — kauci si ponechá", "consequences": { "traits": { "Integrita": -5, "Vina": 3 }, "factions": { "Obchodnici": 5, "Lid": -8 }, "finance": 0, "flags": [] } }
+      { "id": "kauci_zpet", "text": "Vrátit kauci celou", "consequence": "Veselá vrátí Křížovi 50 Kč do 14 dní. Kříž podá inspekci hlášení o závadách.", "consequences": { "traits": { "Integrita": 5 }, "factions": { "Lid": 8, "Obchodnici": -5 }, "finance": 0, "flags": [] } },
+      { "id": "kauci_polovinu", "text": "Vrátit polovinu kauce — kompromis", "consequence": "Veselá vrátí 25 Kč. Kříž přijme kompromis bez dalšího odvolání.", "consequences": { "traits": { "Moudrost": 5 }, "factions": {}, "finance": 0, "flags": [] } },
+      { "id": "zamitnut", "text": "Zamítnout — kauci si ponechá", "consequence": "Kříž nedostane nic. Veselá bude nadále pronajímat za závadných podmínek.", "consequences": { "traits": { "Integrita": -5, "Vina": 3 }, "factions": { "Obchodnici": 5, "Lid": -8 }, "finance": 0, "flags": [] } }
     ],
     "narrative_link": null
   },
@@ -73,9 +73,9 @@
       { "id": "hi_004_2", "action": "records", "reveal": "Kovář čelil podobné stížnosti v roce 1928. Případ odložen bez udání důvodu.", "changes_narrative": false }
     ],
     "verdicts": [
-      { "id": "nahrada_skody", "text": "Náhrada škody 180 Kč + pokuta 50 Kč", "consequences": { "traits": { "Integrita": 5, "Moudrost": 3 }, "factions": { "Lid": 8, "Obchodnici": -5 }, "finance": 0, "flags": [] } },
-      { "id": "jen_nahrada", "text": "Náhrada škody bez pokuty", "consequences": { "traits": { "Moudrost": 3 }, "factions": { "Lid": 3 }, "finance": 0, "flags": [] } },
-      { "id": "zamitnuty", "text": "Zamítnout — nelze prokázat úmysl", "consequences": { "traits": { "Integrita": -5, "Vina": 3 }, "factions": { "Obchodnici": 5, "Lid": -8 }, "finance": 0, "flags": [] } }
+      { "id": "nahrada_skody", "text": "Náhrada škody 180 Kč + pokuta 50 Kč", "consequence": "Kovář zaplatí Maštovi 180 Kč + pokutu 50 Kč státu do 30 dní.", "consequences": { "traits": { "Integrita": 5, "Moudrost": 3 }, "factions": { "Lid": 8, "Obchodnici": -5 }, "finance": 0, "flags": [] } },
+      { "id": "jen_nahrada", "text": "Náhrada škody bez pokuty", "consequence": "Kovář vrátí 180 Kč za koně. Žádná pokuta, Mašta dostane zpět co zaplatil.", "consequences": { "traits": { "Moudrost": 3 }, "factions": { "Lid": 3 }, "finance": 0, "flags": [] } },
+      { "id": "zamitnuty", "text": "Zamítnout — nelze prokázat úmysl", "consequence": "Mašta nedostane žádnou náhradu. Kovář bude podnikat dál bez postihu.", "consequences": { "traits": { "Integrita": -5, "Vina": 3 }, "factions": { "Obchodnici": 5, "Lid": -8 }, "finance": 0, "flags": [] } }
     ],
     "narrative_link": null
   },
@@ -93,9 +93,9 @@
       { "id": "hi_005_2", "action": "records", "reveal": "Zakázka přidělena firmě příbuzného starosty za 40% nad tržní hodnotou.", "changes_narrative": true }
     ],
     "verdicts": [
-      { "id": "guilty_fine", "text": "Pokuta 30 Kč — zákon chrání pověst", "consequences": { "traits": { "Integrita": -8, "Vina": 5 }, "factions": { "Stat": 8, "Lid": -10 }, "finance": 0, "flags": [] } },
-      { "id": "acquit", "text": "Zproštění — ve veřejném zájmu", "consequences": { "traits": { "Integrita": 10, "Odvaha": 8 }, "factions": { "Lid": 12, "Stat": -10 }, "finance": 0, "flags": [] } },
-      { "id": "podminka", "text": "Podmíněný trest s upozorněním", "consequences": { "traits": { "Moudrost": 3 }, "factions": { "Stat": 3, "Lid": -3 }, "finance": 0, "flags": [] } }
+      { "id": "guilty_fine", "text": "Pokuta 30 Kč — zákon chrání pověst", "consequence": "Kratochvíl zaplatí 30 Kč. Starosta Hák vyjde z procesu bez poskvrny.", "consequences": { "traits": { "Integrita": -8, "Vina": 5 }, "factions": { "Stat": 8, "Lid": -10 }, "finance": 0, "flags": [] } },
+      { "id": "acquit", "text": "Zproštění — ve veřejném zájmu", "consequence": "Kratochvíl propuštěn. Hák čelí veřejné hanbě — noviny případ otisknou.", "consequences": { "traits": { "Integrita": 10, "Odvaha": 8 }, "factions": { "Lid": 12, "Stat": -10 }, "finance": 0, "flags": [] } },
+      { "id": "podminka", "text": "Podmíněný trest s upozorněním", "consequence": "Kratochvíl dostane podmínku. Obě strany odejdou nespokojeně.", "consequences": { "traits": { "Moudrost": 3 }, "factions": { "Stat": 3, "Lid": -3 }, "finance": 0, "flags": [] } }
     ],
     "narrative_link": null
   },
@@ -112,9 +112,9 @@
       { "id": "hi_006_1", "action": "witness", "reveal": "Sousedka potvrzuje: Červenka jako dítě několikrát skončil v nemocnici s astmatickým záchvatem.", "changes_narrative": true }
     ],
     "verdicts": [
-      { "id": "prison_3m", "text": "Vězení — 3 měsíce", "consequences": { "traits": { "Vina": 8 }, "factions": { "Stat": 10 }, "finance": 0, "flags": [] } },
-      { "id": "podminka", "text": "Podmíněný trest — povinná lékařská prohlídka", "consequences": { "traits": { "Moudrost": 5, "Integrita": 3 }, "factions": { "Stat": 3, "Lid": 5 }, "finance": 0, "flags": [] } },
-      { "id": "acquit", "text": "Zproštění — formální pochybení, neúmyslné", "consequences": { "traits": { "Integrita": 5, "Odvaha": 5 }, "factions": { "Stat": -10, "Lid": 8 }, "finance": 0, "flags": [] } }
+      { "id": "prison_3m", "text": "Vězení — 3 měsíce", "consequence": "Červenka nastoupí do vězení. Vojenský odvod proběhne po propuštění.", "consequences": { "traits": { "Vina": 8 }, "factions": { "Stat": 10 }, "finance": 0, "flags": [] } },
+      { "id": "podminka", "text": "Podmíněný trest — povinná lékařská prohlídka", "consequence": "Červenka dostane podmínku a lékařské vyšetření do 30 dní zdarma.", "consequences": { "traits": { "Moudrost": 5, "Integrita": 3 }, "factions": { "Stat": 3, "Lid": 5 }, "finance": 0, "flags": [] } },
+      { "id": "acquit", "text": "Zproštění — formální pochybení, neúmyslné", "consequence": "Červenka propuštěn. Bude mu umožněno lékařské vyšetření bez poplatku.", "consequences": { "traits": { "Integrita": 5, "Odvaha": 5 }, "factions": { "Stat": -10, "Lid": 8 }, "finance": 0, "flags": [] } }
     ],
     "narrative_link": null
   },
@@ -132,8 +132,8 @@
       { "id": "hi_007_2", "action": "witness", "reveal": "Soused: Musil si koupil fotografický přístroj za 60 Kč před třemi týdny.", "changes_narrative": true }
     ],
     "verdicts": [
-      { "id": "povinnost", "text": "Povinná platba 30 Kč měsíčně pod dohledem", "consequences": { "traits": { "Integrita": 5, "Moudrost": 5 }, "factions": { "Lid": 8, "Cirkev": 5 }, "finance": 0, "flags": [] } },
-      { "id": "zamitnut", "text": "Zamítnout — není dostatečný důkaz úmyslu", "consequences": { "traits": { "Integrita": -8, "Vina": 5 }, "factions": { "Cirkev": -10, "Lid": -8 }, "finance": 0, "flags": [] } }
+      { "id": "povinnost", "text": "Povinná platba 30 Kč měsíčně pod dohledem", "consequence": "Musil bude platit 30 Kč měsíčně pod dohledem exekutora. Hedvika a děti dostanou pravidelnou podporu.", "consequences": { "traits": { "Integrita": 5, "Moudrost": 5 }, "factions": { "Lid": 8, "Cirkev": 5 }, "finance": 0, "flags": [] } },
+      { "id": "zamitnut", "text": "Zamítnout — není dostatečný důkaz úmyslu", "consequence": "Hedvika nedostane nic. Musil odejde bez jakýchkoli povinností.", "consequences": { "traits": { "Integrita": -8, "Vina": 5 }, "factions": { "Cirkev": -10, "Lid": -8 }, "finance": 0, "flags": [] } }
     ],
     "narrative_link": null
   },
@@ -151,9 +151,9 @@
       { "id": "hi_008_2", "action": "informant", "reveal": "Vlčkův kabinet nařídil vyšetřování Havla ještě před podáním trestního oznámení.", "changes_narrative": true }
     ],
     "verdicts": [
-      { "id": "guilty_fine", "text": "Pokuta 50 Kč — šíření neprokázaných tvrzení", "consequences": { "traits": { "Integrita": -8, "Maska": 5 }, "factions": { "Stat": 10, "Lid": -12 }, "finance": 0, "flags": [] } },
-      { "id": "acquit", "text": "Zproštění — veřejný zájem", "consequences": { "traits": { "Integrita": 10, "Odvaha": 8 }, "factions": { "Stat": -12, "Lid": 12 }, "finance": 0, "flags": [] } },
-      { "id": "postpone", "text": "Odložit — čekat na přezkoumání", "consequences": { "traits": { "Moudrost": 5 }, "factions": { "Stat": -3, "Lid": 3 }, "finance": 0, "flags": [] } }
+      { "id": "guilty_fine", "text": "Pokuta 50 Kč — šíření neprokázaných tvrzení", "consequence": "Havel zaplatí 50 Kč. Letáky budou zabaveny. Nemocnice zůstane bez přezkumu.", "consequences": { "traits": { "Integrita": -8, "Maska": 5 }, "factions": { "Stat": 10, "Lid": -12 }, "finance": 0, "flags": [] } },
+      { "id": "acquit", "text": "Zproštění — veřejný zájem", "consequence": "Havel propuštěn. Ministerstvo zdravotnictví vyšle do nemocnice inspekci.", "consequences": { "traits": { "Integrita": 10, "Odvaha": 8 }, "factions": { "Stat": -12, "Lid": 12 }, "finance": 0, "flags": [] } },
+      { "id": "postpone", "text": "Odložit — čekat na přezkoumání", "consequence": "Případ se odkládá. Jmenuje se přezkumná komise pro nemocniční protokoly.", "consequences": { "traits": { "Moudrost": 5 }, "factions": { "Stat": -3, "Lid": 3 }, "finance": 0, "flags": [] } }
     ],
     "narrative_link": null
   },
@@ -170,9 +170,9 @@
       { "id": "hi_boz_1_1", "action": "witness", "reveal": "Veterinář: mráček na levé noze je přirozená pigmentace u tohoto plemene — 20% výskyt.", "changes_narrative": false }
     ],
     "verdicts": [
-      { "id": "bozena_kepka", "text": "Slepice patří Kepkovi — vrátit", "consequences": { "traits": { "Moudrost": 3, "Nadeje": 3 }, "factions": { "Lid": 5 }, "finance": 0, "flags": [] } },
-      { "id": "bozena_mrkva", "text": "Slepice zůstane u Mrkvy — přišla sama", "consequences": { "traits": { "Nadeje": 5 }, "factions": { "Lid": 5 }, "finance": 0, "flags": [] } },
-      { "id": "bozena_odlozit", "text": "Odložit — věc vyžaduje důkladnější posouzení", "consequences": { "traits": { "Nadeje": 3 }, "factions": {}, "finance": 0, "flags": [] } }
+      { "id": "bozena_kepka", "text": "Slepice patří Kepkovi — vrátit", "consequence": "Slepice se vrátí Kepkovi do 24 hodin. Mrkva pohrozí odvoláním.", "consequences": { "traits": { "Moudrost": 3, "Nadeje": 3 }, "factions": { "Lid": 5 }, "finance": 0, "flags": [] } },
+      { "id": "bozena_mrkva", "text": "Slepice zůstane u Mrkvy — přišla sama", "consequence": "Slepice zůstane u Mrkvy. Kepka odejde s prázdnýma rukama.", "consequences": { "traits": { "Nadeje": 5 }, "factions": { "Lid": 5 }, "finance": 0, "flags": [] } },
+      { "id": "bozena_odlozit", "text": "Odložit — věc vyžaduje důkladnější posouzení", "consequence": "Případ se odkládá. Obě strany slepici drží každý u sebe do dalšího slyšení.", "consequences": { "traits": { "Nadeje": 3 }, "factions": {}, "finance": 0, "flags": [] } }
     ],
     "narrative_link": null
   },
@@ -189,9 +189,9 @@
       { "id": "hi_009_1", "action": "records", "reveal": "Tři dopisy Říhové v záznamu — datované více než rok zpátky. Správce nereagoval na žádný.", "changes_narrative": true }
     ],
     "verdicts": [
-      { "id": "nahrada", "text": "Náhrada škody 220 Kč + poplatky", "consequences": { "traits": { "Integrita": 5 }, "factions": { "Lid": 8, "Obchodnici": -5 }, "finance": 0, "flags": [] } },
-      { "id": "cást", "text": "Náhrada škody 100 Kč — částečná odpovědnost", "consequences": { "traits": { "Moudrost": 3 }, "factions": { "Lid": 3 }, "finance": 0, "flags": [] } },
-      { "id": "zamitnut", "text": "Zamítnout — vis major", "consequences": { "traits": { "Integrita": -5, "Vina": 3 }, "factions": { "Obchodnici": 5, "Lid": -8 }, "finance": 0, "flags": [] } }
+      { "id": "nahrada", "text": "Náhrada škody 220 Kč + poplatky", "consequence": "Polák zaplatí Říhové 220 Kč + soudní poplatky do 30 dní.", "consequences": { "traits": { "Integrita": 5 }, "factions": { "Lid": 8, "Obchodnici": -5 }, "finance": 0, "flags": [] } },
+      { "id": "cást", "text": "Náhrada škody 100 Kč — částečná odpovědnost", "consequence": "Polák zaplatí 100 Kč. Říhová nese zbytek ztráty sama.", "consequences": { "traits": { "Moudrost": 3 }, "factions": { "Lid": 3 }, "finance": 0, "flags": [] } },
+      { "id": "zamitnut", "text": "Zamítnout — vis major", "consequence": "Říhová nedostane nic. Správce pokračuje v zanedbávání oprav.", "consequences": { "traits": { "Integrita": -5, "Vina": 3 }, "factions": { "Obchodnici": 5, "Lid": -8 }, "finance": 0, "flags": [] } }
     ],
     "narrative_link": null
   },
@@ -209,9 +209,9 @@
       { "id": "hi_010_2", "action": "witness", "reveal": "Místní lékař: otec Blažek je upoután na lůžko s tuberkulózou.", "changes_narrative": true }
     ],
     "verdicts": [
-      { "id": "prison_1m", "text": "Vězení — 1 měsíc", "consequences": { "traits": { "Vina": 5 }, "factions": { "Stat": 5, "Lid": -10 }, "finance": 0, "flags": [] } },
-      { "id": "podminka", "text": "Podmíněný trest — práce pro obec", "consequences": { "traits": { "Moudrost": 5, "Integrita": 3 }, "factions": { "Lid": 5, "Cirkev": 5 }, "finance": 0, "flags": [] } },
-      { "id": "acquit", "text": "Zproštění — krajní nouze", "consequences": { "traits": { "Integrita": 8, "Odvaha": 5 }, "factions": { "Stat": -8, "Lid": 12 }, "finance": 0, "flags": [] } }
+      { "id": "prison_1m", "text": "Vězení — 1 měsíc", "consequence": "Blažek nastoupí do vězení. Nemocný otec a matka zůstanou měsíc bez pomoci.", "consequences": { "traits": { "Vina": 5 }, "factions": { "Stat": 5, "Lid": -10 }, "finance": 0, "flags": [] } },
+      { "id": "podminka", "text": "Podmíněný trest — práce pro obec", "consequence": "Blažek odpracuje 30 dní veřejně prospěšné práce. Rodina zůstane pohromadě.", "consequences": { "traits": { "Moudrost": 5, "Integrita": 3 }, "factions": { "Lid": 5, "Cirkev": 5 }, "finance": 0, "flags": [] } },
+      { "id": "acquit", "text": "Zproštění — krajní nouze", "consequence": "Blažek propuštěn. Baron Lang podá odvolání. Zákon o lovu bude přezkoumán.", "consequences": { "traits": { "Integrita": 8, "Odvaha": 5 }, "factions": { "Stat": -8, "Lid": 12 }, "finance": 0, "flags": [] } }
     ],
     "narrative_link": null
   },
@@ -228,9 +228,9 @@
       { "id": "hi_poz_1_1", "action": "records", "reveal": "Originální pozemková kniha z roku 1887 je nečitelná v klíčovém místě. Oba mohou mít pravdu.", "changes_narrative": false }
     ],
     "verdicts": [
-      { "id": "dvarak_presun", "text": "Plot přesunout — 34 cm zpět Šimůnkovi", "consequences": { "traits": { "Moudrost": 3 }, "factions": { "Lid": 3 }, "finance": 0, "flags": [] } },
-      { "id": "vydrzeni", "text": "Vydržení — plot stojí 20 let, platí", "consequences": { "traits": { "Moudrost": 5 }, "factions": {}, "finance": 0, "flags": [] } },
-      { "id": "odlozit", "text": "Odložit — žádat nové zaměření", "consequences": { "traits": { "Nadeje": 3 }, "factions": {}, "finance": 0, "flags": [] } }
+      { "id": "dvarak_presun", "text": "Plot přesunout — 34 cm zpět Šimůnkovi", "consequence": "Dvořák přesune plot o 34 cm do 60 dní na vlastní náklady.", "consequences": { "traits": { "Moudrost": 3 }, "factions": { "Lid": 3 }, "finance": 0, "flags": [] } },
+      { "id": "vydrzeni", "text": "Vydržení — plot stojí 20 let, platí", "consequence": "Plot zůstane stát. Šimůnek odejde bez zisku. 34 cm zůstane Dvořákovi.", "consequences": { "traits": { "Moudrost": 5 }, "factions": {}, "finance": 0, "flags": [] } },
+      { "id": "odlozit", "text": "Odložit — žádat nové zaměření", "consequence": "Případ se odkládá. Nový geometr bude vyslán do 3 měsíců na náklady obou stran.", "consequences": { "traits": { "Nadeje": 3 }, "factions": {}, "finance": 0, "flags": [] } }
     ],
     "narrative_link": null
   },
@@ -247,9 +247,9 @@
       { "id": "hi_011_1", "action": "witness", "reveal": "Přítomní potvrzují: Pekárek byl zdrcen zármutkem. Výrok byl tichý, ne agresivní.", "changes_narrative": true }
     ],
     "verdicts": [
-      { "id": "guilty_fine", "text": "Pokuta 20 Kč — zákon chrání náboženský klid", "consequences": { "traits": { "Integrita": -5, "Vina": 5 }, "factions": { "Cirkev": 10, "Lid": -8 }, "finance": 0, "flags": [] } },
-      { "id": "acquit", "text": "Zproštění — žal nečiní rouhání", "consequences": { "traits": { "Integrita": 8, "Odvaha": 5 }, "factions": { "Cirkev": -10, "Lid": 8 }, "finance": 0, "flags": [] } },
-      { "id": "napomenuti", "text": "Veřejné napomenutí bez trestu", "consequences": { "traits": { "Moudrost": 3 }, "factions": { "Cirkev": 3, "Lid": 3 }, "finance": 0, "flags": [] } }
+      { "id": "guilty_fine", "text": "Pokuta 20 Kč — zákon chrání náboženský klid", "consequence": "Pekárek zaplatí 20 Kč. Farář Novotný bude spokojen. Truchlení zůstane bez veřejného smutku.", "consequences": { "traits": { "Integrita": -5, "Vina": 5 }, "factions": { "Cirkev": 10, "Lid": -8 }, "finance": 0, "flags": [] } },
+      { "id": "acquit", "text": "Zproštění — žal nečiní rouhání", "consequence": "Pekárek propuštěn. Farář podá odvolání k biskupskému soudu.", "consequences": { "traits": { "Integrita": 8, "Odvaha": 5 }, "factions": { "Cirkev": -10, "Lid": 8 }, "finance": 0, "flags": [] } },
+      { "id": "napomenuti", "text": "Veřejné napomenutí bez trestu", "consequence": "Pekárek dostane veřejné napomenutí. Případ se uzavře bez pokuty ani vězení.", "consequences": { "traits": { "Moudrost": 3 }, "factions": { "Cirkev": 3, "Lid": 3 }, "finance": 0, "flags": [] } }
     ],
     "narrative_link": null
   },
@@ -266,8 +266,8 @@
       { "id": "hi_012_1", "action": "records", "reveal": "Žáková propuštěna z textilní továrny ve stejném měsíci, kdy přestala platit.", "changes_narrative": true }
     ],
     "verdicts": [
-      { "id": "splatkovy_plan", "text": "Nový splátkový plán — 10 Kč měsíčně po dobu 9 měsíců", "consequences": { "traits": { "Moudrost": 5, "Integrita": 3 }, "factions": { "Lid": 8 }, "finance": 0, "flags": [] } },
-      { "id": "vymahani", "text": "Soudní vymáhání plnou výší", "consequences": { "traits": { "Vina": 5 }, "factions": { "Obchodnici": 5, "Lid": -10 }, "finance": 0, "flags": [] } }
+      { "id": "splatkovy_plan", "text": "Nový splátkový plán — 10 Kč měsíčně po dobu 9 měsíců", "consequence": "Žáková bude platit 10 Kč měsíčně. Dluh 85 Kč splatí za 9 měsíců bez exekuce.", "consequences": { "traits": { "Moudrost": 5, "Integrita": 3 }, "factions": { "Lid": 8 }, "finance": 0, "flags": [] } },
+      { "id": "vymahani", "text": "Soudní vymáhání plnou výší", "consequence": "Exekutor vymůže 85 Kč ihned. Žáková přijde o poslední úspory a přijde o byt.", "consequences": { "traits": { "Vina": 5 }, "factions": { "Obchodnici": 5, "Lid": -10 }, "finance": 0, "flags": [] } }
     ],
     "narrative_link": null
   },
@@ -284,9 +284,9 @@
       { "id": "hi_boz_2_1", "action": "witness", "reveal": "Veterinář: obě slepice jsou stejného plemene a věku. DNA analýza v roce 1931 neexistuje.", "changes_narrative": false }
     ],
     "verdicts": [
-      { "id": "bozena_kepka", "text": "Kepka má pravdu — tato slepice je Božena", "consequences": { "traits": { "Nadeje": 3 }, "factions": { "Lid": 3 }, "finance": 0, "flags": [] } },
-      { "id": "bozena_mrkva", "text": "Mrkva má pravdu — různé slepice", "consequences": { "traits": { "Nadeje": 3 }, "factions": { "Lid": 3 }, "finance": 0, "flags": [] } },
-      { "id": "odlozit", "text": "Odložit s přikázáním soupisu slepic", "consequences": { "traits": { "Moudrost": 5, "Nadeje": 5 }, "factions": {}, "finance": 0, "flags": [] } }
+      { "id": "bozena_kepka", "text": "Kepka má pravdu — tato slepice je Božena", "consequence": "Slepice se vrátí Kepkovi jako definitivní Božena. Případ uzavřen.", "consequences": { "traits": { "Nadeje": 3 }, "factions": { "Lid": 3 }, "finance": 0, "flags": [] } },
+      { "id": "bozena_mrkva", "text": "Mrkva má pravdu — různé slepice", "consequence": "Slepice u Mrkvy je uznána za jinou. Kepkova Božena je ztracena definitivně.", "consequences": { "traits": { "Nadeje": 3 }, "factions": { "Lid": 3 }, "finance": 0, "flags": [] } },
+      { "id": "odlozit", "text": "Odložit s přikázáním soupisu slepic", "consequence": "Soud nařídí soupis všech slepic v okruhu 500 metrů. Obě strany čekají.", "consequences": { "traits": { "Moudrost": 5, "Nadeje": 5 }, "factions": {}, "finance": 0, "flags": [] } }
     ],
     "narrative_link": null
   },
@@ -304,9 +304,9 @@
       { "id": "hi_013_2", "action": "informant", "reveal": "Kratina byl den před incidentem zvolen odborovým delegátem. Továrník byl informován téhož dne.", "changes_narrative": true }
     ],
     "verdicts": [
-      { "id": "prison_6m", "text": "Vězení — 6 měsíců", "consequences": { "traits": { "Integrita": -8, "Vina": 8 }, "factions": { "Stat": 10, "Obchodnici": 8, "Lid": -15 }, "finance": 0, "flags": [] } },
-      { "id": "acquit", "text": "Zproštění — nedostatečné důkazy", "consequences": { "traits": { "Integrita": 10, "Odvaha": 8 }, "factions": { "Stat": -12, "Lid": 15 }, "finance": 0, "flags": [] } },
-      { "id": "postpone", "text": "Odložit — technické přezkoumání", "consequences": { "traits": { "Moudrost": 5 }, "factions": { "Stat": -3, "Lid": 5 }, "finance": 0, "flags": [] } }
+      { "id": "prison_6m", "text": "Vězení — 6 měsíců", "consequence": "Kratina nastoupí do vězení. Odbory v továrně budou paralyzovány na měsíce.", "consequences": { "traits": { "Integrita": -8, "Vina": 8 }, "factions": { "Stat": 10, "Obchodnici": 8, "Lid": -15 }, "finance": 0, "flags": [] } },
+      { "id": "acquit", "text": "Zproštění — nedostatečné důkazy", "consequence": "Kratina propuštěn. Továrna musí provést technickou inspekci do 30 dní.", "consequences": { "traits": { "Integrita": 10, "Odvaha": 8 }, "factions": { "Stat": -12, "Lid": 15 }, "finance": 0, "flags": [] } },
+      { "id": "postpone", "text": "Odložit — technické přezkoumání", "consequence": "Případ odkládá. Nezávislá technická komise prošetří stav stroje.", "consequences": { "traits": { "Moudrost": 5 }, "factions": { "Stat": -3, "Lid": 5 }, "finance": 0, "flags": [] } }
     ],
     "narrative_link": null
   },
@@ -324,8 +324,8 @@
       { "id": "hi_014_2", "action": "records", "reveal": "Lékař: Karel Novotný trpěl demencí od roku 1928 — více než dva roky před smrtí.", "changes_narrative": true }
     ],
     "verdicts": [
-      { "id": "zavet_platna", "text": "Závěť platná — Eliška dědí vše", "consequences": { "traits": { "Vina": 5 }, "factions": { "Obchodnici": 3 }, "finance": 0, "flags": [] } },
-      { "id": "zavet_neplatna", "text": "Závěť neplatná — majetek rozdělit rovným dílem", "consequences": { "traits": { "Integrita": 8, "Moudrost": 5 }, "factions": { "Cirkev": 5, "Lid": 5 }, "finance": 0, "flags": [] } }
+      { "id": "zavet_platna", "text": "Závěť platná — Eliška dědí vše", "consequence": "Eliška zdědí celý majetek otce. Mladší sestry odejdou bez nároku.", "consequences": { "traits": { "Vina": 5 }, "factions": { "Obchodnici": 3 }, "finance": 0, "flags": [] } },
+      { "id": "zavet_neplatna", "text": "Závěť neplatná — majetek rozdělit rovným dílem", "consequence": "Majetek se rozdělí rovným dílem mezi tři sestry. Notář zajistí výkon.", "consequences": { "traits": { "Integrita": 8, "Moudrost": 5 }, "factions": { "Cirkev": 5, "Lid": 5 }, "finance": 0, "flags": [] } }
     ],
     "narrative_link": null
   },
@@ -342,8 +342,8 @@
       { "id": "hi_015_1", "action": "records", "reveal": "12. října 1931 není výročí republiky. Blaha se spletl o celé dva týdny.", "changes_narrative": true }
     ],
     "verdicts": [
-      { "id": "pokuta_mala", "text": "Pokuta 5 Kč — symbolická", "consequences": { "traits": { "Nadeje": 5 }, "factions": { "Lid": 5 }, "finance": 0, "flags": [] } },
-      { "id": "napomenuti", "text": "Veřejné napomenutí — a poučení o datu", "consequences": { "traits": { "Nadeje": 8, "Moudrost": 3 }, "factions": { "Lid": 8 }, "finance": 0, "flags": [] } }
+      { "id": "pokuta_mala", "text": "Pokuta 5 Kč — symbolická", "consequence": "Blaha zaplatí 5 Kč. Soused Pelikán dostane morální satisfakci.", "consequences": { "traits": { "Nadeje": 5 }, "factions": { "Lid": 5 }, "finance": 0, "flags": [] } },
+      { "id": "napomenuti", "text": "Veřejné napomenutí — a poučení o datu", "consequence": "Blaha dostane veřejné napomenutí s poznámkou do spisu. A lekci z kalendáře.", "consequences": { "traits": { "Nadeje": 8, "Moudrost": 3 }, "factions": { "Lid": 8 }, "finance": 0, "flags": [] } }
     ],
     "narrative_link": null
   }

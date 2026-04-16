@@ -54,24 +54,21 @@
       <div id="kalendar-mesic">BŘEZEN 1931</div>
     </div>
 
-    <!-- Vpravo: hodiny + ovládání hudby -->
+    <!-- Vpravo: hodiny + ovládání hudby + menu -->
     <div style="display: flex; align-items: center; gap: 12px;">
       <div id="hodiny">07:30</div>
       <div id="hudba-ovladac">
         <button id="hudba-toggle" title="Ztlumit hudbu">🔊</button>
         <input id="hudba-hlasitost" type="range" min="0" max="100" value="40">
       </div>
+      <button id="btn-menu" class="btn-menu">&#9776;</button>
     </div>
   </div>
 
   <!-- LEVÝ PANEL — lampa + rysy -->
   <div id="lampa-wrapper">
-    <!-- Lampa -->
+    <!-- Lampa — světelný kónus -->
     <div id="lampa" class="lampa--stredni" title="">
-      <div id="lampa-tienidlo"></div>
-      <div id="lampa-telo">
-        <div id="pero"></div>
-      </div>
       <div id="lampa-svetlo"></div>
     </div>
 
@@ -83,6 +80,22 @@
 
   <!-- STŘEDNÍ PLOCHA -->
   <div id="plocha-stred">
+
+    <!-- Složky případů — ležící na stole -->
+    <div id="slozky-wrapper">
+      <div class="slozka" id="slozka-1" data-slot="0">
+        <div class="slozka-cislo">I.</div>
+        <div class="slozka-stav">—</div>
+      </div>
+      <div class="slozka" id="slozka-2" data-slot="1">
+        <div class="slozka-cislo">II.</div>
+        <div class="slozka-stav">—</div>
+      </div>
+      <div class="slozka" id="slozka-3" data-slot="2">
+        <div class="slozka-cislo">III.</div>
+        <div class="slozka-stav">—</div>
+      </div>
+    </div>
 
     <!-- Novinový výstřižek -->
     <div id="noviny-vystrizek">
@@ -112,16 +125,11 @@
 
   </div>
 
-  <!-- PRAVÝ PANEL — okno + fotografie -->
-  <div id="okno-wrapper">
-    <div id="okno" class="okno--rano">
-      <div id="okno-pohled"></div>
+  <!-- PRAVÝ PANEL — rysy Vina, Maska, Naděje -->
+  <div id="pravy-panel">
+    <div id="panel-rysy-pravy">
+      <!-- Dynamicky plněno desk.js -->
     </div>
-  </div>
-
-  <!-- Fotografie rodiny — absolutní pozice -->
-  <div id="fotografie-wrapper">
-    <div id="fotografie" title="Rodina"></div>
   </div>
 
   <!-- Vlčkův dopis — absolutní pozice, skrytý dokud nepřijde -->
@@ -130,27 +138,8 @@
     <div id="vlcek-dopis-preview" style="font-style: italic; font-size: 11px;">„Věřím že jste muž který rozumí nutnosti kompromisů..."</div>
   </div>
 
-  <!-- Zmačkané dopisy v rohu -->
-  <div id="zmackane-dopisy" style="position: absolute; bottom: 130px; left: 240px; width: 80px; height: 50px; pointer-events: none;"></div>
-
   <!-- SPODNÍ LIŠTA -->
   <div id="lista-dolni">
-
-    <!-- Složky případů -->
-    <div id="slozky-wrapper">
-      <div class="slozka" id="slozka-1" data-slot="0">
-        <div class="slozka-cislo">I.</div>
-        <div class="slozka-stav">—</div>
-      </div>
-      <div class="slozka" id="slozka-2" data-slot="1">
-        <div class="slozka-cislo">II.</div>
-        <div class="slozka-stav">—</div>
-      </div>
-      <div class="slozka" id="slozka-3" data-slot="2">
-        <div class="slozka-cislo">III.</div>
-        <div class="slozka-stav">—</div>
-      </div>
-    </div>
 
     <!-- Kalamář — skrytý, zachován pro desk.js logiku -->
     <div id="kalamár-wrapper" style="display:none;">
@@ -159,20 +148,20 @@
       </div>
     </div>
 
+    <!-- Archiv (šuplík) -->
+    <div id="suplik-wrapper">
+      <div id="suplik">
+        <div id="suplik-indikator"></div>
+      </div>
+      <div id="suplik-popis">ARCHIV</div>
+    </div>
+
     <!-- Tlačítko: Další den -->
     <div style="margin-left: auto;">
       <button id="btn-dalsi-den" class="btn">Další den →</button>
     </div>
 
   </div><!-- /lista-dolni -->
-
-  <!-- ARCHIV — fixní v pravém dolním rohu -->
-  <div id="suplik-wrapper" class="suplik-wrapper--fixed">
-    <div id="suplik">
-      <div id="suplik-indikator"></div>
-    </div>
-    <div id="suplik-popis">ARCHIV</div>
-  </div>
 
 </div><!-- /stul -->
 
@@ -190,35 +179,50 @@
       <button class="pripad-zavrit-x" id="pripad-zavrit-x" title="Zavřít (Esc)">✕</button>
     </div>
 
-    <div class="pripad-telo">
-      <div class="pripad-situace" id="pripad-situace-text"></div>
+    <!-- Záložky -->
+    <div class="pripad-tabs" id="pripad-tabs">
+      <button class="pripad-tab pripad-tab--aktivni" data-tab="pripad">PŘÍPAD</button>
+      <button class="pripad-tab" data-tab="svedectvi">SVĚDECTVÍ</button>
+      <button class="pripad-tab" data-tab="rozsudek">ROZSUDEK</button>
+    </div>
 
-      <div class="svedectvi-sekce" id="pripad-svedectvi">
-        <div class="svedectvi-nadpis">Svědectví</div>
-        <!-- Dynamicky plněno -->
-      </div>
-
-      <div id="pripad-odhalene-info">
-        <!-- Odkryté informace z průzkumu -->
+    <!-- Tab: Případ -->
+    <div class="pripad-tab-obsah aktivni" data-tab="pripad">
+      <div class="pripad-telo">
+        <div class="pripad-situace" id="pripad-situace-text"></div>
       </div>
     </div>
 
-    <!-- Průzkum -->
-    <div class="prukzum-panel" id="prukzum-panel">
-      <div class="prukzum-nadpis">
-        <span>Průzkum</span>
-        <span id="prukzum-akce-info" class="prukzum-akce-info">2 akce</span>
+    <!-- Tab: Svědectví -->
+    <div class="pripad-tab-obsah" data-tab="svedectvi">
+      <div class="pripad-telo">
+        <div class="svedectvi-sekce" id="pripad-svedectvi">
+          <div class="svedectvi-nadpis">Svědectví</div>
+          <!-- Dynamicky plněno -->
+        </div>
+        <div id="pripad-odhalene-info">
+          <!-- Odkryté informace z průzkumu -->
+        </div>
       </div>
-      <div class="prukzum-tlacitka" id="prukzum-tlacitka">
-        <!-- Dynamicky plněno -->
+      <!-- Průzkum -->
+      <div class="prukzum-panel" id="prukzum-panel">
+        <div class="prukzum-nadpis">
+          <span>PRŮZKUM</span>
+          <span id="prukzum-akce-info" class="prukzum-akce-info">2 akce</span>
+        </div>
+        <div class="prukzum-tlacitka" id="prukzum-tlacitka">
+          <!-- Dynamicky plněno -->
+        </div>
       </div>
     </div>
 
-    <!-- Rozsudky -->
-    <div class="rozsudky-panel">
-      <div class="rozsudky-nadpis">Rozsudek</div>
-      <div class="rozsudky-seznam" id="rozsudky-seznam">
-        <!-- Dynamicky plněno -->
+    <!-- Tab: Rozsudek -->
+    <div class="pripad-tab-obsah" data-tab="rozsudek">
+      <div class="rozsudky-panel">
+        <div class="rozsudky-nadpis">ROZSUDEK</div>
+        <div class="rozsudky-seznam" id="rozsudky-seznam">
+          <!-- Dynamicky plněno -->
+        </div>
       </div>
     </div>
   </div>
@@ -229,7 +233,7 @@
      ========================================== -->
 <div id="modal-vecer" class="overlay" role="dialog" aria-modal="true">
   <div class="panel-papir vecer-panel panel-papir--nastup">
-    <div class="vecer-cas">Večer</div>
+    <div class="vecer-cas">VEČER</div>
     <div class="vecer-text" id="vecer-text">—</div>
     <div class="vecer-volby" id="vecer-volby">
       <!-- Dynamicky plněno -->
@@ -244,7 +248,7 @@
   <div class="panel-papir fragment-panel panel-papir--nastup" id="fragment-panel">
     <div class="fragment-nadpis" id="fragment-nadpis">—</div>
     <div class="fragment-text" id="fragment-text">—</div>
-    <button class="fragment-zavrit" id="fragment-zavrit">Zavřít</button>
+    <button class="fragment-zavrit" id="fragment-zavrit">ZAVŘÍT</button>
   </div>
 </div>
 
@@ -258,9 +262,9 @@
       <button class="btn" id="archiv-zavrit">Zavřít</button>
     </div>
     <div class="archiv-tabs">
-      <div class="archiv-tab archiv-tab--aktivni" data-tab="finance">Finance</div>
-      <div class="archiv-tab" data-tab="rozsudky">Rozsudky</div>
-      <div class="archiv-tab" data-tab="fragmenty">Záznamy</div>
+      <div class="archiv-tab archiv-tab--aktivni" data-tab="finance">FINANCE</div>
+      <div class="archiv-tab" data-tab="rozsudky">ROZSUDKY</div>
+      <div class="archiv-tab" data-tab="fragmenty">ZÁZNAMY</div>
     </div>
     <div class="archiv-obsah" id="archiv-obsah">
       <!-- Dynamicky plněno -->
@@ -284,6 +288,36 @@
      STAVOVÁ ZPRÁVA
      ========================================== -->
 <div id="stavova-zprava">—</div>
+
+<!-- ==========================================
+     MENU
+     ========================================== -->
+<div id="modal-menu" class="overlay modal-menu-overlay skryto">
+  <div class="menu-panel">
+    <div class="menu-nazev">IN DUBIO</div>
+    <div class="menu-popis">Textová soudní hra, 1931</div>
+    <button id="menu-nova-hra" class="menu-polozka">Nová hra</button>
+    <button id="menu-ulozit" class="menu-polozka">Uložit hru</button>
+    <button id="menu-nacist" class="menu-polozka">Načíst hru</button>
+    <button id="menu-o-hre" class="menu-polozka">O hře</button>
+    <button id="menu-zavrit" class="menu-polozka menu-polozka--zavrit">Zpět do hry</button>
+  </div>
+</div>
+
+<!-- ==========================================
+     MODÁL — DETAIL RYSU
+     ========================================== -->
+<div id="modal-rys" class="overlay" role="dialog" aria-modal="true">
+  <div class="panel-papir rys-detail-panel panel-papir--nastup">
+    <button class="zavrit-btn" id="modal-rys-zavrit">✕</button>
+    <div class="rys-detail-ikona" id="rys-detail-ikona">⚖️</div>
+    <div class="rys-detail-nazev" id="rys-detail-nazev">INTEGRITA</div>
+    <div class="rys-detail-hvezdicky" id="rys-detail-hvezdicky">★★★☆☆</div>
+    <div class="rys-detail-popis" id="rys-detail-popis">—</div>
+    <div class="rys-detail-oddelovac"></div>
+    <div class="rys-detail-vysvetlivka" id="rys-detail-vysvetlivka">—</div>
+  </div>
+</div>
 
 <!-- ==========================================
      TOOLTIP — RYSY

@@ -14,9 +14,9 @@ const Narrative = (() => {
   };
 
   const TYP_NADPIS = {
-    letter:   'Dopis',
-    dream:    'Sen',
-    clipping: 'Z novin'
+    letter:   'DOPIS',
+    dream:    'SEN',
+    clipping: 'Z NOVIN'
   };
 
   function zobrazFragment(id, callback) {

@@ -30,10 +30,46 @@ const UI = (() => {
     document.querySelectorAll('.overlay.aktivni').forEach(m => m.classList.remove('aktivni'));
   }
 
+  // --- HELPERS ---
+
+  function _zavriPripadModal() {
+    _zavriModal('modal-pripad');
+    Desk.nastavAktivniSpis(null);
+  }
+
+  const _RYSY_IKONY_TREND = {
+    Integrita: '⚖', Odvaha: '✊', Moudrost: '🧠',
+    Vina: '💔', Maska: '🎭', Nadeje: '🕯'
+  };
+  const _FRAKCE_ZKRATKY = {
+    Stat: 'Stát', Lid: 'Lid', Obchodnici: 'Obc.', Cirkev: 'Círk.'
+  };
+
+  function _trendBadge(cons) {
+    if (!cons) return '';
+    const casti = [];
+    for (const [k, v] of Object.entries(cons.traits || {})) {
+      if (v !== 0) {
+        const ikona = _RYSY_IKONY_TREND[k] || k;
+        casti.push(`<span class="trend-${v > 0 ? 'up' : 'down'}">${ikona}${v > 0 ? '↑' : '↓'}</span>`);
+      }
+    }
+    for (const [k, v] of Object.entries(cons.factions || {})) {
+      if (v !== 0) {
+        const zkratka = _FRAKCE_ZKRATKY[k] || k;
+        casti.push(`<span class="trend-${v > 0 ? 'up' : 'down'}">${zkratka}${v > 0 ? '↑' : '↓'}</span>`);
+      }
+    }
+    return casti.length ? `<div class="rozsudek-trendy">${casti.join('')}</div>` : '';
+  }
+
   // --- PŘÍPAD ---
 
   function zobrazPripad(pripad, onRozsudek) {
     if (!pripad) return;
+
+    // Reset na výchozí záložku
+    _prepniTabPripadu('pripad');
 
     // Vyčisti readonly stav z předchozího otevření
     document.querySelector('.pripad-zahlavi')?.classList.remove('zahlavi--vyreseno');
@@ -49,7 +85,7 @@ const UI = (() => {
 
     // Svědectví
     const svedkySekce = document.getElementById('pripad-svedectvi');
-    svedkySekce.innerHTML = '<div class="svedectvi-nadpis">Svědectví</div>';
+    svedkySekce.innerHTML = '<div class="svedectvi-nadpis">SVĚDECTVÍ</div>';
     if (pripad.testimony) {
       for (const sv of pripad.testimony) {
         const item = document.createElement('div');
@@ -86,6 +122,9 @@ const UI = (() => {
   function zobrazPripadReadonly(pripad) {
     if (!pripad) return;
 
+    // Reset záložek — readonly zobrazuje případ
+    _prepniTabPripadu('pripad');
+
     // Záhlaví
     document.getElementById('pripad-kategorie-text').textContent = _formatujKategorii(pripad.category);
     document.getElementById('pripad-nazev-text').textContent = pripad.title;
@@ -97,7 +136,7 @@ const UI = (() => {
 
     // Svědectví
     const svedkySekce = document.getElementById('pripad-svedectvi');
-    svedkySekce.innerHTML = '<div class="svedectvi-nadpis">Svědectví</div>';
+    svedkySekce.innerHTML = '<div class="svedectvi-nadpis">SVĚDECTVÍ</div>';
     if (pripad.testimony) {
       for (const sv of pripad.testimony) {
         const item = document.createElement('div');
@@ -189,9 +228,12 @@ const UI = (() => {
           State.set('investigationActionsLeft', zbyvaji2 - 1);
           State.odhalInfoPripadu(pripad.id, info.id);
 
-          // Zobraz odkrytou informaci
+          // Zobraz odkrytou informaci v záložce Svědectví
           const odhaleneEl = document.getElementById('pripad-odhalene-info');
           _zobrazOdhalenoInfo(odhaleneEl, info);
+
+          // Přepni na záložku Svědectví aby uživatel výsledek viděl
+          _prepniTabPripadu('svedectvi');
 
           // Aktualizuj panel
           _aktualizujPruzkumPanel(pripad, onRozsudek);
@@ -213,7 +255,7 @@ const UI = (() => {
     const el = document.createElement('div');
     el.className = 'odhalene-info';
     el.innerHTML = `
-      <div class="odhalene-info-label">Zjištěno</div>
+      <div class="odhalene-info-label">ZJIŠTĚNO</div>
       <div class="odhalene-info-text">${info.reveal}</div>
     `;
     kontejner.appendChild(el);
@@ -236,13 +278,22 @@ const UI = (() => {
       const btn = document.createElement('button');
       const trida = _rozsudekTrida(rozsudek.id);
       btn.className = `btn-rozsudek ${trida}`;
+
+      const consequenceHtml = rozsudek.consequence
+        ? `<div class="rozsudek-consequence">${rozsudek.consequence}</div>`
+        : '';
+      const trendHtml = _trendBadge(rozsudek.consequences);
+
       btn.innerHTML = `
-        <span>${rozsudek.text}</span>
-        <span style="font-family: var(--pismo-typewriter); font-size: 10px; opacity: 0.5;">→</span>
+        <div class="rozsudek-radek-hlavni">
+          <span class="rozsudek-nazev">${rozsudek.text}</span>
+        </div>
+        ${consequenceHtml}
+        ${trendHtml}
       `;
 
       btn.addEventListener('click', () => {
-        _zavriModal('modal-pripad');
+        _zavriPripadModal();
         if (onRozsudek) onRozsudek(pripad, rozsudek);
       });
 
@@ -258,12 +309,12 @@ const UI = (() => {
 
   function _formatujKategorii(cat) {
     const MAPA = {
-      moral_dilemma: 'Morální dilema',
-      political:     'Politický případ',
-      property:      'Majetkový spor',
-      criminal:      'Trestní případ',
-      absurd:        'Jiný případ',
-      personal:      'Osobní případ'
+      moral_dilemma: 'MORÁLNÍ DILEMA',
+      political:     'POLITICKÝ PŘÍPAD',
+      property:      'MAJETKOVÝ SPOR',
+      criminal:      'TRESTNÍ PŘÍPAD',
+      absurd:        'JINÝ PŘÍPAD',
+      personal:      'OSOBNÍ PŘÍPAD'
     };
     return MAPA[cat] || cat;
   }
@@ -369,13 +420,25 @@ const UI = (() => {
         obsah.innerHTML = '<p style="color: var(--barva-text-slaby); font-style: italic; text-align: center;">Žádné rozsudky.</p>';
         return;
       }
-      obsah.innerHTML = rozsudky.map(r => `
-        <div class="archiv-rozsudek-item">
+      obsah.innerHTML = '';
+      rozsudky.forEach(r => {
+        const item = document.createElement('div');
+        item.className = 'archiv-rozsudek-item';
+        item.style.cursor = 'pointer';
+        item.innerHTML = `
           <span class="archiv-rozsudek-den">Den ${r.day}</span>
           <span class="archiv-rozsudek-nazev">${r.caseTitle}</span>
           <span class="archiv-rozsudek-verdict">${r.verdict}</span>
-        </div>
-      `).join('');
+        `;
+        item.addEventListener('click', () => {
+          const pripad = DataLoader.ziskejPripad(r.caseId);
+          if (pripad) {
+            _zavriModal('modal-archiv');
+            zobrazPripadReadonly(pripad);
+          }
+        });
+        obsah.appendChild(item);
+      });
 
     } else if (tab === 'fragmenty') {
       const fragmenty = State.get('archive.fragments');
@@ -429,6 +492,43 @@ const UI = (() => {
     }, trvani);
   }
 
+  // --- ZÁLOŽKY PŘÍPADU ---
+
+  function _prepniTabPripadu(tabId) {
+    document.querySelectorAll('.pripad-tab').forEach(t => {
+      t.classList.toggle('pripad-tab--aktivni', t.dataset.tab === tabId);
+    });
+    document.querySelectorAll('.pripad-tab-obsah').forEach(obsah => {
+      obsah.classList.toggle('aktivni', obsah.dataset.tab === tabId);
+    });
+  }
+
+  // --- MENU ---
+
+  function _otevriMenu() {
+    const modal = document.getElementById('modal-menu');
+    if (!modal) return;
+    modal.classList.remove('skryto');
+    modal.classList.add('aktivni');
+  }
+
+  function _zavriMenu() {
+    const modal = document.getElementById('modal-menu');
+    if (!modal) return;
+    modal.classList.remove('aktivni');
+    modal.classList.add('skryto');
+  }
+
+  function _zobrazOHre() {
+    const text =
+      'IN DUBIO\n\n' +
+      'Textová soudní hra zasazená do středoevropského státu roku 1931.\n\n' +
+      'Hráč hraje roli soudce Dr. Karla Nováka s temnou minulostí. ' +
+      'Každý rozsudek má cenu.\n\n' +
+      'Verze: 0.1 (vývoj)';
+    alert(text);
+  }
+
   // --- INICIALIZACE LISTENERY ---
 
   function inicializuj() {
@@ -439,13 +539,18 @@ const UI = (() => {
 
     // Zavřít případ tlačítkem X
     document.getElementById('pripad-zavrit-x')?.addEventListener('click', () => {
-      _zavriModal('modal-pripad');
+      _zavriPripadModal();
     });
 
-    // Escape zavírá případ a archiv
+    // Escape zavírá modaly
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        _zavriModal('modal-pripad');
+        const menu = document.getElementById('modal-menu');
+        if (menu && !menu.classList.contains('skryto')) {
+          _zavriMenu();
+          return;
+        }
+        _zavriPripadModal();
         _zavriModal('modal-archiv');
       }
     });
@@ -480,6 +585,54 @@ const UI = (() => {
     // Vlčkův dopis
     document.getElementById('vlcek-dopis')?.addEventListener('click', () => {
       Engine.otevriVlcekuvDopis();
+    });
+
+    // Záložky případu — delegace na kontejner
+    document.getElementById('pripad-tabs')?.addEventListener('click', (e) => {
+      const tab = e.target.closest('.pripad-tab');
+      if (tab) _prepniTabPripadu(tab.dataset.tab);
+    });
+
+    // Hamburger menu
+    document.getElementById('btn-menu')?.addEventListener('click', () => {
+      _otevriMenu();
+    });
+
+    document.getElementById('menu-zavrit')?.addEventListener('click', () => {
+      _zavriMenu();
+    });
+
+    document.getElementById('menu-nova-hra')?.addEventListener('click', () => {
+      _zavriMenu();
+      if (confirm('Opravdu začít novou hru? Neuložený postup bude ztracen.')) {
+        State.reset();
+        location.reload();
+      }
+    });
+
+    document.getElementById('menu-ulozit')?.addEventListener('click', () => {
+      State.uloz();
+      _zavriMenu();
+      zobrazStavovouZpravu('Hra uložena.');
+    });
+
+    document.getElementById('menu-nacist')?.addEventListener('click', () => {
+      const nacten = State.nacti();
+      if (!nacten) {
+        zobrazStavovouZpravu('Žádná uložená hra.');
+        return;
+      }
+      Desk.aktualizujVse();
+      _zavriMenu();
+      zobrazStavovouZpravu('Hra načtena.');
+    });
+
+    document.getElementById('menu-o-hre')?.addEventListener('click', () => {
+      _zobrazOHre();
+    });
+
+    document.getElementById('modal-menu')?.addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) _zavriMenu();
     });
   }
 
@@ -534,13 +687,16 @@ const UI = (() => {
       const cisloEl = slozka.querySelector('.slozka-cislo');
 
       if (!pripad) {
-        slozka.style.opacity = '0.3';
-        slozka.style.cursor  = 'default';
+        slozka.classList.add('slozka--ceka');
+        slozka.classList.remove('slozka--aktivni', 'slozka--vyresena');
+        slozka.style.opacity = '';
+        slozka.style.cursor  = '';
         if (stavEl)  stavEl.textContent  = '—';
         if (cisloEl) cisloEl.textContent = ['I.', 'II.', 'III.'][i];
         continue;
       }
 
+      slozka.classList.remove('slozka--ceka');
       slozka.style.opacity = '1';
       slozka.style.cursor  = 'pointer';
       if (cisloEl) cisloEl.textContent = ['I.', 'II.', 'III.'][i];
@@ -559,8 +715,9 @@ const UI = (() => {
   }
 
   return {
-    otevriModal: _otevriModal,
-    zavriModal:  _zavriModal,
+    otevriModal:      _otevriModal,
+    zavriModal:       _zavriModal,
+    zavriPripadModal: _zavriPripadModal,
     zavriVsechnyModaly,
     zobrazPripad,
     zobrazPripadReadonly,

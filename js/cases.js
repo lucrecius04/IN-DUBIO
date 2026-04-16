@@ -19,7 +19,10 @@ const Cases = (() => {
 
   function otevriPripad(index) {
     const pripad = _pripady[index];
-    if (!pripad) return;
+    if (!pripad) {
+      UI.zobrazStavovouZpravu('Složka není připravena. Zavřete otevřený dialog.');
+      return;
+    }
 
     const vyresene = State.get('casesResolvedToday');
     if (vyresene.includes(pripad.id)) {

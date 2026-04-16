@@ -9,12 +9,12 @@ const Desk = (() => {
   // --- Ikony rysů pro levý panel ---
 
   const RYSY_IKONY = {
-    Integrita: '⚖',
+    Integrita: '\u2696\uFE0F',
     Odvaha:    '🦁',
     Moudrost:  '🧠',
     Vina:      '💔',
     Maska:     '🎭',
-    Nadeje:    '🕯'
+    Nadeje:    '\uD83D\uDD6F\uFE0F'
   };
 
   // --- Mapování rysů na vizuální elementy ---
@@ -54,33 +54,14 @@ const Desk = (() => {
       }
     },
     Vina: {
-      // fotografie — temní při vysoké vině
-      aktualizuj(hodnota) {
-        const foto = document.getElementById('fotografie');
-        if (!foto) return;
-        foto.classList.remove('fotografie--stredni-vina', 'fotografie--vysoka-vina');
-        if (hodnota >= 80)      foto.classList.add('fotografie--vysoka-vina');
-        else if (hodnota >= 55) foto.classList.add('fotografie--stredni-vina');
-      }
+      aktualizuj(_hodnota) {}
     },
     Maska: {
-      // zmačkané dopisy v rohu — více = nižší maska
-      aktualizuj(hodnota) {
-        _aktualizujZmackaneDopisy(100 - hodnota);
-      }
+      aktualizuj(_hodnota) {}
     },
     Nadeje: {
-      // okno — světlejší nebo temnější
+      // Lampa bliká při velmi nízké naději
       aktualizuj(hodnota) {
-        const oknoWrapper = document.getElementById('okno');
-        if (!oknoWrapper) return;
-        // Nízká naděje = otočená fotografie
-        const foto = document.getElementById('fotografie');
-        if (foto) {
-          if (hodnota < 20) foto.classList.add('fotografie--nizka-nadeje');
-          else              foto.classList.remove('fotografie--nizka-nadeje');
-        }
-        // Lampa bliká při velmi nízké naději (i bez ohledu na odvahu)
         if (hodnota < 20) {
           const lampa = document.getElementById('lampa');
           if (lampa) lampa.classList.add('lampa--blika');
@@ -95,30 +76,45 @@ const Desk = (() => {
     const stav = State.get();
     _aktualizujKalendar(stav.currentDay);
     _aktualizujHodiny(stav.phase);
-    _aktualizujOkno(stav.phase);
     _aktualizujRysy(stav.traits);
-    _aktualizujAkce(stav.investigationActionsLeft);
     _aktualizujStulVase(stav.currentDay);
     aktualizujPanelRysu();
   }
 
-  function aktualizujPanelRysu() {
-    const panel = document.getElementById('panel-rysy');
+  function _hvezdicky(hodnota) {
+    const plne = Math.min(5, Math.max(1, Math.ceil(hodnota / 20)));
+    return '<span class="hvezdy-plne">' + '★'.repeat(plne) + '</span>' +
+           '<span class="hvezdy-prazne">' + '☆'.repeat(5 - plne) + '</span>';
+  }
+
+  const RYSY_LEVY  = ['Integrita', 'Odvaha', 'Moudrost'];
+  const RYSY_PRAVY = ['Vina', 'Maska', 'Nadeje'];
+
+  function _vyplnPanelRysu(panelId, rysy) {
+    const panel = document.getElementById(panelId);
     if (!panel) return;
     panel.innerHTML = '';
-
-    for (const [nazev, ikona] of Object.entries(RYSY_IKONY)) {
+    for (const nazev of rysy) {
+      const ikona = RYSY_IKONY[nazev];
+      if (!ikona) continue;
       const popis = Traits.getPopis(nazev);
+      const hodnota = State.get('traits.' + nazev) ?? 50;
       const el = document.createElement('div');
       el.className = 'rys-radek';
       el.innerHTML =
         '<div class="rys-radek-hlavicka">' +
           '<span class="rys-radek-ikona">' + ikona + '</span>' +
-          '<span class="rys-radek-nazev">' + nazev.toUpperCase() + '</span>' +
+          '<span class="rys-radek-nazev" data-rys="' + nazev + '">' + nazev.toUpperCase() + '</span>' +
         '</div>' +
+        '<div class="rys-radek-hvezdicky">' + _hvezdicky(hodnota) + '</div>' +
         '<div class="rys-radek-popis">' + popis + '</div>';
       panel.appendChild(el);
     }
+  }
+
+  function aktualizujPanelRysu() {
+    _vyplnPanelRysu('panel-rysy', RYSY_LEVY);
+    _vyplnPanelRysu('panel-rysy-pravy', RYSY_PRAVY);
   }
 
   function _aktualizujRysy(rysy) {
@@ -169,51 +165,6 @@ const Desk = (() => {
     el.classList.add('nova-faze');
     el.textContent = CASY[faze] || '12:00';
     setTimeout(() => el.classList.remove('nova-faze'), 600);
-  }
-
-  function _aktualizujOkno(faze) {
-    const okno = document.getElementById('okno');
-    if (!okno) return;
-    okno.classList.remove('okno--rano', 'okno--dopoledne', 'okno--poledne', 'okno--vecer', 'okno--noc');
-    const MAPA = {
-      morning:   'okno--rano',
-      forenoon:  'okno--dopoledne',
-      noon:      'okno--poledne',
-      afternoon: 'okno--dopoledne',
-      evening:   'okno--vecer',
-      night:     'okno--noc'
-    };
-    okno.classList.add(MAPA[faze] || 'okno--dopoledne');
-  }
-
-  function _aktualizujAkce(zbyvaji) {
-    const teckySeznam = document.querySelectorAll('.akce-tecka');
-    teckySeznam.forEach((tecka, i) => {
-      if (i < zbyvaji) {
-        tecka.classList.remove('akce-tecka--pouzita');
-      } else {
-        tecka.classList.add('akce-tecka--pouzita');
-      }
-    });
-  }
-
-  function _aktualizujZmackaneDopisy(pocet) {
-    // Počet zmačkaných dopisů v rohu = inverzní Maska (0–100 → 0–5 dopisů)
-    const container = document.getElementById('zmackane-dopisy');
-    if (!container) return;
-    const cilPocet = Math.floor(pocet / 20); // 0–5
-    const aktualni = container.children.length;
-
-    if (cilPocet > aktualni) {
-      for (let i = aktualni; i < cilPocet; i++) {
-        const d = document.createElement('div');
-        d.className = 'dopis--zmackany';
-        d.style.left  = (5 + Math.random() * 30) + 'px';
-        d.style.top   = (5 + Math.random() * 20) + 'px';
-        d.style.transform = `rotate(${(Math.random() * 60 - 30)}deg)`;
-        container.appendChild(d);
-      }
-    }
   }
 
   function _aktualizujStulVase(den) {
@@ -296,12 +247,6 @@ const Desk = (() => {
     }
   }
 
-  function nastavPocastiOkna(typ) {
-    const okno = document.getElementById('okno');
-    if (!okno) return;
-    okno.classList.remove('okno--dest', 'okno--snih');
-    if (typ) okno.classList.add('okno--' + typ);
-  }
 
   function zobrazSuplikIndikator(show) {
     const el = document.getElementById('suplik-indikator');
@@ -329,52 +274,124 @@ const Desk = (() => {
   }
 
   // Tooltip pro rysy — zobrazí se při hoveru na vizuální element
-  function inicializujTooltipyRysu() {
-    const MAPY = {
-      'kalamár':    'Integrita',
-      'lampa':      'Odvaha',
-      'okno':       'Naděje',
-      'fotografie': 'Vina'
-    };
+  const RYSY_TOOLTIP_TEXTY = {
+    Integrita: 'Jak věrný zůstáváš svým hodnotám. Klesá přijetím úplatků a politických rozsudků.',
+    Odvaha:    'Ochota jednat i za cenu osobních následků.',
+    Moudrost:  'Schopnost číst situace a odhalovat lži.',
+    Vina:      'Váha minulosti. Nikdy neklesne na nulu.',
+    Maska:     'Jak dobře skrýváš své skutečné záměry.',
+    Nadeje:    'Věříš ještě že něco má smysl?'
+  };
 
+  function _zobrazModalRysu(nazev) {
+    const modal = document.getElementById('modal-rys');
+    if (!modal) return;
+
+    const ikona    = RYSY_IKONY[nazev] || '';
+    const popis    = Traits.getPopis(nazev);
+    const hodnota  = State.get('traits.' + nazev) ?? 50;
+    const vysvetl  = RYSY_TOOLTIP_TEXTY[nazev] || '';
+
+    const elIkona    = document.getElementById('rys-detail-ikona');
+    const elNazev    = document.getElementById('rys-detail-nazev');
+    const elHvezd    = document.getElementById('rys-detail-hvezdicky');
+    const elPopis    = document.getElementById('rys-detail-popis');
+    const elVysvetl  = document.getElementById('rys-detail-vysvetlivka');
+
+    if (elIkona)   elIkona.textContent  = ikona;
+    if (elNazev)   elNazev.textContent  = nazev.toUpperCase();
+    if (elHvezd)   elHvezd.textContent  = _hvezdicky(hodnota);
+    if (elPopis)   elPopis.textContent  = popis;
+    if (elVysvetl) elVysvetl.textContent = vysvetl;
+
+    modal.classList.remove('skryto');
+    modal.classList.add('aktivni');
+  }
+
+  function _zavriModalRysu() {
+    const modal = document.getElementById('modal-rys');
+    if (!modal) return;
+    modal.classList.remove('aktivni');
+    modal.classList.add('skryto');
+  }
+
+  function inicializujTooltipyRysu() {
     const tooltip = document.getElementById('rys-tooltip');
     if (!tooltip) return;
 
-    for (const [elId, rysNazev] of Object.entries(MAPY)) {
-      const el = document.getElementById(elId);
-      if (!el) continue;
+    // Zavření modálu rysu
+    document.getElementById('modal-rys-zavrit')
+      ?.addEventListener('click', _zavriModalRysu);
+    document.getElementById('modal-rys')
+      ?.addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) _zavriModalRysu();
+      });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') _zavriModalRysu();
+    });
 
-      el.addEventListener('mouseenter', (e) => {
-        const popis = Traits.getPopis(rysNazev);
-        const nazevEl = tooltip.querySelector('.rys-tooltip-nazev');
-        const textEl  = tooltip.querySelector('.rys-tooltip-text');
-        if (nazevEl) nazevEl.textContent = rysNazev;
-        if (textEl)  textEl.textContent  = popis;
-        tooltip.classList.add('viditelny');
-        _nastavPoziciTooltipu(e, tooltip);
+    let tooltipTimer = null;
+
+    function _pripojTooltip(panel) {
+      if (!panel) return;
+
+      // Klik na rys-radek → otevři modál
+      panel.addEventListener('click', (e) => {
+        const radek = e.target.closest('.rys-radek');
+        if (!radek) return;
+        const nazevEl = radek.querySelector('.rys-radek-nazev');
+        if (!nazevEl) return;
+        const rys = nazevEl.dataset.rys;
+        if (rys) _zobrazModalRysu(rys);
       });
 
-      el.addEventListener('mousemove', (e) => {
-        _nastavPoziciTooltipu(e, tooltip);
+      panel.addEventListener('mouseover', (e) => {
+        const nazevEl = e.target.closest('.rys-radek-nazev');
+        if (!nazevEl) return;
+        const rys = nazevEl.dataset.rys;
+        if (!rys) return;
+
+        clearTimeout(tooltipTimer);
+        tooltipTimer = setTimeout(() => {
+          const nazevTooltip = tooltip.querySelector('.rys-tooltip-nazev');
+          const textTooltip  = tooltip.querySelector('.rys-tooltip-text');
+          if (nazevTooltip) nazevTooltip.textContent = rys.toUpperCase();
+          if (textTooltip)  textTooltip.textContent  = RYSY_TOOLTIP_TEXTY[rys] || '';
+          tooltip.classList.add('viditelny');
+          _nastavPoziciTooltipu(e, tooltip);
+        }, 500);
       });
 
-      el.addEventListener('mouseleave', () => {
+      panel.addEventListener('mousemove', (e) => {
+        if (tooltip.classList.contains('viditelny')) {
+          _nastavPoziciTooltipu(e, tooltip);
+        }
+      });
+
+      panel.addEventListener('mouseout', (e) => {
+        const nazevEl = e.target.closest('.rys-radek-nazev');
+        if (!nazevEl) return;
+        clearTimeout(tooltipTimer);
         tooltip.classList.remove('viditelny');
       });
     }
+
+    _pripojTooltip(document.getElementById('panel-rysy'));
+    _pripojTooltip(document.getElementById('panel-rysy-pravy'));
   }
 
   function nastavAktivniSpis(pripad) {
+    const spis = document.getElementById('aktivni-spis');
     const hlavicka = document.querySelector('#spis-hlavicka .spis-nazev');
     const telo = document.getElementById('spis-telo');
     if (!telo) return;
 
     if (!pripad) {
-      if (hlavicka) hlavicka.textContent = 'Soudní síň č. 4';
-      telo.innerHTML = '<div id="stul-prazdny">Vyberte případ ze složky.<br><small style="font-size:12px;opacity:0.6;">Otevřete složku s případem.</small></div>';
+      if (spis) spis.style.display = 'none';
       return;
     }
 
+    if (spis) spis.style.display = '';
     if (hlavicka) hlavicka.textContent = pripad.title;
     telo.innerHTML =
       '<div class="spis-obvineni">' +
@@ -396,7 +413,6 @@ const Desk = (() => {
     nastavNovinyClanek,
     nastavAktivniSpis,
     zobrazVlcekDopis,
-    nastavPocastiOkna,
     zobrazSuplikIndikator,
     animujPrichodSpisu,
     inicializujTooltipyRysu
