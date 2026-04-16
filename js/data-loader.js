@@ -7,6 +7,17 @@ const DataLoader = (() => {
 
   const _cache = {};
 
+  function _inferCaseType() {
+    return 'rutinni';
+  }
+
+  function _doplnteTypyPripadu(seznam) {
+    if (!Array.isArray(seznam)) return;
+    for (const c of seznam) {
+      if (c && !c.type) c.type = _inferCaseType(c);
+    }
+  }
+
   // Definice všech datových souborů
   const SOUBORY = {
     days:       'data/days.json',
@@ -51,6 +62,7 @@ const DataLoader = (() => {
     await Promise.all(slibky);
     const casesArrays = await Promise.all(casesSlibky);
     _cache.cases = casesArrays.flat();
+    _doplnteTypyPripadu(_cache.cases);
 
     console.log(`Načteno ${_cache.cases?.length || 0} případů.`);
     return _cache;

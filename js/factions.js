@@ -25,7 +25,7 @@ const Factions = (() => {
     Cirkev: {
       nazev: 'Církev',
       reakceVysoka: { prah: 80, udalost: 'verejna_podpora' },
-      reakceNizka:  { prah: 20, udalost: 'moralní_odsouzeni' }
+      reakceNizka:  { prah: 20, udalost: 'moralni_odsouzeni' }
     }
   };
 

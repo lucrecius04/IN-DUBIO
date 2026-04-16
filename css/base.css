@@ -1,6 +1,7 @@
 /* base.css — Reset, typografie, proměnné, noir paleta */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IM+Fell+English:ital@0;1&family=Special+Elite&family=EB+Garamond:ital,wght@0,400;1,400&display=swap');
+/* IBM Plex Mono + EB Garamond + Playfair: konzistentní česká diakritika (žádné IM Fell / Special Elite fallbacky po znacích). */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
 
 :root {
   /* Barvy — tmavé dřevo a papír */
@@ -25,11 +26,11 @@
   --stin-hluboky: 4px 6px 16px rgba(0,0,0,0.6);
   --stin-vnitrni: inset 0 2px 6px rgba(0,0,0,0.3);
 
-  /* Písma */
-  --pismo-serif:  'Playfair Display', 'IM Fell English', Georgia, serif;
-  --pismo-typewriter: 'Special Elite', 'Courier New', monospace;
-  --pismo-telo:   'IM Fell English', 'Playfair Display', Georgia, serif;
-  --pismo-narativ: 'EB Garamond', 'IM Fell English', Georgia, serif;
+  /* Písma — vždycky první font s plným Latin Extended (čeština). */
+  --pismo-serif:  'Playfair Display', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  --pismo-typewriter: 'IBM Plex Mono', Consolas, 'Courier New', monospace;
+  --pismo-telo:   'EB Garamond', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --pismo-narativ: 'EB Garamond', 'Playfair Display', Georgia, 'Times New Roman', serif;
 
   /* Přechody */
   --prechod-rychly: 0.2s ease;
@@ -56,6 +57,9 @@ body {
   color: var(--barva-text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  /* Jednotné kerningové páry u češtiny (méně „utržených“ háčků při mixu fontů). */
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'kern' 1, 'liga' 1;
 }
 
 /* Skrytí scrollbaru ale zachování funkce */

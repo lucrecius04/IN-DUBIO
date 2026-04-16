@@ -79,6 +79,10 @@ const Desk = (() => {
     _aktualizujRysy(stav.traits);
     _aktualizujStulVase(stav.currentDay);
     aktualizujPanelRysu();
+    aktualizujPanelFrakci();
+    if (typeof UI !== 'undefined' && UI.syncPostavyDuvera) {
+      UI.syncPostavyDuvera();
+    }
   }
 
   function _hvezdicky(hodnota) {
@@ -115,6 +119,47 @@ const Desk = (() => {
   function aktualizujPanelRysu() {
     _vyplnPanelRysu('panel-rysy', RYSY_LEVY);
     _vyplnPanelRysu('panel-rysy-pravy', RYSY_PRAVY);
+  }
+
+  const FRAKCE_RADKY = [
+    { klic: 'Stat',       nazev: 'Stát' },
+    { klic: 'Obchodnici', nazev: 'Obch.' },
+    { klic: 'Lid',        nazev: 'Lid' },
+    { klic: 'Cirkev',     nazev: 'Církev' }
+  ];
+
+  const FRAKCE_TOOLTIP = {
+    Stat:       'Sledují tě. Zatím mlčí.',
+    Obchodnici: 'Peníze mají dobrou paměť.',
+    Lid:        'Lidé si pamatují spravedlnost.',
+    Cirkev:     'Bůh vidí. A oni také.'
+  };
+
+  function _frakceTecky(hodnota) {
+    const h = Math.max(0, Math.min(100, hodnota));
+    let n;
+    if (h <= 20)      n = 1;
+    else if (h <= 40) n = 2;
+    else if (h <= 60) n = 3;
+    else if (h <= 80) n = 4;
+    else              n = 5;
+    return '\u25CF'.repeat(n) + '\u25CB'.repeat(5 - n);
+  }
+
+  function aktualizujPanelFrakci() {
+    const panel = document.getElementById('panel-frakce');
+    if (!panel) return;
+    panel.innerHTML = '';
+    for (const { klic, nazev } of FRAKCE_RADKY) {
+      const hodnota = State.get('factions.' + klic) ?? 50;
+      const el = document.createElement('div');
+      el.className = 'frakce-radek';
+      el.title = FRAKCE_TOOLTIP[klic] || '';
+      el.innerHTML =
+        '<span class="frakce-radek-nazev">' + nazev + '</span>' +
+        '<span class="frakce-radek-tecky">' + _frakceTecky(hodnota) + '</span>';
+      panel.appendChild(el);
+    }
   }
 
   function _aktualizujRysy(rysy) {
@@ -273,16 +318,6 @@ const Desk = (() => {
     } catch (_) {}
   }
 
-  // Tooltip pro rysy — zobrazí se při hoveru na vizuální element
-  const RYSY_TOOLTIP_TEXTY = {
-    Integrita: 'Jak věrný zůstáváš svým hodnotám. Klesá přijetím úplatků a politických rozsudků.',
-    Odvaha:    'Ochota jednat i za cenu osobních následků.',
-    Moudrost:  'Schopnost číst situace a odhalovat lži.',
-    Vina:      'Váha minulosti. Nikdy neklesne na nulu.',
-    Maska:     'Jak dobře skrýváš své skutečné záměry.',
-    Nadeje:    'Věříš ještě že něco má smysl?'
-  };
-
   function _zobrazModalRysu(nazev) {
     const modal = document.getElementById('modal-rys');
     if (!modal) return;
@@ -290,7 +325,7 @@ const Desk = (() => {
     const ikona    = RYSY_IKONY[nazev] || '';
     const popis    = Traits.getPopis(nazev);
     const hodnota  = State.get('traits.' + nazev) ?? 50;
-    const vysvetl  = RYSY_TOOLTIP_TEXTY[nazev] || '';
+    const vysvetl  = Traits.getCoToZnamena(nazev) || '';
 
     const elIkona    = document.getElementById('rys-detail-ikona');
     const elNazev    = document.getElementById('rys-detail-nazev');
@@ -300,7 +335,16 @@ const Desk = (() => {
 
     if (elIkona)   elIkona.textContent  = ikona;
     if (elNazev)   elNazev.textContent  = nazev.toUpperCase();
-    if (elHvezd)   elHvezd.textContent  = _hvezdicky(hodnota);
+    if (elHvezd)   elHvezd.innerHTML   = _hvezdicky(hodnota);
+
+    const elHerna = document.getElementById('rys-detail-herna');
+    if (elHerna) {
+      const herna = Traits.getHerniPopis(nazev) || '';
+      elHerna.innerHTML = herna
+        ? herna.replace(/\n/g, '<br>')
+        : '<span style="opacity:0.6">—</span>';
+    }
+
     if (elPopis)   elPopis.textContent  = popis;
     if (elVysvetl) elVysvetl.textContent = vysvetl;
 
@@ -356,7 +400,7 @@ const Desk = (() => {
           const nazevTooltip = tooltip.querySelector('.rys-tooltip-nazev');
           const textTooltip  = tooltip.querySelector('.rys-tooltip-text');
           if (nazevTooltip) nazevTooltip.textContent = rys.toUpperCase();
-          if (textTooltip)  textTooltip.textContent  = RYSY_TOOLTIP_TEXTY[rys] || '';
+          if (textTooltip)  textTooltip.textContent  = Traits.getCoToZnamena(rys) || '';
           tooltip.classList.add('viditelny');
           _nastavPoziciTooltipu(e, tooltip);
         }, 500);
@@ -380,6 +424,12 @@ const Desk = (() => {
     _pripojTooltip(document.getElementById('panel-rysy-pravy'));
   }
 
+  const _TYPY_SPIS = ['rutinni', 'moralni', 'politicky', 'osobni'];
+
+  function _typPripaduProSpis(pripad) {
+    return Cases.typProZobrazeni(pripad);
+  }
+
   function nastavAktivniSpis(pripad) {
     const spis = document.getElementById('aktivni-spis');
     const hlavicka = document.querySelector('#spis-hlavicka .spis-nazev');
@@ -387,11 +437,21 @@ const Desk = (() => {
     if (!telo) return;
 
     if (!pripad) {
-      if (spis) spis.style.display = 'none';
+      if (spis) {
+        spis.style.display = 'none';
+        for (const t of _TYPY_SPIS) spis.classList.remove('spis--typ-' + t);
+        delete spis.dataset.pripadTyp;
+      }
       return;
     }
 
-    if (spis) spis.style.display = '';
+    if (spis) {
+      spis.style.display = '';
+      for (const t of _TYPY_SPIS) spis.classList.remove('spis--typ-' + t);
+      const typ = _typPripaduProSpis(pripad);
+      spis.classList.add('spis--typ-' + typ);
+      spis.dataset.pripadTyp = typ;
+    }
     if (hlavicka) hlavicka.textContent = pripad.title;
     telo.innerHTML =
       '<div class="spis-obvineni">' +

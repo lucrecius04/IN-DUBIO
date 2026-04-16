@@ -66,8 +66,7 @@ const Engine = (() => {
     if (_denData) Narrative.aktualizujNoviny(_denData);
 
     // Nastav případy dne PŘED dialogy — složky musí být aktivní hned po zavření overlaye
-    const pripadyIds = _denData?.cases || [];
-    Cases.nastavPripadyDne(pripadyIds);
+    Cases.nastavPripadyProDen(den, _denData);
     const pripady = Cases.getPripady();
     UI.aktualizujSlozky(pripady, State.get('casesResolvedToday'));
     Desk.nastavAktivniSpis(null);
@@ -91,13 +90,51 @@ const Engine = (() => {
       Desk.zobrazVlcekDopis(false);
     }
 
-    // Zobraz tlačítko Další den (hráč vyřeší případy sám)
+    // Skrýt tlačítko do vyřešení případů; po F5 / resume znovu sladit s uloženým casesResolvedToday
     UI.zobrazBtnDalsiDen(false);
+    zkontrolujKonecDne();
+  }
+
+  /**
+   * Zarovná runtime s právě načteným State (menu „Načíst hru“ bez reloadu).
+   *
+   * Follow-up (zatím neřešeno): po F5 stále proběhne celý `spustDen` včetně dialogů —
+   * může duplikovat archivní záznamy; idempotentní resume by vyžadovalo flag v State nebo
+   * sloučení části uložení s výchozím stavem při `State.nacti()`.
+   */
+  function syncFromSavedState() {
+    const den = State.get('currentDay');
+    if (den > 30) {
+      Desk.aktualizujVse();
+      Music.aktualizujStopu();
+      return;
+    }
+
+    _denData = DataLoader.ziskejDen(den);
+    Cases.nastavPripadyProDen(den, _denData);
+    const pripady = Cases.getPripady();
+    UI.aktualizujSlozky(pripady, State.get('casesResolvedToday'));
+    Desk.nastavAktivniSpis(null);
+
+    if (_denData) Narrative.aktualizujNoviny(_denData);
+
+    if (_denData?.vlcek_letter) {
+      Desk.zobrazVlcekDopis(true);
+      Desk.zobrazSuplikIndikator(true);
+    } else {
+      Desk.zobrazVlcekDopis(false);
+      Desk.zobrazSuplikIndikator(false);
+    }
+
+    Desk.aktualizujVse();
+    Music.aktualizujStopu();
+    zkontrolujKonecDne();
   }
 
   function zkontrolujKonecDne() {
-    const vyresene    = State.get('casesResolvedToday');
-    const vsechnyIds  = _denData?.cases || [];
+    const vyresene = State.get('casesResolvedToday');
+    const pripadyNactene = Cases.getPripady();
+    const vsechnyIds = pripadyNactene.map(p => p && p.id).filter(Boolean);
 
     // Žádné případy → umožni přejít hned
     if (vsechnyIds.length === 0) {
@@ -152,6 +189,9 @@ const Engine = (() => {
     const dialogy = Characters.getDialogyDen(den);
     for (const { id, dialog } of dialogy) {
       State.oznacPostavuPotkanu(id);
+      const souhrn = Characters.getHistorieRadkaTitulek(id, dialog.type);
+      State.zalogujNpcSetkani(id, den, souhrn, dialog.text || '');
+      State.zapisNpcPosledniDialog(id, den, dialog.text || '');
       // Dialogy se zobrazí jako fragmenty
       await _cekejNaFragment(null, {
         type:  dialog.type === 'letter' ? 'letter' : 'letter',
@@ -175,15 +215,21 @@ const Engine = (() => {
     State.set('flags.haas_envelope_opened', true);
     State.upravRys('Vina', +5);
 
-    // Najdi fragment obálky
+    const denHaas = State.get('currentDay');
     const fragment = DataLoader.ziskejFragment('haas_obalka');
+    const haasText = fragment?.text ||
+      'Vážený pane doktore,\n\nDovolujeme si Vás informovat, že náš klient pan průmyslník Haas přiložil k tomuto dopisu výraz své úcty ve výši 800 Kč.\n\nVěříme, že budete jeho záležitostem věnovat patřičnou pozornost.\n\nS uctivým pozdravem,\nJUDr. Haas & synové, advokátní kancelář';
+    State.zalogujNpcSetkani('haas', denHaas, 'Obálka od advokáta (Haas)', haasText);
+    State.zapisNpcPosledniDialog('haas', denHaas, haasText);
+
+    // Najdi fragment obálky
     if (fragment) {
       UI.zobrazFragment(fragment, () => {});
     } else {
       UI.zobrazFragment({
         type:  'letter',
         title: 'Obálka od Haasova advokáta',
-        text:  'Vážený pane doktore,\n\nDovolujeme si Vás informovat, že náš klient pan průmyslník Haas přiložil k tomuto dopisu výraz své úcty ve výši 800 Kč.\n\nVěříme, že budete jeho záležitostem věnovat patřičnou pozornost.\n\nS uctivým pozdravem,\nJUDr. Haas & synové, advokátní kancelář'
+        text:  haasText
       }, () => {});
     }
 
@@ -202,6 +248,10 @@ const Engine = (() => {
       title: 'Dopis od ministra Vlčka',
       text:  _denData.vlcek_letter_text || '„Věřím, že jste muž který rozumí nutnosti kompromisů, pane doktore."'
     };
+
+    const denV = State.get('currentDay');
+    State.zalogujNpcSetkani('vlcek', denV, 'Dopis od Vlčka', obsah.text || '');
+    State.zapisNpcPosledniDialog('vlcek', denV, obsah.text || '');
 
     UI.zobrazFragment(obsah, () => {
       Desk.zobrazVlcekDopis(false);
@@ -309,6 +359,11 @@ const Engine = (() => {
             State.upravRys(rys, delta);
           }
         }
+        if (moznost?.trust) {
+          for (const [npcId, delta] of Object.entries(moznost.trust)) {
+            State.upravDuveru(npcId, delta);
+          }
+        }
         Desk.aktualizujVse();
         resolve();
       });
@@ -329,14 +384,18 @@ const Engine = (() => {
     const overlay = document.getElementById('uvod-overlay');
     if (!overlay) { inicializuj(); return; }
 
-    // Zkontroluj uloženou hru
-    const ulozeno = localStorage.getItem('indubio_save');
     const zpravaEl = document.getElementById('uvod-ulozena-zprava');
-    if (ulozeno && zpravaEl) {
-      try {
-        const stavData = JSON.parse(ulozeno);
-        zpravaEl.textContent = `Uložená hra — Den ${stavData.currentDay} z 30`;
-      } catch (_) {}
+    if (zpravaEl) {
+      const ra = State.peekAutosave();
+      const r1 = State.peekUlozene(1);
+      const r2 = State.peekUlozene(2);
+      if (ra || r1 || r2) {
+        const ta = ra ? 'den ' + ra.currentDay : '—';
+        const t1 = r1 ? 'den ' + r1.currentDay : 'prázdná';
+        const t2 = r2 ? 'den ' + r2.currentDay : 'prázdná';
+        zpravaEl.textContent =
+          'Automatické uložení: ' + ta + ' · záloha 1: ' + t1 + ' · záloha 2: ' + t2;
+      }
     }
 
     overlay.addEventListener('click', () => {
@@ -351,6 +410,7 @@ const Engine = (() => {
 
   return {
     spustDen,
+    syncFromSavedState,
     zkontrolujKonecDne,
     spustKonec,
     otevriHaasovuObalku,

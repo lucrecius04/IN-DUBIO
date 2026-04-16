@@ -13,7 +13,7 @@
   overflow: hidden;
   display: grid;
   grid-template-columns: 220px 1fr 220px;
-  grid-template-rows: 80px 1fr 70px;
+  grid-template-rows: 80px 1fr;
   gap: 0;
 }
 
@@ -95,6 +95,49 @@
   gap: 2px;
 }
 
+.panel-frakce-obal {
+  width: 100%;
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.panel-frakce-nadpis {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: rgba(240, 220, 180, 0.35);
+  margin-bottom: 6px;
+}
+
+#panel-frakce {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.frakce-radek {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: rgba(240, 228, 200, 0.85);
+}
+
+.frakce-radek-nazev {
+  font-family: var(--pismo-serif, Georgia, serif);
+  opacity: 0.75;
+  flex-shrink: 0;
+}
+
+.frakce-radek-tecky {
+  font-family: monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: rgba(200, 170, 120, 0.95);
+}
+
 #lampa {
   position: relative;
   cursor: default;
@@ -148,17 +191,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
-  padding: 20px 20px 10px;
+  justify-content: center;
+  padding: 20px 24px 24px;
   position: relative;
   gap: 16px;
+  min-height: 0;
 }
 
 /* Novinový výstřižek — denní nálada */
 #noviny-vystrizek {
   position: absolute;
-  top: 15px;
-  right: 20px;
+  top: 108px;
+  right: 100px;
   width: 200px;
   background: var(--barva-papir-stary);
   padding: 10px 12px;
@@ -204,6 +248,19 @@
 
 #aktivni-spis:hover {
   box-shadow: 6px 8px 24px rgba(0,0,0,0.7);
+}
+
+#aktivni-spis.spis--typ-rutinni {
+  border-left: 4px solid #C4A35A;
+}
+#aktivni-spis.spis--typ-moralni {
+  border-left: 4px solid #2C4A7C;
+}
+#aktivni-spis.spis--typ-politicky {
+  border-left: 4px solid #8B1A1A;
+}
+#aktivni-spis.spis--typ-osobni {
+  border-left: 4px solid #5C2D6E;
 }
 
 /* Záhlaví spisu */
@@ -252,22 +309,6 @@
 
 
 /* ==========================================
-   SPODNÍ LIŠTA — složky případů + kalamář + šuplík
-   ========================================== */
-
-#lista-dolni {
-  grid-column: 1 / -1;
-  grid-row: 3;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 4px 30px;
-  border-top: 2px solid rgba(255,255,255,0.05);
-  background: rgba(0,0,0,0.25);
-  gap: 16px;
-}
-
-/* ==========================================
    SLOŽKY PŘÍPADŮ
    ========================================== */
 
@@ -276,23 +317,42 @@
   gap: 28px;
   align-items: flex-end;
   justify-content: center;
-  padding: 0 20px 10px;
+  padding: 0 20px;
 }
 
 .slozka {
   width: 120px;
   height: 140px;
+  /* Výchozí = rutinní; při `slozka--typ-*` z ui.js se přepíše */
   background: linear-gradient(160deg, #c8b878 0%, #a89848 60%, #8a7830 100%);
   border: 2px solid #7a6820;
   border-radius: 3px 3px 0 0;
   position: relative;
   cursor: pointer;
-  transition: transform var(--prechod-rychly), box-shadow var(--prechod-rychly);
+  transition: transform var(--prechod-rychly), box-shadow var(--prechod-rychly), filter var(--prechod-rychly);
   box-shadow: 4px 4px 14px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding: 10px;
+}
+
+/* Barva desky podle typu případu (shodná paleta jako #aktivni-spis / modál) */
+.slozka.slozka--typ-rutinni {
+  background: linear-gradient(160deg, #c8b878 0%, #a89848 60%, #8a7830 100%);
+  border-color: #7a6820;
+}
+.slozka.slozka--typ-moralni {
+  background: linear-gradient(160deg, #4a6a9a 0%, #2c4a7c 55%, #1a3050 100%);
+  border-color: #152438;
+}
+.slozka.slozka--typ-politicky {
+  background: linear-gradient(160deg, #a03030 0%, #6e1414 55%, #4a0a0a 100%);
+  border-color: #3a0808;
+}
+.slozka.slozka--typ-osobni {
+  background: linear-gradient(160deg, #7a4588 0%, #5c2d6e 55%, #3a1a48 100%);
+  border-color: #281030;
 }
 
 .slozka:hover {
@@ -309,7 +369,8 @@
   width: 44px;
   height: 18px;
   background: inherit;
-  border: 2px solid #7a6820;
+  border: 2px solid;
+  border-color: inherit;
   border-bottom: none;
   border-radius: 3px 3px 0 0;
 }
@@ -331,10 +392,20 @@
   letter-spacing: 0.5px;
 }
 
-/* Složka — aktivní */
+.slozka.slozka--typ-moralni .slozka-cislo,
+.slozka.slozka--typ-moralni .slozka-stav,
+.slozka.slozka--typ-politicky .slozka-cislo,
+.slozka.slozka--typ-politicky .slozka-stav,
+.slozka.slozka--typ-osobni .slozka-cislo,
+.slozka.slozka--typ-osobni .slozka-stav {
+  color: rgba(245, 238, 225, 0.88);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+/* Složka — aktivní (nesmí přepsat barvu typu na žlutou) */
 .slozka--aktivni {
-  background: linear-gradient(160deg, #d8c888 0%, #b8a858 60%, #9a8840 100%);
-  border-color: #8a7030;
+  filter: brightness(1.1) saturate(1.06);
+  box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.14);
 }
 
 /* Složka — vyřešená (razítko) */
@@ -427,6 +498,26 @@
   flex-direction: column;
   align-items: center;
   gap: 4px;
+}
+
+/* Archiv na stole — vlevo dole (uvnitř #plocha-stred) */
+#plocha-stred #suplik-wrapper {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  top: auto;
+  right: auto;
+  z-index: 8;
+}
+
+/* Další den — vpravo dole na stole */
+#plocha-stred #btn-dalsi-den {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  left: auto;
+  top: auto;
+  z-index: 9;
 }
 
 #suplik {
@@ -557,7 +648,7 @@
 }
 
 .razitko-text {
-  font-family: 'Courier New', 'Special Elite', monospace;
+  font-family: var(--pismo-typewriter);
   font-size: 28px;
   font-weight: bold;
   letter-spacing: 4px;
@@ -577,9 +668,11 @@
    ========================================== */
 
 #vlcek-dopis {
+  grid-column: 2;
+  grid-row: 2;
   position: absolute;
-  top: 30px;
-  left: 230px;
+  top: 52px;
+  left: 72px;
   width: 160px;
   background: var(--barva-papir-stary);
   padding: 12px;

@@ -28,7 +28,7 @@
   transition: opacity 1.5s ease;
 ">
   <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 52px; font-weight: 700; color: #f0e8d0; letter-spacing: 6px; margin-bottom: 12px; animation: konecHryText 2s ease forwards;">IN DUBIO</div>
-  <div style="font-family: 'Special Elite', monospace; font-size: 12px; color: rgba(240,220,180,0.5); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 48px; animation: konecHryText 2s ease 0.5s both;">Středoevropský stát, 1931</div>
+  <div style="font-family: 'IBM Plex Mono', Consolas, 'Courier New', monospace; font-size: 12px; color: rgba(240,220,180,0.5); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 48px; animation: konecHryText 2s ease 0.5s both;">Středoevropský stát, 1931</div>
   <div style="font-family: Georgia, serif; font-size: 14px; color: rgba(240,220,180,0.3); font-style: italic; max-width: 500px; text-align: center; line-height: 2; margin-bottom: 48px; animation: konecHryText 2s ease 1s both;">
     Dr. Karel Novák. Soudce. Třicet dní. Jedna minulost.<br>Zákon a spravedlnost nejsou vždy totéž.
   </div>
@@ -44,7 +44,7 @@
   <!-- HORNÍ LIŠTA -->
   <div id="lista-horni">
     <!-- Vlevo: název hry -->
-    <div style="font-family: var(--pismo-serif); font-size: 13px; color: rgba(240,220,180,0.3); letter-spacing: 3px; font-style: italic;">
+    <div style="font-family: var(--pismo-serif); font-size: 15px; color: rgba(240,220,180,0.3); letter-spacing: 3px; font-style: italic;">
       IN DUBIO
     </div>
 
@@ -76,10 +76,23 @@
     <div id="panel-rysy">
       <!-- Dynamicky plněno desk.js -->
     </div>
+
+    <div class="panel-frakce-obal" aria-label="Pověst u frakcí">
+      <div class="panel-frakce-nadpis">POVĚST</div>
+      <div id="panel-frakce"></div>
+    </div>
   </div>
 
   <!-- STŘEDNÍ PLOCHA -->
   <div id="plocha-stred">
+
+    <!-- Archiv (šuplík) — na stole vpravo nahoře (pozice v desk.css) -->
+    <div id="suplik-wrapper">
+      <div id="suplik">
+        <div id="suplik-indikator"></div>
+      </div>
+      <div id="suplik-popis">ARCHIV</div>
+    </div>
 
     <!-- Složky případů — ležící na stole -->
     <div id="slozky-wrapper">
@@ -123,6 +136,9 @@
       </div>
     </div>
 
+    <!-- Další den — na stole vpravo dole (pozice v desk.css) -->
+    <button id="btn-dalsi-den" class="btn" type="button">Další den →</button>
+
   </div>
 
   <!-- PRAVÝ PANEL — rysy Vina, Maska, Naděje -->
@@ -138,30 +154,12 @@
     <div id="vlcek-dopis-preview" style="font-style: italic; font-size: 11px;">„Věřím že jste muž který rozumí nutnosti kompromisů..."</div>
   </div>
 
-  <!-- SPODNÍ LIŠTA -->
-  <div id="lista-dolni">
-
-    <!-- Kalamář — skrytý, zachován pro desk.js logiku -->
-    <div id="kalamár-wrapper" style="display:none;">
-      <div id="kalamár">
-        <div id="kalamár-hladina"></div>
-      </div>
+  <!-- Kalamář — skrytý, zachován pro desk.js logiku -->
+  <div id="kalamár-wrapper" style="display:none;">
+    <div id="kalamár">
+      <div id="kalamár-hladina"></div>
     </div>
-
-    <!-- Archiv (šuplík) -->
-    <div id="suplik-wrapper">
-      <div id="suplik">
-        <div id="suplik-indikator"></div>
-      </div>
-      <div id="suplik-popis">ARCHIV</div>
-    </div>
-
-    <!-- Tlačítko: Další den -->
-    <div style="margin-left: auto;">
-      <button id="btn-dalsi-den" class="btn">Další den →</button>
-    </div>
-
-  </div><!-- /lista-dolni -->
+  </div>
 
 </div><!-- /stul -->
 
@@ -262,13 +260,45 @@
       <button class="btn" id="archiv-zavrit">Zavřít</button>
     </div>
     <div class="archiv-tabs">
-      <div class="archiv-tab archiv-tab--aktivni" data-tab="finance">FINANCE</div>
-      <div class="archiv-tab" data-tab="rozsudky">ROZSUDKY</div>
+      <div class="archiv-tab archiv-tab--aktivni" data-tab="rozsudky">ROZSUDKY</div>
+      <div class="archiv-tab" data-tab="postavy">POSTAVY</div>
+      <div class="archiv-tab" data-tab="finance">FINANCE</div>
       <div class="archiv-tab" data-tab="fragmenty">ZÁZNAMY</div>
     </div>
     <div class="archiv-obsah" id="archiv-obsah">
       <!-- Dynamicky plněno -->
     </div>
+  </div>
+</div>
+
+<!-- Profil postavy (nad šuplíkem) -->
+<div id="modal-postava-profil" class="overlay" role="dialog" aria-modal="true">
+  <div class="panel-papir postava-profil-panel panel-papir--nastup">
+    <button type="button" class="postava-profil-zavrit" id="postava-profil-zavrit" aria-label="Zavřít">×</button>
+    <div class="postava-profil-dvousloupce">
+      <div class="postava-profil-levy">
+        <div class="postava-profil-jmeno" id="postava-profil-jmeno">—</div>
+        <div class="postava-profil-role" id="postava-profil-role">—</div>
+        <div class="postava-profil-duvera" id="postava-profil-duvera" data-npc-id="">○○○</div>
+        <div class="postava-profil-popis" id="postava-profil-popis"></div>
+        <div class="postava-profil-oddelovac" aria-hidden="true"></div>
+        <div class="postava-profil-sekce-nadpis">VLIV NA TEBE</div>
+        <div class="postava-profil-vliv-blok" id="postava-profil-vliv"></div>
+      </div>
+      <div class="postava-profil-pravy">
+        <div class="postava-profil-sekce-nadpis">HISTORIE SETKÁNÍ</div>
+        <div class="postava-profil-historie-wrap" id="postava-profil-historie"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Detail setkání (nad profilem postavy) -->
+<div id="modal-postava-historie-detail" class="overlay" role="dialog" aria-modal="true">
+  <div class="panel-papir postava-historie-detail-panel panel-papir--nastup">
+    <button type="button" class="postava-profil-zavrit postava-historie-detail-zavrit" id="postava-historie-detail-zavrit" aria-label="Zavřít">×</button>
+    <div class="postava-historie-detail-nadpis" id="postava-historie-detail-nadpis"></div>
+    <div class="postava-historie-detail-text" id="postava-historie-detail-text"></div>
   </div>
 </div>
 
@@ -297,8 +327,18 @@
     <div class="menu-nazev">IN DUBIO</div>
     <div class="menu-popis">Textová soudní hra, 1931</div>
     <button id="menu-nova-hra" class="menu-polozka">Nová hra</button>
-    <button id="menu-ulozit" class="menu-polozka">Uložit hru</button>
-    <button id="menu-nacist" class="menu-polozka">Načíst hru</button>
+    <div class="menu-dvojice-nadpis">Automatické uložení</div>
+    <button type="button" id="menu-nacist-auto" class="menu-polozka">—</button>
+    <div class="menu-dvojice-nadpis">Ruční zálohy — uložit</div>
+    <div class="menu-dvojice">
+      <button type="button" id="menu-ulozit-1" class="menu-polozka menu-polozka--pul">Záloha 1</button>
+      <button type="button" id="menu-ulozit-2" class="menu-polozka menu-polozka--pul">Záloha 2</button>
+    </div>
+    <div class="menu-dvojice-nadpis">Ruční zálohy — načíst</div>
+    <div class="menu-dvojice">
+      <button type="button" id="menu-nacist-1" class="menu-polozka menu-polozka--pul">Záloha 1</button>
+      <button type="button" id="menu-nacist-2" class="menu-polozka menu-polozka--pul">Záloha 2</button>
+    </div>
     <button id="menu-o-hre" class="menu-polozka">O hře</button>
     <button id="menu-zavrit" class="menu-polozka menu-polozka--zavrit">Zpět do hry</button>
   </div>
@@ -309,12 +349,20 @@
      ========================================== -->
 <div id="modal-rys" class="overlay" role="dialog" aria-modal="true">
   <div class="panel-papir rys-detail-panel panel-papir--nastup">
-    <button class="zavrit-btn" id="modal-rys-zavrit">✕</button>
-    <div class="rys-detail-ikona" id="rys-detail-ikona">⚖️</div>
-    <div class="rys-detail-nazev" id="rys-detail-nazev">INTEGRITA</div>
-    <div class="rys-detail-hvezdicky" id="rys-detail-hvezdicky">★★★☆☆</div>
+    <div class="rys-detail-zahlavi">
+      <button type="button" class="pripad-zavrit-x" id="modal-rys-zavrit" title="Zavřít (Esc)">✕</button>
+      <div class="rys-detail-zahlavi-stred">
+        <div class="rys-detail-ikona" id="rys-detail-ikona">⚖️</div>
+        <div class="rys-detail-nazev" id="rys-detail-nazev">INTEGRITA</div>
+        <div class="rys-detail-hvezdicky" id="rys-detail-hvezdicky">★★★☆☆</div>
+      </div>
+    </div>
+    <div class="rys-detail-sekce-nadpis">Ve hře</div>
+    <div class="rys-detail-herna" id="rys-detail-herna"></div>
+    <div class="rys-detail-sekce-nadpis rys-detail-sekce-nadpis--druhy">Nálada</div>
     <div class="rys-detail-popis" id="rys-detail-popis">—</div>
     <div class="rys-detail-oddelovac"></div>
+    <div class="rys-detail-sekce-nadpis rys-detail-sekce-nadpis--jemný">Co to znamená</div>
     <div class="rys-detail-vysvetlivka" id="rys-detail-vysvetlivka">—</div>
   </div>
 </div>
@@ -344,9 +392,9 @@
 <script src="js/finance.js"></script>
 <script src="js/characters.js"></script>
 <script src="js/narrative.js"></script>
+<script src="js/cases.js"></script>
 <script src="js/desk.js"></script>
 <script src="js/ui.js"></script>
-<script src="js/cases.js"></script>
 <script src="js/music.js"></script>
 <script src="js/engine.js"></script>
 
