@@ -68,7 +68,8 @@
     "narrative_link": null,
     "recurring": true,
     "thread": "bozena",
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "pripad_uzavrit"
   },
   {
     "id": "case_haas_2",
@@ -119,16 +120,15 @@
             "Odvaha": 8
           },
           "factions": {
-            "Stat": -10,
-            "Obchodnici": -12,
+            "Moc": -10,
+            "Kapital": -12,
             "Lid": 10
           },
-          "trust": {
-            "haas": -1
-          },
+          "trust": {},
           "finance": 0,
           "flags": []
-        }
+        },
+        "political_stance": "independent"
       },
       {
         "id": "jen_upozorneni",
@@ -137,14 +137,15 @@
         "consequences": {
           "traits": {
             "Integrita": -5,
-            "Maska": 5
+            "Vina": 5
           },
           "factions": {
-            "Obchodnici": 5
+            "Kapital": 5
           },
           "finance": 0,
           "flags": []
-        }
+        },
+        "political_stance": "system"
       },
       {
         "id": "zamitnut",
@@ -156,22 +157,21 @@
             "Vina": 8
           },
           "factions": {
-            "Stat": 5,
-            "Obchodnici": 10,
+            "Moc": 5,
+            "Kapital": 10,
             "Lid": -15
           },
-          "trust": {
-            "haas": 1
-          },
+          "trust": {},
           "finance": 0,
           "flags": []
-        }
+        },
+        "political_stance": "system"
       }
     ],
     "narrative_link": null,
     "recurring": true,
     "thread": "haas",
-    "type": "rutinni"
+    "type": "politicky"
   },
   {
     "id": "case_pozemek_3",
@@ -239,7 +239,8 @@
     "narrative_link": null,
     "recurring": true,
     "thread": "hranice",
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "strom_neutral"
   },
   {
     "id": "case_bozena_5",
@@ -298,7 +299,8 @@
     "narrative_link": null,
     "recurring": true,
     "thread": "bozena",
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "zamitnut"
   },
   {
     "id": "case_pozemek_4",
@@ -359,7 +361,8 @@
     "narrative_link": null,
     "recurring": true,
     "thread": "hranice",
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "strom_chraneny"
   },
   {
     "id": "case_bozena_6",
@@ -422,7 +425,8 @@
     "narrative_link": null,
     "recurring": true,
     "thread": "bozena",
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "bozena_muzeum"
   },
   {
     "id": "case_haas_3",
@@ -473,12 +477,11 @@
             "Odvaha": 15
           },
           "factions": {
-            "Stat": -20,
-            "Obchodnici": -20,
+            "Moc": -20,
+            "Kapital": -20,
             "Lid": 20
           },
           "trust": {
-            "haas": -2,
             "vlcek": -2
           },
           "finance": 0,
@@ -488,7 +491,8 @@
               "value": true
             }
           ]
-        }
+        },
+        "political_stance": "independent"
       },
       {
         "id": "odlozit",
@@ -497,16 +501,17 @@
         "consequences": {
           "traits": {
             "Integrita": -10,
-            "Maska": 10
+            "Vina": 10
           },
           "factions": {
-            "Stat": 5,
-            "Obchodnici": 5,
+            "Moc": 5,
+            "Kapital": 5,
             "Lid": -15
           },
           "finance": 0,
           "flags": []
-        }
+        },
+        "political_stance": "system"
       },
       {
         "id": "zamitnut_politika",
@@ -518,19 +523,20 @@
             "Vina": 15
           },
           "factions": {
-            "Stat": 15,
-            "Obchodnici": 15,
+            "Moc": 15,
+            "Kapital": 15,
             "Lid": -25
           },
           "finance": 800,
           "flags": []
-        }
+        },
+        "political_stance": "system"
       }
     ],
     "narrative_link": null,
     "recurring": true,
     "thread": "haas",
-    "type": "rutinni"
+    "type": "politicky"
   },
   {
     "id": "case_pozemek_5",
@@ -625,7 +631,8 @@
     "narrative_link": null,
     "recurring": true,
     "thread": "hranice",
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "kompromis"
   },
   {
     "id": "case_bozena_7",
@@ -685,7 +692,8 @@
     "narrative_link": null,
     "recurring": true,
     "thread": "bozena",
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "obec_povinnost"
   },
   {
     "id": "case_pospísil_4",
@@ -731,7 +739,7 @@
           },
           "factions": {
             "Lid": 10,
-            "Obchodnici": -8
+            "Kapital": -8
           },
           "finance": 0,
           "flags": []
@@ -747,7 +755,7 @@
             "Moudrost": -5
           },
           "factions": {
-            "Obchodnici": 5,
+            "Kapital": 5,
             "Lid": -10
           },
           "finance": 0,
@@ -758,7 +766,8 @@
     "narrative_link": null,
     "recurring": true,
     "thread": "pospisil",
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "barta_vinen"
   },
   {
     "id": "case_markova_4",
@@ -810,8 +819,8 @@
             "Moudrost": 8
           },
           "factions": {
-            "Stat": -8,
-            "Obchodnici": -15,
+            "Moc": -8,
+            "Kapital": -15,
             "Lid": 15
           },
           "finance": 0,
@@ -821,7 +830,8 @@
               "value": true
             }
           ]
-        }
+        },
+        "personal_outcome": "fair"
       },
       {
         "id": "podminka",
@@ -841,7 +851,8 @@
               "value": true
             }
           ]
-        }
+        },
+        "personal_outcome": "fair"
       },
       {
         "id": "zprosten",
@@ -853,12 +864,13 @@
             "Vina": 5
           },
           "factions": {
-            "Obchodnici": 5,
+            "Kapital": 5,
             "Lid": -10
           },
           "finance": 0,
           "flags": []
-        }
+        },
+        "personal_outcome": "biased"
       }
     ],
     "narrative_link": null,
@@ -960,7 +972,8 @@
     "narrative_link": null,
     "recurring": true,
     "thread": "bozena",
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "bozena_svobodna"
   },
   {
     "id": "case_068",
@@ -1005,12 +1018,13 @@
             "Odvaha": 10
           },
           "factions": {
-            "Stat": -15,
+            "Moc": -15,
             "Lid": 20
           },
           "finance": 0,
           "flags": []
-        }
+        },
+        "political_stance": "independent"
       },
       {
         "id": "pokuta_mala",
@@ -1021,12 +1035,13 @@
             "Moudrost": 3
           },
           "factions": {
-            "Stat": 3,
+            "Moc": 3,
             "Lid": 5
           },
           "finance": 0,
           "flags": []
-        }
+        },
+        "political_stance": "system"
       },
       {
         "id": "prison_1m",
@@ -1038,16 +1053,17 @@
             "Vina": 8
           },
           "factions": {
-            "Stat": 10,
+            "Moc": 10,
             "Lid": -15
           },
           "finance": 0,
           "flags": []
-        }
+        },
+        "political_stance": "system"
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "politicky"
   },
   {
     "id": "case_069",
@@ -1115,7 +1131,7 @@
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "moralni"
   },
   {
     "id": "case_osobni_1",
@@ -1166,11 +1182,12 @@
             "Moudrost": 5
           },
           "factions": {
-            "Stat": -3
+            "Moc": -3
           },
           "finance": 0,
           "flags": []
-        }
+        },
+        "personal_outcome": "fair"
       },
       {
         "id": "david_vinen",
@@ -1183,7 +1200,7 @@
             "Vina": 5
           },
           "factions": {
-            "Stat": -5,
+            "Moc": -5,
             "Lid": 8
           },
           "finance": 0,
@@ -1193,7 +1210,8 @@
               "value": true
             }
           ]
-        }
+        },
+        "personal_outcome": "fair"
       },
       {
         "id": "zprosit",
@@ -1205,15 +1223,16 @@
             "Vina": 10
           },
           "factions": {
-            "Stat": 3
+            "Moc": 3
           },
           "finance": 0,
           "flags": []
-        }
+        },
+        "personal_outcome": "biased"
       }
     ],
     "narrative_link": "fragment_d20_odhaleni",
-    "type": "rutinni"
+    "type": "osobni"
   },
   {
     "id": "case_070",
@@ -1236,7 +1255,7 @@
       {
         "source": "B",
         "label": "Státní zástupce (pokud aktivní)",
-        "text": "„Případ je promlčen. Nemaže záznamy. Novák jednal v rámci zákonné pravomoci doby.“"
+        "text": "„Případ je promlčen. Nemaže záznamy. Černý jednal v rámci zákonné pravomoci doby.“"
       }
     ],
     "hidden_info": [],
@@ -1244,17 +1263,16 @@
       {
         "id": "uznat_omyl",
         "text": "Uznat justiční omyl — zapsat do záznamu",
-        "consequence": "Případ Antonína Beneše bude zapsán jako justiční omyl. Josef Beneš pláče. Novák ví proč.",
+        "consequence": "Případ Antonína Beneše bude zapsán jako justiční omyl. Josef Beneš pláče. Černý ví proč.",
         "consequences": {
           "traits": {
             "Integrita": 20,
-            "Vina": -30,
+            "Vina": -50,
             "Odvaha": 20,
-            "Maska": -20,
             "Nadeje": 20
           },
           "factions": {
-            "Stat": -20,
+            "Moc": -20,
             "Lid": 25
           },
           "finance": 0,
@@ -1269,7 +1287,7 @@
       {
         "id": "litovat_neuznat",
         "text": "Litovat, ale případ neotevřít — je promlčen",
-        "consequence": "Novák se omluví osobně. Zákon neumožní více. Josef Beneš odejde s tichým poděkováním.",
+        "consequence": "Černý se omluví osobně. Zákon neumožní více. Josef Beneš odejde s tichým poděkováním.",
         "consequences": {
           "traits": {
             "Vina": -5,
@@ -1284,15 +1302,14 @@
       {
         "id": "zamitnut",
         "text": "Zamítnout procesně — zákon to nedovoluje",
-        "consequence": "Josef Beneš odejde mlčky. Zákon zvítězil. Novák bude slyšet jeho kroky ještě léta.",
+        "consequence": "Josef Beneš odejde mlčky. Zákon zvítězil. Černý bude slyšet jeho kroky ještě léta.",
         "consequences": {
           "traits": {
             "Integrita": -5,
-            "Vina": 10,
-            "Maska": 5
+            "Vina": 15
           },
           "factions": {
-            "Stat": 5,
+            "Moc": 5,
             "Lid": -15
           },
           "finance": 0,
@@ -1301,7 +1318,7 @@
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "moralni"
   },
   {
     "id": "case_071",
@@ -1344,7 +1361,8 @@
           },
           "finance": 0,
           "flags": []
-        }
+        },
+        "personal_outcome": "biased"
       },
       {
         "id": "jako_vzdy",
@@ -1353,15 +1371,16 @@
         "consequences": {
           "traits": {
             "Moudrost": 8,
-            "Maska": -5
+            "Vina": -5
           },
           "factions": {},
           "finance": 0,
           "flags": []
-        }
+        },
+        "personal_outcome": "fair"
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "osobni"
   }
 ]

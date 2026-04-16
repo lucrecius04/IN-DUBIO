@@ -31,6 +31,8 @@
   --pismo-typewriter: 'IBM Plex Mono', Consolas, 'Courier New', monospace;
   --pismo-telo:   'EB Garamond', 'Playfair Display', Georgia, 'Times New Roman', serif;
   --pismo-narativ: 'EB Garamond', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  /* Název v menu / logo — EB Garamond (původní menu používalo neplatné --pismo-nadpis → dědilo telo) */
+  --pismo-nadpis: var(--pismo-telo);
 
   /* Přechody */
   --prechod-rychly: 0.2s ease;

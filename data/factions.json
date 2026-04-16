@@ -1,19 +1,19 @@
 [
   {
-    "id": "stat",
-    "name": "Stát",
+    "id": "moc",
+    "name": "MOC",
     "value": 50,
-    "want": "Poslušnost zákonům, pořádek",
+    "want": "Vlček, stát, systém — pořádek za každou cenu",
     "reactions": [
       { "threshold": 80, "direction": "high", "event": "sledovani" },
       { "threshold": 20, "direction": "low",  "event": "politicky_tlak" }
     ]
   },
   {
-    "id": "obchodnici",
-    "name": "Obchodníci",
+    "id": "kapital",
+    "name": "KAPITÁL",
     "value": 50,
-    "want": "Ochrana majetku, minimální tresty pro bohaté",
+    "want": "Majetek, smlouvy, tlak průmyslu",
     "reactions": [
       { "threshold": 80, "direction": "high", "event": "uplatky" },
       { "threshold": 20, "direction": "low",  "event": "kompromitujici_nabidka" }
@@ -21,22 +21,12 @@
   },
   {
     "id": "lid",
-    "name": "Lid",
+    "name": "LID",
     "value": 50,
-    "want": "Spravedlnost pro chudé",
+    "want": "Spravedlnost pro chudé, ulice, svědci",
     "reactions": [
       { "threshold": 80, "direction": "high", "event": "chvala_v_novinach" },
       { "threshold": 20, "direction": "low",  "event": "verejne_odsouzeni" }
-    ]
-  },
-  {
-    "id": "cirkev",
-    "name": "Církev",
-    "value": 50,
-    "want": "Morální rozsudky, rodinné hodnoty",
-    "reactions": [
-      { "threshold": 80, "direction": "high", "event": "verejna_podpora" },
-      { "threshold": 20, "direction": "low",  "event": "moralni_odsouzeni" }
     ]
   }
 ]

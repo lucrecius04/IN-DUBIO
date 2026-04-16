@@ -1,35 +1,37 @@
 /**
- * factions.js — Systém frakcí.
- * Sleduje hodnoty 4 frakcí a spouští jejich reakce při krajních hodnotách.
+ * factions.js — Systém frakcí (MOC, KAPITÁL, LID).
+ * Sleduje hodnoty 3 frakcí a spouští jejich reakce při krajních hodnotách.
  */
 
 const Factions = (() => {
 
-  // Výchozí definice frakcí — přepíše je factions.json
   const VYCHOZI = {
-    Stat: {
-      nazev: 'Stát',
+    Moc: {
+      nazev: 'MOC',
       reakceVysoka: { prah: 80, udalost: 'sledovani' },
       reakceNizka:  { prah: 20, udalost: 'politicky_tlak' }
     },
-    Obchodnici: {
-      nazev: 'Obchodníci',
+    Kapital: {
+      nazev: 'KAPITÁL',
       reakceVysoka: { prah: 80, udalost: 'uplatky' },
       reakceNizka:  { prah: 20, udalost: 'kompromitujici_nabidka' }
     },
     Lid: {
-      nazev: 'Lid',
+      nazev: 'LID',
       reakceVysoka: { prah: 80, udalost: 'chvala_v_novinach' },
       reakceNizka:  { prah: 20, udalost: 'verejne_odsouzeni' }
-    },
-    Cirkev: {
-      nazev: 'Církev',
-      reakceVysoka: { prah: 80, udalost: 'verejna_podpora' },
-      reakceNizka:  { prah: 20, udalost: 'moralni_odsouzeni' }
     }
   };
 
   let _definice = VYCHOZI;
+
+  function _reakceZJson(r, fallback) {
+    if (!r || typeof r !== 'object') return fallback;
+    const prah = Number(r.prah ?? r.threshold);
+    const udalost = r.udalost ?? r.event;
+    if (!Number.isFinite(prah) || !udalost) return fallback;
+    return { prah, udalost: String(udalost) };
+  }
 
   function inicializuj() {
     const data = DataLoader.ziskej('factions');
@@ -37,10 +39,12 @@ const Factions = (() => {
       for (const frakce of data) {
         const klic = _normalizeKlic(frakce.id);
         if (klic) {
+          const hi = frakce.reactions?.find(r => r.direction === 'high');
+          const lo = frakce.reactions?.find(r => r.direction === 'low');
           _definice[klic] = {
-            nazev: frakce.name,
-            reakceVysoka: frakce.reactions?.find(r => r.direction === 'high') || _definice[klic]?.reakceVysoka,
-            reakceNizka:  frakce.reactions?.find(r => r.direction === 'low')  || _definice[klic]?.reakceNizka
+            nazev: frakce.name || _definice[klic]?.nazev,
+            reakceVysoka: _reakceZJson(hi, _definice[klic]?.reakceVysoka),
+            reakceNizka:  _reakceZJson(lo, _definice[klic]?.reakceNizka)
           };
         }
       }
@@ -49,9 +53,14 @@ const Factions = (() => {
 
   function _normalizeKlic(id) {
     const MAPA = {
-      stat: 'Stat', obchodnici: 'Obchodnici', lid: 'Lid', cirkev: 'Cirkev'
+      moc:       'Moc',
+      kapital:   'Kapital',
+      obchodnici:'Kapital',
+      stat:      'Moc',
+      lid:       'Lid'
     };
-    return MAPA[id?.toLowerCase()] || null;
+    const k = String(id || '').toLowerCase();
+    return MAPA[k] || null;
   }
 
   function zkontrolujReakce() {
@@ -85,7 +94,6 @@ const Factions = (() => {
     return _definice[klic]?.nazev || klic;
   }
 
-  // Vrátí stav frakcí jako čitelný popis pro archiv
   function getStavPopis() {
     const frakce = State.get('factions');
     const vysledek = {};

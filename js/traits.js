@@ -36,13 +36,6 @@ const Traits = (() => {
       { range: [61, 80], text: 'Nesneseš pohled na určité spisy. Víš proč. Nechceš to pojmenovat.' },
       { range: [81, 100], text: 'Každý případ je připomínka. Každé razítko je ozvěna toho jednoho.' }
     ],
-    Maska: [
-      { range: [0, 20], text: 'Každý vidí skrz tebe. Přestal jsi to skrývat.' },
-      { range: [21, 40], text: 'Občas tě někdo přečte. Vadí ti to víc než by mělo.' },
-      { range: [41, 60], text: 'Soudce Novák. Klidný. Nezaujatý. Role, kterou umíš hrát poslepu.' },
-      { range: [61, 80], text: 'Za tím klidem hledají trhlinu. Zatím ji nenašli.' },
-      { range: [81, 100], text: 'Nevíš sám, kde končí role a začínáš ty. Možná už není rozdíl.' }
-    ],
     Nadeje: [
       { range: [0, 20], text: 'Příběh mohl dopadnout jinak. Nedopadl.' },
       { range: [21, 40], text: 'Děláš co máš. Přestal jsi čekat, že to něco změní.' },
@@ -56,10 +49,9 @@ const Traits = (() => {
 
   const VYCHOZI_HERNI = {
     Integrita: 'Každý rozsudek tě posouvá blíž k člověku, kterým chceš být — nebo dál od něj. Integrita rozhoduje, které možnosti vůbec uvidíš: příliš nízko a hra ti zavře dveře, o kterých ani nevíš. Příliš vysoko a ti, kdo spoléhají na tvůj kompromis, začnou hledat jiné páky.',
-    Odvaha:    'Odvaha je vstupenka na nepopulární lavici. Některé rozsudky se objeví jen tehdy, když na to máš sílu — jinak v seznamu prostě nejsou.\n\nKdyž lampa vyhasne příliš nízko, hra ti začne nabízet jen bezpečné střední cesty.\n\nVlček, Horáková i Mašek čtou odvahu jinak: jeden v ní vidí hrozbu, druhý spojence, třetí člověka, kterého stačí lehce zatlačit.',
-    Moudrost:  'Moudrost roste za práci se spisem — každý průzkum, který opravdu něco vytáhne, tě něco naučí. Vysoká moudrost odkrývá skryté vrstvy příběhu v textu případu: nesrovnalosti, motivy, věci které tam oficiálně nejsou. Schází-li, zůstaneš u povrchu — méně podkladů, méně háčků, méně šancí rozhodnout správně.',
+    Odvaha:    'Odvaha je vstupenka na nepopulární lavici. Některé rozsudky se objeví jen tehdy, když na to máš sílu — jinak v seznamu prostě nejsou.\n\nKdyž lampa vyhasne příliš nízko, hra ti začne nabízet jen bezpečné střední cesty.\n\nVlček, Závadová i Karas čtou odvahu jinak: jeden v ní vidí hrozbu, druhá spojence, třetí člověka, kterého stačí lehce zatlačit.',
+    Moudrost:  'Moudrost roste za práci se spisem — každý průzkum, který opravdu něco vytáhne, tě něco naučí. Když pak rozhodneš v souladu s tím, co spis prozradil, učíš se znovu — bez fanfár, jen v číslech pod kapotou. Opakovaný vzorec (průzkum vs rychlé razítko; měkčí k Lidu vs tvrdší k trestu) časem mění, jak rychle se ta čísla hýbou. Vysoká moudrost odkrývá skryté vrstvy příběhu v textu případu: nesrovnalosti, motivy, věci které tam oficiálně nejsou. Schází-li, zůstaneš u povrchu — méně podkladů, méně háčků, méně šancí rozhodnout správně.',
     Vina:      'Tíživé rozsudky a určité momenty příběhu vinu přidávají — úleva ji umí stáhnout, ale nikdy tě nepustí na nulu. Jednička je dno, pod které nejde spadnout. Čím těžší je svědomí, tím víc tě podobné případy bolí. Hra s tím počítá u věcí, které se dotýkají staré rány — kolik ti zbyde sil na průzkum, jak dlouho a jak bolestně čteš spis.',
-    Maska:     'Chladná razítka a hladké odpovědi masku posilují. Upřímnost, slabost nebo dopisy, které tě rozhodí, ji škrábou. Určuje, jestli tě mocní vnímají jako nedobytnou zeď — nebo jako člověka s prasklinou. Vysoká maska zvýrazňuje bezpečné kompromisy v politických spisech a mění tón tvých střetů s Vlčkem nebo Haasem: kdo vidí sklo, a kdo už čeká za ním.',
     Nadeje:    'Spravedlivé dny a večery, kdy si neublížíš, naději zvedají. Cynismus, prohry a prázdnota ji berou vzduch. Když spadne na nulu, hra může sklouznout k nejkratšímu, nejchladnějšímu epilogu — jako by se příběh ani neobtěžoval dovyprávět. Naděje odemyká odvážnější kompromisy v morálních dilematech a naopak schovává ty příliš růžové — zúží i večerní volby, když už v tobě moc nezbývá věřit.'
   };
 
@@ -68,7 +60,6 @@ const Traits = (() => {
     Odvaha:    'Ochota jednat i za cenu osobních následků.',
     Moudrost:  'Schopnost číst situace a odhalovat lži.',
     Vina:      'Váha minulosti. Nikdy neklesne na nulu.',
-    Maska:     'Jak dobře skrýváš své skutečné záměry.',
     Nadeje:    'Věříš ještě, že něco má smysl?'
   };
 
@@ -103,7 +94,6 @@ const Traits = (() => {
       odvaha:    'Odvaha',
       moudrost:  'Moudrost',
       vina:      'Vina',
-      maska:     'Maska',
       nadeje:    'Nadeje'
     };
     return MAPA[id.toLowerCase()] || null;
@@ -120,7 +110,7 @@ const Traits = (() => {
 
   function getPopisVse() {
     const vysledek = {};
-    const nazvy = ['Integrita', 'Odvaha', 'Moudrost', 'Vina', 'Maska', 'Nadeje'];
+    const nazvy = ['Integrita', 'Odvaha', 'Moudrost', 'Vina', 'Nadeje'];
     for (const n of nazvy) {
       vysledek[n] = getPopis(n);
     }
@@ -133,6 +123,23 @@ const Traits = (() => {
 
   function getCoToZnamena(nazev) {
     return _coToZnamena[nazev] || VYCHOZI_CO_TO_ZNAMENA[nazev] || '';
+  }
+
+  /**
+   * Skrytý násobič růstu Moudrosti z průzkumu / souladu s odhalením (podle vzorce rozhodování ve stavu).
+   * Hráč číslo nevidí — jen plynulejší nebo pomalejší posun.
+   */
+  function aplikovatNasobekMoudrostiZaAkci(delta) {
+    const d0 = Number(delta);
+    if (!Number.isFinite(d0) || d0 === 0) return 0;
+    const rs = State.get('rozhodovaci_styl');
+    if (!rs || typeof rs !== 'object') return Math.round(d0);
+    let m = 1;
+    if ((rs.investigation_streak || 0) >= 3) m *= 1.5;
+    if ((rs.no_investigation_streak || 0) >= 3) m *= 0.7;
+    const tnm = Number(State.get('tydenni_nasobek_moudrosti'));
+    if (Number.isFinite(tnm) && tnm > 1) m *= tnm;
+    return Math.round(d0 * m);
   }
 
   function zkontrolujKrajniHodnoty() {
@@ -161,6 +168,7 @@ const Traits = (() => {
     getPopisVse,
     getHerniPopis,
     getCoToZnamena,
+    aplikovatNasobekMoudrostiZaAkci,
     zkontrolujKrajniHodnoty
   };
 

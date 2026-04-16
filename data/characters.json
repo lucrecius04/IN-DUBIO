@@ -19,19 +19,19 @@
         "day": 14,
         "condition": null,
         "type": "visit",
-        "text": "Novák, přestaňme si hrát na zdvořilosti. Oba víme, co se stalo před deseti lety. Jde mi o jeden konkrétní rozsudek. Jen jeden. A pak budeme kvit.\n\nOstatně — náklady na operaci Vaší matky jsou značné, že? Naše vláda má fond pro rodiny veřejných zaměstnanců. Stačí požádat správnou osobu."
+        "text": "Černý, přestaňme si hrát na zdvořilosti. Oba víme, co se stalo před deseti lety. Jde mi o jeden konkrétní rozsudek. Jen jeden. A pak budeme kvit.\n\nOstatně — náklady na operaci Vaší matky jsou značné, že? Naše vláda má fond pro rodiny veřejných zaměstnanců. Stačí požádat správnou osobu."
       },
       {
         "day": 20,
         "condition": { "flag": "pravda_odhalena" },
         "type": "letter",
-        "text": "Novák,\n\nVím, co víte. Víte, co vím. \n\nTento tanec může skončit tiše nebo hlasitě. Volba je Vaše. Máte 48 hodin.\n\n— V."
+        "text": "Černý,\n\nVím, co víte. Víte, co vím. \n\nTento tanec může skončit tiše nebo hlasitě. Volba je Vaše. Máte 48 hodin.\n\n— V."
       },
       {
         "day": 26,
         "condition": null,
         "type": "visit",
-        "text": "Jste naivní člověk, Novák. Myslíte, že spravedlnost funguje? Podívejte se kolem sebe. Systém je takový, jaký je — a buď v něm plavete, nebo se topíte. Já vám nabízím záchranný kruh. Naposledy."
+        "text": "Jste naivní člověk, Černý. Myslíte, že spravedlnost funguje? Podívejte se kolem sebe. Systém je takový, jaký je — a buď v něm plavete, nebo se topíte. Já vám nabízím záchranný kruh. Naposledy."
       }
     ]
   },
@@ -61,7 +61,7 @@
         "day": 21,
         "condition": { "flag": "horakova_alliance" },
         "type": "visit",
-        "text": "Věřím Vám, Novák. A to je věc, které nejsem zvyklá říkat. Buďte opatrný v příštích dnech. Vlček se pohybuje."
+        "text": "Věřím Vám, Černý. A to je věc, které nejsem zvyklá říkat. Buďte opatrný v příštích dnech. Vlček se pohybuje."
       }
     ]
   },
@@ -73,13 +73,13 @@
         "day": 3,
         "condition": null,
         "type": "visit",
-        "text": "Karle! Vítej zpátky. Vypadáš... trochu unaveně. Nebo je to jen ten starý stůl?\n\nPoslouchej — přijde na tebe Vlčkův muž. Nehrdi se. Tohle není o morálce. Je to o přežití."
+        "text": "Jakube! Vítej zpátky. Vypadáš... trochu unaveně. Nebo je to jen ten starý stůl?\n\nPoslouchej — přijde na tebe Vlčkův muž. Nehrdi se. Tohle není o morálce. Je to o přežití."
       },
       {
         "day": 12,
         "condition": null,
         "type": "visit",
-        "text": "Karle, zákon není o spravedlnosti. Nikdy nebyl. Je to systém, který udržuje věci pohromadě. My jsme jeho součásti — ne jeho svědomí.\n\nStalo se ti, co se stalo. Mně taky. Nemysli na to každý den — zblázníš se."
+        "text": "Jakube, zákon není o spravedlnosti. Nikdy nebyl. Je to systém, který udržuje věci pohromadě. My jsme jeho součásti — ne jeho svědomí.\n\nStalo se ti, co se stalo. Mně taky. Nemysli na to každý den — zblázníš se."
       },
       {
         "day": 19,
@@ -121,13 +121,13 @@
         "day": 16,
         "condition": null,
         "type": "visit",
-        "text": "Zase se potkáváme, Novák. Tentokrát trochu jiný případ, ale princip stejný — majetek musí být chráněn. Co jiného je zákon?\n\nŘekl bych, že jsme se mezitím poznali lépe. Obálka přišla, ne? Doufám, že jste ji otevřel."
+        "text": "Zase se potkáváme, Černý. Tentokrát trochu jiný případ, ale princip stejný — majetek musí být chráněn. Co jiného je zákon?\n\nŘekl bych, že jsme se mezitím poznali lépe. Obálka přišla, ne? Doufám, že jste ji otevřel."
       },
       {
         "day": 24,
         "condition": null,
         "type": "visit",
-        "text": "Naposledy sedím v téhle síni, Novák. Tentokrát máte důkazy. Zajímavé, jak se věci mění.\n\nAle víte, co se nezmění? To, co víte o sobě. A to, co o Vás ví Vlček. Zauvažujte."
+        "text": "Naposledy sedím v téhle síni, Černý. Tentokrát máte důkazy. Zajímavé, jak se věci mění.\n\nAle víte, co se nezmění? To, co víte o sobě. A to, co o Vás ví Vlček. Zauvažujte."
       }
     ]
   }

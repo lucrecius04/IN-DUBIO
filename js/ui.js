@@ -37,52 +37,486 @@ const UI = (() => {
     Desk.nastavAktivniSpis(null);
   }
 
-  const _RYSY_IKONY_TREND = {
-    Integrita: '⚖️', Odvaha: '✊', Moudrost: '🧠',
-    Vina: '💔', Maska: '🎭', Nadeje: '🕯️'
-  };
-  const _FRAKCE_IKONY_TREND = {
-    Stat: '🏛️', Lid: '👥', Obchodnici: '💼', Cirkev: '⛪'
+  // --- Modal důsledků rozsudku (stav animací) ---
+  let _dusledkyCtx = null;
+
+  const _NPC_TRUST_LABEL = {
+    vlcek: 'Vlček',
+    zavadova: 'Závadová',
+    karas: 'Karas',
+    horakova: 'Horáková',
+    masek: 'Mašek',
+    benes: 'Beneš',
+    haas: 'Haas'
   };
 
-  /** 1–5: jedna šipka, 6–15: dvě, 16+: tři */
-  function _trendTier(abs) {
-    const a = Math.abs(Number(abs));
-    if (!Number.isFinite(a) || a === 0) return 0;
-    if (a >= 16) return 3;
-    if (a >= 6) return 2;
-    return 1;
+  /** Zobrazení názvu frakce v UI (klíč ve stavu zůstává anglický). */
+  const _FAKCNI_NAZEV_ZOBRAZENI = {
+    Moc: 'Moc',
+    Kapital: 'Kapitál',
+    Lid: 'Lid'
+  };
+
+  /** Archivní / staré JSON mohou mít Stat, Obchodnici, Cirkev. */
+  function _mapLegacyFactionKlic(klic) {
+    if (klic === 'Stat') return 'Moc';
+    if (klic === 'Obchodnici') return 'Kapital';
+    if (klic === 'Cirkev') return null;
+    return klic;
   }
 
-  function _trendSpan(ikona, nazev, delta) {
-    const d = Number(delta);
-    if (!Number.isFinite(d) || d === 0) return '';
-    const tier = _trendTier(d);
-    if (tier === 0) return '';
-    const up = d > 0;
-    const dir = up ? 'up' : 'down';
-    const sipka = up ? '↑' : '↓';
-    const sipky = sipka.repeat(tier);
-    const znam = d > 0 ? '+' : '';
-    return (
-      `<span class="trend-item trend-${dir} trend--tier${tier}" title="${nazev} ${znam}${d}">` +
-      `<span class="trend-ikona" aria-hidden="true">${ikona}</span>` +
-      `<span class="trend-sipky">${sipky}</span></span>`
-    );
+  function _dusledkyIkonaRadku(r) {
+    if (r.typ === 'trait') {
+      const M = {
+        Integrita: '⚖️',
+        Odvaha: '🦁',
+        Moudrost: '🧠',
+        Vina: '💔',
+        Nadeje: '🕯️'
+      };
+      return M[r.klic] || '·';
+    }
+    if (r.typ === 'faction') {
+      const M = { Moc: '🏛️', Kapital: '💰', Lid: '✊' };
+      return M[r.klic] || '·';
+    }
+    if (r.typ === 'trust') {
+      const M = { vlcek: '🕴️', zavadova: '📰', karas: '⚖️' };
+      return M[r.klic] || '🤝';
+    }
+    if (r.typ === 'finance') return '💰';
+    return '·';
   }
 
-  function _trendBadge(cons) {
-    if (!cons) return '';
-    const casti = [];
-    for (const [k, v] of Object.entries(cons.traits || {})) {
-      const html = _trendSpan(_RYSY_IKONY_TREND[k] || '·', k, v);
-      if (html) casti.push(html);
+  function _dusledkyKratkyNazev(r) {
+    if (r.typ === 'trust') return 'Důvěra: ' + (_NPC_TRUST_LABEL[r.klic] || r.klic);
+    return r.label;
+  }
+
+  function _dusledkySimulujTrait(nazev, aktualni, delta) {
+    let nova = Math.max(0, Math.min(100, aktualni + delta));
+    if (nazev === 'Vina') nova = Math.max(1, Math.min(100, nova));
+    return nova;
+  }
+
+  function _dusledkySimulujFrakci(aktualni, delta) {
+    return Math.max(0, Math.min(100, aktualni + delta));
+  }
+
+  function _dusledkySimulujTrust(aktualni, delta) {
+    return Math.max(0, Math.min(3, aktualni + delta));
+  }
+
+  function _dusledkyZrusCasovace() {
+    if (!_dusledkyCtx) return;
+    for (const t of _dusledkyCtx.timers) clearTimeout(t);
+    _dusledkyCtx.timers = [];
+  }
+
+  function _dusledkyPreskocAnimace() {
+    if (!_dusledkyCtx || _dusledkyCtx.hotovo) return;
+    _dusledkyCtx.skipped = true;
+    _dusledkyZrusCasovace();
+    const modal = document.getElementById('modal-dusledky');
+    modal?.querySelectorAll('.dusledky-bar-track').forEach(track => {
+      track.classList.add('dusledky-bar-track--okamzite');
+      const tm = track.querySelector('.dusledky-bar-tmavy');
+      const sv = track.querySelector('.dusledky-bar-svetly');
+      if (tm && tm.dataset.cilSpodek != null) tm.style.width = tm.dataset.cilSpodek + '%';
+      if (sv) {
+        if (sv.dataset.cilLeft != null) sv.style.left = sv.dataset.cilLeft + '%';
+        if (sv.dataset.cilW != null) sv.style.width = sv.dataset.cilW + '%';
+        if (sv.dataset.cilOpacity != null) sv.style.opacity = sv.dataset.cilOpacity;
+        else sv.style.opacity = '';
+      }
+    });
+    modal?.querySelectorAll('.dusledky-radek').forEach(r => r.classList.add('dusledky-radek--viditelny'));
+    const btn = document.getElementById('dusledky-pokracovat');
+    if (btn) btn.disabled = false;
+    _dusledkyCtx.hotovo = true;
+  }
+
+  function _dusledkyDokonciAnimace() {
+    if (!_dusledkyCtx || _dusledkyCtx.hotovo) return;
+    _dusledkyCtx.hotovo = true;
+    _dusledkyZrusCasovace();
+    const btn = document.getElementById('dusledky-pokracovat');
+    if (btn) btn.disabled = false;
+  }
+
+  function _dusledkySestavRadky(consequences) {
+    const c = consequences || {};
+    const financeRadky = [];
+    const ostatniRadky = [];
+
+    const fin = c.finance;
+    const finDelta = Number(fin);
+    if (Number.isFinite(finDelta) && finDelta !== 0) {
+      const pred = Math.round(Number(State.get('finance.balance') ?? 0));
+      const po = Math.round(pred + finDelta);
+      const vlastniLab = c._ui_finance_label;
+      financeRadky.push({
+        typ: 'finance',
+        klic: 'balance',
+        label: vlastniLab || 'Finance (zůstatek)',
+        pred,
+        po,
+        delta: finDelta,
+        skala: null
+      });
     }
-    for (const [k, v] of Object.entries(cons.factions || {})) {
-      const html = _trendSpan(_FRAKCE_IKONY_TREND[k] || '·', k, v);
-      if (html) casti.push(html);
+
+    for (const [nazev, delta] of Object.entries(c.traits || {})) {
+      const d = Number(delta);
+      if (!Number.isFinite(d) || d === 0) continue;
+      const pred = Number(State.get('traits.' + nazev) ?? 50);
+      const po = _dusledkySimulujTrait(nazev, pred, d);
+      ostatniRadky.push({
+        typ: 'trait',
+        klic: nazev,
+        label: nazev,
+        pred,
+        po,
+        delta: d,
+        skala: 100
+      });
     }
-    return casti.length ? `<div class="rozsudek-trendy">${casti.join('')}</div>` : '';
+
+    const frakAgregat = {};
+    for (const [rawKlic, delta] of Object.entries(c.factions || {})) {
+      const d = Number(delta);
+      if (!Number.isFinite(d) || d === 0) continue;
+      const klic = _mapLegacyFactionKlic(rawKlic);
+      if (!klic) continue;
+      frakAgregat[klic] = (frakAgregat[klic] || 0) + d;
+    }
+    for (const [nazev, d] of Object.entries(frakAgregat)) {
+      if (!Number.isFinite(d) || d === 0) continue;
+      const pred = Number(State.get('factions.' + nazev) ?? 50);
+      const po = _dusledkySimulujFrakci(pred, d);
+      ostatniRadky.push({
+        typ: 'faction',
+        klic: nazev,
+        label: _FAKCNI_NAZEV_ZOBRAZENI[nazev] || nazev,
+        pred,
+        po,
+        delta: d,
+        skala: 100
+      });
+    }
+
+    for (const [npcId, delta] of Object.entries(c.trust || {})) {
+      const d = Number(delta);
+      if (!Number.isFinite(d) || d === 0) continue;
+      const pred = Number(State.get('trust.' + npcId) ?? 0);
+      const po = _dusledkySimulujTrust(pred, d);
+      const label = _NPC_TRUST_LABEL[npcId] || npcId;
+      ostatniRadky.push({
+        typ: 'trust',
+        klic: npcId,
+        label: 'Důvěra: ' + label,
+        pred,
+        po,
+        delta: d,
+        skala: 3
+      });
+    }
+
+    return financeRadky.concat(ostatniRadky);
+  }
+
+  /**
+   * Jedna řádka důsledků (stejný vzhled jako v modalu).
+   * @param {boolean} okamzite — true = viditelná + animované bary hned (archiv / statický náhled)
+   */
+  function _dusledkyVytvorElementRadku(r, okamzite) {
+    const predPct = _dusledkyProcentoBaru(r.typ, r.pred, r.skala);
+    const poPct = _dusledkyProcentoBaru(r.typ, r.po, r.skala);
+    const r2 = n => Math.round(Number(n) * 100) / 100;
+    const lo = r2(Math.min(predPct, poPct));
+    const hi = r2(Math.max(predPct, poPct));
+    let deltaW = r2(hi - lo);
+    if (deltaW < 0.15) deltaW = 0.15;
+    const plus = r.delta > 0;
+    let znam = plus ? '+' : '';
+    const pp = r2(predPct);
+    const pk = r2(poPct);
+    let ztrataW = r2(Math.max(0, pp - pk));
+    if (r.delta < 0 && ztrataW < 0.15) ztrataW = 0.15;
+    const ik = _dusledkyIkonaRadku(r);
+    const nazev = _dusledkyKratkyNazev(r);
+    const deltaText = r.typ === 'finance' ? `${znam}${r.delta} Kč` : `${znam}${r.delta}`;
+    const novaText = r.typ === 'finance' ? `${r.po} Kč` : String(r.po);
+
+    const barPlus = `
+      <div class="dusledky-bar-track dusledky-bar-track--plus">
+        <div class="dusledky-bar-layers">
+          <div class="dusledky-bar-track-bg" aria-hidden="true"></div>
+          <div class="dusledky-bar-tmavy dusledky-bar-tmavy--plus" style="width:0%" data-cil-spodek="${pp}"></div>
+          <div class="dusledky-bar-svetly dusledky-bar-svetly--plus" style="left:${pp}%;width:0%"
+            data-cil-left="${pp}" data-cil-w="${deltaW}"></div>
+        </div>
+      </div>`;
+    const barMinus = `
+      <div class="dusledky-bar-track dusledky-bar-track--minus">
+        <div class="dusledky-bar-layers">
+          <div class="dusledky-bar-track-bg" aria-hidden="true"></div>
+          <div class="dusledky-bar-tmavy dusledky-bar-tmavy--minus" style="width:0%" data-cil-spodek="${pk}"></div>
+          <div class="dusledky-bar-svetly dusledky-bar-svetly--minus" style="left:${pk}%;width:0%"
+            data-cil-left="${pk}" data-cil-w="${ztrataW}"></div>
+        </div>
+      </div>`;
+
+    const row = document.createElement('div');
+    row.className = 'dusledky-radek' + (okamzite ? ' dusledky-radek--viditelny' : '');
+    row.innerHTML = `
+      <div class="dusledky-radek-head">
+        <span class="dusledky-radek-ikona" aria-hidden="true">${ik}</span>
+        <span class="dusledky-radek-label">${nazev}</span>
+        <span class="dusledky-radek-delta ${plus ? 'dusledky-radek-delta--plus' : 'dusledky-radek-delta--minus'}">${deltaText}</span>
+      </div>
+      ${plus ? barPlus : barMinus}
+      <details class="dusledky-radek-nova-det">
+        <summary class="dusledky-radek-nova-sum" title="Zobrazit cílovou hodnotu">⋯</summary>
+        <p class="dusledky-radek-nova-t">nová hodnota: ${novaText}</p>
+      </details>
+    `;
+
+    if (okamzite) {
+      row.querySelectorAll('.dusledky-bar-track').forEach(track => {
+        track.classList.add('dusledky-bar-track--okamzite');
+        const tm = track.querySelector('.dusledky-bar-tmavy');
+        const sv = track.querySelector('.dusledky-bar-svetly');
+        if (tm && tm.dataset.cilSpodek != null) tm.style.width = tm.dataset.cilSpodek + '%';
+        if (sv) {
+          if (track.classList.contains('dusledky-bar-track--minus')) {
+            if (sv.dataset.cilLeft != null) sv.style.left = sv.dataset.cilLeft + '%';
+            if (sv.dataset.cilW != null) sv.style.width = sv.dataset.cilW + '%';
+          } else {
+            if (sv.dataset.cilLeft != null) sv.style.left = sv.dataset.cilLeft + '%';
+            if (sv.dataset.cilW != null) sv.style.width = sv.dataset.cilW + '%';
+          }
+        }
+      });
+    }
+    return row;
+  }
+
+  function vypoctiDusledkyRadky(consequences) {
+    return _dusledkySestavRadky(consequences);
+  }
+
+  /** Jen ikona + název + delta (+5 / −3), bez grafů — záložka Rozsudek u vyřešeného případu. */
+  function _dusledkyVytvorKompaktEfekty(radky) {
+    const box = document.createElement('div');
+    box.className = 'rozsudek-efekty-cisla';
+    if (!radky || !radky.length) return box;
+    for (const r of radky) {
+      const plus = r.delta > 0;
+      const znam = plus ? '+' : (r.delta < 0 ? '' : '');
+      const delStr = r.typ === 'finance' ? znam + r.delta + ' Kč' : znam + r.delta;
+      const row = document.createElement('div');
+      row.className = 'rozsudek-efekt-radek';
+      const ik = document.createElement('span');
+      ik.className = 'rozsudek-efekt-ikona';
+      ik.setAttribute('aria-hidden', 'true');
+      ik.textContent = _dusledkyIkonaRadku(r);
+      const lab = document.createElement('span');
+      lab.className = 'rozsudek-efekt-label';
+      lab.textContent = _dusledkyKratkyNazev(r);
+      const del = document.createElement('span');
+      del.className = 'rozsudek-efekt-delta ' + (plus ? 'rozsudek-efekt-delta--plus' : 'rozsudek-efekt-delta--minus');
+      del.textContent = delStr;
+      row.appendChild(ik);
+      row.appendChild(lab);
+      row.appendChild(del);
+      box.appendChild(row);
+    }
+    return box;
+  }
+
+  function _dusledkyProcentoBaru(typ, hodnota, skala) {
+    if (typ === 'finance') {
+      const x = Math.max(0, hodnota);
+      return Math.min(100, (x / 500) * 100);
+    }
+    if (skala === 3) return (hodnota / 3) * 100;
+    return Math.max(0, Math.min(100, hodnota));
+  }
+
+  function _dusledkyTextReakce(radky) {
+    if (!radky.length) {
+      return 'Verdikt zaznamenán bez okamžité změny čísel stavu.';
+    }
+
+    const kandidati = [];
+    const pridat = (priorita, text) => kandidati.push({ priorita, text });
+
+    for (const r of radky) {
+      const d = r.delta;
+      if (r.typ === 'trust' && r.klic === 'vlcek' && d >= 1) {
+        pridat(100 + Math.abs(d), 'Ministr Vlček si to zapíše.');
+      }
+      if (r.typ === 'trust' && r.klic === 'zavadova' && d >= 1) {
+        pridat(95 + Math.abs(d), 'Závadová to zaznamenala do sešitu.');
+      }
+      if (r.typ === 'faction' && r.klic === 'Lid' && d >= 10) {
+        pridat(80 + Math.abs(d), 'Z tržiště se šíří zpráva o rozsudku.');
+      }
+      if (r.typ === 'faction' && r.klic === 'Moc' && d >= 10) {
+        pridat(80 + Math.abs(d), 'Na ministerstvu si to poznamenali.');
+      }
+      if (r.typ === 'trait' && r.klic === 'Integrita' && d <= -10) {
+        pridat(75 + Math.abs(d), 'Něco v tobě se posunulo. Nevíš přesně kam.');
+      }
+      if (r.typ === 'trait' && r.klic === 'Vina' && d >= 5) {
+        pridat(70 + Math.abs(d), 'Stará rána se připomněla.');
+      }
+      if (r.typ === 'trait' && r.klic === 'Nadeje' && d <= -5) {
+        pridat(70 + Math.abs(d), 'Den skončil těžší než začal.');
+      }
+    }
+
+    if (kandidati.length) {
+      kandidati.sort((a, b) => b.priorita - a.priorita);
+      return kandidati[0].text;
+    }
+
+    let nejsilnejsi = null;
+    for (const r of radky) {
+      if (r.typ !== 'faction') continue;
+      const a = Math.abs(r.delta);
+      if (!nejsilnejsi || a > Math.abs(nejsilnejsi.delta)) nejsilnejsi = r;
+    }
+    if (nejsilnejsi && Math.abs(nejsilnejsi.delta) >= 8) {
+      if (nejsilnejsi.delta > 0) {
+        return `Zákulisí frakce „${nejsilnejsi.label}“ si oddechlo.`;
+      }
+      return `Frakce „${nejsilnejsi.label}“ z toho není nadšená.`;
+    }
+    if (radky.some(r => r.typ === 'trait' && Math.abs(r.delta) >= 5)) {
+      return 'Rozhodnutí se promítne do tvého nitra i do šeptaných řečí.';
+    }
+    return 'Město vaše slovo zapisuje do své nepsané kroniky.';
+  }
+
+  function zobrazDusledkyRozsudku(pripad, rozsudek, onPokracovat) {
+    if (!pripad || !rozsudek) {
+      if (onPokracovat) onPokracovat();
+      return;
+    }
+
+    _dusledkyZrusCasovace();
+    _dusledkyCtx = {
+      timers: [],
+      onPokracovat: typeof onPokracovat === 'function' ? onPokracovat : null,
+      skipped: false,
+      hotovo: false
+    };
+
+    const tit = document.getElementById('dusledky-pripad-nazev');
+    const verd = document.getElementById('dusledky-verdikt-text');
+    const nar = document.getElementById('dusledky-narativ');
+    const seznam = document.getElementById('dusledky-zmeny');
+    const reakceEl = document.getElementById('dusledky-reakce');
+    const btn = document.getElementById('dusledky-pokracovat');
+
+    if (tit) tit.textContent = pripad.title || '—';
+    if (verd) verd.textContent = rozsudek.text || '—';
+    if (nar) {
+      nar.innerHTML = '';
+      if (rozsudek.consequence) {
+        const p = document.createElement('p');
+        p.className = 'dusledky-narativ-text';
+        p.textContent = rozsudek.consequence;
+        nar.appendChild(p);
+      }
+    }
+
+    const prPruzkum = Cases.posoudPruzkumProVerdikt(pripad, rozsudek);
+    const typPripadu = Cases.typProZobrazeni(pripad);
+    const pruzPozn = document.getElementById('dusledky-pruzkum-poznamka');
+    if (pruzPozn) {
+      if (typPripadu === 'moralni' && prPruzkum.pouzitPruzkum) {
+        pruzPozn.textContent = 'Případ jsi prostudoval pečlivě.';
+        pruzPozn.classList.remove('skryto');
+      } else if (prPruzkum.pouzitPruzkum && prPruzkum.soulad) {
+        pruzPozn.textContent = 'Případ jsi prostudoval pečlivě.';
+        pruzPozn.classList.remove('skryto');
+      } else {
+        pruzPozn.textContent = '';
+        pruzPozn.classList.add('skryto');
+      }
+    }
+
+    const { merged, typNarativ } = Cases.pripravSlouceneDusledky(pripad, rozsudek);
+    if (nar && typNarativ && typNarativ.length) {
+      for (const line of typNarativ) {
+        const p = document.createElement('p');
+        p.className = 'dusledky-narativ-text';
+        p.textContent = line;
+        nar.appendChild(p);
+      }
+    }
+
+    const radky = _dusledkySestavRadky(merged);
+    if (reakceEl) reakceEl.textContent = _dusledkyTextReakce(radky);
+
+    if (seznam) {
+      seznam.innerHTML = '';
+      for (const r of radky) {
+        seznam.appendChild(_dusledkyVytvorElementRadku(r, false));
+      }
+    }
+
+    if (btn) {
+      btn.disabled = true;
+      btn.onclick = () => {
+        const cb = _dusledkyCtx && _dusledkyCtx.onPokracovat;
+        _dusledkyZrusCasovace();
+        _dusledkyCtx = null;
+        _zavriModal('modal-dusledky');
+        if (cb) cb();
+      };
+    }
+
+    _otevriModal('modal-dusledky');
+
+    const radkyEls = () => document.querySelectorAll('#modal-dusledky .dusledky-radek');
+
+    if (radky.length === 0) {
+      if (btn) btn.disabled = false;
+      _dusledkyCtx.hotovo = true;
+      return;
+    }
+
+    radkyEls().forEach((row, i) => {
+      const t = setTimeout(() => row.classList.add('dusledky-radek--viditelny'), 80 + i * 220);
+      _dusledkyCtx.timers.push(t);
+    });
+
+    const tBar = setTimeout(() => {
+      const modal = document.getElementById('modal-dusledky');
+      void modal?.offsetWidth;
+      modal?.querySelectorAll('.dusledky-bar-track').forEach(track => {
+        const tm = track.querySelector('.dusledky-bar-tmavy');
+        const sv = track.querySelector('.dusledky-bar-svetly');
+        if (tm && tm.dataset.cilSpodek != null) tm.style.width = tm.dataset.cilSpodek + '%';
+        if (!sv) return;
+        if (track.classList.contains('dusledky-bar-track--minus')) {
+          if (sv.dataset.cilLeft != null) sv.style.left = sv.dataset.cilLeft + '%';
+          if (sv.dataset.cilW != null) sv.style.width = sv.dataset.cilW + '%';
+        } else {
+          if (sv.dataset.cilLeft != null) sv.style.left = sv.dataset.cilLeft + '%';
+          if (sv.dataset.cilW != null) sv.style.width = sv.dataset.cilW + '%';
+        }
+      });
+    }, 120);
+    _dusledkyCtx.timers.push(tBar);
+
+    const maxMs = 120 + radky.length * 220 + 900;
+    const tDone = setTimeout(() => _dusledkyDokonciAnimace(), maxMs);
+    _dusledkyCtx.timers.push(tDone);
   }
 
   // --- PŘÍPAD ---
@@ -147,8 +581,14 @@ const UI = (() => {
     document.getElementById('pripad-obvineni-text').textContent =
       `${pripad.defendant?.name || '—'}, ${pripad.charge || '—'}`;
 
-    // Situace
-    document.getElementById('pripad-situace-text').textContent = pripad.situation || '';
+    // Situace (pondělní bonus z nedělní volby C — jednou)
+    let situace = pripad.situation || '';
+    const denP = Number(State.get('currentDay'));
+    if (Number.isFinite(denP) && denP % 7 === 1 && State.get('pondeli_moudrost_extra')) {
+      situace = 'Odpočinutá neděle ti ještě rezonuje v hlavě — první řádky čteš jinak než obvykle.\n\n' + situace;
+      State.set('pondeli_moudrost_extra', false);
+    }
+    document.getElementById('pripad-situace-text').textContent = situace;
 
     // Svědectví
     const svedkySekce = document.getElementById('pripad-svedectvi');
@@ -233,29 +673,9 @@ const UI = (() => {
     // Průzkum — skrýt
     document.getElementById('prukzum-panel')?.classList.add('skryto');
 
-    // Zvýraznit zvolený rozsudek z archivu
     const archivRozsudky = State.get('archive.verdicts') || [];
     const zaznam = archivRozsudky.find(v => v.caseId === pripad.id);
-    const rozsudekText = zaznam?.verdict || null;
-
-    const seznam = document.getElementById('rozsudky-seznam');
-    seznam.innerHTML = '';
-    if (rozsudekText) {
-      const el = document.createElement('div');
-      const typ = _typPripaduProVizual(pripad);
-      el.className = 'pripad-vybrany-rozsudek pripad-typ--' + typ;
-      el.dataset.pripadTyp = typ;
-      el.innerHTML = `
-        <span class="pripad-vybrany-razitko pripad-typ--${typ}">VYRESENO</span>
-        <span>${rozsudekText}</span>
-      `;
-      seznam.appendChild(el);
-    } else {
-      const el = document.createElement('div');
-      el.style.cssText = 'padding:12px;font-style:italic;color:var(--barva-text-slaby);font-size:13px;';
-      el.textContent = 'Případ byl vyřešen.';
-      seznam.appendChild(el);
-    }
+    _zobrazRozsudkyReadonly(pripad, zaznam);
 
     // Označit záhlaví jako vyřešené
     const zahlaviR = document.querySelector('.pripad-zahlavi');
@@ -318,8 +738,8 @@ const UI = (() => {
           // Aktualizuj vizuál akcí na stole
           Desk.aktualizujVse();
 
-          // Moudrost roste za průzkum
-          State.upravRys('Moudrost', +3);
+          // Moudrost roste za průzkum (násobič podle skrytého vzorce rozhodování)
+          State.upravRys('Moudrost', Traits.aplikovatNasobekMoudrostiZaAkci(3));
           State.uloz();
         });
       }
@@ -359,14 +779,12 @@ const UI = (() => {
       const consequenceHtml = rozsudek.consequence
         ? `<div class="rozsudek-consequence">${rozsudek.consequence}</div>`
         : '';
-      const trendHtml = _trendBadge(rozsudek.consequences);
 
       btn.innerHTML = `
         <div class="rozsudek-radek-hlavni">
           <span class="rozsudek-nazev">${rozsudek.text}</span>
         </div>
         ${consequenceHtml}
-        ${trendHtml}
       `;
 
       btn.addEventListener('click', () => {
@@ -376,12 +794,125 @@ const UI = (() => {
 
       seznam.appendChild(btn);
     }
+
+    const uplatek = Number(pripad.bribe_amount);
+    if (Number.isFinite(uplatek) && uplatek > 0 && !State.get('flags.uplatek_prijat')) {
+      const btnU = document.createElement('button');
+      btnU.className = 'btn-rozsudek btn-rozsudek--uplatek';
+      btnU.type = 'button';
+      btnU.innerHTML = `
+        <div class="rozsudek-radek-hlavni">
+          <span class="rozsudek-nazev">Přijmout úplatek (${uplatek} Kč)</span>
+        </div>
+        <div class="rozsudek-consequence">Integrita utrpí — obálka je však na stole.</div>
+      `;
+      btnU.addEventListener('click', () => {
+        _zavriPripadModal();
+        const uR = {
+          id:          'uplatek',
+          text:        'Přijmout úplatek',
+          consequence: `Nabídka zní na ${uplatek} Kč.`,
+          consequences: {
+            traits:   { Integrita: -15 },
+            factions: {},
+            trust:    {},
+            finance:  uplatek,
+            flags:    []
+          }
+        };
+        zobrazDusledkyRozsudku(pripad, uR, () => Cases.zpracujPrijetiUplatekPoModalu(pripad));
+      });
+      seznam.appendChild(btnU);
+    }
   }
 
   function _rozsudekTrida(id) {
     if (id.includes('prison') || id === 'maximum' || id === 'guilty') return 'btn-rozsudek--vinen';
     if (id === 'acquit' || id === 'zprostit') return 'btn-rozsudek--zprosit';
     return '';
+  }
+
+  /** Všechny verdikty ze spisu; zvolený zlatě + VYŘEŠENO, ostatní šedě bez kliknutí. */
+  function _zobrazRozsudkyReadonly(pripad, zaznam) {
+    const seznam = document.getElementById('rozsudky-seznam');
+    seznam.innerHTML = '';
+
+    const vsechny = pripad.verdicts || [];
+    if (!vsechny.length) {
+      const el = document.createElement('div');
+      el.className = 'rozsudek-readonly-prazdne';
+      el.textContent = 'Žádné možnosti rozsudku ve spisu.';
+      seznam.appendChild(el);
+      return;
+    }
+
+    const typ = _typPripaduProVizual(pripad);
+    const zId = zaznam && zaznam.verdictId ? String(zaznam.verdictId) : null;
+    const zText = zaznam && zaznam.verdict ? String(zaznam.verdict) : null;
+
+    let nejakaVybrana = false;
+    for (const rozsudek of vsechny) {
+      const vybrany = (zId && String(rozsudek.id) === zId) || (!zId && zText && rozsudek.text === zText);
+      if (vybrany) nejakaVybrana = true;
+      const trida = _rozsudekTrida(rozsudek.id);
+
+      const karta = document.createElement('div');
+      karta.className = vybrany
+        ? `rozsudek-karta rozsudek-karta--vyreseno pripad-typ--${typ} ${trida}`.trim()
+        : `rozsudek-karta rozsudek-karta--nezvoleno ${trida}`.trim();
+      karta.setAttribute('role', 'group');
+      karta.setAttribute('aria-disabled', vybrany ? 'false' : 'true');
+
+      const inner = document.createElement('div');
+      inner.className = vybrany ? 'rozsudek-karta-inner' : 'rozsudek-karta-inner rozsudek-karta-inner--nezvoleno';
+      if (vybrany) {
+        const raz = document.createElement('span');
+        raz.className = 'rozsudek-razitko-vyreseno pripad-typ--' + typ;
+        raz.setAttribute('aria-hidden', 'true');
+        raz.textContent = 'VYŘEŠENO';
+        inner.appendChild(raz);
+      }
+      const textWrap = document.createElement('div');
+      textWrap.className = 'rozsudek-karta-text';
+      const radek = document.createElement('div');
+      radek.className = 'rozsudek-radek-hlavni';
+      const nazev = document.createElement('span');
+      nazev.className = 'rozsudek-nazev';
+      nazev.textContent = rozsudek.text || '—';
+      radek.appendChild(nazev);
+      textWrap.appendChild(radek);
+      if (rozsudek.consequence) {
+        const cons = document.createElement('div');
+        cons.className = 'rozsudek-consequence';
+        cons.textContent = rozsudek.consequence;
+        textWrap.appendChild(cons);
+      }
+      if (vybrany) {
+        const radkyEf =
+          (zaznam && zaznam.dusledkyRadky && zaznam.dusledkyRadky.length)
+            ? zaznam.dusledkyRadky
+            : vypoctiDusledkyRadky(
+              (zaznam && zaznam.consequences) || rozsudek.consequences || {}
+            );
+        const komp = _dusledkyVytvorKompaktEfekty(radkyEf);
+        if (komp.childElementCount) textWrap.appendChild(komp);
+      }
+      inner.appendChild(textWrap);
+      karta.appendChild(inner);
+      seznam.appendChild(karta);
+    }
+
+    if ((zId || zText) && !nejakaVybrana) {
+      const el = document.createElement('div');
+      el.className = 'rozsudek-readonly-prazdne';
+      el.textContent = 'Uložený rozsudek neodpovídá žádné variantě ve spisu (změna dat?).';
+      seznam.appendChild(el);
+    } else if (!zId && !zText) {
+      const el = document.createElement('div');
+      el.className = 'rozsudek-readonly-prazdne';
+      el.textContent = 'V archivu chybí záznam rozsudku — zobrazeny jsou jen možnosti ze spisu.';
+      seznam.appendChild(el);
+    }
   }
 
   /** Štítek v záhlaví případu — výhradně z herního `type` (po normalizaci v Cases). */
@@ -397,6 +928,133 @@ const UI = (() => {
     return NAZVY[typ] || 'PŘÍPAD';
   }
 
+  // --- VEČERNÍ / NEDĚLNÍ VOLBA — jednotná aplikace efektů ---
+
+  /**
+   * Aplikuje finance, rysy, frakce, důvěru a flags z jedné možnosti (večer i neděle).
+   */
+  function aplikujVecerniNeboNedelniMoznost(moznost) {
+    if (!moznost || typeof moznost !== 'object') return;
+    const fin = Number(moznost.finance);
+    if (Number.isFinite(fin) && fin !== 0) {
+      State.upravFinance(fin);
+    }
+    if (moznost.effects && typeof moznost.effects === 'object') {
+      const frakceKlice = { Moc: true, Kapital: true, Lid: true };
+      for (const [klic, delta] of Object.entries(moznost.effects)) {
+        if (klic === 'flags' || klic === 'trust') continue;
+        const d = Number(delta);
+        if (!Number.isFinite(d)) continue;
+        if (frakceKlice[klic]) State.upravFrakci(klic, d);
+        else State.upravRys(klic, d);
+      }
+    }
+    if (moznost.trust && typeof moznost.trust === 'object') {
+      for (const [npcId, delta] of Object.entries(moznost.trust)) {
+        State.upravDuveru(npcId, delta);
+      }
+    }
+    if (moznost.effects?.flags && Array.isArray(moznost.effects.flags)) {
+      for (const flag of moznost.effects.flags) {
+        if (flag && flag.key) State.set('flags.' + flag.key, flag.value);
+      }
+    }
+    if (typeof Finance !== 'undefined' && Finance.zkontrolujCilOperace) {
+      Finance.zkontrolujCilOperace();
+    }
+  }
+
+  /** Ranní modal 23. března — nabídka Haase / Karas / odložení, nebo volitelná nabídka při dostatečných úsporách. */
+  function zobrazModalDen23Krize(callback) {
+    const wrap = document.getElementById('modal-den23-krize');
+    const textEl = document.getElementById('den23-krize-text');
+    const volby = document.getElementById('den23-krize-volby');
+    if (!wrap || !textEl || !volby) {
+      if (callback) callback();
+      return;
+    }
+
+    const bal = Number(State.get('finance.balance')) || 0;
+    const den = Number(State.get('currentDay')) || 23;
+    volby.innerHTML = '';
+
+    const hotovo = () => {
+      State.set('flags.haas_nabidka_den23_vyresena', true);
+      _zavriModal('modal-den23-krize');
+      if (typeof Finance !== 'undefined' && Finance.zkontrolujCilOperace) {
+        Finance.zkontrolujCilOperace();
+      }
+      State.uloz();
+      if (callback) callback();
+    };
+
+    if (bal < 400) {
+      textEl.textContent =
+        'Do uzávěrky zbývá málo času a na stole není dost na operaci. ' +
+        'Advokát Haas přichází s obálkou. Lichvář Karas čeká v předsíni. Nebo můžete riskovat odklad — a doufat.';
+      const varianty = [
+        {
+          text: 'Přijmout 300 Kč od Haase (Integrita −15)',
+          run() {
+            State.upravFinance(300);
+            State.upravRys('Integrita', -15);
+          }
+        },
+        {
+          text: 'Půjčit si 150 Kč u Karase (splátka do týdne)',
+          run() {
+            State.upravFinance(150);
+            State.upravDuveru('karas', 1);
+            State.set('flags.karas_dluh_do_dne', den + 7);
+          }
+        },
+        {
+          text: 'Odložit operaci — snášet tíhu doma (Naděje −10, Vina +8)',
+          run() {
+            State.upravRys('Nadeje', -10);
+            State.upravRys('Vina', 8);
+            State.set('flags.operace_odlozena', true);
+          }
+        }
+      ];
+      for (const v of varianty) {
+        const btn = document.createElement('button');
+        btn.className = 'btn-vecer';
+        btn.type = 'button';
+        btn.textContent = v.text;
+        btn.addEventListener('click', () => {
+          v.run();
+          hotovo();
+        });
+        volby.appendChild(btn);
+      }
+    } else {
+      textEl.textContent =
+        'Úspory na operaci stačí — ale Haas přichází s obchodem: 300 Kč za přízeň v příštím spisu. ' +
+        'Můžete odmítnout bez následků.';
+      const prijm = document.createElement('button');
+      prijm.className = 'btn-vecer';
+      prijm.type = 'button';
+      prijm.textContent = 'Přijmout 300 Kč od Haase (Integrita −15)';
+      prijm.addEventListener('click', () => {
+        State.upravFinance(300);
+        State.upravRys('Integrita', -15);
+        hotovo();
+      });
+      const odmit = document.createElement('button');
+      odmit.className = 'btn-vecer';
+      odmit.type = 'button';
+      odmit.textContent = 'Odmítnout nabídku';
+      odmit.addEventListener('click', () => {
+        hotovo();
+      });
+      volby.appendChild(prijm);
+      volby.appendChild(odmit);
+    }
+
+    _otevriModal('modal-den23-krize');
+  }
+
   // --- VEČERNÍ VOLBA ---
 
   function zobrazVecerniVolbu(denDat, callback) {
@@ -405,6 +1063,9 @@ const UI = (() => {
       if (callback) callback(null);
       return;
     }
+
+    const casVecer = document.querySelector('#modal-vecer .vecer-cas');
+    if (casVecer) casVecer.textContent = 'VEČER';
 
     document.getElementById('vecer-text').textContent = volba.text;
 
@@ -423,6 +1084,83 @@ const UI = (() => {
     }
 
     _otevriModal('modal-vecer');
+  }
+
+  /** Nedělní volba A–E — stejný modal jako večer, jiný nadpis. */
+  function zobrazNedelniVolbu(denDat, callback) {
+    const nv = denDat?.nedelni_volba;
+    if (!nv || !Array.isArray(nv.options) || nv.options.length === 0) {
+      if (callback) callback(null);
+      return;
+    }
+
+    const casEl = document.querySelector('#modal-vecer .vecer-cas');
+    if (casEl) casEl.textContent = 'NEDĚLE';
+
+    document.getElementById('vecer-text').textContent = nv.text || 'Jak strávíš neděli?';
+
+    const volbyEl = document.getElementById('vecer-volby');
+    volbyEl.innerHTML = '';
+
+    for (const moznost of nv.options) {
+      const btn = document.createElement('button');
+      btn.className = 'btn-vecer';
+      btn.textContent = moznost.text;
+      btn.addEventListener('click', () => {
+        _zavriModal('modal-vecer');
+        const id = moznost.id;
+        if (id === 'A' || id === 'B' || id === 'C' || id === 'D' || id === 'E') {
+          State.set('nedele_volba', id);
+        }
+        if (id === 'C') State.set('pondeli_moudrost_extra', true);
+        if (id === 'E') State.set('pondeli_vina_emotivni', true);
+        aplikujVecerniNeboNedelniMoznost(moznost);
+        const ft = moznost.fragment_text;
+        if (ft && String(ft).trim()) {
+          zobrazFragment({
+            type:  'letter',
+            title: moznost.fragment_title || 'Chvíle',
+            text:  String(ft)
+          }, () => {
+            if (casEl) casEl.textContent = 'VEČER';
+            if (callback) callback(moznost);
+          });
+        } else {
+          if (casEl) casEl.textContent = 'VEČER';
+          if (callback) callback(moznost);
+        }
+      });
+      volbyEl.appendChild(btn);
+    }
+
+    _otevriModal('modal-vecer');
+  }
+
+  /** Sobotní shrnutí týdne — po zavření volá callback (Engine tam aplikuje bonusy). */
+  function zobrazTydenniShrnuti(payload, callback) {
+    const tit = document.getElementById('tyden-shrnuti-titulek');
+    const hlavni = document.getElementById('tyden-shrnuti-hlavni');
+    const jemne = document.getElementById('tyden-shrnuti-jemne');
+    const btn = document.getElementById('tyden-shrnuti-pokracovat');
+    if (!tit || !hlavni || !jemne || !btn) {
+      if (callback) callback();
+      return;
+    }
+
+    tit.textContent = payload?.titulek || 'Konec pracovního týdne';
+    hlavni.textContent = payload?.hlavni || '';
+    jemne.innerHTML = (payload?.jemneRadky || [])
+      .map(r => '<p class="tyden-shrnuti-jemne-radek">' + String(r) + '</p>')
+      .join('');
+
+    const novyBtn = btn.cloneNode(true);
+    btn.parentNode.replaceChild(novyBtn, btn);
+    novyBtn.addEventListener('click', () => {
+      _zavriModal('modal-tyden-shrnuti');
+      if (callback) callback();
+    });
+
+    _otevriModal('modal-tyden-shrnuti');
   }
 
   // --- FRAGMENT ---
@@ -448,6 +1186,7 @@ const UI = (() => {
 
     const zavritBtn = document.getElementById('fragment-zavrit');
     const novyZavrit = zavritBtn.cloneNode(true);
+    novyZavrit.textContent = 'Pokračovat →';
     zavritBtn.parentNode.replaceChild(novyZavrit, zavritBtn);
     novyZavrit.addEventListener('click', () => {
       _zavriModal('modal-fragment');
@@ -466,8 +1205,12 @@ const UI = (() => {
     _vyplnArchivTab(tab);
   }
 
-  function zobrazArchiv() {
-    _prepniArchivTab('rozsudky');
+  /**
+   * @param {string} [tab='rozsudky'] — např. 'finance' po kliknutí na panel financí na stole.
+   */
+  function zobrazArchiv(tab) {
+    const t = tab && typeof tab === 'string' ? tab : 'rozsudky';
+    _prepniArchivTab(t);
     _otevriModal('modal-archiv');
   }
 
@@ -500,7 +1243,6 @@ const UI = (() => {
           </div>
           ${krize}
         </div>
-        ${_renderHaasObalka()}
       `;
 
     } else if (tab === 'postavy') {
@@ -538,7 +1280,6 @@ const UI = (() => {
       rozsudky.forEach(r => {
         const item = document.createElement('div');
         item.className = 'archiv-rozsudek-item';
-        item.style.cursor = 'pointer';
         item.innerHTML = `
           <span class="archiv-rozsudek-den">Den ${r.day}</span>
           <span class="archiv-rozsudek-nazev">${r.caseTitle}</span>
@@ -668,26 +1409,6 @@ const UI = (() => {
     }
   }
 
-  function _renderHaasObalka() {
-    const otevrenoFlag = State.get('flags.haas_envelope_opened');
-    const den = State.get('currentDay');
-    if (den < 8) return '';
-
-    if (otevrenoFlag) {
-      return '<p style="color: var(--barva-text-slaby); font-style: italic; font-size: 13px;">Obálka od Haasova advokáta — otevřena.</p>';
-    }
-
-    const zustatek = State.get('finance.balance');
-    const krizeTrida = zustatek < 50 ? ' haas-obalka--krize' : '';
-
-    return `
-      <div class="haas-obalka${krizeTrida}" id="haas-obalka-btn" onclick="Engine.otevriHaasovuObalku()">
-        <div class="haas-obalka-pecet"></div>
-        <div class="haas-obalka-text">Obálka — JUDr. Haas & synové<br><em>Neotevírat</em></div>
-      </div>
-    `;
-  }
-
   // --- STAVOVÁ ZPRÁVA ---
 
   let _zpravaCasovac = null;
@@ -791,9 +1512,14 @@ const UI = (() => {
   // --- INICIALIZACE LISTENERY ---
 
   function inicializuj() {
-    // Šuplík
+    // Šuplík — výchozí záložka Rozsudky
     document.getElementById('suplik')?.addEventListener('click', () => {
-      zobrazArchiv();
+      zobrazArchiv('rozsudky');
+    });
+
+    // Panel financí na stole → totéž okno archivu, záložka Finance (bez linky operace / Haas v obsahu)
+    document.querySelector('.pravy-panel-finance-wrap')?.addEventListener('click', () => {
+      zobrazArchiv('finance');
     });
 
     // Zavřít případ tlačítkem X
@@ -817,6 +1543,11 @@ const UI = (() => {
         const profilPostavy = document.getElementById('modal-postava-profil');
         if (profilPostavy && profilPostavy.classList.contains('aktivni')) {
           _zavriModal('modal-postava-profil');
+          return;
+        }
+        const modalDusledky = document.getElementById('modal-dusledky');
+        if (modalDusledky && modalDusledky.classList.contains('aktivni')) {
+          _dusledkyPreskocAnimace();
           return;
         }
         _zavriPripadModal();
@@ -854,6 +1585,9 @@ const UI = (() => {
               overlay.id === 'modal-postava-historie-detail' ||
               overlay.id === 'modal-postava-profil') {
             _zavriModal(overlay.id);
+          }
+          if (overlay.id === 'modal-dusledky') {
+            _dusledkyPreskocAnimace();
           }
         }
       });
@@ -1059,12 +1793,14 @@ const UI = (() => {
       if (vyresene.includes(pripad.id)) {
         slozka.classList.add('slozka--vyresena');
         slozka.classList.remove('slozka--aktivni');
-        if (stavEl) stavEl.textContent = '✓';
+        if (stavEl) {
+          stavEl.textContent = '✓\n' + (pripad.title || '');
+        }
         slozka.style.cursor = 'pointer';
       } else {
         slozka.classList.remove('slozka--vyresena');
         slozka.classList.add('slozka--aktivni');
-        if (stavEl) stavEl.textContent = pripad.title.substring(0, 12) + '…';
+        if (stavEl) stavEl.textContent = pripad.title || '—';
       }
     }
   }
@@ -1076,7 +1812,13 @@ const UI = (() => {
     zavriVsechnyModaly,
     zobrazPripad,
     zobrazPripadReadonly,
+    zobrazDusledkyRozsudku,
+    vypoctiDusledkyRadky,
+    aplikujVecerniNeboNedelniMoznost,
     zobrazVecerniVolbu,
+    zobrazNedelniVolbu,
+    zobrazModalDen23Krize,
+    zobrazTydenniShrnuti,
     zobrazFragment,
     zobrazArchiv,
     syncPostavyDuvera,

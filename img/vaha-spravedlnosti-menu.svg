@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <filter id="vaha-etch" x="-2" y="-2" width="36" height="36" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.055 0.82" numOctaves="2" seed="11" result="r"/>
+      <feDisplacementMap in="SourceGraphic" in2="r" scale="0.5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <g filter="url(#vaha-etch)" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+    <path d="M12.2 27.9h7.65l.45.45h-8.55l.45-.45z"/>
+    <path d="M16 25.55V8.15"/>
+    <path d="M16 8.15l-.42-.82.84-.02-.42.84z"/>
+    <path d="M5.5 7.08Q16 7.32 26.5 7.12"/>
+    <path d="M8.45 7.1l-.1.92.14.86-.12.9.16.84-.1.88"/>
+    <path d="M4.95 12.38L4.95 15.52Q8 17.92 11.05 15.48L11.05 12.36"/>
+    <path d="M23.55 7.08l.08.9-.16.84.1.92-.14.8.12.94"/>
+    <path d="M20.95 12.45L20.95 15.55Q24 17.88 27.05 15.52L27.05 12.42"/>
+    <path d="M15.35 7.05l1.35.08"/>
+  </g>
+</svg>

@@ -24,7 +24,7 @@
       { "range": [61, 80], "text": "Některé věci řekneš nahlas. I když tě nikdo nechce slyšet." },
       { "range": [81, 100], "text": "Strach cítíš. Jen ho přestal poslouchat." }
     ],
-    "gameplay_cz": "Odvaha je vstupenka na nepopulární lavici. Některé rozsudky se objeví jen tehdy, když na to máš sílu — jinak v seznamu prostě nejsou.\n\nKdyž lampa vyhasne příliš nízko, hra ti začne nabízet jen bezpečné střední cesty.\n\nVlček, Horáková i Mašek čtou odvahu jinak: jeden v ní vidí hrozbu, druhý spojence, třetí člověka, kterého stačí lehce zatlačit.",
+    "gameplay_cz": "Odvaha je vstupenka na nepopulární lavici. Některé rozsudky se objeví jen tehdy, když na to máš sílu — jinak v seznamu prostě nejsou.\n\nKdyž lampa vyhasne příliš nízko, hra ti začne nabízet jen bezpečné střední cesty.\n\nVlček, Závadová i Karas čtou odvahu jinak: jeden v ní vidí hrozbu, druhá spojence, třetí člověka, kterého stačí lehce zatlačit.",
     "co_to_znamena_cz": "Ochota jednat i za cenu osobních následků.",
     "effects": {
       "at_low": "rozsudky_mizí"
@@ -57,18 +57,6 @@
     "gameplay_cz": "Tíživé rozsudky a určité momenty příběhu vinu přidávají — úleva ji umí stáhnout, ale nikdy tě nepustí na nulu. Jednička je dno, pod které nejde spadnout. Čím těžší je svědomí, tím víc tě podobné případy bolí. Hra s tím počítá u věcí, které se dotýkají staré rány — kolik ti zbyde sil na průzkum, jak dlouho a jak bolestně čteš spis.",
     "co_to_znamena_cz": "Váha minulosti. Nikdy neklesne na nulu.",
     "starting_value": 60
-  },
-  "maska": {
-    "visual": "zmačkané_dopisy",
-    "descriptions": [
-      { "range": [0, 20], "text": "Každý vidí skrz tebe. Přestal jsi to skrývat." },
-      { "range": [21, 40], "text": "Občas tě někdo přečte. Vadí ti to víc než by mělo." },
-      { "range": [41, 60], "text": "Soudce Novák. Klidný. Nezaujatý. Role, kterou umíš hrát poslepu." },
-      { "range": [61, 80], "text": "Za tím klidem hledají trhlinu. Zatím ji nenašli." },
-      { "range": [81, 100], "text": "Nevíš sám, kde končí role a začínáš ty. Možná už není rozdíl." }
-    ],
-    "gameplay_cz": "Chladná razítka a hladké odpovědi masku posilují. Upřímnost, slabost nebo dopisy, které tě rozhodí, ji škrábou. Určuje, jestli tě mocní vnímají jako nedobytnou zeď — nebo jako člověka s prasklinou. Vysoká maska zvýrazňuje bezpečné kompromisy v politických spisech a mění tón tvých střetů s Vlčkem nebo Haasem: kdo vidí sklo, a kdo už čeká za ním.",
-    "co_to_znamena_cz": "Jak dobře skrýváš své skutečné záměry."
   },
   "nadeje": {
     "visual": "okno",

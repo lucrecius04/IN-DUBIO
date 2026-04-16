@@ -42,7 +42,7 @@
           },
           "factions": {
             "Lid": 8,
-            "Obchodnici": -5
+            "Kapital": -5
           },
           "finance": 0,
           "flags": []
@@ -58,7 +58,7 @@
             "Vina": 3
           },
           "factions": {
-            "Obchodnici": 5,
+            "Kapital": 5,
             "Lid": -8
           },
           "finance": 0,
@@ -67,11 +67,13 @@
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "vraceni_penez"
   },
   {
     "id": "case_haas_1",
     "title": "Pracovní úraz v Haasově továrně",
+    "bribe_amount": 200,
     "category": "political",
     "day": 7,
     "defendant": {
@@ -118,13 +120,11 @@
             "Odvaha": 8
           },
           "factions": {
-            "Stat": -8,
-            "Obchodnici": -15,
+            "Moc": -8,
+            "Kapital": -15,
             "Lid": 15
           },
-          "trust": {
-            "haas": -1
-          },
+          "trust": {},
           "finance": 0,
           "flags": []
         }
@@ -138,7 +138,7 @@
             "Moudrost": 5
           },
           "factions": {
-            "Obchodnici": -3,
+            "Kapital": -3,
             "Lid": 5
           },
           "finance": 0,
@@ -155,13 +155,11 @@
             "Vina": 10
           },
           "factions": {
-            "Stat": 8,
-            "Obchodnici": 10,
+            "Moc": 8,
+            "Kapital": 10,
             "Lid": -15
           },
-          "trust": {
-            "haas": 1
-          },
+          "trust": {},
           "finance": 0,
           "flags": []
         }
@@ -170,7 +168,7 @@
     "narrative_link": null,
     "recurring": true,
     "thread": "haas",
-    "type": "rutinni"
+    "type": "moralni"
   },
   {
     "id": "case_017",
@@ -215,7 +213,7 @@
           },
           "factions": {
             "Lid": 8,
-            "Stat": -5
+            "Moc": -5
           },
           "finance": 0,
           "flags": []
@@ -230,7 +228,7 @@
             "Moudrost": 3
           },
           "factions": {
-            "Stat": 3
+            "Moc": 3
           },
           "finance": 0,
           "flags": []
@@ -238,7 +236,8 @@
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "plna_nahrada"
   },
   {
     "id": "case_018",
@@ -282,7 +281,7 @@
             "Vina": 5
           },
           "factions": {
-            "Stat": 8
+            "Moc": 8
           },
           "finance": 0,
           "flags": []
@@ -298,7 +297,7 @@
             "Integrita": 3
           },
           "factions": {
-            "Stat": 3,
+            "Moc": 3,
             "Lid": 5
           },
           "finance": 0,
@@ -322,7 +321,8 @@
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "podminka"
   },
   {
     "id": "case_019",
@@ -373,7 +373,7 @@
             "Vina": 8
           },
           "factions": {
-            "Stat": 12,
+            "Moc": 12,
             "Lid": -15
           },
           "finance": 0,
@@ -390,7 +390,7 @@
             "Odvaha": 8
           },
           "factions": {
-            "Stat": -12,
+            "Moc": -12,
             "Lid": 15
           },
           "finance": 0,
@@ -406,7 +406,7 @@
             "Moudrost": 3
           },
           "factions": {
-            "Stat": 5,
+            "Moc": 5,
             "Lid": -5
           },
           "finance": 0,
@@ -415,7 +415,8 @@
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "acquit"
   },
   {
     "id": "case_020",
@@ -465,7 +466,7 @@
             "Vina": 8
           },
           "factions": {
-            "Stat": 8
+            "Moc": 8
           },
           "finance": 0,
           "flags": []
@@ -480,7 +481,7 @@
             "Moudrost": 5
           },
           "factions": {
-            "Stat": 3
+            "Moc": 3
           },
           "finance": 0,
           "flags": []
@@ -496,7 +497,7 @@
             "Vina": 8
           },
           "factions": {
-            "Stat": -8
+            "Moc": -8
           },
           "finance": 0,
           "flags": []
@@ -517,7 +518,8 @@
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "postpone"
   },
   {
     "id": "case_021",
@@ -563,7 +565,7 @@
           },
           "factions": {
             "Lid": 10,
-            "Obchodnici": -8
+            "Kapital": -8
           },
           "finance": 0,
           "flags": []
@@ -579,7 +581,7 @@
             "Vina": 5
           },
           "factions": {
-            "Obchodnici": 8,
+            "Kapital": 8,
             "Lid": -10
           },
           "finance": 0,
@@ -588,7 +590,7 @@
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "moralni"
   },
   {
     "id": "case_022",
@@ -647,7 +649,7 @@
             "Vina": 8
           },
           "factions": {
-            "Stat": 8
+            "Moc": 8
           },
           "finance": 0,
           "flags": []
@@ -670,7 +672,8 @@
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "podminka"
   },
   {
     "id": "case_bozena_3",
@@ -741,7 +744,8 @@
     "narrative_link": null,
     "recurring": true,
     "thread": "bozena",
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "bozena_obec"
   },
   {
     "id": "case_023",
@@ -785,7 +789,7 @@
             "Integrita": 5
           },
           "factions": {
-            "Obchodnici": -3
+            "Kapital": -3
           },
           "finance": 0,
           "flags": []
@@ -814,7 +818,7 @@
             "Vina": 3
           },
           "factions": {
-            "Obchodnici": 5
+            "Kapital": 5
           },
           "finance": 0,
           "flags": []
@@ -822,7 +826,8 @@
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "pokuta_plna"
   },
   {
     "id": "case_024",
@@ -867,8 +872,7 @@
             "Odvaha": 5
           },
           "factions": {
-            "Lid": 12,
-            "Cirkev": 8
+            "Lid": 20
           },
           "finance": 0,
           "flags": []
@@ -884,8 +888,7 @@
             "Integrita": 3
           },
           "factions": {
-            "Lid": 8,
-            "Cirkev": 5
+            "Lid": 13
           },
           "finance": 0,
           "flags": []
@@ -900,9 +903,8 @@
             "Vina": 10
           },
           "factions": {
-            "Stat": 5,
-            "Lid": -10,
-            "Cirkev": -8
+            "Moc": 5,
+            "Lid": -18
           },
           "finance": 0,
           "flags": []
@@ -910,7 +912,7 @@
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "moralni"
   },
   {
     "id": "case_025",
@@ -956,7 +958,7 @@
             "Odvaha": 8
           },
           "factions": {
-            "Stat": -10,
+            "Moc": -10,
             "Lid": 12
           },
           "finance": 0,
@@ -973,7 +975,7 @@
             "Vina": 8
           },
           "factions": {
-            "Stat": 10,
+            "Moc": 10,
             "Lid": -12
           },
           "finance": 0,
@@ -982,7 +984,7 @@
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "moralni"
   },
   {
     "id": "case_026",
@@ -1027,7 +1029,7 @@
           },
           "factions": {
             "Lid": 8,
-            "Obchodnici": -5
+            "Kapital": -5
           },
           "finance": 0,
           "flags": []
@@ -1056,7 +1058,7 @@
             "Vina": 3
           },
           "factions": {
-            "Obchodnici": 5
+            "Kapital": 5
           },
           "finance": 0,
           "flags": []
@@ -1064,7 +1066,8 @@
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "vondracek_vinen"
   },
   {
     "id": "case_027",
@@ -1108,11 +1111,12 @@
             "Vina": 3
           },
           "factions": {
-            "Stat": 5
+            "Moc": 5
           },
           "finance": 0,
           "flags": []
-        }
+        },
+        "political_stance": "system"
       },
       {
         "id": "zamitnut",
@@ -1124,16 +1128,17 @@
             "Integrita": 3
           },
           "factions": {
-            "Stat": -3,
+            "Moc": -3,
             "Lid": 5
           },
           "finance": 0,
           "flags": []
-        }
+        },
+        "political_stance": "independent"
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "politicky"
   },
   {
     "id": "case_pozemek_2",
@@ -1201,7 +1206,8 @@
     "narrative_link": null,
     "recurring": true,
     "thread": "hranice",
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "treti_geometr"
   },
   {
     "id": "case_028",
@@ -1246,12 +1252,13 @@
             "Odvaha": 8
           },
           "factions": {
-            "Stat": -10,
+            "Moc": -10,
             "Lid": 12
           },
           "finance": 0,
           "flags": []
-        }
+        },
+        "political_stance": "independent"
       },
       {
         "id": "zamitnut",
@@ -1263,16 +1270,17 @@
             "Vina": 8
           },
           "factions": {
-            "Stat": 10,
+            "Moc": 10,
             "Lid": -12
           },
           "finance": 0,
           "flags": []
-        }
+        },
+        "political_stance": "system"
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "politicky"
   },
   {
     "id": "case_029",
@@ -1316,7 +1324,7 @@
             "Vina": 5
           },
           "factions": {
-            "Stat": 8
+            "Moc": 8
           },
           "finance": 0,
           "flags": []
@@ -1332,11 +1340,11 @@
             "Odvaha": 5
           },
           "factions": {
-            "Stat": -5,
+            "Moc": -5,
             "Lid": 8
           },
           "trust": {
-            "horakova": 1
+            "zavadova": 1
           },
           "finance": 0,
           "flags": []
@@ -1344,7 +1352,8 @@
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "rutinni",
+    "correct_verdict": "podminka_spoluprace"
   },
   {
     "id": "case_030",
@@ -1390,7 +1399,7 @@
           },
           "factions": {
             "Lid": 10,
-            "Obchodnici": -10
+            "Kapital": -10
           },
           "finance": 0,
           "flags": []
@@ -1406,7 +1415,7 @@
             "Vina": 5
           },
           "factions": {
-            "Obchodnici": 8,
+            "Kapital": 8,
             "Lid": -10
           },
           "finance": 0,
@@ -1415,6 +1424,6 @@
       }
     ],
     "narrative_link": null,
-    "type": "rutinni"
+    "type": "moralni"
   }
 ]

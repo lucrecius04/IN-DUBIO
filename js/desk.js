@@ -13,7 +13,6 @@ const Desk = (() => {
     Odvaha:    '🦁',
     Moudrost:  '🧠',
     Vina:      '💔',
-    Maska:     '🎭',
     Nadeje:    '\uD83D\uDD6F\uFE0F'
   };
 
@@ -56,9 +55,6 @@ const Desk = (() => {
     Vina: {
       aktualizuj(_hodnota) {}
     },
-    Maska: {
-      aktualizuj(_hodnota) {}
-    },
     Nadeje: {
       // Lampa bliká při velmi nízké naději
       aktualizuj(hodnota) {
@@ -80,6 +76,7 @@ const Desk = (() => {
     _aktualizujStulVase(stav.currentDay);
     aktualizujPanelRysu();
     aktualizujPanelFrakci();
+    aktualizujPanelFinance();
     if (typeof UI !== 'undefined' && UI.syncPostavyDuvera) {
       UI.syncPostavyDuvera();
     }
@@ -91,8 +88,7 @@ const Desk = (() => {
            '<span class="hvezdy-prazne">' + '☆'.repeat(5 - plne) + '</span>';
   }
 
-  const RYSY_LEVY  = ['Integrita', 'Odvaha', 'Moudrost'];
-  const RYSY_PRAVY = ['Vina', 'Maska', 'Nadeje'];
+  const RYSY_LEVY = ['Integrita', 'Odvaha', 'Moudrost', 'Vina', 'Nadeje'];
 
   function _vyplnPanelRysu(panelId, rysy) {
     const panel = document.getElementById(panelId);
@@ -118,21 +114,26 @@ const Desk = (() => {
 
   function aktualizujPanelRysu() {
     _vyplnPanelRysu('panel-rysy', RYSY_LEVY);
-    _vyplnPanelRysu('panel-rysy-pravy', RYSY_PRAVY);
+    const pravy = document.getElementById('panel-rysy-pravy');
+    if (pravy) pravy.innerHTML = '';
   }
 
   const FRAKCE_RADKY = [
-    { klic: 'Stat',       nazev: 'Stát' },
-    { klic: 'Obchodnici', nazev: 'Obch.' },
-    { klic: 'Lid',        nazev: 'Lid' },
-    { klic: 'Cirkev',     nazev: 'Církev' }
+    { klic: 'Moc',     nazev: 'MOC' },
+    { klic: 'Kapital', nazev: 'KAPITÁL' },
+    { klic: 'Lid',     nazev: 'LID' }
   ];
 
+  const FRAKCE_IKONY = {
+    Moc:     '\uD83C\uDFDB\uFE0F',
+    Kapital: '\uD83D\uDCB0',
+    Lid:     '\u270A'
+  };
+
   const FRAKCE_TOOLTIP = {
-    Stat:       'Sledují tě. Zatím mlčí.',
-    Obchodnici: 'Peníze mají dobrou paměť.',
-    Lid:        'Lidé si pamatují spravedlnost.',
-    Cirkev:     'Bůh vidí. A oni také.'
+    Moc:     'Moc a pořádek — Vlček, systém.',
+    Kapital: 'Majetek a trh — Haas, smlouvy.',
+    Lid:     'Lidé si pamatují spravedlnost.'
   };
 
   function _frakceTecky(hodnota) {
@@ -146,17 +147,43 @@ const Desk = (() => {
     return '\u25CF'.repeat(n) + '\u25CB'.repeat(5 - n);
   }
 
+  function aktualizujPanelFinance() {
+    const panel = document.getElementById('panel-finance');
+    if (!panel || typeof Finance === 'undefined' || !Finance.getTextyLevyPanel) return;
+    const t = Finance.getTextyLevyPanel();
+    const dluh = Number(t.dluh) || 0;
+    panel.innerHTML = '';
+    const r1 = document.createElement('div');
+    r1.className = 'finance-radek finance-radek--uspory';
+    r1.textContent = 'Úspory: ' + t.uspory + ' Kč';
+    panel.appendChild(r1);
+    const r2 = document.createElement('div');
+    r2.className = 'finance-radek finance-radek--tydenni ' + (t.operaceTrida || 'finance--neutral');
+    r2.textContent = t.radekOperace;
+    panel.appendChild(r2);
+    if (dluh > 0) {
+      const r3 = document.createElement('div');
+      r3.className = 'finance-radek finance-radek--dluh';
+      r3.textContent = 'Dluh: ' + Math.round(dluh) + ' Kč';
+      panel.appendChild(r3);
+    }
+  }
+
   function aktualizujPanelFrakci() {
     const panel = document.getElementById('panel-frakce');
     if (!panel) return;
     panel.innerHTML = '';
     for (const { klic, nazev } of FRAKCE_RADKY) {
       const hodnota = State.get('factions.' + klic) ?? 50;
+      const ikona = FRAKCE_IKONY[klic] || '·';
       const el = document.createElement('div');
       el.className = 'frakce-radek';
       el.title = FRAKCE_TOOLTIP[klic] || '';
       el.innerHTML =
-        '<span class="frakce-radek-nazev">' + nazev + '</span>' +
+        '<span class="frakce-radek-vlevo">' +
+          '<span class="frakce-radek-ikona" aria-hidden="true">' + ikona + '</span>' +
+          '<span class="frakce-radek-nazev">' + nazev + '</span>' +
+        '</span>' +
         '<span class="frakce-radek-tecky">' + _frakceTecky(hodnota) + '</span>';
       panel.appendChild(el);
     }
@@ -168,22 +195,42 @@ const Desk = (() => {
     }
   }
 
+  const _KALENDAR_DNY_V_TYDNU = [
+    'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota', 'neděle'
+  ];
+
+  /** Pondělí = 0 … neděle = 6 (z JS Date.getDay()). */
+  function _denVTydnuPondeli0(d) {
+    return (d.getDay() + 6) % 7;
+  }
+
+  const _KALENDAR_MESICE_GEN = [
+    'ledna', 'února', 'března', 'dubna', 'května', 'června',
+    'července', 'srpna', 'září', 'října', 'listopadu', 'prosince'
+  ];
+
   function _aktualizujKalendar(den) {
-    const elDen = document.getElementById('kalendar-den');
-    const elMesic = document.getElementById('kalendar-mesic');
+    const elMeta = document.getElementById('kalendar-meta');
+    const elDatum = document.getElementById('kalendar-datum');
     const elKal = document.getElementById('kalendar');
-    if (!elDen) return;
+    if (!elMeta || !elDatum) return;
 
     // Hra začíná 1. března 1931
     const ZACATEK = new Date(1931, 2, 1); // 1.3.1931
     const datum = new Date(ZACATEK);
     datum.setDate(datum.getDate() + den - 1);
 
-    const MESICE = ['LEDEN', 'ÚNOR', 'BŘEZEN', 'DUBEN', 'KVĚTEN', 'ČERVEN',
-                    'ČERVENEC', 'SRPEN', 'ZÁŘÍ', 'ŘÍJEN', 'LISTOPAD', 'PROSINEC'];
+    const d = Number(den);
+    const tydenHry = Number.isFinite(d) && d > 0 ? Math.ceil(d / 7) : 1;
+    const denHry = Number.isFinite(d) && d > 0 ? d : 1;
+    elMeta.textContent = 'TÝDEN ' + tydenHry + ' · DEN ' + denHry;
 
-    elDen.textContent = datum.getDate();
-    elMesic.textContent = MESICE[datum.getMonth()] + ' ' + datum.getFullYear();
+    const i = _denVTydnuPondeli0(datum);
+    const jmenoDne = _KALENDAR_DNY_V_TYDNU[i] || '—';
+    const denMes = datum.getDate();
+    const mesGen = _KALENDAR_MESICE_GEN[datum.getMonth()] || '';
+    const rok = datum.getFullYear();
+    elDatum.textContent = jmenoDne + ', ' + denMes + '. ' + mesGen + ' ' + rok;
 
     // Politické dny (předdefinované)
     const POLITICKE_DNY = [6, 14, 17, 20, 24, 26];
@@ -215,7 +262,11 @@ const Desk = (() => {
   function _aktualizujStulVase(den) {
     const stul = document.getElementById('stul');
     if (!stul) return;
-    stul.classList.remove('stul--tyden1', 'stul--tyden2', 'stul--tyden3', 'stul--finale');
+    stul.classList.remove('stul--tyden1', 'stul--tyden2', 'stul--tyden3', 'stul--finale', 'stul--nedele');
+    const d = Number(den);
+    if (Number.isFinite(d) && d > 0 && d % 7 === 0) {
+      stul.classList.add('stul--nedele');
+    }
     if (den >= 7)  stul.classList.add('stul--tyden1');
     if (den >= 15) stul.classList.add('stul--tyden2');
     if (den >= 20) stul.classList.add('stul--tyden3');
@@ -421,7 +472,6 @@ const Desk = (() => {
     }
 
     _pripojTooltip(document.getElementById('panel-rysy'));
-    _pripojTooltip(document.getElementById('panel-rysy-pravy'));
   }
 
   const _TYPY_SPIS = ['rutinni', 'moralni', 'politicky', 'osobni'];

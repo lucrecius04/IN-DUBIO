@@ -55,6 +55,39 @@
   z-index: 10;
 }
 
+/* Název hry — stejné písmo jako v menu (EB Garamond / --pismo-telo, ne Playfair nadpis) */
+.logo-hry-nazev {
+  font-family: var(--pismo-nadpis);
+  font-weight: 600;
+  font-style: normal;
+  color: var(--barva-papir-stary);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  line-height: 1.15;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.logo-hry-nazev--lista {
+  font-size: clamp(15px, 1.35vw, 19px);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 3px;
+  color: rgba(240, 220, 180, 0.32);
+  padding: 4px 0;
+}
+
+.logo-hry-nazev--uvod {
+  font-size: clamp(40px, 8vw, 52px);
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 6px;
+  margin-bottom: 12px;
+  color: #f0e8d0;
+  animation: konecHryText 2s ease forwards;
+}
+
 /* ==========================================
    LAMPA — vlevo nahoře
    ========================================== */
@@ -79,13 +112,34 @@
   grid-row: 2;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: stretch;
   justify-content: flex-start;
   padding: 16px 12px;
   position: relative;
   background: rgba(0, 0, 0, 0.15);
   border-left: 1px solid rgba(255, 255, 255, 0.03);
   overflow-y: auto;
+  gap: 12px;
+  min-height: 0;
+}
+
+.pravy-panel-vystrizek-wrap {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* Finance — přilepeno ke spodku pravého sloupce */
+.pravy-panel-finance-wrap {
+  margin-top: auto;
+  width: 100%;
+  flex-shrink: 0;
+  padding-top: 8px;
+  cursor: pointer;
+}
+
+.pravy-panel-finance-wrap:hover .panel-finance-obal {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(28, 18, 10, 0.65);
 }
 
 #panel-rysy-pravy {
@@ -120,22 +174,110 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   font-size: 11px;
   color: rgba(240, 228, 200, 0.85);
+}
+
+.frakce-radek-vlevo {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  flex: 1;
+}
+
+/* Ikony pověsti — oddělené modrým rámečkem od bloků vlastností výše */
+.frakce-radek-ikona {
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0.95;
+  border: 1px solid rgba(115, 170, 235, 0.7);
+  border-radius: 5px;
+  background: rgba(45, 85, 140, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 0 0 1px rgba(0, 0, 0, 0.2);
 }
 
 .frakce-radek-nazev {
   font-family: var(--pismo-serif, Georgia, serif);
   opacity: 0.75;
-  flex-shrink: 0;
+  min-width: 0;
+}
+
+.panel-finance-obal {
+  width: 100%;
+  margin-top: 0;
+  padding: 10px 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  background: rgba(22, 14, 8, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.panel-finance-nadpis {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: rgba(240, 220, 180, 0.55);
+  margin-bottom: 8px;
+}
+
+#panel-finance {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* HUD na tmavém dřevě — nesmí dědit „papírové“ barvy z ui.css (.finance-widget jen archiv) */
+#panel-finance .finance-radek {
+  display: block;
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 11px;
+  line-height: 1.45;
+  color: rgba(238, 228, 210, 0.94);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+  padding: 2px 0;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.12);
+  font-weight: 400;
+}
+
+#panel-finance .finance-radek:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+#panel-finance .finance-radek--uspory {
+  color: rgba(245, 236, 215, 0.98);
+}
+
+#panel-finance .finance-radek--tydenni {
+  color: rgba(232, 218, 195, 0.92);
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+#panel-finance .finance-radek--dluh {
+  color: rgba(255, 200, 140, 0.95);
+  font-size: 10px;
 }
 
 .frakce-radek-tecky {
   font-family: monospace;
-  font-size: 12px;
-  letter-spacing: 1px;
+  font-size: 17px;
+  line-height: 1;
+  letter-spacing: 2px;
   color: rgba(200, 170, 120, 0.95);
+  flex-shrink: 0;
 }
 
 #lampa {
@@ -198,12 +340,12 @@
   min-height: 0;
 }
 
-/* Novinový výstřižek — denní nálada */
+/* Novinový výstřižek — v pravém panelu */
 #noviny-vystrizek {
-  position: absolute;
-  top: 108px;
-  right: 100px;
-  width: 200px;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   background: var(--barva-papir-stary);
   padding: 10px 12px;
   font-family: var(--pismo-typewriter);
@@ -211,7 +353,7 @@
   line-height: 1.4;
   color: var(--barva-text);
   box-shadow: var(--stin-papir);
-  transform: rotate(1.5deg);
+  transform: rotate(-0.8deg);
   border: 1px solid var(--barva-papir-tmava);
   cursor: default;
   transition: transform var(--prechod-rychly);
@@ -314,15 +456,17 @@
 
 #slozky-wrapper {
   display: flex;
-  gap: 28px;
+  gap: 22px;
   align-items: flex-end;
   justify-content: center;
-  padding: 0 20px;
+  padding: 0 12px;
 }
 
 .slozka {
-  width: 120px;
-  height: 140px;
+  width: 138px;
+  min-height: 148px;
+  height: auto;
+  max-height: 200px;
   /* Výchozí = rutinní; při `slozka--typ-*` z ui.js se přepíše */
   background: linear-gradient(160deg, #c8b878 0%, #a89848 60%, #8a7830 100%);
   border: 2px solid #7a6820;
@@ -333,8 +477,10 @@
   box-shadow: 4px 4px 14px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 10px;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 10px 8px 12px;
+  box-sizing: border-box;
 }
 
 /* Barva desky podle typu případu (shodná paleta jako #aktivni-spis / modál) */
@@ -377,19 +523,31 @@
 
 .slozka-cislo {
   font-family: var(--pismo-typewriter);
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 700;
   color: #3a2a08;
-  opacity: 0.7;
+  opacity: 0.85;
   text-align: center;
+  flex-shrink: 0;
+  margin-bottom: 6px;
+  letter-spacing: 0.12em;
 }
 
 .slozka-stav {
   font-family: var(--pismo-typewriter);
-  font-size: 10px;
-  color: #3a2a08;
+  font-size: 9px;
+  line-height: 1.25;
+  color: #2a2006;
   text-align: center;
   font-variant: normal;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.02em;
+  white-space: pre-line;
+  word-break: break-word;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 118px;
+  padding-top: 2px;
 }
 
 .slozka.slozka--typ-moralni .slozka-cislo,
@@ -604,33 +762,40 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   cursor: default;
+  gap: 3px;
+  line-height: 1.2;
+  text-align: center;
+  max-width: 220px;
 }
 
-#kalendar-den {
-  font-family: var(--pismo-serif);
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--barva-papir);
-  line-height: 1;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
-}
-
-#kalendar-mesic {
+.kalendar-meta {
   font-family: var(--pismo-typewriter);
-  font-size: 10px;
-  color: rgba(240, 220, 180, 0.5);
+  font-size: 8px;
+  font-weight: 500;
   letter-spacing: 2px;
+  color: rgba(240, 220, 180, 0.45);
   text-transform: uppercase;
 }
 
-/* Červená tečka u politických dnů */
-#kalendar.politicky-den #kalendar-den::after {
-  content: '•';
+.kalendar-datum {
+  font-family: var(--pismo-nadpis);
+  font-size: 14px;
+  font-weight: 500;
+  font-style: italic;
+  color: rgba(240, 232, 210, 0.88);
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+
+/* Politický den — červená značka za datem */
+#kalendar.politicky-den .kalendar-datum::after {
+  content: ' \2022';
   color: var(--barva-cervena);
-  font-size: 18px;
-  margin-left: 4px;
-  vertical-align: super;
+  font-style: normal;
+  font-size: 0.95em;
+  font-weight: 700;
 }
 
 /* ==========================================
@@ -726,6 +891,18 @@
 
 /* Den 28 */
 .stul--finale #noviny-vystrizek { opacity: 0.7; }
+
+/* Neděle — klidnější stůl bez výstřižku a s jemnějším spisem */
+.stul--nedele #noviny-vystrizek {
+  opacity: 0.12;
+  pointer-events: none;
+}
+.stul--nedele #aktivni-spis {
+  opacity: 0.85;
+}
+.stul--nedele #slozky-wrapper .slozka--ceka {
+  opacity: 0.45;
+}
 .stul--finale #kalamár { filter: brightness(0.7); }
 
 /* ==========================================
@@ -736,13 +913,17 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0;
+}
+
+#panel-rysy .rys-radek {
+  padding: 5px 2px;
 }
 
 .rys-radek {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
   padding: 7px 4px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   cursor: default;
@@ -760,13 +941,16 @@
 .rys-radek-hlavicka {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 7px;
 }
 
 .rys-radek-ikona {
-  font-size: 11px;
+  font-size: 20px;
   line-height: 1;
-  opacity: 0.7;
+  opacity: 0.88;
+  flex-shrink: 0;
+  width: 26px;
+  text-align: center;
 }
 
 .rys-radek-nazev {
@@ -781,14 +965,19 @@
   font-family: var(--pismo-telo);
   font-size: 10.5px;
   color: rgba(240, 220, 180, 0.55);
-  line-height: 1.5;
+  line-height: 1.45;
   font-style: italic;
 }
 
+#panel-rysy .rys-radek-popis {
+  font-size: 9.5px;
+  line-height: 1.35;
+}
+
 .rys-radek-hvezdicky {
-  font-size: 11px;
-  letter-spacing: 1px;
-  margin: 2px 0 3px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin: 3px 0 4px;
   line-height: 1;
 }
 

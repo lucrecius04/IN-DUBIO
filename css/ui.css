@@ -8,6 +8,286 @@
   z-index: 200;
 }
 
+#modal-dusledky {
+  z-index: 220;
+  background: rgba(15, 10, 5, 0.92);
+}
+
+.dusledky-panel {
+  max-width: 550px;
+  width: min(550px, 94vw);
+  margin: auto;
+  padding: 22px 24px 20px;
+  box-sizing: border-box;
+  background: #0f0a05;
+  color: #e8e0d4;
+  border: 1px solid rgba(196, 163, 90, 0.4);
+  border-radius: 4px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
+}
+
+.dusledky-zahlavi {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.dusledky-zahlavi-typ {
+  font-family: var(--pismo-typewriter);
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  color: #c4a35a;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.dusledky-pripad-nazev {
+  font-family: var(--pismo-telo);
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 10px;
+  color: #d9cbb0;
+  line-height: 1.2;
+}
+
+.dusledky-verdikt {
+  margin: 0;
+  font-size: 15px;
+  color: #d4b76a;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.dusledky-oddelovac {
+  border: 0;
+  height: 1px;
+  margin: 16px 0 18px;
+  background: linear-gradient(90deg, transparent, rgba(196, 163, 90, 0.55), transparent);
+}
+
+.dusledky-narativ {
+  margin-bottom: 14px;
+  min-height: 0;
+}
+
+.dusledky-narativ-text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  font-style: italic;
+  color: rgba(232, 224, 212, 0.88);
+}
+
+.dusledky-pruzkum-poznamka {
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(212, 183, 106, 0.95);
+  margin: 0 0 12px;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+.dusledky-sekce-nadpis {
+  font-family: var(--pismo-typewriter);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: rgba(196, 163, 90, 0.55);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.dusledky-zmeny {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-height: min(38vh, 300px);
+  overflow-y: auto;
+  padding-right: 4px;
+  margin-bottom: 16px;
+}
+
+.dusledky-radek {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.dusledky-radek--viditelny {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dusledky-radek-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.dusledky-radek-ikona {
+  flex-shrink: 0;
+  width: 28px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.dusledky-radek-label {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ebe4d8;
+}
+
+.dusledky-radek-delta {
+  flex-shrink: 0;
+  font-size: 20px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.dusledky-radek-delta--plus {
+  color: #d4b76a;
+}
+
+.dusledky-radek-delta--minus {
+  color: #ef5350;
+}
+
+/* Dvouvrstvý bar: tmavá = původ / nový základ, světlá = přírůstek nebo mizející úbytek */
+.dusledky-bar-track {
+  position: relative;
+  margin-top: 2px;
+  margin-bottom: 0;
+}
+
+.dusledky-bar-track--okamzite .dusledky-bar-tmavy,
+.dusledky-bar-track--okamzite .dusledky-bar-svetly {
+  transition: none;
+}
+
+.dusledky-bar-layers {
+  position: relative;
+  height: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.dusledky-bar-track-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.dusledky-bar-tmavy {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 6px;
+  transition: width 0.72s cubic-bezier(0.25, 0.82, 0.25, 1);
+  z-index: 1;
+}
+
+.dusledky-bar-tmavy--plus {
+  background: #1a3a1a;
+}
+
+.dusledky-bar-tmavy--minus {
+  background: #4a2828;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.dusledky-bar-svetly {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 6px;
+  z-index: 2;
+}
+
+.dusledky-bar-svetly--plus {
+  width: 0;
+  background: #4caf50;
+  box-shadow: 0 0 12px rgba(76, 175, 80, 0.35);
+  transition: width 0.72s cubic-bezier(0.25, 0.82, 0.25, 1);
+}
+
+.dusledky-bar-svetly--minus {
+  left: 0;
+  width: 0;
+  opacity: 1;
+  background: linear-gradient(180deg, #ff8a80 0%, #e53935 55%, #b71c1c 100%);
+  box-shadow: 0 0 14px rgba(229, 57, 53, 0.55);
+  transition:
+    left 0.72s cubic-bezier(0.25, 0.82, 0.25, 1),
+    width 0.72s cubic-bezier(0.25, 0.82, 0.25, 1);
+}
+
+.dusledky-radek-nova-det {
+  margin-top: 6px;
+}
+
+.dusledky-radek-nova-sum {
+  cursor: pointer;
+  font-size: 10px;
+  color: rgba(232, 224, 212, 0.35);
+  list-style: none;
+  user-select: none;
+}
+
+.dusledky-radek-nova-det .dusledky-radek-nova-sum::-webkit-details-marker {
+  display: none;
+}
+
+.dusledky-radek-nova-det > summary {
+  list-style: none;
+}
+
+.dusledky-radek-nova-t {
+  margin: 4px 0 0;
+  padding: 0;
+  font-size: 11px;
+  color: rgba(232, 224, 212, 0.5);
+}
+
+.dusledky-reakce {
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(220, 210, 195, 0.78);
+  margin: 0 0 18px;
+  line-height: 1.55;
+}
+
+#modal-dusledky .dusledky-btn-pokracovat.btn {
+  width: 100%;
+  padding: 14px 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 0;
+  border: none;
+  background: #d4c4a8;
+  color: #0f0a05;
+  font-family: var(--pismo-typewriter);
+  font-size: 11px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+#modal-dusledky .dusledky-btn-pokracovat.btn:hover:not(:disabled) {
+  background: #e2d4bc;
+  color: #0f0a05;
+}
+
+#modal-dusledky .dusledky-btn-pokracovat.btn:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
 .pripad-panel {
   min-width: min(740px, 94vw);
   width: min(740px, 94vw);
@@ -324,7 +604,137 @@
 .rozsudky-seznam {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
+}
+
+/* Readonly případ: všechny verdikty — zvolený zlatě + VYŘEŠENO */
+.rozsudek-karta {
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  border-radius: 3px;
+  font-family: var(--pismo-telo);
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.rozsudek-karta-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.rozsudek-karta--vyreseno {
+  border: 2px solid #c4a35a;
+  box-shadow:
+    0 0 0 1px rgba(196, 163, 90, 0.2),
+    0 4px 16px rgba(0, 0, 0, 0.12);
+  background: linear-gradient(135deg, rgba(196, 163, 90, 0.12) 0%, var(--barva-papir-stary) 48%);
+  color: var(--barva-text);
+}
+
+.rozsudek-karta--vyreseno .rozsudek-consequence {
+  color: var(--barva-text);
+  opacity: 0.92;
+}
+
+.rozsudek-razitko-vyreseno {
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 2px;
+  font-family: 'Courier New', monospace;
+  font-size: 8px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  color: #2a2108;
+  border: 1px solid #b8943a;
+  background: linear-gradient(180deg, rgba(255, 248, 220, 0.95) 0%, rgba(196, 163, 90, 0.45) 100%);
+  padding: 4px 7px;
+  white-space: nowrap;
+  font-variant: normal;
+  line-height: 1.2;
+}
+
+.rozsudek-karta-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.rozsudek-karta--nezvoleno {
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: rgba(0, 0, 0, 0.03);
+  opacity: 0.68;
+  filter: grayscale(0.45);
+  pointer-events: none;
+  color: var(--barva-text-slaby);
+}
+
+.rozsudek-karta--nezvoleno .rozsudek-nazev {
+  font-weight: 600;
+  color: var(--barva-text-slaby);
+}
+
+.rozsudek-karta--nezvoleno .rozsudek-consequence {
+  color: rgba(90, 62, 40, 0.55);
+}
+
+.rozsudek-karta-inner--nezvoleno {
+  padding-left: 2px;
+}
+
+.rozsudek-readonly-prazdne {
+  padding: 10px 4px 0;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--barva-text-slaby);
+}
+
+.rozsudek-efekty-cisla {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(196, 163, 90, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rozsudek-efekt-radek {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.rozsudek-efekt-ikona {
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.rozsudek-efekt-label {
+  flex: 1;
+  min-width: 0;
+  font-weight: 600;
+  color: var(--barva-text);
+}
+
+.rozsudek-efekt-delta {
+  flex-shrink: 0;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-family: var(--pismo-typewriter);
+  letter-spacing: 0.02em;
+}
+
+.rozsudek-efekt-delta--plus {
+  color: #2e7d32;
+}
+
+.rozsudek-efekt-delta--minus {
+  color: #c62828;
 }
 
 .btn-rozsudek {
@@ -352,7 +762,7 @@
 }
 
 .rozsudek-nazev {
-  font-weight: 600;
+  font-weight: 700;
   flex: 1;
 }
 
@@ -490,6 +900,57 @@
   background: var(--barva-papir);
   border-color: var(--barva-text-slaby);
   padding-left: 26px;
+}
+
+/* ==========================================
+   TÝDENNÍ SHRNUTÍ (sobota)
+   ========================================== */
+
+#modal-tyden-shrnuti {
+  z-index: 205;
+  background: rgba(12, 10, 6, 0.88);
+}
+
+.tyden-shrnuti-panel {
+  max-width: 460px;
+  width: min(460px, 94vw);
+  margin: auto;
+  padding: 22px 24px 20px;
+  box-sizing: border-box;
+}
+
+.tyden-shrnuti-cas {
+  font-family: var(--pismo-typewriter);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: var(--barva-text-slaby);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.tyden-shrnuti-hlavni {
+  font-family: var(--pismo-narativ);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--barva-text);
+  font-style: italic;
+  margin: 0 0 18px;
+}
+
+.tyden-shrnuti-jemne {
+  margin-bottom: 20px;
+}
+
+.tyden-shrnuti-jemne-radek {
+  font-family: var(--pismo-telo);
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(180, 170, 150, 0.55);
+  margin: 0 0 6px;
+}
+
+#tyden-shrnuti-pokracovat {
+  width: 100%;
 }
 
 /* ==========================================
@@ -653,6 +1114,7 @@
   padding: 8px 0;
   border-bottom: 1px dotted var(--barva-papir-tmava);
   font-size: 13px;
+  cursor: pointer;
 }
 
 .archiv-rozsudek-den {
@@ -673,6 +1135,10 @@
   font-size: 10px;
   letter-spacing: 1px;
   color: var(--barva-cervena);
+}
+
+.archiv-rozsudek-item:hover {
+  opacity: 0.92;
 }
 
 /* ==========================================
@@ -998,7 +1464,8 @@
   margin-bottom: 16px;
 }
 
-.finance-radek {
+/* Jen přehled ve šuplíku — levý panel stolu používá #panel-finance (tmavé pozadí) */
+.finance-widget .finance-radek {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1009,16 +1476,16 @@
   border-bottom: 1px dotted var(--barva-papir-tmava);
 }
 
-.finance-radek:last-child {
+.finance-widget .finance-radek:last-child {
   border-bottom: none;
   font-weight: bold;
   font-size: 14px;
   padding-top: 8px;
 }
 
-.finance-castka { color: var(--barva-text-slaby); }
-.finance-castka--minus { color: var(--barva-cervena); }
-.finance-castka--plus  { color: var(--barva-zelena); }
+.finance-widget .finance-castka { color: var(--barva-text-slaby); }
+.finance-widget .finance-castka--minus { color: var(--barva-cervena); }
+.finance-widget .finance-castka--plus  { color: var(--barva-zelena); }
 
 .finance-krize {
   margin-top: 12px;
@@ -1346,29 +1813,41 @@
 }
 
 /* ==========================================
-   HAMBURGER MENU
+   MENU — ikona váhy spravedlnosti (SVG)
    ========================================== */
 
 .btn-menu {
   background: transparent;
   border: 1px solid rgba(240, 220, 180, 0.2);
-  color: rgba(240, 220, 180, 0.5);
-  font-size: 16px;
+  color: rgba(240, 220, 180, 0.55);
   width: 32px;
-  height: 28px;
+  height: 32px;
   cursor: pointer;
-  font-family: var(--pismo-typewriter);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.2s, border-color 0.2s;
+  transition: color 0.2s, border-color 0.2s, filter 0.2s;
   padding: 0;
   flex-shrink: 0;
+}
+
+.btn-menu-ikonka {
+  display: block;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  filter: brightness(0) saturate(100%) invert(88%) sepia(12%) hue-rotate(358deg) brightness(0.72) contrast(0.95);
+  opacity: 0.92;
 }
 
 .btn-menu:hover {
   color: var(--barva-papir-stary);
   border-color: rgba(240, 220, 180, 0.5);
+}
+
+.btn-menu:hover .btn-menu-ikonka {
+  filter: brightness(0) saturate(100%) invert(92%) sepia(10%) hue-rotate(358deg) brightness(0.95) contrast(0.98);
+  opacity: 1;
 }
 
 .modal-menu-overlay {
@@ -1398,9 +1877,13 @@
 
 .menu-nazev {
   font-family: var(--pismo-nadpis);
+  font-weight: 600;
+  font-style: normal;
   font-size: 26px;
   color: var(--barva-papir-stary);
   letter-spacing: 4px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
   margin-bottom: 4px;
 }
 

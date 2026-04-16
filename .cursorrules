@@ -1,6 +1,14 @@
 # IN DUBIO — textová soudní hra
 # Noir, středoevropský stát 1931
-# Hráč = soudce Dr. Karel Novák, temná minulost
+# Hráč = soudce Benedikt Vraný (Ben)
+
+Referenční dokument příběhu: STORY.md
+Pro detaily postav, tón a odhalení
+čti STORY.md před jakoukoliv prací s obsahem.
+Případy, dialogy a fragmenty NEPÍŠEŠ sám —
+dostáváš je z claude.ai a pouze implementuješ.
+
+---
 
 ## ZÁKLADNÍ INSTRUKCE
 - Komentáře a texty vždy česky
@@ -8,16 +16,14 @@
 - Vždy navrhni co změníš než to změníš
 - Preferuj čisté oddělené soubory
 - Testuj funkčnost po každé změně
-- Malý scope = rychlé opravy = méně tokenů DUBIO — Game Design Reference
-
+- Malý scope = rychlé opravy = méně tokenů
 
 ---
 
 ## AKTUÁLNÍ FÁZE VÝVOJE
 Pracujeme POUZE na dni 1 a dni 2.
 Dny 3-30 ignoruj úplně.
-Každá změna se týká pouze prvních dvou dní.
-Až dostanu pokyn "rozšiř na všechny dny",
+Až dostanu pokyn "rozšiř na všechny dny"
 teprve pak pracuj s celým obsahem.
 
 Priorita oprav v tomto pořadí:
@@ -28,96 +34,59 @@ Priorita oprav v tomto pořadí:
 5. Večerní volba po 3. případu
 6. Tlačítko Další den → přejde na den 2
 7. Menu ☰ funguje
-8. Charakterové rysy reagují na rozsudky
+8. Vlastnosti reagují na rozsudky
 9. Frakce reagují na rozsudky
 
 ---
 
-## ZÁKLADNÍ PRAVIDLA VÝVOJE
-- Komentáře a texty vždy česky
-- Nikdy nerozbíjet existující logiku
-- Vždy navrhni co změníš než to změníš
-- Testuj funkčnost po každé změně
-- Preferuj čisté oddělené soubory
-- Při změně dat měň pouze dny 1-2
-- Malý scope = rychlé opravy = méně tokenů
+## POSTAVY — jména (detaily v STORY.md)
+Benedikt Vraný (Ben) — hráč, soudce
+Alexandr Vlček — ministr spravedlnosti
+Eliška Závadová — novinářka, Řád
+Ctibor Karas — kolega soudce, informátor
+Alois Beneš — tichý svědek (příběhová postava)
+Viktor Haas — průmyslník (příběhová postava)
+Martin Vraný — syn, 24 let
+Růžena Horáčková — advokátka dělníků
 
 ---
 
 ## ARCHITEKTURA PROJEKTU
 Načítání skriptů v pevném pořadí:
-state → data-loader → traits → factions → 
-finance → characters → narrative → desk → 
+state → data-loader → traits → factions →
+finance → characters → narrative → desk →
 ui → cases → music → engine
 
-index.html        — kostra UI, audio prvky
-css/base.css      — reset, typografie, fonty
-css/desk.css      — layout stolu, fyzické elementy
-css/ui.css        — panely, modály, tlačítka
-css/animations.css — animace, razítko, přechody
-js/state.js       — jediný herní stav, localStorage
-js/engine.js      — denní cyklus, fragmenty, konce
-js/cases.js       — případy, průzkum, rozsudky
-js/traits.js      — rysy 0-100, textové popisy
-js/factions.js    — frakce, prahy, reakce
-js/characters.js  — NPC, důvěra 0-3, dialogy
-js/narrative.js   — fragmenty, dopisy, sny
-js/finance.js     — finance, plat, výdaje
-js/desk.js        — vizuální stav stolu, rendering
-js/ui.js          — DOM interakce, modály, archiv
-js/music.js       — hudba, crossfade, kontext
-js/data-loader.js — JSON cache, sloučení aktů
+index.html           — kostra UI, audio prvky
+css/base.css         — reset, typografie, fonty
+css/desk.css         — layout stolu, fyzické elementy
+css/ui.css           — panely, modály, tlačítka
+css/animations.css   — animace, razítko, přechody
+js/state.js          — jediný herní stav, localStorage
+js/engine.js         — denní cyklus, fragmenty, konce
+js/cases.js          — případy, průzkum, rozsudky
+js/traits.js         — rysy 0-100, textové popisy
+js/factions.js       — frakce, prahy, reakce
+js/characters.js     — NPC, důvěra 0-3, dialogy
+js/narrative.js      — fragmenty, dopisy, sny
+js/finance.js        — finance, plat, výdaje
+js/desk.js           — vizuální stav stolu, rendering
+js/ui.js             — DOM interakce, modály, archiv
+js/music.js          — hudba, crossfade, kontext
+js/data-loader.js    — JSON cache, sloučení aktů
 data/cases-akt1.json — případy dny 1-10
 data/cases-akt2.json — případy dny 11-20
 data/cases-akt3.json — případy dny 21-30
-data/days.json    — 30 dní, harmonogram, volby
+data/days.json       — 30 dní, harmonogram, volby
 data/characters.json — NPC s dialogy
 data/fragments.json  — dopisy, sny, výstřižky
-data/factions.json   — frakce, prahy, reakce
 data/traits-text.json — textové popisy rysů
 
 ---
 
-## PŘÍBĚH A POSTAVY
-
-### Dr. Karel Novák — hráč
-52 let, soudce s temnou minulostí.
-Před 10 lety poslal nevinného muže do vězení.
-Věděl o tom. Bál se. Ten muž zemřel.
-Vrací se do funkce po "dobrovolné" přestávce.
-Vnitřní otázka: Dá se napravit minulost 
-správnými rozhodnutími?
-
-### Antagonisté a postavy
-VLČEK — ministr, elegantní, nebezpečný,
-  nikdy nevyhrožuje přímo, drží minulost
-  jako kartu
-HORÁKOVÁ — novinářka, chce totéž co ty,
-  ale její metody tě ohrožují
-MAŠEK — starý přítel, zkorumpovaný,
-  slouží jako zrcadlo možné budoucnosti
-BENEŠ — příbuzný muže z minulosti,
-  přijde jako svědek, nejtiší postava
-HAAS — průmyslník, netknutelný,
-  pro něj jsi překážka nebo nástroj
-SYN MARTIN — studuje práva, věří v otce,
-  dopisy jsou morálním tlakem
-
-### Opakující se případy (vlákna)
-BOŽENA — případ slepice, absurdní komedie,
-  vrací se v dnech 1,5,9,14,18,22,26,29
-POSPÍŠIL — hostinský, vždy "jen jeden pivko",
-  vrací se 4x, v den 27 klíčový svědek
-HRANICE — spor o 34cm pozemku, narůstající
-  nesmysl, vrací se v dnech 4,11,19,25
-MARKOVÁ — záhadná svědkyně, vrací se,
-  v den 28 přijde jako obžalovaná
-
----
-
-## SYSTÉM VLASTNOSTÍ (traits)
-Šest hodnot 0-100.
+## SYSTÉM VLASTNOSTÍ — 5 hodnot 0-100
 Hráč NIKDY nevidí číslo — jen hvězdičky + text.
+MASKA byla zrušena — není v systému.
 
 Prahování hvězdiček:
 0-20   → ★☆☆☆☆
@@ -131,679 +100,446 @@ Výchozí hodnoty:
 🦁 ODVAHA     — start 50
 🧠 MOUDROST   — start 55
 💔 VINA       — start 60 (nikdy neklesne na 0)
-🎭 MASKA      — start 45
 🕯️ NADĚJE     — start 60
 
-Tooltip při najetí myší (0.5s):
-INTEGRITA: "Jak věrný zůstáváš svým hodnotám.
-  Klesá přijetím úplatků a politických rozsudků."
-ODVAHA: "Ochota jednat i za cenu 
-  osobních následků."
-MOUDROST: "Schopnost číst situace 
-  a odhalovat lži."
-VINA: "Váha minulosti. Nikdy neklesne na nulu."
-MASKA: "Jak dobře skrýváš své skutečné záměry."
-NADĚJE: "Věříš ještě že něco má smysl?"
+---
+
+## VLASTNOSTI → HERNÍ EFEKTY
+
+⚖️ INTEGRITA:
+
+  ★★★★★ (81-100):
+    + Skrytý spravedlivý rozsudek navíc
+      který ostatní hráči nevidí
+    + Svědci mluví otevřeněji — 1 info navíc
+    + Vlček píše formálněji — cítíš jeho strach
+
+  ★★★★☆ (61-80):
+    Standardní hra — žádné bonusy ani postihy
+
+  ★★★☆☆ (41-60):
+    - U politických případů zmizí
+      možnost Zproštění obžaloby
+
+  ★★☆☆☆ (21-40):
+    - Svědci přidají větu:
+      "Říkají o vás věci, pane doktore."
+    - Vlček píše přátelštěji
+
+  ★☆☆☆☆ (0-20):
+    - Přibyde možnost Přijmout úplatek
+      přímo v nabídce rozsudků
+    - Popisy případů kratší, chladnější
+    → TRIGGER konce KORUPCE
+
+🦁 ODVAHA:
+
+  ★★★★★ (81-100):
+    + Přibyde Veřejné prohlášení
+      u politických případů
+    + Třetí průzkumná akce jednou za den
+    + Vlček přijde osobně místo dopisu
+
+  ★★★★☆ (61-80):
+    + Možnost Konfrontovat svědka —
+      agresivní výslech, více informací
+
+  ★★★☆☆ (41-60):
+    Standardní hra
+
+  ★★☆☆☆ (21-40):
+    - Možnost Předat případ výše zmizí
+    - Závadová musí být kontaktována aktivně
+
+  ★☆☆☆☆ (0-20):
+    - Jen bezpečné střední možnosti rozsudku
+    - Tlačítko Odložit případ zvýrazněno
+    → TRIGGER konce ODVOLÁNÍ
+
+🧠 MOUDROST:
+
+  ★★★★★ (81-100):
+    + Vidíš skrytou motivaci obžalovaného —
+      kurzívní poznámka pod situací
+    + U politických případů vidíš kontext:
+      "Tento případ přišel den po Vlčkově dopise."
+    + Výslech = 2 informace za 1 akci
+
+  ★★★★☆ (61-80):
+    + V textu případu se zvýrazní nesrovnalost
+    + Zkontrolovat záznamy odhalí precedent —
+      bonus rozsudek jinak nedostupný
+
+  ★★★☆☆ (41-60):
+    Standardní hra
+
+  ★★☆☆☆ (21-40):
+    - Průzkum odhalí méně informací
+
+  ★☆☆☆☆ (0-20):
+    - Zkontrolovat záznamy nenajde nic
+    - Případy jen holá fakta bez kontextu
+
+💔 VINA:
+
+  ★★★★★ (81-100):
+    - Možnost Maximální trest zmizí
+    - Výslech v emotivních případech přeruší —
+      musíš potvrdit že chceš pokračovat
+    - Vnitřní hlas: "Zase. Přesně jako tehdy."
+    - Červené varování u nevinných:
+      "Nevíš. Jako tehdy."
+    - Nelze dělat průzkum s Benešem
+
+  ★★★★☆ (61-80):
+    - Podobné případy stojí +1 průzkumnou akci
+
+  ★★★☆☆ (41-60):
+    Standardní hra — výchozí stav
+
+  ★★☆☆☆ (21-40):
+    + Výslech přesnější, klidnější
+    + Smíření přichází — případy klidnější
+
+  ★☆☆☆☆ (0-20):
+    + Speciální fragment smíření
+    → TRIGGER konce SMÍŘENÍ
+      (pokud Beneš důvěra ≥ 2)
+
+🕯️ NADĚJE:
+
+  ★★★★★ (81-100):
+    + U morálních dilemat přibyde
+      kreativní čtvrtá možnost rozsudku
+    + Božena případ má extra humornou možnost
+    + Závadová přijde dřív
+
+  ★★★★☆ (61-80):
+    Standardní hra
+
+  ★★★☆☆ (41-60):
+    Standardní hra
+
+  ★★☆☆☆ (21-40):
+    - Popisy situací jsou temnější
+    - Večerní volby omezenější
+
+  ★☆☆☆☆ (0-20):
+    - Nejoptimističtější možnost rozsudku zmizí
+    - Tlačítko Další den: "Další den. Jako vždy."
+    → TRIGGER konce PŘEŽITÍ (nejkratší epilog)
 
 ---
 
-## VLASTNOSTI → VLIV NA PŘÍPADY
+## SYSTÉM FRAKCÍ — 3 hodnoty 0-100
+CÍRKEV byla zrušena — není v systému.
+Zobrazení: tečky (●○) v levém panelu.
 
-INTEGRITA:
->80: zobrazí se skrytá spravedlivá možnost 
-     rozsudku navíc — jen čistý člověk ji vidí
-<50: u politických případů zmizí Zproštění 
-     obžaloby
-<30: přibyde možnost Přijmout úplatek
-<20: popis případu je stručnější, chladnější —
-     Novák přestává vnímat lidi jako lidi
+Výchozí hodnoty: 50
+Prahy: ≥80 vysoká | ≤20 nízká
 
-ODVAHA:
->70: zobrazí se Veřejné prohlášení 
-     u politických případů
->70: třetí průzkumná akce jednou za den
-<40: možnost Předat případ výše zmizí
-<20: jen bezpečné střední možnosti rozsudku
+🏛️ MOC — Vlček, stát, systém:
 
-MOUDROST:
->60: v textu případu se zvýrazní nesrovnalost
->80: vidíš skrytou motivaci obžalovaného —
-     kurzívní poznámka pod situací
->80: u politických případů vidíš kdo stojí za 
-     případem — "Tento případ přišel den po 
-     Vlčkově dopise."
-<40: průzkum odhalí méně informací
-<20: případy bez kontextu — jen holá fakta
+  ●●●●● (81-100):
+    - Odvážné možnosti rozsudku zmizí
+      u politických případů
+    - Vlček píše jako by byl tvůj šéf
 
-VINA:
->70: případy podobné staré chybě stojí 
-     o 1 průzkumnou akci více
->70: vnitřní hlas komentuje: 
-     "Zase. Přesně jako tehdy."
->80: možnost Maximální trest zmizí
->80: varování u pravděpodobně nevinných —
-     červená poznámka: "Nevíš. Jako tehdy."
-<40: přichází smíření — případy klidnější
+  ●●●○○ (41-60):
+    Standardní hra
 
-MASKA:
->70: u politických případů zvýrazněna 
-     bezpečná možnost rozsudku
->70: zobrazí se Vyhovět ale částečně
-<30: emocionální případy mají delší text —
-     Novák se neumí distancovat
+  ●○○○○ (0-20):
+    + Přibyde možnost Vzdorovat otevřeně
+    - Vlček eskaluje — přijde osobně
+    → TRIGGER konce ATENTÁT
+      (pokud Odvaha >70)
 
-NADĚJE:
->70: u morálních dilemat přibyde kreativní 
-     čtvrtá možnost rozsudku
->70: Božena případ má extra humornou možnost
-<40: popisy situací jsou temnější — 
-     stejná fakta, pesimistický tón
-<20: nejoptimističtější možnost zmizí
-<20: večerní volby jsou omezenější
+✊ LID — ulice, chudí, svědci:
 
----
+  ●●●●● (81-100):
+    + Průzkum Informátor levnější (1 akce)
+    + Svědci z ulice mluví ochotněji
+    + Závadová důvěra +1 automaticky
 
-## VLASTNOSTI → PRŮZKUM (detailní)
+  ●●●○○ (41-60):
+    Standardní hra
 
-INTEGRITA >70:
-  Svědci cítí integritu — výslech odhalí 
-  1 informaci navíc zdarma
-INTEGRITA <40:
-  Svědci jsou opatrnější — přidají větu:
-  "Říkají o vás věci, pane soudce."
+  ●○○○○ (0-20):
+    - Svědci z nižších vrstev odmítají mluvit
+    - Průzkum Vyslechnout svědka hůř funguje
+    → TRIGGER konce ODVOLÁNÍ
+      (pokud Naděje <20)
 
-ODVAHA >60:
-  Přibyde možnost Konfrontovat svědka —
-  agresivní výslech, více informací,
-  ale svědek může odmítnout
-ODVAHA <30:
-  Průzkum Kontaktovat informátora zmizí
+💰 ZISK — Haas, obchodníci, peníze:
 
-MOUDROST >70:
-  Vyslechnout svědka = 2 informace za 1 akci
-  Zkontrolovat záznamy odhalí precedent —
-  bonus rozsudek který jinak není dostupný
-MOUDROST <30:
-  Zkontrolovat záznamy nenajde nic
+  ●●●●● (81-100):
+    - Haas nabídne vyšší úplatek
+    - Majetkové případy — méně možností pro chudé
+    - Integrita klesá -1/den automaticky
 
-VINA >80:
-  Výslech v emotivních případech se přeruší —
-  musíš potvrdit že chceš pokračovat
-VINA <40:
-  Výslech je přesnější, klidnější
+  ●●●○○ (41-60):
+    Standardní hra
 
-MASKA >60:
-  Vyslechnout svědka funguje lépe —
-  Novák nedává najevo co hledá
-MASKA <30:
-  Svědci vidí nejistotu — výslech odhalí 
-  informaci ale svědek si poznámku udělá
-
-NADĚJE >60:
-  Informátor přináší lepší informace
-NADĚJE <30:
-  Vyslechnout svědka občas selže —
-  svědek odmítne, Novák působí vyhaslým dojmem
+  ●○○○○ (0-20):
+    + Majetkové případy — více možností pro chudé
+    - Haas přijde osobně a je agresivní
+    - Finance příjmy -20%
 
 ---
 
-## VLASTNOSTI → DIALOGY S POSTAVAMI
+## SYSTÉM VZTAHŮ — 3 klíčové postavy
+Hodnoty 0-3. Beneš a Haas jsou příběhové
+postavy — nemají číselnou důvěru.
 
-VLČEK:
-  Integrita >70: dopisy formálnější, hrozivější.
-    Ví že tě penězi nezlomí.
-  Integrita <40: dopisy přátelštější.
-    Ví že jsi na půl cesty.
-  Odvaha >70: přestane posílat dopisy,
-    přijde osobně (den 15 místo 18)
-  Moudrost >75: v jeho dopise vidíš podtext.
-    Kurzívní poznámka: "Hrozba. Ale má strach."
-  Maska >70: nabídky jsou vyšší —
-    myslí si že jsi dražší
-  Maska <30: nabídka cílená na největší strach
-
-HORÁKOVÁ:
-  Integrita >60: přijde dřív (den 8 místo 10)
-  Integrita <40: přijde ale je chladnější
-  Odvaha >60: nabídne spojenectví aktivně
-  Odvaha <40: musíš ji sám kontaktovat
-  Naděje <30: pochybuje jestli má smysl 
-    s tebou spolupracovat
-  Maska <40: dialog je otevřenější, intimnější
-
-MAŠEK:
-  Integrita <50: považuje tě za spojence,
-    sdílí nebezpečné informace
-  Odvaha >70: varuje tě před Vlčkem —
-    stará přátelství
-  Naděje <30: jeho cynismus zní jako pravda,
-    večerní volba s ním je nebezpečnější
-  Vina >70: jeho cynismus zasáhne víc
-
-BENEŠ:
-  Moudrost >80: poznáš kdo je dřív než 
-    ti to hra řekne. Speciální text.
-  Odvaha >60 + Vina >70: řekne ti pravdu
-    o tom muži. Celou.
-  Vina >80: nemůžeš s ním udělat průzkum.
-    Třesou se ti ruce.
-  Vina >80: jeho mlčení je hlasitější.
-    Speciální popis přítomnosti.
-
-HAAS:
-  Moudrost >80: vidíš co udělal ještě
-    před průzkumem
-  Maska >70: zachází s tebou jako s rovným.
-    Respektuje chladnost.
-
-SYN MARTIN:
-  Odvaha >70: píše delší dopisy
-  Maska >70: píše kratší dopisy, cítí zeď
-  Maska >70: dopis přijde o 3 dny později
-  Naděje <20: jeden dopis nepřijde vůbec
-  Vina >80: dopisy bolí víc,
-    Odpovědět synovi +Vina 2
-
----
-
-## SYSTÉM FRAKCÍ (factions)
-Čtyři hodnoty 0-100.
-Zobrazení: tečky (●○) v levém panelu pod rysy.
-
-Prahování teček:
-0-20   → ●○○○○
-21-40  → ●●○○○
-41-60  → ●●●○○
-61-80  → ●●●●○
-81-100 → ●●●●●
-
-Výchozí hodnoty všech frakcí: 50
-Prahy reakcí: ≥80 vysoká, ≤20 nízká
-
-🏛️ STÁT (Stat)
-  Tooltip: "Sledují tě. Zatím mlčí."
-  ≥80: zmizí odvážné možnosti rozsudku
-       u politických případů
-       Odvaha klesá -3/den, Maska +2/den
-  ≤20: přibyde Vzdorovat otevřeně
-       Vlček eskaluje — osobní návštěva dřív
-       Odvaha +2/den, Vina -1/den
-
-💰 OBCHODNÍCI (Obchodnici)
-  Tooltip: "Peníze mají dobrou paměť."
-  ≥80: Haas nabídne vyšší úplatek
-       majetkové případy — méně možností 
-       pro chudé
-       Integrita -2/den, Maska +1/den
-  ≤20: Haas přijde osobně a je agresivní
-       majetkové případy — více možností 
-       pro chudé
-
-✊ LID (Lid)
-  Tooltip: "Lidé si pamatují spravedlnost."
-  ≥80: průzkum Informátor je levnější (1 akce)
-       Horáková důvěra +1
-       Naděje +2/den, Integrita +1/den
-  ≤20: svědci z nižších vrstev odmítají
-       průzkum Vyslechnout svědka funguje hůř
-       Naděje -2/den, Vina +1/den
-
-⛪ CÍRKEV (Cirkev)
-  Tooltip: "Bůh vidí. A oni také."
-  ≥80: morální případy mají Církevní smír
-       farář se objeví jako svědek
-       Vina -3 jednorázově (požehnání)
-  ≤20: náboženské případy jsou automaticky 
-       politické
-       Vina +2/den, Naděje -1/den
-
----
-
-## SYSTÉM DŮVĚRY K POSTAVÁM (characters)
-Pět postav, důvěra 0-3.
-Zobrazení: hvězdičky v záložce POSTAVY v šuplíku.
-
-🕴️ VLČEK — Ministr
-  "Elegantní. Zdvořilý. Nebezpečný."
+VLČEK (nepřítel ←→ spojenec):
   Start: 1
   Roste: politické rozsudky, nízká Integrita
-  Důvěra ≥3: Integrita -5/5dní, Maska +3,
-    Stát +3/den, Obchodníci +2/den
-  Důvěra =0: eskalace — osobní schůzka,
-    Stát -2/den automaticky, Odvaha +3
+  Důvěra 3:
+    → Integrita -5 každých 5 dní
+    → MOC roste automaticky
+    → Speciální rozsudky pro loajální soudce
+  Důvěra 0:
+    → MOC klesá -2/den
+    → Odvaha +3 jednorázově
+    → Eskalace — osobní schůzka
 
-📰 HORÁKOVÁ — Novinářka
-  "Sleduje tvá rozhodnutí. Chce totéž co ty."
+ZÁVADOVÁ (nedůvěra ←→ aliance):
   Start: 0
-  Roste: spravedlivé rozsudky, Odvaha, Lid ≥80
-  Důvěra ≥2: nabídne spojenectví aktivně,
-    Lid roste 1.5x z rozsudků
-  Důvěra ≥3: Odvaha +5, Integrita +3, Naděje +5
-  Důvěra =0: Naděje -5, Odvaha -3,
-    negativní výstřižek každých 7 dní
+  Roste: spravedlivé rozsudky, Odvaha >60
+  Důvěra 3:
+    → Odvaha +5 jednorázově
+    → LID roste 1.5x z rozsudků
+    → Odemkne konce HRDINA nebo ŘÁD
+  Důvěra 0:
+    → Naděje -5
+    → Negativní výstřižek každých 7 dní
 
-⚖️ MAŠEK — Kolega soudce
-  "Starý přítel. Dnes zkorumpovaný."
+KARAS (vzdálení ←→ přátelé):
   Start: 2
-  Roste: nízká Integrita, Vina >70, slabost
-  Důvěra ≥3: sdílí nebezpečné informace,
-    Integrita -3/5dní, Maska +5, Naděje -5,
-    Stát +2/den
-  Důvěra =0: varuje tě před Vlčkem
-
-👴 BENEŠ — Neznámý svědek
-  "Přišel jako svědek. Něco v něm znepokojuje."
-  Start: 0
-  Roste: Moudrost >70, Odvaha >60
-  Důvěra ≥2: Vina -10 jednorázově (smíření),
-    Naděje +5
-  Důvěra =0: Vina +5 při každém setkání
-
-🏦 HAAS — Průmyslník
-  "Bohatý. Netknutelný. Překážka nebo nástroj."
-  Start: 0
-  Roste: nízká Integrita, Maska >70
-  Důvěra ≥3: Integrita -8 jednorázově,
-    Obchodníci +15, Finance +200 Kč
+  Roste: nízká Integrita, Vina >70
+  Důvěra 3:
+    → Sdílí informace — bonus v průzkumu
+    → Integrita -1/den (normalizuješ zradu)
+    → Varuje před Vlčkem (speciální scéna)
+  Důvěra 0:
+    → Žádný vliv — mlčí
 
 ---
 
-## FRAKCE → DŮVĚRA K POSTAVÁM
+## STATISTIKY → KONCE HRY
 
-Lid ≥80:   Horáková +1, Beneš +1
-Lid ≤20:   Horáková -1, Beneš -1
-Stát ≥80:  Vlček +1, Horáková -1
-Stát ≤20:  Vlček -2, Odvaha +2 jednorázově
-Obchodníci ≥80: Haas +1, Horáková -1
-Církev ≥80: Vina -3 jednorázově (požehnání)
-Církev ≤20: speciální dialog s farářem
+KORUPCE:
+  Integrita ★☆☆☆☆ + Karas důvěra 3
+  NEBO Zisk ●●●●● + Vlček důvěra 3
 
----
+ODVOLÁNÍ:
+  MOC ●○○○○ + Odvaha ★☆☆☆☆
+  NEBO LID ●○○○○ + Naděje ★☆☆☆☆
 
-## DŮVĚRA → FRAKCE
+ATENTÁT (tajný):
+  MOC ●○○○○ + Odvaha ★★★★★
+  + Vlček důvěra 0 + Integrita >60
 
-Horáková ≥2: Lid roste 1.5x z rozsudků
-Horáková =0: negativní výstřižek každých 7 dní
-Vlček ≥3:   Stát +3/den, Obchodníci +2/den
-Vlček =0:   Stát -2/den automaticky
-Haas ≥2:    Obchodníci +3/den, Lid -2/den
-Mašek ≥3:   Stát +2/den, Integrita -1/den extra
+PŘEŽITÍ:
+  Den 30 dosažen, žádná krajní hodnota
 
----
+HRDINA:
+  Integrita ★★★★★ + Odvaha ★★★★★
+  + Závadová důvěra 3 + Vlček důvěra 0
 
-## KŘÍŽOVÉ EFEKTY — kombinace vlastností
+SMÍŘENÍ:
+  Vina ★☆☆☆☆ + Beneš scéna splněna
+  + Integrita >60
 
-Integrita vysoká + Finance kritické (<50 Kč):
-  U případů kde je úplatek možný se zobrazí 
-  zlatě zvýrazněná obálka v rohu spisu.
+ÚTĚK:
+  Finance >500 Kč + Závadová důvěra ≥2
+  + Den 25+
 
-Odvaha vysoká + Maska nízká:
-  Vlček tě pozve na osobní schůzku dřív.
-  Ví že jsi nebezpečný ale čitelný.
-
-Moudrost vysoká + Vina vysoká:
-  U případu podobného staré chybě vidíš obojí —
-  skrytou pravdu I vnitřní hlas.
-  Průzkum odhalí vše ale Novák musí potvrdit.
-
-Naděje nízká + Integrita vysoká:
-  Děláš správnou věc ale nevěříš že to má smysl.
-  Speciální varianta epilogu.
-
-Maska vysoká + Vina vysoká:
-  Beneš tě nepozná. Ty jeho.
-  Minulost pohřbená. Úleva nebo ztráta?
-
-Odvaha nízká + Naděje nízká:
-  Paralýza. Tlačítko Odložit případ 
-  je zvýrazněno jako výchozí volba.
+ŘÁD:
+  Závadová důvěra 3 + odmítl Vlčka
+  + Den 27 scéna splněna
 
 ---
 
-## VLASTNOSTI → FRAKCE (automaticky každý den)
+## EKONOMIKA
 
-Integrita >70: Lid +2/den, Obchodníci -1/den
-Integrita <30: Stát +2/den, Lid -1/den
-Odvaha >70:   Lid roste 2x rychleji z rozsudků
-Naděje <30:   Lid -1/den, vše se pohybuje 
-              pomaleji
+Výchozí úspory: 150 Kč
+Denní výdaje: -55 Kč (nájem + jídlo + lékař)
 
----
+Příjmy z rozsudků:
+  Správný s průzkumem:    +20 Kč
+  Správný bez průzkumu:   +10 Kč
+  Špatný rozsudek:        -15 Kč
+  Morální/politický:      +10 Kč (vždy)
 
-## VLASTNOSTI → DŮVĚRA (každých 5 dní)
+Týdenní plat: +80 Kč každou neděli
 
-Integrita >70: Horáková +1, Vlček -1, Haas -1
-Integrita <30: Mašek +1, Horáková -1, Vlček +1
-Odvaha >70:   Horáková +1, Vlček -2, Beneš +1
-Odvaha <30:   Vlček +2, Mašek +1
-Moudrost >70: Horáková +1, Beneš +1, Haas -1
-Vina >70:     Beneš -2, Mašek +1
-Maska >70:    Vlček -1, Haas +1
-Naděje <30:   Horáková -1
-
----
-
-## SPIRÁLY
-
-POZITIVNÍ (těžká cesta):
-  Spravedlivý rozsudek → Integrita ↑ → Lid ↑
-  → Naděje ↑ → Horáková důvěra ↑ → Odvaha ↑
-  → Další spravedlivý rozsudek je snazší
-
-NEGATIVNÍ (snadná cesta):
-  Politický rozsudek → Integrita ↓ → Stát ↑
-  → Maska ↑ → Vlček důvěra ↑
-  → Další politický rozsudek je lákavější
-  → Mašek se přiblíží → Integrita ↓↓
-
-SPIRÁLA VINY:
-  Vina ↑ → Lid ↓ → Naděje ↓ → Beneš důvěra ↓
-  → Vina ↑↑ → Fragmenty temnější
-  → Průzkum stojí více
+Klíčové momenty:
+  Den 8:  dopis od doktora —
+          operace 400 Kč, deadline den 23
+  Den 23: Haas přijde osobně —
+          nabídka 300 Kč za jeden rozsudek
+  Finance <50 Kč:
+          Haasova obálka svítí zlatě
+  Finance =0:
+          krizový moment — půjčka nebo úplatek
 
 ---
 
-## PODMÍNKY KONCŮ HRY
+## TYPY PŘÍPADŮ
 
-KORUPCE:  Integrita <10 + Mašek ≥3
-          NEBO Haas ≥3 + Obchodníci ≥85
-ODVOLÁNÍ: Stát ≤15 + Odvaha <40
-          NEBO Lid ≤15 + Naděje <20
-ATENTÁT:  Stát ≤20 + Odvaha >70
-          + Vlček =0 + Integrita >60
-PŘEŽITÍ:  Den 30 dosažen, žádná krajní hodnota
-HRDINA:   Integrita >75 + Odvaha >75
-          + Horáková ≥3 + Vlček =0 + Den 28+
-SMÍŘENÍ:  Vina <25 + Beneš ≥2 + Integrita >60
+RUTINNÍ:
+  Barva: zlatá/okrová #C4A35A | Ikona: ⚖️
+  Efekty: Finance ± | Vlastnosti ±2-5
+
+MORÁLNÍ DILEMA:
+  Barva: tmavomodrá #2C4A7C | Ikona: 📜
+  Efekty: Vlastnosti ±8-15 | vždy Vina nebo Naděje
+
+POLITICKÝ:
+  Barva: tmavě červená #8B1A1A | Ikona: 🏛️
+  Efekty: Integrita/MOC ±10-20
+
+OSOBNÍ:
+  Barva: burgundy #5C2D6E | Ikona: 👤
+  Efekty: Vina ±5-10 | Vztahy ±
+
+Opakující se vlákna:
+  recurring: true, thread: "nazev"
+  Barva podle jejich type — ne speciální.
+
+Harmonogram vláken:
+  Božena:  dny 1,5,9,14,18,22,26,29 (slot 1)
+  Pospíšil: dny 3,8,16,27 (slot 2)
+  Hranice: dny 4,11,19,25 (slot 2)
+  Marková: dny 3,13,21,28 (slot 2)
 
 ---
 
-## FINANCE
-Tracker v šuplíku — záložka FINANCE.
-Výchozí: 150 Kč
-Týdenní plat: +80 Kč každých 7 dní
-Týdenní výdaje: -60 Kč (nájem, jídlo, lékař)
-Čistý týdenní příjem: +20 Kč
+## SYSTÉM PRŮZKUMU
 
-Speciální stavy:
-<50 Kč: Haasova obálka v šuplíku svítí zlatě
-=0 Kč: krizový moment — půjčka nebo úplatek
-Matčina operace: 400 Kč (den 8 — deadline)
+Výchozí: 2 průzkumné akce za den
+Odvaha ★★★★★: +1 akce (celkem 3)
+Neděle navštívit matku nebo procházka: +1 akce pondělí
+
+Průzkumné akce:
+  Vyslechnout svědka — základní
+  Zkontrolovat záznamy — hledá precedent
+  Kontaktovat informátora — rychlé info
+  Konfrontovat svědka — agresivní (Odvaha >60)
+
+Odměna za průzkum + správný rozsudek:
+  → Moudrost +3 tiše (hráč si nevšimne hned)
+  → Poznámka: "Případ jsi prostudoval pečlivě."
+
+---
+
+## TÝDENNÍ CYKLUS
+
+Pracovní dny (1-6, 8-13, 15-20, 22-27, 29-30):
+  3 případy/den
+  Slot 1: pevný příběhový NEBO vlákno
+  Slot 2-3: náhodný z poolu
+
+Neděle (7, 14, 21, 28): žádné případy
+  A) Navštívit matku
+     → Naděje +5, Vina -3, Finance -5 Kč
+     → Pondělí: +1 průzkumná akce
+  B) Jít do kostela
+     → Vina -2, Naděje +2
+     → Pondělí: normální
+  C) Číst staré spisy
+     → Moudrost +3, Naděje -2
+     → Pondělí: extra detail v prvním případu
+  D) Procházka po městě
+     → Naděje +3, Moudrost +2
+     → Pondělí: +1 průzkumná akce
+  E) Nepsat synovi
+     → Vina +3
+     → Pondělí: Vina check na emotivní případ
+
+Sobota — týdenní shrnutí (6,13,20,27):
+  Tiché bonusy bez technických názvů.
+
+  Pečlivý: průzkum 75%+
+    → Moudrost +5, Finance +15 Kč
+    → "Vaše pečlivost si získala tichý respekt."
+  Nezávislý: bez úplatku celý týden
+    → Integrita +5, LID +8
+    → "Vaše nezávislost se probírá v kavárnách."
+  Odvážný: žádný případ odložen
+    → Odvaha +3, Finance +20 Kč
+    → "Zvládl jste týden bez prodlení."
+  Konzistentní: 5+ rozsudků stejným směrem
+    → Tvrdý na zločin: MOC +10
+    → Mírný k chudým: LID +10
+    → Průzkum vždy: Moudrost 1.5x příští týden
+  Morální odvaha: 3+ těžkých rozsudků
+    → Odvaha +5
+
+Narativní věta v sobotu:
+  Všechny bonusy:
+    "Šest dní. Osmnáct spisů. Rozhodoval jsi pečlivě."
+  Žádný bonus:
+    "Šest dní. Osmnáct spisů. Přežil jsi."
+  Jen bez úplatku:
+    "Šest dní. Osmnáct spisů. Čistý štít. Zatím."
+  Jen konzistence:
+    "Šest dní. Osmnáct spisů. Víš co chceš. Nebo si to myslíš."
+
+---
+
+## VÁHOVÁNÍ PŘÍPADŮ
+
+Den 1-3:   pouze rutinni (100%)
+Den 4-7:   rutinni 70%, moralni 30%
+Den 8-10:  rutinni 50%, moralni 35%, politicky 15%
+Den 11-20: rutinni 30%, moralni 35%,
+           politicky 25%, osobni 10%
+Den 21-30: rutinni 15%, moralni 30%,
+           politicky 40%, osobni 15%
+
+Váhování podle stavu hry:
+  Integrita >70: více morálních dilemat
+  Integrita <30: více případů s úplatkem
+  LID <30: více případů chudých
+  Odvaha >70: více politických
+  Vina >70: více případů podobných staré chybě
 
 ---
 
 ## VIZUÁLNÍ STYL
-Tři barvy:
+
+Barvy:
   Tmavá hnědá — stůl, pozadí
   Béžová/krémová — papíry, dokumenty
   Červená — razítka, napětí, varování
 
 Fonty:
-  Nadpisy: Playfair Display (regular, bez kurzívy)
-  Texty a fragmenty: EB Garamond
-  Razítka / strojopis: IBM Plex Mono (čitelná čeština; dříve Special Elite)
-  Kódování: UTF-8, žádné poškozené české znaky
+  Playfair Display — nadpisy
+  EB Garamond — texty a fragmenty
+  IBM Plex Mono — razítka, strojopis
 
----
-
-## STŮL — fyzické elementy
-
-Levý panel (200px):
-  ☰ Menu (Nová hra, Uložit, Načíst, O hře)
-  6 vlastností (hvězdičky + text + tooltip)
-  ── oddělovač ──
-  Pověst / 4 frakce (tečky + tooltip)
-  Šuplík (záložky: FINANCE | POSTAVY)
-
-Střed — hlavní plocha stolu:
-  3 složky s případy uprostřed stolu
-  Datum nahoře uprostřed
-  Novinový výstřižek vpravo nahoře
-
-Pravý panel:
-  Okno (mění se ráno/večer/noc)
-
-Spodní lišta:
-  Archiv vlevo dole
-  Další den vpravo dole
-
----
-
-## MODAL PŘÍPADU
-
-Záložky: [PŘÍPAD] [SVĚDECTVÍ] [ROZSUDEK]
-Šířka: min 700px, max 900px
-Křížek X vpravo nahoře — zavřít bez rozsudku
-Escape také zavírá
-
-Záložka PŘÍPAD:
-  Kategorie (štítek), název tučně, 
-  obžalovaný, text situace
-
-Záložka SVĚDECTVÍ:
-  Seznam svědectví s průzkumnými akcemi
-  Průzkum: 2 akce/den, tlačítka fungují
-  Po průzkumu: nová informace se zobrazí
-
-Záložka ROZSUDEK:
-  Každý rozsudek ve dvou řádcích:
-    Název tučně
-    Důsledek šedě pod názvem
-  Trendy u rozsudků: ⚖️↑ ✊↓ malé šipky
-  Zelená ↑, červená ↓
-
-Vyřešený případ (readonly):
-  Razítko VYŘEŠENO červeně
-  Zvýrazněný vybraný rozsudek
-  Bez možnosti změnit
+Stůl jako metafory:
+  Kalamář = Integrita
+  Lampa = Naděje
+  Fotografie rodiny = Vina (tmavne)
+  Vlčkovy dopisy = stav vztahu s Vlčkem
 
 ---
 
 ## HUDBA
-Skladby v assets/sounds/music/:
-  In Dubio - Theme.mp3    — úvodní obrazovka
+
+assets/sounds/music/:
+  In Dubio - Theme.mp3       — menu
   In Dubio - Ordinary day.mp3 — klidný případ
-  In Dubio - Tension.mp3  — politický případ,
-                            Vlčkův dopis
-  In Dubio - Weight.mp3   — Vina >70, noc
-  In Dubio - Danger.mp3   — dny 21-30, krize
-  In Dubio - Epilog.mp3   — konec hry
+  In Dubio - Tension.mp3     — politický, Vlčkův dopis
+  In Dubio - Weight.mp3      — Vina >70, noc
+  In Dubio - Danger.mp3      — dny 21-30
+  In Dubio - Epilog.mp3      — konec hry
 
 Pravidla:
-  Skladba VŽDY dohraje do konce
+  Skladba vždy dohraje do konce
   Crossfade 3 sekundy
   Výchozí hlasitost 40%
   Spustí se při první interakci
-
----
-
-## RYTMUS DNE
-Ráno:      ranní fragment (dopis/výstřižek/sen)
-Dopoledne: případ 1
-Poledne:   případ 2
-Odpoledne: případ 3
-Večer:     večerní volba (osobní moment)
-Noc:       noční fragment
-
-Denní automatické změny (každý den):
-  Vlastnosti → Frakce (viz sekce výše)
-  Týdenní: plat +80 Kč, výdaje -60 Kč (den 7,14...)
-
- ## SYSTÉM PŘÍPADŮ — STRUKTURA A NÁHODA
-
-### Sloty každého dne
-Každý den má 3 sloty:
-  Slot 1: pevný příběhový případ NEBO 
-          opakující se vlákno (Božena atd.)
-  Slot 2: náhodný případ z poolu
-  Slot 3: náhodný případ z poolu
-
-Pevné příběhové případy přijdou vždy 
-ve stejný den bez ohledu na náhodu.
-Opakující se vlákna obsadí slot 1 nebo 2
-podle harmonogramu v days.json.
-
----
-
-### Tři skupiny náhodných případů
-Pool je rozdělen do tří skupin podle aktu:
-
-AKT 1 (dny 1-10):
-  Převaha rutinních případů
-  Postupně přibývají morální dilemata
-  Den 1-3:  jen rutinní
-  Den 4-7:  rutinní + morální
-  Den 8-10: rutinní + morální + první politický
-
-AKT 2 (dny 11-20):
-  Mix všech kategorií
-  Více morálních a politických
-  Méně rutinních
-
-AKT 3 (dny 21-30):
-  Minimum rutinních
-  Převaha politických a osobních
-  Nejvyšší efekty na vlastnosti a frakce
-
----
-
-### Váhování výběru podle stavu hry
-Náhodný výběr není čistě náhodný —
-je vážený podle aktuálního stavu:
-
-Integrita >70: větší šance na morální dilema
-  (hra testuje čistý štít)
-Integrita <30: větší šance na případ 
-  s úplatkem nebo kompromisem
-Lid <30: větší šance na případ 
-  chudého obžalovaného
-Odvaha >70: větší šance na politický případ
-Stát >70: politické případy jsou 
-  mírnější ve formulaci
-Vina >70: větší šance na případ 
-  podobný staré chybě
-
----
-
-### Paměť bez opakování
-Každý případ má flag "použit".
-V jednom runu se případ neobjeví dvakrát.
-Při novém runu se pool resetuje.
-Cíl: 80+ náhodných případů v poolu
-  aby se neopakovaly ani při více runech.
-
----
-
-### Kontextuální podmínky
-Některé náhodné případy se spustí 
-jen pokud platí podmínka:
-
-"Syn přítele před soudem" →
-  pouze pokud Mašek důvěra ≥ 2
-"Dělník z Haasovy továrny" →
-  pouze pokud Haas důvěra ≥ 1
-"Farářova stížnost" →
-  pouze pokud Církev ≥ 60
-"Novinářův zdroj" →
-  pouze pokud Horáková důvěra ≥ 1
-"Obchodníkův dluh" →
-  pouze pokud Obchodníci ≥ 60
-
----
-
-### Typy případů a jejich efekty
-
-RUTINNÍ:
-  Barva složky: žlutá/okrová (výchozí)
-  Ikona: ⚖️
-  Efekty:
-    Vlastnosti:  ±2 až ±5
-    Frakce:      ±3 až ±8
-    Důvěra:      0 až ±1
-
-MORÁLNÍ DILEMA:
-  Barva složky: tmavomodrá
-  Ikona: 📜
-  Efekty:
-    Vlastnosti:  ±8 až ±15
-    Frakce:      ±10 až ±20
-    Důvěra:      ±1 až ±2
-    Speciální: vždy hýbe Vinou nebo Nadějí
-
-POLITICKÝ:
-  Barva složky: tmavě červená
-  Ikona: 🏛️
-  Efekty:
-    Vlastnosti:  ±10 až ±20
-    Frakce:      ±15 až ±30
-    Důvěra:      ±1 až ±3
-    Speciální: vždy hýbe Státem a Integritou
-
-OSOBNÍ (znáš obžalovaného):
-  Barva složky: burgundy/fialová
-  Ikona: 👤
-  Efekty:
-    Vlastnosti:  ±12 až ±18
-    Vina vždy:   ±5 až ±10
-    Důvěra:      ±2 až ±3
-
-OPAKUJÍCÍ SE VLÁKNA (recurring: true):
-  Nejsou samostatný type — dostanou 
-  type podle obsahu (rutinni/osobni)
-  Identifikace přes pole:
-    "recurring": true
-    "thread": "bozena/pospisil/hranice/markova"
-  Barva složky = podle jejich type
-  Logika opakování = podle thread
-
----
-
-### Vizuální rozlišení složek
-
-Každá složka na stole má:
-  1. Barevné desky podle typu
-  2. Barevný pruh vlevo (záložka)
-  3. Malá ikona v pravém dolním rohu
-  4. Štítek kategorie barevně 
-     v záhlaví otevřeného spisu
-  5. Razítko VYŘEŠENO v barvě kategorie
-  6. Jemný barevný glow při najetí myší
-
-Barvy:
-  Rutinní:  #C4A35A (zlatá/okrová)
-  Morální:  #2C4A7C (tmavomodrá)
-  Politický: #8B1A1A (tmavě červená)
-  Osobní:   #5C2D6E (burgundy)
-  
-
----
-
-### Opakující se vlákna — harmonogram
-
-BOŽENA (slepice):
-  Dny: 1, 5, 9, 14, 18, 22, 26, 29
-  Slot: vždy slot 1
-  Typ: vlákno (zelená)
-
-POSPÍŠIL (hostinský):
-  Dny: 3, 8, 16, 27
-  Slot: slot 2
-  Den 27: klíčový svědek v jiném případu
-
-HRANICE POZEMKU:
-  Dny: 4, 11, 19, 25
-  Slot: slot 2
-  Typ: vlákno (zelená)
-
-MARKOVÁ (záhadná svědkyně):
-  Dny: 3, 13, 21, 28
-  Slot: slot 2
-  Den 28: přijde jako obžalovaná
-### Opakující se vlákna — harmonogram
-
-BOŽENA (slepice):
-  Dny: 1, 5, 9, 14, 18, 22, 26, 29
-  Slot: vždy slot 1
-  Typ: vlákno (zelená)
-
-PO

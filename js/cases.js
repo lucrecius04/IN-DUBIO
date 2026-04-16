@@ -81,18 +81,32 @@ const Cases = (() => {
     return (v[typ] || 0) > 0;
   }
 
+  function _duveraKlicProPozadavek(npc) {
+    if (npc === 'horakova') return 'zavadova';
+    if (npc === 'masek') return 'karas';
+    return npc;
+  }
+
+  function _frakceKlicProPozadavek(fak) {
+    if (fak === 'Stat') return 'Moc';
+    if (fak === 'Obchodnici') return 'Kapital';
+    return fak;
+  }
+
   function _caseMeetsRequirements(c) {
     const req = c.requires;
     if (!req || typeof req !== 'object') return true;
     if (req.trust && typeof req.trust === 'object') {
       for (const [npc, min] of Object.entries(req.trust)) {
-        const v = State.get('trust.' + npc);
+        const klic = _duveraKlicProPozadavek(npc);
+        const v = State.get('trust.' + klic);
         if (Number(v) < Number(min)) return false;
       }
     }
     if (req.factions && typeof req.factions === 'object') {
       for (const [fak, min] of Object.entries(req.factions)) {
-        const v = State.get('factions.' + fak);
+        const klic = _frakceKlicProPozadavek(fak);
+        const v = State.get('factions.' + klic);
         if (Number(v) < Number(min)) return false;
       }
     }
@@ -122,7 +136,8 @@ const Cases = (() => {
     }
     if (typ === 'politicky') {
       if (Number(t.Odvaha) > 70) m *= 1.35;
-      if (Number(f.Stat) > 70) m *= 0.85;
+      const moc = Number(f.Moc ?? f.Stat);
+      if (Number.isFinite(moc) && moc > 70) m *= 0.85;
       if (Number(t.Integrita) < 30) m *= 1.3;
     }
     if (typ === 'rutinni') {
@@ -135,13 +150,38 @@ const Cases = (() => {
     return m;
   }
 
-  function _vyberVazenyTyp(c, zaklad, stav, den) {
-    const typ = _efektivniTyp(c);
-    if (!_typJePovolenProDen(den, typ)) return 0;
-    const w0 = zaklad[typ] != null ? zaklad[typ] : zaklad.rutinni;
-    return w0 * _vahaStavHry(typ, stav);
+  /**
+   * Pool náhodných případů rozdělený podle `_efektivniTyp` (JSON `type` po normalizaci).
+   * Recurring / již použité / povinné id jsou vyřazeny stejně jako dřív.
+   */
+  function _poolsNahodnychKandidatu(den, jizVybrane, povinneIdsSet) {
+    const pools = { rutinni: [], moralni: [], politicky: [], osobni: [] };
+    const vsechny = DataLoader.ziskej('cases');
+    if (!vsechny || !vsechny.length) return pools;
+    const akt = _aktZDne(den);
+    const used = State.get('usedCaseIds') || [];
+    const vylouceno = new Set(jizVybrane.filter(Boolean));
+    for (const pid of povinneIdsSet) vylouceno.add(pid);
+
+    for (const c of vsechny) {
+      if (!c || !c.id) continue;
+      if (c.recurring === true) continue;
+      if (!_pripadPatriDoAktu(c, akt)) continue;
+      if (used.includes(c.id)) continue;
+      if (vylouceno.has(c.id)) continue;
+      if (!_caseMeetsRequirements(c)) continue;
+      const typ = _efektivniTyp(c);
+      if (!_typJePovolenProDen(den, typ)) continue;
+      if (!pools[typ]) pools[typ] = [];
+      pools[typ].push(c.id);
+    }
+    return pools;
   }
 
+  /**
+   * Váhy dne určí pravděpodobnost TYPu (50/35/15 u dne 8), uvnitř typu je případ rovnoměrně.
+   * Dříve se váha násobila počtem případů v typu → rutinní převažovaly jen kvůli velikosti poolu.
+   */
   function _vyberNahodneId(den, slotIndex, jizVybrane, povinneIdsSet) {
     const vsechny = DataLoader.ziskej('cases');
     if (!vsechny || !vsechny.length) return null;
@@ -152,6 +192,49 @@ const Cases = (() => {
     const vylouceno = new Set(jizVybrane.filter(Boolean));
     for (const pid of povinneIdsSet) vylouceno.add(pid);
 
+    const pools = _poolsNahodnychKandidatu(den, jizVybrane, povinneIdsSet);
+    const pocty = Object.fromEntries(POVOLENE_TYPY.map(t => [t, (pools[t] || []).length]));
+    const celkem = POVOLENE_TYPY.reduce((n, t) => n + pocty[t], 0);
+
+    const typVahy = {};
+    for (const typ of POVOLENE_TYPY) {
+      if (!pocty[typ]) continue;
+      const w0 = zaklad[typ] != null ? zaklad[typ] : 0;
+      if (w0 <= 0) continue;
+      const w = w0 * _vahaStavHry(typ, stav);
+      if (w > 0) typVahy[typ] = w;
+    }
+
+    const typyKNahode = Object.keys(typVahy);
+    if (typyKNahode.length) {
+      let sumTyp = 0;
+      for (const t of typyKNahode) sumTyp += typVahy[t];
+      let r = Math.random() * sumTyp;
+      let zvolenyTyp = typyKNahode[typyKNahode.length - 1];
+      for (const t of typyKNahode) {
+        r -= typVahy[t];
+        if (r <= 0) {
+          zvolenyTyp = t;
+          break;
+        }
+      }
+      const arr = pools[zvolenyTyp];
+      const id = arr[Math.floor(Math.random() * arr.length)];
+      const modStav = Object.fromEntries(
+        typyKNahode.map(t => [t, Number(_vahaStavHry(t, stav).toFixed(3))])
+      );
+      console.log('[Cases] výběr slot', slotIndex, 'den', den, {
+        zvolenyTyp,
+        vybraneId: id,
+        vahaZvolenehoTypu: Number(typVahy[zvolenyTyp].toFixed(2)),
+        zakladniVahyDne: zaklad,
+        modifikatoryStavu: modStav,
+        poctyVPoolech: pocty,
+        duvod: 'typ podle vah dne×stav, případ náhodně z poolu daného typu'
+      });
+      return id;
+    }
+
     const kandidati = [];
     for (const c of vsechny) {
       if (!c || !c.id) continue;
@@ -160,33 +243,17 @@ const Cases = (() => {
       if (used.includes(c.id)) continue;
       if (vylouceno.has(c.id)) continue;
       if (!_caseMeetsRequirements(c)) continue;
-      const typ = _efektivniTyp(c);
-      if (!_typJePovolenProDen(den, typ)) continue;
-      const w = _vyberVazenyTyp(c, zaklad, stav, den);
-      if (w > 0) kandidati.push({ id: c.id, w });
+      if (!_typJePovolenProDen(den, _efektivniTyp(c))) continue;
+      kandidati.push(c.id);
     }
 
     if (!kandidati.length) {
-      for (const c of vsechny) {
-        if (!c || !c.id) continue;
-        if (c.recurring === true) continue;
-        if (!_pripadPatriDoAktu(c, akt)) continue;
-        if (vylouceno.has(c.id)) continue;
-        if (!_caseMeetsRequirements(c)) continue;
-        if (!_typJePovolenProDen(den, _efektivniTyp(c))) continue;
-        kandidati.push({ id: c.id, w: 1 });
-      }
+      console.warn('[Cases] žádný kandidát pro náhodný výběr, den', den, 'slot', slotIndex, { pocty, pouzite: used.length });
+      return null;
     }
-
-    if (!kandidati.length) return null;
-    let sum = 0;
-    for (const k of kandidati) sum += k.w;
-    let r = Math.random() * sum;
-    for (const k of kandidati) {
-      r -= k.w;
-      if (r <= 0) return k.id;
-    }
-    return kandidati[kandidati.length - 1].id;
+    const id = kandidati[Math.floor(Math.random() * kandidati.length)];
+    console.warn('[Cases] fallback výběr (typové váhy 0 nebo prázdné typy), den', den, 'slot', slotIndex, 'id', id, { pocty, zaklad });
+    return id;
   }
 
   /**
@@ -235,7 +302,11 @@ const Cases = (() => {
       povinneNacteno,
       povinnePreskoceno: povinnePreskoceno.length ? povinnePreskoceno : undefined,
       nahodneSloty: nahodneVybrano.length
-        ? { id: nahodneVybrano, vahyDne: vahy, poznamka: 'vážený výběr z poolu (mimo recurring a used)' }
+        ? {
+            id: nahodneVybrano,
+            vahyDne: vahy,
+            poznamka: 'nejprve typ podle vah dne (× stav), pak náhodný případ z poolu typu; recurring a used vyřazeny'
+          }
         : undefined,
       vysledneId: ids.slice()
     });
@@ -264,7 +335,312 @@ const Cases = (() => {
       Music.nastavKontext('tension');
     }
 
-    UI.zobrazPripad(pripad, zpracujRozsudek);
+    const otevriNorm = () => {
+      UI.zobrazPripad(pripad, (p, r) => UI.zobrazDusledkyRozsudku(p, r, () => zpracujRozsudek(p, r)));
+    };
+
+    const denN = Number(State.get('currentDay'));
+    if (Number.isFinite(denN) && denN % 7 === 1 && State.get('pondeli_vina_emotivni')) {
+      const typ = typProZobrazeni(pripad);
+      if (typ === 'moralni' || pripad.emotional === true) {
+        State.set('pondeli_vina_emotivni', false);
+        UI.zobrazFragment({
+          type:  'letter',
+          title: 'Pondělí',
+          text:  'Nedělní ticho je pryč. Tento spis tě zasáhne dřív, než stihneš oddělit lavici od sebe.'
+        }, otevriNorm);
+        return;
+      }
+    }
+
+    otevriNorm();
+  }
+
+  function _zaznamenejTydenniStatistiky(pripad, rozsudek) {
+    const den = Number(State.get('currentDay'));
+    if (!Number.isFinite(den) || den % 7 === 0) return;
+
+    let t = State.get('tydenni_statistiky');
+    if (!t || typeof t !== 'object') return;
+
+    t.pripady_celkem = (Number(t.pripady_celkem) || 0) + 1;
+
+    if (_pocetOdhalenychInfo(pripad) > 0) {
+      t.pripady_s_prurzkumem = (Number(t.pripady_s_prurzkumem) || 0) + 1;
+    }
+
+    const rid = String(rozsudek.id || '').toLowerCase();
+    if (rid.includes('postpone') || rid.includes('odloz') || rid === 'odlozit') {
+      t.pripady_odlozeny = (Number(t.pripady_odlozeny) || 0) + 1;
+    }
+
+    const tr = rozsudek.consequences && rozsudek.consequences.traits;
+    if (tr && typeof tr === 'object') {
+      const di = Number(tr.Integrita);
+      const dn = Number(tr.Nadeje);
+      if ((Number.isFinite(di) && di <= -3) || (Number.isFinite(dn) && dn <= -3)) {
+        t.tezke_rozsudky = (Number(t.tezke_rozsudky) || 0) + 1;
+      }
+    }
+
+    const vs = Array.isArray(t.verdikty_smer) ? t.verdikty_smer : [];
+    const pr = posoudPruzkumProVerdikt(pripad, rozsudek);
+    vs.push({
+      tough:  _verdiktJeTvrdyNaZlocin(rozsudek),
+      fair:   _verdiktJeFairKChudym(rozsudek),
+      pruzkum: !!pr.pouzitPruzkum
+    });
+    while (vs.length > 24) vs.shift();
+    t.verdikty_smer = vs;
+
+    State.set('tydenni_statistiky', t);
+  }
+
+  function _sloucitDeltaObj(a, b) {
+    const o = { ...(a || {}) };
+    for (const [k, v] of Object.entries(b || {})) {
+      const n = Number(v);
+      if (!Number.isFinite(n) || n === 0) continue;
+      o[k] = (Number(o[k]) || 0) + n;
+    }
+    return o;
+  }
+
+  /**
+   * Sloučí základní consequences verdiktu s typovým doplnkem (penalizace / odměny).
+   * `_ui_finance_label` — vlastní řádek 💰 v modalu důsledků.
+   */
+  function sloucitDusledky(base, extra) {
+    const b = base || {};
+    const e = extra || {};
+    const out = {
+      traits: _sloucitDeltaObj(b.traits, e.traits),
+      factions: _sloucitDeltaObj(b.factions, e.factions),
+      trust: _sloucitDeltaObj(b.trust, e.trust),
+      finance: (Number(b.finance) || 0) + (Number(e.finance) || 0),
+      flags: [...(b.flags || []), ...(e.flags || [])]
+    };
+    if (e._ui_finance_label) out._ui_finance_label = e._ui_finance_label;
+    return out;
+  }
+
+  function _nejvetsiKladnaFrakceZFactions(f) {
+    if (!f || typeof f !== 'object') return null;
+    let bestK = null;
+    let bestV = 0;
+    for (const [k, v] of Object.entries(f)) {
+      const n = Number(v);
+      if (Number.isFinite(n) && n > bestV) {
+        bestV = n;
+        bestK = k;
+      }
+    }
+    return bestK && bestV > 0 ? bestK : null;
+  }
+
+  function _inferPoliticalStance(rozsudek) {
+    const raw = rozsudek && (rozsudek.political_stance || rozsudek.vlcek_stance);
+    const s = String(raw || '').toLowerCase();
+    if (s === 'independent' || s === 'against_vlcek' || s === 'against') return 'independent';
+    if (s === 'system' || s === 'for_vlcek' || s === 'for') return 'system';
+    const c = rozsudek.consequences || {};
+    const t = c.trust || {};
+    const f = c.factions || {};
+    const fMoc = Number(f.Moc ?? f.Stat);
+    if (Number(t.vlcek) >= 1 && Number.isFinite(fMoc) && fMoc >= 5) return 'system';
+    if (Number(t.vlcek) <= -1 || (Number.isFinite(fMoc) && fMoc <= -8)) return 'independent';
+    return null;
+  }
+
+  /**
+   * Typové bonusy / pokuty + texty do okna důsledků (kromě morální poznámky k průzkumu — tu má `#dusledky-pruzkum-poznamka`).
+   * @returns {{ doplnek: object, narativ: string[] }}
+   */
+  function vypoctiTypoveDoplnky(pripad, rozsudek) {
+    if (rozsudek && String(rozsudek.id) === 'uplatek') {
+      return {
+        doplnek: { traits: {}, factions: {}, trust: {}, finance: 0, flags: [] },
+        narativ: []
+      };
+    }
+
+    const typ = _efektivniTyp(pripad);
+    const pr = posoudPruzkumProVerdikt(pripad, rozsudek);
+    const pouzit = pr.pouzitPruzkum;
+    const soulad = pr.soulad;
+    const doplnek = { traits: {}, factions: {}, trust: {}, finance: 0, flags: [] };
+    const narativ = [];
+
+    if (typ === 'rutinni') {
+      const correctId = pripad.correct_verdict;
+      if (correctId) {
+        const ok = rozsudek.id === correctId;
+        if (ok && pouzit) {
+          doplnek.finance = 20;
+          doplnek._ui_finance_label = 'Odměna za správný rozsudek (s průzkumem)';
+          narativ.push('Pečlivé vyšetřování. +20 Kč.');
+        } else if (ok) {
+          doplnek.finance = 10;
+          doplnek._ui_finance_label = 'Odměna za správný rozsudek';
+          narativ.push('Rozsudek odpovídá důkazům. +10 Kč.');
+        } else if (!ok) {
+          doplnek.finance = -15;
+          doplnek.traits.Moudrost = pouzit ? -1 : -2;
+          doplnek._ui_finance_label = pouzit
+            ? 'Pokuta — rozsudek neobstál'
+            : 'Pokuta — rozsudek zpochybněn';
+          narativ.push(
+            pouzit
+              ? 'Přes pečlivé vyšetřování rozsudek neobstál. -15 Kč.'
+              : 'Váš rozsudek byl zpochybněn vyšší instancí. -15 Kč.'
+          );
+        }
+      }
+    }
+
+    if (typ === 'moralni' && pouzit) {
+      doplnek.traits.Moudrost = (doplnek.traits.Moudrost || 0) + 3;
+    }
+
+    const c0 = rozsudek.consequences || {};
+    const tr0 = c0.traits || {};
+    const intD = Number(tr0.Integrita);
+    const nadD = Number(tr0.Nadeje);
+    if (typ === 'moralni' && ((Number.isFinite(intD) && intD <= -5) || (Number.isFinite(nadD) && nadD <= -5))) {
+      doplnek.traits.Odvaha = (doplnek.traits.Odvaha || 0) + 2;
+    }
+
+    if (typ === 'moralni' && soulad) {
+      const fk = _nejvetsiKladnaFrakceZFactions(c0.factions);
+      if (fk) doplnek.factions[fk] = (doplnek.factions[fk] || 0) + 5;
+    }
+
+    if (typ === 'moralni') {
+      doplnek.finance = (Number(doplnek.finance) || 0) + 10;
+      doplnek._ui_finance_label = 'Odměna za uzavření morálního případu';
+    }
+
+    if (typ === 'politicky') {
+      const stance = _inferPoliticalStance(rozsudek);
+      if (stance === 'independent') {
+        doplnek.traits.Integrita = (doplnek.traits.Integrita || 0) + 8;
+        doplnek.factions.Moc = (doplnek.factions.Moc || 0) - 10;
+        narativ.push('Rozhodl jsi nezávisle.');
+      } else if (stance === 'system') {
+        doplnek.traits.Integrita = (doplnek.traits.Integrita || 0) - 8;
+        doplnek.factions.Moc = (doplnek.factions.Moc || 0) + 10;
+        narativ.push('Systém si tvůj rozsudek zapíše.');
+      }
+      if (pouzit && soulad) {
+        doplnek.traits.Moudrost = (doplnek.traits.Moudrost || 0) + 3;
+      }
+      doplnek.finance = (Number(doplnek.finance) || 0) + 10;
+      doplnek._ui_finance_label = 'Odměna za uzavření politického případu';
+    }
+
+    if (typ === 'osobni') {
+      const po = rozsudek.personal_outcome;
+      if (po === 'fair') {
+        doplnek.traits.Integrita = (doplnek.traits.Integrita || 0) + 5;
+        doplnek.traits.Odvaha = (doplnek.traits.Odvaha || 0) + 3;
+        narativ.push('Osobní vazby tě neovlivnily.');
+      } else if (po === 'biased') {
+        doplnek.traits.Vina = (doplnek.traits.Vina || 0) + 8;
+        narativ.push('Doufáš že si toho nikdo nevšiml.');
+      }
+      if (pouzit) {
+        doplnek.traits.Moudrost = (doplnek.traits.Moudrost || 0) + 2;
+        doplnek.traits.Vina = (doplnek.traits.Vina || 0) - 2;
+      }
+      doplnek.finance = (Number(doplnek.finance) || 0) + 10;
+      doplnek._ui_finance_label = 'Odměna za uzavření osobního případu';
+    }
+
+    return { doplnek, narativ };
+  }
+
+  function pripravSlouceneDusledky(pripad, rozsudek) {
+    const base = JSON.parse(JSON.stringify(rozsudek.consequences || {}));
+    const { doplnek, narativ } = vypoctiTypoveDoplnky(pripad, rozsudek);
+    const merged = sloucitDusledky(base, doplnek);
+    return { merged, typNarativ: narativ };
+  }
+
+  function zpracujPrijetiUplatekPoModalu(pripad) {
+    if (!pripad || !pripad.bribe_amount) return;
+    const castka = Number(pripad.bribe_amount) || 0;
+    const rozsudek = {
+      id:          'uplatek',
+      text:        'Přijmout úplatek',
+      consequence: 'Hotovost změní průběh dne — ne zákon.',
+      consequences: {
+        traits:   { Integrita: -15 },
+        factions: {},
+        trust:    {},
+        finance:  castka,
+        flags:    []
+      }
+    };
+    const { merged, typNarativ } = pripravSlouceneDusledky(pripad, rozsudek);
+    merged._ui_finance_label = `Úplatek: +${castka} Kč`;
+    const dusledkyRadky = UI.vypoctiDusledkyRadky(merged);
+
+    Finance.prijmoutUplatek(castka, pripad.title || '');
+    const den = State.get('currentDay');
+    const typRazitka = _rozsudekNaTypRazitka(rozsudek.id);
+    Desk.animujRazitko(typRazitka);
+
+    _aktualizujRozhodovaciStyl(pripad, rozsudek);
+    _zaznamenejTydenniStatistiky(pripad, rozsudek);
+
+    State.pridejRozsudek({
+      day:            den,
+      caseId:         pripad.id,
+      verdict:        rozsudek.text,
+      caseTitle:      pripad.title,
+      verdictId:      rozsudek.id,
+      consequences:   merged,
+      typNarativ:     typNarativ,
+      dusledkyRadky:  dusledkyRadky
+    });
+    State.pridejPouzityPripad(pripad.id);
+
+    if (pripad.recurring === true && pripad.thread) {
+      _zpracujOpakovani(pripad, rozsudek);
+    }
+
+    if (pripad.narrative_link) {
+      setTimeout(() => {
+        Narrative.zobrazFragment(pripad.narrative_link);
+      }, 2500);
+    }
+
+    const udalosti = Traits.zkontrolujKrajniHodnoty();
+    for (const udalost of udalosti) {
+      if (udalost.typ === 'ending') {
+        setTimeout(() => Engine.spustKonec(udalost.ending), 1500);
+        return;
+      }
+    }
+
+    const reakce = Factions.zkontrolujReakce();
+    if (reakce.length > 0) {
+      _zpracujFrakceReakce(reakce);
+    }
+
+    _zkontrolujSpeciálniKonce(pripad, rozsudek);
+
+    Music.nastavKontext('neutral');
+    Music.aktualizujStopu();
+
+    Desk.aktualizujVse();
+    State.uloz();
+
+    UI.aktualizujSlozky(_pripady, State.get('casesResolvedToday'));
+    UI.zobrazStavovouZpravu(`Úplatek: ${castka} Kč`);
+    setTimeout(() => Engine.zkontrolujKonecDne(), 500);
+
+    if (_onRozsudekCallback) _onRozsudekCallback(pripad, rozsudek);
   }
 
   function zpracujRozsudek(pripad, rozsudek) {
@@ -276,15 +652,36 @@ const Cases = (() => {
     const typRazitka = _rozsudekNaTypRazitka(rozsudek.id);
     Desk.animujRazitko(typRazitka);
 
-    // Aplikuj důsledky
-    _aplikujDusledky(rozsudek.consequences);
+    const { merged, typNarativ } = pripravSlouceneDusledky(pripad, rozsudek);
+
+    // Snímek řádků důsledků před aplikací (archiv + přesné bary)
+    const dusledkyRadky = UI.vypoctiDusledkyRadky(merged);
+
+    // Aplikuj důsledky (verdikt + typové doplnky jedním sloučením)
+    _aplikujDusledky(merged);
+    if (typeof Finance !== 'undefined' && Finance.zkontrolujCilOperace) {
+      Finance.zkontrolujCilOperace();
+    }
+
+    _aktualizujRozhodovaciStyl(pripad, rozsudek);
+    _zaznamenejTydenniStatistiky(pripad, rozsudek);
+
+    const pr = posoudPruzkumProVerdikt(pripad, rozsudek);
+    if (pr.pouzitPruzkum && pr.soulad && _efektivniTyp(pripad) === 'rutinni') {
+      const md = Traits.aplikovatNasobekMoudrostiZaAkci(3);
+      if (md !== 0) State.upravRys('Moudrost', md);
+    }
 
     // Ulož do archivu
     State.pridejRozsudek({
-      day:       den,
-      caseId:    pripad.id,
-      verdict:   rozsudek.text,
-      caseTitle: pripad.title
+      day:            den,
+      caseId:         pripad.id,
+      verdict:        rozsudek.text,
+      caseTitle:      pripad.title,
+      verdictId:      rozsudek.id,
+      consequences:   merged,
+      typNarativ:     typNarativ,
+      dusledkyRadky:  dusledkyRadky
     });
     State.pridejPouzityPripad(pripad.id);
 
@@ -338,20 +735,35 @@ const Cases = (() => {
     if (_onRozsudekCallback) _onRozsudekCallback(pripad, rozsudek);
   }
 
+  function _frakcniKlicDoStavu(klic) {
+    if (klic === 'Stat') return 'Moc';
+    if (klic === 'Obchodnici') return 'Kapital';
+    if (klic === 'Cirkev') return null;
+    return klic;
+  }
+
   function _aplikujDusledky(dusledky) {
     if (!dusledky) return;
 
     // Rysy
     if (dusledky.traits) {
       for (const [nazev, delta] of Object.entries(dusledky.traits)) {
-        State.upravRys(nazev, delta);
+        if (nazev === 'Maska') State.upravRys('Vina', delta);
+        else State.upravRys(nazev, delta);
       }
     }
 
     // Frakce
     if (dusledky.factions) {
-      for (const [nazev, delta] of Object.entries(dusledky.factions)) {
-        State.upravFrakci(nazev, delta);
+      const ag = {};
+      for (const [klic, delta] of Object.entries(dusledky.factions)) {
+        const cil = _frakcniKlicDoStavu(klic);
+        if (!cil) continue;
+        ag[cil] = (ag[cil] || 0) + Number(delta);
+      }
+      for (const [nazev, soucet] of Object.entries(ag)) {
+        if (!Number.isFinite(soucet) || soucet === 0) continue;
+        State.upravFrakci(nazev, soucet);
       }
     }
 
@@ -362,7 +774,9 @@ const Cases = (() => {
 
     // Důvěra NPC
     if (dusledky.trust) {
+      const povoleno = { vlcek: true, zavadova: true, karas: true };
       for (const [npcId, delta] of Object.entries(dusledky.trust)) {
+        if (!povoleno[npcId]) continue;
         State.upravDuveru(npcId, delta);
       }
     }
@@ -373,6 +787,110 @@ const Cases = (() => {
         State.set('flags.' + flag.key, flag.value);
       }
     }
+  }
+
+  // --- Průzkum: soulad s odhalením, vzorce rozhodování ---
+
+  function _pocetOdhalenychInfo(pripad) {
+    return (State.get('revealedInfo.' + pripad.id) || []).length;
+  }
+
+  /** Tvrdé tresty / křik „vina!“ — nesoulad s průzkumem typu svědek / záznamy, pokud není vlastní hint. */
+  function _jeTrestneNejprisnejsi(id) {
+    const s = String(id || '').toLowerCase();
+    if (s.includes('prison')) return true;
+    if (s.includes('maximum')) return true;
+    if (s.includes('veznice')) return true;
+    if (s.includes('zabit_umysln')) return true;
+    if (s === 'guilty' || s.startsWith('guilty_') || s.endsWith('_vinen') || s === 'vinen') return true;
+    return false;
+  }
+
+  /**
+   * Doporučené rozsudky pro soulad s konkrétním odhalením.
+   * Volitelně v JSON: hidden_info[].revealed_hint.verdict_ids
+   */
+  function _hintVerdiktyProInfo(pripad, info) {
+    if (info.revealed_hint && Array.isArray(info.revealed_hint.verdict_ids) && info.revealed_hint.verdict_ids.length > 0) {
+      return info.revealed_hint.verdict_ids;
+    }
+    const vsechny = (pripad.verdicts || []).map(v => v.id).filter(Boolean);
+    if (info.action === 'fast') return null;
+    if (info.action === 'witness' || info.action === 'informant' || info.action === 'records') {
+      return vsechny.filter(id => !_jeTrestneNejprisnejsi(id));
+    }
+    return null;
+  }
+
+  /**
+   * @returns {{ pouzitPruzkum: boolean, soulad: boolean }}
+   */
+  function posoudPruzkumProVerdikt(pripad, rozsudek) {
+    if (!pripad || !rozsudek) return { pouzitPruzkum: false, soulad: false };
+    const revealed = State.get('revealedInfo.' + pripad.id) || [];
+    const pouzitPruzkum = revealed.length > 0;
+    if (!pouzitPruzkum) return { pouzitPruzkum: false, soulad: false };
+
+    const infos = (pripad.hidden_info || []).filter(hi => revealed.includes(hi.id));
+    let maHint = false;
+    let soulad = true;
+    for (const info of infos) {
+      const ids = _hintVerdiktyProInfo(pripad, info);
+      if (ids == null || ids.length === 0) continue;
+      maHint = true;
+      if (!ids.includes(rozsudek.id)) {
+        soulad = false;
+        break;
+      }
+    }
+    if (!maHint) soulad = false;
+    return { pouzitPruzkum, soulad };
+  }
+
+  function _verdiktJeFairKChudym(rozsudek) {
+    const c = rozsudek.consequences || {};
+    const lid = Number((c.factions && c.factions.Lid) ?? 0);
+    if (lid >= 5) return true;
+    const id = String(rozsudek.id || '').toLowerCase();
+    if (id === 'acquit' || id === 'zprostit') return true;
+    if (lid >= 3) return true;
+    return false;
+  }
+
+  function _verdiktJeTvrdyNaZlocin(rozsudek) {
+    const id = String(rozsudek.id || '').toLowerCase();
+    if (_jeTrestneNejprisnejsi(id)) return true;
+    const c = rozsudek.consequences || {};
+    const st = Number((c.factions && (c.factions.Moc ?? c.factions.Stat)) ?? 0);
+    const lid = Number((c.factions && c.factions.Lid) ?? 0);
+    if (st >= 5 && lid <= -5) return true;
+    return false;
+  }
+
+  function _aktualizujRozhodovaciStyl(pripad, rozsudek) {
+    const cur = State.get('rozhodovaci_styl') || {};
+    const rs = {
+      fair_lid_streak: Number(cur.fair_lid_streak) || 0,
+      tough_stat_streak: Number(cur.tough_stat_streak) || 0,
+      investigation_streak: Number(cur.investigation_streak) || 0,
+      no_investigation_streak: Number(cur.no_investigation_streak) || 0
+    };
+
+    if (_verdiktJeFairKChudym(rozsudek)) rs.fair_lid_streak += 1;
+    else rs.fair_lid_streak = 0;
+
+    if (_verdiktJeTvrdyNaZlocin(rozsudek)) rs.tough_stat_streak += 1;
+    else rs.tough_stat_streak = 0;
+
+    if (_pocetOdhalenychInfo(pripad) > 0) {
+      rs.investigation_streak += 1;
+      rs.no_investigation_streak = 0;
+    } else {
+      rs.no_investigation_streak += 1;
+      rs.investigation_streak = 0;
+    }
+
+    State.set('rozhodovaci_styl', rs);
   }
 
   function _rozsudekNaTypRazitka(id) {
@@ -410,7 +928,7 @@ const Cases = (() => {
       politicky_tlak:         'Z ministerstva přišel neformální dotaz.',
       uplatky:                'Advokát čeká venku s obálkou.',
       kompromitujici_nabidka: 'Dostal jsi anonymní dopis.',
-      chvala_v_novinach:      'Horáková o tobě napsala pozitivně.',
+      chvala_v_novinach:      'Závadová o tobě napsala pozitivně.',
       verejne_odsouzeni:      'Na ulici tě někdo poznal. Bylo to nepříjemné.',
       verejna_podpora:        'Farář tě veřejně pochválil.',
       moralni_odsouzeni:      'Církev vydala prohlášení.',
@@ -424,7 +942,8 @@ const Cases = (() => {
     const den  = stav.currentDay;
 
     // Konec ATENTÁT: Haas odsouzen + Stát pod 20 + den >= 25
-    if (stav.flags.haas_odsouzen && stav.factions.Stat <= 20 && den >= 25) {
+    const moc = Number(stav.factions.Moc ?? stav.factions.Stat);
+    if (stav.flags.haas_odsouzen && Number.isFinite(moc) && moc <= 20 && den >= 25) {
       setTimeout(() => Engine.spustKonec('atentát'), 3000);
       return;
     }
@@ -455,6 +974,10 @@ const Cases = (() => {
     getPripady,
     otevriPripad,
     zpracujRozsudek,
+    zpracujPrijetiUplatekPoModalu,
+    posoudPruzkumProVerdikt,
+    pripravSlouceneDusledky,
+    sloucitDusledky,
     setOnRozsudek,
     typProZobrazeni
   };

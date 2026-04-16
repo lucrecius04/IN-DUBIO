@@ -7,7 +7,7 @@ const Characters = (() => {
 
   let _data = {};
 
-  /** Vizitky ve šuplíku — pořadí a id = klíče State.trust */
+  /** Vizitky ve šuplíku — pořadí a id = klíče State.trust (jen tři NPC) */
   const SEZNAM_VIZITEK = [
     {
       id: 'vlcek',
@@ -17,46 +17,28 @@ const Characters = (() => {
       popis: 'Elegantní. Zdvořilý. Nebezpečný.\nNikdy nevyhrožuje přímo.'
     },
     {
-      id: 'horakova',
-      jmeno: 'HORÁKOVÁ',
-      role: 'Novinářka',
-      popisKratky: 'Sleduje tvá rozhodnutí.',
-      popis: 'Sleduje tvá rozhodnutí.\nChce totéž co ty — ale jinak.'
+      id: 'zavadova',
+      jmeno: 'ZÁVADOVÁ',
+      role: 'Sekretářka',
+      popisKratky: 'Slyší víc, než řekne.',
+      popis: 'Slyší víc, než řekne.\nDůvěra se buduje v detailech.'
     },
     {
-      id: 'masek',
-      jmeno: 'MAŠEK',
-      role: 'Kolega soudce',
-      popisKratky: 'Starý přítel. Dnes zkorumpovaný.',
-      popis: 'Starý přítel. Dnes zkorumpovaný.\nŘíká že je to jediný způsob.'
-    },
-    {
-      id: 'benes',
-      jmeno: 'BENEŠ',
-      role: 'Neznámý',
-      popisKratky: 'Přišel jako svědek.',
-      popis: 'Přišel jako svědek.\nNěco v něm tě znepokojuje.'
-    },
-    {
-      id: 'haas',
-      jmeno: 'HAAS',
-      role: 'Průmyslník',
-      popisKratky: 'Bohatý. Netknutelný.',
-      popis: 'Bohatý. Netknutelný.\nPro něj jsi překážka nebo nástroj.'
+      id: 'karas',
+      jmeno: 'KARAS',
+      role: 'Lichvář',
+      popisKratky: 'Úsměv jako smlouva.',
+      popis: 'Úsměv jako smlouva.\nPeníze rychle — podmínky později.'
     }
   ];
 
   const VLIV_NA_HRACE = {
     vlcek:
       'Důvěra roste → Integrita klesá každý den.\nDůvěra na 0 → Eskalace, osobní návštěva.',
-    horakova:
+    zavadova:
       'Důvěra roste → Odvaha a Naděje silnější.\nDůvěra na 0 → Naděje slábne.',
-    masek:
-      'Důvěra roste → Integrita klesá.\nNa maximum → Varuje tě před Vlčkem.',
-    benes:
-      'Důvěra ≥ 2 → Vina klesá. Smíření.\nDůvěra na 0 → Vina roste při setkání.',
-    haas:
-      'Důvěra na maximum → Integrita −8.\nFinance +200 Kč. Bod bez návratu.'
+    karas:
+      'Důvěra roste → Integrita klesá.\nNa maximum → Varuje tě před Vlčkem; finance hrají roli.'
   };
 
   function inicializuj() {
@@ -73,11 +55,19 @@ const Characters = (() => {
   }
 
   // Vrátí dialog pro postavu na daný den, respektuje podmínky
+  /** Dialogové podmínky `trust_*` u starých id (Horáková/Mašek) čtou nové klíče důvěry. */
+  function _duveraProDialog(postavaId) {
+    const klic = { horakova: 'zavadova', masek: 'karas' }[postavaId] || postavaId;
+    const povoleno = { vlcek: true, zavadova: true, karas: true };
+    if (!povoleno[klic]) return 0;
+    return State.get('trust.' + klic) ?? 0;
+  }
+
   function getDialog(id, den) {
     const postava = _data[id];
     if (!postava || !postava.dialogues) return null;
 
-    const trust = State.get('trust.' + id) ?? 0;
+    const trust = _duveraProDialog(id);
     const flags = State.get('flags');
 
     // Najdi dialog pro správný den s splněnými podmínkami
@@ -116,11 +106,13 @@ const Characters = (() => {
   function getHistorieRadkaTitulek(npcId, dialogType) {
     const typ = dialogType === 'visit' ? 'visit' : 'letter';
     const map = {
-      vlcek:    { letter: 'Dopis od Vlčka',    visit: 'Osobní návštěva' },
-      horakova: { letter: 'Dopis od Horákové', visit: 'Osobní návštěva' },
-      masek:    { letter: 'Dopis od Maška',    visit: 'Osobní návštěva' },
-      benes:    { letter: 'Dopis od Beneše',   visit: 'Setkání s Benešem' },
-      haas:     { letter: 'Dopis od Haase',    visit: 'Osobní návštěva' }
+      vlcek:     { letter: 'Dopis od Vlčka',     visit: 'Osobní návštěva' },
+      zavadova:  { letter: 'Dopis od Závadové', visit: 'Osobní návštěva' },
+      karas:     { letter: 'Dopis od Karase',   visit: 'Osobní návštěva' },
+      horakova:  { letter: 'Dopis od Horákové', visit: 'Osobní návštěva' },
+      masek:     { letter: 'Dopis od Maška',    visit: 'Osobní návštěva' },
+      benes:     { letter: 'Dopis od Beneše',   visit: 'Setkání s Benešem' },
+      haas:      { letter: 'Dopis od Haase',    visit: 'Osobní návštěva' }
     };
     const r = map[npcId];
     if (r && r[typ]) return r[typ];

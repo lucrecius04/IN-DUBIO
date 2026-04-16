@@ -27,8 +27,8 @@
   z-index: 2000; cursor: pointer;
   transition: opacity 1.5s ease;
 ">
-  <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 52px; font-weight: 700; color: #f0e8d0; letter-spacing: 6px; margin-bottom: 12px; animation: konecHryText 2s ease forwards;">IN DUBIO</div>
-  <div style="font-family: 'IBM Plex Mono', Consolas, 'Courier New', monospace; font-size: 12px; color: rgba(240,220,180,0.5); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 48px; animation: konecHryText 2s ease 0.5s both;">Středoevropský stát, 1931</div>
+  <div class="logo-hry-nazev logo-hry-nazev--uvod">IN DUBIO</div>
+  <div style="font-family: 'IBM Plex Mono', Consolas, 'Courier New', monospace; font-size: 12px; color: rgba(240,220,180,0.5); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 48px; animation: konecHryText 2s ease 0.5s both;">Střední Evropa, 1931</div>
   <div style="font-family: Georgia, serif; font-size: 14px; color: rgba(240,220,180,0.3); font-style: italic; max-width: 500px; text-align: center; line-height: 2; margin-bottom: 48px; animation: konecHryText 2s ease 1s both;">
     Dr. Karel Novák. Soudce. Třicet dní. Jedna minulost.<br>Zákon a spravedlnost nejsou vždy totéž.
   </div>
@@ -44,14 +44,12 @@
   <!-- HORNÍ LIŠTA -->
   <div id="lista-horni">
     <!-- Vlevo: název hry -->
-    <div style="font-family: var(--pismo-serif); font-size: 15px; color: rgba(240,220,180,0.3); letter-spacing: 3px; font-style: italic;">
-      IN DUBIO
-    </div>
+    <div class="logo-hry-nazev logo-hry-nazev--lista" id="logo-hry-nazev">IN DUBIO</div>
 
     <!-- Střed: kalendář -->
     <div id="kalendar">
-      <div id="kalendar-den">1</div>
-      <div id="kalendar-mesic">BŘEZEN 1931</div>
+      <div id="kalendar-meta" class="kalendar-meta">TÝDEN 1 · DEN 1</div>
+      <div id="kalendar-datum" class="kalendar-datum">neděle, 1. března 1931</div>
     </div>
 
     <!-- Vpravo: hodiny + ovládání hudby + menu -->
@@ -61,7 +59,9 @@
         <button id="hudba-toggle" title="Ztlumit hudbu">🔊</button>
         <input id="hudba-hlasitost" type="range" min="0" max="100" value="40">
       </div>
-      <button id="btn-menu" class="btn-menu">&#9776;</button>
+      <button id="btn-menu" class="btn-menu" type="button" aria-label="Menu" title="Menu">
+        <img class="btn-menu-ikonka" src="img/vaha-spravedlnosti-menu.svg" width="32" height="32" alt="" decoding="async">
+      </button>
     </div>
   </div>
 
@@ -110,12 +110,6 @@
       </div>
     </div>
 
-    <!-- Novinový výstřižek -->
-    <div id="noviny-vystrizek">
-      <div id="noviny-datum" class="noviny-datum">1. BŘEZNA 1931</div>
-      <div id="noviny-text">Krize pokračuje. Nezaměstnanost dosáhla rekordních hodnot.</div>
-    </div>
-
     <!-- Aktivní spis -->
     <div id="aktivni-spis">
       <div class="razitko-overlay">
@@ -141,10 +135,20 @@
 
   </div>
 
-  <!-- PRAVÝ PANEL — rysy Vina, Maska, Naděje -->
+  <!-- PRAVÝ PANEL — výstřižek nahoře, finance dole -->
   <div id="pravy-panel">
-    <div id="panel-rysy-pravy">
-      <!-- Dynamicky plněno desk.js -->
+    <div class="pravy-panel-vystrizek-wrap" aria-label="Novinový výstřižek">
+      <div id="noviny-vystrizek">
+        <div id="noviny-datum" class="noviny-datum">1. BŘEZNA 1931</div>
+        <div id="noviny-text">Krize pokračuje. Nezaměstnanost dosáhla rekordních hodnot.</div>
+      </div>
+    </div>
+    <div id="panel-rysy-pravy" class="skryto" aria-hidden="true"></div>
+    <div class="pravy-panel-finance-wrap" aria-label="Finance">
+      <div class="panel-finance-obal">
+        <div class="panel-finance-nadpis">FINANCE</div>
+        <div id="panel-finance"></div>
+      </div>
     </div>
   </div>
 
@@ -227,6 +231,26 @@
 </div>
 
 <!-- ==========================================
+     MODAL — DŮSLEDKY ROZSUDKU
+     ========================================== -->
+<div id="modal-dusledky" class="overlay" role="dialog" aria-modal="true">
+  <div class="panel-papir dusledky-panel panel-papir--nastup">
+    <div class="dusledky-zahlavi">
+      <div class="dusledky-zahlavi-typ">DŮSLEDKY ROZSUDKU</div>
+      <h2 class="dusledky-pripad-nazev" id="dusledky-pripad-nazev">—</h2>
+      <p class="dusledky-verdikt" id="dusledky-verdikt-text">—</p>
+    </div>
+    <hr class="dusledky-oddelovac" />
+    <div class="dusledky-narativ" id="dusledky-narativ"></div>
+    <p class="dusledky-pruzkum-poznamka skryto" id="dusledky-pruzkum-poznamka" aria-live="polite"></p>
+    <div class="dusledky-sekce-nadpis">Změny stavu</div>
+    <div class="dusledky-zmeny" id="dusledky-zmeny"></div>
+    <p class="dusledky-reakce" id="dusledky-reakce" aria-live="polite"></p>
+    <button type="button" class="btn dusledky-btn-pokracovat" id="dusledky-pokracovat" disabled>Pokračovat →</button>
+  </div>
+</div>
+
+<!-- ==========================================
      MODAL — VEČERNÍ VOLBA
      ========================================== -->
 <div id="modal-vecer" class="overlay" role="dialog" aria-modal="true">
@@ -240,13 +264,36 @@
 </div>
 
 <!-- ==========================================
+     MODAL — 23. BŘEZNA (operace / Haas)
+     ========================================== -->
+<div id="modal-den23-krize" class="overlay" role="dialog" aria-modal="true">
+  <div class="panel-papir vecer-panel panel-papir--nastup">
+    <div class="vecer-cas">23. BŘEZNA</div>
+    <div class="vecer-text" id="den23-krize-text">—</div>
+    <div class="vecer-volby" id="den23-krize-volby"></div>
+  </div>
+</div>
+
+<!-- ==========================================
+     MODAL — TÝDENNÍ SHRNUTÍ (sobota)
+     ========================================== -->
+<div id="modal-tyden-shrnuti" class="overlay" role="dialog" aria-modal="true">
+  <div class="panel-papir tyden-shrnuti-panel panel-papir--nastup">
+    <div class="tyden-shrnuti-cas" id="tyden-shrnuti-titulek">Konec pracovního týdne</div>
+    <p class="tyden-shrnuti-hlavni" id="tyden-shrnuti-hlavni"></p>
+    <div class="tyden-shrnuti-jemne" id="tyden-shrnuti-jemne"></div>
+    <button type="button" class="btn" id="tyden-shrnuti-pokracovat">Pokračovat →</button>
+  </div>
+</div>
+
+<!-- ==========================================
      MODAL — NARATIVNÍ FRAGMENT
      ========================================== -->
 <div id="modal-fragment" class="overlay" role="dialog" aria-modal="true">
   <div class="panel-papir fragment-panel panel-papir--nastup" id="fragment-panel">
     <div class="fragment-nadpis" id="fragment-nadpis">—</div>
     <div class="fragment-text" id="fragment-text">—</div>
-    <button class="fragment-zavrit" id="fragment-zavrit">ZAVŘÍT</button>
+    <button type="button" class="fragment-zavrit" id="fragment-zavrit">Pokračovat →</button>
   </div>
 </div>
 

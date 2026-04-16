@@ -7,6 +7,110 @@ const Engine = (() => {
 
   let _denData = null;
 
+  function _vyhodnotTydenniBonusyKody() {
+    const st = State.get('tydenni_statistiky');
+    if (!st || typeof st !== 'object') return [];
+    const pc = Math.max(1, Number(st.pripady_celkem) || 0);
+    const psp = Number(st.pripady_s_prurzkumem) || 0;
+    const earned = [];
+    if (psp / pc >= 0.75) earned.push('A');
+    if (st.uplatek_prijat !== true) earned.push('B');
+    if ((Number(st.pripady_celkem) || 0) >= 1 && (Number(st.pripady_odlozeny) || 0) === 0) earned.push('C');
+    const vs = Array.isArray(st.verdikty_smer) ? st.verdikty_smer : [];
+    const tough = vs.filter(x => x && x.tough).length;
+    const fair = vs.filter(x => x && x.fair).length;
+    const allSurvey = vs.length >= 5 && vs.every(x => x && x.pruzkum);
+    if (tough >= 5) earned.push('D_stat');
+    else if (fair >= 5) earned.push('D_lid');
+    else if (allSurvey) earned.push('D_mul');
+    if ((Number(st.tezke_rozsudky) || 0) >= 3) earned.push('E');
+    return earned;
+  }
+
+  function _sestavTydenniShrnutiPayload(kody) {
+    const n = kody.length;
+    let hlavni;
+    if (n === 0) {
+      hlavni = 'Týden končí. Lavice mlčí — žádný z tichých vzorců se neprojevil natolik, aby sis toho všiml odměnou.';
+    } else if (n === 1) {
+      hlavni = 'Linie týdne se vyjasnila — jeden vzorec převážil. Zbytek byl jen práce.';
+    } else if (n === 2) {
+      hlavni = 'Dva principy vedle sebe — ani jeden nepřekřičel druhého. Týden byl vyrovnaný.';
+    } else if (n === 3) {
+      hlavni = 'Víc cest najednou — a přesto z toho nebyl chaos. Jen hustší papír a tišší kroky.';
+    } else {
+      hlavni = 'Komplexní týden. Nic oslavného na povrchu — jen stopy, které si systém zapamatuje jemněji než ty.';
+    }
+
+    const J = {
+      A: 'Spisy nebyly jen papír — četl jsi je, jako by na nich záleželo někomu, koho znáš.',
+      B: 'Vaše nezávislost se probírá v kavárnách.',
+      C: 'Žádné odložení — týden plynul dál bez zadrhnutí v šuplíku.',
+      D_stat: 'Stát si tě zapisuje mezi ty, kdo neuhnou, když se tlačí zhora.',
+      D_lid: 'Chudina si vaše jméno pamatuje.',
+      D_mul: 'Každý větší verdikt měl svůj stín v průzkumu — a ty sis ho nenechal ujít.',
+      E: 'Několik rozsudků tě stálo víc než inkoust; tělo to ještě cítíš v klidu sobotní noci.'
+    };
+    const jemneRadky = kody.map(k => J[k] || k).filter(Boolean);
+
+    return {
+      titulek: 'Konec pracovního týdne',
+      hlavni,
+      jemneRadky
+    };
+  }
+
+  function _aplikujTydenniBonusyPoModalu(kody) {
+    State.set('tydenni_nasobek_moudrosti', 1);
+    for (const k of kody) {
+      if (k === 'A') {
+        State.upravRys('Moudrost', 5);
+        State.oznacFragment('fragment_tyden_bonus_a');
+      } else if (k === 'B') {
+        State.upravRys('Integrita', 5);
+        State.upravFrakci('Lid', 8);
+        State.oznacFragment('fragment_tyden_bonus_b');
+      } else if (k === 'C') {
+        State.upravRys('Odvaha', 3);
+        State.oznacFragment('fragment_tyden_bonus_c');
+      } else if (k === 'D_stat') {
+        State.upravFrakci('Moc', 10);
+        State.oznacFragment('fragment_tyden_bonus_d');
+      } else if (k === 'D_lid') {
+        State.upravFrakci('Lid', 10);
+        State.oznacFragment('fragment_tyden_bonus_d');
+      } else if (k === 'D_mul') {
+        State.set('tydenni_nasobek_moudrosti', 1.5);
+        State.oznacFragment('fragment_tyden_bonus_d');
+      } else if (k === 'E') {
+        State.upravRys('Odvaha', 5);
+        State.oznacFragment('fragment_tyden_bonus_e');
+      }
+    }
+  }
+
+  function _fragmentyProTydenniBonusy(kody) {
+    const map = {
+      A: 'fragment_tyden_bonus_a',
+      B: 'fragment_tyden_bonus_b',
+      C: 'fragment_tyden_bonus_c',
+      D_stat: 'fragment_tyden_bonus_d',
+      D_lid: 'fragment_tyden_bonus_d',
+      D_mul: 'fragment_tyden_bonus_d',
+      E: 'fragment_tyden_bonus_e'
+    };
+    const out = [];
+    const seen = new Set();
+    for (const k of kody) {
+      const id = map[k];
+      if (id && !seen.has(id)) {
+        seen.add(id);
+        out.push(id);
+      }
+    }
+    return out;
+  }
+
   // --- INICIALIZACE ---
 
   async function inicializuj() {
@@ -54,6 +158,19 @@ const Engine = (() => {
       return;
     }
 
+    // Neděle — nový pracovní týden: vynulovat týdenní statistiky (násobek Moudrosti řeší sobota večer)
+    if (den % 7 === 0) {
+      State.resetTydenniStatistikyNedele();
+    }
+
+    // Pondělí — důsledky nedělní volby (investigace)
+    if (den % 7 === 1) {
+      const v = State.get('nedele_volba');
+      if (v === 'A' || v === 'D') {
+        State.set('investigationActionsLeft', 3);
+      }
+    }
+
     // Načti denní data
     _denData = DataLoader.ziskejDen(den);
 
@@ -71,13 +188,49 @@ const Engine = (() => {
     UI.aktualizujSlozky(pripady, State.get('casesResolvedToday'));
     Desk.nastavAktivniSpis(null);
 
-    // Ranní fragment (overlay blokuje UI, ale složky jsou už načteny)
-    if (_denData?.morning_fragment) {
-      await _cekejNaFragment(_denData.morning_fragment);
+    // Ekonomika ráno: buff lékaře, Karas, výplata, varování, dluh > 100, krize 23. března
+    Finance.aplikujLekarskyBuffRano();
+    Finance.tickKarasDluh();
+    if (Finance.aplikujNedelniVyplatu(den)) {
+      await _cekejNaFragment('fragment_vyplata');
+    }
+    Finance.zaznamenejBankrotAVarovani();
+    if (Finance.getDluh() > 100 && !State.get('flags.dluh_pribeh_spusten')) {
+      State.set('flags.dluh_pribeh_spusten', true);
+      await _cekejNaFragment('fragment_ekonomika_dluh_krize');
+    }
+    if (den === 23 && !State.get('flags.haas_nabidka_den23_vyresena')) {
+      await _cekejNaDen23Modal();
+    }
+    Finance.zkontrolujCilOperace();
+    Desk.aktualizujVse();
+
+    // Ranní fragment (den 8 — dopis o operaci jen jednou)
+    let morningId = _denData?.morning_fragment;
+    if (den === 8 && State.get('flags.dopis_operace_den8_viden')) {
+      morningId = null;
+    }
+    if (morningId) {
+      await _cekejNaFragment(morningId);
+      if (den === 8) {
+        State.set('flags.dopis_operace_den8_viden', true);
+        State.uloz();
+      }
     }
 
     // Dialogy postav pro tento den
     await _zpracujDialogyDne(den);
+
+    // Nedělní volba (bez případů — samostatný krok před pokračováním dne)
+    if (_denData?.nedelni_volba) {
+      await new Promise(resolve => {
+        UI.zobrazNedelniVolbu(_denData, () => {
+          Desk.aktualizujVse();
+          State.uloz();
+          resolve();
+        });
+      });
+    }
 
     State.set('phase', 'forenoon');
     Desk.aktualizujVse();
@@ -162,12 +315,37 @@ const Engine = (() => {
       await _cekejNaVecerniVolbu(_denData);
     }
 
+    // Večerní fragment (např. reflexe v neděli)
+    if (_denData?.evening_fragment) {
+      State.set('phase', 'evening');
+      Desk.aktualizujVse();
+      Music.aktualizujStopu();
+      await _cekejNaFragment(_denData.evening_fragment);
+    }
+
     // Noční fragment
     if (_denData?.night_fragment) {
       State.set('phase', 'night');
       Desk.aktualizujVse();
       Music.aktualizujStopu();
       await _cekejNaFragment(_denData.night_fragment);
+    }
+
+    // Sobota večer — shrnutí týdne a tiché bonusy před přechodem na neděli
+    const denS = Number(State.get('currentDay'));
+    if (Number.isFinite(denS) && denS % 7 === 6) {
+      const kody = _vyhodnotTydenniBonusyKody();
+      const payload = _sestavTydenniShrnutiPayload(kody);
+      await new Promise(resolve => {
+        UI.zobrazTydenniShrnuti(payload, () => {
+          _aplikujTydenniBonusyPoModalu(kody);
+          State.uloz();
+          resolve();
+        });
+      });
+      for (const fid of _fragmentyProTydenniBonusy(kody)) {
+        await _cekejNaFragment(fid);
+      }
     }
 
     // Přechod dne — vizuální stmívání
@@ -258,8 +436,8 @@ const Engine = (() => {
       Desk.zobrazSuplikIndikator(false);
     });
 
-    // Zmačkání → Maska -3
-    State.upravRys('Maska', -3);
+    // Zmačkání dopisu (dříve −Maska) — tíha viny
+    State.upravRys('Vina', 3);
     State.uloz();
   }
 
@@ -354,19 +532,16 @@ const Engine = (() => {
   function _cekejNaVecerniVolbu(denData) {
     return new Promise(resolve => {
       UI.zobrazVecerniVolbu(denData, (moznost) => {
-        if (moznost?.effects) {
-          for (const [rys, delta] of Object.entries(moznost.effects)) {
-            State.upravRys(rys, delta);
-          }
-        }
-        if (moznost?.trust) {
-          for (const [npcId, delta] of Object.entries(moznost.trust)) {
-            State.upravDuveru(npcId, delta);
-          }
-        }
+        UI.aplikujVecerniNeboNedelniMoznost(moznost);
         Desk.aktualizujVse();
         resolve();
       });
+    });
+  }
+
+  function _cekejNaDen23Modal() {
+    return new Promise(resolve => {
+      UI.zobrazModalDen23Krize(() => resolve());
     });
   }
 
