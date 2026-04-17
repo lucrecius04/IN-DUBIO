@@ -131,6 +131,7 @@ const Engine = (() => {
     // Nastav UI listenery
     UI.inicializuj();
     Desk.inicializujTooltipyRysu();
+    Desk.inicializujTooltipyPredmetuStolu();
 
     // Tlačítko Další den
     document.getElementById('btn-dalsi-den')?.addEventListener('click', () => {

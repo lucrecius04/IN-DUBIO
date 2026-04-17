@@ -1765,6 +1765,7 @@ const UI = (() => {
 
   // Aktualizuj složky případů
   function aktualizujSlozky(pripady, vyresene) {
+    const slotNazvy = ['Složka I', 'Složka II', 'Složka III'];
     for (let i = 0; i < 3; i++) {
       const slozka = document.getElementById('slozka-' + (i + 1));
       if (!slozka) continue;
@@ -1772,6 +1773,12 @@ const UI = (() => {
       const pripad = pripady[i];
       const stavEl  = slozka.querySelector('.slozka-stav');
       const cisloEl = slozka.querySelector('.slozka-cislo');
+
+      function _slozkaMeta(label, titulek) {
+        slozka.setAttribute('aria-label', label);
+        if (titulek) slozka.setAttribute('title', titulek);
+        else slozka.removeAttribute('title');
+      }
 
       if (!pripad) {
         _odstranTypSlozky(slozka);
@@ -1781,6 +1788,7 @@ const UI = (() => {
         slozka.style.cursor  = '';
         if (stavEl)  stavEl.textContent  = '—';
         if (cisloEl) cisloEl.textContent = ['I.', 'II.', 'III.'][i];
+        _slozkaMeta(slotNazvy[i] + ' — načítání', '');
         continue;
       }
 
@@ -1790,6 +1798,8 @@ const UI = (() => {
       slozka.style.cursor  = 'pointer';
       if (cisloEl) cisloEl.textContent = ['I.', 'II.', 'III.'][i];
 
+      const nazev = (pripad.title || '').trim() || 'Bez názvu';
+
       if (vyresene.includes(pripad.id)) {
         slozka.classList.add('slozka--vyresena');
         slozka.classList.remove('slozka--aktivni');
@@ -1797,10 +1807,12 @@ const UI = (() => {
           stavEl.textContent = '✓\n' + (pripad.title || '');
         }
         slozka.style.cursor = 'pointer';
+        _slozkaMeta(slotNazvy[i] + ' — ' + nazev + ' (vyřešeno)', nazev + ' — vyřešeno');
       } else {
         slozka.classList.remove('slozka--vyresena');
         slozka.classList.add('slozka--aktivni');
         if (stavEl) stavEl.textContent = pripad.title || '—';
+        _slozkaMeta(slotNazvy[i] + ' — ' + nazev, nazev);
       }
     }
   }

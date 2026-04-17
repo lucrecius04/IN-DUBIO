@@ -1,76 +1,147 @@
 {
   "integrita": {
     "visual": "kalamář",
-    "descriptions": [
-      { "range": [0, 20], "text": "Zákon je nástroj. Dávno sis přestal ptát, v čích rukou." },
-      { "range": [21, 40], "text": "Ještě si pamatuješ, jaký jsi byl. Už to není každý den." },
-      { "range": [41, 60], "text": "Ještě věříš, že lavice soudce může být čistá." },
-      { "range": [61, 80], "text": "Kompromisy znáš. Zatím jsi každý z nich pojmenoval pravým jménem." },
-      { "range": [81, 100], "text": "Čistý štít. Otázka je, kolik to ještě bude stát." }
-    ],
     "gameplay_cz": "Každý rozsudek tě posouvá blíž k člověku, kterým chceš být — nebo dál od něj. Integrita rozhoduje, které možnosti vůbec uvidíš: příliš nízko a hra ti zavře dveře, o kterých ani nevíš. Příliš vysoko a ti, kdo spoléhají na tvůj kompromis, začnou hledat jiné páky.",
     "co_to_znamena_cz": "Jak věrný zůstáváš svým hodnotám. Klesá přijetím úplatků a politických rozsudků.",
     "effects": {
       "at_zero": "ending_korupce",
       "at_hundred": "vlcek_attacks"
+    },
+    "81-100": {
+      "tooltip": "Čistý štít. Každé rozhodnutí by podepsal i před Bohem.",
+      "notebook": "Čistý štít. Každé rozhodnutí by podepsal i před Bohem. Lidé mu říkají věci které ostatním neřeknou — a to ho tíží stejně jako těší."
+    },
+    "61-80": {
+      "tooltip": "Dělá svou práci. Poctivě. Bez výčitek.",
+      "notebook": "Dělá svou práci. Poctivě. Bez výčitek. V roce 1931 to není málo."
+    },
+    "41-60": {
+      "tooltip": "Někdy váhá déle než bývalo. Ví o sobě věci které by raději neznal.",
+      "notebook": "Někdy váhá déle než bývalo. Ví o sobě věci které by raději neznal. Některé možnosti které dřív bral za samozřejmé — přestávají být dostupné."
+    },
+    "21-40": {
+      "tooltip": "Kompromisy se hromadí. Každý byl tehdy nutný.",
+      "notebook": "Kompromisy se hromadí. Každý byl tehdy nutný. Lidé kolem něj to vycítili — a někteří ho zkouší jinak než dřív."
+    },
+    "0-20": {
+      "tooltip": "Zrcadlu se vyhýbá. Zákon je jen nástroj v rukou těch, kdo ho drží.",
+      "notebook": "Zrcadlu se vyhýbá. Zákon je jen nástroj v rukou těch, kdo ho drží. Dveře které dřív odmítal otevřít — teď stojí dokořán."
     }
   },
   "odvaha": {
     "visual": "lampa",
-    "descriptions": [
-      { "range": [0, 20], "text": "Bezpečná cesta. Vždycky se nějaká najde." },
-      { "range": [21, 40], "text": "Víš co je správné. Zatím to nestojí za ten risk." },
-      { "range": [41, 60], "text": "Víš, co je správné. Otázka je, jestli to unese tvůj stůl." },
-      { "range": [61, 80], "text": "Některé věci řekneš nahlas. I když tě nikdo nechce slyšet." },
-      { "range": [81, 100], "text": "Strach cítíš. Jen ho přestal poslouchat." }
-    ],
     "gameplay_cz": "Odvaha je vstupenka na nepopulární lavici. Některé rozsudky se objeví jen tehdy, když na to máš sílu — jinak v seznamu prostě nejsou.\n\nKdyž lampa vyhasne příliš nízko, hra ti začne nabízet jen bezpečné střední cesty.\n\nVlček, Závadová i Karas čtou odvahu jinak: jeden v ní vidí hrozbu, druhá spojence, třetí člověka, kterého stačí lehce zatlačit.",
     "co_to_znamena_cz": "Ochota jednat i za cenu osobních následků.",
     "effects": {
       "at_low": "rozsudky_mizí"
+    },
+    "81-100": {
+      "tooltip": "Ruce se netřesou. Strach cítí, ale přestal ho poslouchat.",
+      "notebook": "Ruce se netřesou. Strach cítí, ale přestal ho poslouchat. Mocní si ho všimli — přicházejí osobně, ne přes prostředníky."
+    },
+    "61-80": {
+      "tooltip": "Odhodlání tam je. Když je třeba, vydrží.",
+      "notebook": "Odhodlání tam je. Když je třeba, vydrží. Může si dovolit přímou konfrontaci místo opatrného obcházení."
+    },
+    "41-60": {
+      "tooltip": "Dělá co musí. Ne vždy co chce.",
+      "notebook": "Dělá co musí. Ne vždy co chce. Standardní výbava — nic navíc, nic ubrané."
+    },
+    "21-40": {
+      "tooltip": "Váhání trvá déle než bývalo. Rozhodnutí bolí víc.",
+      "notebook": "Váhání trvá déle než bývalo. Rozhodnutí bolí víc. Některé cesty které dřív volil — teď si je nedovolí."
+    },
+    "0-20": {
+      "tooltip": "Strach se nastěhoval. Bydlí tu teď s ním.",
+      "notebook": "Strach se nastěhoval. Bydlí tu teď s ním. Zůstávají jen bezpečné volby. Ty které nikoho nerozhněvají."
     }
   },
   "moudrost": {
     "visual": "knihy",
-    "descriptions": [
-      { "range": [0, 20], "text": "První verze příběhu bývá ta nejpěknější. Bereš ji." },
-      { "range": [21, 40], "text": "Tušíš, že něco nesedí. Nemáš sílu to hledat." },
-      { "range": [41, 60], "text": "Vidíš víc než ostatní. Někdy by bylo lepší nevidět." },
-      { "range": [61, 80], "text": "Lži poznáš dřív, než je dopoví. To tě dělá nebezpečným." },
-      { "range": [81, 100], "text": "Čteš mezi řádky. Někdy i tam, kde nic není. To tě unavuje." }
-    ],
     "gameplay_cz": "Moudrost roste za práci se spisem — každý průzkum, který opravdu něco vytáhne, tě něco naučí. Vysoká moudrost odkrývá skryté vrstvy příběhu v textu případu: nesrovnalosti, motivy, věci které tam oficiálně nejsou. Schází-li, zůstaneš u povrchu — méně podkladů, méně háčků, méně šancí rozhodnout správně.",
     "co_to_znamena_cz": "Schopnost číst situace a odhalovat lži.",
     "effects": {
       "at_high": "extra_detaily_v_případech"
+    },
+    "81-100": {
+      "tooltip": "Čte mezi řádky. Někdy vidí i to, co tam psát nechtěli.",
+      "notebook": "Čte mezi řádky. Někdy vidí i to, co tam psát nechtěli. Drobnosti které ostatní přehlédnou — jemu nesedí. A ta nesrovnalost ho zavede dál než čekal."
+    },
+    "61-80": {
+      "tooltip": "Zkušenost mluví. Ne vždy nahlas.",
+      "notebook": "Zkušenost mluví. Ne vždy nahlas. Ve spisech nachází věci které by jiný přehlédl — precedenty, vzory, stopy."
+    },
+    "41-60": {
+      "tooltip": "Dost zkušeností na to aby věděl co neví.",
+      "notebook": "Dost zkušeností na to aby věděl co neví. Průzkum přináší co má přinést — ne víc, ne míň."
+    },
+    "21-40": {
+      "tooltip": "Fakta jsou. Kontext se ztrácí.",
+      "notebook": "Fakta jsou. Kontext se ztrácí. Průzkum přináší méně než bývalo — buď lidé mluví méně ochotně, nebo sám klade horší otázky."
+    },
+    "0-20": {
+      "tooltip": "Vidí co je před ním. Nic víc.",
+      "notebook": "Vidí co je před ním. Nic víc. Záznamy nenajdou nic užitečného. Případy přicházejí holé, bez příběhu."
     }
   },
   "vina": {
     "visual": "fotografie",
-    "descriptions": [
-      { "range": [0, 20], "text": "Naučil ses žít s tím co bylo. Nezapomněl jsi. Jen to přestal nosit." },
-      { "range": [21, 40], "text": "Minulost tě ještě někdy probudí. Ale méně než dřív." },
-      { "range": [41, 60], "text": "Jeden rozsudek před lety. Stále nevíš, jestli jsi byl ty, nebo jen paragraf." },
-      { "range": [61, 80], "text": "Nesneseš pohled na určité spisy. Víš proč. Nechceš to pojmenovat." },
-      { "range": [81, 100], "text": "Každý případ je připomínka. Každé razítko je ozvěna toho jednoho." }
-    ],
     "gameplay_cz": "Tíživé rozsudky a určité momenty příběhu vinu přidávají — úleva ji umí stáhnout, ale nikdy tě nepustí na nulu. Jednička je dno, pod které nejde spadnout. Čím těžší je svědomí, tím víc tě podobné případy bolí. Hra s tím počítá u věcí, které se dotýkají staré rány — kolik ti zbyde sil na průzkum, jak dlouho a jak bolestně čteš spis.",
     "co_to_znamena_cz": "Váha minulosti. Nikdy neklesne na nulu.",
-    "starting_value": 60
+    "starting_value": 60,
+    "81-100": {
+      "tooltip": "Každý případ je připomínka. Každé razítko ozvěna toho jednoho.",
+      "notebook": "Každý případ je připomínka. Každé razítko ozvěna toho jednoho. Ruka se zastaví nad nejtvrdšími rozsudky. Něco v něm říká: nevíš. Jako tehdy nevěděl."
+    },
+    "61-80": {
+      "tooltip": "Minulost leží v šuplíku. Občas se ozve.",
+      "notebook": "Minulost leží v šuplíku. Občas se ozve. Podobné případy stojí víc sil — nelze je odbýt rychlým razítkem."
+    },
+    "41-60": {
+      "tooltip": "Naučil se žít s tím co udělal. Většinou.",
+      "notebook": "Naučil se žít s tím co udělal. Většinou. Vina je — ale neparalyzuje. Výchozí stav."
+    },
+    "21-40": {
+      "tooltip": "Začíná rozlišovat mezi svou vinou a vinou světa.",
+      "notebook": "Začíná rozlišovat mezi svou vinou a vinou světa. S odstupem přichází přesnost. Výslechy klidnější, rozsudky jasnější."
+    },
+    "0-20": {
+      "tooltip": "Odpustil si. Nebo se o to pokouší.",
+      "notebook": "Odpustil si. Nebo se o to pokouší. Beneš čeká. Možná přijde čas na rozhovor který dřív nebyl možný."
+    }
   },
   "nadeje": {
     "visual": "okno",
-    "descriptions": [
-      { "range": [0, 20], "text": "Příběh mohl dopadnout jinak. Nedopadl." },
-      { "range": [21, 40], "text": "Děláš co máš. Přestal jsi čekat, že to něco změní." },
-      { "range": [41, 60], "text": "Někdy má smysl vstát. Ne vždycky. Ale dnes jo." },
-      { "range": [61, 80], "text": "Věříš, že spravedlnost existuje. Zatím jsi ji párkrát viděl na vlastní oči." },
-      { "range": [81, 100], "text": "Ještě ti záleží. Na všem. To tě chrání — a zároveň nejvíc zraňuje." }
-    ],
     "gameplay_cz": "Spravedlivé dny a večery, kdy si neublížíš, naději zvedají. Cynismus, prohry a prázdnota ji berou vzduch. Když spadne na nulu, hra může sklouznout k nejkratšímu, nejchladnějšímu epilogu — jako by se příběh ani neobtěžoval dovyprávět. Naděje odemyká odvážnější kompromisy v morálních dilematech a naopak schovává ty příliš růžové — zúží i večerní volby, když už v tobě moc nezbývá věřit.",
     "co_to_znamena_cz": "Věříš ještě, že něco má smysl?",
     "effects": {
       "at_zero": "nejkratší_epilog"
+    },
+    "81-100": {
+      "tooltip": "Věří že spravedlnost existuje. Párkrát ji viděl na vlastní oči.",
+      "notebook": "Věří že spravedlnost existuje. Párkrát ji viděl na vlastní oči. V nejtěžších momentech nachází cestu kterou jiný nevidí."
+    },
+    "61-80": {
+      "tooltip": "Nevzdal se. To je víc než se zdá.",
+      "notebook": "Nevzdal se. To je víc než se zdá. Základní víra drží — a to stačí."
+    },
+    "41-60": {
+      "tooltip": "Ani víra ani nevíra. Jen další den.",
+      "notebook": "Ani víra ani nevíra. Jen další den. Přežívá. Den za dnem."
+    },
+    "21-40": {
+      "tooltip": "Svět se jeví těžší než bývával. Nebo je?",
+      "notebook": "Svět se jeví těžší než bývával. Nebo je? Případy jsou temnější — nebo se tak jen jeví. Večery nabízejí méně."
+    },
+    "0-20": {
+      "tooltip": "Jsou dny kdy sedí u stolu a neví proč.",
+      "notebook": "Jsou dny kdy sedí u stolu a neví proč. Optimismus zmizel z nabídky. Co zbývá je přežití. Možná to stačí."
+    }
+  },
+  "desk_predmety": {
+    "popelnik": {
+      "nazev": "POPELŇÍK",
+      "tooltip": "Krátká pauza mezi svědky, paragrafy a vlastním svědomím."
     }
   }
 }

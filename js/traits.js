@@ -66,6 +66,26 @@ const Traits = (() => {
   let _herniPopis = { ...VYCHOZI_HERNI };
   let _coToZnamena = { ...VYCHOZI_CO_TO_ZNAMENA };
 
+  const _RANGE_KLIC = /^(\d+)-(\d+)$/;
+
+  function _textyZRozsahuTooltip(def) {
+    const rows = [];
+    if (!def || typeof def !== 'object') return rows;
+    for (const [rk, val] of Object.entries(def)) {
+      if (!val || typeof val !== 'object') continue;
+      const m = _RANGE_KLIC.exec(rk);
+      if (!m) continue;
+      const tooltip = val.tooltip;
+      if (typeof tooltip !== 'string') continue;
+      rows.push({
+        range: [Number(m[1]), Number(m[2])],
+        text: tooltip
+      });
+    }
+    rows.sort((a, b) => a.range[0] - b.range[0]);
+    return rows;
+  }
+
   function inicializuj() {
     const data = DataLoader.ziskej('traits');
     if (data) {
@@ -77,6 +97,9 @@ const Traits = (() => {
             range: d.range,
             text: d.text
           }));
+        } else {
+          const zRozsahu = _textyZRozsahuTooltip(def);
+          if (zRozsahu.length) _texty[nazev] = zRozsahu;
         }
         if (def.gameplay_cz && typeof def.gameplay_cz === 'string') {
           _herniPopis[nazev] = def.gameplay_cz;
@@ -126,6 +149,62 @@ const Traits = (() => {
   }
 
   /**
+   * Texty z data/traits-text.json podle hodnoty 0–100.
+   * @param {string} key integrita | odvaha | moudrost | vina | nadeje (libovolná velikost písmen)
+   * @param {number} value hodnota rysu
+   * @returns {{ tooltip: string, notebook: string }}
+   */
+  function getTraitText(key, value) {
+    const data = DataLoader.ziskej('traits');
+    const traitKey = String(key || '').toLowerCase();
+    const trait = data && data[traitKey];
+    if (!trait || typeof trait !== 'object') {
+      return { tooltip: '', notebook: '' };
+    }
+    const v = Math.max(0, Math.min(100, Number(value)));
+    if (!Number.isFinite(v)) {
+      return { tooltip: '', notebook: '' };
+    }
+    for (const [rk, obj] of Object.entries(trait)) {
+      if (!obj || typeof obj !== 'object') continue;
+      const m = _RANGE_KLIC.exec(rk);
+      if (!m) continue;
+      const a = Number(m[1]);
+      const b = Number(m[2]);
+      if (v < a || v > b) continue;
+      return {
+        tooltip: typeof obj.tooltip === 'string' ? obj.tooltip : '',
+        notebook: typeof obj.notebook === 'string' ? obj.notebook : ''
+      };
+    }
+    return { tooltip: '', notebook: '' };
+  }
+
+  /** Nadpis tooltipu nad stolem — pole `visual` z traits-text.json (např. kalamář → KALAMÁŘ). */
+  function getTraitVisualLabel(traitNazev) {
+    const k = String(traitNazev || '').toLowerCase();
+    const data = DataLoader.ziskej('traits');
+    const t = data && data[k];
+    const vis = t && typeof t.visual === 'string' ? t.visual.trim() : '';
+    if (!vis) return String(traitNazev || '').toUpperCase();
+    return vis.toLocaleUpperCase('cs-CZ');
+  }
+
+  /** Atmosférické předměty na stole bez mapy na rys (zdroj: traits-text.json → desk_predmety). */
+  function getDeskPredmetAtmosfera(predmetKlic) {
+    const data = DataLoader.ziskej('traits');
+    const blok = data && data.desk_predmety;
+    const p = blok && blok[predmetKlic];
+    if (!p || typeof p !== 'object') {
+      return { nazev: '', tooltip: '' };
+    }
+    return {
+      nazev: typeof p.nazev === 'string' ? p.nazev : '',
+      tooltip: typeof p.tooltip === 'string' ? p.tooltip : ''
+    };
+  }
+
+  /**
    * Skrytý násobič růstu Moudrosti z průzkumu / souladu s odhalením (podle vzorce rozhodování ve stavu).
    * Hráč číslo nevidí — jen plynulejší nebo pomalejší posun.
    */
@@ -168,6 +247,9 @@ const Traits = (() => {
     getPopisVse,
     getHerniPopis,
     getCoToZnamena,
+    getTraitText,
+    getTraitVisualLabel,
+    getDeskPredmetAtmosfera,
     aplikovatNasobekMoudrostiZaAkci,
     zkontrolujKrajniHodnoty
   };

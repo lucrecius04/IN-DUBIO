@@ -5,21 +5,427 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IN DUBIO</title>
 
-  <!-- Fonty -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Styly -->
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/desk.css">
   <link rel="stylesheet" href="css/ui.css">
   <link rel="stylesheet" href="css/animations.css">
-</head>
-<body class="bez-vyberu">
+  <style>
+    /* Ilustrovaný stůl (PNG + rekvizity) — ne grid layout z indexu */
+    body.desk-scene-page {
+      margin: 0;
+      overflow: hidden;
+      background: #0a0704;
+    }
 
-<!-- ==========================================
-     ÚVODNÍ OBRAZOVKA
-     ========================================== -->
+    #stul.desk-scene-root {
+      display: block;
+      position: relative;
+      box-sizing: border-box;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      padding-top: 108px;
+      background: url("src/desk.png") center / cover no-repeat;
+    }
+
+    #stul.desk-scene-root::before {
+      display: none;
+    }
+
+    #stul.desk-scene-root::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+      background: radial-gradient(ellipse at center, transparent 38%, rgba(0, 0, 0, 0.56) 100%);
+    }
+
+    /* Horní lišta: jen zatmavení nahoře, dlouhý klidný rozpad do herní plochy (žádný blend režim). */
+    .desk-scene-top {
+      position: fixed;
+      z-index: 12;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 12px 22px 48px;
+      box-sizing: border-box;
+      pointer-events: none;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.97) 0%,
+        rgba(0, 0, 0, 0.88) 22%,
+        rgba(0, 0, 0, 0.52) 52%,
+        rgba(0, 0, 0, 0.2) 78%,
+        rgba(0, 0, 0, 0) 100%
+      );
+    }
+
+    .desk-scene-header-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      width: 100%;
+      max-width: 100%;
+      pointer-events: auto;
+    }
+
+    .desk-scene-header-left {
+      flex: 0 0 auto;
+      min-width: 0;
+    }
+
+    .desk-scene-header-left .logo-hry-nazev--lista {
+      position: static;
+      font-size: clamp(22px, 2.1vw, 30px);
+      letter-spacing: 0.22em;
+      padding: 2px 0;
+    }
+
+    .desk-scene-header-center {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      min-width: 0;
+      text-align: center;
+    }
+
+    #hodiny.desk-scene-clock {
+      font-family: "IBM Plex Mono", Consolas, "Courier New", monospace;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: rgba(248, 236, 210, 0.95);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75);
+    }
+
+    .desk-scene-header-center #kalendar-meta {
+      position: static;
+      transform: none;
+      font: 10px "IBM Plex Mono", Consolas, monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(220, 205, 175, 0.75);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
+      margin: 0;
+    }
+
+    .desk-scene-header-center #kalendar-datum {
+      position: static;
+      transform: none;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 12px;
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(220, 210, 185, 0.72);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
+      margin: 0;
+    }
+
+    .desk-scene-header-right {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .desk-scene-hud {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .desk-scene-assets {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .desk-scene-assets #desk-lamp {
+      position: absolute;
+      left: 0%;
+      top: 10%;
+      width: min(45vw, 600px);
+      filter: drop-shadow(0 0 28px rgba(255, 188, 75, 0.42));
+      pointer-events: auto;
+      cursor: default;
+    }
+
+    .desk-scene-assets #desk-lamp.desk-predmet--hover {
+      cursor: help;
+    }
+
+    .desk-scene-assets #desk-inkwell {
+      position: absolute;
+      left: 2.5%;
+      bottom: 14%;
+      width: min(28vw, 360px);
+      pointer-events: auto;
+      cursor: default;
+      /* Stín dolů, trochu doleva — výraznější než dřív */
+      filter:
+        drop-shadow(1px 8px 3px rgba(0, 0, 0, 0.55))
+        drop-shadow(0px 18px 10px rgba(0, 0, 0, 0.44))
+        drop-shadow(-1px 32px 20px rgba(0, 0, 0, 0.34))
+        drop-shadow(-2px 48px 32px rgba(0, 0, 0, 0.24));
+    }
+
+    .desk-scene-assets #desk-inkwell.desk-predmet--hover {
+      cursor: help;
+    }
+
+    .desk-scene-assets #desk-photo {
+      position: absolute;
+      right: -1.25%;
+      top: 13%;
+      width: min(40vw, 560px);
+      transform: rotate(3deg) translate(1.2vw, -0.8vh);
+      z-index: 4;
+      pointer-events: auto;
+      cursor: default;
+      filter:
+        brightness(0.58)
+        saturate(0.78)
+        contrast(0.88)
+        drop-shadow(0 4px 12px rgba(0, 0, 0, 0.72))
+        drop-shadow(0 18px 42px rgba(0, 0, 0, 0.65))
+        drop-shadow(0 32px 56px rgba(0, 0, 0, 0.45));
+    }
+
+    .desk-scene-assets #desk-photo.desk-predmet--hover {
+      cursor: help;
+    }
+
+    .desk-scene-assets .desk-ashtray-wrap {
+      position: absolute;
+      right: 2%;
+      bottom: 10%;
+      width: min(24vw, 320px);
+      filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.55));
+      pointer-events: none;
+    }
+
+    .desk-scene-assets .desk-ashtray-wrap img {
+      width: 100%;
+      filter: brightness(0.78) saturate(0.88) grayscale(0.08);
+      pointer-events: auto;
+      cursor: default;
+    }
+
+    .desk-scene-assets .desk-ashtray-wrap img.desk-predmet--hover {
+      cursor: help;
+    }
+
+    /* Kouř z popelníku — canvas (js/desk-scene-smoke.js), oblast nad doutníkem */
+    .desk-scene-smoke {
+      position: absolute;
+      left: 50%;
+      bottom: 70%;
+      width: 108px;
+      height: 196px;
+      margin-left: -54px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .desk-scene-smoke-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    #plocha-stred.desk-scene-plocha {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    #plocha-stred.desk-scene-plocha #slozky-wrapper {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    /*
+     * Tři pevné sloty na stole (I. / II. / III.) — UI mění jen typ/barvu složky podle případu;
+     * pozice zůstává stejná pro všechny čtyři herní typy desek.
+     */
+    #stul.desk-scene-root #plocha-stred .slozka {
+      position: absolute;
+      width: auto;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      display: block;
+      pointer-events: auto;
+      cursor: default;
+      transition: transform 0.12s ease-out;
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka:not(.slozka--ceka).slozka--hover {
+      cursor: pointer;
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka::before {
+      display: none !important;
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka .slozka-img {
+      display: block;
+      width: min(20.5vw, 360px);
+      height: auto;
+      opacity: 1;
+      pointer-events: auto;
+      cursor: default;
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.33));
+      transition: filter 0.12s ease-out, opacity 0.12s ease-out;
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka:not(.slozka--ceka).slozka--hover .slozka-img {
+      cursor: pointer;
+    }
+
+    #stul.desk-scene-root #plocha-stred #slozka-1 {
+      left: 18.65%;
+      top: 40.25%;
+      z-index: 5;
+      transform: rotate(-3deg) scale(1.07);
+    }
+    #stul.desk-scene-root #plocha-stred #slozka-2 {
+      left: 39.75%;
+      top: 38.25%;
+      z-index: 6;
+      transform: rotate(1deg) scale(1.07);
+    }
+    #stul.desk-scene-root #plocha-stred #slozka-3 {
+      left: 60.25%;
+      top: 26.25%;
+      z-index: 7;
+      transform: rotate(3deg) scale(1.07);
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka#slozka-1:not(.slozka--ceka).slozka--hover {
+      transform: rotate(-4.5deg) scale(1.1) translateY(-11px);
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka#slozka-2:not(.slozka--ceka).slozka--hover {
+      transform: rotate(2.5deg) scale(1.1) translateY(-11px);
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka#slozka-3:not(.slozka--ceka).slozka--hover {
+      transform: rotate(4.5deg) scale(1.1) translateY(-11px);
+    }
+
+    #stul.desk-scene-root #plocha-stred #slozka-3 .slozka-img {
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.42)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.35));
+    }
+
+    /* Ilustrované složky: bez legacy vrstev z desk.css (::after razítko, text, stín na boxu) */
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--vyresena::after {
+      content: none !important;
+      display: none !important;
+      border: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--aktivni {
+      filter: none !important;
+      box-shadow: none !important;
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--vyresena,
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--ceka {
+      opacity: 1 !important;
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--ceka {
+      cursor: wait;
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--ceka .slozka-img {
+      opacity: 0.46;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.28)) saturate(0.72) brightness(0.92);
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--ceka#slozka-3 .slozka-img {
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.34)) drop-shadow(0 3px 10px rgba(0, 0, 0, 0.26)) saturate(0.72) brightness(0.92);
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--vyresena#slozka-1 .slozka-img,
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--vyresena#slozka-2 .slozka-img {
+      opacity: 0.8;
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.32)) brightness(0.88) saturate(0.88);
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--vyresena#slozka-3 .slozka-img {
+      opacity: 0.82;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3)) brightness(0.88) saturate(0.9);
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--aktivni#slozka-1 .slozka-img,
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--aktivni#slozka-2 .slozka-img {
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.36)) brightness(1.07) saturate(1.05);
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--aktivni#slozka-3 .slozka-img {
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.44)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.34)) brightness(1.06) saturate(1.05);
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka#slozka-1:not(.slozka--ceka).slozka--hover .slozka-img,
+    #stul.desk-scene-root #plocha-stred .slozka#slozka-2:not(.slozka--ceka).slozka--hover .slozka-img {
+      filter: drop-shadow(0 12px 26px rgba(0, 0, 0, 0.48)) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.35)) brightness(1.05) saturate(1.04);
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka#slozka-3:not(.slozka--ceka).slozka--hover .slozka-img {
+      filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.52)) drop-shadow(0 6px 18px rgba(0, 0, 0, 0.4)) brightness(1.04) saturate(1.04);
+    }
+
+    #stul.desk-scene-root #plocha-stred #suplik-wrapper {
+      position: absolute;
+      left: 1%;
+      bottom: 1%;
+      top: auto;
+      right: auto;
+    }
+
+    #plocha-stred #suplik-wrapper,
+    #plocha-stred #btn-dalsi-den {
+      pointer-events: auto;
+    }
+
+    #lampa-wrapper.desk-scene-offscreen,
+    #aktivni-spis.desk-scene-offscreen {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+      padding: 0;
+    }
+
+    #vlcek-dopis {
+      grid-column: unset;
+      grid-row: unset;
+    }
+  </style>
+</head>
+<body class="bez-vyberu desk-scene-page">
+
 <div id="uvod-overlay" style="
   position: fixed; inset: 0; background: #000;
   display: flex; flex-direction: column;
@@ -36,57 +442,71 @@
   <div id="uvod-ulozena-zprava" style="margin-top: 24px; font-size: 11px; color: rgba(240,220,180,0.3); font-family: monospace;"></div>
 </div>
 
-<!-- ==========================================
-     HLAVNÍ STŮL
-     ========================================== -->
-<div id="stul">
+<div id="stul" class="desk-scene-root">
 
-  <!-- HORNÍ LIŠTA -->
-  <div id="lista-horni">
-    <!-- Vlevo: název hry -->
-    <div class="logo-hry-nazev logo-hry-nazev--lista" id="logo-hry-nazev">IN DUBIO</div>
-
-    <!-- Střed: kalendář -->
-    <div id="kalendar">
-      <div id="kalendar-meta" class="kalendar-meta">TÝDEN 1 · DEN 1</div>
-      <div id="kalendar-datum" class="kalendar-datum">neděle, 1. března 1931</div>
-    </div>
-
-    <!-- Vpravo: hodiny + ovládání hudby + menu -->
-    <div style="display: flex; align-items: center; gap: 12px;">
-      <div id="hodiny">07:30</div>
-      <div id="hudba-ovladac">
-        <button id="hudba-toggle" title="Ztlumit hudbu">🔊</button>
-        <input id="hudba-hlasitost" type="range" min="0" max="100" value="40">
+  <div class="desk-scene-top">
+    <div class="desk-scene-header-main">
+      <div class="desk-scene-header-left">
+        <div class="logo-hry-nazev logo-hry-nazev--lista" id="logo-hry-nazev">IN DUBIO</div>
       </div>
-      <button id="btn-menu" class="btn-menu" type="button" aria-label="Menu" title="Menu">
-        <img class="btn-menu-ikonka" src="img/vaha-spravedlnosti-menu.svg" width="32" height="32" alt="" decoding="async">
-      </button>
+      <div class="desk-scene-header-center">
+        <div id="hodiny" class="desk-scene-clock">07:30</div>
+        <div id="kalendar-meta" class="kalendar-meta">TÝDEN 1 · DEN 1</div>
+        <span id="kalendar-datum" class="kalendar-datum">neděle, 1. března 1931</span>
+      </div>
+      <div class="desk-scene-header-right">
+        <button id="btn-menu" class="btn-menu" type="button" aria-label="Menu" title="Menu">
+          <img class="btn-menu-ikonka" src="img/vaha-spravedlnosti-menu.svg" width="32" height="32" alt="" decoding="async">
+        </button>
+        <div id="hudba-ovladac" class="desk-scene-hud">
+          <button id="hudba-toggle" type="button" title="Ztlumit hudbu">🔊</button>
+          <input id="hudba-hlasitost" type="range" min="0" max="100" value="40">
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- LEVÝ PANEL — lampa + rysy -->
-  <div id="lampa-wrapper">
-    <!-- Lampa — světelný kónus -->
+  <div id="desk-noviny-hidden" class="skryto" aria-hidden="true">
+    <div id="noviny-datum" class="noviny-datum">1. BŘEZNA 1931</div>
+    <div id="noviny-text">—</div>
+  </div>
+
+  <div class="desk-scene-assets" aria-hidden="true">
+    <img id="desk-lamp" src="src/lamp.png" alt="">
+    <img id="desk-inkwell" src="src/inkwell.png" alt="">
+    <img id="desk-photo" src="src/photo.png" alt="">
+    <div id="desk-ashtray-wrap" class="desk-ashtray-wrap">
+      <img src="src/ashtray.png" alt="">
+      <div class="desk-scene-smoke" aria-hidden="true">
+        <canvas class="desk-scene-smoke-canvas"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div id="lampa-wrapper" class="desk-scene-offscreen" aria-hidden="true">
     <div id="lampa" class="lampa--stredni" title="">
       <div id="lampa-svetlo"></div>
     </div>
-
-    <!-- Panel charakterových rysů -->
-    <div id="panel-rysy">
-      <!-- Dynamicky plněno desk.js -->
-    </div>
-
+    <div id="panel-rysy"></div>
     <div class="panel-frakce-obal" aria-label="Pověst u frakcí">
       <div class="panel-frakce-nadpis">POVĚST</div>
       <div id="panel-frakce"></div>
     </div>
   </div>
 
-  <!-- STŘEDNÍ PLOCHA -->
-  <div id="plocha-stred">
+  <div id="plocha-stred" class="desk-scene-plocha">
+    <div id="slozky-wrapper">
+      <div class="slozka" id="slozka-1" data-slot="0" aria-label="Složka I">
+        <img class="slozka-img" src="src/folder-gold.png" alt="">
+      </div>
+      <div class="slozka" id="slozka-2" data-slot="1" aria-label="Složka II">
+        <img class="slozka-img" src="src/folder-blue.png" alt="">
+      </div>
+      <div class="slozka" id="slozka-3" data-slot="2" aria-label="Složka III">
+        <img class="slozka-img" src="src/folder-red.png" alt="">
+      </div>
+    </div>
 
-    <!-- Archiv (šuplík) — na stole vpravo nahoře (pozice v desk.css) -->
     <div id="suplik-wrapper">
       <div id="suplik">
         <div id="suplik-indikator"></div>
@@ -94,82 +514,43 @@
       <div id="suplik-popis">ARCHIV</div>
     </div>
 
-    <!-- Složky případů — ležící na stole -->
-    <div id="slozky-wrapper">
-      <div class="slozka" id="slozka-1" data-slot="0">
-        <div class="slozka-cislo">I.</div>
-        <div class="slozka-stav">—</div>
-      </div>
-      <div class="slozka" id="slozka-2" data-slot="1">
-        <div class="slozka-cislo">II.</div>
-        <div class="slozka-stav">—</div>
-      </div>
-      <div class="slozka" id="slozka-3" data-slot="2">
-        <div class="slozka-cislo">III.</div>
-        <div class="slozka-stav">—</div>
-      </div>
-    </div>
-
-    <!-- Aktivní spis -->
-    <div id="aktivni-spis">
-      <div class="razitko-overlay">
-        <div class="razitko-text razitko-text--vinen"></div>
-      </div>
-
-      <div id="spis-hlavicka">
-        <span class="spis-cislo">SP. ZN. —</span>
-        <span class="spis-nazev">Soudní síň č. 4</span>
-        <span class="spis-cislo">1931</span>
-      </div>
-
-      <div id="spis-telo">
-        <div id="stul-prazdny">
-          Stůl je prázdný.<br>
-          <small style="font-size:13px; opacity:0.7;">Otevřete složku s případem.</small>
-        </div>
-      </div>
-    </div>
-
-    <!-- Další den — na stole vpravo dole (pozice v desk.css) -->
     <button id="btn-dalsi-den" class="btn" type="button">Další den →</button>
-
   </div>
 
-  <!-- PRAVÝ PANEL — výstřižek nahoře, finance dole -->
-  <div id="pravy-panel">
-    <div class="pravy-panel-vystrizek-wrap" aria-label="Novinový výstřižek">
-      <div id="noviny-vystrizek">
-        <div id="noviny-datum" class="noviny-datum">1. BŘEZNA 1931</div>
-        <div id="noviny-text">Krize pokračuje. Nezaměstnanost dosáhla rekordních hodnot.</div>
-      </div>
+  <div id="aktivni-spis" class="desk-scene-offscreen" aria-hidden="true">
+    <div class="razitko-overlay">
+      <div class="razitko-text razitko-text--vinen"></div>
     </div>
-    <div id="panel-rysy-pravy" class="skryto" aria-hidden="true"></div>
-    <div class="pravy-panel-finance-wrap" aria-label="Finance">
-      <div class="panel-finance-obal">
-        <div class="panel-finance-nadpis">FINANCE</div>
-        <div id="panel-finance"></div>
+    <div id="spis-hlavicka">
+      <span class="spis-cislo">SP. ZN. —</span>
+      <span class="spis-nazev">Soudní síň č. 4</span>
+      <span class="spis-cislo">1931</span>
+    </div>
+    <div id="spis-telo">
+      <div id="stul-prazdny">
+        Stůl je prázdný.<br>
+        <small style="font-size:13px; opacity:0.7;">Otevřete složku s případem.</small>
       </div>
     </div>
   </div>
 
-  <!-- Vlčkův dopis — absolutní pozice, skrytý dokud nepřijde -->
   <div id="vlcek-dopis" class="skryto zapeceteny">
     <div style="font-family: var(--pismo-typewriter); font-size: 9px; color: var(--barva-text-slaby); margin-bottom: 6px;">MINISTERSTVO SPRAVEDLNOSTI</div>
     <div id="vlcek-dopis-preview" style="font-style: italic; font-size: 11px;">„Věřím že jste muž který rozumí nutnosti kompromisů..."</div>
   </div>
 
-  <!-- Kalamář — skrytý, zachován pro desk.js logiku -->
   <div id="kalamár-wrapper" style="display:none;">
     <div id="kalamár">
       <div id="kalamár-hladina"></div>
     </div>
   </div>
 
+  <div id="pravy-panel" class="skryto" aria-hidden="true">
+    <div id="panel-rysy-pravy"></div>
+  </div>
+
 </div><!-- /stul -->
 
-<!-- ==========================================
-     MODAL — PŘÍPAD
-     ========================================== -->
 <div id="modal-pripad" class="overlay" role="dialog" aria-modal="true">
   <div class="panel-papir pripad-panel panel-papir--nastup">
     <div class="pripad-zahlavi">
@@ -181,58 +562,43 @@
       <button class="pripad-zavrit-x" id="pripad-zavrit-x" title="Zavřít (Esc)">✕</button>
     </div>
 
-    <!-- Záložky -->
     <div class="pripad-tabs" id="pripad-tabs">
       <button class="pripad-tab pripad-tab--aktivni" data-tab="pripad">PŘÍPAD</button>
       <button class="pripad-tab" data-tab="svedectvi">SVĚDECTVÍ</button>
       <button class="pripad-tab" data-tab="rozsudek">ROZSUDEK</button>
     </div>
 
-    <!-- Tab: Případ -->
     <div class="pripad-tab-obsah aktivni" data-tab="pripad">
       <div class="pripad-telo">
         <div class="pripad-situace" id="pripad-situace-text"></div>
       </div>
     </div>
 
-    <!-- Tab: Svědectví -->
     <div class="pripad-tab-obsah" data-tab="svedectvi">
       <div class="pripad-telo">
         <div class="svedectvi-sekce" id="pripad-svedectvi">
           <div class="svedectvi-nadpis">Svědectví</div>
-          <!-- Dynamicky plněno -->
         </div>
-        <div id="pripad-odhalene-info">
-          <!-- Odkryté informace z průzkumu -->
-        </div>
+        <div id="pripad-odhalene-info"></div>
       </div>
-      <!-- Průzkum -->
       <div class="prukzum-panel" id="prukzum-panel">
         <div class="prukzum-nadpis">
           <span>PRŮZKUM</span>
           <span id="prukzum-akce-info" class="prukzum-akce-info">2 akce</span>
         </div>
-        <div class="prukzum-tlacitka" id="prukzum-tlacitka">
-          <!-- Dynamicky plněno -->
-        </div>
+        <div class="prukzum-tlacitka" id="prukzum-tlacitka"></div>
       </div>
     </div>
 
-    <!-- Tab: Rozsudek -->
     <div class="pripad-tab-obsah" data-tab="rozsudek">
       <div class="rozsudky-panel">
         <div class="rozsudky-nadpis">ROZSUDEK</div>
-        <div class="rozsudky-seznam" id="rozsudky-seznam">
-          <!-- Dynamicky plněno -->
-        </div>
+        <div class="rozsudky-seznam" id="rozsudky-seznam"></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ==========================================
-     MODAL — DŮSLEDKY ROZSUDKU
-     ========================================== -->
 <div id="modal-dusledky" class="overlay" role="dialog" aria-modal="true">
   <div class="panel-papir dusledky-panel panel-papir--nastup">
     <div class="dusledky-zahlavi">
@@ -250,22 +616,14 @@
   </div>
 </div>
 
-<!-- ==========================================
-     MODAL — VEČERNÍ VOLBA
-     ========================================== -->
 <div id="modal-vecer" class="overlay" role="dialog" aria-modal="true">
   <div class="panel-papir vecer-panel panel-papir--nastup">
     <div class="vecer-cas">VEČER</div>
     <div class="vecer-text" id="vecer-text">—</div>
-    <div class="vecer-volby" id="vecer-volby">
-      <!-- Dynamicky plněno -->
-    </div>
+    <div class="vecer-volby" id="vecer-volby"></div>
   </div>
 </div>
 
-<!-- ==========================================
-     MODAL — 23. BŘEZNA (operace / Haas)
-     ========================================== -->
 <div id="modal-den23-krize" class="overlay" role="dialog" aria-modal="true">
   <div class="panel-papir vecer-panel panel-papir--nastup">
     <div class="vecer-cas">23. BŘEZNA</div>
@@ -274,9 +632,6 @@
   </div>
 </div>
 
-<!-- ==========================================
-     MODAL — TÝDENNÍ SHRNUTÍ (sobota)
-     ========================================== -->
 <div id="modal-tyden-shrnuti" class="overlay" role="dialog" aria-modal="true">
   <div class="panel-papir tyden-shrnuti-panel panel-papir--nastup">
     <div class="tyden-shrnuti-cas" id="tyden-shrnuti-titulek">Konec pracovního týdne</div>
@@ -286,9 +641,6 @@
   </div>
 </div>
 
-<!-- ==========================================
-     MODAL — NARATIVNÍ FRAGMENT
-     ========================================== -->
 <div id="modal-fragment" class="overlay" role="dialog" aria-modal="true">
   <div class="panel-papir fragment-panel panel-papir--nastup" id="fragment-panel">
     <div class="fragment-nadpis" id="fragment-nadpis">—</div>
@@ -297,9 +649,6 @@
   </div>
 </div>
 
-<!-- ==========================================
-     MODAL — ARCHIV (ŠUPLÍK)
-     ========================================== -->
 <div id="modal-archiv" class="overlay" role="dialog" aria-modal="true">
   <div class="panel-papir archiv-panel panel-papir--nastup">
     <div class="archiv-zahlavi">
@@ -312,13 +661,10 @@
       <div class="archiv-tab" data-tab="finance">FINANCE</div>
       <div class="archiv-tab" data-tab="fragmenty">ZÁZNAMY</div>
     </div>
-    <div class="archiv-obsah" id="archiv-obsah">
-      <!-- Dynamicky plněno -->
-    </div>
+    <div class="archiv-obsah" id="archiv-obsah"></div>
   </div>
 </div>
 
-<!-- Profil postavy (nad šuplíkem) -->
 <div id="modal-postava-profil" class="overlay" role="dialog" aria-modal="true">
   <div class="panel-papir postava-profil-panel panel-papir--nastup">
     <button type="button" class="postava-profil-zavrit" id="postava-profil-zavrit" aria-label="Zavřít">×</button>
@@ -340,7 +686,6 @@
   </div>
 </div>
 
-<!-- Detail setkání (nad profilem postavy) -->
 <div id="modal-postava-historie-detail" class="overlay" role="dialog" aria-modal="true">
   <div class="panel-papir postava-historie-detail-panel panel-papir--nastup">
     <button type="button" class="postava-profil-zavrit postava-historie-detail-zavrit" id="postava-historie-detail-zavrit" aria-label="Zavřít">×</button>
@@ -349,26 +694,15 @@
   </div>
 </div>
 
-<!-- ==========================================
-     KONEC HRY
-     ========================================== -->
 <div id="konec-hry-overlay" class="skryto">
   <div class="konec-titulek" id="konec-titulek">IN DUBIO</div>
   <div class="konec-typ" id="konec-typ">—</div>
-  <div class="konec-epilog" id="konec-epilog">
-    <!-- Dynamicky plněno — jedna věta na postavu -->
-  </div>
+  <div class="konec-epilog" id="konec-epilog"></div>
   <button class="konec-restart" id="konec-restart">Nová hra</button>
 </div>
 
-<!-- ==========================================
-     STAVOVÁ ZPRÁVA
-     ========================================== -->
 <div id="stavova-zprava">—</div>
 
-<!-- ==========================================
-     MENU
-     ========================================== -->
 <div id="modal-menu" class="overlay modal-menu-overlay skryto">
   <div class="menu-panel">
     <div class="menu-nazev">IN DUBIO</div>
@@ -391,9 +725,6 @@
   </div>
 </div>
 
-<!-- ==========================================
-     MODÁL — DETAIL RYSU
-     ========================================== -->
 <div id="modal-rys" class="overlay" role="dialog" aria-modal="true">
   <div class="panel-papir rys-detail-panel panel-papir--nastup">
     <div class="rys-detail-zahlavi">
@@ -414,24 +745,20 @@
   </div>
 </div>
 
-<!-- ==========================================
-     TOOLTIP — RYSY
-     ========================================== -->
 <div id="rys-tooltip" class="rys-tooltip">
   <div class="rys-tooltip-nazev">—</div>
   <div class="rys-tooltip-text">—</div>
 </div>
 
-<!-- ==========================================
-     ZVUKY
-     ========================================== -->
+<div id="desk-predmet-tooltip" class="rys-tooltip">
+  <div class="rys-tooltip-nazev">—</div>
+  <div class="rys-tooltip-text">—</div>
+</div>
+
 <audio id="zvuk-stamp"  src="assets/sounds/stamp.wav"  preload="auto"></audio>
 <audio id="zvuk-paper"  src="assets/sounds/paper.mp3"  preload="auto"></audio>
 <audio id="zvuk-clock"  src="assets/sounds/clock.mp3"  preload="auto"></audio>
 
-<!-- ==========================================
-     SCRIPTY — pořadí závisí na vazbách
-     ========================================== -->
 <script src="js/state.js"></script>
 <script src="js/data-loader.js"></script>
 <script src="js/traits.js"></script>
@@ -443,6 +770,8 @@
 <script src="js/desk.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/music.js"></script>
+<script src="js/desk-scene-smoke.js"></script>
+<script src="js/desk-slozka-pixel-hover.js"></script>
 <script src="js/engine.js"></script>
 
 </body>

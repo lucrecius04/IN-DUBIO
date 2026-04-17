@@ -474,6 +474,143 @@ const Desk = (() => {
     _pripojTooltip(document.getElementById('panel-rysy'));
   }
 
+  /**
+   * Ilustrované předměty na stole — tooltip z data/traits-text.json (getTraitText)
+   * a desk_predmety (viz .cursorrules).
+   */
+  const _DESK_PREDMET_MAPA = [
+    { id: 'desk-lamp', trait: 'Odvaha' },
+    { id: 'desk-inkwell', trait: 'Integrita' },
+    { id: 'desk-photo', trait: 'Vina' },
+    { id: 'desk-ashtray-wrap', atmosfera: 'popelnik' }
+  ];
+
+  function _textTooltipuPredmetuStolu(zaznam) {
+    if (zaznam.trait && typeof Traits !== 'undefined' && Traits.getTraitText) {
+      const h = Number(State.get('traits.' + zaznam.trait));
+      const v = Number.isFinite(h) ? h : 50;
+      const { tooltip } = Traits.getTraitText(zaznam.trait, v);
+      const nazev =
+        typeof Traits.getTraitVisualLabel === 'function'
+          ? Traits.getTraitVisualLabel(zaznam.trait)
+          : zaznam.trait.toUpperCase();
+      return { nazev, text: tooltip || '—' };
+    }
+    if (zaznam.atmosfera && typeof Traits !== 'undefined' && Traits.getDeskPredmetAtmosfera) {
+      const { nazev, tooltip } = Traits.getDeskPredmetAtmosfera(zaznam.atmosfera);
+      return { nazev: nazev || '—', text: tooltip || '—' };
+    }
+    return { nazev: '—', text: '—' };
+  }
+
+  /** Stejný práh jako u složek (js/desk-slozka-pixel-hover.js). */
+  const _PREDMET_ALPHA_MIN = 28;
+
+  function _predmetJeNaNeprůhlednémPixelu(img, canvas, ctx, e) {
+    if (!img.naturalWidth || !canvas.width) return false;
+    const rect = img.getBoundingClientRect();
+    if (rect.width < 1 || rect.height < 1) return false;
+    const rx = (e.clientX - rect.left) / rect.width;
+    const ry = (e.clientY - rect.top) / rect.height;
+    if (rx < 0 || ry < 0 || rx > 1 || ry > 1) return false;
+    const x = Math.min(canvas.width - 1, Math.max(0, Math.floor(rx * canvas.width)));
+    const y = Math.min(canvas.height - 1, Math.max(0, Math.floor(ry * canvas.height)));
+    try {
+      return ctx.getImageData(x, y, 1, 1).data[3] > _PREDMET_ALPHA_MIN;
+    } catch (_err) {
+      return false;
+    }
+  }
+
+  function _predmetImgProZaznam(zaznam) {
+    const el = document.getElementById(zaznam.id);
+    if (!el) return null;
+    if (el.tagName === 'IMG') return el;
+    if (zaznam.id === 'desk-ashtray-wrap') return el.querySelector('img');
+    return null;
+  }
+
+  function _pripojTooltipPredmetuPixel(img, zaznam, tooltip, nazevTooltip, textTooltip) {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    let ready = false;
+
+    function rasterize() {
+      ready = false;
+      if (!img.naturalWidth || !img.naturalHeight) return;
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      try {
+        ctx.drawImage(img, 0, 0);
+        ready = true;
+      } catch (_e) {
+        ready = false;
+      }
+    }
+
+    img.addEventListener('load', rasterize);
+    if (img.complete) rasterize();
+
+    let tooltipTimer = null;
+    let posledniUdalostNaAlfě = null;
+
+    function zrusitTooltip() {
+      clearTimeout(tooltipTimer);
+      tooltipTimer = null;
+      posledniUdalostNaAlfě = null;
+      tooltip.classList.remove('viditelny');
+    }
+
+    img.addEventListener('mousemove', (e) => {
+      const hit = ready && _predmetJeNaNeprůhlednémPixelu(img, canvas, ctx, e);
+      img.classList.toggle('desk-predmet--hover', hit);
+      if (!hit) {
+        zrusitTooltip();
+        return;
+      }
+      posledniUdalostNaAlfě = e;
+      if (tooltip.classList.contains('viditelny')) {
+        _nastavPoziciTooltipu(e, tooltip);
+        return;
+      }
+      if (!tooltipTimer) {
+        tooltipTimer = setTimeout(() => {
+          tooltipTimer = null;
+          if (!img.classList.contains('desk-predmet--hover') || !posledniUdalostNaAlfě) return;
+          const tip = _textTooltipuPredmetuStolu(zaznam);
+          nazevTooltip.textContent = tip.nazev;
+          textTooltip.textContent = tip.text;
+          tooltip.classList.add('viditelny');
+          _nastavPoziciTooltipu(posledniUdalostNaAlfě, tooltip);
+        }, 450);
+      }
+    });
+
+    img.addEventListener('mouseleave', () => {
+      img.classList.remove('desk-predmet--hover');
+      zrusitTooltip();
+    });
+
+    img.addEventListener('dragstart', (e) => {
+      e.preventDefault();
+    });
+  }
+
+  function inicializujTooltipyPredmetuStolu() {
+    const tooltip = document.getElementById('desk-predmet-tooltip');
+    if (!tooltip) return;
+    const nazevTooltip = tooltip.querySelector('.rys-tooltip-nazev');
+    const textTooltip = tooltip.querySelector('.rys-tooltip-text');
+    if (!nazevTooltip || !textTooltip) return;
+
+    for (const zaznam of _DESK_PREDMET_MAPA) {
+      const img = _predmetImgProZaznam(zaznam);
+      if (!img) continue;
+      _pripojTooltipPredmetuPixel(img, zaznam, tooltip, nazevTooltip, textTooltip);
+    }
+  }
+
   const _TYPY_SPIS = ['rutinni', 'moralni', 'politicky', 'osobni'];
 
   function _typPripaduProSpis(pripad) {
@@ -525,7 +662,8 @@ const Desk = (() => {
     zobrazVlcekDopis,
     zobrazSuplikIndikator,
     animujPrichodSpisu,
-    inicializujTooltipyRysu
+    inicializujTooltipyRysu,
+    inicializujTooltipyPredmetuStolu
   };
 
 })();

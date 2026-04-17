@@ -57,7 +57,7 @@ state → data-loader → traits → factions →
 finance → characters → narrative → desk →
 ui → cases → music → engine
 
-index.html           — kostra UI, audio prvky
+index.html           — hlavní vstup hry (ilustrovaný stůl z býv. desk-scene-clean); záloha staré kostry: index-old.html
 css/base.css         — reset, typografie, fonty
 css/desk.css         — layout stolu, fyzické elementy
 css/ui.css           — panely, modály, tlačítka
@@ -527,6 +527,14 @@ Stůl jako metafory:
   Vlčkovy dopisy = stav vztahu s Vlčkem
 
 ---
+
+Texty vlastností — zdroj pravdy: data/traits-text.json
+Každá vlastnost má 5 pásem (0-20, 21-40, 41-60, 61-80, 81-100).
+Každé pásmo má dvě verze:
+  tooltip  — poetická věta, hover nad předmětem na stole
+  notebook — stejná věta + jedna věta o herním dopadu, Benovým hlasem
+Texty se nikde nepíší dvakrát — vždy se čte z traits-text.json.
+getTraitText(key, value) v js/traits.js vrací {tooltip, notebook}.
 
 ## HUDBA
 
