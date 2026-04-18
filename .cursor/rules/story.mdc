@@ -1,0 +1,51 @@
+---
+description: Příběh, postavy a narativní tón IN DUBIO
+globs: STORY.md, data/characters.json, data/fragments.json, data/days.json
+alwaysApply: false
+---
+
+## POSTAVY — jména a klíčové rysy
+
+Benedikt Vraný (Ben) — hráč, soudce, 54 let. Byl idealistou. Temná minulost: odsoudil muže pod tlakem, ten zemřel. "Ben" říká jen Karas. Ostatní: "pane doktore."
+
+Alexandr Vlček — ministr spravedlnosti, 51 let. Narozen Alexander Wolf, Vídeň. Fašistický agent od 1923. Elegantní, nikdy nevyhrožuje přímo. KLÍČ: Den 22 omylem přiloží rodný list do spisu.
+
+Eliška Závadová — novinářka, 38 let, vedoucí buňky Řádu spravedlnosti. Lže snadno ale ne o podstatě. KLÍČ: Ví o Benovi vše od začátku. Nepřiznala to.
+
+Ctibor Karas — kolega soudce, 56 let, Vlčkův informátor. Miluje Bena jako přítele. KLÍČ: Den 25 přijde varovat. Říká Benovi "starý."
+
+Alois Beneš — 71 let, otec muže kterého Ben odsoudil. JEDINÁ postava bez skryté agendy. Mluví málo. Posílá lístek předem. KLÍČ: Den 20 řekne pravdu — syn byl vinen, ale ne z toho za co ho soudili.
+
+Viktor Haas — průmyslník, 58 let. Mluví vždy přes prostředníka. KLÍČ: Den 23 přijde OSOBNĚ s nabídkou 300 Kč.
+
+Martin Vraný — syn, 24 let, studuje práva. Píše dopisy ručně. Neví o otcově chybě.
+
+Růžena Horáčková — advokátka, 41 let. Den 9: svědkyně. Den 19: obžalovaná.
+
+## SKRYTÁ PROPOJENÍ
+Vlček platí Karase | Řád vydírá Haase | Závadová sleduje Vlčka | Haas financuje Vlčka | Beneš = bez agendy
+
+## KLÍČOVÁ ODHALENÍ
+Den 18: Svědek z dne 6 je mrtvý. Závadová: "Stojí za tím Řád. My."
+Den 20: Beneš — Benova vina není v rozsudku. Je v tom PROČ ho vynesl.
+Den 22: Rodný list "Alexander Wolf — narozen Vídeň 1887."
+Den 24: Závadová: "Víme o vás vše. Od začátku."
+
+## TÓN A STYL
+Noir, meziválečné období, morální šedá zóna.
+Dialogy: dobový jazyk, 30. léta, střídmý ale přesný.
+Fragmenty: krátké, atmosferické, žádné zbytečné věty.
+Žádná postava není tím čím se zdá. Žádný "správný" rozsudek.
+
+## OPAKUJÍCÍ SE VLÁKNA
+Božena (slepice): dny 1,5,9,14,18,22,26,29 — absurdní spor → precedent
+Pospíšil (hostinský): dny 3,8,16,27 — den 27 klíčový svědek
+Hranice pozemku: dny 4,11,19,25 — 34 cm půdy, gradující absurdita
+Marková: dny 3,13,21,28 — vždy příliš přesná výpověď, den 28 = obžalovaná
+
+## SEDM KONCŮ
+1. PŘEŽITÍ | 2. KORUPCE | 3. HRDINA | 4. ÚTĚK | 5. SMÍŘENÍ | 6. ATENTÁT (tajný) | 7. ŘÁD
+
+## CO AGENT NESMÍ
+Vymýšlet případy, dialogy, fragmenty, odhalení nebo větvení příběhu.
+Měnit jména nebo charaktery postav.

@@ -321,18 +321,12 @@ const Desk = (() => {
     if (elSkryty) elSkryty.textContent = meta.headline;
     if (elSkrytyDatum) elSkrytyDatum.textContent = String(datumN).toUpperCase();
 
-    const tit = document.getElementById('desk-noviny-stul-titul');
     const dEl = document.getElementById('desk-noviny-stul-datum');
     const hEl = document.getElementById('desk-noviny-stul-headline');
-    if (tit) {
-      const naz = meta.nazev != null && String(meta.nazev).trim() !== '' ? String(meta.nazev).trim() : '—';
-      tit.textContent = naz;
-      tit.classList.toggle('desk-scene-noviny__nazev--skryt', naz === '—');
-    }
     if (dEl) {
       const dRaw = datumN != null && String(datumN).trim() !== '' ? String(datumN).trim() : '';
-      dEl.textContent = dRaw ? dRaw.toLocaleUpperCase('cs-CZ') : '';
-      dEl.classList.toggle('desk-scene-noviny__datum--skryt', !dEl.textContent);
+      dEl.textContent = dRaw;
+      dEl.classList.toggle('desk-scene-noviny__datum--skryt', !dRaw);
     }
     if (hEl) {
       const hl =
@@ -341,6 +335,12 @@ const Desk = (() => {
           : '—';
       hEl.textContent = hl;
       hEl.setAttribute('title', hl);
+    }
+
+    const novinyImg = document.querySelector('#desk-scene-noviny .desk-scene-noviny__grafika');
+    if (novinyImg) {
+      const dd = String(Math.max(1, Math.floor(denCislo))).padStart(2, '0');
+      novinyImg.src = 'src/newspaper/day-' + dd + '.png';
     }
 
     const obalka = document.getElementById('desk-scene-obalka');

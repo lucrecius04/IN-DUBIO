@@ -1,0 +1,58 @@
+---
+description: Základní instrukce projektu IN DUBIO
+alwaysApply: true
+---
+
+# IN DUBIO — noir soudní hra, středoevropský stát 1931
+# Hráč = soudce Benedikt Vraný (Ben)
+
+## ZÁKLADNÍ INSTRUKCE
+- Komentáře a texty vždy česky
+- Nikdy nerozbíjet existující logiku
+- Vždy navrhni co změníš než to změníš
+- Preferuj čisté oddělené soubory
+- Testuj funkčnost po každé změně
+- Malý scope = rychlé opravy = méně tokenů
+
+## AKTUÁLNÍ FÁZE VÝVOJE
+Pracujeme POUZE na dni 1 a dni 2.
+Dny 3-30 ignoruj úplně.
+Až dostanu pokyn "rozšiř na všechny dny" teprve pak pracuj s celým obsahem.
+
+Priorita oprav:
+1. Kliknutí na složku → otevře případ
+2. Záložky PŘÍPAD / SVĚDECTVÍ / ROZSUDEK
+3. Průzkum — 2 akce za den, fungující tlačítka
+4. Rozsudek → razítko VYŘEŠENO na složce
+5. Večerní volba po 3. případu
+6. Tlačítko Další den → přejde na den 2
+7. Menu ☰ funguje
+8. Vlastnosti reagují na rozsudky
+9. Frakce reagují na rozsudky
+
+## ARCHITEKTURA — pořadí načítání skriptů
+state → data-loader → traits → factions →
+finance → characters → narrative → desk →
+ui → cases → music → engine
+
+## SOUBORY
+index.html — hlavní vstup (záloha: index-old.html)
+css/base.css | css/desk.css | css/ui.css | css/animations.css
+js/state.js — jediný herní stav, localStorage
+js/engine.js — denní cyklus, fragmenty, konce
+js/cases.js — případy, průzkum, rozsudky
+js/traits.js — rysy 0-100
+js/factions.js — frakce, prahy, reakce
+js/characters.js — NPC, důvěra 0-3, dialogy
+js/narrative.js — fragmenty, dopisy, sny
+js/finance.js — finance, plat, výdaje
+js/desk.js — vizuální stav stolu
+js/ui.js — DOM interakce, modály, archiv
+js/music.js — hudba, crossfade
+js/data-loader.js — JSON cache
+data/cases-akt1.json | data/cases-akt2.json | data/cases-akt3.json
+data/days.json | data/characters.json | data/fragments.json | data/traits-text.json
+
+## OBSAH NEPÍŠEŠ SÁM
+Případy, dialogy a fragmenty přicházejí z claude.ai.
+Agent pouze implementuje — nevymýšlí příběh.

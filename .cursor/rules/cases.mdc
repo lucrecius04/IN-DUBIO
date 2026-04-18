@@ -1,0 +1,78 @@
+---
+description: Systém případů, průzkumu a denního cyklu IN DUBIO
+globs: js/cases.js, js/engine.js, data/cases-akt1.json, data/cases-akt2.json, data/cases-akt3.json, data/days.json
+alwaysApply: false
+---
+
+## TYPY PŘÍPADŮ
+RUTINNÍ: barva #C4A35A | ikona ⚖️ | efekty: Finance ±, Vlastnosti ±2-5
+MORÁLNÍ DILEMA: barva #2C4A7C | ikona 📜 | efekty: Vlastnosti ±8-15, vždy Vina nebo Naděje
+POLITICKÝ: barva #8B1A1A | ikona 🏛️ | efekty: Integrita/MOC ±10-20
+OSOBNÍ: barva #5C2D6E | ikona 👤 | efekty: Vina ±5-10, Vztahy ±
+
+Opakující se vlákna: recurring: true, thread: "nazev" — barva podle type, ne speciální.
+
+## HARMONOGRAM VLÁKEN
+Božena: dny 1,5,9,14,18,22,26,29 (slot 1)
+Pospíšil: dny 3,8,16,27 (slot 2)
+Hranice: dny 4,11,19,25 (slot 2)
+Marková: dny 3,13,21,28 (slot 2)
+
+## SYSTÉM PRŮZKUMU
+Výchozí: 2 akce za den
+Odvaha ★★★★★: +1 akce (celkem 3)
+Neděle procházka/matka: +1 akce v pondělí
+
+Průzkumné akce:
+- Vyslechnout svědka (základní)
+- Zkontrolovat záznamy (hledá precedent)
+- Kontaktovat informátora (rychlé info)
+- Konfrontovat svědka (agresivní, Odvaha >60)
+
+Odměna průzkum + správný rozsudek → Moudrost +3 tiše + "Případ jsi prostudoval pečlivě."
+
+## TÝDENNÍ CYKLUS
+Pracovní dny: 3 případy/den (slot 1: pevný příběhový nebo vlákno, slot 2-3: náhodný z poolu)
+Neděle (7,14,21,28): žádné případy
+  A) Navštívit matku → Naděje +5, Vina -3, Finance -5, pondělí +1 akce
+  B) Jít do kostela → Vina -2, Naděje +2
+  C) Číst staré spisy → Moudrost +3, Naděje -2, extra detail v prvním případu
+  D) Procházka → Naděje +3, Moudrost +2, pondělí +1 akce
+  E) Nepsat synovi → Vina +3, check na emotivní případ
+
+Sobota — tiché bonusy (6,13,20,27):
+Pečlivý (průzkum 75%+): Moudrost +5, Finance +15 — "Vaše pečlivost si získala tichý respekt."
+Nezávislý (bez úplatku): Integrita +5, LID +8 — "Vaše nezávislost se probírá v kavárnách."
+Odvážný (žádný případ odložen): Odvaha +3, Finance +20 — "Zvládl jste týden bez prodlení."
+Konzistentní (5+ stejným směrem): Tvrdý na zločin MOC +10 | Mírný k chudým LID +10
+Morální odvaha (3+ těžké): Odvaha +5
+
+Narativní věta v sobotu:
+Vše: "Šest dní. Osmnáct spisů. Rozhodoval jsi pečlivě."
+Nic: "Šest dní. Osmnáct spisů. Přežil jsi."
+Jen čistý: "Šest dní. Osmnáct spisů. Čistý štít. Zatím."
+Jen konzistence: "Šest dní. Osmnáct spisů. Víš co chceš. Nebo si to myslíš."
+
+## VÁHOVÁNÍ PŘÍPADŮ
+Den 1-3: rutinni 100%
+Den 4-7: rutinni 70%, moralni 30%
+Den 8-10: rutinni 50%, moralni 35%, politicky 15%
+Den 11-20: rutinni 30%, moralni 35%, politicky 25%, osobni 10%
+Den 21-30: rutinni 15%, moralni 30%, politicky 40%, osobni 15%
+
+Dynamické váhování:
+Integrita >70: více morálních | Integrita <30: více úplatků
+LID <30: více chudých | Odvaha >70: více politických | Vina >70: více podobných staré chybě
+
+## VZTAHY — 3 postavy, hodnoty 0-3
+VLČEK (start 1): roste politickými rozsudky, nízká Integrita
+  Důvěra 3: Integrita -5 každých 5 dní, MOC roste, speciální rozsudky
+  Důvěra 0: MOC -2/den, Odvaha +3, eskalace
+
+ZÁVADOVÁ (start 0): roste spravedlivými rozsudky, Odvaha >60
+  Důvěra 3: Odvaha +5, LID 1.5x, odemkne HRDINA nebo ŘÁD
+  Důvěra 0: Naděje -5, negativní výstřižek každých 7 dní
+
+KARAS (start 2): roste nízká Integrita, Vina >70
+  Důvěra 3: bonus v průzkumu, Integrita -1/den, varuje před Vlčkem
+  Důvěra 0: mlčí

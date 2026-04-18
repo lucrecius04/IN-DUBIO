@@ -1,0 +1,22 @@
+---
+description: Ekonomika IN DUBIO
+globs: js/finance.js, js/engine.js
+alwaysApply: false
+---
+
+## EKONOMIKA
+Výchozí úspory: 150 Kč
+Denní výdaje: -55 Kč (nájem + jídlo + lékař)
+
+Příjmy z rozsudků:
+- Správný s průzkumem: +20 Kč
+- Správný bez průzkumu: +10 Kč
+- Špatný rozsudek: -15 Kč
+- Morální/politický: +10 Kč (vždy)
+- Týdenní plat: +80 Kč každou neděli
+
+Klíčové momenty:
+- Den 8: dopis od doktora — operace 400 Kč, deadline den 23
+- Den 23: Haas přijde osobně — nabídka 300 Kč za jeden rozsudek
+- Finance <50 Kč: Haasova obálka svítí zlatě
+- Finance =0: krizový moment — půjčka nebo úplatek

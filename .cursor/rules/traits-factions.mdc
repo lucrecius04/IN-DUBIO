@@ -1,0 +1,75 @@
+---
+description: Systém vlastností a frakcí IN DUBIO
+globs: js/traits.js, js/factions.js, data/traits-text.json
+alwaysApply: false
+---
+
+## VLASTNOSTI — 5 hodnot 0-100
+Hráč NIKDY nevidí číslo — jen hvězdičky + text.
+MASKA byla zrušena — není v systému.
+
+Hvězdičky: 0-20=★☆☆☆☆ | 21-40=★★☆☆☆ | 41-60=★★★☆☆ | 61-80=★★★★☆ | 81-100=★★★★★
+
+Výchozí: INTEGRITA 70 | ODVAHA 50 | MOUDROST 55 | VINA 60 (neklesne na 0) | NADĚJE 60
+
+## EFEKTY VLASTNOSTÍ
+
+⚖️ INTEGRITA:
+★★★★★: +skrytý rozsudek navíc, svědci mluví otevřeněji, Vlček píše formálněji
+★★★☆☆ (41-60): zmizí Zproštění obžaloby u politických
+★★☆☆☆: svědci: "Říkají o vás věci, pane doktore." + Vlček přátelštěji
+★☆☆☆☆: +možnost Přijmout úplatek v rozsudcích → TRIGGER KORUPCE
+
+🦁 ODVAHA:
+★★★★★: +Veřejné prohlášení, +3. průzkumná akce, Vlček přijde osobně
+★★★★☆: +Konfrontovat svědka (agresivní výslech)
+★★☆☆☆: zmizí Předat případ výše, Závadová jen aktivně
+★☆☆☆☆: jen bezpečné rozsudky, Odložit zvýrazněno → TRIGGER ODVOLÁNÍ
+
+🧠 MOUDROST:
+★★★★★: +skrytá motivace obžalovaného, +kontext politických, výslech=2 info za 1 akci
+★★★★☆: zvýraznění nesrovnalosti, Záznamy odhalí precedent
+★★☆☆☆: průzkum odhalí méně
+★☆☆☆☆: Záznamy nenajdou nic, jen holá fakta
+
+💔 VINA:
+★★★★★: zmizí Maximální trest, výslech lze přerušit, vnitřní hlas, červené varování, nelze průzkum s Benešem
+★★★★☆: podobné případy +1 průzkumná akce
+★★☆☆☆: výslech přesnější, smíření
+★☆☆☆☆: +fragment smíření → TRIGGER SMÍŘENÍ (pokud Beneš důvěra ≥2)
+
+🕯️ NADĚJE:
+★★★★★: +4. kreativní možnost rozsudku, Božena extra možnost, Závadová dřív
+★★☆☆☆: popisy temnější, večerní volby omezenější
+★☆☆☆☆: zmizí nejoptimističtější možnost, "Další den. Jako vždy." → TRIGGER PŘEŽITÍ
+
+## TEXTY VLASTNOSTÍ
+Zdroj pravdy: data/traits-text.json
+getTraitText(key, value) v js/traits.js → {tooltip, notebook}
+5 pásem (0-20, 21-40, 41-60, 61-80, 81-100), každé má tooltip + notebook verzi.
+Texty se nikde nepíší dvakrát.
+
+## FRAKCE — 3 hodnoty 0-100
+CÍRKEV byla zrušena — není v systému.
+Zobrazení: tečky (●○) v levém panelu. Výchozí: 50. Prahy: ≥80 vysoká | ≤20 nízká.
+
+🏛️ MOC (Vlček, stát):
+●●●●●: odvážné rozsudky zmizí, Vlček jako šéf
+●○○○○: +Vzdorovat otevřeně → TRIGGER ATENTÁT (Odvaha >70)
+
+✊ LID (ulice, chudí):
+●●●●●: Informátor levnější (1 akce), svědci ochotní, Závadová důvěra +1
+●○○○○: svědci z nižších vrstev odmítají → TRIGGER ODVOLÁNÍ (Naděje <20)
+
+💰 ZISK (Haas, obchodníci):
+●●●●●: Haas vyšší úplatek, méně možností pro chudé, Integrita -1/den
+●○○○○: více možností pro chudé, Haas přijde agresivně, Finance -20%
+
+## STATISTIKY → KONCE
+KORUPCE: Integrita ★☆☆☆☆ + Karas 3 | NEBO Zisk ●●●●● + Vlček 3
+ODVOLÁNÍ: MOC ●○○○○ + Odvaha ★☆☆☆☆ | NEBO LID ●○○○○ + Naděje ★☆☆☆☆
+ATENTÁT: MOC ●○○○○ + Odvaha ★★★★★ + Vlček 0 + Integrita >60
+HRDINA: Integrita ★★★★★ + Odvaha ★★★★★ + Závadová 3 + Vlček 0
+SMÍŘENÍ: Vina ★☆☆☆☆ + Beneš scéna + Integrita >60
+ÚTĚK: Finance >500 + Závadová ≥2 + Den 25+
+ŘÁD: Závadová 3 + odmítl Vlčka + Den 27 scéna

@@ -1,0 +1,41 @@
+---
+description: Vizuální styl, UI a hudba IN DUBIO
+globs: css/*.css, js/ui.js, js/desk.js, js/music.js, index.html
+alwaysApply: false
+---
+
+## VIZUÁLNÍ STYL
+Barvy:
+- Tmavá hnědá — stůl, pozadí
+- Béžová/krémová — papíry, dokumenty
+- Červená — razítka, napětí, varování
+- Rutinní případ: #C4A35A
+- Morální dilema: #2C4A7C
+- Politický: #8B1A1A
+- Osobní: #5C2D6E
+
+Fonty:
+- Playfair Display — nadpisy
+- EB Garamond — texty a fragmenty
+- IBM Plex Mono — razítka, strojopis
+
+Stůl jako metafory:
+- Kalamář = Integrita
+- Lampa = Naděje
+- Fotografie rodiny = Vina (tmavne)
+- Vlčkovy dopisy = stav vztahu s Vlčkem
+
+## HUDBA
+assets/sounds/music/:
+- In Dubio - Theme.mp3 — menu
+- In Dubio - Ordinary day.mp3 — klidný případ
+- In Dubio - Tension.mp3 — politický, Vlčkův dopis
+- In Dubio - Weight.mp3 — Vina >70, noc
+- In Dubio - Danger.mp3 — dny 21-30
+- In Dubio - Epilog.mp3 — konec hry
+
+Pravidla hudby:
+- Skladba vždy dohraje do konce
+- Crossfade 3 sekundy
+- Výchozí hlasitost 40%
+- Spustí se při první interakci
