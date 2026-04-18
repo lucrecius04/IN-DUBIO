@@ -93,15 +93,6 @@
    ŠUPLÍK — VYSUNUTÍ
    ========================================== */
 
-@keyframes vysunuti {
-  from { transform: translateX(-100%); opacity: 0; }
-  to   { transform: translateX(0); opacity: 1; }
-}
-
-.suplik-obsah--vysunuti {
-  animation: vysunuti 0.35s ease forwards;
-}
-
 /* ==========================================
    PŘECHOD DNE — STMÍVÁNÍ
    ========================================== */
@@ -145,7 +136,7 @@
   50%       { box-shadow: 0 0 12px var(--barva-cervena); opacity: 0.7; }
 }
 
-#suplik-indikator.aktivni {
+#desk-notebook-indikator.aktivni {
   animation: pulsIndikator 2s ease-in-out infinite;
 }
 

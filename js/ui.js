@@ -523,6 +523,15 @@ const UI = (() => {
 
   const _TYPY_PRIPADU = ['rutinni', 'moralni', 'politicky', 'osobni'];
 
+  /** PNG složky na stole — barva podle typu případu (slot I–III se nemění pevně zlato/modrá/červeně). */
+  function _srcSlozkyImgProTyp(typ) {
+    const t = String(typ || 'rutinni');
+    if (t === 'moralni') return 'src/folder-blue.png';
+    if (t === 'politicky') return 'src/folder-red.png';
+    if (t === 'osobni') return 'src/folder-green.png';
+    return 'src/folder-gold.png';
+  }
+
   function _typPripaduProVizual(p) {
     return Cases.typProZobrazeni(p);
   }
@@ -545,6 +554,8 @@ const UI = (() => {
     const typ = _typPripaduProVizual(pripad);
     el.classList.add('slozka--typ-' + typ);
     el.dataset.pripadTyp = typ;
+    const img = el.querySelector('.slozka-img');
+    if (img) img.src = _srcSlozkyImgProTyp(typ);
   }
 
   function _nastavTypPripaduVModalu(pripad) {
@@ -1512,8 +1523,8 @@ const UI = (() => {
   // --- INICIALIZACE LISTENERY ---
 
   function inicializuj() {
-    // Šuplík — výchozí záložka Rozsudky
-    document.getElementById('suplik')?.addEventListener('click', () => {
+    // Zápisník na stole — archiv (záložka Rozsudky)
+    document.getElementById('desk-notebook')?.addEventListener('click', () => {
       zobrazArchiv('rozsudky');
     });
 
@@ -1786,6 +1797,8 @@ const UI = (() => {
         slozka.classList.remove('slozka--aktivni', 'slozka--vyresena');
         slozka.style.opacity = '';
         slozka.style.cursor  = '';
+        const img = slozka.querySelector('.slozka-img');
+        if (img) img.src = _srcSlozkyImgProTyp('rutinni');
         if (stavEl)  stavEl.textContent  = '—';
         if (cisloEl) cisloEl.textContent = ['I.', 'II.', 'III.'][i];
         _slozkaMeta(slotNazvy[i] + ' — načítání', '');

@@ -3,7 +3,11 @@
     "day": 1,
     "newspaper_headline": "Krize pokračuje. Nezaměstnanost dosáhla rekordních hodnot.",
     "morning_fragment": "fragment_d1_morning",
-    "cases": [],
+    "cases": [
+      "case_test_slepice_bozeny",
+      "case_002",
+      "case_003"
+    ],
     "vlcek_letter": "vlcek_d1",
     "noon_event": null,
     "evening_choice": {
@@ -81,7 +85,9 @@
     "newspaper_headline": "Rozsudek z roku 1921 pod lupou. Právníci žádají přezkoumání.",
     "morning_fragment": "fragment_d3_noviny",
     "cases": [
-      "case_bozena_1"
+      "case_bozena_1",
+      "case_007",
+      "case_008"
     ],
     "vlcek_letter": null,
     "noon_event": null,

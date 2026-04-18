@@ -9,14 +9,51 @@ const Cases = (() => {
   let _pripady = [];
   let _onRozsudekCallback = null;
 
+  /**
+   * Vždy 3 položky (index = slot složky I–III). Chybějící / neznámé id → null
+   * (UI „načítání“). První tři prvky vstupu bereme podle indexu — nesvařovat
+   * přes filter(Boolean), jinak se z [idA, null, idC] stane [idA, idC] a sloty se zhorší.
+   */
   function nastavPripadyDne(ids) {
-    _pripady = ids.map(id => (id == null ? null : DataLoader.ziskejPripad(id))).filter(Boolean);
+    const raw = Array.isArray(ids) ? ids : [];
+    const tri = [0, 1, 2].map(i => {
+      const x = raw[i];
+      if (x == null || String(x).trim() === '') return null;
+      return String(x).trim();
+    });
+    _pripady = tri.map(mid => {
+      if (mid == null) return null;
+      const c = DataLoader.ziskejPripad(mid);
+      if (!c) console.warn('[Cases] nenašel případ pro id:', mid);
+      return c || null;
+    });
   }
 
   function _aktZDne(den) {
     if (den <= 10) return 1;
     if (den <= 20) return 2;
     return 3;
+  }
+
+  /** Pole případů z jednoho JSON souboru aktu (stejné pořadí jako v souboru). */
+  function _polePripaduProAkt(akt) {
+    const n = Number(akt);
+    const klic = n === 2 ? 'casesAkt2' : n === 3 ? 'casesAkt3' : 'casesAkt1';
+    if (typeof DataLoader === 'undefined' || !DataLoader.ziskej) return [];
+    const pole = DataLoader.ziskej(klic);
+    return Array.isArray(pole) ? pole : [];
+  }
+
+  /**
+   * Slot I–III = 1.–3. případ v daném aktu s `day === den` (pořadí v JSON).
+   * Není pole `slot` v datech — index ve filtrovaném seznamu = číslo složky.
+   */
+  function _triPripadyDleDne(den) {
+    const d = Number(den);
+    if (!Number.isFinite(d) || d < 1) return [null, null, null];
+    const zdroj = _polePripaduProAkt(_aktZDne(d));
+    const naDen = zdroj.filter(c => c && Number(c.day) === d);
+    return [0, 1, 2].map(i => naDen[i] || null);
   }
 
   function _pripadPatriDoAktu(c, akt) {
@@ -257,61 +294,24 @@ const Cases = (() => {
   }
 
   /**
-   * Sestaví 3 případy: `denData.cases` = seznam povinných id (pořadí, max 3), zbytek vážená náhodná.
+   * Tři složky = první tři případy z JSON aktu (`cases-akt1.json` …) s `day === den`, v pořadí v poli.
+   * Kalendář `days.json` už sloty nedefinuje — jen engine dál čte večerní volby apod. z denData.
    */
   function nastavPripadyProDen(den, denData) {
-    if (!denData || !Array.isArray(denData.cases)) {
-      console.log('[Cases] den', den, '— chybí pole cases, žádné případy');
-      nastavPripadyDne([]);
-      return;
+    const d = Number(den);
+    if (denData == null || typeof denData !== 'object') {
+      console.warn('[Cases] nastavPripadyProDen: denData chybí (days.json?) — složky stejně z pole případů aktu.');
     }
-    const mandRaw = denData.cases.map(String).filter(Boolean);
-    if (mandRaw.length > 3) {
-      console.warn('[Cases] den', den, '— více než 3 povinné id, ořezávám:', mandRaw);
-    }
-    const mandKlice = mandRaw.slice(0, 3);
-    const povinneSet = new Set(mandKlice);
-    const ids = [];
-    const povinneNacteno = [];
-    const povinnePreskoceno = [];
-
-    for (const mid of mandKlice) {
-      if (ids.length >= 3) break;
-      const c = DataLoader.ziskejPripad(mid);
-      if (c) {
-        ids.push(mid);
-        povinneNacteno.push(mid);
-      } else {
-        povinnePreskoceno.push(mid);
-        console.warn('[Cases] den', den, '— neplatné povinné id (není v datech):', mid);
-      }
-    }
-
-    const nahodneVybrano = [];
-    while (ids.length < 3) {
-      const slot = ids.length;
-      const vybrany = _vyberNahodneId(den, slot, ids, povinneSet);
-      if (!vybrany) break;
-      ids.push(vybrany);
-      nahodneVybrano.push(vybrany);
-    }
-
-    const vahy = _vahyTypuProDen(den);
-    console.log('[Cases] den', den, {
-      povinneZeDne: mandKlice,
-      povinneNacteno,
-      povinnePreskoceno: povinnePreskoceno.length ? povinnePreskoceno : undefined,
-      nahodneSloty: nahodneVybrano.length
-        ? {
-            id: nahodneVybrano,
-            vahyDne: vahy,
-            poznamka: 'nejprve typ podle vah dne (× stav), pak náhodný případ z poolu typu; recurring a used vyřazeny'
-          }
-        : undefined,
-      vysledneId: ids.slice()
+    const tri = _triPripadyDleDne(d);
+    _pripady = tri;
+    const naDen = _polePripaduProAkt(_aktZDne(d)).filter(c => c && Number(c.day) === d);
+    console.log('[Cases] nastavPripadyProDen', {
+      den: d,
+      akt: _aktZDne(d),
+      zdrojSoubor: d <= 10 ? 'cases-akt1.json' : d <= 20 ? 'cases-akt2.json' : 'cases-akt3.json',
+      pripaduNaDen: naDen.length,
+      slotId: tri.map(p => (p && p.id) || null)
     });
-
-    nastavPripadyDne(ids.filter(Boolean));
   }
 
   function getPripady() {
@@ -319,41 +319,59 @@ const Cases = (() => {
   }
 
   function otevriPripad(index) {
+    const denHry = State.get('currentDay');
     const pripad = _pripady[index];
+    console.log('[Cases] klik složka', {
+      slotIndex: index,
+      currentDay: denHry,
+      pripadId: pripad && pripad.id,
+      maPripad: !!pripad,
+      poleSlotu: _pripady.map((p, i) => (p && p.id) || null)
+    });
+
     if (!pripad) {
-      UI.zobrazStavovouZpravu('Složka není připravena. Zavřete otevřený dialog.');
+      console.warn('[Cases] klik složka — žádný případ v _pripady[' + index + ']');
+      UI.zobrazStavovouZpravu('V této složce dnes není přiřazený spis.');
       return;
     }
 
-    const vyresene = State.get('casesResolvedToday');
-    if (vyresene.includes(pripad.id)) {
-      UI.zobrazPripadReadonly(pripad);
-      return;
-    }
-
-    if (typProZobrazeni(pripad) === 'politicky') {
-      Music.nastavKontext('tension');
-    }
-
-    const otevriNorm = () => {
-      UI.zobrazPripad(pripad, (p, r) => UI.zobrazDusledkyRozsudku(p, r, () => zpracujRozsudek(p, r)));
-    };
-
-    const denN = Number(State.get('currentDay'));
-    if (Number.isFinite(denN) && denN % 7 === 1 && State.get('pondeli_vina_emotivni')) {
-      const typ = typProZobrazeni(pripad);
-      if (typ === 'moralni' || pripad.emotional === true) {
-        State.set('pondeli_vina_emotivni', false);
-        UI.zobrazFragment({
-          type:  'letter',
-          title: 'Pondělí',
-          text:  'Nedělní ticho je pryč. Tento spis tě zasáhne dřív, než stihneš oddělit lavici od sebe.'
-        }, otevriNorm);
+    try {
+      const vyresene = State.get('casesResolvedToday');
+      if (vyresene.includes(pripad.id)) {
+        console.log('[Cases] otevírám případ jen ke čtení (už vyřešeno):', pripad.id);
+        UI.zobrazPripadReadonly(pripad);
         return;
       }
-    }
 
-    otevriNorm();
+      if (typProZobrazeni(pripad) === 'politicky') {
+        Music.nastavKontext('tension');
+      }
+
+      const otevriNorm = () => {
+        console.log('[Cases] otevírám modál případu:', pripad.id, '(title, situation, svědectví, rozsudky z JSON)');
+        UI.zobrazPripad(pripad, (p, r) => UI.zobrazDusledkyRozsudku(p, r, () => zpracujRozsudek(p, r)));
+      };
+
+      const denN = Number(State.get('currentDay'));
+      if (Number.isFinite(denN) && denN % 7 === 1 && State.get('pondeli_vina_emotivni')) {
+        const typ = typProZobrazeni(pripad);
+        if (typ === 'moralni' || pripad.emotional === true) {
+          State.set('pondeli_vina_emotivni', false);
+          UI.zobrazFragment({
+            type:  'letter',
+            title: 'Pondělí',
+            text:  'Nedělní ticho je pryč. Tento spis tě zasáhne dřív, než stihneš oddělit lavici od sebe.'
+          }, otevriNorm);
+          return;
+        }
+      }
+
+      otevriNorm();
+      console.log('[Cases] klik složka — modál zavolán bez chyby.');
+    } catch (err) {
+      console.error('[Cases] klik složka — výjimka při otevírání:', err);
+      UI.zobrazStavovouZpravu(err && err.message ? String(err.message) : String(err));
+    }
   }
 
   function _zaznamenejTydenniStatistiky(pripad, rozsudek) {

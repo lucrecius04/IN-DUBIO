@@ -167,8 +167,8 @@
     .desk-scene-assets #desk-inkwell {
       position: absolute;
       left: 2.5%;
-      bottom: 14%;
-      width: min(28vw, 360px);
+      bottom: 4%;
+      width: min(23vw, 300px);
       pointer-events: auto;
       cursor: default;
       /* Stín dolů, trochu doleva — výraznější než dřív */
@@ -225,6 +225,112 @@
       cursor: help;
     }
 
+    /* Zápisník — sloupec + popisek; stín od lampy (vlevo nahoře) dolů doprava */
+    .desk-scene-assets .desk-notebook-wrapper {
+      position: absolute;
+      left: -4%;
+      top: 42%;
+      width: 31%;
+      max-width: min(540px, 36vw);
+      z-index: 6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      pointer-events: auto;
+    }
+
+    .desk-scene-assets .desk-notebook {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+      cursor: default;
+      line-height: 0;
+      position: relative;
+      transform: translateX(-2vw) rotate(-5deg);
+      transform-origin: center center;
+      transition: transform var(--prechod-rychly);
+    }
+
+    .desk-scene-assets .desk-notebook.desk-notebook--pixel-hover {
+      cursor: pointer;
+      transform: translateX(-2vw) translateY(-3px) rotate(-5deg);
+    }
+
+    .desk-notebook-indikator {
+      position: absolute;
+      top: 6px;
+      right: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--barva-cervena);
+      opacity: 0;
+      transition: opacity var(--prechod-stredni);
+      box-shadow: 0 0 6px var(--barva-cervena);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .desk-notebook-indikator.aktivni {
+      opacity: 1;
+    }
+
+    .desk-notebook-popis {
+      font-family: var(--pismo-typewriter), monospace;
+      font-size: 9px;
+      color: rgba(240, 220, 180, 0.3);
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      text-align: center;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+    }
+
+    .desk-notebook-inner {
+      display: block;
+      width: 100%;
+      position: relative;
+      transition: filter var(--prechod-rychly);
+      /* Stín dolů a doprava (světlo zleva shora od lampy) — podobně jako kalamář, opačný horizontální směr */
+      filter:
+        drop-shadow(5px 9px 4px rgba(0, 0, 0, 0.52))
+        drop-shadow(11px 20px 11px rgba(0, 0, 0, 0.4))
+        drop-shadow(18px 34px 20px rgba(0, 0, 0, 0.3))
+        drop-shadow(26px 50px 32px rgba(0, 0, 0, 0.2));
+    }
+
+    .desk-scene-assets .desk-notebook.desk-notebook--pixel-hover .desk-notebook-inner {
+      filter:
+        drop-shadow(6px 11px 5px rgba(0, 0, 0, 0.58))
+        drop-shadow(13px 24px 14px rgba(0, 0, 0, 0.46))
+        drop-shadow(22px 40px 24px rgba(0, 0, 0, 0.34))
+        drop-shadow(30px 58px 36px rgba(0, 0, 0, 0.22));
+    }
+
+    .desk-notebook-inner > img {
+      display: block;
+      width: 100%;
+      height: auto;
+      vertical-align: top;
+    }
+
+    .desk-notebook-svg {
+      display: none;
+      width: 100%;
+      height: auto;
+      vertical-align: top;
+    }
+
+    .desk-notebook--fallback .desk-notebook-inner > img {
+      display: none;
+    }
+
+    .desk-notebook--fallback .desk-notebook-svg {
+      display: block;
+    }
+
     /* Kouř z popelníku — canvas (js/desk-scene-smoke.js), oblast nad doutníkem */
     .desk-scene-smoke {
       position: absolute;
@@ -243,6 +349,10 @@
       height: 100%;
     }
 
+    /*
+     * none: průhledné plochy neblokují zápisník / rekvizity pod #plocha-stred (z-index 4).
+     * Klik na složku chytí .slozka / .slozka-img (pointer-events: auto) + handler v capture fázi.
+     */
     #plocha-stred.desk-scene-plocha {
       position: absolute;
       inset: 0;
@@ -311,7 +421,7 @@
     }
     #stul.desk-scene-root #plocha-stred #slozka-3 {
       left: 60.25%;
-      top: 26.25%;
+      top: 38.25%;
       z-index: 7;
       transform: rotate(3deg) scale(1.07);
     }
@@ -352,7 +462,7 @@
     }
 
     #stul.desk-scene-root #plocha-stred .slozka.slozka--ceka {
-      cursor: wait;
+      cursor: not-allowed;
     }
 
     #stul.desk-scene-root #plocha-stred .slozka.slozka--ceka .slozka-img {
@@ -393,15 +503,6 @@
       filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.52)) drop-shadow(0 6px 18px rgba(0, 0, 0, 0.4)) brightness(1.04) saturate(1.04);
     }
 
-    #stul.desk-scene-root #plocha-stred #suplik-wrapper {
-      position: absolute;
-      left: 1%;
-      bottom: 1%;
-      top: auto;
-      right: auto;
-    }
-
-    #plocha-stred #suplik-wrapper,
     #plocha-stred #btn-dalsi-den {
       pointer-events: auto;
     }
@@ -481,6 +582,28 @@
         <canvas class="desk-scene-smoke-canvas"></canvas>
       </div>
     </div>
+    <div id="desk-notebook-wrapper" class="desk-notebook-wrapper">
+      <button type="button" id="desk-notebook" class="desk-notebook" title="Zápisník" aria-label="Zápisník">
+        <div id="desk-notebook-indikator" class="desk-notebook-indikator" aria-hidden="true"></div>
+        <span class="desk-notebook-inner">
+          <img src="src/notebook.png" alt="" decoding="async" onerror="this.closest('.desk-notebook').classList.add('desk-notebook--fallback')">
+          <svg class="desk-notebook-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 72" width="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <defs>
+              <linearGradient id="deskNbGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#14110e"/>
+                <stop offset="0.12" stop-color="#1e1814"/>
+                <stop offset="1" stop-color="#2a221c"/>
+              </linearGradient>
+            </defs>
+            <rect x="2" y="3" width="50" height="66" rx="2" fill="url(#deskNbGrad)" stroke="#0a0806" stroke-width="1"/>
+            <rect x="14" y="4" width="4" height="64" rx="0.5" fill="#0d0a08"/>
+            <rect x="20" y="10" width="28" height="2" fill="#3a3228" opacity="0.5"/>
+            <rect x="20" y="16" width="22" height="2" fill="#3a3228" opacity="0.35"/>
+          </svg>
+        </span>
+      </button>
+      <div id="desk-notebook-popis" class="desk-notebook-popis">ZÁPISNÍK</div>
+    </div>
   </div>
 
   <div id="lampa-wrapper" class="desk-scene-offscreen" aria-hidden="true">
@@ -500,18 +623,11 @@
         <img class="slozka-img" src="src/folder-gold.png" alt="">
       </div>
       <div class="slozka" id="slozka-2" data-slot="1" aria-label="Složka II">
-        <img class="slozka-img" src="src/folder-blue.png" alt="">
+        <img class="slozka-img" src="src/folder-gold.png" alt="">
       </div>
       <div class="slozka" id="slozka-3" data-slot="2" aria-label="Složka III">
-        <img class="slozka-img" src="src/folder-red.png" alt="">
+        <img class="slozka-img" src="src/folder-gold.png" alt="">
       </div>
-    </div>
-
-    <div id="suplik-wrapper">
-      <div id="suplik">
-        <div id="suplik-indikator"></div>
-      </div>
-      <div id="suplik-popis">ARCHIV</div>
     </div>
 
     <button id="btn-dalsi-den" class="btn" type="button">Další den →</button>
@@ -772,6 +888,7 @@
 <script src="js/music.js"></script>
 <script src="js/desk-scene-smoke.js"></script>
 <script src="js/desk-slozka-pixel-hover.js"></script>
+<script src="js/desk-notebook-pixel-hover.js"></script>
 <script src="js/engine.js"></script>
 
 </body>

@@ -18,6 +18,14 @@ const DataLoader = (() => {
     }
   }
 
+  /** Kořen JSON může být pole nebo obal `{ cases: [...] }` (legacy / export). */
+  function _poleZOdpovediPripadu(raw) {
+    if (Array.isArray(raw)) return raw;
+    if (raw && typeof raw === 'object' && Array.isArray(raw.cases)) return raw.cases;
+    if (raw && typeof raw === 'object' && Array.isArray(raw.items)) return raw.items;
+    return [];
+  }
+
   // Definice všech datových souborů
   const SOUBORY = {
     days:       'data/days.json',
@@ -61,19 +69,32 @@ const DataLoader = (() => {
 
     await Promise.all(slibky);
     const casesArrays = await Promise.all(casesSlibky);
-    _cache.cases = casesArrays.flat();
+    _cache.casesAkt1 = _poleZOdpovediPripadu(casesArrays[0]);
+    _cache.casesAkt2 = _poleZOdpovediPripadu(casesArrays[1]);
+    _cache.casesAkt3 = _poleZOdpovediPripadu(casesArrays[2]);
+    _cache.cases = [_cache.casesAkt1, _cache.casesAkt2, _cache.casesAkt3].flat();
     _doplnteTypyPripadu(_cache.cases);
 
-    console.log(`Načteno ${_cache.cases?.length || 0} případů.`);
+    console.log(
+      `Načteno ${_cache.cases?.length || 0} případů (akt1: ${_cache.casesAkt1.length}, akt2: ${_cache.casesAkt2.length}, akt3: ${_cache.casesAkt3.length}).`
+    );
+    console.log('[DataLoader] casesAkt1 po načtení:', DataLoader.ziskej('casesAkt1'));
     return _cache;
   }
 
   function ziskej(klic) {
-    if (!_cache[klic]) {
+    if (!Object.prototype.hasOwnProperty.call(_cache, klic)) {
       console.warn(`Data '${klic}' nejsou v cache. Zavolej nactiVse() nejprve.`);
       return null;
     }
     return _cache[klic];
+  }
+
+  /** Po nactiVse: days + případy musí být neprázdné pole, jinak složky nemají co načíst. */
+  function jeHernaDataOK() {
+    const days = Object.prototype.hasOwnProperty.call(_cache, 'days') ? _cache.days : null;
+    const cases = Object.prototype.hasOwnProperty.call(_cache, 'cases') ? _cache.cases : null;
+    return Array.isArray(days) && days.length > 0 && Array.isArray(cases) && cases.length > 0;
   }
 
   // Pomocné gettery
@@ -81,13 +102,17 @@ const DataLoader = (() => {
   function ziskejPripad(id) {
     const cases = ziskej('cases');
     if (!cases) return null;
-    return cases.find(c => c.id === id) || null;
+    const k = String(id == null ? '' : id).trim();
+    if (!k) return null;
+    return cases.find(c => String(c.id || '').trim() === k) || null;
   }
 
   function ziskejDen(cislo) {
     const days = ziskej('days');
     if (!days) return null;
-    return days.find(d => d.day === cislo) || null;
+    const n = Number(cislo);
+    if (!Number.isFinite(n)) return null;
+    return days.find(d => Number(d.day) === n) || null;
   }
 
   function ziskejPostavu(id) {
@@ -117,6 +142,7 @@ const DataLoader = (() => {
   return {
     nactiVse,
     ziskej,
+    jeHernaDataOK,
     ziskejPripad,
     ziskejDen,
     ziskejPostavu,

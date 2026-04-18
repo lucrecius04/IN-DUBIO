@@ -117,6 +117,25 @@ const Engine = (() => {
     // Načti data
     await DataLoader.nactiVse();
 
+    if (typeof DataLoader.jeHernaDataOK === 'function' && !DataLoader.jeHernaDataOK()) {
+      const msg =
+        'Herní data se nenačetla (days.json / případy). Otevření přes file:// často fetch blokuje.\n\n' +
+        'Spusť stránku přes HTTP z kořene projektu, např.:\n' +
+        '  npx --yes serve .\n' +
+        'nebo:  python -m http.server\n' +
+        'a v prohlížeči otevři zobrazenou URL.';
+      console.error('[Engine]', msg);
+      const el = document.getElementById('stavova-zprava');
+      if (el) {
+        el.textContent = msg;
+        el.classList.add('viditelna');
+        el.style.whiteSpace = 'pre-wrap';
+        el.style.maxWidth = 'min(92vw, 640px)';
+        el.style.fontSize = '11px';
+        el.style.lineHeight = '1.45';
+      }
+    }
+
     // Inicializuj moduly
     Traits.inicializuj();
     Factions.inicializuj();
@@ -138,10 +157,15 @@ const Engine = (() => {
       _dalsiDen();
     });
 
-    // Složky — click handlers
+    // Složky — capture: spolehlivě i při pointer-events none na obalu #slozky-wrapper; prázdný slot = .slozka--ceka
     for (let i = 0; i < 3; i++) {
       const slozka = document.getElementById('slozka-' + (i + 1));
-      slozka?.addEventListener('click', () => Cases.otevriPripad(i));
+      if (!slozka) continue;
+      const onSlozkaClick = () => {
+        if (slozka.classList.contains('slozka--ceka')) return;
+        Cases.otevriPripad(i);
+      };
+      slozka.addEventListener('click', onSlozkaClick, true);
     }
 
     // Spusť aktuální den
@@ -151,7 +175,12 @@ const Engine = (() => {
   // --- DEN ---
 
   async function spustDen() {
-    const den = State.get('currentDay');
+    let den = Number(State.get('currentDay'));
+    if (!Number.isFinite(den) || den < 1) {
+      console.warn('[Engine] currentDay není platné číslo, nastavuji 1:', State.get('currentDay'));
+      State.set('currentDay', 1);
+      den = 1;
+    }
 
     // Konec hry po 30 dnech
     if (den > 30) {
@@ -175,6 +204,12 @@ const Engine = (() => {
     // Načti denní data
     _denData = DataLoader.ziskejDen(den);
 
+    // Případy dne hned po days — před Desk/Narrative, aby výjimka v UI nenechala _pripady prázdné
+    Cases.nastavPripadyProDen(den, _denData);
+    const pripady = Cases.getPripady();
+    UI.aktualizujSlozky(pripady, State.get('casesResolvedToday'));
+    Desk.nastavAktivniSpis(null);
+
     // Aktualizuj vizuál stolu
     State.set('phase', 'morning');
     Desk.aktualizujVse();
@@ -182,12 +217,6 @@ const Engine = (() => {
 
     // Aktualizuj noviny
     if (_denData) Narrative.aktualizujNoviny(_denData);
-
-    // Nastav případy dne PŘED dialogy — složky musí být aktivní hned po zavření overlaye
-    Cases.nastavPripadyProDen(den, _denData);
-    const pripady = Cases.getPripady();
-    UI.aktualizujSlozky(pripady, State.get('casesResolvedToday'));
-    Desk.nastavAktivniSpis(null);
 
     // Ekonomika ráno: buff lékaře, Karas, výplata, varování, dluh > 100, krize 23. března
     Finance.aplikujLekarskyBuffRano();

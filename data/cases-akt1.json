@@ -1,5 +1,94 @@
 [
   {
+    "id": "case_test_slepice_bozeny",
+    "title": "Případ slepice Boženy",
+    "category": "civil",
+    "day": 1,
+    "defendant": {
+      "name": "Božena Slepičová",
+      "age": 52,
+      "background": "Chovatelka (placeholder — test UI)"
+    },
+    "charge": "Rušení veřejného pořádku — údajný únik slepice (TEST)",
+    "situation": "[TEST] Placeholder: soused hlásí, že slepice přešla plot a zaneřádila záhon. Účel záznamu je ověřit, že po kliknutí na zlatou složku (slot I.) se otevře modál případu.",
+    "testimony": [
+      {
+        "source": "A",
+        "label": "Soused Novák (placeholder)",
+        "text": "„Ráno tam byly stopy — peří, hlína. Něco se tam šlohalo.“"
+      },
+      {
+        "source": "B",
+        "label": "Božena Slepičová",
+        "text": "„Kurník je zavřený. Slepice spí — omyl úřadu, pane soudce.“"
+      }
+    ],
+    "hidden_info": [
+      {
+        "id": "hi_test_sb_records",
+        "action": "records",
+        "reveal": "[TEST] V rejstříku není záznam o předchozím úniku drůbeže z této adresy.",
+        "changes_narrative": false
+      },
+      {
+        "id": "hi_test_sb_witness",
+        "action": "witness",
+        "reveal": "[TEST] Svědek z prvního patra tvrdí, že viděl spíše kočku než slepici.",
+        "changes_narrative": false
+      }
+    ],
+    "verdicts": [
+      {
+        "id": "test_sb_uzavrit",
+        "text": "[TEST] Uzavřít — bezvýznamné",
+        "consequence": "[TEST] Placeholder — spis jde do archivu.",
+        "consequences": {
+          "traits": {
+            "Moudrost": 1
+          },
+          "factions": {
+            "Lid": 1
+          },
+          "finance": 0,
+          "flags": []
+        }
+      },
+      {
+        "id": "test_sb_pokuta",
+        "text": "[TEST] Pokuta 1 Kč (symbolická)",
+        "consequence": "[TEST] Placeholder.",
+        "consequences": {
+          "traits": {
+            "Integrita": 1
+          },
+          "factions": {
+            "Moc": 1
+          },
+          "finance": -1,
+          "flags": []
+        }
+      },
+      {
+        "id": "test_sb_odlozit",
+        "text": "[TEST] Odložit na doplnění výslechu",
+        "consequence": "[TEST] Placeholder — případ se vrátí na stůl.",
+        "consequences": {
+          "traits": {
+            "Vina": 1
+          },
+          "factions": {
+            "Kapital": 0
+          },
+          "finance": 0,
+          "flags": []
+        }
+      }
+    ],
+    "narrative_link": null,
+    "type": "rutinni",
+    "correct_verdict": "test_sb_uzavrit"
+  },
+  {
     "id": "case_001",
     "title": "Krádež chleba",
     "category": "moral_dilemma",
@@ -95,7 +184,7 @@
       }
     ],
     "narrative_link": null,
-    "type": "moralni"
+    "type": "rutinni"
   },
   {
     "id": "case_002",

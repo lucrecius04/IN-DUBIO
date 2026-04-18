@@ -573,7 +573,7 @@
 
 .slozka--ceka {
   opacity: 0.45;
-  cursor: wait;
+  cursor: not-allowed;
 }
 
 .slozka--vyresena::after {
@@ -647,27 +647,6 @@
   text-align: center;
 }
 
-/* ==========================================
-   ŠUPLÍK
-   ========================================== */
-
-#suplik-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-
-/* Archiv na stole — vlevo dole (uvnitř #plocha-stred) */
-#plocha-stred #suplik-wrapper {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  top: auto;
-  right: auto;
-  z-index: 8;
-}
-
 /* Další den — vpravo dole na stole */
 #plocha-stred #btn-dalsi-den {
   position: absolute;
@@ -677,70 +656,6 @@
   top: auto;
   z-index: 9;
 }
-
-#suplik {
-  width: 60px;
-  height: 42px;
-  background: linear-gradient(160deg, #2d1a0e 0%, #1a0f08 100%);
-  border: 2px solid #3d2510;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: transform var(--prechod-rychly), box-shadow var(--prechod-rychly);
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.5), inset 0 1px 3px rgba(255,255,255,0.05);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-#suplik:hover {
-  transform: translateY(-2px);
-  box-shadow: 2px 4px 12px rgba(0,0,0,0.6);
-}
-
-/* Madlo šuplíku */
-#suplik::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 24px;
-  height: 6px;
-  background: linear-gradient(180deg, #6a4520 0%, #4a2a10 100%);
-  border: 1px solid #3a1a08;
-  border-radius: 3px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
-}
-
-#suplik-popis {
-  font-family: var(--pismo-typewriter);
-  font-size: 9px;
-  color: rgba(240, 220, 180, 0.3);
-  font-variant: normal;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-  text-align: center;
-}
-
-/* Indikátor obsahu šuplíku */
-#suplik-indikator {
-  position: absolute;
-  top: 5px;
-  right: 8px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--barva-cervena);
-  opacity: 0;
-  transition: opacity var(--prechod-stredni);
-  box-shadow: 0 0 6px var(--barva-cervena);
-}
-
-#suplik-indikator.aktivni {
-  opacity: 1;
-}
-
 
 /* ==========================================
    HODINY

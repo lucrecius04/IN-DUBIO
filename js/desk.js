@@ -345,10 +345,11 @@ const Desk = (() => {
 
 
   function zobrazSuplikIndikator(show) {
-    const el = document.getElementById('suplik-indikator');
-    if (!el) return;
-    if (show) el.classList.add('aktivni');
-    else      el.classList.remove('aktivni');
+    const nb = document.getElementById('desk-notebook-indikator');
+    if (nb) {
+      if (show) nb.classList.add('aktivni');
+      else nb.classList.remove('aktivni');
+    }
   }
 
   function animujPrichodSpisu() {
