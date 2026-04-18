@@ -8,6 +8,24 @@
   z-index: 200;
 }
 
+/* Papírový dokument — případ + šuplík (sdílený rám, šum, bez vnitřního ::before z .panel-papir) */
+#modal-pripad > .panel-papir,
+#modal-archiv > .panel-papir {
+  --modal-dokument-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)' opacity='0.055'/%3E%3C/svg%3E");
+  background-color: #f0e8d0;
+  background-image: var(--modal-dokument-noise);
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  border: 1px solid rgba(100, 60, 20, 0.3);
+  border-radius: 2px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+#modal-pripad > .panel-papir::before,
+#modal-archiv > .panel-papir::before {
+  display: none;
+}
+
 #modal-dusledky {
   z-index: 220;
   background: rgba(15, 10, 5, 0.92);
@@ -289,6 +307,7 @@
 }
 
 .pripad-panel {
+  position: relative;
   min-width: min(740px, 94vw);
   width: min(740px, 94vw);
   height: min(560px, 68vh);
@@ -301,13 +320,114 @@
   text-rendering: optimizeLegibility;
 }
 
-/* Záhlaví případu */
+/* Meta řádek nad situací — spisová značka + datum */
+.pripad-spis-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-family: var(--pismo-typewriter);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: rgba(120, 95, 60, 0.72);
+}
+
+.pripad-spis-zn {
+  flex-shrink: 0;
+}
+
+.pripad-spis-datum {
+  flex-shrink: 0;
+  text-align: right;
+}
+
+/* Záložka PŘÍPAD: tělo scrolluje, průzkum dole */
+.pripad-tab-obsah[data-tab="pripad"] {
+  flex-direction: column;
+}
+
+.pripad-tab-obsah[data-tab="pripad"] .pripad-telo {
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+.pripad-tab-obsah[data-tab="pripad"] .prukzum-panel {
+  flex-shrink: 0;
+}
+
+/* Shrnutí nad rozsudky */
+.rozsudky-shrnuti {
+  margin-bottom: 10px;
+}
+
+.rozsudky-shrnuti-radek {
+  margin: 0 0 6px;
+  font-family: var(--pismo-telo);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.55;
+  color: rgba(45, 28, 14, 0.78);
+}
+
+.rozsudky-shrnuti-radek:last-child {
+  margin-bottom: 0;
+}
+
+.rozsudky-shrnuti-oddel {
+  border: none;
+  height: 1px;
+  margin: 0 0 12px;
+  background: linear-gradient(90deg, transparent, rgba(100, 60, 20, 0.28), transparent);
+}
+
+/* Předehra — consequence před modalem důsledků */
+.pripad-consequence-prelude {
+  position: absolute;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 24px;
+  box-sizing: border-box;
+  background: rgba(8, 5, 3, 0.94);
+  cursor: pointer;
+}
+
+.pripad-consequence-prelude-inner {
+  max-width: 520px;
+  width: 100%;
+  pointer-events: none;
+  text-align: center;
+}
+
+.pripad-consequence-prelude-text {
+  margin: 0;
+  font-family: var(--pismo-narativ);
+  font-size: clamp(20px, 3.2vw, 28px);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.45;
+  color: rgba(238, 225, 198, 0.96);
+}
+
+.pripad-consequence-prelude-hint {
+  margin: 22px 0 0;
+  font-family: var(--pismo-typewriter);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(200, 175, 130, 0.42);
+}
+
+/* Záhlaví případu — tmavý pruh, zlatý titulek (Playfair přes --pismo-serif) */
 .pripad-zahlavi {
   position: relative;
   flex-shrink: 0;
-  background: var(--barva-papir-stary);
-  border-bottom: 2px solid var(--barva-papir-tmava);
-  padding: 16px 24px;
+  background: #2a1a0a;
+  border-bottom: 1px solid rgba(100, 60, 20, 0.45);
+  padding: 16px 52px 16px 24px;
   display: flex;
   align-items: flex-start;
   gap: 16px;
@@ -345,32 +465,19 @@
   color: #fff;
 }
 
-.pripad-zahlavi.pripad-typ--rutinni {
-  border-left: 4px solid #C4A35A;
-}
-.pripad-zahlavi.pripad-typ--moralni {
-  border-left: 4px solid #2C4A7C;
-}
-.pripad-zahlavi.pripad-typ--politicky {
-  border-left: 4px solid #8B1A1A;
-}
-.pripad-zahlavi.pripad-typ--osobni {
-  border-left: 4px solid #5C2D6E;
-}
-
 .pripad-nazev {
   font-family: var(--pismo-serif);
   font-size: 22px;
   font-weight: 400;
   font-style: normal;
-  color: var(--barva-text);
+  color: rgba(200, 165, 90, 0.9);
   line-height: 1.2;
 }
 
 .pripad-obvineni {
   font-family: var(--pismo-typewriter);
   font-size: 11px;
-  color: var(--barva-text-slaby);
+  color: rgba(200, 165, 90, 0.45);
   margin-top: 4px;
 }
 
@@ -378,8 +485,8 @@
 /* Záložky */
 .pripad-tabs {
   display: flex;
-  border-bottom: 1px solid rgba(240, 220, 180, 0.12);
-  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(100, 60, 20, 0.2);
+  background: transparent;
   flex-shrink: 0;
 }
 
@@ -387,10 +494,11 @@
   background: transparent;
   border: none;
   border-bottom: 2px solid transparent;
-  color: var(--barva-text-slaby);
+  color: rgba(90, 62, 40, 0.65);
   font-family: var(--pismo-typewriter);
   font-size: 10px;
-  letter-spacing: 2px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   padding: 10px 20px;
   cursor: pointer;
   transition: color 0.2s, border-color 0.2s;
@@ -398,12 +506,12 @@
 }
 
 .pripad-tab:hover {
-  color: var(--barva-papir-stary);
+  color: rgba(60, 40, 22, 0.88);
 }
 
 .pripad-tab--aktivni {
-  color: var(--barva-papir-stary);
-  border-bottom-color: var(--barva-zlata);
+  color: rgba(60, 40, 22, 0.92);
+  border-bottom-color: rgba(200, 165, 90, 0.9);
 }
 
 /* Obsah záložek — výšku určí panel; scroll uvnitř těla / rozsudků (ne celý modal) */
@@ -440,12 +548,12 @@
 /* Situace */
 .pripad-situace {
   font-family: var(--pismo-narativ);
-  font-size: 15px;
-  line-height: 1.75;
-  color: var(--barva-text);
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(30, 15, 5, 0.85);
   margin-bottom: 20px;
   padding-bottom: 16px;
-  border-bottom: 1px solid var(--barva-papir-tmava);
+  border-bottom: 1px solid rgba(100, 60, 20, 0.22);
 }
 
 /* Svědectví */
@@ -469,8 +577,8 @@
   gap: 12px;
   margin-bottom: 12px;
   padding: 10px 12px;
-  background: var(--barva-papir-stary);
-  border-left: 3px solid var(--barva-papir-tmava);
+  background: rgba(240, 232, 208, 0.45);
+  border-left: 3px solid rgba(100, 60, 20, 0.35);
 }
 
 .svedek-label {
@@ -483,9 +591,9 @@
 
 .svedek-text {
   font-family: var(--pismo-narativ);
-  font-size: 14px;
-  line-height: 1.65;
-  color: var(--barva-text);
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(30, 15, 5, 0.85);
 }
 
 /* Odkryté informace */
@@ -526,9 +634,9 @@
 
 .prukzum-panel {
   flex-shrink: 0;
-  border-top: 1px solid var(--barva-papir-tmava);
+  border-top: 1px solid rgba(100, 60, 20, 0.2);
   padding: 14px 24px;
-  background: var(--barva-papir-stary);
+  background: rgba(240, 232, 208, 0.35);
 }
 
 .prukzum-nadpis {
@@ -587,17 +695,18 @@
    ========================================== */
 
 .rozsudky-panel {
-  border-top: 2px solid var(--barva-papir-tmava);
+  border-top: 1px solid rgba(100, 60, 20, 0.22);
   padding: 16px 24px;
-  background: var(--barva-papir);
+  background: transparent;
 }
 
 .rozsudky-nadpis {
   font-family: var(--pismo-typewriter);
   font-size: 10px;
-  letter-spacing: 2px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   font-variant: normal;
-  color: var(--barva-text-slaby);
+  color: rgba(90, 62, 40, 0.65);
   margin-bottom: 12px;
 }
 
@@ -612,9 +721,10 @@
   width: 100%;
   text-align: left;
   padding: 10px 14px;
-  border-radius: 3px;
+  border-radius: 2px;
   font-family: var(--pismo-telo);
   font-size: 14px;
+  font-style: italic;
   box-sizing: border-box;
 }
 
@@ -625,12 +735,12 @@
 }
 
 .rozsudek-karta--vyreseno {
-  border: 2px solid #c4a35a;
+  border: 2px solid rgba(200, 165, 90, 0.75);
   box-shadow:
-    0 0 0 1px rgba(196, 163, 90, 0.2),
-    0 4px 16px rgba(0, 0, 0, 0.12);
-  background: linear-gradient(135deg, rgba(196, 163, 90, 0.12) 0%, var(--barva-papir-stary) 48%);
-  color: var(--barva-text);
+    0 0 0 1px rgba(200, 165, 90, 0.22),
+    0 4px 18px rgba(0, 0, 0, 0.12);
+  background: linear-gradient(135deg, rgba(200, 165, 90, 0.14) 0%, rgba(240, 232, 208, 0.55) 55%);
+  color: rgba(30, 15, 5, 0.9);
 }
 
 .rozsudek-karta--vyreseno .rozsudek-consequence {
@@ -661,12 +771,12 @@
 }
 
 .rozsudek-karta--nezvoleno {
-  border: 1px solid rgba(0, 0, 0, 0.14);
-  background: rgba(0, 0, 0, 0.03);
-  opacity: 0.68;
-  filter: grayscale(0.45);
+  border: 1px solid rgba(100, 60, 20, 0.2);
+  background: rgba(240, 232, 208, 0.25);
+  opacity: 0.72;
+  filter: grayscale(0.35);
   pointer-events: none;
-  color: var(--barva-text-slaby);
+  color: rgba(90, 62, 40, 0.65);
 }
 
 .rozsudek-karta--nezvoleno .rozsudek-nazev {
@@ -741,13 +851,18 @@
   width: 100%;
   text-align: left;
   padding: 10px 16px;
-  background: var(--barva-papir-stary);
-  border: 1px solid var(--barva-papir-tmava);
-  color: var(--barva-text);
+  background: rgba(240, 232, 208, 0.5);
+  border: 1px solid rgba(100, 60, 20, 0.3);
+  border-radius: 2px;
+  color: rgba(30, 15, 5, 0.88);
   font-family: var(--pismo-telo);
   font-size: 14px;
+  font-style: italic;
   cursor: pointer;
-  transition: all var(--prechod-rychly);
+  transition:
+    border-color var(--prechod-rychly),
+    box-shadow var(--prechod-rychly),
+    background var(--prechod-rychly);
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -762,8 +877,9 @@
 }
 
 .rozsudek-nazev {
-  font-weight: 700;
+  font-weight: 600;
   flex: 1;
+  font-style: italic;
 }
 
 .rozsudek-consequence {
@@ -831,21 +947,24 @@
 }
 
 .btn-rozsudek:hover {
-  background: var(--barva-papir);
-  border-color: var(--barva-text-slaby);
-  padding-left: 22px;
+  background: rgba(248, 240, 220, 0.65);
+  border-color: rgba(200, 165, 90, 0.85);
+  box-shadow: 0 0 0 1px rgba(200, 165, 90, 0.35);
+  padding-left: 16px;
 }
 
 .btn-rozsudek--vinen:hover {
-  background: rgba(139, 26, 26, 0.08);
-  border-color: var(--barva-cervena);
-  color: var(--barva-cervena);
+  background: rgba(248, 240, 220, 0.65);
+  border-color: rgba(200, 165, 90, 0.85);
+  box-shadow: 0 0 0 1px rgba(200, 165, 90, 0.35);
+  color: rgba(30, 15, 5, 0.88);
 }
 
 .btn-rozsudek--zprosit:hover {
-  background: rgba(26, 58, 26, 0.08);
-  border-color: var(--barva-zelena);
-  color: var(--barva-zelena);
+  background: rgba(248, 240, 220, 0.65);
+  border-color: rgba(200, 165, 90, 0.85);
+  box-shadow: 0 0 0 1px rgba(200, 165, 90, 0.35);
+  color: rgba(30, 15, 5, 0.88);
 }
 
 /* ==========================================
@@ -1060,23 +1179,29 @@
 }
 
 .archiv-zahlavi {
-  background: var(--barva-papir-stary);
-  padding: 16px 24px;
-  border-bottom: 2px solid var(--barva-papir-tmava);
+  position: relative;
+  flex-shrink: 0;
+  background: #2a1a0a;
+  padding: 16px 52px 16px 24px;
+  border-bottom: 1px solid rgba(100, 60, 20, 0.45);
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .archiv-zahlavi h2 {
   font-family: var(--pismo-serif);
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 600;
+  color: rgba(200, 165, 90, 0.9);
+  margin: 0;
 }
 
 .archiv-tabs {
   display: flex;
-  border-bottom: 1px solid var(--barva-papir-tmava);
-  background: var(--barva-papir-stary);
+  border-bottom: 1px solid rgba(100, 60, 20, 0.2);
+  background: transparent;
+  flex-shrink: 0;
 }
 
 .archiv-tab {
@@ -1085,18 +1210,22 @@
   padding: 10px 8px;
   font-family: var(--pismo-typewriter);
   font-size: 9px;
-  letter-spacing: 1px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   font-variant: normal;
-  color: var(--barva-text-slaby);
+  color: rgba(90, 62, 40, 0.65);
   cursor: pointer;
   border-bottom: 2px solid transparent;
-  transition: all var(--prechod-rychly);
+  transition: color var(--prechod-rychly), border-color var(--prechod-rychly);
 }
 
-.archiv-tab:hover,
+.archiv-tab:hover {
+  color: rgba(60, 40, 22, 0.88);
+}
+
 .archiv-tab--aktivni {
-  color: var(--barva-text);
-  border-bottom-color: var(--barva-text);
+  color: rgba(60, 40, 22, 0.92);
+  border-bottom-color: rgba(200, 165, 90, 0.9);
 }
 
 .archiv-obsah {
@@ -1106,15 +1235,24 @@
   overflow-x: hidden;
   overflow-y: auto;
   scrollbar-gutter: stable;
+  font-family: var(--pismo-telo);
+  color: rgba(30, 15, 5, 0.88);
 }
 
 .archiv-rozsudek-item {
   display: flex;
   gap: 12px;
-  padding: 8px 0;
-  border-bottom: 1px dotted var(--barva-papir-tmava);
-  font-size: 13px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(100, 60, 20, 0.25);
+  border-radius: 2px;
+  background: rgba(240, 232, 208, 0.35);
+  font-size: 14px;
   cursor: pointer;
+  transition:
+    border-color var(--prechod-rychly),
+    box-shadow var(--prechod-rychly),
+    background var(--prechod-rychly);
 }
 
 .archiv-rozsudek-den {
@@ -1127,7 +1265,8 @@
 .archiv-rozsudek-nazev {
   flex: 1;
   font-family: var(--pismo-telo);
-  color: var(--barva-text);
+  font-style: italic;
+  color: rgba(30, 15, 5, 0.88);
 }
 
 .archiv-rozsudek-verdict {
@@ -1138,7 +1277,9 @@
 }
 
 .archiv-rozsudek-item:hover {
-  opacity: 0.92;
+  background: rgba(248, 240, 220, 0.55);
+  border-color: rgba(200, 165, 90, 0.75);
+  box-shadow: 0 0 0 1px rgba(200, 165, 90, 0.25);
 }
 
 /* ==========================================
@@ -1685,70 +1826,70 @@
   right: 16px;
   background: none;
   border: none;
-  font-size: 18px;
-  color: var(--barva-text-slaby);
+  font-size: 20px;
+  color: rgba(200, 165, 90, 0.9);
   cursor: pointer;
   line-height: 1;
   padding: 4px 6px;
   transition: color var(--prechod-rychly);
-  font-family: sans-serif;
+  font-family: var(--pismo-serif);
 }
 
 .pripad-zavrit-x:hover {
-  color: var(--barva-cervena);
+  color: rgba(220, 190, 120, 0.98);
 }
 
-/* Záhlaví vyřešeného případu — výchozí (rutinní / neutrální razítko) */
+/* Záhlaví vyřešeného případu — stejný tmavý pruh, razítko čitelné na pozadí */
 .zahlavi--vyreseno {
-  border-bottom-color: #C4A35A;
-  background: rgba(196, 163, 90, 0.06);
+  border-bottom-color: rgba(200, 165, 90, 0.45);
+  background: #2a1a0a;
 }
 
 .zahlavi--vyreseno::after {
   content: 'VYRESENO';
   position: absolute;
   top: 50%;
-  right: 60px;
+  right: 56px;
   transform: translateY(-50%) rotate(-8deg);
-  font-family: 'Courier New', monospace;
-  font-size: 18px;
+  font-family: var(--pismo-typewriter);
+  font-size: 11px;
   font-weight: bold;
-  letter-spacing: 3px;
-  color: #2a2108;
-  border: 2px solid #C4A35A;
-  background: rgba(196, 163, 90, 0.35);
-  padding: 4px 10px;
-  opacity: 0.85;
+  letter-spacing: 0.2em;
+  color: rgba(42, 33, 8, 0.95);
+  border: 2px solid rgba(200, 165, 90, 0.75);
+  background: linear-gradient(180deg, rgba(255, 248, 220, 0.92) 0%, rgba(196, 163, 90, 0.42) 100%);
+  padding: 5px 10px;
+  opacity: 0.92;
   pointer-events: none;
   font-variant: normal;
 }
 
 .zahlavi--vyreseno.pripad-typ--moralni {
-  border-bottom-color: #2C4A7C;
-  background: rgba(44, 74, 124, 0.08);
+  border-bottom-color: rgba(90, 130, 180, 0.55);
+  background: #2a1a0a;
 }
 .zahlavi--vyreseno.pripad-typ--moralni::after {
-  color: #fff;
+  color: #f2f4f8;
   border-color: #2C4A7C;
   background: #2C4A7C;
 }
 
 .zahlavi--vyreseno.pripad-typ--politicky {
-  border-bottom-color: #8B1A1A;
-  background: rgba(139, 26, 26, 0.08);
+  border-bottom-color: rgba(180, 80, 80, 0.55);
+  background: #2a1a0a;
 }
 .zahlavi--vyreseno.pripad-typ--politicky::after {
-  color: #fff;
+  color: #fdf0f0;
   border-color: #8B1A1A;
   background: #8B1A1A;
 }
 
 .zahlavi--vyreseno.pripad-typ--osobni {
-  border-bottom-color: #5C2D6E;
-  background: rgba(92, 45, 110, 0.08);
+  border-bottom-color: rgba(140, 100, 160, 0.55);
+  background: #2a1a0a;
 }
 .zahlavi--vyreseno.pripad-typ--osobni::after {
-  color: #fff;
+  color: #f5eef8;
   border-color: #5C2D6E;
   background: #5C2D6E;
 }

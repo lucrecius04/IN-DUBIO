@@ -151,6 +151,7 @@ const Engine = (() => {
     UI.inicializuj();
     Desk.inicializujTooltipyRysu();
     Desk.inicializujTooltipyPredmetuStolu();
+    if (Desk.inicializujNovinyAObaalkaStolu) Desk.inicializujNovinyAObaalkaStolu();
 
     // Tlačítko Další den
     document.getElementById('btn-dalsi-den')?.addEventListener('click', () => {
@@ -464,6 +465,9 @@ const Engine = (() => {
     UI.zobrazFragment(obsah, () => {
       Desk.zobrazVlcekDopis(false);
       Desk.zobrazSuplikIndikator(false);
+      if (typeof Desk.skryjObalkuStoluPoPreceniVlcka === 'function') {
+        Desk.skryjObalkuStoluPoPreceniVlcka();
+      }
     });
 
     // Zmačkání dopisu (dříve −Maska) — tíha viny

@@ -661,14 +661,16 @@ const Cases = (() => {
     if (_onRozsudekCallback) _onRozsudekCallback(pripad, rozsudek);
   }
 
-  function zpracujRozsudek(pripad, rozsudek) {
+  function zpracujRozsudek(pripad, rozsudek, opts) {
     if (!pripad || !rozsudek) return;
 
     const den = State.get('currentDay');
 
-    // Použij razítko
+    // Použij razítko (lze přeskočit, pokud už proběhlo před modalem důsledků)
     const typRazitka = _rozsudekNaTypRazitka(rozsudek.id);
-    Desk.animujRazitko(typRazitka);
+    if (!opts || !opts.preskocRazitko) {
+      Desk.animujRazitko(typRazitka);
+    }
 
     const { merged, typNarativ } = pripravSlouceneDusledky(pripad, rozsudek);
 
@@ -911,6 +913,10 @@ const Cases = (() => {
     State.set('rozhodovaci_styl', rs);
   }
 
+  function typRazitkaProVerdikt(id) {
+    return _rozsudekNaTypRazitka(id);
+  }
+
   function _rozsudekNaTypRazitka(id) {
     if (id.includes('prison') || id === 'maximum' || id === 'guilty') return 'vinen';
     if (id === 'acquit' || id === 'zprostit')                         return 'zprostit';
@@ -992,6 +998,7 @@ const Cases = (() => {
     getPripady,
     otevriPripad,
     zpracujRozsudek,
+    typRazitkaProVerdikt,
     zpracujPrijetiUplatekPoModalu,
     posoudPruzkumProVerdikt,
     pripravSlouceneDusledky,

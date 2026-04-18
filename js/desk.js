@@ -74,6 +74,13 @@ const Desk = (() => {
     _aktualizujHodiny(stav.phase);
     _aktualizujRysy(stav.traits);
     _aktualizujStulVase(stav.currentDay);
+    let denProNoviny = Number(State.get('currentDay'));
+    if (!Number.isFinite(denProNoviny) || denProNoviny < 1) denProNoviny = 1;
+    let dd = null;
+    if (typeof DataLoader !== 'undefined' && DataLoader.ziskejDen) {
+      dd = DataLoader.ziskejDen(denProNoviny);
+    }
+    nastavNovinyDen(dd, _formatujDatumStolu(denProNoviny));
     aktualizujPanelRysu();
     aktualizujPanelFrakci();
     aktualizujPanelFinance();
@@ -232,12 +239,14 @@ const Desk = (() => {
     const rok = datum.getFullYear();
     elDatum.textContent = jmenoDne + ', ' + denMes + '. ' + mesGen + ' ' + rok;
 
-    // Politické dny (předdefinované)
+    // Politické dny (předdefinované) — #kalendar nemusí být na ilustrovaném stole (index.html)
     const POLITICKE_DNY = [6, 14, 17, 20, 24, 26];
-    if (POLITICKE_DNY.includes(den)) {
-      elKal.classList.add('politicky-den');
-    } else {
-      elKal.classList.remove('politicky-den');
+    if (elKal) {
+      if (POLITICKE_DNY.includes(den)) {
+        elKal.classList.add('politicky-den');
+      } else {
+        elKal.classList.remove('politicky-den');
+      }
     }
   }
 
@@ -257,6 +266,196 @@ const Desk = (() => {
     el.classList.add('nova-faze');
     el.textContent = CASY[faze] || '12:00';
     setTimeout(() => el.classList.remove('nova-faze'), 600);
+  }
+
+  /** Kontext pro modály novin / dopisu na ilustrovaném stole */
+  let _stulNovinyKontext = null;
+  /** Po přečtení Vlčkova dopisu (fragment) v daný den už nezobrazovat obálku na stole. */
+  const _obalkaStoluPrecetenaProDen = new Set();
+
+  function _formatujDatumStolu(den) {
+    const ZACATEK = new Date(1931, 2, 1);
+    const datum = new Date(ZACATEK);
+    datum.setDate(datum.getDate() + Number(den) - 1);
+    const MESICE = [
+      'ledna', 'února', 'března', 'dubna', 'května', 'června',
+      'července', 'srpna', 'září', 'října', 'listopadu', 'prosince'
+    ];
+    return `${datum.getDate()}. ${MESICE[datum.getMonth()]} ${datum.getFullYear()}`;
+  }
+
+  function _novinyMetaZDen(denDat) {
+    const np = denDat && denDat.newspaper;
+    const headline =
+      (np && np.headline) || (denDat && denDat.newspaper_headline) || '—';
+    const nazev =
+      (np && np.name) || (denDat && denDat.newspaper_name) || 'Denní tisk';
+    const telo =
+      (np && np.body) ||
+      (denDat && denDat.newspaper_body) ||
+      (denDat && denDat.newspaper_article) ||
+      headline;
+    return { nazev, headline, telo };
+  }
+
+  function vyresetujCacheObalkyStolu() {
+    _obalkaStoluPrecetenaProDen.clear();
+  }
+
+  function nastavNovinyDen(denDat, datumStr) {
+    let denCislo = Number(State.get('currentDay'));
+    if (!Number.isFinite(denCislo) || denCislo < 1) denCislo = 1;
+    const denEfektivni =
+      denDat ||
+      (typeof DataLoader !== 'undefined' && DataLoader.ziskejDen
+        ? DataLoader.ziskejDen(denCislo)
+        : null);
+    _stulNovinyKontext = denEfektivni;
+    const datumN =
+      datumStr ||
+      (Number.isFinite(denCislo) ? _formatujDatumStolu(denCislo) : '—');
+
+    const meta = _novinyMetaZDen(denEfektivni);
+    const elSkryty = document.getElementById('noviny-text');
+    const elSkrytyDatum = document.getElementById('noviny-datum');
+    if (elSkryty) elSkryty.textContent = meta.headline;
+    if (elSkrytyDatum) elSkrytyDatum.textContent = String(datumN).toUpperCase();
+
+    const tit = document.getElementById('desk-noviny-stul-titul');
+    const dEl = document.getElementById('desk-noviny-stul-datum');
+    const hEl = document.getElementById('desk-noviny-stul-headline');
+    if (tit) {
+      const naz = meta.nazev != null && String(meta.nazev).trim() !== '' ? String(meta.nazev).trim() : '—';
+      tit.textContent = naz;
+      tit.classList.toggle('desk-scene-noviny__nazev--skryt', naz === '—');
+    }
+    if (dEl) {
+      const dRaw = datumN != null && String(datumN).trim() !== '' ? String(datumN).trim() : '';
+      dEl.textContent = dRaw ? dRaw.toLocaleUpperCase('cs-CZ') : '';
+      dEl.classList.toggle('desk-scene-noviny__datum--skryt', !dEl.textContent);
+    }
+    if (hEl) {
+      const hl =
+        meta.headline != null && String(meta.headline).trim() !== ''
+          ? String(meta.headline).trim()
+          : '—';
+      hEl.textContent = hl;
+      hEl.setAttribute('title', hl);
+    }
+
+    const obalka = document.getElementById('desk-scene-obalka');
+    if (obalka) {
+      obalka.classList.remove('desk-scene-obalka--prvni-let');
+      const preceteno = _obalkaStoluPrecetenaProDen.has(denCislo);
+      /* Den 1: obálka vždy (nová hra / chybějící days.json); jinak dle letter / vlcek_letter. */
+      const maDatyDopis = !!(
+        denEfektivni &&
+        (!!denEfektivni.letter || !!denEfektivni.vlcek_letter)
+      );
+      /* Den 1: vrstva dopisu i bez days.json; skrytí jen po přečtení (viz skryjObalkuStoluPoPreceniVlcka). */
+      const maVrstvuDopisu = denCislo === 1 || maDatyDopis;
+      const maDopis = maVrstvuDopisu && !preceteno;
+      if (!maDopis) {
+        obalka.classList.add('skryto');
+      } else {
+        obalka.classList.remove('skryto');
+      }
+    }
+  }
+
+  function _zavriModalStul(modal) {
+    if (!modal) return;
+    modal.classList.remove('aktivni');
+    modal.classList.add('skryto');
+  }
+
+  function _otevriModalStul(modal) {
+    if (!modal) return;
+    modal.classList.remove('skryto');
+    modal.classList.add('aktivni');
+  }
+
+  function _otevriModalNoviny() {
+    const denDat = _stulNovinyKontext;
+    const modal = document.getElementById('modal-desk-noviny');
+    if (!modal) return;
+    const meta = _novinyMetaZDen(denDat);
+    const denCislo = Number(State.get('currentDay'));
+    const datumN = Number.isFinite(denCislo) ? _formatujDatumStolu(denCislo) : '—';
+    const elN = document.getElementById('modal-desk-noviny-noviny-nazev');
+    const elD = document.getElementById('modal-desk-noviny-datum');
+    const elH = document.getElementById('modal-desk-noviny-headline');
+    const elT = document.getElementById('modal-desk-noviny-telo');
+    if (elN) elN.textContent = meta.nazev;
+    if (elD) elD.textContent = datumN;
+    if (elH) elH.textContent = meta.headline;
+    if (elT) elT.textContent = meta.telo;
+    _otevriModalStul(modal);
+  }
+
+  function _otevriModalDopis() {
+    const denDat = _stulNovinyKontext;
+    const modal = document.getElementById('modal-desk-dopis');
+    const telo = document.getElementById('modal-desk-dopis-telo');
+    if (!modal || !telo) return;
+    const txt = (denDat && denDat.letter_text) ? String(denDat.letter_text) : '—';
+    telo.textContent = txt;
+    _otevriModalStul(modal);
+  }
+
+  let _novinyObaalkaInit = false;
+
+  function inicializujNovinyAObaalkaStolu() {
+    if (_novinyObaalkaInit) return;
+    const noviny = document.getElementById('desk-scene-noviny');
+    const obalka = document.getElementById('desk-scene-obalka');
+    const mNov = document.getElementById('modal-desk-noviny');
+    const mDop = document.getElementById('modal-desk-dopis');
+    if (!noviny && !obalka) return;
+    _novinyObaalkaInit = true;
+
+    if (noviny) {
+      noviny.addEventListener('click', () => _otevriModalNoviny());
+      noviny.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          _otevriModalNoviny();
+        }
+      });
+    }
+    if (obalka) {
+      obalka.addEventListener('click', () => {
+        const d = Number(State.get('currentDay'));
+        const denDat =
+          typeof DataLoader !== 'undefined' && DataLoader.ziskejDen
+            ? DataLoader.ziskejDen(d)
+            : null;
+        if (
+          denDat &&
+          denDat.vlcek_letter &&
+          typeof Engine !== 'undefined' &&
+          typeof Engine.otevriVlcekuvDopis === 'function'
+        ) {
+          Engine.otevriVlcekuvDopis();
+          return;
+        }
+        _otevriModalDopis();
+      });
+    }
+
+    document.getElementById('modal-desk-noviny-zavrit')?.addEventListener('click', () => _zavriModalStul(mNov));
+    document.getElementById('modal-desk-dopis-zavrit')?.addEventListener('click', () => _zavriModalStul(mDop));
+    mNov?.addEventListener('click', (e) => {
+      if (e.target === mNov) _zavriModalStul(mNov);
+    });
+    mDop?.addEventListener('click', (e) => {
+      if (e.target === mDop) _zavriModalStul(mDop);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      if (mNov && mNov.classList.contains('aktivni')) _zavriModalStul(mNov);
+      if (mDop && mDop.classList.contains('aktivni')) _zavriModalStul(mDop);
+    });
   }
 
   function _aktualizujStulVase(den) {
@@ -328,19 +527,36 @@ const Desk = (() => {
   function nastavNovinyClanek(text, datum) {
     const el = document.getElementById('noviny-text');
     const elDatum = document.getElementById('noviny-datum');
-    if (el) el.textContent = text;
-    if (elDatum) elDatum.textContent = datum;
+    if (el) el.textContent = text || '—';
+    if (elDatum) elDatum.textContent = datum || '—';
+    const den =
+      typeof DataLoader !== 'undefined' && DataLoader.ziskejDen
+        ? DataLoader.ziskejDen(State.get('currentDay'))
+        : null;
+    nastavNovinyDen(den, datum);
   }
 
   function zobrazVlcekDopis(show) {
     const el = document.getElementById('vlcek-dopis');
     if (!el) return;
+    const ilustrovanyStul = document.getElementById('desk-scene-obalka');
+    if (ilustrovanyStul) {
+      if (!show) el.classList.add('skryto');
+      return;
+    }
     if (show) {
       el.classList.remove('skryto');
       el.classList.add('prisel');
     } else {
       el.classList.add('skryto');
     }
+  }
+
+  function skryjObalkuStoluPoPreceniVlcka() {
+    const obalka = document.getElementById('desk-scene-obalka');
+    if (obalka) obalka.classList.add('skryto');
+    const d = Number(State.get('currentDay'));
+    if (Number.isFinite(d)) _obalkaStoluPrecetenaProDen.add(d);
   }
 
 
@@ -483,6 +699,7 @@ const Desk = (() => {
     { id: 'desk-lamp', trait: 'Odvaha' },
     { id: 'desk-inkwell', trait: 'Integrita' },
     { id: 'desk-photo', trait: 'Vina' },
+    { id: 'desk-envelope', atmosfera: 'obalka' },
     { id: 'desk-ashtray-wrap', atmosfera: 'popelnik' }
   ];
 
@@ -658,13 +875,17 @@ const Desk = (() => {
   return {
     aktualizujVse,
     animujRazitko,
+    nastavNovinyDen,
     nastavNovinyClanek,
     nastavAktivniSpis,
     zobrazVlcekDopis,
     zobrazSuplikIndikator,
     animujPrichodSpisu,
     inicializujTooltipyRysu,
-    inicializujTooltipyPredmetuStolu
+    inicializujTooltipyPredmetuStolu,
+    inicializujNovinyAObaalkaStolu,
+    skryjObalkuStoluPoPreceniVlcka,
+    vyresetujCacheObalkyStolu
   };
 
 })();

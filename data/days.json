@@ -2,6 +2,13 @@
   {
     "day": 1,
     "newspaper_headline": "Krize pokračuje. Nezaměstnanost dosáhla rekordních hodnot.",
+    "newspaper": {
+      "name": "PRAVDA REPUBLIKY",
+      "headline": "Krize pokračuje. Nezaměstnanost dosáhla rekordních hodnot.",
+      "body": "PRAHA — Úřady dnes zveřejnily další čísla o nezaměstnanosti. Fronty u úřadů práce se táhnou po ulicích. Redakce se ptá: kolik z těchto rukou ještě jednou zvedne hlas proti pořádku, který je má živit?\n\nSoudní dvůr zatím mlčí. Advokáti šeptají o reformě, politici o nouzi. Střední Evropa hlídá každý titulek — a každý titulek hýbe náladou ve městech, kde se ještě vloni tančilo."
+    },
+    "letter": true,
+    "letter_text": "Vážený soudče,\n\ndovolte mi krátkou poznámku k řádu, který oba hájíme. Kompromis není slabost — je to jediný způsob, jak republika přežije pondělí.\n\nS úctou,\nVlček",
     "morning_fragment": "fragment_d1_morning",
     "cases": [
       "case_test_slepice_bozeny",
@@ -182,6 +189,8 @@
   {
     "day": 6,
     "newspaper_headline": "Ministr Vlček na sjezdu strany: „Zákon musí sloužit republice.“",
+    "letter": true,
+    "letter_text": "Pane doktore — stručně. Dnešní jednání ve straně potvrdilo, co tušíte: zákon a politika rostou z jednoho kmene. Buďte opatrný při štěpení slov od činů.\n\nV.",
     "morning_fragment": "fragment_d6_morning",
     "cases": [
       "case_013"

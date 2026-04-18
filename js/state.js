@@ -475,6 +475,13 @@ const State = (() => {
     localStorage.removeItem(SAVE_AUTOSAVE);
     localStorage.removeItem(_klicePozice(1));
     localStorage.removeItem(_klicePozice(2));
+    try {
+      if (typeof Desk !== 'undefined' && typeof Desk.vyresetujCacheObalkyStolu === 'function') {
+        Desk.vyresetujCacheObalkyStolu();
+      }
+    } catch (_e) {
+      /* Desk nemusí být inicializovaný při velmi raném resetu */
+    }
   }
 
   // --- Pomocné metody pro časté operace ---

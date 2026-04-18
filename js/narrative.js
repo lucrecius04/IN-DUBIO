@@ -47,9 +47,10 @@ const Narrative = (() => {
 
   // Novinový výstřižek na stole — aktualizuj denně
   function aktualizujNoviny(denDat) {
-    if (!denDat?.newspaper_headline) return;
     const datum = _formatujDatum(State.get('currentDay'));
-    Desk.nastavNovinyClanek(denDat.newspaper_headline, datum);
+    if (typeof Desk !== 'undefined' && Desk.nastavNovinyDen) {
+      Desk.nastavNovinyDen(denDat || null, datum);
+    }
   }
 
   function _formatujDatum(den) {

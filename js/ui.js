@@ -32,9 +32,137 @@ const UI = (() => {
 
   // --- HELPERS ---
 
+  /** Běží po kliknutí na rozsudek — overlay s consequence; zrušení při zavření modalu. */
+  let _predohraConsequenceCtx = null;
+
+  function _anulujPredohruConsequence() {
+    const ctx = _predohraConsequenceCtx;
+    if (!ctx) return;
+    _predohraConsequenceCtx = null;
+    if (ctx.timerId) clearTimeout(ctx.timerId);
+    if (ctx.prelude && ctx.onClickPrelude) {
+      ctx.prelude.removeEventListener('click', ctx.onClickPrelude);
+    }
+    const el = document.getElementById('pripad-consequence-prelude');
+    if (el) {
+      el.classList.add('skryto');
+      el.setAttribute('aria-hidden', 'true');
+    }
+  }
+
   function _zavriPripadModal() {
+    _anulujPredohruConsequence();
     _zavriModal('modal-pripad');
     Desk.nastavAktivniSpis(null);
+  }
+
+  function _formatujDatumSpisu(den) {
+    const d = Number(den);
+    if (!Number.isFinite(d) || d < 1) return '—';
+    const zacatek = new Date(1931, 2, 1);
+    const datum = new Date(zacatek);
+    datum.setDate(datum.getDate() + d - 1);
+    const mesice = [
+      'ledna', 'února', 'března', 'dubna', 'května', 'června',
+      'července', 'srpna', 'září', 'října', 'listopadu', 'prosince'
+    ];
+    return `${datum.getDate()}. ${mesice[datum.getMonth()]} ${datum.getFullYear()}`;
+  }
+
+  function _dveVetyShrnutiRozsudku(pripad) {
+    const sit = pripad && pripad.situation ? String(pripad.situation) : '';
+    const blob0 = sit.replace(/\r\n/g, '\n').split(/\n\n+/).map(s => s.trim()).filter(Boolean)[0] || '';
+    const blob = blob0.replace(/\n+/g, ' ').trim();
+    const charge = (pripad && pripad.charge) ? String(pripad.charge).trim() : '';
+    if (!blob) {
+      return [charge || '—', charge ? '' : ''];
+    }
+    const cut = blob.search(/[.!?]\s+/);
+    if (cut >= 0) {
+      const v1 = blob.slice(0, cut + 1).trim();
+      let v2 = blob.slice(cut + 1).trim();
+      const cut2 = v2.search(/[.!?]\s+/);
+      if (cut2 >= 0) v2 = v2.slice(0, cut2 + 1).trim();
+      if (!v2) v2 = charge ? `Obžaloba: ${charge}` : v1;
+      return [v1, v2];
+    }
+    return [blob, charge ? `Obžaloba: ${charge}` : blob];
+  }
+
+  function _vyplnShrnutiRozsudku(pripad) {
+    const wrap = document.getElementById('rozsudky-shrnuti');
+    if (!wrap) return;
+    wrap.innerHTML = '';
+    const [a, b] = _dveVetyShrnutiRozsudku(pripad);
+    const p1 = document.createElement('p');
+    p1.className = 'rozsudky-shrnuti-radek';
+    p1.textContent = a || '—';
+    wrap.appendChild(p1);
+    if (b) {
+      const p2 = document.createElement('p');
+      p2.className = 'rozsudky-shrnuti-radek';
+      p2.textContent = b;
+      wrap.appendChild(p2);
+    }
+  }
+
+  function _dokonciPredohruConsequence(pripad, rozsudek) {
+    if (!_predohraConsequenceCtx) return;
+    const ctx = _predohraConsequenceCtx;
+    _predohraConsequenceCtx = null;
+    if (ctx.timerId) clearTimeout(ctx.timerId);
+    if (ctx.prelude && ctx.onClickPrelude) {
+      ctx.prelude.removeEventListener('click', ctx.onClickPrelude);
+    }
+    const prelude = document.getElementById('pripad-consequence-prelude');
+    if (prelude) {
+      prelude.classList.add('skryto');
+      prelude.setAttribute('aria-hidden', 'true');
+    }
+
+    if (typeof Desk !== 'undefined' && Desk.animujRazitko && typeof Cases !== 'undefined') {
+      Desk.animujRazitko(Cases.typRazitkaProVerdikt(rozsudek.id));
+    }
+    _zavriPripadModal();
+    zobrazDusledkyRozsudku(
+      pripad,
+      rozsudek,
+      () => Cases.zpracujRozsudek(pripad, rozsudek, { preskocRazitko: true }),
+      { vynechatConsequenceNarativ: true }
+    );
+  }
+
+  function _zobrazPredohruConsequenceAKlik(pripad, rozsudek, onRozsudek) {
+    const prelude = document.getElementById('pripad-consequence-prelude');
+    const txtEl = document.getElementById('pripad-consequence-prelude-text');
+    if (!prelude || !txtEl) {
+      _zavriPripadModal();
+      if (onRozsudek) onRozsudek(pripad, rozsudek);
+      return;
+    }
+    if (!onRozsudek) {
+      _zavriPripadModal();
+      return;
+    }
+
+    const raw = (rozsudek.consequence && String(rozsudek.consequence).trim())
+      || (rozsudek.text && String(rozsudek.text).trim())
+      || '—';
+    txtEl.textContent = raw;
+
+    _anulujPredohruConsequence();
+
+    const dokonci = () => _dokonciPredohruConsequence(pripad, rozsudek);
+
+    const onClickPrelude = () => dokonci();
+
+    const timerId = setTimeout(dokonci, 2000);
+
+    prelude.classList.remove('skryto');
+    prelude.setAttribute('aria-hidden', 'false');
+    prelude.addEventListener('click', onClickPrelude);
+
+    _predohraConsequenceCtx = { timerId, onClickPrelude, prelude, dokonci };
   }
 
   // --- Modal důsledků rozsudku (stav animací) ---
@@ -400,7 +528,7 @@ const UI = (() => {
     return 'Město vaše slovo zapisuje do své nepsané kroniky.';
   }
 
-  function zobrazDusledkyRozsudku(pripad, rozsudek, onPokracovat) {
+  function zobrazDusledkyRozsudku(pripad, rozsudek, onPokracovat, opts) {
     if (!pripad || !rozsudek) {
       if (onPokracovat) onPokracovat();
       return;
@@ -425,7 +553,7 @@ const UI = (() => {
     if (verd) verd.textContent = rozsudek.text || '—';
     if (nar) {
       nar.innerHTML = '';
-      if (rozsudek.consequence) {
+      if (rozsudek.consequence && !(opts && opts.vynechatConsequenceNarativ)) {
         const p = document.createElement('p');
         p.className = 'dusledky-narativ-text';
         p.textContent = rozsudek.consequence;
@@ -548,14 +676,21 @@ const UI = (() => {
     delete el.dataset.pripadTyp;
   }
 
+  function _nastavVizualSlozkyFolder(el, typ) {
+    const folder = el && el.querySelector('.folder');
+    if (!folder) return;
+    const path = _srcSlozkyImgProTyp(typ);
+    folder.dataset.art = path;
+    folder.style.setProperty('--folder-art', 'url("' + path + '")');
+  }
+
   function _nastavTypSlozky(el, pripad) {
     _odstranTypSlozky(el);
     if (!pripad) return;
     const typ = _typPripaduProVizual(pripad);
     el.classList.add('slozka--typ-' + typ);
     el.dataset.pripadTyp = typ;
-    const img = el.querySelector('.slozka-img');
-    if (img) img.src = _srcSlozkyImgProTyp(typ);
+    _nastavVizualSlozkyFolder(el, typ);
   }
 
   function _nastavTypPripaduVModalu(pripad) {
@@ -592,6 +727,9 @@ const UI = (() => {
     document.getElementById('pripad-obvineni-text').textContent =
       `${pripad.defendant?.name || '—'}, ${pripad.charge || '—'}`;
 
+    const spDatum = document.getElementById('pripad-spis-datum');
+    if (spDatum) spDatum.textContent = _formatujDatumSpisu(State.get('currentDay'));
+
     // Situace (pondělní bonus z nedělní volby C — jednou)
     let situace = pripad.situation || '';
     const denP = Number(State.get('currentDay'));
@@ -627,7 +765,8 @@ const UI = (() => {
     // Průzkumné akce
     _aktualizujPruzkumPanel(pripad, onRozsudek);
 
-    // Rozsudky
+    // Rozsudky + shrnutí na záložce ROZSUDEK
+    _vyplnShrnutiRozsudku(pripad);
     _zobrazRozsudky(pripad, onRozsudek);
 
     _nastavTypPripaduVModalu(pripad);
@@ -654,6 +793,9 @@ const UI = (() => {
     document.getElementById('pripad-nazev-text').textContent = pripad.title;
     document.getElementById('pripad-obvineni-text').textContent =
       `${pripad.defendant?.name || '—'}, ${pripad.charge || '—'}`;
+
+    const spDatumR = document.getElementById('pripad-spis-datum');
+    if (spDatumR) spDatumR.textContent = _formatujDatumSpisu(State.get('currentDay'));
 
     // Situace
     document.getElementById('pripad-situace-text').textContent = pripad.situation || '';
@@ -686,6 +828,7 @@ const UI = (() => {
 
     const archivRozsudky = State.get('archive.verdicts') || [];
     const zaznam = archivRozsudky.find(v => v.caseId === pripad.id);
+    _vyplnShrnutiRozsudku(pripad);
     _zobrazRozsudkyReadonly(pripad, zaznam);
 
     // Označit záhlaví jako vyřešené
@@ -739,9 +882,6 @@ const UI = (() => {
           // Zobraz odkrytou informaci v záložce Svědectví
           const odhaleneEl = document.getElementById('pripad-odhalene-info');
           _zobrazOdhalenoInfo(odhaleneEl, info);
-
-          // Přepni na záložku Svědectví aby uživatel výsledek viděl
-          _prepniTabPripadu('svedectvi');
 
           // Aktualizuj panel
           _aktualizujPruzkumPanel(pripad, onRozsudek);
@@ -799,8 +939,7 @@ const UI = (() => {
       `;
 
       btn.addEventListener('click', () => {
-        _zavriPripadModal();
-        if (onRozsudek) onRozsudek(pripad, rozsudek);
+        if (onRozsudek) _zobrazPredohruConsequenceAKlik(pripad, rozsudek, onRozsudek);
       });
 
       seznam.appendChild(btn);
@@ -1561,6 +1700,14 @@ const UI = (() => {
           _dusledkyPreskocAnimace();
           return;
         }
+        const modalPripad = document.getElementById('modal-pripad');
+        const prelude = document.getElementById('pripad-consequence-prelude');
+        if (modalPripad && modalPripad.classList.contains('aktivni') &&
+            prelude && !prelude.classList.contains('skryto') &&
+            _predohraConsequenceCtx && typeof _predohraConsequenceCtx.dokonci === 'function') {
+          _predohraConsequenceCtx.dokonci();
+          return;
+        }
         _zavriPripadModal();
         _zavriModal('modal-archiv');
       }
@@ -1775,15 +1922,32 @@ const UI = (() => {
   }
 
   // Aktualizuj složky případů
+  function _vyplnFolderLabelBlok(slozka, pripad, slotIndex) {
+    const root = slozka.querySelector('.folder-label');
+    if (!root) return;
+    const spz = root.querySelector('.folder-spz');
+    const tit = root.querySelector('.folder-title');
+    const obz = root.querySelector('.folder-defendant');
+    if (!pripad) {
+      if (spz) spz.textContent = '';
+      if (tit) tit.textContent = '';
+      if (obz) obz.textContent = '';
+      return;
+    }
+    const cisloSpisu = 47 + slotIndex;
+    if (spz) spz.textContent = `Sp. zn. ${cisloSpisu}/1931`;
+    const rawTit = ((pripad.title || '').trim() || 'Bez názvu');
+    if (tit) tit.textContent = rawTit.toLocaleUpperCase('cs-CZ');
+    if (obz) obz.textContent = (pripad.defendant && pripad.defendant.name) ? String(pripad.defendant.name) : '—';
+  }
+
   function aktualizujSlozky(pripady, vyresene) {
-    const slotNazvy = ['Složka I', 'Složka II', 'Složka III'];
+    const slotNazvy = ['Složka 1', 'Složka 2', 'Složka 3'];
     for (let i = 0; i < 3; i++) {
       const slozka = document.getElementById('slozka-' + (i + 1));
       if (!slozka) continue;
 
       const pripad = pripady[i];
-      const stavEl  = slozka.querySelector('.slozka-stav');
-      const cisloEl = slozka.querySelector('.slozka-cislo');
 
       function _slozkaMeta(label, titulek) {
         slozka.setAttribute('aria-label', label);
@@ -1797,10 +1961,8 @@ const UI = (() => {
         slozka.classList.remove('slozka--aktivni', 'slozka--vyresena');
         slozka.style.opacity = '';
         slozka.style.cursor  = '';
-        const img = slozka.querySelector('.slozka-img');
-        if (img) img.src = _srcSlozkyImgProTyp('rutinni');
-        if (stavEl)  stavEl.textContent  = '—';
-        if (cisloEl) cisloEl.textContent = ['I.', 'II.', 'III.'][i];
+        _nastavVizualSlozkyFolder(slozka, 'rutinni');
+        _vyplnFolderLabelBlok(slozka, null, i);
         _slozkaMeta(slotNazvy[i] + ' — načítání', '');
         continue;
       }
@@ -1809,22 +1971,18 @@ const UI = (() => {
       slozka.classList.remove('slozka--ceka');
       slozka.style.opacity = '1';
       slozka.style.cursor  = 'pointer';
-      if (cisloEl) cisloEl.textContent = ['I.', 'II.', 'III.'][i];
 
       const nazev = (pripad.title || '').trim() || 'Bez názvu';
+      _vyplnFolderLabelBlok(slozka, pripad, i);
 
       if (vyresene.includes(pripad.id)) {
         slozka.classList.add('slozka--vyresena');
         slozka.classList.remove('slozka--aktivni');
-        if (stavEl) {
-          stavEl.textContent = '✓\n' + (pripad.title || '');
-        }
         slozka.style.cursor = 'pointer';
         _slozkaMeta(slotNazvy[i] + ' — ' + nazev + ' (vyřešeno)', nazev + ' — vyřešeno');
       } else {
         slozka.classList.remove('slozka--vyresena');
         slozka.classList.add('slozka--aktivni');
-        if (stavEl) stavEl.textContent = pripad.title || '—';
         _slozkaMeta(slotNazvy[i] + ' — ' + nazev, nazev);
       }
     }
