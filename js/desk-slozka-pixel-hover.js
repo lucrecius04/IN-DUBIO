@@ -135,6 +135,8 @@
     }
 
     function sample(e) {
+      slozka.style.pointerEvents = 'none';
+      folder.style.pointerEvents = 'auto';
       if (!ready || slozka.classList.contains('slozka--ceka')) {
         setHover(false);
         return;
@@ -144,8 +146,10 @@
         setHover(false);
         return;
       }
-      const rx = (e.clientX - rect.left) / rect.width;
-      const ry = (e.clientY - rect.top) / rect.height;
+      const scaleX = rect.width / folder.offsetWidth;
+      const scaleY = rect.height / folder.offsetHeight;
+      const rx = (e.clientX - rect.left) / folder.offsetWidth;
+      const ry = (e.clientY - rect.top) / folder.offsetHeight;
       if (rx < 0 || ry < 0 || rx > 1 || ry > 1) {
         setHover(false);
         return;

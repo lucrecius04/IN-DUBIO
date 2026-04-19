@@ -59,7 +59,7 @@ const UI = (() => {
   function _formatujDatumSpisu(den) {
     const d = Number(den);
     if (!Number.isFinite(d) || d < 1) return '—';
-    const zacatek = new Date(1931, 2, 1);
+    const zacatek = new Date(1931, 2, 2);
     const datum = new Date(zacatek);
     datum.setDate(datum.getDate() + d - 1);
     const mesice = [
@@ -774,6 +774,7 @@ const UI = (() => {
     // Aktualizuj spis na stole
     Desk.nastavAktivniSpis(pripad);
 
+    if (typeof SFX !== 'undefined') SFX.slozkaPaper();
     _otevriModal('modal-pripad');
     Desk.animujPrichodSpisu();
   }
@@ -837,6 +838,7 @@ const UI = (() => {
     _nastavTypPripaduVModalu(pripad);
 
     Desk.nastavAktivniSpis(pripad);
+    if (typeof SFX !== 'undefined') SFX.slozkaPaper();
     _otevriModal('modal-pripad');
     Desk.animujPrichodSpisu();
   }
@@ -939,6 +941,7 @@ const UI = (() => {
       `;
 
       btn.addEventListener('click', () => {
+        if (typeof SFX !== 'undefined') SFX.rozsudekStamp();
         if (onRozsudek) _zobrazPredohruConsequenceAKlik(pripad, rozsudek, onRozsudek);
       });
 
@@ -957,6 +960,7 @@ const UI = (() => {
         <div class="rozsudek-consequence">Integrita utrpí — obálka je však na stole.</div>
       `;
       btnU.addEventListener('click', () => {
+        if (typeof SFX !== 'undefined') SFX.rozsudekStamp();
         _zavriPripadModal();
         const uR = {
           id:          'uplatek',
@@ -1368,7 +1372,39 @@ const UI = (() => {
     const obsah = document.getElementById('archiv-obsah');
     if (!obsah) return;
 
-    if (tab === 'finance') {
+    if (tab === 'stav-duse') {
+      obsah.innerHTML = '';
+      const wrap = document.createElement('div');
+      const rysyArchiv = ['Integrita', 'Odvaha', 'Moudrost', 'Vina', 'Nadeje'];
+      for (const nazev of rysyArchiv) {
+        const vRaw = State.get('traits.' + nazev);
+        const v = Number.isFinite(Number(vRaw)) ? Number(vRaw) : 50;
+        let nb = '—';
+        if (typeof Traits !== 'undefined' && Traits.getTraitText) {
+          nb = Traits.getTraitText(nazev, v).notebook || '—';
+        }
+        const entry = document.createElement('div');
+        entry.style.marginBottom = '1.15rem';
+        const title = document.createElement('div');
+        title.className = 'archiv-rozsudek-den';
+        title.style.display = 'block';
+        title.style.minWidth = '0';
+        title.style.marginBottom = '5px';
+        title.style.letterSpacing = '0.18em';
+        title.textContent = nazev.toUpperCase();
+        const body = document.createElement('div');
+        body.className = 'archiv-rozsudek-nazev';
+        body.style.display = 'block';
+        body.style.flex = 'none';
+        body.style.width = '100%';
+        body.innerHTML = _escapeHtmlProfil(nb).replace(/\n/g, '<br>');
+        entry.appendChild(title);
+        entry.appendChild(body);
+        wrap.appendChild(entry);
+      }
+      obsah.appendChild(wrap);
+
+    } else if (tab === 'finance') {
       const p = Finance.getPrehled();
       const krize = p.zustatek < 50
         ? '<p class="finance-krize">Méně než 50 Kč — každá koruna bolí.</p>'
@@ -1550,6 +1586,9 @@ const UI = (() => {
           if (id) el.textContent = Characters.getDuveraVizitka(id);
         });
       }
+      if (tabAktivni && tabAktivni.dataset.tab === 'stav-duse') {
+        _vyplnArchivTab('stav-duse');
+      }
     }
     const profil = document.getElementById('modal-postava-profil');
     if (profil && profil.classList.contains('aktivni')) {
@@ -1664,6 +1703,7 @@ const UI = (() => {
   function inicializuj() {
     // Zápisník na stole — archiv (záložka Rozsudky)
     document.getElementById('desk-notebook')?.addEventListener('click', () => {
+      if (typeof SFX !== 'undefined') SFX.penWriting();
       zobrazArchiv('rozsudky');
     });
 
@@ -1941,11 +1981,31 @@ const UI = (() => {
     if (obz) obz.textContent = (pripad.defendant && pripad.defendant.name) ? String(pripad.defendant.name) : '—';
   }
 
+  function _odstranRazitekImg(folder) {
+    if (!folder) return;
+    const img = folder.querySelector('img.razitko');
+    if (img) img.remove();
+  }
+
+  function _pridejRazitekImg(folder) {
+    if (!folder) return;
+    let img = folder.querySelector('img.razitko');
+    if (!img) {
+      img = document.createElement('img');
+      img.className = 'razitko';
+      img.alt = '';
+      img.decoding = 'async';
+      folder.appendChild(img);
+    }
+    img.src = 'src/razitko.png';
+  }
+
   function aktualizujSlozky(pripady, vyresene) {
     const slotNazvy = ['Složka 1', 'Složka 2', 'Složka 3'];
     for (let i = 0; i < 3; i++) {
       const slozka = document.getElementById('slozka-' + (i + 1));
       if (!slozka) continue;
+      const folder = slozka.querySelector('.folder');
 
       const pripad = pripady[i];
 
@@ -1956,6 +2016,7 @@ const UI = (() => {
       }
 
       if (!pripad) {
+        _odstranRazitekImg(folder);
         _odstranTypSlozky(slozka);
         slozka.classList.add('slozka--ceka');
         slozka.classList.remove('slozka--aktivni', 'slozka--vyresena');
@@ -1979,10 +2040,12 @@ const UI = (() => {
         slozka.classList.add('slozka--vyresena');
         slozka.classList.remove('slozka--aktivni');
         slozka.style.cursor = 'pointer';
+        _pridejRazitekImg(folder);
         _slozkaMeta(slotNazvy[i] + ' — ' + nazev + ' (vyřešeno)', nazev + ' — vyřešeno');
       } else {
         slozka.classList.remove('slozka--vyresena');
         slozka.classList.add('slozka--aktivni');
+        _odstranRazitekImg(folder);
         _slozkaMeta(slotNazvy[i] + ' — ' + nazev, nazev);
       }
     }

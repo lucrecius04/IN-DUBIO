@@ -54,7 +54,7 @@ const Narrative = (() => {
   }
 
   function _formatujDatum(den) {
-    const ZACATEK = new Date(1931, 2, 1);
+    const ZACATEK = new Date(1931, 2, 2);
     const datum = new Date(ZACATEK);
     datum.setDate(datum.getDate() + den - 1);
     const MESICE = ['ledna', 'února', 'března', 'dubna', 'května', 'června',

@@ -18,6 +18,17 @@
       margin: 0;
       overflow: hidden;
       background: #0a0704;
+      cursor: url('src/cursor_default.png') 2 2, auto;
+    }
+
+    .slozka .folder,
+    #desk-notebook,
+    #desk-scene-noviny,
+    #desk-scene-obalka,
+    #desk-lamp,
+    #desk-photo,
+    #desk-inkwell {
+      cursor: url('src/cursor_default.png') 2 2, pointer;
     }
 
     #stul.desk-scene-root {
@@ -97,36 +108,29 @@
       text-align: center;
     }
 
-    #hodiny.desk-scene-clock {
-      font-family: "IBM Plex Mono", Consolas, "Courier New", monospace;
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      color: rgba(248, 236, 210, 0.95);
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75);
-    }
-
-    .desk-scene-header-center #kalendar-meta {
-      position: static;
-      transform: none;
-      font: 10px "IBM Plex Mono", Consolas, monospace;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(220, 205, 175, 0.75);
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
-      margin: 0;
-    }
-
     .desk-scene-header-center #kalendar-datum {
       position: static;
       transform: none;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 12px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Playfair Display', Georgia, "Times New Roman", serif;
+      font-size: 1.1em;
       font-style: italic;
       font-weight: 400;
       color: rgba(220, 210, 185, 0.72);
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
       margin: 0;
+    }
+
+    .desk-scene-header-center #kalendar-datum::before,
+    .desk-scene-header-center #kalendar-datum::after {
+      content: '';
+      display: block;
+      width: 120px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.3);
+      margin: 4px auto;
     }
 
     .desk-scene-header-right {
@@ -230,10 +234,10 @@
     /* Zápisník — sloupec + popisek; stín od lampy (vlevo nahoře) dolů doprava */
     .desk-scene-assets .desk-notebook-wrapper {
       position: absolute;
-      left: -4%;
+      left: -1%;
       top: 42%;
-      width: 31%;
-      max-width: min(540px, 36vw);
+      width: 28%;
+      max-width: min(480px, 32vw);
       z-index: 6;
       display: flex;
       flex-direction: column;
@@ -256,7 +260,7 @@
       cursor: default;
       line-height: 0;
       position: relative;
-      transform: translateX(-2vw) rotate(-5deg);
+      transform: translateX(-2vw) rotate(-5deg) scale(0.92);
       transform-origin: center center;
       transition: transform var(--prechod-rychly);
       outline: none;
@@ -265,7 +269,7 @@
 
     .desk-scene-assets .desk-notebook.desk-notebook--pixel-hover {
       cursor: pointer;
-      transform: translateX(-2vw) translateY(-3px) rotate(-5deg);
+      transform: translateX(-2vw) translateY(-3px) rotate(-5deg) scale(0.92);
     }
 
     .desk-notebook-indikator {
@@ -364,46 +368,6 @@
 
     .desk-notebook--fallback .desk-notebook-svg {
       display: block;
-    }
-
-    /*
-     * Jméno na obalu — pozice v % výšky zápisníku (ne mřížka + padding-%: ten se vztahuje k šířce,
-     * takže „dolů“ dřív posouvalo text nahoru / divně).
-     */
-    .desk-scene-assets .desk-notebook-visual .desk-notebook-label {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      pointer-events: none;
-      line-height: normal;
-      outline: none;
-      border: none;
-      box-shadow: none;
-    }
-
-    /* Ražení do kůže — multiply vmíchá text do textury pod ním, blur mírně změkčí hrany */
-    .desk-scene-assets .desk-notebook-label__name {
-      position: absolute;
-      left: 14%;
-      right: 7%;
-      top: 28%;
-      transform: translateY(-100%);
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 12px;
-      font-style: italic;
-      font-weight: 400;
-      line-height: 1.25;
-      text-align: center;
-      letter-spacing: 0.03em;
-      color: rgba(180, 140, 60, 0.6);
-      text-shadow:
-        0 1px 1px rgba(0, 0, 0, 0.6),
-        0 -1px 0 rgba(255, 200, 80, 0.15);
-      mix-blend-mode: multiply;
-      filter: blur(0.3px);
-      outline: none;
-      border: none;
-      box-shadow: none;
     }
 
     /*
@@ -646,7 +610,7 @@
       min-height: 0 !important;
       padding: 0 !important;
       display: block;
-      pointer-events: auto;
+      pointer-events: none;
       cursor: default;
       transition: transform 0.12s ease-out;
     }
@@ -679,11 +643,21 @@
       isolation: isolate;
     }
 
+    /* Červená složka — vyšší poměr kvůli hornímu cancour; vizuálně srovnatelná výška s ostatními typy */
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--typ-politicky .folder {
+      aspect-ratio: 18 / 27;
+      margin-top:-80px;
+    }
+
     /* Umístění z rasteru (desk-slozka-pixel-hover.js): okraje neprůhledného papíru v PNG */
     #stul.desk-scene-root #plocha-stred .slozka .folder .folder-label {
       top: var(--folder-label-top, 12%);
       left: var(--folder-label-left, 8%);
       width: var(--folder-label-width, 84%);
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--typ-politicky .folder .folder-label {
+      padding-top: 12%;
     }
 
     #stul.desk-scene-root #plocha-stred .slozka .folder::before {
@@ -706,19 +680,19 @@
 
     #stul.desk-scene-root #plocha-stred #slozka-1 {
       left: 18.65%;
-      top: 40.25%;
+      top: calc(40.25% + 40px);
       z-index: 5;
       transform: rotate(-3deg) scale(1.07);
     }
     #stul.desk-scene-root #plocha-stred #slozka-2 {
       left: 39.75%;
-      top: 38.25%;
+      top: calc(38.25% + 40px);
       z-index: 6;
       transform: rotate(1deg) scale(1.07);
     }
     #stul.desk-scene-root #plocha-stred #slozka-3 {
       left: 60.25%;
-      top: 38.25%;
+      top: calc(38.25% + 40px);
       z-index: 7;
       transform: rotate(3deg) scale(1.07);
     }
@@ -737,6 +711,14 @@
 
     #stul.desk-scene-root #plocha-stred #slozka-3 .folder::before {
       filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.42)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.35));
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--typ-politicky .folder::before {
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.33)) brightness(0.75) saturate(0.8);
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--typ-politicky#slozka-3 .folder::before {
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.42)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.35)) brightness(0.55) saturate(0.5);
     }
 
     /* Ilustrované složky: bez legacy vrstev z desk.css (::after razítko, text, stín na boxu) */
@@ -771,15 +753,45 @@
       filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.34)) drop-shadow(0 3px 10px rgba(0, 0, 0, 0.26)) saturate(0.72) brightness(0.92);
     }
 
+    /* Vyřešená složka = stejná intenzita jako aktivní (žádné zeslabení PNG) */
     #stul.desk-scene-root #plocha-stred .slozka.slozka--vyresena#slozka-1 .folder::before,
     #stul.desk-scene-root #plocha-stred .slozka.slozka--vyresena#slozka-2 .folder::before {
-      opacity: 0.8;
-      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.32)) brightness(0.88) saturate(0.88);
+      opacity: 1;
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.36)) brightness(1.07) saturate(1.05);
     }
 
     #stul.desk-scene-root #plocha-stred .slozka.slozka--vyresena#slozka-3 .folder::before {
-      opacity: 0.82;
-      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3)) brightness(0.88) saturate(0.9);
+      opacity: 1;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.44)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.34)) brightness(1.06) saturate(1.05);
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--vyresena .folder img.razitko {
+      position: absolute;
+      top: 68%;
+      left: 50%;
+      width: 160px;
+      height: auto;
+      transform: translateX(-50%);
+      opacity: 0.85;
+      filter: brightness(0) saturate(100%) invert(20%) sepia(100%) saturate(500%) hue-rotate(300deg);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--vyresena#slozka-1 .folder img.razitko {
+      transform: translateX(-50%) rotate(-18deg);
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--vyresena#slozka-2 .folder img.razitko {
+      transform: translateX(-50%) rotate(-8deg);
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--vyresena#slozka-3 .folder img.razitko {
+      transform: translateX(-50%) rotate(-22deg);
+    }
+
+    #stul.desk-scene-root #plocha-stred .slozka.slozka--typ-politicky.slozka--vyresena .folder img.razitko {
+      filter: sepia(1) saturate(8) hue-rotate(180deg);
     }
 
     #stul.desk-scene-root #plocha-stred .slozka.slozka--aktivni#slozka-1 .folder::before,
@@ -854,9 +866,7 @@
         <div class="logo-hry-nazev logo-hry-nazev--lista" id="logo-hry-nazev">IN DUBIO</div>
       </div>
       <div class="desk-scene-header-center">
-        <div id="hodiny" class="desk-scene-clock">07:30</div>
-        <div id="kalendar-meta" class="kalendar-meta">TÝDEN 1 · DEN 1</div>
-        <span id="kalendar-datum" class="kalendar-datum">neděle, 1. března 1931</span>
+        <span id="kalendar-datum" class="kalendar-datum">pondělí, 2. března 1931</span>
       </div>
       <div class="desk-scene-header-right">
         <button id="btn-menu" class="btn-menu" type="button" aria-label="Menu" title="Menu">
@@ -871,7 +881,7 @@
   </div>
 
   <div id="desk-noviny-hidden" class="skryto" aria-hidden="true">
-    <div id="noviny-datum" class="noviny-datum">1. BŘEZNA 1931</div>
+    <div id="noviny-datum" class="noviny-datum">2. BŘEZNA 1931</div>
     <div id="noviny-text">—</div>
   </div>
 
@@ -905,12 +915,8 @@
               <rect x="20" y="16" width="22" height="2" fill="#3a3228" opacity="0.35"/>
             </svg>
           </span>
-          <div class="desk-notebook-label" aria-hidden="true">
-            <div class="desk-notebook-label__name">JUDr. Benedikt Vraný</div>
-          </div>
         </span>
       </button>
-      <div id="desk-notebook-popis" class="desk-notebook-popis">ZÁPISNÍK</div>
     </div>
   </div>
 
@@ -1142,6 +1148,7 @@
     </div>
     <div class="archiv-tabs">
       <div class="archiv-tab archiv-tab--aktivni" data-tab="rozsudky">ROZSUDKY</div>
+      <div class="archiv-tab" data-tab="stav-duse">STAV DUŠE</div>
       <div class="archiv-tab" data-tab="postavy">POSTAVY</div>
       <div class="archiv-tab" data-tab="finance">FINANCE</div>
       <div class="archiv-tab" data-tab="fragmenty">ZÁZNAMY</div>
@@ -1240,10 +1247,6 @@
   <div class="rys-tooltip-text">—</div>
 </div>
 
-<audio id="zvuk-stamp"  src="assets/sounds/stamp.wav"  preload="auto"></audio>
-<audio id="zvuk-paper"  src="assets/sounds/paper.mp3"  preload="auto"></audio>
-<audio id="zvuk-clock"  src="assets/sounds/clock.mp3"  preload="auto"></audio>
-
 <script src="js/state.js"></script>
 <script src="js/data-loader.js"></script>
 <script src="js/traits.js"></script>
@@ -1255,6 +1258,7 @@
 <script src="js/desk.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/music.js"></script>
+<script src="js/sfx.js"></script>
 <script src="js/desk-scene-smoke.js"></script>
 <script src="js/desk-slozka-pixel-hover.js"></script>
 <script src="js/desk-notebook-pixel-hover.js"></script>

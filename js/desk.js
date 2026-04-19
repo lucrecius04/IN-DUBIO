@@ -217,20 +217,16 @@ const Desk = (() => {
   ];
 
   function _aktualizujKalendar(den) {
-    const elMeta = document.getElementById('kalendar-meta');
     const elDatum = document.getElementById('kalendar-datum');
     const elKal = document.getElementById('kalendar');
-    if (!elMeta || !elDatum) return;
+    if (!elDatum) return;
 
-    // Hra začíná 1. března 1931
-    const ZACATEK = new Date(1931, 2, 1); // 1.3.1931
+    // Den 1 = 2. března 1931 (herní den 1, kalendář od 2. 3.)
+    const ZACATEK = new Date(1931, 2, 2); // 2.3.1931
     const datum = new Date(ZACATEK);
     datum.setDate(datum.getDate() + den - 1);
 
     const d = Number(den);
-    const tydenHry = Number.isFinite(d) && d > 0 ? Math.ceil(d / 7) : 1;
-    const denHry = Number.isFinite(d) && d > 0 ? d : 1;
-    elMeta.textContent = 'TÝDEN ' + tydenHry + ' · DEN ' + denHry;
 
     const i = _denVTydnuPondeli0(datum);
     const jmenoDne = _KALENDAR_DNY_V_TYDNU[i] || '—';
@@ -274,7 +270,7 @@ const Desk = (() => {
   const _obalkaStoluPrecetenaProDen = new Set();
 
   function _formatujDatumStolu(den) {
-    const ZACATEK = new Date(1931, 2, 1);
+    const ZACATEK = new Date(1931, 2, 2);
     const datum = new Date(ZACATEK);
     datum.setDate(datum.getDate() + Number(den) - 1);
     const MESICE = [

@@ -614,9 +614,9 @@
   box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.14);
 }
 
-/* Složka — vyřešená (razítko) */
+/* Složka — vyřešená (razítko); celá složka zůstává plně čitelná */
 .slozka--vyresena {
-  opacity: 0.7;
+  opacity: 1;
 }
 
 .slozka--ceka {

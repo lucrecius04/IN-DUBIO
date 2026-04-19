@@ -155,6 +155,7 @@ const Engine = (() => {
 
     // Tlačítko Další den
     document.getElementById('btn-dalsi-den')?.addEventListener('click', () => {
+      if (typeof SFX !== 'undefined') SFX.prechodNaDalsiDen();
       _dalsiDen();
     });
 
@@ -162,11 +163,17 @@ const Engine = (() => {
     for (let i = 0; i < 3; i++) {
       const slozka = document.getElementById('slozka-' + (i + 1));
       if (!slozka) continue;
-      const onSlozkaClick = () => {
+      const folder = slozka.querySelector('.folder');
+      if (!folder) continue;
+      const onSlozkaClick = (event) => {
         if (slozka.classList.contains('slozka--ceka')) return;
+        const folder = slozka.querySelector('.folder');
+        if (!folder) return;
+        const rect = folder.getBoundingClientRect();
+        if (event.clientY < rect.top) return;
         Cases.otevriPripad(i);
       };
-      slozka.addEventListener('click', onSlozkaClick, true);
+      folder.addEventListener('click', onSlozkaClick, true);
     }
 
     // Spusť aktuální den
@@ -609,6 +616,7 @@ const Engine = (() => {
 
     overlay.addEventListener('click', () => {
       Music.spustPoInterakci();
+      if (typeof SFX !== 'undefined') SFX.spustPoInterakci();
       overlay.style.opacity = '0';
       setTimeout(() => {
         overlay.style.display = 'none';
