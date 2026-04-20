@@ -185,11 +185,10 @@ const UI = (() => {
     Lid: 'Lid'
   };
 
-  /** Archivní / staré JSON mohou mít Stat, Obchodnici, Cirkev. */
+  /** Archivní / staré JSON mohou mít Stat, Obchodnici. */
   function _mapLegacyFactionKlic(klic) {
     if (klic === 'Stat') return 'Moc';
     if (klic === 'Obchodnici') return 'Kapital';
-    if (klic === 'Cirkev') return null;
     return klic;
   }
 
@@ -1688,7 +1687,7 @@ const UI = (() => {
     const text =
       'IN DUBIO\n\n' +
       'Textová soudní hra zasazená do středoevropského státu roku 1931.\n\n' +
-      'Hráč hraje roli soudce Dr. Karla Nováka s temnou minulostí. ' +
+      'Hráč hraje roli soudce Dr. Benedikta Vraného s temnou minulostí. ' +
       'Každý rozsudek má cenu.\n\n' +
       'Uložení je v tomto prohlížeči (localStorage): automatické uložení během hry ' +
       'a dvě nezávislé ruční zálohy. ' +

@@ -32,8 +32,8 @@ Priorita oprav:
 
 ## ARCHITEKTURA — pořadí načítání skriptů
 state → data-loader → traits → factions →
-finance → characters → narrative → desk →
-ui → cases → music → engine
+finance → characters → narrative → cases → desk →
+ui → music → sfx → desk-smoke → desk-slozka-pixel-hover → desk-notebook-pixel-hover → engine
 
 ## SOUBORY
 index.html — hlavní vstup (záloha: index-old.html)

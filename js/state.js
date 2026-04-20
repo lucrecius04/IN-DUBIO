@@ -99,10 +99,9 @@ const State = (() => {
     }
   }
 
-  /** Migrace: bez Masky; frakce Moc/Kapital/Lid; důvěra jen vlcek, zavadova, karas. */
+  /** Migrace: frakce Moc/Kapital/Lid; důvěra jen vlcek, zavadova, karas. */
   function _normalizujTraitsFrakceATrust() {
     if (!_stav.traits || typeof _stav.traits !== 'object') _stav.traits = {};
-    delete _stav.traits.Maska;
     const TR = ['Integrita', 'Odvaha', 'Moudrost', 'Vina', 'Nadeje'];
     for (const k of Object.keys(_stav.traits)) {
       if (!TR.includes(k)) delete _stav.traits[k];

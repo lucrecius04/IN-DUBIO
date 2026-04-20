@@ -6,7 +6,6 @@ alwaysApply: false
 
 ## VLASTNOSTI — 5 hodnot 0-100
 Hráč NIKDY nevidí číslo — jen hvězdičky + text.
-MASKA byla zrušena — není v systému.
 
 Hvězdičky: 0-20=★☆☆☆☆ | 21-40=★★☆☆☆ | 41-60=★★★☆☆ | 61-80=★★★★☆ | 81-100=★★★★★
 
@@ -50,7 +49,6 @@ getTraitText(key, value) v js/traits.js → {tooltip, notebook}
 Texty se nikde nepíší dvakrát.
 
 ## FRAKCE — 3 hodnoty 0-100
-CÍRKEV byla zrušena — není v systému.
 Zobrazení: tečky (●○) v levém panelu. Výchozí: 50. Prahy: ≥80 vysoká | ≤20 nízká.
 
 🏛️ MOC (Vlček, stát):
@@ -61,12 +59,12 @@ Zobrazení: tečky (●○) v levém panelu. Výchozí: 50. Prahy: ≥80 vysoká
 ●●●●●: Informátor levnější (1 akce), svědci ochotní, Závadová důvěra +1
 ●○○○○: svědci z nižších vrstev odmítají → TRIGGER ODVOLÁNÍ (Naděje <20)
 
-💰 ZISK (Haas, obchodníci):
+💰 KAPITÁL (Haas, obchodníci):
 ●●●●●: Haas vyšší úplatek, méně možností pro chudé, Integrita -1/den
 ●○○○○: více možností pro chudé, Haas přijde agresivně, Finance -20%
 
 ## STATISTIKY → KONCE
-KORUPCE: Integrita ★☆☆☆☆ + Karas 3 | NEBO Zisk ●●●●● + Vlček 3
+KORUPCE: Integrita ★☆☆☆☆ + Karas 3 | NEBO Kapital ●●●●● + Vlček 3
 ODVOLÁNÍ: MOC ●○○○○ + Odvaha ★☆☆☆☆ | NEBO LID ●○○○○ + Naděje ★☆☆☆☆
 ATENTÁT: MOC ●○○○○ + Odvaha ★★★★★ + Vlček 0 + Integrita >60
 HRDINA: Integrita ★★★★★ + Odvaha ★★★★★ + Závadová 3 + Vlček 0

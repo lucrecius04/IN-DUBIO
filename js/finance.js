@@ -1,5 +1,5 @@
 /**
- * finance.js — Ekonomika soudce Nováka (úspory, operace matky, výplata, dluh).
+ * finance.js — Ekonomika soudce Benedikta Vraného (úspory, operace matky, výplata, dluh).
  */
 
 const Finance = (() => {

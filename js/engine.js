@@ -477,7 +477,7 @@ const Engine = (() => {
       }
     });
 
-    // Zmačkání dopisu (dříve −Maska) — tíha viny
+    // Zmačkání dopisu — tíha viny
     State.upravRys('Vina', 3);
     State.uloz();
   }
@@ -522,19 +522,19 @@ const Engine = (() => {
 
   function _epilogVlcek(typ, stav) {
     if (typ === 'hrdina') return 'Byl odvolán z funkce. Řízení bylo zastaveno po dvou týdnech.';
-    if (typ === 'korupce') return 'Nadále slouží republice. Novákův případ nikdy nezmínil.';
+    if (typ === 'korupce') return 'Nadále slouží republice. Vraného případ nikdy nezmínil.';
     return 'Zůstal na místě. Jako vždy.';
   }
 
   function _epilogHorakova(typ, stav) {
     const trust = stav.trust.horakova;
     if (typ === 'hrdina')        return 'Vydala sérii článků. Tři novináři přišli o práci kvůli ní. Pokračovala.';
-    if (trust >= 2)              return 'Napsala o Novákovi. Ne o případu — o člověku.';
+    if (trust >= 2)              return 'Napsala o Vraném. Ne o případu — o člověku.';
     return 'Sledovala případ z dálky. Psala o jiných věcech.';
   }
 
   function _epilogMasek(typ, stav) {
-    if (typ === 'korupce') return 'Přivítal Nováka mezi svými. Nikdy o tom nemluvili.';
+    if (typ === 'korupce') return 'Přivítal Vraného mezi svými. Nikdy o tom nemluvili.';
     return 'Odešel do penze o rok dříve. Bez rozloučení.';
   }
 
@@ -542,18 +542,18 @@ const Engine = (() => {
     const identified = stav.flags.benes_identified;
     if (identified && typ === 'hrdina') return 'Přišel na pohřeb. Nestál blízko. Ale byl tam.';
     if (identified) return 'Odešel tiše. Nikdo nevěděl, kdo byl.';
-    return 'Starý muž. Novák nikdy nezjistil, kdo byl.';
+    return 'Starý muž. Vraný nikdy nezjistil, kdo byl.';
   }
 
   function _epilogNovak(typ, stav) {
     const endingTexty = {
-      odvolani: 'Dr. Karel Novák byl odvolán z funkce. Kariéra skončila. Přestěhoval se na venkov.',
-      korupce:  'Dr. Karel Novák se stal součástí systému. Přesně tak, jak se bál.',
-      atentát:  'Dr. Karel Novák zemřel 28. března 1931. Příčina nebyla nikdy plně objasněna.',
-      preziti:  'Dr. Karel Novák přežil třicet dní. Věděl, co za to zaplatil.',
-      hrdina:   'Dr. Karel Novák přežil. A věděl — napravit minulost správnými rozhodnutími nejde. Ale žít s ní — to ano.'
+      odvolani: 'Dr. Benedikt Vraný byl odvolán z funkce. Kariéra skončila. Přestěhoval se na venkov.',
+      korupce:  'Dr. Benedikt Vraný se stal součástí systému. Přesně tak, jak se bál.',
+      atentát:  'Dr. Benedikt Vraný zemřel 28. března 1931. Příčina nebyla nikdy plně objasněna.',
+      preziti:  'Dr. Benedikt Vraný přežil třicet dní. Věděl, co za to zaplatil.',
+      hrdina:   'Dr. Benedikt Vraný přežil. A věděl — napravit minulost správnými rozhodnutími nejde. Ale žít s ní — to ano.'
     };
-    return endingTexty[typ] || 'Dr. Karel Novák. 1931.';
+    return endingTexty[typ] || 'Dr. Benedikt Vraný. 1931.';
   }
 
   // --- HELPERS ---

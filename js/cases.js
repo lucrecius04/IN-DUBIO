@@ -758,7 +758,6 @@ const Cases = (() => {
   function _frakcniKlicDoStavu(klic) {
     if (klic === 'Stat') return 'Moc';
     if (klic === 'Obchodnici') return 'Kapital';
-    if (klic === 'Cirkev') return null;
     return klic;
   }
 
@@ -768,8 +767,7 @@ const Cases = (() => {
     // Rysy
     if (dusledky.traits) {
       for (const [nazev, delta] of Object.entries(dusledky.traits)) {
-        if (nazev === 'Maska') State.upravRys('Vina', delta);
-        else State.upravRys(nazev, delta);
+        State.upravRys(nazev, delta);
       }
     }
 
@@ -954,9 +952,7 @@ const Cases = (() => {
       kompromitujici_nabidka: 'Dostal jsi anonymní dopis.',
       chvala_v_novinach:      'Závadová o tobě napsala pozitivně.',
       verejne_odsouzeni:      'Na ulici tě někdo poznal. Bylo to nepříjemné.',
-      verejna_podpora:        'Farář tě veřejně pochválil.',
-      moralni_odsouzeni:      'Církev vydala prohlášení.',
-      moralní_odsouzeni:      'Církev vydala prohlášení.'
+      verejna_podpora:        'Farář tě veřejně pochválil.'
     };
     return ZPRAVY[reakce.udalost] || null;
   }
