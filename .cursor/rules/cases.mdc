@@ -1,78 +1,191 @@
 ---
-description: Systém případů, průzkumu a denního cyklu IN DUBIO
+description: Systém případů, průzkumu, rozporů a denního cyklu IN DUBIO
 globs: js/cases.js, js/engine.js, data/cases-akt1.json, data/cases-akt2.json, data/cases-akt3.json, data/days.json
 alwaysApply: false
 ---
 
+## FÁZE PŘÍPADU
+
+Každý případ prochází pěti fázemi lineárně. Hráč se nemůže vrátit k průzkumu po rozsudku.
+
+```
+SLOŽKA NA STOLE → SPIS → PRŮZKUM → ROZSUDEK → DOPAD
+     (1)           (2)      (3)        (4)       (5)
+```
+
 ## TYPY PŘÍPADŮ
-RUTINNÍ: barva #C4A35A | ikona ⚖️ | efekty: Finance ±, Vlastnosti ±2-5
-MORÁLNÍ DILEMA: barva #2C4A7C | ikona 📜 | efekty: Vlastnosti ±8-15, vždy Vina nebo Naděje
-POLITICKÝ: barva #8B1A1A | ikona 🏛️ | efekty: Integrita/MOC ±10-20
-OSOBNÍ: barva #5C2D6E | ikona 👤 | efekty: Vina ±5-10, Vztahy ±
 
-Opakující se vlákna: recurring: true, thread: "nazev" — barva podle type, ne speciální.
+RUTINNÍ: barva #C4A35A | ikona ⚖️ | 1 rozpor | efekty: Finance ±, Vlastnosti ±2-5
+MORÁLNÍ DILEMA: barva #2C4A7C | ikona 📜 | 2-3 rozpory | efekty: Vlastnosti ±8-15, vždy Vina nebo Naděje
+POLITICKÝ: barva #8B1A1A | ikona 🏛️ | 1-2 rozpory + varování před rozsudkem | efekty: Integrita/MOC ±10-20
+OSOBNÍ: barva #5C2D6E | ikona 👤 | echo Benovy minulosti | efekty: Vina ±5-10, Vztahy ±
 
-## HARMONOGRAM VLÁKEN
-Božena: dny 1,5,9,14,18,22,26,29 (slot 1)
-Pospíšil: dny 3,8,16,27 (slot 2)
-Hranice: dny 4,11,19,25 (slot 2)
-Marková: dny 3,13,21,28 (slot 2)
+Opakující se vlákna: recurring: true, thread: "nazev" — barva podle type.
+
+## DENNÍ STRUKTURA — 20 DNÍ
+
+2 případy denně: hlavní (slot 1) + vedlejší (slot 2).
+Hráč volí pořadí. Den nekončí dokud nejsou oba vyřešeny.
+Průzkumné akce jsou sdílené mezi oběma případy.
+
+Pracovní dny: 2 případy + ranní fragment + večerní volba po obou případech.
+Sobota: tiché bonusy + narativní shrnutí týdne, žádné případy.
+Neděle: volba volného dne (matka/kostel/spisy/procházka), žádné případy.
+
+## HARMONOGRAM VLÁKEN (20 dní)
+
+Božena: dny 1, 4, 8, 12, 16 (slot 1, max 5 výskytů)
+Pospíšil: dny 3, 7, 14, 19 (slot 2)
+Hranice: dny 5, 10, 17 (slot 2)
+Marková: dny 3, 11, 18 (slot 2)
+
+## SPIS — ZÁLOŽKA PŘÍPAD
+
+Hlavička: spisová značka, název, obžalovaný (jméno, věk, povolání, detail), obžaloba s paragrafem.
+Popis skutku: 3-5 vět, jazyk soudního protokolu.
+Výpovědi: 2-3 kusy, každá 2-4 věty, vždy s konkrétním mluvčím.
+
+## SYSTÉM ROZPORŮ
+
+Každý případ obsahuje minimálně 1 rozpor ve výpovědích/důkazech.
+Rozpor = nesrovnalost mezi dvěma nebo více výpověďmi, která má důsledek pro verdikt.
+
+Viditelnost rozporů podle Moudrosti:
+- ★★★★★: rozpory zvýrazněné (podtržení, ikona ⚠️)
+- ★★★☆☆: rozpory přítomné v textu, nezvýrazněné
+- ★☆☆☆☆: jedna výpověď vynechána, nutno odhalit průzkumem
+
+Rozpor nesmí být triviální. Musí mít důsledek pro případ — když ho hráč najde, změní se jeho pohled na verdikt.
 
 ## SYSTÉM PRŮZKUMU
-Výchozí: 2 akce za den
-Odvaha ★★★★★: +1 akce (celkem 3)
-Neděle procházka/matka: +1 akce v pondělí
 
-Průzkumné akce:
-- Vyslechnout svědka (základní)
-- Zkontrolovat záznamy (hledá precedent)
-- Kontaktovat informátora (rychlé info)
-- Konfrontovat svědka (agresivní, Odvaha >60)
+Výchozí: 2 akce za den (sdílené mezi oběma případy).
+Odvaha ★★★★★: +1 akce (celkem 3).
+Nedělní procházka/matka: +1 akce v pondělí.
 
-Odměna průzkum + správný rozsudek → Moudrost +3 tiše + "Případ jsi prostudoval pečlivě."
+### Čtyři typy akcí — každá odhaluje jiný typ informace
 
-## TÝDENNÍ CYKLUS
-Pracovní dny: 3 případy/den (slot 1: pevný příběhový nebo vlákno, slot 2-3: náhodný z poolu)
-Neděle (7,14,21,28): žádné případy
-  A) Navštívit matku → Naděje +5, Vina -3, Finance -5, pondělí +1 akce
-  B) Jít do kostela → Vina -2, Naděje +2
-  C) Číst staré spisy → Moudrost +3, Naděje -2, extra detail v prvním případu
-  D) Procházka → Naděje +3, Moudrost +2, pondělí +1 akce
-  E) Nepsat synovi → Vina +3, check na emotivní případ
+🗣️ VÝSLECH — odhaluje MOTIVACI (proč to udělal)
+Hráč vybere osobu. Dostane 2-4 věty o pohnutkách. Nezmění fakta, změní pohled.
 
-Sobota — tiché bonusy (6,13,20,27):
-Pečlivý (průzkum 75%+): Moudrost +5, Finance +15 — "Vaše pečlivost si získala tichý respekt."
-Nezávislý (bez úplatku): Integrita +5, LID +8 — "Vaše nezávislost se probírá v kavárnách."
-Odvážný (žádný případ odložen): Odvaha +3, Finance +20 — "Zvládl jste týden bez prodlení."
-Konzistentní (5+ stejným směrem): Tvrdý na zločin MOC +10 | Mírný k chudým LID +10
-Morální odvaha (3+ těžké): Odvaha +5
+📋 ZÁZNAMY — odhalují FAKTA (co se stalo objektivně)
+Soudní, policejní, obchodní záznamy. Tvrdá data. Může odemknout rozpor.
 
-Narativní věta v sobotu:
-Vše: "Šest dní. Osmnáct spisů. Rozhodoval jsi pečlivě."
-Nic: "Šest dní. Osmnáct spisů. Přežil jsi."
-Jen čistý: "Šest dní. Osmnáct spisů. Čistý štít. Zatím."
-Jen konzistence: "Šest dní. Osmnáct spisů. Víš co chceš. Nebo si to myslíš."
+🕵️ INFORMÁTOR — odhaluje KONTEXT (kdo za tím stojí)
+Zabarvená informace podle dominantní frakce (LID/MOC/KAPITÁL). Hráč se musí rozhodnout komu věří.
 
-## VÁHOVÁNÍ PŘÍPADŮ
-Den 1-3: rutinni 100%
-Den 4-7: rutinni 70%, moralni 30%
-Den 8-10: rutinni 50%, moralni 35%, politicky 15%
-Den 11-20: rutinni 30%, moralni 35%, politicky 25%, osobni 10%
-Den 21-30: rutinni 15%, moralni 30%, politicky 40%, osobni 15%
+⚔️ KONFRONTACE — odhaluje PRAVDU nebo LŽI (riskantní)
+Dostupné pouze: Odvaha ★★★★☆+.
+Vyžaduje nalezený rozpor (requires_contradiction). Bez rozporu automaticky selže.
+Úspěch: svědek se zlomí, zásadní informace.
+Neúspěch: svědek se uzavře, jeho výpověď je uzamčena.
+
+### Vizuální zpětná vazba
+Počítadlo akcí = inkoustové kapky (plné/prázdné).
+Nová informace se přidá do spisu jako karta pod výpověďmi.
+
+## DVOUDÍLNÝ ROZSUDEK
+
+### Krok A — VERDIKT
+
+| Verdikt | Kdy dostupný |
+|---------|-------------|
+| Vinen | Vždy |
+| Nevinen | Vždy |
+| Nedostatek důkazů | Moudrost ★★★☆☆+ |
+| Zproštěn obžaloby | Integrita ★★★☆☆+ (zmizí u politických při nízké Integritě) |
+
+### Krok B — TREST / PŘÍSTUP
+
+Pokud VINEN:
+- Maximální trest — zmizí při Vina ★★★★★
+- Přiměřený trest — vždy
+- Mírný trest — vždy
+- Alternativní trest — Moudrost ★★★★☆+ nebo Naděje ★★★★★
+
+Pokud NEVINEN / ZPROŠTĚN:
+- Formální (stručné odůvodnění)
+- S komentářem (osobní poznámka, silnější dopad na frakce)
+
+Pokud NEDOSTATEK DŮKAZŮ:
+- Vrátit k došetření (případ se vrátí za X dní)
+- Uzavřít (konečné)
+
+## KVALITA ROZSUDKU
+
+Hra neříká správný/špatný. Hodnotí soulad s tím co hráč věděl.
+
+| Průzkum | Soulad s fakty | Zpětná vazba |
+|---------|---------------|-------------|
+| 0 akcí | — | „Rozhodl jsi naslepo." Finance +5, Moudrost -2 |
+| 1 akce | Odpovídá | „Rozhodl jsi s tím co jsi měl." Finance +10 |
+| 1 akce | Neodpovídá | „Věděl jsi víc — a přesto..." Vina +3 |
+| 2 akce + rozpor | Odpovídá | „Případ jsi prostudoval pečlivě." Finance +20, Moudrost +3 |
+| 2 akce | Neodpovídá | „Viděl jsi pravdu. Odvrátil ses." Vina +5, Integrita -3 |
+
+## DOPAD PO ROZSUDKU
+
+Okamžitý: narativní fragment 2-3 věty (reakce v soudní síni). Nikdy nehodnotí hráče.
+Tón fragmentu se mění podle: verdiktu, Viny hráče, Naděje.
+
+Mechanický: změny vlastností a frakcí (skryté, hráč vidí jen hvězdičky v notýsku).
+
+Odložený: některé rozsudky mají důsledek za X dní (fragment, dopis, setkání).
+
+Razítko na složce: VYŘEŠENO (tmavě červená = odsouzení, modrá = zproštění, šedá = odloženo).
+
+## VÁHOVÁNÍ PŘÍPADŮ (20 dní)
+
+Den 1-3: rutinní 100%
+Den 4-7: rutinní 60%, morální 40%
+Den 8-12: rutinní 30%, morální 35%, politický 25%, osobní 10%
+Den 13-20: rutinní 15%, morální 30%, politický 35%, osobní 20%
 
 Dynamické váhování:
 Integrita >70: více morálních | Integrita <30: více úplatků
 LID <30: více chudých | Odvaha >70: více politických | Vina >70: více podobných staré chybě
 
-## VZTAHY — 3 postavy, hodnoty 0-3
-VLČEK (start 1): roste politickými rozsudky, nízká Integrita
-  Důvěra 3: Integrita -5 každých 5 dní, MOC roste, speciální rozsudky
-  Důvěra 0: MOC -2/den, Odvaha +3, eskalace
+## TÝDENNÍ CYKLUS
 
-ZÁVADOVÁ (start 0): roste spravedlivými rozsudky, Odvaha >60
-  Důvěra 3: Odvaha +5, LID 1.5x, odemkne HRDINA nebo ŘÁD
-  Důvěra 0: Naděje -5, negativní výstřižek každých 7 dní
+Neděle (volný den):
+A) Navštívit matku → Naděje +5, Vina -3, Finance -5, pondělí +1 akce
+B) Jít do kostela → Vina -2, Naděje +2
+C) Číst staré spisy → Moudrost +3, Naděje -2, extra detail v prvním případu
+D) Procházka → Naděje +3, Moudrost +2, pondělí +1 akce
+E) Nepsat synovi → Vina +3, check na emotivní případ
 
-KARAS (start 2): roste nízká Integrita, Vina >70
-  Důvěra 3: bonus v průzkumu, Integrita -1/den, varuje před Vlčkem
-  Důvěra 0: mlčí
+Sobotní bonusy (tiché):
+Pečlivý (průzkum 75%+): Moudrost +5, Finance +15
+Nezávislý (bez úplatku): Integrita +5, LID +8
+Odvážný (žádný odložen): Odvaha +3, Finance +20
+Konzistentní (5+ stejným směrem): MOC +10 nebo LID +10
+Morální odvaha (3+ těžkých): Odvaha +5
+
+Narativní věta v sobotu:
+Vše splněno: „Pět dní. Deset spisů. Rozhodoval jsi pečlivě."
+Nic: „Pět dní. Deset spisů. Přežil jsi."
+Jen čistý: „Pět dní. Deset spisů. Čistý štít. Zatím."
+
+## PRAVIDLA PRO PSANÍ PŘÍPADŮ
+
+1. Každý případ musí mít alespoň 1 rozpor — i rutinní.
+2. Výpovědi max 4 věty. Krátké, přesné.
+3. Rozpor musí mít důsledek pro verdikt — ne jen kosmetický nesoulad.
+4. Každá průzkumná akce musí změnit pohled na případ.
+5. Konfrontace = mini-scéna s dramatickým nábojem.
+6. Morální/politické případy nemají „správnou" odpověď. Hra to nikdy neřekne.
+7. Fragment po rozsudku nikdy nehodnotí hráče — jen popisuje co se stalo.
+8. Odložené důsledky musí být konkrétní obraz, ne abstrakce.
+
+## JSON STRUKTURA PŘÍPADU
+
+Každý případ v data/cases-aktX.json musí obsahovat:
+id, day, slot, type, color, title, case_number,
+defendant {name, age, occupation, detail},
+charge, description,
+testimonies [{id, speaker, text, contradiction_keywords, hidden_at_wisdom_below}],
+contradictions [{id, description, involves[], highlight_at_wisdom, unlocks_confrontation}],
+investigation {interview, records, informant {variants}, confrontation {requires_contradiction, requires_courage, success, failure}},
+verdicts {guilty {sentences{}}, not_guilty {approaches{}}, acquitted, insufficient_evidence},
+aftermath {texty pro každý verdikt},
+delayed_consequences [{trigger, delay_days, fragment}]

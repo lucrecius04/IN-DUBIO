@@ -1,51 +1,141 @@
 ---
-description: Příběh, postavy a narativní tón IN DUBIO
+description: Příběh, postavy, narativní tón a dramatický oblouk IN DUBIO
 globs: STORY.md, data/characters.json, data/fragments.json, data/days.json
 alwaysApply: false
 ---
 
-## POSTAVY — jména a klíčové rysy
+## ÚSTŘEDNÍ OTÁZKA
+„Může být jeden člověk spravedlivý v nespravedlivém světě?"
+Hra na tuto otázku NIKDY neodpoví. Osm konců = osm odpovědí, žádná správná.
+Noir, meziválečné období, Československo, morální šedá zóna.
 
-Benedikt Vraný (Ben) — hráč, soudce, 54 let. Byl idealistou. Temná minulost: odsoudil muže pod tlakem, ten zemřel. "Ben" říká jen Karas. Ostatní: "pane doktore."
+## TŘI VELKÉ LŽI
+MOC (Vlček): „Řád nás zachrání." — řád slouží moci, ne lidem.
+LID (Závadová, Řád): „Spravedlnost nás zachrání." — jejich spravedlnost vyžaduje novou nespravedlnost.
+KAPITÁL (Haas): „Prosperita nás zachrání." — prosperita postavena na vykořisťování.
+BENOVA LEŽ: „Jen jsem dodržoval zákon." — nikdo netlačil. Nepřečetl spis z lhostejnosti. Muž zemřel.
 
-Alexandr Vlček — ministr spravedlnosti, 51 let. Narozen Alexander Wolf, Vídeň. Fašistický agent od 1923. Elegantní, nikdy nevyhrožuje přímo. KLÍČ: Den 22 omylem přiloží rodný list do spisu.
+## POSTAVY
 
-Eliška Závadová — novinářka, 38 let, vedoucí buňky Řádu spravedlnosti. Lže snadno ale ne o podstatě. KLÍČ: Ví o Benovi vše od začátku. Nepřiznala to.
+### Benedikt Vraný (Ben) — hráč, soudce, 54 let
+Studoval ve Vídni. Žena Anna zemřela 1925 — ne na tuberkulózu, ale protože si Ben nemohl dovolit léčbu po snížení platu po špatném rozsudku.
+TEMNÁ MINULOST: V 1927 odsoudil Karla Beneše. Říká „tlačili na mě." SKUTEČNOST: nikdo netlačil. Nepřečetl spis. Horký den, Anna nemocná, chtěl domů. Podepsal. Muž zemřel. Toto zrcadlí gameplay — hráč klikající naslepo dělá totéž.
+„Pane doktore" (všichni). „Ben" (jen Karas). „Otče" (Martin).
 
-Ctibor Karas — kolega soudce, 56 let, Vlčkův informátor. Miluje Bena jako přítele. KLÍČ: Den 25 přijde varovat. Říká Benovi "starý."
+### Alexandr Vlček — ministr spravedlnosti, 51 let
+Pravé jméno Alexander Wolf, Vídeň 1887. Nebyl vždy autoritář — byl demokrat, konvertoval po 1923 z rozčarování. Vlček je Ben, který dospěl k jinému závěru.
+Metoda: gradace dopisů — formální → pochvala → naznačení → nátlak → hrozba → osobní návštěva.
+KLÍČ D15: rodný list „Alexander Wolf" ve spisu — podvrhla ho Závadová.
 
-Alois Beneš — 71 let, otec muže kterého Ben odsoudil. JEDINÁ postava bez skryté agendy. Mluví málo. Posílá lístek předem. KLÍČ: Den 20 řekne pravdu — syn byl vinen, ale ne z toho za co ho soudili.
+### Eliška Závadová — novinářka, 38 let
+Vedoucí buňky Řádu. Absolventka práv. Píše do Svobodného obzoru pod pseudonymem.
+OSOBNÍ MOTIVACE: Bratr Tomáš odsouzen za velezradu 1928 z téže budovy. Založila Řád.
+Skrytý podtext D17 („víme o vás vše"): „Vy jste mohl zachránit mého bratra."
+Rodný list D15 = její práce. Podvržený důkaz skutečného zločinu.
 
-Viktor Haas — průmyslník, 58 let. Mluví vždy přes prostředníka. KLÍČ: Den 23 přijde OSOBNĚ s nabídkou 300 Kč.
+### Ctibor Karas — kolega soudce, 56 let
+Benův přítel ze Vídně. Vlčkův informátor od 1929 — ze strachu.
+VÍDEŇSKÁ PŘÍSAHA: Jako studenti viděli křivé svědectví. Oba přísahali. Oba porušili.
+Signály: D3 káva, D7 pero (= Vlčkovo), D10 „Opatrně s tím případem."
+D18: „Vzpomínáš na Vídeň, starý?" — přijde varovat, tím se sám odsoudí.
 
-Martin Vraný — syn, 24 let, studuje práva. Píše dopisy ručně. Neví o otcově chybě.
+### Alois Beneš — tichý svědek, 71 let
+Otec Karla Beneše. JEDINÁ postava bez skryté agendy.
+D13: „Vy jste věděl. Četl jste tu zprávu. A přesto jste se ani nezeptal."
+Karel BYL vinen — kradl jídlo, ne stroje. Ben odsoudil za sabotáž bez přečtení důkazů.
 
-Růžena Horáčková — advokátka, 41 let. Den 9: svědkyně. Den 19: obžalovaná.
+### Viktor Haas — průmyslník, 58 let
+Neviditelný střed pavučiny. Financuje Vlčka, platí Řádu, vlastnil Benešovu továrnu, propustil Horáka.
+SKRYTÁ VAZBA: Platil Anninu léčbu v Podolí. Ben neví do D15. Haas Bena „vlastní" už roky.
+D16: přijde OSOBNĚ s 300 Kč. Podtext: naposledy Ben „nezaplatil" a Anna zemřela.
 
-## SKRYTÁ PROPOJENÍ
-Vlček platí Karase | Řád vydírá Haase | Závadová sleduje Vlčka | Haas financuje Vlčka | Beneš = bez agendy
+### Martin Vraný — syn, 24 let
+Dopisy: D2 studium, D8 spravedlnost, D14 případ z novin, D19 „přijedu o víkendu."
+TAJEMSTVÍ: Verbován Řádem. V dopisech postupně používá slova Závadové.
 
-## KLÍČOVÁ ODHALENÍ
-Den 18: Svědek z dne 6 je mrtvý. Závadová: "Stojí za tím Řád. My."
-Den 20: Beneš — Benova vina není v rozsudku. Je v tom PROČ ho vynesl.
-Den 22: Rodný list "Alexander Wolf — narozen Vídeň 1887."
-Den 24: Závadová: "Víme o vás vše. Od začátku."
+### Růžena Horáčková — advokátka, 41 let
+D7: svědkyně. D15: obžalovaná. Hráč soudí ženu, která dřív svědčila.
+
+### Vedlejší postavy
+Milena Kovářová, zapisovatelka (28): mlčí, píše, vše slyší. V textech: „Zapisovatelka zvedne hlavu."
+Antonín Švejda, vrátný (63): ví o všech. V ranních fragmentech: „Švejda: Čeká tu někdo, pane doktore."
+Nikdy víc než větu. Jsou nábytek, který dýchá.
+
+## SKRYTÁ PROPOJENÍ + HAASOVA PAVUČINA
+Vlček ← financuje ← Haas → platí → Řád. Vlček → platí → Karas → informuje → Vlček.
+Řád (Závadová) → sleduje Vlčka i Bena (od 1928). Haas → Horák, Benešova továrna, Annina léčba.
+VŠE VEDE K HAASOVI. Mechanismus odhalení: hráč skládá sám z průzkumu.
+D1 informátor „Haasova továrna", D5 záznamy „firma V. Haas", D7 Horáčková „klient financující obě strany", D10 vizitka, D13 Beneš „továrna patřila Haasovi", D15 „Anna Vraná — Podolí — Haas", D16 Haas osobně.
+
+## DENNÍ RYTMUS
+RÁNO: fragment 2-3 věty (svět mimo soud, Švejda, počasí, fronty). Foreshadowing.
+DOPOLEDNE: Případ 1 (slot 1). ODPOLEDNE: Případ 2 (slot 2).
+VEČER: volba (psát Martinovi / spisy / procházka / hospoda) + dopisy/události.
+Ranní fragmenty se mění podle aktu a statů (Naděje, Vina, Finance).
+
+## NOVINY — SVOBODNÝ OBZOR
+Obrázkové (6 ks): D1, D6, D10, D14, D18, D20. Generováno v Gemini.
+Textové titulky (běžné dny): pool 15-20 ks, engine vybírá podle aktu a statů. Bez obrázku.
+Reaktivní titulky: LID vysoký → „Soudce chrání malého člověka." MOC vysoká → „Vláda chválí justici." Integrita nízká → „Říkají o něm věci."
+
+## ARCHITEKTURA PŘÍPADŮ
+STANOVÉ TYČE (~10): neměnné, vždy na svém dni. Pilíře oblouku.
+VARIABILNÍ PÁTEŘ (~15 framů × 2-3 varianty): mění se podle hráčovy cesty. Stejný frame, jiné texty.
+POOL (~12): vyplňují zbylé sloty. Váhované. Replayabilita.
+Celkem ~52 unikátních textů, hráč vidí ~38. Při druhém průchodu ~12 jiných.
+
+## TŘI ZVRATY
+ZVRAT 1 (D15): Haas a Anna — „náklady uhrazeny firmou V. Haas."
+ZVRAT 2 (D17): Rodný list podvržený Závadovou — použít falešný důkaz skutečného zločinu?
+ZVRAT 3 (D20): Poslední obžalovaný SKUTEČNĚ vinen. Závadová chce zproštění, Vlček odsouzení — oba cynicky.
+
+## DRAMATICKÝ OBLOUK — 20 DNÍ
+Benův oblouk: „Dělám svou práci" → „Stojím pevně" → „Rozbil jsem to já" → „Co teď?"
+
+Akt 1 (D1-5): Falešná normalita. Háček D3: podpis nepatřící vyšetřovateli.
+Akt 2 (D6-10): Praskliny. Dopis od doktora D6. Vlčkovo očekávání D8.
+Akt 3 (D11-15): Odhalení. Beneš D13. Mrtvý svědek D14. Dva zvraty D15.
+Akt 4 (D16-20): Konec. Haas D16. Závadová D17. Karas D18. Velezrada D20.
+
+## ČTYŘI VĚTVENÍ
+D8: Vlčkovo očekávání — splnit (MOC) vs. odmítnout (HRDINA)
+D13: Beneš — přijmout (SMÍŘENÍ) vs. odmítnout (SMÍŘENÍ zavřeno)
+D16: Haas — přijmout (KORUPCE/PŘEŽITÍ) vs. odmítnout (HRDINA/ÚTĚK/ATENTÁT)
+D18: Karas — poslechnout (ÚTĚK) vs. ignorovat (HRDINA/ATENTÁT) vs. zradit (KORUPCE)
+
+## OSM KONCŮ
+
+1. PŘEŽITÍ: žádné extrémy, žádné vazby. Nic se nezměnilo. „Další den. Jako vždy."
+
+2. KORUPCE: Integrita ★☆ + (Vlček ≥2 NEBO Haas přijat). Vlčkův muž. Nové pero = Vlčkovo. „Lampa nesvítí. Už ji nepotřebuješ."
+
+3. HRDINA: Integrita ★★★★★ + Odvaha ★★★★★ + Závadová ≥2 + Vlček 0 + odmítl Haase + POUŽIL rodný list. Správná věc špatným způsobem. „Noviny dnes píšou tvoje jméno. Zítra ho zapomenou."
+
+4. ÚTĚK: Finance >300 + Závadová ≥2 + D18 poslechl Karase. Sám, neotvořený dopis v kufru. „Vlak odjíždí v šest. Neohlížíš se."
+
+5. SMÍŘENÍ: Vina ★☆ + D13 Beneš přijat + Integrita >60 + odmítl Haase. Poprvé napíše pravdu Martinovi. „Kalamář je prázdný. Pero leží na stole."
+
+6. ATENTÁT (tajný): MOC ●○ + Odvaha ★★★★★ + Vlček 0 + Integrita >60 + odmítl Haase + odmítl Závadovou + NEPOUŽIL rodný list. Absolutní nezávislost. Vlastní protokol. „Protokol číslo 49..."
+
+7. ŘÁD: Závadová 3 + odmítl Vlčka + D17 přijal + použil rodný list. Martin verbován Řádem pod otcem. „Spravedlnost není v zákoně."
+
+8. ANNA (skrytý skrytý): Vina ★☆ + D13 Beneš + odmítl Haase + zjistil o Anně (D15) + odmítl Vlčka + odmítl Závadovou + Finance <100 + průzkum 80%+. Absolutní čistota + přijetí ztráty. Martin zanechal práva, chce být učitel. „Lampa svítí. Slabě, ale svítí."
+
+## VLÁKNA (20 dní)
+Božena: D1, 4, 8, 13, 18 (vtip → absurdita → korupce → tragédie → precedent)
+Pospíšil: D3, 7, 14, 16 (rutina → strach → svědek mrtvého → klíčový svědek)
+Hranice: D5, 10, 17 (směšné → národnostní → metafora)
+Marková: D3, 12, 19 (podezřelá → zachránkyně → obžalovaná)
 
 ## TÓN A STYL
-Noir, meziválečné období, morální šedá zóna.
-Dialogy: dobový jazyk, 30. léta, střídmý ale přesný.
-Fragmenty: krátké, atmosferické, žádné zbytečné věty.
-Žádná postava není tím čím se zdá. Žádný "správný" rozsudek.
-
-## OPAKUJÍCÍ SE VLÁKNA
-Božena (slepice): dny 1,5,9,14,18,22,26,29 — absurdní spor → precedent
-Pospíšil (hostinský): dny 3,8,16,27 — den 27 klíčový svědek
-Hranice pozemku: dny 4,11,19,25 — 34 cm půdy, gradující absurdita
-Marková: dny 3,13,21,28 — vždy příliš přesná výpověď, den 28 = obžalovaná
-
-## SEDM KONCŮ
-1. PŘEŽITÍ | 2. KORUPCE | 3. HRDINA | 4. ÚTĚK | 5. SMÍŘENÍ | 6. ATENTÁT (tajný) | 7. ŘÁD
+Noir. Morální šedá zóna. Dobový jazyk 30. let. Obraz místo abstrakce. Detail místo popisu.
 
 ## CO AGENT NESMÍ
-Vymýšlet případy, dialogy, fragmenty, odhalení nebo větvení příběhu.
-Měnit jména nebo charaktery postav.
+Vymýšlet případy, dialogy, fragmenty, odhalení nebo větvení. Měnit jména nebo motivace. Hodnotit hráče. Přidávat postavy bez souhlasu.
+
+## CO AGENT SMÍ
+
+- Implementovat případy které dostane
+- Implementovat dialogy a fragmenty které dostane
+- Opravovat technické chyby v datech
+- Ptát se pokud něčemu nerozumí

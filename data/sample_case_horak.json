@@ -1,0 +1,214 @@
+{
+  "id": "d01_main_horak",
+  "day": 1,
+  "slot": "main",
+  "type": "routine",
+  "color": "#C4A35A",
+  "title": "Krádež chleba",
+  "case_number": "Sp. zn. 48/1931",
+  "defendant": {
+    "name": "Jan Horák",
+    "age": 34,
+    "occupation": "dělník",
+    "detail": "ženatý, 3 děti, propuštěn z Haasovy továrny"
+  },
+  "charge": "Krádež potravin dle §171 trestního zákona, škoda 4 Kč 80 hal.",
+  "description": "Jan Horák byl zadržen 28. února 1931 v pekárně U Nováků na Masarykově třídě. Dle výpovědi pekaře Antonína Nováka obžalovaný odcizil dva bochníky chleba v celkové hodnotě 4 Kč 80 hal. Obžalovaný se nebránil zadržení.",
+
+  "testimonies": [
+    {
+      "id": "novak",
+      "speaker": "Antonín Novák, pekař, poškozený",
+      "text": "Chytil jsem ho za ruku přímo u regálu. Dva bochníky, žitné. Byl úterý, odpoledne, pamatuji si to přesně, protože jsem zrovna zavíral krám.",
+      "contradiction_keywords": ["úterý", "odpoledne", "zavíral krám"],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "dvorak",
+      "speaker": "Karel Dvořák, strážník",
+      "text": "Byl jsem přivolán v 15:40. Obžalovaný seděl na zemi před pekárnou, bochníky vedle něj. Nekládl odpor. Řekl jen: Děti nemají co jíst.",
+      "contradiction_keywords": ["15:40"],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "horak",
+      "speaker": "Jan Horák, obžalovaný",
+      "text": "Ano, vzal jsem ten chleba. Nebudu lhát. Tři dny jsme nejedli. Přišel jsem ráno, ale neměl jsem dost peněz.",
+      "contradiction_keywords": ["ráno"],
+      "hidden_at_wisdom_below": 20
+    }
+  ],
+
+  "contradictions": [
+    {
+      "id": "time_mismatch",
+      "description": "Novák říká odpoledne/zavíral krám. Horák říká přišel ráno. Strážník přivolán 15:40. Proč pekař zavíral ve tři, když zavírací doba je 18:00?",
+      "involves": ["novak", "horak", "dvorak"],
+      "highlight_at_wisdom": 80,
+      "unlocks_confrontation": "novak"
+    }
+  ],
+
+  "investigation": {
+    "interview": {
+      "target": "horak",
+      "target_label": "Jan Horák, obžalovaný",
+      "reveals": "motivation",
+      "text": "V továrně mě vyhodili před měsícem. Žena je nemocná. Chodil jsem k Novákovi dva roky — vždycky mi dal na dluh. Tentokrát řekl ne. Ale ten chleba tam ležel. A děti doma...",
+      "trait_effects": { "vina": 1 }
+    },
+    "records": {
+      "source": "Živnostenský rejstřík",
+      "reveals": "facts",
+      "text": "Pekárna U Nováků: poslední kontrola 12. ledna 1931. Poznámka: „Nesrovnalosti v účetnictví, upozornění vydáno." Zavírací doba dle licence: Po–So 6:00–18:00.",
+      "unlocks_contradiction": "time_mismatch"
+    },
+    "informant": {
+      "reveals": "context",
+      "variants": {
+        "lid_high": "Ten chlapík Horák — toho znám. Dřív pracoval v Haasově továrně. Vyhodili ho, když začal organizovat stávku. A Novák? Ten dluží Haasově firmě. Všechno souvisí se vším, pane doktore.",
+        "kapital_high": "Ten dělník je potížista. Organizoval stávku, rozbíjel stroje. Novák je slušný živnostník — nechte ho být.",
+        "default": "Horák je jeden z mnoha. Továrna zavřela, lidi nemají práci. Novák taky nemá na růžích ustláno — prý dluží."
+      }
+    },
+    "confrontation": {
+      "target": "novak",
+      "target_label": "Antonín Novák, pekař",
+      "requires_contradiction": "time_mismatch",
+      "requires_courage": 60,
+      "prompt": "Říkáte, že jste zavíral. Ale vaše zavírací doba je v osmnáct hodin. Proč jste zavíral ve tři odpoledne?",
+      "success": {
+        "text": "Novák se odmlčí. Dlouho. Pak tiše: „...Měl jsem problémy. S licencí. Prodával jsem po zavírací době. Horák přišel ráno, řekl jsem mu ať přijde později, až zavřu. Pak jsem si to rozmyslel. Ale on přišel stejně."",
+        "reveals": "Novák prodával na černo. Horákovi slíbil chleba na dluh, pak si to rozmyslel. Horák nepřišel krást — přišel si pro to co mu bylo slíbeno."
+      },
+      "failure": {
+        "text": "Novák se naježí. „Obviňujete mě? Já jsem poškozený! Ten muž mi ukradl chleba a vy se mě ptáte na zavírací dobu? S vámi už nebudu mluvit."",
+        "locks_testimony": "novak"
+      }
+    }
+  },
+
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "maximum": {
+          "label": "30 dní vězení",
+          "description": "Plný rozsah zákona. Krádež je krádež.",
+          "available_unless": { "vina_above": 80 },
+          "effects": {
+            "integrita": -2, "odvaha": 2, "moudrost": 0, "vina": 3, "nadeje": -3,
+            "moc": 5, "lid": -8, "kapital": 5, "finance": 10
+          }
+        },
+        "standard": {
+          "label": "Pokuta 10 Kč",
+          "description": "Standardní sazba za drobnou krádež.",
+          "effects": {
+            "integrita": 0, "odvaha": 0, "moudrost": 0, "vina": 2, "nadeje": -1,
+            "moc": 2, "lid": -3, "kapital": 3, "finance": 10
+          }
+        },
+        "lenient": {
+          "label": "Pokuta 3 Kč, podmínka",
+          "description": "Symbolický trest. Pod minimální sazbu, odůvodněný stavem nouze.",
+          "effects": {
+            "integrita": 1, "odvaha": 0, "moudrost": 0, "vina": 1, "nadeje": 0,
+            "moc": -2, "lid": 2, "kapital": 0, "finance": 10
+          }
+        },
+        "alternative": {
+          "label": "Veřejně prospěšné práce",
+          "description": "Obžalovaný odpracuje 40 hodin veřejných prací.",
+          "requires": { "moudrost_min": 60 },
+          "effects": {
+            "integrita": 3, "odvaha": 2, "moudrost": 2, "vina": -1, "nadeje": 3,
+            "moc": -3, "lid": 5, "kapital": -2, "finance": 10
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Formální zproštění",
+          "description": "Stručné odůvodnění. Bez komentáře.",
+          "effects": {
+            "integrita": 3, "odvaha": 3, "moudrost": 0, "vina": -2, "nadeje": 2,
+            "moc": -5, "lid": 8, "kapital": -3, "finance": 10
+          }
+        },
+        "with_comment": {
+          "label": "Zproštění s komentářem",
+          "description": "Ben přidá osobní poznámku do spisu o stavu společnosti.",
+          "effects": {
+            "integrita": 5, "odvaha": 5, "moudrost": 0, "vina": -3, "nadeje": 4,
+            "moc": -8, "lid": 12, "kapital": -5, "finance": 10
+          }
+        }
+      }
+    },
+    "acquitted": {
+      "label": "Zproštěn obžaloby",
+      "description": "Stav nouze. Polehčující okolnosti dle §46.",
+      "requires": { "integrita_min": 40 },
+      "effects": {
+        "integrita": 4, "odvaha": 4, "moudrost": 0, "vina": -2, "nadeje": 3,
+        "moc": -6, "lid": 10, "kapital": -4, "finance": 10
+      }
+    },
+    "insufficient_evidence": {
+      "label": "Nedostatek důkazů",
+      "requires": { "moudrost_min": 40 },
+      "options": {
+        "reinvestigate": {
+          "label": "Vrátit k došetření",
+          "returns_in_days": 4,
+          "effects": { "moudrost": 2, "finance": 0 }
+        },
+        "close": {
+          "label": "Uzavřít",
+          "effects": { "moudrost": 1, "vina": 1, "finance": 5 }
+        }
+      }
+    }
+  },
+
+  "aftermath": {
+    "guilty_maximum": "Horák přikývne. Beze slova. Jeho žena vzadu v síni si zakryje ústa. Strážník ho vyvede. Novák si bere klobouk a odchází, aniž by se ohlédl.",
+    "guilty_standard": "Horák stojí. Pokuta deset korun — dva a půl bochníku chleba. Žena vzadu tiše pláče. Ne kvůli trestu. Kvůli všemu ostatnímu.",
+    "guilty_lenient": "Horák se podívá na Bena. Poprvé. Něco jako údiv. Tři koruny. Podmínka. Strážník mu tiše řekne: Můžete jít. Horák odchází pomalu. Jako by nevěřil.",
+    "guilty_alternative": "Novák otevře ústa — chce protestovat. Ben zvedne ruku. Ticho. Čtyřicet hodin veřejných prací. Horák přikývne. Rozumí práci.",
+    "not_guilty_formal": "Horák stojí. Neví co dělat. Strážník mu tiše řekne: Můžete jít. Horák se otočí k ženě. Ta vstane. Odcházejí spolu. Novák sedí a kouká do země.",
+    "not_guilty_comment": "Ben čte svůj komentář nahlas. Slova o chudobě, o systému, o tom co dluží společnost těm dole. Soudní síň je tichá. Zapisovatelka přestane psát a poslouchá.",
+    "acquitted": "Soudní síň je tichá. Jen hodiny tikají. Ben zavře spis. Stav nouze. Dva bochníky chleba a tři hladové děti. Zákon to umožňuje. Svědomí to vyžaduje.",
+    "insufficient_reinvestigate": "Spis zůstane na stole. Otevřený. Jako rána. Ben píše: Vrátit k došetření. Pero škrábe po papíře. Horák čeká na chodbě.",
+    "insufficient_close": "Ben zavře spis. Tečka. Horák je volný — ne proto že je nevinný, ale proto že systém selhal. Je v tom rozdíl. Malý, ale podstatný."
+  },
+
+  "delayed_consequences": [
+    {
+      "trigger": "guilty_maximum",
+      "delay_days": 3,
+      "type": "fragment",
+      "text": "Na chodbě soudu potkáváte ženu s dětmi. Neřekne nic. Jen se dívá. Nejmladší se drží za sukni. Procházíte kolem."
+    },
+    {
+      "trigger": "not_guilty",
+      "delay_days": 5,
+      "type": "letter",
+      "text": "Dopis od Vlčka. Formální, zdvořilý. Ale poslední věta: „Všiml jsem si jistého rozsudku ve věci Horák. Rád bych o tom pohovořil při příležitosti.""
+    },
+    {
+      "trigger": "guilty_alternative",
+      "delay_days": 4,
+      "type": "case_return",
+      "text": "Na stole leží stížnost. Antonín Novák, pekař, žádá přezkum rozsudku ve věci Horák. Tvrdí, že veřejné práce jsou nedostatečný trest."
+    },
+    {
+      "trigger": "acquitted",
+      "delay_days": 6,
+      "type": "fragment",
+      "text": "V novinách krátká zpráva. Soudce zprostil muže obžaloby z krádeže. „Stav nouze," citují. Pod článkem komentář: „Kam to spějeme, když krást chleba je v pořádku?""
+    }
+  ]
+}

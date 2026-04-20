@@ -1,0 +1,167 @@
+<style>
+*{box-sizing:border-box;margin:0}
+body{font-family:'Georgia',serif}
+.case-modal{max-width:580px;margin:0 auto;background:#F5F0E6;border:1px solid #C4A35A44;border-radius:8px;overflow:hidden}
+.case-header{background:#3D2B1F;color:#C4A35A;padding:14px 20px}
+.case-header .badge{display:inline-block;border:1px solid #C4A35A;padding:2px 10px;font-size:11px;letter-spacing:1px;font-family:monospace;margin-bottom:6px}
+.case-header h2{font-size:22px;margin:4px 0 2px;color:#E8D5B0;font-weight:400}
+.case-header .sub{font-size:13px;color:#A0896E;font-family:monospace}
+.case-body{padding:0}
+.section{padding:16px 20px;border-bottom:1px solid #D4C4A8}
+.section:last-child{border-bottom:none}
+.section-label{font-family:monospace;font-size:11px;color:#8B7355;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.case-text{font-size:15px;line-height:1.7;color:#3D2B1F}
+.meta-row{display:flex;justify-content:space-between;font-family:monospace;font-size:12px;color:#8B7355;margin-bottom:12px}
+.testimony{background:#EDE6D6;padding:12px 16px;border-left:3px solid #C4A35A;margin-bottom:10px;border-radius:0 6px 6px 0}
+.testimony .speaker{font-family:monospace;font-size:12px;font-weight:700;color:#5C4A32;margin-bottom:6px}
+.testimony .quote{font-size:14px;line-height:1.6;color:#3D2B1F;font-style:italic}
+.testimony .quote::before{content:"\201E"}
+.testimony .quote::after{content:"\201C"}
+.contradiction{background:#C4A35A22;border:1px dashed #C4A35A;padding:8px 12px;border-radius:6px;margin-top:8px;font-size:13px;color:#7A5C2E;display:none}
+.contradiction.visible{display:block}
+.actions-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.action-btn{background:none;border:1px solid #8B7355;color:#5C4A32;padding:8px 16px;font-family:monospace;font-size:12px;cursor:pointer;border-radius:6px;transition:all 0.15s}
+.action-btn:hover{background:#8B735522;border-color:#5C4A32}
+.action-btn.used{background:#D4C4A8;color:#8B7355;border-color:#C4B896;cursor:default}
+.action-btn.locked{opacity:0.35;cursor:not-allowed}
+.action-counter{font-family:monospace;font-size:13px;color:#8B7355;margin-left:auto;align-self:center}
+.finding{background:#E1F0E6;border-left:3px solid #5A8F6A;padding:12px 16px;margin-top:10px;border-radius:0 6px 6px 0;display:none}
+.finding.visible{display:block}
+.finding .src{font-family:monospace;font-size:11px;color:#5A8F6A;margin-bottom:4px}
+.finding .text{font-size:14px;line-height:1.6;color:#3D2B1F}
+.verdict-section{display:none}
+.verdict-section.visible{display:block}
+.verdict-step{margin-bottom:12px}
+.verdict-step .step-label{font-family:monospace;font-size:12px;color:#8B7355;margin-bottom:8px}
+.verdict-opt{background:#EDE6D6;border:1px solid #D4C4A8;padding:12px 16px;margin-bottom:8px;border-radius:6px;cursor:pointer;transition:all 0.15s}
+.verdict-opt:hover{border-color:#C4A35A;background:#E8DCC8}
+.verdict-opt.selected{border-color:#C4A35A;background:#C4A35A22;border-width:2px}
+.verdict-opt.locked{opacity:0.4;cursor:not-allowed}
+.verdict-opt .v-title{font-size:15px;font-weight:700;color:#3D2B1F;margin-bottom:2px}
+.verdict-opt .v-desc{font-size:13px;color:#6B5A42;font-style:italic}
+.verdict-opt .v-req{font-size:11px;color:#A03030;font-family:monospace;margin-top:4px}
+.confirm-btn{background:#3D2B1F;color:#C4A35A;border:none;padding:12px 0;width:100%;font-family:monospace;font-size:14px;letter-spacing:1px;cursor:pointer;border-radius:6px;margin-top:8px;transition:all 0.15s;display:none}
+.confirm-btn.visible{display:block}
+.confirm-btn:hover{background:#5C4A32}
+.aftermath-section{display:none;padding:20px;text-align:center}
+.aftermath-section.visible{display:block}
+.aftermath-section .stamp{font-family:monospace;font-size:28px;color:#8B1A1A;border:3px solid #8B1A1A;padding:8px 24px;display:inline-block;transform:rotate(-8deg);letter-spacing:3px;margin-bottom:16px}
+.aftermath-section .narr{font-size:15px;line-height:1.8;color:#3D2B1F;font-style:italic;max-width:460px;margin:0 auto}
+.nav-hint{font-family:monospace;font-size:11px;color:#A0896E;text-align:center;padding:8px;background:#EDE6D6}
+.progress-dots{display:flex;gap:6px;justify-content:center;padding:10px}
+.dot{width:8px;height:8px;border-radius:50%;background:#D4C4A8;transition:all 0.2s}
+.dot.active{background:#C4A35A;width:20px;border-radius:4px}
+.dot.done{background:#5A8F6A}
+</style>
+
+<div class="case-modal" id="modal">
+<div class="case-header">
+<div class="badge">RUTINNI PRIPAD</div>
+<h2>Kradez chleba</h2>
+<div class="sub">Jan Horak, 34 let, delnik — Kradez potravin dle §171</div>
+</div>
+
+<div class="progress-dots" id="dots">
+<div class="dot active" id="dot0"></div>
+<div class="dot" id="dot1"></div>
+<div class="dot" id="dot2"></div>
+<div class="dot" id="dot3"></div>
+<div class="dot" id="dot4"></div>
+</div>
+
+<div class="case-body">
+
+<div class="section" id="sec-spis">
+<div class="section-label">Spis</div>
+<div class="meta-row"><span>Sp. zn. 48/1931</span><span>2. brezna 1931</span></div>
+<div class="case-text">Jan Horak byl zadrzen 28. unora 1931 v pekarne U Novaku na Masarykove tride. Dle vypovedi pekare Antonina Novaka obzalovany odcizil dva bochniky chleba v celkove hodnote 4 Kc 80 hal. Obzalovany se nebranil zadrzeni.</div>
+</div>
+
+<div class="section" id="sec-svedectvi">
+<div class="section-label">Svedectvi</div>
+<div class="testimony">
+<div class="speaker">Antonin Novak, pekar</div>
+<div class="quote">Chytil jsem ho za ruku primo u regalu. Dva bochniky, zitne. Byl <span id="kw1" style="border-bottom:2px dashed transparent">utery, odpoledne</span>, pamatuji si to presne, protoze jsem zrovna <span id="kw2" style="border-bottom:2px dashed transparent">zaviral kram</span>.</div>
+</div>
+<div class="testimony">
+<div class="speaker">Karel Dvorak, straznik</div>
+<div class="quote">Byl jsem privolan v <span id="kw3" style="border-bottom:2px dashed transparent">15:40</span>. Obzalovany sedel na zemi pred pekarnou, bochniky vedle nej. Nekladl odpor. Rekl jen: Deti nemaji co jist.</div>
+</div>
+<div class="testimony" id="test3" style="display:block">
+<div class="speaker">Jan Horak, obzalovany</div>
+<div class="quote">Ano, vzal jsem ten chleba. Nebudu lhat. Tri dny jsme nejedli. Prisel jsem <span id="kw4" style="border-bottom:2px dashed transparent">rano</span>, ale nemel jsem dost penez.</div>
+</div>
+<div class="contradiction" id="contr1">Nesrovnalost: Novak rika odpoledne a zaviral — ale Horak rika rano. Straznik prisel v 15:40. Proc pekar zaviral ve tri?</div>
+</div>
+
+<div class="section" id="sec-pruzkum">
+<div class="section-label">Pruzkum</div>
+<div style="display:flex;align-items:center;gap:8px">
+<div class="actions-bar">
+<button class="action-btn" id="btn-records" onclick="doRecords()">Zkontrolovat zaznamy</button>
+<button class="action-btn" id="btn-interview" onclick="doInterview()">Vyslechnout Horaka</button>
+<button class="action-btn" id="btn-informant" onclick="doInformant()">Kontaktovat informatora</button>
+<button class="action-btn locked" id="btn-confront" onclick="doConfront()">Konfrontovat Novaka</button>
+</div>
+<div class="action-counter" id="counter">2 akce</div>
+</div>
+<div class="finding" id="find-records">
+<div class="src">Zivnostensky rejstrik</div>
+<div class="text">Pekarna U Novaku: posledni kontrola 12. ledna 1931. Poznamka: Nesrovnalosti v ucetnictvi, upozorneni vydano. Zaviraci doba dle licence: Po-So 6:00-18:00.</div>
+</div>
+<div class="finding" id="find-interview">
+<div class="src">Vyslech — Jan Horak</div>
+<div class="text">V tovarne me vyhodili pred mesicem. Zena je nemocna. Chodil jsem k Novakovi dva roky — vzdycky mi dal na dluh. Tentokrat rekl ne. Ale ten chleba tam lezel. A deti doma...</div>
+</div>
+<div class="finding" id="find-informant">
+<div class="src">Informator</div>
+<div class="text">Horak driv pracoval v Haasove tovarne. Vyhodili ho, kdyz zacal organizovat stavku. A Novak? Ten dluzi Haasove firme. Vsechno souvisi se vsim, pane doktore.</div>
+</div>
+<div class="finding" id="find-confront">
+<div class="src">Konfrontace — Antonin Novak</div>
+<div class="text">Novak se odmlci. Dlouho. Pak tise: Mel jsem problemy. S licenci. Prodaval jsem po zaviraci dobe. Horak prisel rano, rekl jsem mu at prijde pozdeji. Pak jsem si to rozmyslel. Ale on prisel stejne.</div>
+</div>
+</div>
+
+<div class="section verdict-section" id="sec-verdict">
+<div class="section-label">Rozsudek</div>
+<div class="verdict-step" id="step-verdict">
+<div class="step-label">Krok 1 — Verdikt</div>
+<div class="verdict-opt" onclick="pickVerdict(this,'vinen')"><div class="v-title">Vinen</div><div class="v-desc">Obzalovany spachal skutek.</div></div>
+<div class="verdict-opt" onclick="pickVerdict(this,'nevinen')"><div class="v-title">Nevinen</div><div class="v-desc">Obzalovany nespachal skutek.</div></div>
+<div class="verdict-opt" onclick="pickVerdict(this,'zprosten')"><div class="v-title">Zprosten obzaloby</div><div class="v-desc">Stav nouze. Polehcujici okolnosti.</div></div>
+<div class="verdict-opt locked"><div class="v-title">Nedostatek dukazu</div><div class="v-desc">Nelze prokazat.</div><div class="v-req">Vyzaduje: Moudrost 3+</div></div>
+</div>
+<div class="verdict-step" id="step-sentence" style="display:none">
+<div class="step-label">Krok 2 — Trest</div>
+<div id="sentence-opts"></div>
+</div>
+<div class="confirm-btn" id="confirm-btn" onclick="doConfirm()">Potvrdit rozsudek</div>
+</div>
+
+<div class="aftermath-section" id="sec-aftermath">
+<div class="stamp">VYRESENO</div>
+<div class="narr" id="narr-text"></div>
+</div>
+
+</div>
+
+<div class="nav-hint" id="nav-hint">Prectete spis a svedectvi, pak provedte pruzkum a vyneste rozsudek</div>
+</div>
+
+<script>
+var actions=2,findings=0,verdictPicked=null,sentencePicked=null,contradictionFound=false;
+function setDot(n){document.querySelectorAll('.dot').forEach((d,i)=>{d.className='dot'+(i<n?' done':'')+(i===n?' active':'')})}
+function doRecords(){if(actions<=0)return;actions--;document.getElementById('btn-records').className='action-btn used';document.getElementById('find-records').className='finding visible';document.getElementById('counter').textContent=actions+' akce';findings++;checkContradiction();checkConfront();checkVerdictReady()}
+function doInterview(){if(actions<=0)return;actions--;document.getElementById('btn-interview').className='action-btn used';document.getElementById('find-interview').className='finding visible';document.getElementById('counter').textContent=actions+' akce';findings++;checkVerdictReady()}
+function doInformant(){if(actions<=0)return;actions--;document.getElementById('btn-informant').className='action-btn used';document.getElementById('find-informant').className='finding visible';document.getElementById('counter').textContent=actions+' akce';findings++;checkVerdictReady()}
+function doConfront(){if(!contradictionFound)return;document.getElementById('btn-confront').className='action-btn used';document.getElementById('find-confront').className='finding visible';findings++}
+function checkContradiction(){contradictionFound=true;document.getElementById('contr1').className='contradiction visible';document.getElementById('kw1').style.borderBottom='2px dashed #C4A35A';document.getElementById('kw2').style.borderBottom='2px dashed #C4A35A';document.getElementById('kw3').style.borderBottom='2px dashed #C4A35A';document.getElementById('kw4').style.borderBottom='2px dashed #C4A35A';setDot(2)}
+function checkConfront(){document.getElementById('btn-confront').className=contradictionFound?'action-btn':'action-btn locked'}
+function checkVerdictReady(){document.getElementById('sec-verdict').className='section verdict-section visible';document.getElementById('nav-hint').textContent='Muzete vynest rozsudek';setDot(3)}
+function pickVerdict(el,v){document.querySelectorAll('#step-verdict .verdict-opt').forEach(o=>o.classList.remove('selected'));if(el.classList.contains('locked'))return;el.classList.add('selected');verdictPicked=v;showSentences(v)}
+function showSentences(v){var c=document.getElementById('sentence-opts');c.innerHTML='';var opts=[];if(v==='vinen')opts=[{t:'Maximalni trest',d:'30 dni vezeni. Zakon je zakon.'},{t:'Primereny trest',d:'Pokuta 10 Kc.'},{t:'Mirny trest',d:'Pokuta 3 Kc, podminka.'},{t:'Alternativni trest',d:'Verejne prospesne prace.',req:'Moudrost 4+'}];else if(v==='nevinen')opts=[{t:'Formalni',d:'Strucne oduvodneni, zadny komentar.'},{t:'S komentarem',d:'Osobni poznamka do spisu o stavu spolecnosti.'}];else opts=[{t:'Formalni zprosteni',d:'Stav nouze. Polehcujici okolnosti.'}];opts.forEach(function(o){var d=document.createElement('div');d.className='verdict-opt'+(o.req?' locked':'');d.innerHTML='<div class="v-title">'+o.t+'</div><div class="v-desc">'+o.d+'</div>'+(o.req?'<div class="v-req">Vyzaduje: '+o.req+'</div>':'');if(!o.req)d.onclick=function(){document.querySelectorAll('#sentence-opts .verdict-opt').forEach(x=>x.classList.remove('selected'));d.classList.add('selected');sentencePicked=o.t;document.getElementById('confirm-btn').className='confirm-btn visible'};c.appendChild(d)});document.getElementById('step-sentence').style.display='block'}
+function doConfirm(){if(!verdictPicked||!sentencePicked)return;document.getElementById('sec-spis').style.display='none';document.getElementById('sec-svedectvi').style.display='none';document.getElementById('sec-pruzkum').style.display='none';document.getElementById('sec-verdict').style.display='none';document.getElementById('nav-hint').style.display='none';document.getElementById('sec-aftermath').className='aftermath-section visible';var texts={'vinen':'Horak prikyvne. Beze slova. Jeho zena vzadu v sini si zakryje usta. Straznik ho vyvede. Novak si bere klobouk a odchazi, aniz by se ohledl.','nevinen':'Horak stoji. Nevi co delat. Straznik mu tise rekne: Muzete jit. Horak se otoci k zene. Ta vstane. Odchazeji spolu. Novak sedi a kouka do zeme.','zprosten':'Soudni sin je ticha. Jen hodiny tikaji. Ben zavre spis. Stav nouze. Dva bochniky chleba a tri hladove deti. Zakon to umoznuje. Svedomi to vyzaduje.'};document.getElementById('narr-text').textContent=texts[verdictPicked]||texts.vinen;setDot(4)}
+setDot(0);
+setTimeout(function(){setDot(1)},500);
+</script>
