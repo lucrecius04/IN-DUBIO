@@ -1,191 +1,268 @@
 ---
 description: Systém případů, průzkumu, rozporů a denního cyklu IN DUBIO
-globs: js/cases.js, js/engine.js, data/cases-akt1.json, data/cases-akt2.json, data/cases-akt3.json, data/days.json
+globs: js/cases.js, js/data-loader.js, js/ui.js, data/pool_cases_akt1.json, data/cases-akt1.json, data/cases-akt2.json, data/cases-akt3.json, data/days.json
 alwaysApply: false
 ---
 
-## FÁZE PŘÍPADU
+## ZOBRAZENÍ PŘÍPADU — JEDEN SCROLLOVATELNÝ SPIS
 
-Každý případ prochází pěti fázemi lineárně. Hráč se nemůže vrátit k průzkumu po rozsudku.
+Případ NENÍ záložkový systém. Je to jeden scrollovatelný dokument (modál `#modal-pripad`, styly v `css/case-wireframe.css`).
 
 ```
-SLOŽKA NA STOLE → SPIS → PRŮZKUM → ROZSUDEK → DOPAD
-     (1)           (2)      (3)        (4)       (5)
+HLAVIČKA (typ, název, obžaloba)
+SPIS (popis skutku)
+SVĚDECTVÍ (karty výpovědí)
+PRŮZKUM (akce + zjištění)
+ROZSUDEK (dvojkrok: typ → konkrétní varianta, viz `js/ui.js`)
 ```
+
+**Cíl designu:** rozsudek hned k dispozici. **Současná implementace (pool):** pokud případ má `hidden_info` (pool vždy po `normalizujPoolPripad`), sekce rozsudku zůstane skrytá, dokud hráč neprovede **první** průzkumnou akci — viz `zobrazPripad` / `_wfPoPrvniAkciPruzkumu` v `js/ui.js`.
+
+Hráč scrolluje, čte, volitelně zkoumá, pak soudí.
+Po potvrzení rozsudku: předehra v modálu, pak `Cases.zpracujRozsudek` (modal „Důsledky“ se nepoužívá).
 
 ## TYPY PŘÍPADŮ
 
-RUTINNÍ: barva #C4A35A | ikona ⚖️ | 1 rozpor | efekty: Finance ±, Vlastnosti ±2-5
-MORÁLNÍ DILEMA: barva #2C4A7C | ikona 📜 | 2-3 rozpory | efekty: Vlastnosti ±8-15, vždy Vina nebo Naděje
-POLITICKÝ: barva #8B1A1A | ikona 🏛️ | 1-2 rozpory + varování před rozsudkem | efekty: Integrita/MOC ±10-20
-OSOBNÍ: barva #5C2D6E | ikona 👤 | echo Benovy minulosti | efekty: Vina ±5-10, Vztahy ±
-
-Opakující se vlákna: recurring: true, thread: "nazev" — barva podle type.
+RUTINNÍ: barva #C4A35A | 1 skrytý rozpor | efekty ±2-5
+MORÁLNÍ DILEMA: barva #2C4A7C | 2-3 skryté rozpory | efekty ±8-15, vždy Vina nebo Naděje
+POLITICKÝ: barva #8B1A1A | 1-2 skryté rozpory + varování | efekty Integrita/MOC ±10-20
+OSOBNÍ: barva #5C2D6E | echo Benovy minulosti | efekty Vina ±5-10, Vztahy ±
 
 ## DENNÍ STRUKTURA — 20 DNÍ
 
-2 případy denně: hlavní (slot 1) + vedlejší (slot 2).
-Hráč volí pořadí. Den nekončí dokud nejsou oba vyřešeny.
-Průzkumné akce jsou sdílené mezi oběma případy.
+**Cíl:** 2 případy denně (slot 1 + slot 2). Kapky sdílené mezi oběma.
+**Test:** `data/days.json` může dočasně odkazovat na **3** ID z `pool_cases_akt1.json` — před releasem sjednotit na dva sloty.
 
-Pracovní dny: 2 případy + ranní fragment + večerní volba po obou případech.
-Sobota: tiché bonusy + narativní shrnutí týdne, žádné případy.
-Neděle: volba volného dne (matka/kostel/spisy/procházka), žádné případy.
+Pracovní dny: ranní fragment → případy dne → večerní volba.
+Sobota: bonusy + shrnutí. Neděle: volba volného dne. Žádné případy.
 
-## HARMONOGRAM VLÁKEN (20 dní)
+## HARMONOGRAM VLÁKEN
 
-Božena: dny 1, 4, 8, 12, 16 (slot 1, max 5 výskytů)
-Pospíšil: dny 3, 7, 14, 19 (slot 2)
-Hranice: dny 5, 10, 17 (slot 2)
-Marková: dny 3, 11, 18 (slot 2)
+Božena: D1, 4, 8, 13, 18 (slot 1)
+Pospíšil: D3, 7, 14, 16 (slot 2)
+Hranice: D5, 10, 17 (slot 2)
+Marková: D3, 12, 19 (slot 2)
 
-## SPIS — ZÁLOŽKA PŘÍPAD
+## SPIS
 
-Hlavička: spisová značka, název, obžalovaný (jméno, věk, povolání, detail), obžaloba s paragrafem.
+Hlavička: badge typu, název, obžalovaný, obžaloba, sp.zn., datum.
 Popis skutku: 3-5 vět, jazyk soudního protokolu.
-Výpovědi: 2-3 kusy, každá 2-4 věty, vždy s konkrétním mluvčím.
 
-## SYSTÉM ROZPORŮ
+## SVĚDECTVÍ
 
-Každý případ obsahuje minimálně 1 rozpor ve výpovědích/důkazech.
-Rozpor = nesrovnalost mezi dvěma nebo více výpověďmi, která má důsledek pro verdikt.
+2-3 výpovědi, karty s levým barevným okrajem, každá 2-4 věty.
+Výpovědi obsahují skryté rozpory — hra je NIKDY nevysvětluje.
 
-Viditelnost rozporů podle Moudrosti:
-- ★★★★★: rozpory zvýrazněné (podtržení, ikona ⚠️)
-- ★★★☆☆: rozpory přítomné v textu, nezvýrazněné
-- ★☆☆☆☆: jedna výpověď vynechána, nutno odhalit průzkumem
+## SYSTÉM ROZPORŮ — HRÁČ JE MUSÍ NAJÍT SÁM
 
-Rozpor nesmí být triviální. Musí mít důsledek pro případ — když ho hráč najde, změní se jeho pohled na verdikt.
+Každý případ má minimálně 1 rozpor ve výpovědích.
+HRA ROZPORY NEZVÝRAZŇUJE A NEVYSVĚTLUJE.
 
-## SYSTÉM PRŮZKUMU
+Moudrost ★☆☆☆☆ až ★★★★☆: žádná vizuální nápověda. Rozpory jsou v textu.
+Moudrost ★★★★★ (81-100): jemné čárkované podtržení klíčových slov. BEZ vysvětlení, bez ikony.
 
-Výchozí: 2 akce za den (sdílené mezi oběma případy).
-Odvaha ★★★★★: +1 akce (celkem 3).
-Nedělní procházka/matka: +1 akce v pondělí.
+Nikdy žádný box, ikona ani text „nesrovnalost nalezena."
+Hráč musí číst a myslet sám.
 
-### Čtyři typy akcí — každá odhaluje jiný typ informace
+## SYSTÉM INKOUSTOVÝCH KAPEK
 
-🗣️ VÝSLECH — odhaluje MOTIVACI (proč to udělal)
-Hráč vybere osobu. Dostane 2-4 věty o pohnutkách. Nezmění fakta, změní pohled.
+Akce = kapky inkoustu v kalamáři. Vizuální zobrazení na stole.
+Kapky SDÍLENÉ mezi oběma případy dne.
 
-📋 ZÁZNAMY — odhalují FAKTA (co se stalo objektivně)
-Soudní, policejní, obchodní záznamy. Tvrdá data. Může odemknout rozpor.
+### Kapacita
+Výchozí: 2 kapky/den. Maximum: 5 kapek/den.
 
-🕵️ INFORMÁTOR — odhaluje KONTEXT (kdo za tím stojí)
-Zabarvená informace podle dominantní frakce (LID/MOC/KAPITÁL). Hráč se musí rozhodnout komu věří.
+### Jak získat víc kapek
+- Neděle procházka/matka: +1 kapka v pondělí
+- Odvaha ★★★★★: +1 kapka permanentně
+- Večerní volba „pracovat na spisech": +1 kapka zítra, Naděje -2
+- Sobotní bonus „pečlivý": +1 kapka příští týden
+- Obětovat oběd: +1 kapka DNES, Finance -5, ranní fragment „ruce se třesou" (od Aktu 2)
+- Karas důvěra 2+: jednou za hru +1 kapka (rada starého přítele)
 
-⚔️ KONFRONTACE — odhaluje PRAVDU nebo LŽI (riskantní)
-Dostupné pouze: Odvaha ★★★★☆+.
-Vyžaduje nalezený rozpor (requires_contradiction). Bez rozporu automaticky selže.
-Úspěch: svědek se zlomí, zásadní informace.
-Neúspěch: svědek se uzavře, jeho výpověď je uzamčena.
+### Ceny akcí
+- Výslech: 1 kapka
+- Záznamy: 1 kapka
+- Informátor: 1 kapka
+- Konfrontace: 2 kapky
 
-### Vizuální zpětná vazba
-Počítadlo akcí = inkoustové kapky (plné/prázdné).
-Nová informace se přidá do spisu jako karta pod výpověďmi.
+### Strategické napětí
+2 případy, 2 kapky. Konfrontace = celý den jednomu případu, druhý naslepo.
 
-## DVOUDÍLNÝ ROZSUDEK
+## PRŮZKUM — ČTYŘI TYPY AKCÍ
 
-### Krok A — VERDIKT
+Výsledky se přidávají do spisu jako zelené karty pod svědectvími.
 
-| Verdikt | Kdy dostupný |
-|---------|-------------|
-| Vinen | Vždy |
-| Nevinen | Vždy |
-| Nedostatek důkazů | Moudrost ★★★☆☆+ |
-| Zproštěn obžaloby | Integrita ★★★☆☆+ (zmizí u politických při nízké Integritě) |
+VÝSLECH (1 kapka): motivace. Proč to udělal.
+Záznamy (1 kapka): fakta. Tvrdá data, může odkrýt cestu k rozporu.
+INFORMÁTOR (1 kapka): kontext. Zabarvený frakcemi (LID/MOC/KAPITÁL).
+KONFRONTACE (2 kapky): pravda nebo lež. Riskantní. Podmínky viz níže.
 
-### Krok B — TREST / PŘÍSTUP
+### Konfrontace — podmínky zobrazení (cíl)
+1. Hráč nalezl příslušný rozpor (přes záznamy nebo výslech)
+2. Odvaha ★★★★☆+ (61+)
+**Implementace:** `investigation.confrontation` v `pool_cases_akt1.json` se načte jako čtvrtá položka `hidden_info` (`id: pool_inv_confrontation`, `action: confrontation`, `cost: 2`) v `js/data-loader.js`. Tlačítko v `js/ui.js` strhne **2** akce z `investigationActionsLeft`. Skrytí slotu podle odvahy / odemčení rozporu zatím **není** v engine — doplnit později podle tabulky níže.
+
+Úspěch / neúspěch v JSON (`success` / `failure`) slouží autorům; odhalený text v UI je zatím `prompt` + `success.text` (ne větev podle Odvahy).
+
+### Zamčené sloty — žádné spoilery
+Zamčené akce (nedostatečná vlastnost apod.) se zobrazují jako:
+  „? — Možnost není k dispozici"
+Hráč neví CO ani PROČ. Ví jen, že mu něco chybí.
+Konfrontace se nezobrazuje VŮBEC dokud nejsou splněny obě podmínky.
+
+## ROZSUDEK
+
+**Cíl:** tlačítko potvrzení viditelné hned; hráč může soudit naslepo.
+**Implementace (`js/ui.js`):** sekce rozsudku (`#case-wf-sec-verdict`) je **vždy viditelná** při otevřeném spisu. Nabídka verdiktů se filtruje podle počtu odhalených položek `hidden_info` u **pool** případů (`_wfFiltrovatVerdiktyPodlePruzkumu` po `_wfFiltrovatVerdikty`): při **0 odhaleních** jen Vinen (max./přiměřený) + Nevinen (formální); **1+** přidá mírnou vinu a zproštění s komentářem; **2+** i nedostatek důkazů (dál omezuje Moudrost v datech); **alternativní trest** po odhalené konfrontaci nebo při **≥3** odhaleních; **speciální** jen po konfrontaci, pokud v JSON existuje. Legacy případy (`_fromPool` nepravda) — plná sada po rysech. Po každém průzkumu se wireframe verdiktů znovu vykreslí (`_wfPoPrvniAkciPruzkumu`). Lišta **Informovanost** (`#case-wf-inform-wrap`) podle odhalení + konfrontace = 100 %.
+
+### Informovanost (progress bar)
+0 akcí = 15% šedá „naslepo"
+1 akce = 40% žlutá „základní"
+2 akce = 70% zelená „důkladný"
+2 akce + rozpor = 90% zelená „pečlivý"
+konfrontace = 100% zelená „kompletní"
+
+### Průzkum odemyká možnosti rozsudku
+
+| Průzkum | Viditelné verdikty a tresty |
+|---------|----------------------------|
+| 0 akcí | Vinen (maximální, přiměřený) + Nevinen (formální) |
+| 1 akce | + Vinen (mírný) + Nevinen (s komentářem) |
+| 2 akce | + Nedostatek důkazů (Moudrost 3+) + Zproštěn (Integrita 3+) |
+| 2 akce + rozpor | + Alternativní trest (Moudrost 4+) |
+| Konfrontace úspěšná | + Speciální možnost specifická pro případ |
+
+Zamčené verdikty/tresty = „?" sloty. Hráč neví co mu chybí.
+
+### Dvoudílný rozsudek
+Krok 1 — VERDIKT: Vinen / Nevinen / Nedostatek důkazů / Zproštěn
+Krok 2 — TREST (objeví se po výběru verdiktu)
 
 Pokud VINEN:
-- Maximální trest — zmizí při Vina ★★★★★
-- Přiměřený trest — vždy
-- Mírný trest — vždy
-- Alternativní trest — Moudrost ★★★★☆+ nebo Naděje ★★★★★
+- Maximální — zmizí při Vina ★★★★★
+- Přiměřený — vždy
+- Mírný — průzkum 1+
+- Alternativní — průzkum 2+, rozpor, Moudrost 4+
+- Speciální — po konfrontaci
 
-Pokud NEVINEN / ZPROŠTĚN:
-- Formální (stručné odůvodnění)
-- S komentářem (osobní poznámka, silnější dopad na frakce)
+Pokud NEVINEN: Formální (vždy) / S komentářem (průzkum 1+)
+Pokud ZPROŠTĚN: jeden přístup
+Pokud NEDOSTATEK DŮKAZŮ: Vrátit k došetření / Uzavřít
 
-Pokud NEDOSTATEK DŮKAZŮ:
-- Vrátit k došetření (případ se vrátí za X dní)
-- Uzavřít (konečné)
+Po výběru obou kroků: „Potvrdit rozsudek" (nenávratné).
 
 ## KVALITA ROZSUDKU
 
-Hra neříká správný/špatný. Hodnotí soulad s tím co hráč věděl.
-
-| Průzkum | Soulad s fakty | Zpětná vazba |
-|---------|---------------|-------------|
+| Průzkum | Soulad | Zpětná vazba |
+|---------|--------|-------------|
 | 0 akcí | — | „Rozhodl jsi naslepo." Finance +5, Moudrost -2 |
-| 1 akce | Odpovídá | „Rozhodl jsi s tím co jsi měl." Finance +10 |
-| 1 akce | Neodpovídá | „Věděl jsi víc — a přesto..." Vina +3 |
-| 2 akce + rozpor | Odpovídá | „Případ jsi prostudoval pečlivě." Finance +20, Moudrost +3 |
-| 2 akce | Neodpovídá | „Viděl jsi pravdu. Odvrátil ses." Vina +5, Integrita -3 |
+| 1 akce | ano | „Rozhodl jsi s tím co jsi měl." Finance +10 |
+| 1 akce | ne | „Věděl jsi víc — a přesto..." Vina +3 |
+| 2+ akce | ano | „Případ jsi prostudoval pečlivě." Finance +20, Moudrost +3 |
+| 2+ akce | ne | „Viděl jsi pravdu. Odvrátil ses." Vina +5, Integrita -3 |
 
 ## DOPAD PO ROZSUDKU
 
-Okamžitý: narativní fragment 2-3 věty (reakce v soudní síni). Nikdy nehodnotí hráče.
-Tón fragmentu se mění podle: verdiktu, Viny hráče, Naděje.
+Spis zmizí. Nahradí ho:
+1. Razítko VYŘEŠENO (červená = odsouzení, modrá = zproštění, šedá = odloženo)
+2. Narativní fragment 2-3 věty. Nikdy nehodnotí hráče.
+3. Shrnutí informovanosti (jednovětý)
 
-Mechanický: změny vlastností a frakcí (skryté, hráč vidí jen hvězdičky v notýsku).
-
-Odložený: některé rozsudky mají důsledek za X dní (fragment, dopis, setkání).
-
-Razítko na složce: VYŘEŠENO (tmavě červená = odsouzení, modrá = zproštění, šedá = odloženo).
+Tón se mění podle verdiktu, Viny, Naděje.
+Mechanické dopady skryté. Odložené důsledky za X dní.
 
 ## VÁHOVÁNÍ PŘÍPADŮ (20 dní)
 
-Den 1-3: rutinní 100%
-Den 4-7: rutinní 60%, morální 40%
-Den 8-12: rutinní 30%, morální 35%, politický 25%, osobní 10%
-Den 13-20: rutinní 15%, morální 30%, politický 35%, osobní 20%
+D1-3: rutinní 100%
+D4-7: rutinní 60%, morální 40%
+D8-12: rutinní 30%, morální 35%, politický 25%, osobní 10%
+D13-20: rutinní 15%, morální 30%, politický 35%, osobní 20%
 
-Dynamické váhování:
-Integrita >70: více morálních | Integrita <30: více úplatků
-LID <30: více chudých | Odvaha >70: více politických | Vina >70: více podobných staré chybě
+Dynamické: Integrita >70 více morálních | <30 více úplatků
+LID <30 více chudých | Odvaha >70 více politických | Vina >70 echo staré chyby
 
 ## TÝDENNÍ CYKLUS
 
-Neděle (volný den):
-A) Navštívit matku → Naděje +5, Vina -3, Finance -5, pondělí +1 akce
-B) Jít do kostela → Vina -2, Naděje +2
-C) Číst staré spisy → Moudrost +3, Naděje -2, extra detail v prvním případu
-D) Procházka → Naděje +3, Moudrost +2, pondělí +1 akce
-E) Nepsat synovi → Vina +3, check na emotivní případ
+Neděle:
+A) Matka → Naděje +5, Vina -3, Finance -5, +1 kapka pondělí
+B) Kostel → Vina -2, Naděje +2
+C) Spisy → Moudrost +3, Naděje -2, extra detail
+D) Procházka → Naděje +3, Moudrost +2, +1 kapka pondělí
+E) Nepsat synovi → Vina +3
 
-Sobotní bonusy (tiché):
-Pečlivý (průzkum 75%+): Moudrost +5, Finance +15
+Večerní volby:
+- Psát Martinovi → Vina -2
+- Pracovat na spisech → +1 kapka zítra, Naděje -2
+- Procházka → Naděje +2
+- Hospoda → náhodné setkání
+- Obětovat oběd → +1 kapka DNES, Finance -5 (od Aktu 2)
+
+Sobotní bonusy:
+Pečlivý (75%+ průzkum): Moudrost +5, Finance +15, +1 kapka příští týden
 Nezávislý (bez úplatku): Integrita +5, LID +8
 Odvážný (žádný odložen): Odvaha +3, Finance +20
 Konzistentní (5+ stejným směrem): MOC +10 nebo LID +10
-Morální odvaha (3+ těžkých): Odvaha +5
-
-Narativní věta v sobotu:
-Vše splněno: „Pět dní. Deset spisů. Rozhodoval jsi pečlivě."
-Nic: „Pět dní. Deset spisů. Přežil jsi."
-Jen čistý: „Pět dní. Deset spisů. Čistý štít. Zatím."
 
 ## PRAVIDLA PRO PSANÍ PŘÍPADŮ
 
-1. Každý případ musí mít alespoň 1 rozpor — i rutinní.
-2. Výpovědi max 4 věty. Krátké, přesné.
-3. Rozpor musí mít důsledek pro verdikt — ne jen kosmetický nesoulad.
-4. Každá průzkumná akce musí změnit pohled na případ.
-5. Konfrontace = mini-scéna s dramatickým nábojem.
-6. Morální/politické případy nemají „správnou" odpověď. Hra to nikdy neřekne.
-7. Fragment po rozsudku nikdy nehodnotí hráče — jen popisuje co se stalo.
-8. Odložené důsledky musí být konkrétní obraz, ne abstrakce.
+1. Každý případ má alespoň 1 rozpor — i rutinní.
+2. Výpovědi max 4 věty.
+3. Rozpor subtilní — hráč najde čtením, ne zvýrazněním.
+4. Rozpor má důsledek pro verdikt.
+5. Každá akce změní pohled na případ.
+6. Konfrontace = dramatická mini-scéna.
+7. Morální/politické nemají správnou odpověď.
+8. Aftermath nikdy nehodnotí.
+9. Odložené důsledky = konkrétní obraz.
+10. Zamčené sloty NIKDY neprozrazují obsah — jen „?" a „Možnost není k dispozici."
 
-## JSON STRUKTURA PŘÍPADU
+## JSON — `data/pool_cases_akt1.json` (zdroj) → runtime (`normalizujPoolPripad` v `js/data-loader.js`)
 
-Každý případ v data/cases-aktX.json musí obsahovat:
-id, day, slot, type, color, title, case_number,
-defendant {name, age, occupation, detail},
-charge, description,
-testimonies [{id, speaker, text, contradiction_keywords, hidden_at_wisdom_below}],
-contradictions [{id, description, involves[], highlight_at_wisdom, unlocks_confrontation}],
-investigation {interview, records, informant {variants}, confrontation {requires_contradiction, requires_courage, success, failure}},
-verdicts {guilty {sentences{}}, not_guilty {approaches{}}, acquitted, insufficient_evidence},
-aftermath {texty pro každý verdikt},
-delayed_consequences [{trigger, delay_days, fragment}]
+Kořen: `{ "pool_cases_akt1": [ { …případ… }, … ] }`.
+
+### Společná metadata (zdrojové pole, část přepíše normalizace)
+
+| Pole ve JSON | Poznámka |
+|--------------|----------|
+| `id` | Trvalé ID případu |
+| `slot`, `act`, `color`, `weight_conditions`, `available_days` | Metadata / váhy (typ dne řeší `cases.js` + `days.json`) |
+| `type` v JSON může být `"routine"` — **loader nastaví** `type: "rutinni"` pro UI |
+| `title`, `case_number`, `defendant`, `charge` | Hlavička + spis |
+| `description` | → runtime `situation` (text „skutku“) |
+| `contradictions` | Autorům + text rozporu v modalu (`pripad.contradictions`); `highlight_at_wisdom` / `contradiction_keywords` zatím **neřeší** engine |
+| `aftermath`, `delayed_consequences` | Texty / triggery pro budoucí dopady (ne vše je nutně napojeno) |
+
+### `testimonies[]` (JSON) → `testimony[]` (runtime)
+
+Loader mapuje jen **`speaker` → `label` / `source`** a **`text`**. Pole `id`, `contradiction_keywords`, `hidden_at_wisdom_below` zůstávají ve zdroji pro autory / budoucí UI podtržení podle Moudrosti.
+
+### `investigation` → `hidden_info[]` + tlačítka průzkumu
+
+| Klíč | `hidden_info[].id` | `action` | `reveal` | `cost` |
+|------|---------------------|----------|----------|--------|
+| `interview` | `pool_inv_interview` | `witness` | `interview.text` | 1 |
+| `records` | `pool_inv_records` | `records` | `(source)\\n\\n` + `text` | 1 |
+| `informant` | `pool_inv_informant` | `informant` | výběr z `variants` dle frakcí (`moc_high` ≥60, `lid_high` ≥60, `kapital_high` ≥60, jinak `default`) | 1 |
+| `confrontation` | `pool_inv_confrontation` | `confrontation` | `prompt` + `success.text` | **2** |
+
+Volitelná metadata u konfrontace v JSON (`requires_contradiction`, `requires_courage`, `failure`) — dokumentace pro scénář; **filtrace podle Odvahy zatím v UI není**.
+
+### `verdicts` → pole `verdicts[]` s `id` pro dvojkrok UI
+
+Funkce `_slozitPoolVerdikty` skládá ploché položky:
+
+- **Vinen:** `guilty.sentences.<klíč>` → `id: "guilty_<klíč>"` (např. `guilty_standard`), `text` = `label`, `consequence` = `description`, `consequences` z `effects` (malá písmena → rysy/frakce/finance přes `_poolEffectsNaConsequences`).
+  - `requires.moudrost_min` → `requires_moudrost_min`
+  - `requires.odvaha_min` → `requires_odvaha_min`
+  - `available_unless.vina_above` → `available_unless_vina_above`
+- **Zproštění / nevinen:** `not_guilty.approaches.<klíč>` → `id: "not_guilty_<klíč>"` (v JSON např. `with_comment`, ne `comment`).
+- **Nedostatek důkazů:** `insufficient_evidence` + každá položka `options` → `id: "insufficient_<klíč>"`, společné `requires.moudrost_min` na `insufficient_evidence`.
+
+**Filtr ve hře:** `_wfFiltrovatVerdikty` v `js/ui.js` skrývá položku, pokud nesplní `requires_moudrost_min`, `requires_odvaha_min` nebo `available_unless_vina_above` (aktuální stav rysů).
+
+Klíče `guilty.sentences` odpovídají souborům v poolu typicky: `maximum`, `standard`, `lenient`, `alternative` (volitelně další, např. `special`, pokud loader najde objekt).
+
+### Legacy případy (`cases-akt*.json`)
+
+Struktura se může lišit; kanon pro nový obsah je **pool** výše. Při rozšíření loaderu nebo legacy držet shodné runtime pole: `testimony`, `hidden_info`, `verdicts`, `situation`.

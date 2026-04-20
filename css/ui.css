@@ -381,7 +381,7 @@
   background: linear-gradient(90deg, transparent, rgba(100, 60, 20, 0.28), transparent);
 }
 
-/* Předehra — consequence před modalem důsledků */
+/* Předehra — text po rozsudku (modal důsledků se už neotevírá) */
 .pripad-consequence-prelude {
   position: absolute;
   inset: 0;
@@ -392,13 +392,13 @@
   padding: 28px 24px;
   box-sizing: border-box;
   background: rgba(8, 5, 3, 0.94);
-  cursor: pointer;
+  cursor: default;
 }
 
 .pripad-consequence-prelude-inner {
   max-width: 520px;
   width: 100%;
-  pointer-events: none;
+  pointer-events: auto;
   text-align: center;
 }
 
@@ -419,6 +419,27 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(200, 175, 130, 0.42);
+}
+
+.pripad-consequence-prelude-btn {
+  margin-top: 28px;
+  width: 100%;
+  max-width: 280px;
+  padding: 14px 20px;
+  font-family: var(--pismo-typewriter);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid rgba(196, 163, 90, 0.55);
+  background: rgba(196, 163, 90, 0.18);
+  color: rgba(238, 225, 198, 0.96);
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.pripad-consequence-prelude-btn:hover {
+  background: rgba(196, 163, 90, 0.28);
+  border-color: rgba(196, 163, 90, 0.85);
 }
 
 /* Záhlaví případu — tmavý pruh, zlatý titulek (Playfair přes --pismo-serif) */

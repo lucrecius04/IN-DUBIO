@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/desk.css">
   <link rel="stylesheet" href="css/ui.css">
+  <link rel="stylesheet" href="css/case-wireframe.css">
   <link rel="stylesheet" href="css/animations.css">
   <style>
     /* Ilustrovaný stůl (PNG + rekvizity) — ne grid layout z indexu */
@@ -1012,61 +1013,93 @@
 </div><!-- /stul -->
 
 <div id="modal-pripad" class="overlay" role="dialog" aria-modal="true">
-  <div class="panel-papir pripad-panel panel-papir--nastup">
+  <div class="panel-papir pripad-panel pripad-panel--wireframe panel-papir--nastup">
     <div class="pripad-zahlavi">
-      <div>
-        <div class="pripad-kategorie" id="pripad-kategorie-text">—</div>
-        <div class="pripad-nazev" id="pripad-nazev-text">Případ</div>
-        <div class="pripad-obvineni" id="pripad-obvineni-text"></div>
+      <div class="pripad-zahlavi-text">
+        <div class="pripad-kategorie badge" id="pripad-kategorie-text">—</div>
+        <h2 class="pripad-nazev" id="pripad-nazev-text">Případ</h2>
+        <div class="pripad-obvineni sub" id="pripad-obvineni-text"></div>
       </div>
-      <button class="pripad-zavrit-x" id="pripad-zavrit-x" title="Zavřít (Esc)">✕</button>
+      <button type="button" class="pripad-zavrit-x" id="pripad-zavrit-x" title="Zavřít (Esc)">✕</button>
     </div>
 
-    <div class="pripad-tabs" id="pripad-tabs">
-      <button class="pripad-tab pripad-tab--aktivni" data-tab="pripad">PŘÍPAD</button>
-      <button class="pripad-tab" data-tab="svedectvi">SVĚDECTVÍ</button>
-      <button class="pripad-tab" data-tab="rozsudek">ROZSUDEK</button>
+    <div class="case-wf-dots" id="case-wf-dots" aria-hidden="true">
+      <span class="case-wf-dot" data-wf-dot="0"></span>
+      <span class="case-wf-dot" data-wf-dot="1"></span>
+      <span class="case-wf-dot" data-wf-dot="2"></span>
+      <span class="case-wf-dot" data-wf-dot="3"></span>
+      <span class="case-wf-dot" data-wf-dot="4"></span>
     </div>
 
-    <div class="pripad-tab-obsah aktivni" data-tab="pripad">
-      <div class="pripad-telo">
-        <div class="pripad-spis-meta" aria-hidden="true">
-          <span class="pripad-spis-zn">Sp. zn. 47/1931</span>
+    <div class="case-wf-body" id="case-wf-body">
+      <div class="case-wf-section" id="case-wf-sec-spis">
+        <div class="case-wf-section-label">Spis</div>
+        <div class="case-wf-meta-row">
+          <span class="pripad-spis-zn" id="pripad-spis-zn">—</span>
           <span class="pripad-spis-datum" id="pripad-spis-datum"></span>
         </div>
-        <div class="pripad-situace" id="pripad-situace-text"></div>
+        <div class="case-wf-case-text" id="pripad-situace-text"></div>
       </div>
-      <div class="prukzum-panel" id="prukzum-panel">
-        <div class="prukzum-nadpis">
-          <span>PRŮZKUM</span>
-          <span id="prukzum-akce-info" class="prukzum-akce-info">2 akce</span>
-        </div>
-        <div class="prukzum-tlacitka" id="prukzum-tlacitka"></div>
-      </div>
-    </div>
 
-    <div class="pripad-tab-obsah" data-tab="svedectvi">
-      <div class="pripad-telo">
-        <div class="svedectvi-sekce" id="pripad-svedectvi">
-          <div class="svedectvi-nadpis">Svědectví</div>
-        </div>
+      <div class="case-wf-section" id="case-wf-sec-svedectvi">
+        <div class="case-wf-section-label">Svědectví</div>
+        <div id="pripad-svedectvi"></div>
         <div id="pripad-odhalene-info"></div>
+        <div id="case-wf-contradiction" class="case-wf-contradiction skryto" aria-live="polite"></div>
+      </div>
+
+      <div class="case-wf-section" id="case-wf-sec-pruzkum">
+        <div class="case-wf-section-label">Průzkum</div>
+        <div class="case-wf-inform-wrap" id="case-wf-inform-wrap">
+          <div class="case-wf-inform-head">
+            <span class="case-wf-inform-title">Informovanost</span>
+            <span class="case-wf-inform-note" id="case-wf-inform-note">Naslepo</span>
+          </div>
+          <div class="case-wf-inform-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="15" aria-labelledby="case-wf-inform-note" id="case-wf-inform-track">
+            <div class="case-wf-inform-fill case-wf-inform-fill--blind" id="case-wf-inform-fill" style="width:15%"></div>
+          </div>
+        </div>
+        <div class="case-wf-pruzkum-row">
+          <div class="case-wf-actions" id="case-wf-pruzkum-akce"></div>
+          <div class="case-wf-counter" id="prukzum-akce-info">2 akce</div>
+        </div>
+        <div id="case-wf-findings"></div>
+      </div>
+
+      <div class="case-wf-section skryto" id="case-wf-sec-verdict">
+        <div class="case-wf-section-label">Rozsudek</div>
+        <div id="rozsudky-shrnuti" class="rozsudky-shrnuti" aria-label="Shrnutí případu"></div>
+        <div id="case-wf-step1-wrap">
+          <div class="case-wf-verdict-step" id="case-wf-verdict-step1"></div>
+        </div>
+        <div id="case-wf-step2-wrap" class="skryto">
+          <div class="case-wf-step-label" id="case-wf-step2-label">Krok 2 — volba</div>
+          <div class="case-wf-verdict-step" id="case-wf-verdict-step2"></div>
+        </div>
+        <div id="case-wf-verdict-legacy" class="case-wf-verdict-step skryto"></div>
+        <div id="case-wf-verdict-readonly" class="skryto"></div>
+        <button type="button" class="skryto" id="case-wf-confirm-rozsudek" disabled>Potvrdit rozsudek</button>
+      </div>
+
+      <div id="case-wf-aftermath">
+        <div class="case-wf-stamp">VYŘEŠENO</div>
+        <p class="case-wf-narr" id="case-wf-aftermath-narr"></p>
       </div>
     </div>
 
-    <div class="pripad-tab-obsah" data-tab="rozsudek">
-      <div class="rozsudky-panel">
-        <div id="rozsudky-shrnuti" class="rozsudky-shrnuti" aria-label="Shrnutí případu"></div>
-        <hr class="rozsudky-shrnuti-oddel" />
-        <div class="rozsudky-nadpis">ROZSUDEK</div>
-        <div class="rozsudky-seznam" id="rozsudky-seznam"></div>
-      </div>
+    <p class="case-wf-nav-hint" id="case-wf-nav-hint">Přečtěte spis a svědectví, proveďte průzkum a vyneste rozsudek.</p>
+
+    <!-- Skrytý legacy kontejner pro kód, který ještě čeká #prukzum-panel / #rozsudky-seznam -->
+    <div id="prukzum-panel" class="skryto" aria-hidden="true">
+      <div class="prukzum-tlacitka" id="prukzum-tlacitka"></div>
     </div>
+    <div id="rozsudky-seznam" class="skryto" aria-hidden="true"></div>
 
     <div id="pripad-consequence-prelude" class="pripad-consequence-prelude skryto" role="dialog" aria-modal="true" aria-hidden="true">
       <div class="pripad-consequence-prelude-inner">
         <p id="pripad-consequence-prelude-text" class="pripad-consequence-prelude-text"></p>
-        <p class="pripad-consequence-prelude-hint">Kliknutím nebo Enter pokračovat · automaticky za 2 s</p>
+        <p class="pripad-consequence-prelude-hint">Stiskni Enter nebo pokračuj tlačítkem.</p>
+        <button type="button" class="btn pripad-consequence-prelude-btn" id="pripad-consequence-prelude-btn">Pokračovat</button>
       </div>
     </div>
   </div>

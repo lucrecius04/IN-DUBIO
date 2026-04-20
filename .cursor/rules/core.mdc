@@ -1,58 +1,49 @@
 ---
-description: Základní instrukce projektu IN DUBIO
+description: Základní instrukce projektu IN DUBIO (kanon + vývoj)
 alwaysApply: true
 ---
 
-# IN DUBIO — noir soudní hra, středoevropský stát 1931
-# Hráč = soudce Benedikt Vraný (Ben)
+# IN DUBIO — noir soudní hra
 
-## ZÁKLADNÍ INSTRUKCE
-- Komentáře a texty vždy česky
-- Nikdy nerozbíjet existující logiku
-- Vždy navrhni co změníš než to změníš
-- Preferuj čisté oddělené soubory
-- Testuj funkčnost po každé změně
-- Malý scope = rychlé opravy = méně tokenů
+Hráč = soudce **Benedikt Vraný** (Ben). Středoevropský stát, nástup 30. let, meziválečná krize a politický tlak. Ústřední otázka a dramatický oblouk jsou v **`.cursor/rules/story.mdc`** (20 dní, osm konců, noviny, vlákna).
 
-## AKTUÁLNÍ FÁZE VÝVOJE
-Pracujeme POUZE na dni 1 a dni 2.
-Dny 3-30 ignoruj úplně.
-Až dostanu pokyn "rozšiř na všechny dny" teprve pak pracuj s celým obsahem.
+## Kde je pravda o obsahu a mechanikách
 
-Priorita oprav:
-1. Kliknutí na složku → otevře případ
-2. Záložky PŘÍPAD / SVĚDECTVÍ / ROZSUDEK
-3. Průzkum — 2 akce za den, fungující tlačítka
-4. Rozsudek → razítko VYŘEŠENO na složce
-5. Večerní volba po 3. případu
-6. Tlačítko Další den → přejde na den 2
-7. Menu ☰ funguje
-8. Vlastnosti reagují na rozsudky
-9. Frakce reagují na rozsudky
+| Oblast | Zdroj |
+|--------|--------|
+| Příběh, postavy, odhalení, konce | **`story.mdc`** |
+| Fáze případu, průzkum, rozpory, dvojkrok rozsudku, JSON šablona | **`cases.mdc`** |
+| Finance, plat, milníky (Haas, dopis…) | **`economy.mdc`** |
+| Rysy 0–100, frakce Moc / Kapital / Lid, důvěra NPC | **`traits-factions.mdc`** |
 
-## ARCHITEKTURA — pořadí načítání skriptů
-state → data-loader → traits → factions →
-finance → characters → narrative → cases → desk →
-ui → music → sfx → desk-smoke → desk-slozka-pixel-hover → desk-notebook-pixel-hover → engine
+Soubor **`STORY.md` byl zrušen** — nepoužívat. Obsah případů a dialogů **nevymýšlet**; přicházejí z JSON / dokumentace, agent jen implementuje a opravuje technické chyby.
 
-## SOUBORY
-index.html — hlavní vstup (záloha: index-old.html)
-css/base.css | css/desk.css | css/ui.css | css/animations.css
-js/state.js — jediný herní stav, localStorage
-js/engine.js — denní cyklus, fragmenty, konce
-js/cases.js — případy, průzkum, rozsudky
-js/traits.js — rysy 0-100
-js/factions.js — frakce, prahy, reakce
-js/characters.js — NPC, důvěra 0-3, dialogy
-js/narrative.js — fragmenty, dopisy, sny
-js/finance.js — finance, plat, výdaje
-js/desk.js — vizuální stav stolu
-js/ui.js — DOM interakce, modály, archiv
-js/music.js — hudba, crossfade
-js/data-loader.js — JSON cache
-data/cases-akt1.json | data/cases-akt2.json | data/cases-akt3.json
-data/days.json | data/characters.json | data/fragments.json | data/traits-text.json
+## Aktuální stav implementace (testovací režim)
 
-## OBSAH NEPÍŠEŠ SÁM
-Případy, dialogy a fragmenty přicházejí z claude.ai.
-Agent pouze implementuje — nevymýšlí příběh.
+- **`data/days.json`** řídí dny (fragmenty, večerní volby, …). Pro **den 1** pole **`cases`** odkazuje na ID z **`data/pool_cases_akt1.json`** (`pool_a1_*`). Loader načítá pool + legacy `cases-akt1/2/3.json`; **`DataLoader.ziskejPripad`** preferuje pool podle ID.
+- Modál případu je **jeden vertikální tok** v `index.html` + **`css/case-wireframe.css`** (`#modal-pripad .pripad-panel--wireframe`): Spis → Svědectví → Průzkum → Rozsudek (u pool případů **krok 1 = typ verdiktu**, **krok 2 = konkrétní varianta**) → **Potvrdit rozsudek** → předehra (`#pripad-consequence-prelude`, **Pokračovat** / Enter) → **`Cases.zpracujRozsudek`** (modal „Důsledky rozsudku“ se nepoužívá). Detail pravidel a JSON: **`cases.mdc`**.
+- Rozšíření na další dny až na výslovný pokyn („rozšiř na všechny dny“).
+
+## Základní pravidla pro úpravy kódu
+
+- Komentáře a UI texty **česky**.
+- **Nerozbíjet** herní smyčku (`engine.js`, `state.js`, `cases.js`) bez důvodu; malé, ověřitelné diffy.
+- Po změnách UI otestovat v prohlížeči přes **HTTP** (např. `npx serve .`), ne `file://` (fetch dat selže).
+- Před větší architekturou stručně napsat, **co** se mění a **proč**.
+
+## Architektura — pořadí načítání skriptů
+
+`state` → `data-loader` → `traits` → `factions` → `finance` → `characters` → `narrative` → `cases` → `desk` → `ui` → `music` → `sfx` → `desk-smoke` → `desk-slozka-pixel-hover` → `desk-notebook-pixel-hover` → `engine`
+
+## Klíčové soubory
+
+- `index.html` — vstup, modály, stůl  
+- `css/base.css`, `css/desk.css`, `css/ui.css`, **`css/case-wireframe.css`**, `css/animations.css`  
+- `js/state.js`, `js/engine.js`, `js/cases.js`, `js/ui.js`, `js/data-loader.js`, `js/desk.js`, `js/finance.js`, …  
+- Data: `days.json`, **`pool_cases_akt1.json`**, `cases-akt1.json` … `cases-akt3.json`, `fragments.json`, `characters.json`, …
+
+## Co agent nesmí
+
+- Vymýšlet příběhová fakta mimo schválené rules a dodaná data.  
+- Měnit jména a pevné vazby z `story.mdc` bez souhlasu.  
+- Hodnotit hráče v textech (tón fragmentů viz `cases.mdc`).

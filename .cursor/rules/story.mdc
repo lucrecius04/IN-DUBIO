@@ -1,6 +1,6 @@
 ---
 description: Příběh, postavy, narativní tón a dramatický oblouk IN DUBIO
-globs: STORY.md, data/characters.json, data/fragments.json, data/days.json
+globs: data/characters.json, data/fragments.json, data/days.json, data/pool_cases_akt1.json
 alwaysApply: false
 ---
 

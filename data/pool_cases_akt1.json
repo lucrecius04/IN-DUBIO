@@ -69,13 +69,13 @@
           "target": "malina",
           "target_label": "Rudolf Malina, obžalovaný",
           "reveals": "motivation",
-          "text": "Malina se podívá na své ruce. Dlouho mlčí. Pak: „Pane doktore, víte kolik stojí dnes čistý kodein? Trojnásobek toho co před dvěma lety. A lidé nemají peníze. Přijdou s receptem a nemají na plnou cenu. Co mám dělat — odmítnout je? Poslat je domů s nemocným dítětem? Tak jim dám sirup. Trochu slabší. Ale dám. Protože jinak nedostanou nic."",
+          "text": "Malina se podívá na své ruce. Dlouho mlčí. Pak: „Pane doktore, víte kolik stojí dnes čistý kodein? Trojnásobek toho co před dvěma lety. A lidé nemají peníze. Přijdou s receptem a nemají na plnou cenu. Co mám dělat — odmítnout je? Poslat je domů s nemocným dítětem? Tak jim dám sirup. Trochu slabší. Ale dám. Protože jinak nedostanou nic.\"",
           "trait_effects": {"vina": 2, "nadeje": -1}
         },
         "records": {
           "source": "Obchodní rejstřík a živnostenský úřad",
           "reveals": "facts",
-          "text": "Lékárna U Sv. Anny: založena 1898 Rudolfem Malinou starším. Převzata synem 1919. Kontroly 1925 a 1928 — bez závad. Poznámka z ledna 1931: „Firma Brněnská léčiva a.s. podala nabídku na odkup provozovny. Majitel odmítl." Firma Brněnská léčiva a.s. — majoritní vlastník: Viktor Haas.",
+          "text": "Lékárna U Sv. Anny: založena 1898 Rudolfem Malinou starším. Převzata synem 1919. Kontroly 1925 a 1928 — bez závad. Poznámka z ledna 1931: „Firma Brněnská léčiva a.s. podala nabídku na odkup provozovny. Majitel odmítl.\" Firma Brněnská léčiva a.s. — majoritní vlastník: Viktor Haas.",
           "unlocks_contradiction": "anonymous_tip"
         },
         "informant": {
@@ -93,11 +93,11 @@
           "requires_courage": 60,
           "prompt": "Pane doktore, vaše dva laboratorní rozbory téhož přípravku se liší o devatenáct procent. Jak si to vysvětlujete?",
           "success": {
-            "text": "Procházka se zamračí. Chvíli přemýšlí. „Máte pravdu, že rozptyl je... neobvyklý. Laboratorní podmínky nebyly ideální — první rozbor proběhl v zemské laboratoři, druhý na univerzitě. Uznávám, že u digitálisové tinktury jsou výsledky neprůkazné." Odmlčí se. „Ale kodein je jasný. Šedesát dva procent."",
+            "text": "Procházka se zamračí. Chvíli přemýšlí. „Máte pravdu, že rozptyl je... neobvyklý. Laboratorní podmínky nebyly ideální — první rozbor proběhl v zemské laboratoři, druhý na univerzitě. Uznávám, že u digitálisové tinktury jsou výsledky neprůkazné.\" Odmlčí se. „Ale kodein je jasný. Šedesát dva procent.\"",
             "reveals": "Laboratorní rozbor je u jednoho ze tří přípravků neprůkazný. U kodeinu však výsledek stojí. Malina pravděpodobně ředil selektivně — jen drahé přípravky."
           },
           "failure": {
-            "text": "Procházka ztvrdne. „Jsem zemský inspektor s dvacetiletou praxí. Naznačujete snad, že moje kontrola byla nedůkladná? Stojím si za výsledky. Všemi třemi."",
+            "text": "Procházka ztvrdne. „Jsem zemský inspektor s dvacetiletou praxí. Naznačujete snad, že moje kontrola byla nedůkladná? Stojím si za výsledky. Všemi třemi.\"",
             "locks_testimony": "inspektor"
           }
         }
@@ -184,7 +184,7 @@
         "guilty_standard": "Malina přikývne. Dvě stě korun. Podmíněné uzavření. Mohl dopadnout hůř. Mohl dopadnout líp. Venku na chodbě čeká žena s receptem v ruce. Nebude vědět, kam jít.",
         "guilty_lenient": "Malina se podívá na Bena. Něco jako vděčnost. Nebo úleva. Padesát korun — tři dny tržby. Přežije. Lékárna přežije. Otázka je, na jak dlouho.",
         "guilty_alternative": "Malina narovná záda. Čtvrtletní kontroly. Přijímá to jako důstojné řešení. Inspektor Procházka si zapisuje do notesu. Zapisovatelka zvedne hlavu — poprvé za celý den.",
-        "not_guilty_formal": "Malina stojí. Neví co dělat. „Můžete jít," řekne soudní zřízenec. Malina odchází pomalu. Na chodbě potká ženu s receptem. „Otevřeno?" zeptá se. „Otevřeno," řekne Malina. Poprvé za měsíc se usměje.",
+        "not_guilty_formal": "Malina stojí. Neví co dělat. „Můžete jít,\" řekne soudní zřízenec. Malina odchází pomalu. Na chodbě potká ženu s receptem. „Otevřeno?\" zeptá se. „Otevřeno,\" řekne Malina. Poprvé za měsíc se usměje.",
         "not_guilty_comment": "Ben čte komentář nahlas. O cenách surovin. O lidech, kteří nemají na léky. O systému, který nutí lékárníka volit mezi zákonem a svědomím. Procházka se dívá do země. Zapisovatelka přestane psát a poslouchá.",
         "insufficient_reinvestigate": "Spis zůstane na stole. Nový rozbor. Další týdny čekání. Malina odchází s nejistotou. Lékárna je otevřená — ale kdo tam půjde, když se rozneslo, že ho soudí?",
         "insufficient_close": "Ben zavře spis. Malina je volný. Procházka odchází s pocitem, že spravedlnost nefunguje. Malina odchází s pocitem, že spravedlnost funguje náhodně. Oba mají pravdu."
@@ -201,13 +201,13 @@
           "trigger": "not_guilty",
           "delay_days": 3,
           "type": "fragment",
-          "text": "Švejda u vchodu: „Ten lékárník, pane doktore. Říkají, že dává léky zadarmo. Od toho soudu prý fronta od rána.""
+          "text": "Švejda u vchodu: „Ten lékárník, pane doktore. Říkají, že dává léky zadarmo. Od toho soudu prý fronta od rána.\""
         },
         {
           "trigger": "guilty_alternative",
           "delay_days": 6,
           "type": "fragment",
-          "text": "V novinách krátká zpráva: „Krajský soud zavedl dozorčí režim nad lékárnou. Odborníci chválí jako precedent." Pod článkem reakce lékárnické komory: „Konečně rozumný přístup.""
+          "text": "V novinách krátká zpráva: „Krajský soud zavedl dozorčí režim nad lékárnou. Odborníci chválí jako precedent.\" Pod článkem reakce lékárnické komory: „Konečně rozumný přístup.\""
         }
       ]
     },
@@ -233,21 +233,21 @@
         "detail": "sudetský Němec, majitel knihkupectví na Josefské ulici, vdovec, syn studuje v Lipsku"
       },
       "charge": "Šíření protistátních tiskovin dle zákona na ochranu republiky č. 50/1923 Sb.",
-      "description": "Heinrich Fassbinder, knihkupec německé národnosti, je obžalován z vystavení plakátu s textem „Ein Volk — Ein Recht — Eine Zukunft" ve výloze svého obchodu. Hlídka Státní policie plakát zabavila dne 26. února 1931. Obžaloba tvrdí, že text je pangermánského charakteru a propaguje myšlenku připojení Sudet k Říši. Fassbinder tvrdí, že šlo o reklamní plakát na knihu stejného názvu, vydanou v Berlíně.",
+      "description": "Heinrich Fassbinder, knihkupec německé národnosti, je obžalován z vystavení plakátu s textem „Ein Volk — Ein Recht — Eine Zukunft\" ve výloze svého obchodu. Hlídka Státní policie plakát zabavila dne 26. února 1931. Obžaloba tvrdí, že text je pangermánského charakteru a propaguje myšlenku připojení Sudet k Říši. Fassbinder tvrdí, že šlo o reklamní plakát na knihu stejného názvu, vydanou v Berlíně.",
 
       "testimonies": [
         {
           "id": "straznik",
           "speaker": "Václav Horyna, strážmistr Státní policie",
-          "text": "Plakát jsem zaznamenal při obchůzce dne 26. února v osmnáct hodin. Byl umístěn ve výloze vedle knih v německém jazyce. Text je jednoznačně pangermánského charakteru. Heslo „Jeden národ — jedno právo" se v té či oné podobě objevuje na letácích DNSAP. Fassbindera jsem vyzval k odstranění. Odmítl a prohlásil, že to je název knihy.",
-          "contradiction_keywords": ["osmnáct hodin", "vedle knih", "název knihy"],
+          "text": "Plakát jsem zaznamenal při obchůzce 26. února v osmnáct hodin; byl ve výloze vedle německých knih. Text považuji za pangermánský — heslo v obdobné podobě se objevuje na letácích DNSAP. Fassbindera jsem vyzval k odstranění; odmítl s tím, že jde o název knihy.",
+          "contradiction_keywords": ["osmnáct hodin", "německých knih", "název knihy"],
           "hidden_at_wisdom_below": null
         },
         {
           "id": "fassbinder",
           "speaker": "Heinrich Fassbinder, obžalovaný",
-          "text": "Jsem knihkupec třicet let. Prodávám knihy v němčině i češtině. Ten plakát je reklamní materiál od nakladatele — přišel poštou spolu s výtisky knihy. Kniha je filozofická esej o právech menšin v Evropě. Není to politický leták. Nikdy jsem nebyl členem žádné politické strany. Jsem obchodník, ne politik.",
-          "contradiction_keywords": ["poštou spolu s výtisky", "filozofická esej", "práva menšin"],
+          "text": "Jsem knihkupec třicet let, prodávám němčinu i češtinu. Plakát je reklamní materiál od nakladatele — přišel poštou s výtisky knihy; jde o esej o právech menšin, ne o politický leták. Nikdy jsem nebyl ve straně — jsem obchodník, ne politik.",
+          "contradiction_keywords": ["poštou s výtisky", "právech menšin", "obchodník"],
           "hidden_at_wisdom_below": null
         },
         {
@@ -274,13 +274,13 @@
           "target": "fassbinder",
           "target_label": "Heinrich Fassbinder, obžalovaný",
           "reveals": "motivation",
-          "text": "Fassbinder mluví tiše, pečlivě. „Můj syn Konrad studuje v Lipsku. Filozofii. Ta kniha je z jeho oboru. Poslal mi ji, ať ji vystavím. Chtěl jsem mu udělat radost — víte, jak to je, když syn o něco požádá. Nevěděl jsem, že text hesla... že to může vypadat politicky. Pro mě to byl název knihy. Nic víc." Odmlčí se. „Moje žena byla Češka. Zemřela v třiadvacátém. Já tuhle zemi miluji. Obě její části."",
+          "text": "Fassbinder mluví tiše, pečlivě. „Můj syn Konrad studuje v Lipsku. Filozofii. Ta kniha je z jeho oboru. Poslal mi ji, ať ji vystavím. Chtěl jsem mu udělat radost — víte, jak to je, když syn o něco požádá. Nevěděl jsem, že text hesla... že to může vypadat politicky. Pro mě to byl název knihy. Nic víc.\" Odmlčí se. „Moje žena byla Češka. Zemřela v třiadvacátém. Já tuhle zemi miluji. Obě její části.\"",
           "trait_effects": {"vina": 1}
         },
         "records": {
           "source": "Katalog knihkupeckého spolku a celní záznamy",
           "reveals": "facts",
-          "text": "Kniha „Ein Volk — Ein Recht — Eine Zukunft" autora Ernsta Wieganda, vydána nakladatelstvím Volk und Geist, Berlín 1930. Katalogizována jako „politická publicistika." Nakladatelství Volk und Geist je v červenci 1930 uvedeno v seznamu nakladatelství „blízkých NSDAP" zpracovaném zpravodajským oddělením Ministerstva vnitra. Celní záznam: zásilka 15 výtisků přijata na adresu knihkupectví Fassbinder dne 20. února 1931. Odesílatel: Konrad Fassbinder, Lipsko.",
+          "text": "Kniha „Ein Volk — Ein Recht — Eine Zukunft\" autora Ernsta Wieganda, vydána nakladatelstvím Volk und Geist, Berlín 1930. Katalogizována jako „politická publicistika.\" Nakladatelství Volk und Geist je v červenci 1930 uvedeno v seznamu nakladatelství „blízkých NSDAP\" zpracovaném zpravodajským oddělením Ministerstva vnitra. Celní záznam: zásilka 15 výtisků přijata na adresu knihkupectví Fassbinder dne 20. února 1931. Odesílatel: Konrad Fassbinder, Lipsko.",
           "unlocks_contradiction": "book_existence"
         },
         "informant": {
@@ -298,11 +298,11 @@
           "requires_courage": 60,
           "prompt": "Pane Fassbindere, nakladatelství Volk und Geist je evidováno jako blízké NSDAP. Kniha je klasifikována jako politická publicistika, ne filozofická esej. Věděl jste to?",
           "success": {
-            "text": "Fassbinder zbledne. Sundá brýle. Nasadí je zpět. „Konrad mi... Konrad mi řekl, že je to filozofie. Já tu knihu nečetl. Nečetl jsem ji, pane doktore. Vím jak to zní. Ale je to pravda — já čtu česky lépe než německy, moje žena..." Hlas mu selže. „Konrad se změnil. V těch dopisech z Lipska. Já vím, že se změnil. Ale je to můj syn."",
+            "text": "Fassbinder zbledne. Sundá brýle. Nasadí je zpět. „Konrad mi... Konrad mi řekl, že je to filozofie. Já tu knihu nečetl. Nečetl jsem ji, pane doktore. Vím jak to zní. Ale je to pravda — já čtu česky lépe než německy, moje žena...\" Hlas mu selže. „Konrad se změnil. V těch dopisech z Lipska. Já vím, že se změnil. Ale je to můj syn.\"",
             "reveals": "Fassbinder nevěděl o politickém pozadí knihy. Ale jeho syn Konrad v Lipsku se radikalizuje. Fassbinder je nevinný prostředník — ale materiál, který šířil, je skutečně protistátní."
           },
           "failure": {
-            "text": "Fassbinder ztvrdne. „Jsem knihkupec. Prodávám knihy. Nebudu se zodpovídat za to, co v nich někdo napíše. To byste musel zavřít každé knihkupectví v Brně."",
+            "text": "Fassbinder ztvrdne. „Jsem knihkupec. Prodávám knihy. Nebudu se zodpovídat za to, co v nich někdo napíše. To byste musel zavřít každé knihkupectví v Brně.\"",
             "locks_testimony": "fassbinder"
           }
         }
@@ -385,14 +385,14 @@
       },
 
       "aftermath": {
-        "guilty_maximum": "Fassbinder stojí. Nehýbe se. Strážník mu sáhne na rameno. „Pojďte." Fassbinder se otočí ke dveřím. Na chodbě nikdo nečeká. Syn je v Lipsku. Žena je mrtvá. Knihkupectví na Josefské bude zítra zavřené. Poprvé za třicet let.",
-        "guilty_standard": "Fassbinder platí pokutu. Sto padesát korun. Výtisky zabaveny. Na chodbě se zastaví. Otočí se zpět: „Pane doktore — mohu si nechat jeden výtisk? Pro syna. Aby věděl, co způsobil." Ben neodpoví.",
+        "guilty_maximum": "Fassbinder stojí. Nehýbe se. Strážník mu sáhne na rameno. „Pojďte.\" Fassbinder se otočí ke dveřím. Na chodbě nikdo nečeká. Syn je v Lipsku. Žena je mrtvá. Knihkupectví na Josefské bude zítra zavřené. Poprvé za třicet let.",
+        "guilty_standard": "Fassbinder platí pokutu. Sto padesát korun. Výtisky zabaveny. Na chodbě se zastaví. Otočí se zpět: „Pane doktore — mohu si nechat jeden výtisk? Pro syna. Aby věděl, co způsobil.\" Ben neodpoví.",
         "guilty_lenient": "Fassbinder přikývne. Důtka. Mohl dopadnout hůř. Venku se rozhlédne po Josefské ulici. Výloha je prázdná. Zítra tam dá české klasiky. Němčinu schová dozadu.",
         "guilty_alternative": "Fassbinder sedí naproti inspektorovi z Ministerstva vnitra. Diktuje adresy. Jména. Nakladatelství v Berlíně, v Drážďanech, v Lipsku. Ruce se mu třesou. Zapisovatelka si všimne — ale nepřestane psát.",
-        "not_guilty_formal": "Fassbinder vstane. Brýle mu sklouznou. Chytí je. „Děkuji," řekne česky. Čistě, bez přízvuku. Třicet let mezi Čechy. Strážmistr Horyna odchází beze slova.",
+        "not_guilty_formal": "Fassbinder vstane. Brýle mu sklouznou. Chytí je. „Děkuji,\" řekne česky. Čistě, bez přízvuku. Třicet let mezi Čechy. Strážmistr Horyna odchází beze slova.",
         "not_guilty_comment": "Ben čte komentář. O zákonech, které mají chránit, ne pronásledovat. O knihkupcích a plakátech. O strachu, který dělá z reklamy zločin. Procházková v kloboučnictví vedle uslyší — a příští den pozdraví Fassbindera jako vždycky.",
         "insufficient_reinvestigate": "Spis zůstane otevřený. Fassbinder čeká. Každé ráno otevře knihkupectví a čeká, jestli přijdou. Zákazníci přestávají chodit — ne kvůli politice, ale kvůli nejistotě.",
-        "insufficient_close": "Zavřeno. Fassbinder je volný. Ale slovo „protistátní" zůstane ve spisu. A spisy se neztrácejí."
+        "insufficient_close": "Zavřeno. Fassbinder je volný. Ale slovo „protistátní\" zůstane ve spisu. A spisy se neztrácejí."
       },
 
       "delayed_consequences": [
@@ -400,13 +400,13 @@
           "trigger": "guilty_maximum",
           "delay_days": 5,
           "type": "fragment",
-          "text": "V novinách krátká zpráva: „Německý knihkupec odsouzen za protistátní činnost." Pod tím komentář: „Republika se brání." Další den: „Protest německých obchodníků na Josefské. Policie zasahuje.""
+          "text": "V novinách krátká zpráva: „Německý knihkupec odsouzen za protistátní činnost.\" Pod tím komentář: „Republika se brání.\" Další den: „Protest německých obchodníků na Josefské. Policie zasahuje.\""
         },
         {
           "trigger": "not_guilty",
           "delay_days": 4,
           "type": "letter",
-          "text": "Dopis od Vlčka. Krátký, suše zdvořilý: „Zaznamenal jsem rozsudek ve věci Fassbinder. Zákon na ochranu republiky je pilířem naší demokracie. Spoléhám na Vaši soudnost v budoucích případech.""
+          "text": "Dopis od Vlčka. Krátký, suše zdvořilý: „Zaznamenal jsem rozsudek ve věci Fassbinder. Zákon na ochranu republiky je pilířem naší demokracie. Spoléhám na Vaši soudnost v budoucích případech.\""
         }
       ]
     },
@@ -438,8 +438,8 @@
         {
           "id": "pojistovna",
           "speaker": "JUDr. Karel Bednář, právní zástupce Pojišťovny Slavia",
-          "text": "Pojistná smlouva byla uzavřena 3. ledna, manžel zemřel 18. ledna. Patnáct dní. V přihlášce bylo uvedeno, že pojištěný je zdráv. Přitom pitevní zpráva uvádí pokročilou kardiomyopatii — to je stav, který se vyvíjí měsíce, ne dny. Obžalovaná musela vědět, že manžel je nemocný. Uzavřela smlouvu s vědomím blízké smrti.",
-          "contradiction_keywords": ["3. ledna", "zdráv", "měsíce, ne dny"],
+          "text": "Smlouva z 3. ledna, úmrtí 18. ledna — patnáct dní; v přihlášce byl pojistitel uveden jako zdráv. Pitevní zpráva však uvádí pokročilou kardiomyopatii, stav měsíců, ne dnů. Obžaloba tvrdí vědomí blízké smrti při podpisu.",
+          "contradiction_keywords": ["3. ledna", "zdráv", "měsíců"],
           "hidden_at_wisdom_below": null
         },
         {
@@ -452,8 +452,8 @@
         {
           "id": "doktor",
           "speaker": "MUDr. Vladimír Havelka, obvodní lékař",
-          "text": "Pana Bartoše jsem viděl naposledy v červenci minulého roku. Přišel s bolestí na hrudi. Doporučil jsem podrobné vyšetření na kardiologii. Odmítl — řekl, že nemá čas a nemá peníze. Manželce jsem o návštěvě nepsal — lékař nemá tuto povinnost. Ale řekl jsem mu, ať jí řekne sám.",
-          "contradiction_keywords": ["červenci", "bolestí na hrudi", "odmítl", "ať jí řekne"],
+          "text": "Bartoše jsem viděl v červenci 1930 kvůli bolesti na hrudi a doporučil kardiologii; odmítl z časových a finančních důvodů. O návštěvě jsem manželce nepsal — nebyla to povinnost; řekl jsem mu však, ať situaci doma vysvětlí sám.",
+          "contradiction_keywords": ["červenci", "kardiologii", "manželce nepsal", "vysvětlí"],
           "hidden_at_wisdom_below": 20
         }
       ],
@@ -480,13 +480,13 @@
           "target": "bartosova",
           "target_label": "Ludmila Bartošová, obžalovaná",
           "reveals": "motivation",
-          "text": "Bartošová mluví tiše. Ruce v klíně. „Víte, jak to je, pane doktore, když máte dvě děti a manžel vydělává sotva na nájem? Josef pracoval čtrnáct hodin denně. Každý den. Neděle taky. Nikdy si nevzal volno. Říkala jsem mu — odpočiň si. Říkal — nemůžu. Kdo by prodával? Tak jsem si řekla — aspoň ta pojistka. Kdyby se něco stalo. A ono se stalo. A teď mě za to soudíte."",
+          "text": "Bartošová mluví tiše. Ruce v klíně. „Víte, jak to je, pane doktore, když máte dvě děti a manžel vydělává sotva na nájem? Josef pracoval čtrnáct hodin denně. Každý den. Neděle taky. Nikdy si nevzal volno. Říkala jsem mu — odpočiň si. Říkal — nemůžu. Kdo by prodával? Tak jsem si řekla — aspoň ta pojistka. Kdyby se něco stalo. A ono se stalo. A teď mě za to soudíte.\"",
           "trait_effects": {"vina": 2, "nadeje": -1}
         },
         "records": {
           "source": "Spis Pojišťovny Slavia + matrika obvodního lékaře",
           "reveals": "facts",
-          "text": "Pojistná smlouva č. 4871/1931: pojistitel Josef Bartoš, pojistná částka 800 Kč, oprávněná osoba Ludmila Bartošová. Přihlášku vyplnil pojistný agent Miroslav Krejčí — soused Bartošových a současně agent Slavie na částečný úvazek. Provize z uzavření smlouvy: 40 Kč. Matrika MUDr. Havelky: „12.7.1930 — Bartoš Josef, 42 let, bolest na hrudi, dušnost při zátěži. Doporučeno kardiologické vyšetření. Pacient odmítl. Pozn.: manželce nesděleno na přání pacienta."",
+          "text": "Pojistná smlouva č. 4871/1931: pojistitel Josef Bartoš, pojistná částka 800 Kč, oprávněná osoba Ludmila Bartošová. Přihlášku vyplnil pojistný agent Miroslav Krejčí — soused Bartošových a současně agent Slavie na částečný úvazek. Provize z uzavření smlouvy: 40 Kč. Matrika MUDr. Havelky: „12.7.1930 — Bartoš Josef, 42 let, bolest na hrudi, dušnost při zátěži. Doporučeno kardiologické vyšetření. Pacient odmítl. Pozn.: manželce nesděleno na přání pacienta.\"",
           "unlocks_contradiction": "doctor_visit"
         },
         "informant": {
@@ -504,11 +504,11 @@
           "requires_courage": 60,
           "prompt": "Paní Bartošová, doktor Havelka uvádí, že váš manžel ho navštívil v červenci s bolestí na hrudi. Na přání manžela vám o tom neřekl. Opravdu jste nevěděla, že byl nemocný?",
           "success": {
-            "text": "Bartošová se nadechne. Zastaví se. Pak velmi tiše: „Věděla jsem, že něco není v pořádku. V noci se budil. Potil se. Ale neřekl mi co. A já se neptala. Bála jsem se odpovědi." Pauza. „Tu pojistku... tu pojistku navrhl Krejčí. On to věděl. Je to doktor? Ne. Ale viděl Josefa každý den. Viděl, jak hubne. Jak se zadýchává. Přišel za mnou a řekl — paní Bartošová, pojistěte se. Pro jistotu. Já jsem věděla proč to říká. Ale nepojmenovala jsem to."",
+            "text": "Bartošová se nadechne. Zastaví se. Pak velmi tiše: „Věděla jsem, že něco není v pořádku. V noci se budil. Potil se. Ale neřekl mi co. A já se neptala. Bála jsem se odpovědi.\" Pauza. „Tu pojistku... tu pojistku navrhl Krejčí. On to věděl. Je to doktor? Ne. Ale viděl Josefa každý den. Viděl, jak hubne. Jak se zadýchává. Přišel za mnou a řekl — paní Bartošová, pojistěte se. Pro jistotu. Já jsem věděla proč to říká. Ale nepojmenovala jsem to.\"",
             "reveals": "Bartošová tušila, ale nepojmenovala si to. Krejčí — soused a pojistný agent — viděl příznaky a navrhl pojistku. Otázka: je to podvod, když pojistný agent využije situace, nebo je to pojistka fungující přesně tak, jak má — chrání rodinu v nouzi?"
           },
           "failure": {
-            "text": "Bartošová zavře oči. „Ne. Nevěděla jsem nic. Můj muž mi nic neřekl." Hlas je tvrdý, definitivní. Odmítá mluvit dál. Ale slzy v očích říkají něco jiného.",
+            "text": "Bartošová zavře oči. „Ne. Nevěděla jsem nic. Můj muž mi nic neřekl.\" Hlas je tvrdý, definitivní. Odmítá mluvit dál. Ale slzy v očích říkají něco jiného.",
             "locks_testimony": "bartosova"
           }
         }
@@ -592,7 +592,7 @@
 
       "aftermath": {
         "guilty_maximum": "Bartošová vstane. Kolena se jí třesou. Dvě děti čekají venku na chodbě — dívka drží chlapce za ruku. Bartošová projde kolem nich, vezme je za ruce. Nic neřekne. Odcházejí. Strážník Horyna, který je přivedl, se podívá na Bena. Pak se podívá jinam.",
-        "guilty_standard": "Žádné peníze. Žádné vězení. Bartošová odchází s prázdnýma rukama. Na chodbě se zastaví u okna. Dívá se dolů na ulici. Zapisovatelka Kovářová tiše řekne: „Ta žena nemá na tramvaj."",
+        "guilty_standard": "Žádné peníze. Žádné vězení. Bartošová odchází s prázdnýma rukama. Na chodbě se zastaví u okna. Dívá se dolů na ulici. Zapisovatelka Kovářová tiše řekne: „Ta žena nemá na tramvaj.\"",
         "guilty_lenient": "Čtyři sta korun. Polovina toho, co jí patří. Polovina toho, co potřebuje. Bartošová přijímá rozsudek jako člověk, který přestal věřit, že svět je spravedlivý — ale je vděčný za každou drobnost.",
         "guilty_alternative": "Osm set korun pro Bartošovou. Trestní oznámení na Krejčího. Bartošová pláče — poprvé. Ne z bolesti. Z úlevy. Krejčí se na chodbě otočí a uteče. Zapisovatelka zvedne hlavu.",
         "not_guilty_formal": "Osm set korun. Soudně nařízená výplata. Zástupce pojišťovny skládá papíry do aktovky. Ruce se mu třesou — vzteky. Bartošová stojí. Pak se podívá na Bena. Přikývne. Nic neřekne. Nemusí.",
@@ -606,19 +606,19 @@
           "trigger": "guilty_maximum",
           "delay_days": 3,
           "type": "fragment",
-          "text": "Švejda u vchodu: „Pane doktore, ta paní — ta vdova. Viděl jsem ji včera u zprostředkovny práce. Stála tam od rána. S dětmi.""
+          "text": "Švejda u vchodu: „Pane doktore, ta paní — ta vdova. Viděl jsem ji včera u zprostředkovny práce. Stála tam od rána. S dětmi.\""
         },
         {
           "trigger": "not_guilty",
           "delay_days": 5,
           "type": "fragment",
-          "text": "V novinách inzerát: „Trafika Na rohu — nová majitelka, nový sortiment. Otevřeno denně." Pod tím drobným písmem: Ludmila Bartošová."
+          "text": "V novinách inzerát: „Trafika Na rohu — nová majitelka, nový sortiment. Otevřeno denně.\" Pod tím drobným písmem: Ludmila Bartošová."
         },
         {
           "trigger": "guilty_alternative",
           "delay_days": 4,
           "type": "fragment",
-          "text": "Na chodbě soudu poznámka od sekretariátu: „Pojišťovna Slavia propustila pojistného agenta Miroslava Krejčího. Žádá o přezkum dalších smluv uzavřených tímto agentem." Na stole leží šest dalších spisů."
+          "text": "Na chodbě soudu poznámka od sekretariátu: „Pojišťovna Slavia propustila pojistného agenta Miroslava Krejčího. Žádá o přezkum dalších smluv uzavřených tímto agentem.\" Na stole leží šest dalších spisů."
         }
       ]
     }

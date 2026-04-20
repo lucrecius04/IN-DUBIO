@@ -35,14 +35,27 @@ const UI = (() => {
   /** Běží po kliknutí na rozsudek — overlay s consequence; zrušení při zavření modalu. */
   let _predohraConsequenceCtx = null;
 
-  function _anulujPredohruConsequence() {
-    const ctx = _predohraConsequenceCtx;
+  /** Modál případu (wireframe): jednou vykreslené rozsudky pro aktuální otevření. */
+  let _wfVerdictRenderedForCaseId = null;
+  let _wfRozsudekVyber = null;
+  let _wfPripadCallback = null;
+
+  function _zrusPredohruConsequencePosluchace(ctx) {
     if (!ctx) return;
-    _predohraConsequenceCtx = null;
     if (ctx.timerId) clearTimeout(ctx.timerId);
     if (ctx.prelude && ctx.onClickPrelude) {
       ctx.prelude.removeEventListener('click', ctx.onClickPrelude);
     }
+    if (ctx.preludeBtn && ctx.onPreludeBtn) {
+      ctx.preludeBtn.removeEventListener('click', ctx.onPreludeBtn);
+    }
+  }
+
+  function _anulujPredohruConsequence() {
+    const ctx = _predohraConsequenceCtx;
+    if (!ctx) return;
+    _predohraConsequenceCtx = null;
+    _zrusPredohruConsequencePosluchace(ctx);
     const el = document.getElementById('pripad-consequence-prelude');
     if (el) {
       el.classList.add('skryto');
@@ -110,10 +123,7 @@ const UI = (() => {
     if (!_predohraConsequenceCtx) return;
     const ctx = _predohraConsequenceCtx;
     _predohraConsequenceCtx = null;
-    if (ctx.timerId) clearTimeout(ctx.timerId);
-    if (ctx.prelude && ctx.onClickPrelude) {
-      ctx.prelude.removeEventListener('click', ctx.onClickPrelude);
-    }
+    _zrusPredohruConsequencePosluchace(ctx);
     const prelude = document.getElementById('pripad-consequence-prelude');
     if (prelude) {
       prelude.classList.add('skryto');
@@ -124,12 +134,9 @@ const UI = (() => {
       Desk.animujRazitko(Cases.typRazitkaProVerdikt(rozsudek.id));
     }
     _zavriPripadModal();
-    zobrazDusledkyRozsudku(
-      pripad,
-      rozsudek,
-      () => Cases.zpracujRozsudek(pripad, rozsudek, { preskocRazitko: true }),
-      { vynechatConsequenceNarativ: true }
-    );
+    if (typeof Cases !== 'undefined' && Cases.zpracujRozsudek) {
+      Cases.zpracujRozsudek(pripad, rozsudek, { preskocRazitko: true });
+    }
   }
 
   function _zobrazPredohruConsequenceAKlik(pripad, rozsudek, onRozsudek) {
@@ -154,15 +161,22 @@ const UI = (() => {
 
     const dokonci = () => _dokonciPredohruConsequence(pripad, rozsudek);
 
-    const onClickPrelude = () => dokonci();
-
-    const timerId = setTimeout(dokonci, 2000);
+    const preludeBtn = document.getElementById('pripad-consequence-prelude-btn');
+    const onPreludeBtn = () => dokonci();
+    if (preludeBtn) preludeBtn.addEventListener('click', onPreludeBtn);
 
     prelude.classList.remove('skryto');
     prelude.setAttribute('aria-hidden', 'false');
-    prelude.addEventListener('click', onClickPrelude);
+    if (preludeBtn) preludeBtn.focus();
 
-    _predohraConsequenceCtx = { timerId, onClickPrelude, prelude, dokonci };
+    _predohraConsequenceCtx = {
+      timerId: null,
+      onClickPrelude: null,
+      prelude,
+      preludeBtn,
+      onPreludeBtn,
+      dokonci
+    };
   }
 
   // --- Modal důsledků rozsudku (stav animací) ---
@@ -527,123 +541,12 @@ const UI = (() => {
     return 'Město vaše slovo zapisuje do své nepsané kroniky.';
   }
 
-  function zobrazDusledkyRozsudku(pripad, rozsudek, onPokracovat, opts) {
-    if (!pripad || !rozsudek) {
-      if (onPokracovat) onPokracovat();
-      return;
-    }
-
+  /** Modal „Důsledky rozsudku“ se v běžné hře nepoužívá — okamžitě zavolá pokračování (úplatek apod.). */
+  function zobrazDusledkyRozsudku(pripad, rozsudek, onPokracovat) {
     _dusledkyZrusCasovace();
-    _dusledkyCtx = {
-      timers: [],
-      onPokracovat: typeof onPokracovat === 'function' ? onPokracovat : null,
-      skipped: false,
-      hotovo: false
-    };
-
-    const tit = document.getElementById('dusledky-pripad-nazev');
-    const verd = document.getElementById('dusledky-verdikt-text');
-    const nar = document.getElementById('dusledky-narativ');
-    const seznam = document.getElementById('dusledky-zmeny');
-    const reakceEl = document.getElementById('dusledky-reakce');
-    const btn = document.getElementById('dusledky-pokracovat');
-
-    if (tit) tit.textContent = pripad.title || '—';
-    if (verd) verd.textContent = rozsudek.text || '—';
-    if (nar) {
-      nar.innerHTML = '';
-      if (rozsudek.consequence && !(opts && opts.vynechatConsequenceNarativ)) {
-        const p = document.createElement('p');
-        p.className = 'dusledky-narativ-text';
-        p.textContent = rozsudek.consequence;
-        nar.appendChild(p);
-      }
-    }
-
-    const prPruzkum = Cases.posoudPruzkumProVerdikt(pripad, rozsudek);
-    const typPripadu = Cases.typProZobrazeni(pripad);
-    const pruzPozn = document.getElementById('dusledky-pruzkum-poznamka');
-    if (pruzPozn) {
-      if (typPripadu === 'moralni' && prPruzkum.pouzitPruzkum) {
-        pruzPozn.textContent = 'Případ jsi prostudoval pečlivě.';
-        pruzPozn.classList.remove('skryto');
-      } else if (prPruzkum.pouzitPruzkum && prPruzkum.soulad) {
-        pruzPozn.textContent = 'Případ jsi prostudoval pečlivě.';
-        pruzPozn.classList.remove('skryto');
-      } else {
-        pruzPozn.textContent = '';
-        pruzPozn.classList.add('skryto');
-      }
-    }
-
-    const { merged, typNarativ } = Cases.pripravSlouceneDusledky(pripad, rozsudek);
-    if (nar && typNarativ && typNarativ.length) {
-      for (const line of typNarativ) {
-        const p = document.createElement('p');
-        p.className = 'dusledky-narativ-text';
-        p.textContent = line;
-        nar.appendChild(p);
-      }
-    }
-
-    const radky = _dusledkySestavRadky(merged);
-    if (reakceEl) reakceEl.textContent = _dusledkyTextReakce(radky);
-
-    if (seznam) {
-      seznam.innerHTML = '';
-      for (const r of radky) {
-        seznam.appendChild(_dusledkyVytvorElementRadku(r, false));
-      }
-    }
-
-    if (btn) {
-      btn.disabled = true;
-      btn.onclick = () => {
-        const cb = _dusledkyCtx && _dusledkyCtx.onPokracovat;
-        _dusledkyZrusCasovace();
-        _dusledkyCtx = null;
-        _zavriModal('modal-dusledky');
-        if (cb) cb();
-      };
-    }
-
-    _otevriModal('modal-dusledky');
-
-    const radkyEls = () => document.querySelectorAll('#modal-dusledky .dusledky-radek');
-
-    if (radky.length === 0) {
-      if (btn) btn.disabled = false;
-      _dusledkyCtx.hotovo = true;
-      return;
-    }
-
-    radkyEls().forEach((row, i) => {
-      const t = setTimeout(() => row.classList.add('dusledky-radek--viditelny'), 80 + i * 220);
-      _dusledkyCtx.timers.push(t);
-    });
-
-    const tBar = setTimeout(() => {
-      const modal = document.getElementById('modal-dusledky');
-      void modal?.offsetWidth;
-      modal?.querySelectorAll('.dusledky-bar-track').forEach(track => {
-        const tm = track.querySelector('.dusledky-bar-tmavy');
-        const sv = track.querySelector('.dusledky-bar-svetly');
-        if (tm && tm.dataset.cilSpodek != null) tm.style.width = tm.dataset.cilSpodek + '%';
-        if (!sv) return;
-        if (track.classList.contains('dusledky-bar-track--minus')) {
-          if (sv.dataset.cilLeft != null) sv.style.left = sv.dataset.cilLeft + '%';
-          if (sv.dataset.cilW != null) sv.style.width = sv.dataset.cilW + '%';
-        } else {
-          if (sv.dataset.cilLeft != null) sv.style.left = sv.dataset.cilLeft + '%';
-          if (sv.dataset.cilW != null) sv.style.width = sv.dataset.cilW + '%';
-        }
-      });
-    }, 120);
-    _dusledkyCtx.timers.push(tBar);
-
-    const maxMs = 120 + radky.length * 220 + 900;
-    const tDone = setTimeout(() => _dusledkyDokonciAnimace(), maxMs);
-    _dusledkyCtx.timers.push(tDone);
+    _dusledkyCtx = null;
+    _zavriModal('modal-dusledky');
+    if (typeof onPokracovat === 'function') onPokracovat();
   }
 
   // --- PŘÍPAD ---
@@ -708,28 +611,373 @@ const UI = (() => {
     }
   }
 
+  function _caseWfSetDots(activeIdx, doneBefore) {
+    document.querySelectorAll('#case-wf-dots .case-wf-dot').forEach((d, i) => {
+      d.classList.remove('active', 'done');
+      if (i < doneBefore) d.classList.add('done');
+      if (i === activeIdx) d.classList.add('active');
+    });
+  }
+
+  function _wfNavHint(text) {
+    const el = document.getElementById('case-wf-nav-hint');
+    if (el) el.textContent = text;
+  }
+
+  /** Lišta informovanosti v modálu — podle počtu odhalených kroků průzkumu u tohoto případu. */
+  function _wfAktualizujInformovanost(pripad) {
+    const wrap = document.getElementById('case-wf-inform-wrap');
+    const fill = document.getElementById('case-wf-inform-fill');
+    const track = document.getElementById('case-wf-inform-track');
+    const note = document.getElementById('case-wf-inform-note');
+    if (!wrap || !fill || !note) return;
+    const list = Array.isArray(pripad && pripad.hidden_info) ? pripad.hidden_info : [];
+    if (!list.length) {
+      wrap.classList.add('skryto');
+      return;
+    }
+    wrap.classList.remove('skryto');
+    const revealed = list.filter(i => State.jeInfoOdhaleno(pripad.id, i.id));
+    const n = revealed.length;
+    const maKonf = revealed.some(
+      i => i && (i.id === 'pool_inv_confrontation' || i.action === 'confrontation')
+    );
+    let pct = 15;
+    let label = 'Naslepo';
+    let tone = 'case-wf-inform-fill--blind';
+    if (n >= 1) {
+      pct = 40;
+      label = 'Základní přehled';
+      tone = 'case-wf-inform-fill--basic';
+    }
+    if (n >= 2) {
+      pct = 70;
+      label = 'Důkladný přehled';
+      tone = 'case-wf-inform-fill--good';
+    }
+    if (n >= 3 && !maKonf) {
+      pct = 85;
+      label = 'Pečlivý přehled';
+      tone = 'case-wf-inform-fill--great';
+    }
+    if (maKonf) {
+      pct = 100;
+      label = 'Kompletní';
+      tone = 'case-wf-inform-fill--full';
+    }
+    fill.className = 'case-wf-inform-fill ' + tone;
+    fill.style.width = pct + '%';
+    note.textContent = label;
+    if (track) track.setAttribute('aria-valuenow', String(pct));
+  }
+
+  function _wfFiltrovatVerdikty(pripad) {
+    if (!pripad.verdicts) return [];
+    const odvaha = Number(State.get('traits.Odvaha')) || 0;
+    const moudrost = Number(State.get('traits.Moudrost')) || 0;
+    const vina = Number(State.get('traits.Vina')) || 0;
+    return pripad.verdicts.filter(v => {
+      if (v.requires_odvaha_min != null && odvaha < Number(v.requires_odvaha_min)) return false;
+      if (v.requires_moudrost_min != null && moudrost < Number(v.requires_moudrost_min)) return false;
+      if (v.available_unless_vina_above != null && vina > Number(v.available_unless_vina_above)) return false;
+      return true;
+    });
+  }
+
+  function _wfPocetOdhalenychPruzkumu(pripad) {
+    if (!pripad || !Array.isArray(pripad.hidden_info)) return 0;
+    return pripad.hidden_info.filter(i => State.jeInfoOdhaleno(pripad.id, i.id)).length;
+  }
+
+  function _wfMaOdhalenouKonfrontaci(pripad) {
+    return (pripad.hidden_info || []).some(
+      i =>
+        State.jeInfoOdhaleno(pripad.id, i.id) &&
+        (i.action === 'confrontation' || i.id === 'pool_inv_confrontation')
+    );
+  }
+
+  /** Pool: podle cases.mdc — 0 odhalení jen základní vina + formální zproštění; průzkum postupně odemyká zbytek. */
+  function _wfFiltrovatVerdiktyPodlePruzkumu(pripad, verdikty) {
+    const arr = verdikty || [];
+    if (!pripad || pripad._fromPool !== true) return arr;
+    if (!Array.isArray(pripad.hidden_info) || !pripad.hidden_info.length) return arr;
+
+    const n = _wfPocetOdhalenychPruzkumu(pripad);
+    const maKonf = _wfMaOdhalenouKonfrontaci(pripad);
+
+    return arr.filter(v => {
+      const id = String(v.id || '');
+
+      if (n === 0) {
+        return id === 'guilty_maximum' || id === 'guilty_standard' || id === 'not_guilty_formal';
+      }
+      if (n === 1) {
+        if (id.startsWith('insufficient_')) return false;
+        if (id === 'guilty_alternative' || id === 'guilty_special') return false;
+        return (
+          id === 'guilty_maximum' ||
+          id === 'guilty_standard' ||
+          id === 'guilty_lenient' ||
+          id === 'not_guilty_formal' ||
+          id === 'not_guilty_comment' ||
+          id === 'not_guilty_with_comment'
+        );
+      }
+      if (id === 'guilty_special') return maKonf;
+      if (id === 'guilty_alternative') return maKonf || n >= 3;
+      return true;
+    });
+  }
+
+  function _wfVerdiktyDoSkupin(verdicts) {
+    const g = { guilty: [], not_guilty: [], insufficient: [], other: [] };
+    for (const v of verdicts || []) {
+      const id = String(v.id || '');
+      if (id.startsWith('guilty_')) g.guilty.push(v);
+      else if (id.startsWith('not_guilty_')) g.not_guilty.push(v);
+      else if (id.startsWith('insufficient_')) g.insufficient.push(v);
+      else g.other.push(v);
+    }
+    return g;
+  }
+
+  function _wfPruzkumPopisek(info) {
+    const a = info.action;
+    if (a === 'witness') return 'Vyslechnout svědka';
+    if (a === 'records') return 'Zkontrolovat záznamy';
+    if (a === 'informant') return 'Kontaktovat informátora';
+    if (a === 'confrontation') return 'Konfrontace (2 akce)';
+    if (a === 'fast') return 'Rozhodnout rychle';
+    return a || 'Průzkum';
+  }
+
+  function _wfResetVerdictUi() {
+    _wfRozsudekVyber = null;
+    const s1 = document.getElementById('case-wf-verdict-step1');
+    const s2 = document.getElementById('case-wf-verdict-step2');
+    const s2w = document.getElementById('case-wf-step2-wrap');
+    const leg = document.getElementById('case-wf-verdict-legacy');
+    const c = document.getElementById('case-wf-confirm-rozsudek');
+    if (s1) s1.innerHTML = '';
+    if (s2) s2.innerHTML = '';
+    if (s2w) s2w.classList.add('skryto');
+    if (leg) {
+      leg.innerHTML = '';
+      leg.classList.add('skryto');
+    }
+    if (c) {
+      c.classList.add('skryto');
+      c.disabled = true;
+    }
+  }
+
+  function _wfVyplnStep2(grp, polozky, pripad, onRozsudek) {
+    const step2 = document.getElementById('case-wf-verdict-step2');
+    const step2w = document.getElementById('case-wf-step2-wrap');
+    const lbl = document.getElementById('case-wf-step2-label');
+    if (!step2 || !step2w) return;
+    step2.innerHTML = '';
+    if (lbl) {
+      if (grp === 'guilty') lbl.textContent = 'Krok 2 — Trest / přístup';
+      else if (grp === 'not_guilty') lbl.textContent = 'Krok 2 — Zdůvodnění';
+      else if (grp === 'insufficient') lbl.textContent = 'Krok 2 — Postup';
+      else lbl.textContent = 'Krok 2 — Volba';
+    }
+    step2w.classList.remove('skryto');
+    const confirmBtn = document.getElementById('case-wf-confirm-rozsudek');
+    for (const r of polozky) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'case-wf-verdict-opt';
+      b.innerHTML =
+        `<div class="case-wf-v-title">${r.text || '—'}</div>` +
+        (r.consequence ? `<div class="case-wf-v-desc">${r.consequence}</div>` : '');
+      b.addEventListener('click', () => {
+        step2.querySelectorAll('.case-wf-verdict-opt').forEach(x => x.classList.remove('case-wf-verdict-opt--selected'));
+        b.classList.add('case-wf-verdict-opt--selected');
+        _wfRozsudekVyber = { rozsudek: r };
+        if (confirmBtn) {
+          confirmBtn.classList.remove('skryto');
+          confirmBtn.disabled = false;
+        }
+      });
+      step2.appendChild(b);
+    }
+    if (confirmBtn) {
+      confirmBtn.classList.add('skryto');
+      confirmBtn.disabled = true;
+    }
+    _caseWfSetDots(3, 3);
+    _wfNavHint('Vyberte konkrétní znění a potvrďte rozsudek.');
+  }
+
+  function _zobrazRozsudkyWireframe(pripad, onRozsudek) {
+    _wfResetVerdictUi();
+    _wfPripadCallback = onRozsudek;
+    const dostupne = _wfFiltrovatVerdiktyPodlePruzkumu(pripad, _wfFiltrovatVerdikty(pripad));
+    const step1 = document.getElementById('case-wf-verdict-step1');
+    const step1Wrap = document.getElementById('case-wf-step1-wrap');
+    const confirmBtn = document.getElementById('case-wf-confirm-rozsudek');
+    if (!step1 || !confirmBtn) return;
+    if (step1Wrap) step1Wrap.classList.remove('skryto');
+
+    const g = _wfVerdiktyDoSkupin(dostupne);
+    const skupiny = [];
+    if (g.guilty.length) {
+      skupiny.push({
+        key: 'guilty',
+        tit: 'Vinen',
+        desc: 'Obžalovaný spáchal skutek v podobě popsané obžalobou.',
+        items: g.guilty
+      });
+    }
+    if (g.not_guilty.length) {
+      skupiny.push({
+        key: 'not_guilty',
+        tit: 'Zproštění / nevinen',
+        desc: 'Obžaloba neobstojí nebo nejde o trestný čin v této podobě.',
+        items: g.not_guilty
+      });
+    }
+    if (g.insufficient.length) {
+      skupiny.push({
+        key: 'insufficient',
+        tit: 'Nedostatek důkazů',
+        desc: 'Nelze bezpečně rozhodnout — vrátit k došetření nebo uzavřít.',
+        items: g.insufficient
+      });
+    }
+
+    const pouzitPoolSkupiny = g.other.length === 0 && skupiny.length > 0;
+
+    if (pouzitPoolSkupiny && skupiny.length === 1) {
+      if (step1Wrap) step1Wrap.classList.add('skryto');
+      _wfVyplnStep2(skupiny[0].key, skupiny[0].items, pripad, onRozsudek);
+      _wfRozsudekVyber = { mode: 'twostep', grp: skupiny[0].key };
+    } else if (pouzitPoolSkupiny) {
+      for (const s of skupiny) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'case-wf-verdict-opt';
+        b.innerHTML = `<div class="case-wf-v-title">${s.tit}</div><div class="case-wf-v-desc">${s.desc}</div>`;
+        b.addEventListener('click', () => {
+          step1.querySelectorAll('.case-wf-verdict-opt').forEach(x => x.classList.remove('case-wf-verdict-opt--selected'));
+          b.classList.add('case-wf-verdict-opt--selected');
+          _wfVyplnStep2(s.key, s.items, pripad, onRozsudek);
+        });
+        step1.appendChild(b);
+      }
+      _wfRozsudekVyber = { mode: 'twostep', grp: null };
+    } else {
+      if (step1Wrap) step1Wrap.classList.add('skryto');
+      const leg = document.getElementById('case-wf-verdict-legacy');
+      if (leg) leg.classList.remove('skryto');
+      for (const rozsudek of dostupne.length ? dostupne : []) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'case-wf-verdict-opt ' + _rozsudekTrida(rozsudek.id);
+        btn.innerHTML =
+          `<div class="case-wf-v-title">${rozsudek.text || '—'}</div>` +
+          (rozsudek.consequence ? `<div class="case-wf-v-desc">${rozsudek.consequence}</div>` : '');
+        btn.addEventListener('click', () => {
+          leg.querySelectorAll('.case-wf-verdict-opt').forEach(x => x.classList.remove('case-wf-verdict-opt--selected'));
+          btn.classList.add('case-wf-verdict-opt--selected');
+          _wfRozsudekVyber = { mode: 'single', rozsudek };
+          confirmBtn.classList.remove('skryto');
+          confirmBtn.disabled = false;
+        });
+        leg.appendChild(btn);
+      }
+    }
+
+    const uplatek = Number(pripad.bribe_amount);
+    if (Number.isFinite(uplatek) && uplatek > 0 && !State.get('flags.uplatek_prijat')) {
+      const secVer = document.getElementById('case-wf-sec-verdict');
+      const btnU = document.createElement('button');
+      btnU.type = 'button';
+      btnU.className = 'case-wf-verdict-opt';
+      btnU.innerHTML =
+        `<div class="case-wf-v-title">Přijmout úplatek (${uplatek} Kč)</div>` +
+        '<div class="case-wf-v-desc">Integrita utrpí — obálka je však na stole.</div>';
+      btnU.addEventListener('click', () => {
+        if (typeof SFX !== 'undefined') SFX.rozsudekStamp();
+        _zavriPripadModal();
+        const uR = {
+          id: 'uplatek',
+          text: 'Přijmout úplatek',
+          consequence: `Nabídka zní na ${uplatek} Kč.`,
+          consequences: {
+            traits: { Integrita: -15 },
+            factions: {},
+            trust: {},
+            finance: uplatek,
+            flags: []
+          }
+        };
+        Cases.zpracujPrijetiUplatekPoModalu(pripad);
+      });
+      if (secVer && confirmBtn) secVer.insertBefore(btnU, confirmBtn);
+    }
+
+    confirmBtn.onclick = () => {
+      const r = _wfRozsudekVyber && _wfRozsudekVyber.rozsudek;
+      if (!r || !onRozsudek) return;
+      if (typeof SFX !== 'undefined') SFX.rozsudekStamp();
+      _zobrazPredohruConsequenceAKlik(pripad, r, onRozsudek);
+    };
+  }
+
+  function _wfPoPrvniAkciPruzkumu(pripad, onRozsudek) {
+    const secV = document.getElementById('case-wf-sec-verdict');
+    secV?.classList.remove('skryto');
+    _vyplnShrnutiRozsudku(pripad);
+    _wfVerdictRenderedForCaseId = pripad.id;
+    _zobrazRozsudkyWireframe(pripad, onRozsudek);
+    _caseWfSetDots(3, 3);
+    _wfNavHint('Vyberte verdikt a potvrďte rozsudek.');
+    const odhaleno = (pripad.hidden_info || []).filter(i => State.jeInfoOdhaleno(pripad.id, i.id)).length;
+    if (odhaleno >= 1) {
+      const conEl = document.getElementById('case-wf-contradiction');
+      const c0 = pripad.contradictions && pripad.contradictions[0];
+      if (conEl && c0 && c0.description) {
+        conEl.textContent = c0.description;
+        conEl.classList.remove('skryto');
+      }
+      _caseWfSetDots(2, 2);
+    }
+    _wfAktualizujInformovanost(pripad);
+  }
+
   function zobrazPripad(pripad, onRozsudek) {
     if (!pripad) return;
 
-    // Reset na výchozí záložku
     _prepniTabPripadu('pripad');
+    _wfVerdictRenderedForCaseId = null;
 
-    // Vyčisti readonly stav z předchozího otevření
+    const aftermath = document.getElementById('case-wf-aftermath');
+    if (aftermath) {
+      aftermath.classList.remove('case-wf-aftermath--visible');
+      const nar = document.getElementById('case-wf-aftermath-narr');
+      if (nar) nar.textContent = '';
+    }
+
     const zahlavi0 = document.querySelector('.pripad-zahlavi');
     zahlavi0?.classList.remove('zahlavi--vyreseno');
     _odstranTridyTypuPripadu(zahlavi0);
     _odstranTridyTypuPripadu(document.getElementById('pripad-kategorie-text'));
 
-    // Záhlaví
     document.getElementById('pripad-kategorie-text').textContent = _stitulekTypuPripadu(pripad);
     document.getElementById('pripad-nazev-text').textContent = pripad.title;
     document.getElementById('pripad-obvineni-text').textContent =
       `${pripad.defendant?.name || '—'}, ${pripad.charge || '—'}`;
 
+    const spZn = document.getElementById('pripad-spis-zn');
+    if (spZn) spZn.textContent = (pripad.case_number || '—').trim();
+
     const spDatum = document.getElementById('pripad-spis-datum');
     if (spDatum) spDatum.textContent = _formatujDatumSpisu(State.get('currentDay'));
 
-    // Situace (pondělní bonus z nedělní volby C — jednou)
     let situace = pripad.situation || '';
     const denP = Number(State.get('currentDay'));
     if (Number.isFinite(denP) && denP % 7 === 1 && State.get('pondeli_moudrost_extra')) {
@@ -738,22 +986,25 @@ const UI = (() => {
     }
     document.getElementById('pripad-situace-text').textContent = situace;
 
-    // Svědectví
     const svedkySekce = document.getElementById('pripad-svedectvi');
-    svedkySekce.innerHTML = '<div class="svedectvi-nadpis">SVĚDECTVÍ</div>';
+    svedkySekce.innerHTML = '';
     if (pripad.testimony) {
       for (const sv of pripad.testimony) {
         const item = document.createElement('div');
-        item.className = 'svedek-item';
-        item.innerHTML = `
-          <div class="svedek-label">${sv.label || sv.source}</div>
-          <div class="svedek-text">${sv.text}</div>
-        `;
+        item.className = 'case-wf-testimony';
+        item.innerHTML =
+          `<div class="case-wf-speaker">${sv.label || sv.source || '—'}</div>` +
+          `<div class="case-wf-quote">${sv.text || ''}</div>`;
         svedkySekce.appendChild(item);
       }
     }
 
-    // Odhalené informace
+    const conEl = document.getElementById('case-wf-contradiction');
+    if (conEl) {
+      conEl.classList.add('skryto');
+      conEl.textContent = '';
+    }
+
     const odhaleneEl = document.getElementById('pripad-odhalene-info');
     odhaleneEl.innerHTML = '';
     const jizOdhalene = pripad.hidden_info?.filter(info =>
@@ -761,16 +1012,35 @@ const UI = (() => {
     ) || [];
     jizOdhalene.forEach(info => _zobrazOdhalenoInfo(odhaleneEl, info));
 
-    // Průzkumné akce
-    _aktualizujPruzkumPanel(pripad, onRozsudek);
+    const secV = document.getElementById('case-wf-sec-verdict');
+    const secP = document.getElementById('case-wf-sec-pruzkum');
+    const maSkryte = Array.isArray(pripad.hidden_info) && pripad.hidden_info.length > 0;
+    const zbyvaAkci = Number(State.get('investigationActionsLeft')) || 0;
+    if (secV) {
+      secV.classList.remove('skryto');
+      _vyplnShrnutiRozsudku(pripad);
+      _wfVerdictRenderedForCaseId = pripad.id;
+      _zobrazRozsudkyWireframe(pripad, onRozsudek);
+    }
+    if (secP) secP.classList.toggle('skryto', !maSkryte);
 
-    // Rozsudky + shrnutí na záložce ROZSUDEK
-    _vyplnShrnutiRozsudku(pripad);
-    _zobrazRozsudky(pripad, onRozsudek);
+    document.getElementById('case-wf-verdict-readonly')?.classList.add('skryto');
+
+    _aktualizujPruzkumPanel(pripad, onRozsudek);
+    _wfAktualizujInformovanost(pripad);
 
     _nastavTypPripaduVModalu(pripad);
 
-    // Aktualizuj spis na stole
+    _caseWfSetDots(0, 0);
+    setTimeout(() => _caseWfSetDots(1, 1), 400);
+    _wfNavHint(
+      maSkryte
+        ? zbyvaAkci <= 0 && jizOdhalene.length === 0
+          ? 'Dnešní sdílené akce průzkumu už došly — základní rozsudek (naslepo) je k dispozici; další možnosti by odemkl průzkum.'
+          : 'Základní verdikty máte hned; průzkum (sdílené akce za den) rozšíří tresty a zdůvodnění.'
+        : 'Vyberte rozsudek a potvrďte.'
+    );
+
     Desk.nastavAktivniSpis(pripad);
 
     if (typeof SFX !== 'undefined') SFX.slozkaPaper();
@@ -781,41 +1051,39 @@ const UI = (() => {
   function zobrazPripadReadonly(pripad) {
     if (!pripad) return;
 
-    // Reset záložek — readonly zobrazuje případ
     _prepniTabPripadu('pripad');
+    _wfVerdictRenderedForCaseId = null;
 
     const zahlavi0 = document.querySelector('.pripad-zahlavi');
     _odstranTridyTypuPripadu(zahlavi0);
     _odstranTridyTypuPripadu(document.getElementById('pripad-kategorie-text'));
 
-    // Záhlaví
     document.getElementById('pripad-kategorie-text').textContent = _stitulekTypuPripadu(pripad);
     document.getElementById('pripad-nazev-text').textContent = pripad.title;
     document.getElementById('pripad-obvineni-text').textContent =
       `${pripad.defendant?.name || '—'}, ${pripad.charge || '—'}`;
 
+    const spZnR = document.getElementById('pripad-spis-zn');
+    if (spZnR) spZnR.textContent = (pripad.case_number || '—').trim();
+
     const spDatumR = document.getElementById('pripad-spis-datum');
     if (spDatumR) spDatumR.textContent = _formatujDatumSpisu(State.get('currentDay'));
 
-    // Situace
     document.getElementById('pripad-situace-text').textContent = pripad.situation || '';
 
-    // Svědectví
     const svedkySekce = document.getElementById('pripad-svedectvi');
-    svedkySekce.innerHTML = '<div class="svedectvi-nadpis">SVĚDECTVÍ</div>';
+    svedkySekce.innerHTML = '';
     if (pripad.testimony) {
       for (const sv of pripad.testimony) {
         const item = document.createElement('div');
-        item.className = 'svedek-item';
-        item.innerHTML = `
-          <div class="svedek-label">${sv.label || sv.source}</div>
-          <div class="svedek-text">${sv.text}</div>
-        `;
+        item.className = 'case-wf-testimony';
+        item.innerHTML =
+          `<div class="case-wf-speaker">${sv.label || sv.source || '—'}</div>` +
+          `<div class="case-wf-quote">${sv.text || ''}</div>`;
         svedkySekce.appendChild(item);
       }
     }
 
-    // Odkryté informace
     const odhaleneEl = document.getElementById('pripad-odhalene-info');
     odhaleneEl.innerHTML = '';
     const jizOdhalene = pripad.hidden_info?.filter(info =>
@@ -823,18 +1091,28 @@ const UI = (() => {
     ) || [];
     jizOdhalene.forEach(info => _zobrazOdhalenoInfo(odhaleneEl, info));
 
-    // Průzkum — skrýt
-    document.getElementById('prukzum-panel')?.classList.add('skryto');
+    document.getElementById('case-wf-sec-pruzkum')?.classList.add('skryto');
+    document.getElementById('case-wf-inform-wrap')?.classList.add('skryto');
+    document.getElementById('case-wf-verdict-readonly')?.classList.remove('skryto');
+    document.getElementById('case-wf-step1-wrap')?.classList.add('skryto');
+    document.getElementById('case-wf-step2-wrap')?.classList.add('skryto');
+    document.getElementById('case-wf-verdict-legacy')?.classList.add('skryto');
+    document.getElementById('case-wf-confirm-rozsudek')?.classList.add('skryto');
+
+    const secV = document.getElementById('case-wf-sec-verdict');
+    secV?.classList.remove('skryto');
 
     const archivRozsudky = State.get('archive.verdicts') || [];
     const zaznam = archivRozsudky.find(v => v.caseId === pripad.id);
     _vyplnShrnutiRozsudku(pripad);
     _zobrazRozsudkyReadonly(pripad, zaznam);
 
-    // Označit záhlaví jako vyřešené
     const zahlaviR = document.querySelector('.pripad-zahlavi');
     zahlaviR?.classList.add('zahlavi--vyreseno');
     _nastavTypPripaduVModalu(pripad);
+
+    _wfNavHint('Spis je uzavřen — pouze ke čtení.');
+    _caseWfSetDots(4, 5);
 
     Desk.nastavAktivniSpis(pripad);
     if (typeof SFX !== 'undefined') SFX.slozkaPaper();
@@ -843,66 +1121,85 @@ const UI = (() => {
   }
 
   function _aktualizujPruzkumPanel(pripad, onRozsudek) {
-    const panel = document.getElementById('prukzum-panel');
+    const wfAkce = document.getElementById('case-wf-pruzkum-akce');
+    const wfFind = document.getElementById('case-wf-findings');
     const tlacitka = document.getElementById('prukzum-tlacitka');
     const akceInfo = document.getElementById('prukzum-akce-info');
 
     const zbyvaji = State.get('investigationActionsLeft');
-    if (akceInfo) akceInfo.textContent = `${zbyvaji} akce`;
+    if (akceInfo) akceInfo.textContent = `${zbyvaji} ${zbyvaji === 1 ? 'akce' : 'akcí'}`;
 
-    tlacitka.innerHTML = '';
+    if (wfAkce) wfAkce.innerHTML = '';
+    if (tlacitka) tlacitka.innerHTML = '';
+    if (wfFind) wfFind.innerHTML = '';
 
     if (!pripad.hidden_info || pripad.hidden_info.length === 0) {
-      panel.classList.add('skryto');
+      document.getElementById('prukzum-panel')?.classList.add('skryto');
+      document.getElementById('case-wf-inform-wrap')?.classList.add('skryto');
       return;
     }
-    panel.classList.remove('skryto');
-
-    const AKCE_POPIS = {
-      witness:    'Vyslechnout svědka',
-      records:    'Zkontrolovat záznamy',
-      informant:  'Kontaktovat informátora',
-      fast:       'Rozhodnout rychle'
-    };
+    document.getElementById('prukzum-panel')?.classList.add('skryto');
 
     for (const info of pripad.hidden_info) {
+      const fid = 'case-wf-find-' + info.id;
+      if (wfFind) {
+        const uzJe = State.jeInfoOdhaleno(pripad.id, info.id);
+        const box = document.createElement('div');
+        box.id = fid;
+        box.className = 'case-wf-finding' + (uzJe ? '' : ' skryto');
+        const src = document.createElement('div');
+        src.className = 'case-wf-finding-src';
+        src.textContent = _wfPruzkumPopisek(info);
+        const ftx = document.createElement('div');
+        ftx.className = 'case-wf-finding-text';
+        if (uzJe) ftx.textContent = info.reveal || '';
+        box.appendChild(src);
+        box.appendChild(ftx);
+        wfFind.appendChild(box);
+      }
+
       const jizOdhaleno = State.jeInfoOdhaleno(pripad.id, info.id);
+      const cena = Number(info.cost) > 0 ? Number(info.cost) : 1;
       const btn = document.createElement('button');
-      btn.className = 'btn-prukzum' + (jizOdhaleno ? ' btn-prukzum--pouzit' : '');
-      btn.textContent = AKCE_POPIS[info.action] || info.action;
-      btn.disabled = jizOdhaleno || zbyvaji <= 0;
+      btn.type = 'button';
+      btn.className = 'case-wf-action-btn' + (jizOdhaleno ? ' case-wf-action-btn--used' : '');
+      btn.textContent = _wfPruzkumPopisek(info);
+      btn.disabled = jizOdhaleno || zbyvaji < cena;
 
       if (!jizOdhaleno) {
         btn.addEventListener('click', () => {
           const zbyvaji2 = State.get('investigationActionsLeft');
-          if (zbyvaji2 <= 0) return;
+          const cenaKlik = Number(info.cost) > 0 ? Number(info.cost) : 1;
+          if (zbyvaji2 < cenaKlik) return;
 
-          State.set('investigationActionsLeft', zbyvaji2 - 1);
+          State.set('investigationActionsLeft', zbyvaji2 - cenaKlik);
           State.odhalInfoPripadu(pripad.id, info.id);
 
-          // Zobraz odkrytou informaci v záložce Svědectví
           const odhaleneEl = document.getElementById('pripad-odhalene-info');
           _zobrazOdhalenoInfo(odhaleneEl, info);
 
-          // Aktualizuj panel
+          const fb = document.getElementById('case-wf-find-' + info.id);
+          if (fb) {
+            const tx = fb.querySelector('.case-wf-finding-text');
+            if (tx) tx.textContent = info.reveal || '';
+            fb.classList.remove('skryto');
+          }
+
           _aktualizujPruzkumPanel(pripad, onRozsudek);
-
-          // Aktualizuj vizuál akcí na stole
+          _wfPoPrvniAkciPruzkumu(pripad, onRozsudek);
           Desk.aktualizujVse();
-
-          // Moudrost roste za průzkum (násobič podle skrytého vzorce rozhodování)
           State.upravRys('Moudrost', Traits.aplikovatNasobekMoudrostiZaAkci(3));
           State.uloz();
         });
       }
 
-      tlacitka.appendChild(btn);
+      wfAkce?.appendChild(btn);
     }
   }
 
   function _zobrazOdhalenoInfo(kontejner, info) {
     const el = document.createElement('div');
-    el.className = 'odhalene-info';
+    el.className = 'odhalene-info case-wf-odhalene-block';
     el.innerHTML = `
       <div class="odhalene-info-label">ZJIŠTĚNO</div>
       <div class="odhalene-info-text">${info.reveal}</div>
@@ -912,82 +1209,26 @@ const UI = (() => {
 
   function _zobrazRozsudky(pripad, onRozsudek) {
     const seznam = document.getElementById('rozsudky-seznam');
-    seznam.innerHTML = '';
-
-    if (!pripad.verdicts) return;
-
-    // Filtruj rozsudky podle podmínek (nízká Odvaha může odebrat možnosti)
-    const odvaha = State.get('traits.Odvaha') ?? 50;
-    const dostupneRozsudky = pripad.verdicts.filter(v => {
-      if (v.requires_odvaha_min && odvaha < v.requires_odvaha_min) return false;
-      return true;
-    });
-
-    for (const rozsudek of dostupneRozsudky) {
-      const btn = document.createElement('button');
-      const trida = _rozsudekTrida(rozsudek.id);
-      btn.className = `btn-rozsudek ${trida}`;
-
-      const consequenceHtml = rozsudek.consequence
-        ? `<div class="rozsudek-consequence">${rozsudek.consequence}</div>`
-        : '';
-
-      btn.innerHTML = `
-        <div class="rozsudek-radek-hlavni">
-          <span class="rozsudek-nazev">${rozsudek.text}</span>
-        </div>
-        ${consequenceHtml}
-      `;
-
-      btn.addEventListener('click', () => {
-        if (typeof SFX !== 'undefined') SFX.rozsudekStamp();
-        if (onRozsudek) _zobrazPredohruConsequenceAKlik(pripad, rozsudek, onRozsudek);
-      });
-
-      seznam.appendChild(btn);
-    }
-
-    const uplatek = Number(pripad.bribe_amount);
-    if (Number.isFinite(uplatek) && uplatek > 0 && !State.get('flags.uplatek_prijat')) {
-      const btnU = document.createElement('button');
-      btnU.className = 'btn-rozsudek btn-rozsudek--uplatek';
-      btnU.type = 'button';
-      btnU.innerHTML = `
-        <div class="rozsudek-radek-hlavni">
-          <span class="rozsudek-nazev">Přijmout úplatek (${uplatek} Kč)</span>
-        </div>
-        <div class="rozsudek-consequence">Integrita utrpí — obálka je však na stole.</div>
-      `;
-      btnU.addEventListener('click', () => {
-        if (typeof SFX !== 'undefined') SFX.rozsudekStamp();
-        _zavriPripadModal();
-        const uR = {
-          id:          'uplatek',
-          text:        'Přijmout úplatek',
-          consequence: `Nabídka zní na ${uplatek} Kč.`,
-          consequences: {
-            traits:   { Integrita: -15 },
-            factions: {},
-            trust:    {},
-            finance:  uplatek,
-            flags:    []
-          }
-        };
-        zobrazDusledkyRozsudku(pripad, uR, () => Cases.zpracujPrijetiUplatekPoModalu(pripad));
-      });
-      seznam.appendChild(btnU);
-    }
+    if (seznam) seznam.innerHTML = '';
+    _zobrazRozsudkyWireframe(pripad, onRozsudek);
   }
 
   function _rozsudekTrida(id) {
-    if (id.includes('prison') || id === 'maximum' || id === 'guilty') return 'btn-rozsudek--vinen';
-    if (id === 'acquit' || id === 'zprostit') return 'btn-rozsudek--zprosit';
+    const s = String(id || '');
+    if (s.startsWith('guilty_')) return 'btn-rozsudek--vinen';
+    if (s.startsWith('not_guilty_')) return 'btn-rozsudek--zprosit';
+    if (s.startsWith('insufficient_')) return '';
+    if (s.includes('prison') || s === 'maximum' || s === 'guilty') return 'btn-rozsudek--vinen';
+    if (s === 'acquit' || s === 'zprostit') return 'btn-rozsudek--zprosit';
     return '';
   }
 
   /** Všechny verdikty ze spisu; zvolený zlatě + VYŘEŠENO, ostatní šedě bez kliknutí. */
   function _zobrazRozsudkyReadonly(pripad, zaznam) {
-    const seznam = document.getElementById('rozsudky-seznam');
+    const seznam =
+      document.getElementById('case-wf-verdict-readonly') ||
+      document.getElementById('rozsudky-seznam');
+    if (!seznam) return;
     seznam.innerHTML = '';
 
     const vsechny = pripad.verdicts || [];
@@ -1601,7 +1842,7 @@ const UI = (() => {
 
   let _zpravaCasovac = null;
 
-  function zobrazStavovouZpravu(text, trvani = 2500) {
+  function zobrazStavovouZpravu(text, trvani = 6200) {
     const el = document.getElementById('stavova-zprava');
     if (!el) return;
     el.textContent = text;
@@ -1616,7 +1857,9 @@ const UI = (() => {
   // --- ZÁLOŽKY PŘÍPADU ---
 
   function _prepniTabPripadu(tabId) {
-    document.querySelectorAll('.pripad-tab').forEach(t => {
+    const tabs = document.querySelectorAll('.pripad-tab');
+    if (!tabs.length) return;
+    tabs.forEach(t => {
       t.classList.toggle('pripad-tab--aktivni', t.dataset.tab === tabId);
     });
     document.querySelectorAll('.pripad-tab-obsah').forEach(obsah => {
@@ -1718,6 +1961,25 @@ const UI = (() => {
 
     // Escape zavírá modaly
     document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const modalPripad = document.getElementById('modal-pripad');
+        const prelude = document.getElementById('pripad-consequence-prelude');
+        const tag = (e.target && e.target.tagName) || '';
+        if (
+          modalPripad &&
+          modalPripad.classList.contains('aktivni') &&
+          prelude &&
+          !prelude.classList.contains('skryto') &&
+          _predohraConsequenceCtx &&
+          typeof _predohraConsequenceCtx.dokonci === 'function' &&
+          tag !== 'INPUT' &&
+          tag !== 'TEXTAREA'
+        ) {
+          e.preventDefault();
+          _predohraConsequenceCtx.dokonci();
+          return;
+        }
+      }
       if (e.key === 'Escape') {
         const menu = document.getElementById('modal-menu');
         if (menu && !menu.classList.contains('skryto')) {
@@ -1799,7 +2061,7 @@ const UI = (() => {
     document.getElementById('pripad-tabs')?.addEventListener('click', (e) => {
       const tab = e.target.closest('.pripad-tab');
       if (tab) _prepniTabPripadu(tab.dataset.tab);
-    });
+    }); /* pripad-tabs odstraněny — listener se neregistruje */
 
     // Hamburger menu
     document.getElementById('btn-menu')?.addEventListener('click', () => {

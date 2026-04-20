@@ -42,6 +42,161 @@ const DataLoader = (() => {
     'data/cases-akt3.json'
   ];
 
+  const SOUBOR_POOL_AKT1 = 'data/pool_cases_akt1.json';
+
+  /** Efekty z pool JSON (malá písmena) → consequences pro engine/UI. */
+  function _poolEffectsNaConsequences(eff) {
+    const e = eff && typeof eff === 'object' ? eff : {};
+    const traits = {};
+    const mapT = {
+      integrita: 'Integrita',
+      odvaha: 'Odvaha',
+      moudrost: 'Moudrost',
+      vina: 'Vina',
+      nadeje: 'Nadeje'
+    };
+    for (const [k, v] of Object.entries(e)) {
+      const nk = String(k).toLowerCase();
+      if (mapT[nk]) {
+        const n = Number(v);
+        if (Number.isFinite(n) && n !== 0) traits[mapT[nk]] = n;
+      }
+    }
+    const factions = {};
+    if (Number.isFinite(Number(e.moc)) && Number(e.moc) !== 0) factions.Moc = Number(e.moc);
+    if (Number.isFinite(Number(e.lid)) && Number(e.lid) !== 0) factions.Lid = Number(e.lid);
+    if (Number.isFinite(Number(e.kapital)) && Number(e.kapital) !== 0) factions.Kapital = Number(e.kapital);
+    const finance = Number.isFinite(Number(e.finance)) ? Number(e.finance) : 0;
+    return { traits, factions, trust: {}, finance, flags: [] };
+  }
+
+  function _vyberInformantText(inv, stav) {
+    const v = inv && inv.variants;
+    if (!v || typeof v !== 'object') return '';
+    const f = (stav && stav.factions) || {};
+    const lid = Number(f.Lid ?? 50);
+    const kap = Number(f.Kapital ?? 50);
+    const moc = Number(f.Moc ?? f.Stat ?? 50);
+    if (Number.isFinite(moc) && moc >= 60 && v.moc_high) return v.moc_high;
+    if (Number.isFinite(lid) && lid >= 60 && v.lid_high) return v.lid_high;
+    if (Number.isFinite(kap) && kap >= 60 && v.kapital_high) return v.kapital_high;
+    return v.default || v.lid_high || v.moc_high || Object.values(v).find(x => typeof x === 'string') || '';
+  }
+
+  function _slozitPoolVerdikty(verdictsRoot) {
+    const out = [];
+    const v = verdictsRoot && typeof verdictsRoot === 'object' ? verdictsRoot : {};
+    const guilty = v.guilty && v.guilty.sentences;
+    if (guilty && typeof guilty === 'object') {
+      for (const [key, sent] of Object.entries(guilty)) {
+        if (!sent || typeof sent !== 'object') continue;
+        const req = sent.requires || {};
+        const au = sent.available_unless || {};
+        out.push({
+          id: `guilty_${key}`,
+          text: sent.label || key,
+          consequence: sent.description || '',
+          consequences: _poolEffectsNaConsequences(sent.effects),
+          requires_moudrost_min: req.moudrost_min != null ? Number(req.moudrost_min) : undefined,
+          requires_odvaha_min: req.odvaha_min != null ? Number(req.odvaha_min) : undefined,
+          available_unless_vina_above: au.vina_above != null ? Number(au.vina_above) : undefined
+        });
+      }
+    }
+    const ng = v.not_guilty && v.not_guilty.approaches;
+    if (ng && typeof ng === 'object') {
+      for (const [key, app] of Object.entries(ng)) {
+        if (!app || typeof app !== 'object') continue;
+        out.push({
+          id: `not_guilty_${key}`,
+          text: app.label || key,
+          consequence: app.description || '',
+          consequences: _poolEffectsNaConsequences(app.effects)
+        });
+      }
+    }
+    const ins = v.insufficient_evidence;
+    if (ins && typeof ins === 'object') {
+      const reqM = ins.requires && ins.requires.moudrost_min != null ? Number(ins.requires.moudrost_min) : undefined;
+      const opts = ins.options || {};
+      for (const [key, opt] of Object.entries(opts)) {
+        if (!opt || typeof opt !== 'object') continue;
+        const base = ins.label || 'Nedostatek důkazů';
+        out.push({
+          id: `insufficient_${key}`,
+          text: `${base} — ${opt.label || key}`,
+          consequence: opt.label || '',
+          consequences: _poolEffectsNaConsequences(opt.effects),
+          requires_moudrost_min: reqM
+        });
+      }
+    }
+    return out;
+  }
+
+  /**
+   * Převod záznamu z pool_cases_akt1.json na tvar očekávaný UI (testimony, hidden_info, verdicts …).
+   */
+  function normalizujPoolPripad(raw) {
+    if (!raw || typeof raw !== 'object') return null;
+    const stav = typeof State !== 'undefined' && State.get ? State.get() : {};
+    const inv = raw.investigation || {};
+    const hidden_info = [];
+
+    if (inv.interview && inv.interview.text) {
+      hidden_info.push({
+        id: 'pool_inv_interview',
+        action: 'witness',
+        reveal: inv.interview.text
+      });
+    }
+    if (inv.records && inv.records.text) {
+      const src = inv.records.source ? `(${inv.records.source})\n\n` : '';
+      hidden_info.push({
+        id: 'pool_inv_records',
+        action: 'records',
+        reveal: src + inv.records.text
+      });
+    }
+    if (inv.informant && inv.informant.variants) {
+      hidden_info.push({
+        id: 'pool_inv_informant',
+        action: 'informant',
+        reveal: _vyberInformantText(inv.informant, stav)
+      });
+    }
+    const konf = inv.confrontation;
+    if (konf && typeof konf === 'object' && (konf.prompt || (konf.success && konf.success.text))) {
+      const casti = [];
+      if (konf.prompt) casti.push(String(konf.prompt).trim());
+      if (konf.success && konf.success.text) casti.push(String(konf.success.text).trim());
+      hidden_info.push({
+        id: 'pool_inv_confrontation',
+        action: 'confrontation',
+        reveal: casti.filter(Boolean).join('\n\n'),
+        cost: 2
+      });
+    }
+
+    const verdicts = _slozitPoolVerdikty(raw.verdicts);
+    const testimony = (Array.isArray(raw.testimonies) ? raw.testimonies : []).map(t => ({
+      label: t.speaker,
+      source: t.speaker,
+      text: t.text || ''
+    }));
+
+    return {
+      ...raw,
+      _fromPool: true,
+      type: 'rutinni',
+      day: Number.isFinite(Number(raw.day)) ? Number(raw.day) : 1,
+      situation: raw.description || '',
+      testimony,
+      verdicts,
+      hidden_info
+    };
+  }
+
   async function nactiVse() {
     // Načti základní datové soubory
     const slibky = Object.entries(SOUBORY).map(async ([klic, cesta]) => {
@@ -75,10 +230,22 @@ const DataLoader = (() => {
     _cache.cases = [_cache.casesAkt1, _cache.casesAkt2, _cache.casesAkt3].flat();
     _doplnteTypyPripadu(_cache.cases);
 
+    try {
+      const odpovedPool = await fetch(SOUBOR_POOL_AKT1);
+      if (!odpovedPool.ok) throw new Error(`HTTP ${odpovedPool.status}`);
+      const poolJson = await odpovedPool.json();
+      const pole = poolJson && typeof poolJson === 'object' && Array.isArray(poolJson.pool_cases_akt1)
+        ? poolJson.pool_cases_akt1
+        : [];
+      _cache.poolCasesAkt1 = pole;
+    } catch (e) {
+      console.warn(`Nelze načíst ${SOUBOR_POOL_AKT1}:`, e.message);
+      _cache.poolCasesAkt1 = [];
+    }
+
     console.log(
-      `Načteno ${_cache.cases?.length || 0} případů (akt1: ${_cache.casesAkt1.length}, akt2: ${_cache.casesAkt2.length}, akt3: ${_cache.casesAkt3.length}).`
+      `[DataLoader] případy akt1/2/3: ${_cache.casesAkt1.length} / ${_cache.casesAkt2.length} / ${_cache.casesAkt3.length}, pool akt1: ${_cache.poolCasesAkt1.length}`
     );
-    console.log('[DataLoader] casesAkt1 po načtení:', DataLoader.ziskej('casesAkt1'));
     return _cache;
   }
 
@@ -90,20 +257,29 @@ const DataLoader = (() => {
     return _cache[klic];
   }
 
-  /** Po nactiVse: days + případy musí být neprázdné pole, jinak složky nemají co načíst. */
+  /** Po nactiVse: days + (legacy případy nebo pool akt1). */
   function jeHernaDataOK() {
     const days = Object.prototype.hasOwnProperty.call(_cache, 'days') ? _cache.days : null;
     const cases = Object.prototype.hasOwnProperty.call(_cache, 'cases') ? _cache.cases : null;
-    return Array.isArray(days) && days.length > 0 && Array.isArray(cases) && cases.length > 0;
+    const pool = Object.prototype.hasOwnProperty.call(_cache, 'poolCasesAkt1') ? _cache.poolCasesAkt1 : null;
+    const maPripady =
+      (Array.isArray(cases) && cases.length > 0) ||
+      (Array.isArray(pool) && pool.length > 0);
+    return Array.isArray(days) && days.length > 0 && maPripady;
   }
 
   // Pomocné gettery
 
   function ziskejPripad(id) {
-    const cases = ziskej('cases');
-    if (!cases) return null;
     const k = String(id == null ? '' : id).trim();
     if (!k) return null;
+    const pool = ziskej('poolCasesAkt1');
+    if (Array.isArray(pool)) {
+      const raw = pool.find(c => c && String(c.id || '').trim() === k);
+      if (raw) return normalizujPoolPripad(raw);
+    }
+    const cases = ziskej('cases');
+    if (!cases) return null;
     return cases.find(c => String(c.id || '').trim() === k) || null;
   }
 
@@ -144,6 +320,7 @@ const DataLoader = (() => {
     ziskej,
     jeHernaDataOK,
     ziskejPripad,
+    normalizujPoolPripad,
     ziskejDen,
     ziskejPostavu,
     ziskejFragment,

@@ -88,6 +88,7 @@ const Cases = (() => {
   function _normalizujTyp(c) {
     if (!c) return 'rutinni';
     const t = String(c.type || '').toLowerCase();
+    if (t === 'routine') return 'rutinni';
     if (_TYP_LEGACY_NA_RUTINNI.has(t)) return 'rutinni';
     if (t === 'vlakno') {
       const id = String(c.id || '').toLowerCase();
@@ -302,6 +303,15 @@ const Cases = (() => {
     if (denData == null || typeof denData !== 'object') {
       console.warn('[Cases] nastavPripadyProDen: denData chybí (days.json?) — složky stejně z pole případů aktu.');
     }
+    const idsZDne = denData && Array.isArray(denData.cases) ? denData.cases : null;
+    if (idsZDne && idsZDne.length > 0) {
+      nastavPripadyDne(idsZDne);
+      console.log('[Cases] nastavPripadyProDen z days.json.cases', {
+        den: d,
+        slotId: _pripady.map(p => (p && p.id) || null)
+      });
+      return;
+    }
     const tri = _triPripadyDleDne(d);
     _pripady = tri;
     const naDen = _polePripaduProAkt(_aktZDne(d)).filter(c => c && Number(c.day) === d);
@@ -349,7 +359,7 @@ const Cases = (() => {
 
       const otevriNorm = () => {
         console.log('[Cases] otevírám modál případu:', pripad.id, '(title, situation, svědectví, rozsudky z JSON)');
-        UI.zobrazPripad(pripad, (p, r) => UI.zobrazDusledkyRozsudku(p, r, () => zpracujRozsudek(p, r)));
+        UI.zobrazPripad(pripad, (p, r) => zpracujRozsudek(p, r));
       };
 
       const denN = Number(State.get('currentDay'));
@@ -916,11 +926,15 @@ const Cases = (() => {
   }
 
   function _rozsudekNaTypRazitka(id) {
-    if (id.includes('prison') || id === 'maximum' || id === 'guilty') return 'vinen';
-    if (id === 'acquit' || id === 'zprostit')                         return 'zprostit';
-    if (id === 'postpone' || id === 'odlozit')                        return 'odlozit';
-    if (id === 'podminka')                                             return 'podminka';
-    if (id === 'pokuta')                                               return 'pokuta';
+    const s = String(id || '');
+    if (s.startsWith('guilty_')) return 'vinen';
+    if (s.startsWith('not_guilty_')) return 'zprostit';
+    if (s.startsWith('insufficient_')) return 'odlozit';
+    if (s.includes('prison') || s === 'maximum' || s === 'guilty') return 'vinen';
+    if (s === 'acquit' || s === 'zprostit') return 'zprostit';
+    if (s === 'postpone' || s === 'odlozit') return 'odlozit';
+    if (s === 'podminka') return 'podminka';
+    if (s === 'pokuta') return 'pokuta';
     return 'odlozit';
   }
 
