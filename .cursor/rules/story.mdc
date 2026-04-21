@@ -103,6 +103,17 @@ D13: Beneš — přijmout (SMÍŘENÍ) vs. odmítnout (SMÍŘENÍ zavřeno)
 D16: Haas — přijmout (KORUPCE/PŘEŽITÍ) vs. odmítnout (HRDINA/ÚTĚK/ATENTÁT)
 D18: Karas — poslechnout (ÚTĚK) vs. ignorovat (HRDINA/ATENTÁT) vs. zradit (KORUPCE)
 
+### Krizový bod D16 — matčina operace
+Pokud hráč odmítne VŠECHNA záchranná lana (Haas + Závadová + Karas) a Finance < 100:
+Matka nedostane operaci. Hra NEKONČÍ — ale echo Anny se naplní.
+Vina +10. Zbytek hry temnější. SMÍŘENÍ obtížnější. ANNA téměř nemožný.
+Fragment: „Dopis od doktora. Operace odložena na neurčito. Stav se zhoršuje."
+
+### Tři krizové stavy (žádný nekončí hru)
+Finance = 0: Ben přestane jíst. Naděje -3/den. Haasova obálka svítí. → PŘEŽITÍ/KORUPCE
+Integrita < 10: Ben ztrácí soudcovské možnosti. Stává se strojem. → KORUPCE
+Odvaha < 10: Ben odkládá. Systém ho přehlíží. → PŘEŽITÍ
+
 ## OSM KONCŮ
 
 1. PŘEŽITÍ: žádné extrémy, žádné vazby. Nic se nezměnilo. „Další den. Jako vždy."
@@ -129,6 +140,9 @@ Marková: D3, 12, 19 (podezřelá → zachránkyně → obžalovaná)
 
 ## TÓN A STYL
 Noir. Morální šedá zóna. Dobový jazyk 30. let. Obraz místo abstrakce. Detail místo popisu.
+Zasazení: ČESKOSLOVENSKO 1931 — skutečné reálie, zákony, instituce, místa (Brno).
+Případy odrážejí dobu: chudoba, strach, politické napětí, národnostní třecí plochy.
+Encyklopedická vrstva: klíčová slova v textech odkazují na herní Wikipedii (data/encyclopedia.json).
 
 ## CO AGENT NESMÍ
 Vymýšlet případy, dialogy, fragmenty, odhalení nebo větvení. Měnit jména nebo motivace. Hodnotit hráče. Přidávat postavy bez souhlasu.

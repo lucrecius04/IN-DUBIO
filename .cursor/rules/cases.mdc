@@ -16,7 +16,7 @@ PRŮZKUM (akce + zjištění)
 ROZSUDEK (dvojkrok: typ → konkrétní varianta, viz `js/ui.js`)
 ```
 
-**Cíl designu:** rozsudek hned k dispozici. **Současná implementace (pool):** pokud případ má `hidden_info` (pool vždy po `normalizujPoolPripad`), sekce rozsudku zůstane skrytá, dokud hráč neprovede **první** průzkumnou akci — viz `zobrazPripad` / `_wfPoPrvniAkciPruzkumu` v `js/ui.js`.
+**Cíl designu + implementace:** rozsudek je hned k dispozici a sekce rozsudku je při otevření spisu vždy viditelná (včetně pool případů). Průzkum nerozhoduje o tom, zda rozsudek vidíš, ale jen o tom, jak široká sada verdiktů/trestů je právě dostupná.
 
 Hráč scrolluje, čte, volitelně zkoumá, pak soudí.
 Po potvrzení rozsudku: předehra v modálu, pak `Cases.zpracujRozsudek` (modal „Důsledky“ se nepoužívá).
@@ -204,6 +204,43 @@ Nezávislý (bez úplatku): Integrita +5, LID +8
 Odvážný (žádný odložen): Odvaha +3, Finance +20
 Konzistentní (5+ stejným směrem): MOC +10 nebo LID +10
 
+## KRIZOVÉ STAVY — DOPADY NA PŘÍPADY
+
+### Integrita pod 10
+- ZMIZÍ verdikty: zproštění obžaloby, alternativní tresty, komentáře
+- PŘIBUDE: volba „Přijmout úplatek" u každého případu (skryté +50-100 Kč, Integrita -15)
+- Zamčené „?" sloty u odstraněných verdiktů se NEZOBRAZUJÍ (zmizí úplně, jako by neexistovaly)
+
+### Odvaha pod 10
+- ZMIZÍ: konfrontace (i odemčená), veřejná prohlášení
+- PŘIBUDE: zvýrazněná volba „Odložit případ" u politických případů
+- Po 3 odloženích za sebou: Vlčkův dopis (automatický, ne hráčova volba)
+- Zamčené „?" sloty u konfrontace se NEZOBRAZUJÍ
+
+### Finance = 0
+- Haasova obálka svítí zlatě na stole (vizuální prvek, ne popup)
+- Hráč ji může otevřít KDYKOLI — ne jen na den 16
+- Efekty viz economy.mdc
+
+## ENCYKLOPEDIE — HERNÍ WIKIPEDIE
+
+Klíčová slova v textech případů, dopisů a fragmentů mají prokliky na encyklopedická hesla.
+
+### Vizuální označení
+Slova s heslem mají jemné plné podtržení v tlumené modré barvě (#85B7EB). ODLIŠNÉ od:
+- Rozporů (žádné zvýraznění, max čárkované podtržení při Moudrosti 5 hvězd)
+- Běžného textu (žádné podtržení)
+
+### Data
+Soubor: data/encyclopedia.json
+Struktura: { "heslo_id": { "title": "...", "text": "3-5 vět", "related": ["dalsi_heslo"] } }
+Celkem cca 30-40 hesel, psáno na konci vývoje.
+
+### Kategorie hesel
+SVĚT: ČSR, Sudety, Masaryk, Beneš (prezident), hospodářská krize, Creditanstalt, NSDAP, Piłsudski
+SPOLEČNOST: žebračenky, pochody hladu, NOF, DNSAP, exekuce, Baťa, české fašistické hnutí, Gajda
+JUSTICE: krajský soud, trestní zákon 1852, zákon na ochranu republiky č.50/1923, porotní soud
+
 ## PRAVIDLA PRO PSANÍ PŘÍPADŮ
 
 1. Každý případ má alespoň 1 rozpor — i rutinní.
@@ -216,6 +253,12 @@ Konzistentní (5+ stejným směrem): MOC +10 nebo LID +10
 8. Aftermath nikdy nehodnotí.
 9. Odložené důsledky = konkrétní obraz.
 10. Zamčené sloty NIKDY neprozrazují obsah — jen „?" a „Možnost není k dispozici."
+11. Případy musí být ZASAZENÉ V ČESKOSLOVENSKU 1931 — konkrétní reálie, instituce, zákony, místa.
+12. Používat skutečné právní předpisy (trestní zákon 1852, zákon na ochranu republiky č.50/1923).
+13. Zmiňovat dobové instituce (zemský úřad, živnostenský rejstřík, Pojišťovna Slavia, Creditanstalt).
+14. Jména a místa česká/moravská/sudetská — Národní třída, Staroměstské náměstí, Žižkov, Smíchov.
+15. Klíčová slova s encyklopedickým heslem označit v JSON: encyclopedia_links: ["heslo_id1", "heslo_id2"].
+16. Každý případ by měl letmo odrážet dobu — chudoba, strach, politické napětí, národnostní třecí plochy.
 
 ## JSON — `data/pool_cases_akt1.json` (zdroj) → runtime (`normalizujPoolPripad` v `js/data-loader.js`)
 

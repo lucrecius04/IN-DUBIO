@@ -15,6 +15,10 @@ Hráč = soudce **Benedikt Vraný** (Ben). Středoevropský stát, nástup 30. l
 | Fáze případu, průzkum, rozpory, dvojkrok rozsudku, JSON šablona | **`cases.mdc`** |
 | Finance, plat, milníky (Haas, dopis…) | **`economy.mdc`** |
 | Rysy 0–100, frakce Moc / Kapital / Lid, důvěra NPC | **`traits-factions.mdc`** |
+| Krizové stavy (Finance=0, Integrita<10, Odvaha<10) | **`economy.mdc`** + **`cases.mdc`** |
+| Encyklopedie (herní wikipedie, prokliky v textech) | **`cases.mdc`** (pravidla) + `data/encyclopedia.json` (data) |
+
+Při konfliktu mechanik mezi soubory má přednost **`cases.mdc`** (UI toku případu, průzkum, rozsudek, odemykání možností).
 
 Soubor **`STORY.md` byl zrušen** — nepoužívat. Obsah případů a dialogů **nevymýšlet**; přicházejí z JSON / dokumentace, agent jen implementuje a opravuje technické chyby.
 

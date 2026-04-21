@@ -17,17 +17,17 @@ Výchozí: INTEGRITA 70 | ODVAHA 50 | MOUDROST 55 | VINA 60 (neklesne na 0) | NA
 ★★★★★: +skrytý rozsudek navíc, svědci mluví otevřeněji, Vlček píše formálněji
 ★★★☆☆ (41-60): zmizí Zproštění obžaloby u politických
 ★★☆☆☆: svědci: "Říkají o vás věci, pane doktore." + Vlček přátelštěji
-★☆☆☆☆: +možnost Přijmout úplatek v rozsudcích → TRIGGER KORUPCE
+★☆☆☆☆: +možnost Přijmout úplatek v rozsudcích → KRIZOVÝ STAV INTEGRITY (viz cases.mdc), cesta ke KORUPCI
 
 🦁 ODVAHA:
-★★★★★: +Veřejné prohlášení, +3. průzkumná akce, Vlček přijde osobně
+★★★★★: +Veřejné prohlášení, +1 kapka inkoustu permanentně, Vlček přijde osobně
 ★★★★☆: +Konfrontovat svědka (agresivní výslech)
 ★★☆☆☆: zmizí Předat případ výše, Závadová jen aktivně
-★☆☆☆☆: jen bezpečné rozsudky, Odložit zvýrazněno → TRIGGER ODVOLÁNÍ
+★☆☆☆☆: jen bezpečné rozsudky, Odložit zvýrazněno → KRIZOVÝ STAV ODVAHY (viz cases.mdc)
 
 🧠 MOUDROST:
-★★★★★: +skrytá motivace obžalovaného, +kontext politických, výslech=2 info za 1 akci
-★★★★☆: zvýraznění nesrovnalosti, Záznamy odhalí precedent
+★★★★★: +skrytá motivace obžalovaného, +kontext politických, výslech=2 info za 1 akci, JEMNÉ PODTRŽENÍ klíčových slov ve výpovědích (jediná vizuální nápověda k rozporům)
+★★★★☆: Záznamy odhalí precedent, výslech přesnější
 ★★☆☆☆: průzkum odhalí méně
 ★☆☆☆☆: Záznamy nenajdou nic, jen holá fakta
 
@@ -57,17 +57,19 @@ Zobrazení: tečky (●○) v levém panelu. Výchozí: 50. Prahy: ≥80 vysoká
 
 ✊ LID (ulice, chudí):
 ●●●●●: Informátor levnější (1 akce), svědci ochotní, Závadová důvěra +1
-●○○○○: svědci z nižších vrstev odmítají → TRIGGER ODVOLÁNÍ (Naděje <20)
+●○○○○: svědci z nižších vrstev odmítají, Naděje klesá rychleji
 
 💰 KAPITÁL (Haas, obchodníci):
 ●●●●●: Haas vyšší úplatek, méně možností pro chudé, Integrita -1/den
 ●○○○○: více možností pro chudé, Haas přijde agresivně, Finance -20%
 
-## STATISTIKY → KONCE
-KORUPCE: Integrita ★☆☆☆☆ + Karas 3 | NEBO Kapital ●●●●● + Vlček 3
-ODVOLÁNÍ: MOC ●○○○○ + Odvaha ★☆☆☆☆ | NEBO LID ●○○○○ + Naděje ★☆☆☆☆
-ATENTÁT: MOC ●○○○○ + Odvaha ★★★★★ + Vlček 0 + Integrita >60
-HRDINA: Integrita ★★★★★ + Odvaha ★★★★★ + Závadová 3 + Vlček 0
-SMÍŘENÍ: Vina ★☆☆☆☆ + Beneš scéna + Integrita >60
-ÚTĚK: Finance >500 + Závadová ≥2 + Den 25+
-ŘÁD: Závadová 3 + odmítl Vlčka + Den 27 scéna
+## STATISTIKY → KONCE (8 konců, žádný hard game-over)
+
+1. PŘEŽITÍ (výchozí): žádné extrémy, žádné vazby. „Další den. Jako vždy."
+2. KORUPCE: Integrita ★☆☆☆☆ + (Vlček ≥2 NEBO Haas přijat). „Lampa nesvítí."
+3. HRDINA: Integrita ★★★★★ + Odvaha ★★★★★ + Závadová ≥2 + Vlček 0 + odmítl Haase + POUŽIL rodný list. „Noviny dnes píšou tvoje jméno."
+4. ÚTĚK: Finance >300 + Závadová ≥2 + D18 poslechl Karase. „Vlak odjíždí v šest."
+5. SMÍŘENÍ: Vina ★☆☆☆☆ + D13 Beneš přijat + Integrita >60 + odmítl Haase. „Kalamář je prázdný."
+6. ATENTÁT (tajný): MOC ●○○○○ + Odvaha ★★★★★ + Vlček 0 + Integrita >60 + odmítl Haase + odmítl Závadovou + NEPOUŽIL rodný list. „Protokol číslo 49..."
+7. ŘÁD: Závadová 3 + odmítl Vlčka + D17 přijal + použil rodný list. „Spravedlnost není v zákoně."
+8. ANNA (skrytý): Vina ★☆☆☆☆ + D13 Beneš + odmítl Haase + zjistil o Anně (D15) + odmítl Vlčka + odmítl Závadovou + Finance <100 + průzkum 80%+. „Lampa svítí. Slabě, ale svítí."

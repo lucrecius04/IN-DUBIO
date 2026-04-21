@@ -64,13 +64,47 @@ Nedělní volby:
 Vlčkova žádost splněna: +30 Kč jednorázově, MOC +15.
 Haasova nabídka přijata: +300 Kč jednorázově, Integrita -20, KAPITÁL +20.
 
-### Finance = 0 (krize)
-Pokud finance klesnou na 0:
-- Krizový fragment: „Peněženka je prázdná. Dnes nebudete obědvat."
-- Dvě možnosti:
-  A) Přijmout Haasovu/Vlčkovu nabídku (pokud ještě nebyla využita)
-  B) Karasova půjčka 50 Kč (jednorázová, Karas důvěra +1)
-- Pokud obojí odmítne: výdaje klesnou na 40 Kč (Ben nesnídá, šetří na jídle), ale Naděje -3/den.
+### TŘI KRIZOVÉ STAVY
+
+Žádný stav NEKONČÍ hru. Krize sevře hráče a změní gameplay — hrozba je horší než konec.
+
+#### Finanční krize (Finance = 0)
+Ben nepřestane soudit — přestane jíst.
+- Výdaje klesnou na 40 Kč/den (šetří na jídle)
+- Naděje -3 KAŽDÝ DEN dokud Finance = 0
+- Ranní fragmenty temnější: „Ruce se třesou. Od hladu, nebo od něčeho jiného?"
+- Haasova obálka na stole SVÍTÍ ZLATĚ — hráč ji může otevřít kdykoli
+- Záchranná lana (jednorázová):
+  A) Přijmout Haasovu nabídku (pokud ještě nebyla využita)
+  B) Karasova půjčka 50 Kč (Karas důvěra +1)
+  C) Závadové půjčka 200 Kč (Závadová důvěra +1, ale „jednou budeme potřebovat laskavost")
+- Pokud vše odmítne: hra pokračuje v krizovém režimu do konce. Naděje padá. Konec PŘEŽITÍ téměř jistý.
+
+#### Krize integrity (Integrita pod 10)
+Ben se stává Vlčkovým nástrojem. Neodchází — ale ztrácí možnosti.
+- ZMIZÍ: zproštění obžaloby, alternativní tresty, komentáře k rozsudkům
+- PŘIBUDE: možnost přijmout úplatek u každého případu (+50-100 Kč, Integrita -15)
+- Vlček píše přátelsky — „spolupráce je radost"
+- Zapisovatelka se na Bena přestane dívat
+- Narativní tón: mechanický, šedý, bez emocí
+- Vede ke konci KORUPCE
+
+#### Krize odvahy (Odvaha pod 10)
+Ben odkládá. Každý politický případ má ZVÝRAZNĚNOU volbu „Odložit."
+- Pokud hráč odloží 3× za sebou: Vlčkův dopis „pracovní tempo neodpovídá očekáváním"
+- ZMIZÍ: konfrontace (nelze provést), veřejná prohlášení
+- Závadová přestane Bena kontaktovat — „není dost odvážný"
+- Narativní tón: úzkostný, nejistý
+- Vede ke konci PŘEŽITÍ
+
+### Den 16 — extrémní scénář
+Pokud hráč odmítne Haase + Finance < 100 + odmítne Závadové půjčku + odmítne Karasovu půjčku:
+Matka nedostane operaci. Hra NEKONČÍ.
+- Krátký fragment: „Dopis od doktora. Operace odložena na neurčito. Stav se zhoršuje."
+- Vina +10 (napořád)
+- Zbytek hry: temnější tón, ranní fragmenty o matce
+- Echo Anny — Ben znovu „nezaplatil"
+- Ovlivňuje konce: SMÍŘENÍ obtížnější (Vina vyšší), ANNA téměř nemožný
 
 ### Zobrazení financí
 Hráč vidí:
