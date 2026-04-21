@@ -1,0 +1,867 @@
+﻿{
+  "pool_cases_akt1": [
+    {
+      "id": "pool_a1_lekarna",
+      "slot": "pool",
+      "type": "routine",
+      "color": "#C4A35A",
+      "available_days": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "act": 1,
+      "weight_conditions": {
+        "base_weight": 1.0,
+        "vina_above_60": 1.3,
+        "nadeje_below_40": 1.2
+      },
+      "title": "Redeni leku",
+      "case_number": "Sp. zn. 61/1931",
+      "defendant": {
+        "name": "Rudolf Malina",
+        "age": 47,
+        "occupation": "lekarnik",
+        "detail": "majitel lekarny U Sv. Anny na Narodni tride, zenaty, bezdetny"
+      },
+      "charge": "Ohrozeni zdravi verejnosti dle ┬ž335 trestniho zakona, nedovolene nakladani s lecivy dle ┬ž365",
+      "description": "Rudolf Malina, lekarnik a majitel lekarny U Svate Anny na Narodni tride v Praze, je obzalovan z opakovaneho redeni lecivych pripravku vodou a lihem za ucelem zvyseni zisku. Kontrola provedena inspektorem zemskeho zdravotniho uradu dne 24. unora 1931 odhalila, ze nejmene tri pripravky ÔÇö sirup kodeinovy, tinkturu digitalisovou a jodovou tinkturu ÔÇö obsahovaly nizsi koncentraci ucinne latky, nez predepisuje lekopis.",
+      "testimonies": [
+        {
+          "id": "inspektor",
+          "speaker": "MUDr. Emil Prochazka, zemsky zdravotni inspektor",
+          "text": "Kontrolu jsem provedl na zaklade anonymniho podnetu. Odebral jsem vzorky tri pripravku. Laboratorni rozbor potvrdil, ze kodeinovy sirup obsahoval pouze sedesat dva procent predepsane koncentrace. Tinkturu digitalisovou jsem nechal analyzovat dvakrat, vysledky se lisily ÔÇö poprve sedmdesat procent, podruhe osmdesat jedna procent.",
+          "contradiction_keywords": [
+            "anonymniho podnetu",
+            "dvakrat",
+            "lisily"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "malina",
+          "speaker": "Rudolf Malina, obzalovany",
+          "text": "Nic jsem neredil. Pripravky pripravuji presne podle lekopisu. Suroviny jsou ale dnes nekvalitni ÔÇö dodavatele setri na vsem. Koupite ucinnou latku a dostanete polovicni silu. Na to jsem inspektora upozornil, ale nezaznamenal si to.",
+          "contradiction_keywords": [
+            "dodavatele",
+            "nekvalitni",
+            "nezaznamenal"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "kubova",
+          "speaker": "Marie Kubova, zakaznice",
+          "text": "Chodim k panu Malinovi patnact let. Loni na podzim mi predepsal doktor sirup na kasel pro dceru. Nebralo to. Vratila jsem se k doktorovi, rekl at zkusim jinou lekarnu. V lekarne U Cerveneho orla sirup zabral hned. Od te doby k Malinovi nechodim.",
+          "contradiction_keywords": [
+            "loni na podzim",
+            "jinou lekarnu",
+            "zabral hned"
+          ],
+          "hidden_at_wisdom_below": 20
+        }
+      ],
+      "contradictions": [
+        {
+          "id": "analysis_discrepancy",
+          "description": "Inspektor nechal digitalisovou tinkturu analyzovat dvakrat s odlisnymi vysledky (62% vs. 81%).",
+          "involves": [
+            "inspektor"
+          ],
+          "highlight_at_wisdom": 81,
+          "unlocks_confrontation": "inspektor"
+        },
+        {
+          "id": "anonymous_tip",
+          "description": "Kontrola probehla na zaklade anonymniho podnetu. Kdo ho podal?",
+          "involves": [
+            "inspektor",
+            "malina"
+          ],
+          "highlight_at_wisdom": 81,
+          "unlocks_confrontation": null
+        }
+      ],
+      "investigation": {
+        "interview": {
+          "target": "malina",
+          "target_label": "Rudolf Malina, obzalovany",
+          "reveals": "motivation",
+          "text": "Malina se podiva na sve ruce. Dlouho mlci. Pak: Pane doktore, vite kolik stoji dnes cisty kodein? Trojnasobek toho co pred dvema lety. A lide nemaji penize. Prijdou s receptem a nemaji na plnou cenu. Co mam delat ÔÇö odmitnout je? Poslat je domu s nemocnym ditetem? Tak jim dam sirup. Trochu slabsi. Ale dam. Protoze jinak nedostanou nic.",
+          "cost": 1,
+          "trait_effects": {
+            "vina": 2,
+            "nadeje": -1
+          }
+        },
+        "records": {
+          "source": "Obchodni rejstrik a zivnostensky urad",
+          "reveals": "facts",
+          "text": "Lekarna U Sv. Anny: zalozena 1898 Rudolfem Malinou starsim. Prevzata synem 1919. Kontroly 1925 a 1928 ÔÇö bez zavad. Poznamka z ledna 1931: Firma Prazska leciva a.s. podala nabidku na odkup provozovny. Majitel odmitl. Firma Prazska leciva a.s. ÔÇö majoritni vlastnik: Viktor Haas.",
+          "cost": 1,
+          "unlocks_contradiction": "anonymous_tip"
+        },
+        "informant": {
+          "reveals": "context",
+          "cost": 1,
+          "variants": {
+            "lid_high": "Malina je solidni clovek. Chodi k nemu cela ulice. Rikaji, ze dava leky i tem, co nemaji na zaplaceni. Nekdo ho chce znicit ÔÇö pry se mu libi ta lekarna na rohu, vite? Novy majitel by to promenil ve sklad.",
+            "kapital_high": "Ten lekarnik je amater. Redi leky, protoze neumi hospodarit. Prazska leciva by tu lekarnu provozovala lepe ÔÇö moderne, efektivne. Malina stoji v ceste pokroku.",
+            "default": "Malina? Slusny pan. Ale lekarna upada, to je pravda. Lide nemaji penize a on dava na dluh. To dlouho nevydrzi."
+          }
+        },
+        "confrontation": {
+          "target": "inspektor",
+          "target_label": "MUDr. Emil Prochazka, zemsky zdravotni inspektor",
+          "requires_contradiction": "analysis_discrepancy",
+          "requires_courage": 60,
+          "cost": 2,
+          "prompt": "Pane doktore, vase dva laboratorni rozbory tehoz pripravku se lisi o devatenact procent. Jak si to vysvetlujete?",
+          "success": {
+            "text": "Prochazka se zamraci. Chvili premysli. Mate pravdu, ze rozptyl je... neobvykly. Laboratorni podminky nebyly idealni ÔÇö prvni rozbor probehl v zemske laboratori, druhy na univerzite. Uznavam, ze u digitalisove tinktury jsou vysledky neprukaze. Ale kodein je jasny. Sedesat dva procent.",
+            "reveals": "Laboratorni rozbor je u jednoho ze tri pripravku neprukazy. U kodeinu vsak vysledek stoji. Malina pravdepodobne redil selektivne ÔÇö jen drahe pripravky."
+          },
+          "failure": {
+            "text": "Prochazka ztvrdne. Jsem zemsky inspektor s dvacetiletou praxi. Naznacujete snad, ze moje kontrola byla nedokladna? Stojim si za vysledky. Vsemi tremi.",
+            "locks_testimony": "inspektor"
+          }
+        }
+      },
+      "verdicts": {
+        "guilty": {
+          "sentences": {
+            "maximum": {
+              "label": "6 mesicu vezeni, odebrani zivnostenskeho listu",
+              "description": "Plny rozsah zakona.",
+              "available_unless": {
+                "vina_above": 80
+              },
+              "effects": {
+                "integrita": 0,
+                "odvaha": 0,
+                "moudrost": 0,
+                "vina": 3,
+                "nadeje": -3,
+                "moc": 3,
+                "lid": -5,
+                "kapital": 5,
+                "finance": 10
+              }
+            },
+            "standard": {
+              "label": "Pokuta 200 Kc, podminene uzavreni lekarny",
+              "description": "Standardni trest.",
+              "effects": {
+                "integrita": 1,
+                "odvaha": 0,
+                "moudrost": 0,
+                "vina": 1,
+                "nadeje": -1,
+                "moc": 1,
+                "lid": -2,
+                "kapital": 3,
+                "finance": 10
+              }
+            },
+            "lenient": {
+              "label": "Pokuta 50 Kc, dutka",
+              "description": "Symbolicky trest.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": -1,
+                "odvaha": 0,
+                "moudrost": 0,
+                "vina": 0,
+                "nadeje": 1,
+                "moc": -2,
+                "lid": 3,
+                "kapital": -1,
+                "finance": 10
+              }
+            },
+            "alternative": {
+              "label": "Povinny dozor ÔÇö ctvrtletni kontroly",
+              "description": "Malina smi pokracovat pod dohledem.",
+              "requires_investigation": 2,
+              "requires_contradiction": true,
+              "requires": {
+                "moudrost_min": 60
+              },
+              "effects": {
+                "integrita": 3,
+                "odvaha": 1,
+                "moudrost": 3,
+                "vina": -1,
+                "nadeje": 2,
+                "moc": -1,
+                "lid": 4,
+                "kapital": 0,
+                "finance": 10
+              }
+            }
+          }
+        },
+        "not_guilty": {
+          "approaches": {
+            "formal": {
+              "label": "Formalni zprosteni",
+              "description": "Dukazy neprukaze.",
+              "effects": {
+                "integrita": 2,
+                "odvaha": 3,
+                "moudrost": 0,
+                "vina": -1,
+                "nadeje": 2,
+                "moc": -4,
+                "lid": 6,
+                "kapital": -3,
+                "finance": 10
+              }
+            },
+            "with_comment": {
+              "label": "Zprosteni s komentarem k systemove pricine",
+              "description": "Ben prida poznamku o kvalite surovin a ekonomickem tlaku.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 4,
+                "odvaha": 5,
+                "moudrost": 2,
+                "vina": -2,
+                "nadeje": 3,
+                "moc": -6,
+                "lid": 8,
+                "kapital": -5,
+                "finance": 10
+              }
+            }
+          }
+        },
+        "insufficient_evidence": {
+          "label": "Nedostatek dukazu",
+          "requires_investigation": 2,
+          "requires": {
+            "moudrost_min": 40
+          },
+          "options": {
+            "reinvestigate": {
+              "label": "Vratit k dosetreni",
+              "returns_in_days": 5,
+              "effects": {
+                "moudrost": 2,
+                "finance": 0
+              }
+            },
+            "close": {
+              "label": "Uzavrit",
+              "effects": {
+                "moudrost": 1,
+                "vina": 1,
+                "finance": 5
+              }
+            }
+          }
+        }
+      },
+      "aftermath": {
+        "guilty_maximum": "Malina stoji. Ruce podil tela. Soudni sin zavani jodem a starym drevem. Zapisovatelka pise rozsudek ÔÇö sest mesicu, odebrani listu. Malina sunda bryle. Otre si oci. Ne slzy ÔÇö unava.",
+        "guilty_standard": "Malina prikyvne. Dve ste korun. Podminene uzavreni. Mohl dopadnout hur. Mohl dopadnout lip. Venku na chodbe ceka zena s receptem v ruce. Nebude vedet, kam jit.",
+        "guilty_lenient": "Malina se podiva na Bena. Neco jako vdecnost. Nebo uleva. Padesat korun ÔÇö tri dny trzby. Prezije.",
+        "guilty_alternative": "Malina narovne zada. Ctvrtletni kontroly. Prijima to jako dustojne reseni. Inspektor Prochazka si zapisuje do notesu. Zapisovatelka zvedne hlavu ÔÇö poprve za cely den.",
+        "not_guilty_formal": "Malina stoji. Nevi co delat. Muzete jit, rekne soudni zrizenec. Malina odchazi pomalu. Na chodbe potka zenu s receptem. Otevreno? zepta se. Otevreno, rekne Malina.",
+        "not_guilty_with_comment": "Ben cte komentar nahlas. O cenach surovin. O lidech, kteri nemaji na leky. O systemu, ktery nuti lekarnika volit mezi zakonem a svedomim. Prochazka se diva do zeme. Zapisovatelka prestane psat a poucha."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "guilty_maximum",
+          "delay_days": 4,
+          "type": "fragment",
+          "text": "Na Narodni tride je lekarna zavrena. Na dverich cedule: PROVOZOVNA K PRODEJI. Dole malym pismem: Informace u firmy Prazska leciva a.s."
+        },
+        {
+          "trigger": "not_guilty",
+          "delay_days": 3,
+          "type": "fragment",
+          "text": "Svejda u vchodu: Ten lekarnik, pane doktore. Rikaji, ze dava leky zadarmo. Od toho soudu pry fronta od rana."
+        },
+        {
+          "trigger": "guilty_alternative",
+          "delay_days": 6,
+          "type": "fragment",
+          "text": "V novinach kratka zprava: Krajsky soud zavedl dozorci rezim nad lekarnou. Odbornici chvali jako precedent."
+        }
+      ]
+    },
+    {
+      "id": "pool_a1_vyveseni",
+      "slot": "pool",
+      "type": "routine",
+      "color": "#C4A35A",
+      "available_days": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "act": 1,
+      "weight_conditions": {
+        "base_weight": 0.8,
+        "moc_above_60": 1.4,
+        "odvaha_below_40": 0.5
+      },
+      "title": "Zavadny plakat",
+      "case_number": "Sp. zn. 63/1931",
+      "defendant": {
+        "name": "Heinrich Fassbinder",
+        "age": 52,
+        "occupation": "knihkupec",
+        "detail": "sudetsky Nemec, majitel knihkupectvi na Celetne ulici, vdovec, syn studuje v Lipsku"
+      },
+      "charge": "Sireni protistatnich tiskovin dle zakona na ochranu republiky c. 50/1923 Sb.",
+      "description": "Heinrich Fassbinder, knihkupec nemecke narodnosti, je obzalovan z vystaveni plakatu s textem Ein Volk ÔÇö Ein Recht ÔÇö Eine Zukunft ve vyloze sveho obchodu. Hlidka Statni policie plakat zabavila dne 26. unora 1931. Obzaloba tvrdi, ze text je pangermanskeho charakteru. Fassbinder tvrdi, ze slo o reklamni plakat na knihu stejneho nazvu, vydanou v Berline.",
+      "testimonies": [
+        {
+          "id": "straznik",
+          "speaker": "Vaclav Horyna, strazmistr Statni policie",
+          "text": "Plakat jsem zaznamenal pri obchuzce dne 26. unora v osmnact hodin. Byl umisten ve vyloze vedle knih v nemeckem jazyce. Text je jednoznacne pangermanskeho charakteru. Heslo Jeden narod ÔÇö jedno pravo se v te ci one podobe objevuje na letacich DNSAP. Fassbindera jsem vyzval k odstraneni. Odmitl a prohlasil, ze to je nazev knihy.",
+          "contradiction_keywords": [
+            "osmnact hodin",
+            "vedle knih",
+            "nazev knihy"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "fassbinder",
+          "speaker": "Heinrich Fassbinder, obzalovany",
+          "text": "Jsem knihkupec tricet let. Prodavam knihy v nemcine i cestine. Ten plakat je reklamni material od nakladatele ÔÇö prisel postou spolu s vytisky knihy. Kniha je filozoficka esej o pravech mensin v Evrope. Neni to politicky letak. Nikdy jsem nebyl clenem zadne politicke strany.",
+          "contradiction_keywords": [
+            "postou spolu s vytisky",
+            "filozoficka esej",
+            "prava mensin"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "sousedka",
+          "speaker": "Bozena Kralova, majitelka klobouctnictvi vedle",
+          "text": "Pana Fassbindera znam leta. Slusny clovek, vzdycky pozdravi cesky. Ale ten plakat ÔÇö to vypadalo jinak. Velka pismena, cerne na bilem. Jako ty letaky, co lepi po noci na zdi. Zakaznice se me ptaly, co to vedle vyvesili. Jedne jsem rekla, ze to je reklama na knihu. Ale sama jsem si tim jista nebyla.",
+          "contradiction_keywords": [
+            "velka pismena",
+            "jako ty letaky",
+            "jista nebyla"
+          ],
+          "hidden_at_wisdom_below": 20
+        }
+      ],
+      "contradictions": [
+        {
+          "id": "book_existence",
+          "description": "Fassbinder tvrdi, ze plakat je reklamou na konkretni knihu. Ale existuje ta kniha? A pokud ano ÔÇö je opravdu filozoficka esej, nebo politicky pamflet?",
+          "involves": [
+            "fassbinder",
+            "straznik"
+          ],
+          "highlight_at_wisdom": 81,
+          "unlocks_confrontation": "fassbinder"
+        }
+      ],
+      "investigation": {
+        "interview": {
+          "target": "fassbinder",
+          "target_label": "Heinrich Fassbinder, obzalovany",
+          "reveals": "motivation",
+          "text": "Fassbinder mluvi tise, peclive. Muj syn Konrad studuje v Lipsku. Filozofii. Ta kniha je z jeho oboru. Poslal mi ji, at ji vystavim. Chtel jsem mu udelat radost ÔÇö vite, jak to je, kdyz syn o neco pozada. Nevedel jsem, ze text hesla... ze to muze vypadat politicky. Pro me to byl nazev knihy. Nic vic. Odmlci se. Moje zena byla Ceska. Zemrela v triadvatem. Ja tuhle zemi miluji. Obe jeji casti.",
+          "cost": 1,
+          "trait_effects": {
+            "vina": 1
+          }
+        },
+        "records": {
+          "source": "Katalog knihkupeckeho spolku a celni zaznamy",
+          "reveals": "facts",
+          "text": "Kniha Ein Volk ÔÇö Ein Recht ÔÇö Eine Zukunft autora Ernsta Wieganda, vydana nakladatelstvim Volk und Geist, Berlin 1930. Katalogizovana jako politicka publicistika. Nakladatelstvi Volk und Geist je v cervenci 1930 uvedeno v seznamu nakladatelstvi blizkych NSDAP zpracovanem zpravodajskym oddilom Ministerstva vnitra. Celni zaznam: zasilka 15 vytisku prijata na adresu knihkupectvi Fassbinder dne 20. unora 1931. Odesilatel: Konrad Fassbinder, Lipsko.",
+          "cost": 1,
+          "unlocks_contradiction": "book_existence"
+        },
+        "informant": {
+          "reveals": "context",
+          "cost": 1,
+          "variants": {
+            "lid_high": "Fassbinder je neskodny stary pan. Ale v Praze je atmosfera napjata ÔÇö Nemci se sdruzuji, Cesi jsou nervozni. Policie hleda zaminky. Toho chlapa chytili, protoze potrebovali nekoho chytit.",
+            "moc_high": "Ty knihy z Berlina nejsou nahoda. To je system ÔÇö poslou materialy pres soukrome osoby, aby se vyhnuli cenzure. Fassbinder je bud naivni, nebo lze. Oboji je nebezpecne.",
+            "default": "Fassbinder? Slusny, ale naivni. Syn v Lipsku ÔÇö to je dnes podezrele samo o sobe. Ale jestli ten chlap chtel svrhnut republiku plakatem ve vyloze, tak je to ten nejhloupejsi spiklenec v historii."
+          }
+        },
+        "confrontation": {
+          "target": "fassbinder",
+          "target_label": "Heinrich Fassbinder, obzalovany",
+          "requires_contradiction": "book_existence",
+          "requires_courage": 60,
+          "cost": 2,
+          "prompt": "Pane Fassbindere, nakladatelstvi Volk und Geist je evidovano jako blizke NSDAP. Kniha je klasifikovana jako politicka publicistika, ne filozoficka esej. Vedel jste to?",
+          "success": {
+            "text": "Fassbinder zbledne. Sunda bryle. Nasadi je zpet. Konrad mi... Konrad mi rekl, ze je to filozofie. Ja tu knihu necetl. Necetl jsem ji, pane doktore. Vim jak to zni. Ale je to pravda ÔÇö ja ctu cesky lepe nez nemecky, moje zena... Hlas mu selze. Konrad se zmenil. V tech dopisech z Lipska. Ja vim, ze se zmenil. Ale je to muj syn.",
+            "reveals": "Fassbinder nevedel o politickem pozadi knihy. Ale jeho syn Konrad v Lipsku se radikalizuje. Fassbinder je nevinny prostredik ÔÇö ale material, ktery siril, je skutecne protistatni."
+          },
+          "failure": {
+            "text": "Fassbinder ztvrdne. Jsem knihkupec. Prodavam knihy. Nebudu se zodpovidat za to, co v nich nekdo napise. To byste musel zavrit kazde knihkupectvi v Praze.",
+            "locks_testimony": "fassbinder"
+          }
+        }
+      },
+      "verdicts": {
+        "guilty": {
+          "sentences": {
+            "maximum": {
+              "label": "3 mesice vezeni, uzavreni provozovny",
+              "description": "Zakon na ochranu republiky je jasny.",
+              "available_unless": {
+                "vina_above": 80
+              },
+              "effects": {
+                "integrita": -2,
+                "odvaha": 0,
+                "moudrost": 0,
+                "vina": 4,
+                "nadeje": -4,
+                "moc": 8,
+                "lid": -6,
+                "kapital": 0,
+                "finance": 10
+              }
+            },
+            "standard": {
+              "label": "Pokuta 150 Kc, zabaveni vytisku",
+              "description": "Trest za nedbalost.",
+              "effects": {
+                "integrita": 0,
+                "odvaha": 0,
+                "moudrost": 0,
+                "vina": 2,
+                "nadeje": -1,
+                "moc": 4,
+                "lid": -3,
+                "kapital": 0,
+                "finance": 10
+              }
+            },
+            "lenient": {
+              "label": "Zabaveni vytisku, dutka",
+              "description": "Fassbinder jednal z nevedomosti.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 1,
+                "odvaha": 1,
+                "moudrost": 0,
+                "vina": 0,
+                "nadeje": 1,
+                "moc": -2,
+                "lid": 2,
+                "kapital": 0,
+                "finance": 10
+              }
+            },
+            "alternative": {
+              "label": "Zabaveni vytisku, Fassbinder preda informace policii",
+              "description": "Fassbinder pomuze odhalit distribucni sit.",
+              "requires_investigation": 2,
+              "requires_contradiction": true,
+              "requires": {
+                "moudrost_min": 60
+              },
+              "effects": {
+                "integrita": 2,
+                "odvaha": 2,
+                "moudrost": 3,
+                "vina": -1,
+                "nadeje": 1,
+                "moc": 3,
+                "lid": 0,
+                "kapital": 0,
+                "finance": 10
+              }
+            }
+          }
+        },
+        "not_guilty": {
+          "approaches": {
+            "formal": {
+              "label": "Formalni zprosteni",
+              "description": "Umysl neprokazan.",
+              "effects": {
+                "integrita": 3,
+                "odvaha": 4,
+                "moudrost": 0,
+                "vina": -1,
+                "nadeje": 2,
+                "moc": -8,
+                "lid": 5,
+                "kapital": 0,
+                "finance": 10
+              }
+            },
+            "with_comment": {
+              "label": "Zprosteni s komentarem o prehnanem vykladu zakona",
+              "description": "Ben poznamena, ze zakon na ochranu republiky nema slouzit k pronasledovani knihkupcu.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 5,
+                "odvaha": 6,
+                "moudrost": 2,
+                "vina": -2,
+                "nadeje": 3,
+                "moc": -12,
+                "lid": 8,
+                "kapital": 0,
+                "finance": 10
+              }
+            }
+          }
+        },
+        "insufficient_evidence": {
+          "label": "Nedostatek dukazu",
+          "requires_investigation": 2,
+          "requires": {
+            "moudrost_min": 40
+          },
+          "options": {
+            "reinvestigate": {
+              "label": "Vratit k dosetreni ÔÇö proverit nakladatelstvi a syna",
+              "returns_in_days": 5,
+              "effects": {
+                "moudrost": 2,
+                "finance": 0
+              }
+            },
+            "close": {
+              "label": "Uzavrit",
+              "effects": {
+                "moudrost": 1,
+                "vina": 1,
+                "finance": 5
+              }
+            }
+          }
+        }
+      },
+      "aftermath": {
+        "guilty_maximum": "Fassbinder stoji. Nehybe se. Straznik mu sahne na rameno. Pojdte. Fassbinder se otoci ke dverim. Na chodbe nikdo neceka. Syn je v Lipsku. Zena je mrtva. Knihkupectvi na Celetne bude zitra zavrene. Poprve za tricet let.",
+        "guilty_standard": "Fassbinder plati pokutu. Sto padesat korun. Vytisky zabaveny. Na chodbe se zastavi. Otoci se zpet: Pane doktore ÔÇö mohu si nechat jeden vytisk? Pro syna. Aby vedel, co zpusobil. Ben neodpovi.",
+        "guilty_lenient": "Fassbinder prikyvne. Dutka. Mohl dopadnout hur. Venku se rozhlede po Celetne ulici. Vyloha je prazdna. Zitra tam da ceske klasiky. Nemcinu schova dozadu.",
+        "guilty_alternative": "Fassbinder sedi naproti inspektorovi z Ministerstva vnitra. Diktuje adresy. Jmena. Nakladatelstvi v Berline, v Drazdanech, v Lipsku. Ruce se mu tresou. Zapisovatelka si vsimne ÔÇö ale neprestane psat.",
+        "not_guilty_formal": "Fassbinder vstane. Bryle mu skouznou. Chyti je. Dekuji, rekne cesky. Ciste, bez prizvuku. Tricet let mezi Cechy. Strazmistr Horyna odchazi beze slova.",
+        "not_guilty_with_comment": "Ben cte komentar. O zakonech, ktere maji chranit, ne pronasledovat. O knihkupcich a plakatech. O strachu, ktery dela z reklamy zlocin."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "guilty_maximum",
+          "delay_days": 5,
+          "type": "fragment",
+          "text": "V novinach kratka zprava: Nemecky knihkupec odsouzen za protistatni cinnost. Pod tim komentar: Republika se brani. Dalsi den: Protest nemeckych obchodniku na Celetne. Policie zasahuje."
+        },
+        {
+          "trigger": "not_guilty",
+          "delay_days": 4,
+          "type": "letter",
+          "text": "Dopis od Vlcka. Kratky, suse zdvorily: Zaznamenal jsem rozsudek ve veci Fassbinder. Zakon na ochranu republiky je pilirem nasi demokracie. Spolham na Vasi soudnost v budoucich pripadech."
+        }
+      ]
+    },
+    {
+      "id": "pool_a1_trafika",
+      "slot": "pool",
+      "type": "routine",
+      "color": "#C4A35A",
+      "available_days": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "act": 1,
+      "weight_conditions": {
+        "base_weight": 1.0,
+        "integrita_above_70": 1.2,
+        "finance_below_100": 1.3
+      },
+      "title": "Mrtvy trafikant",
+      "case_number": "Sp. zn. 65/1931",
+      "defendant": {
+        "name": "Ludmila Bartosova",
+        "age": 39,
+        "occupation": "vdova, prevzala trafiku po manzelovi",
+        "detail": "dve deti (12 a 8 let), zije na Zizkove"
+      },
+      "charge": "Pojistny podvod dle ┬ž197 trestniho zakona",
+      "description": "Ludmila Bartosova, vdova po trafikantovi Josefu Bartosovi, je obzalovana z pojistneho podvodu. Jeji manzel zemrel 18. ledna 1931 na srdecni selhani ve veku 43 let. Pojistna smlouva uzavrena u Pojistovny Slavia dne 3. ledna 1931 ÔÇö tedy pouhych patnact dni pred smrti ÔÇö opravnuje pozustalou k vyplate 800 Kc. Pojistovna odmitla plnit.",
+      "testimonies": [
+        {
+          "id": "pojistovna",
+          "speaker": "JUDr. Karel Bednar, pravni zastupce Pojistovny Slavia",
+          "text": "Pojistna smlouva byla uzavrena 3. ledna, manzel zemrel 18. ledna. Patnact dni. V prihlasce bylo uvedeno, ze pojisteny je zdrav. Pritom pitevni zprava uvadi pokrocilou kardiomyopatii ÔÇö to je stav, ktery se vyviji mesice, ne dny. Obzalovana musela vedet, ze manzel je nemocny.",
+          "contradiction_keywords": [
+            "3. ledna",
+            "zdrav",
+            "mesice, ne dny"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "bartosova",
+          "speaker": "Ludmila Bartosova, obzalovana",
+          "text": "Muj muz nikdy nebyl u doktora. Nechtel. Rikal, ze je to zbytecne utraceni. Pojistku jsme uzavreli, protoze soused Krejci nam rikal, ze je to rozumne ÔÇö kdyby se neco stalo. Nevedela jsem, ze je nemocny. Vypadal zdrave. Pracoval kazdy den v trafice od sesti do osmi vecer. Nikdy si nestezoval.",
+          "contradiction_keywords": [
+            "nikdy nebyl u doktora",
+            "soused Krejci",
+            "od sesti do osmi"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "doktor",
+          "speaker": "MUDr. Vladimir Havelka, obvodni lekar",
+          "text": "Pana Bartosse jsem videl naposledy v cervenci minuleho roku. Prisel s bolesti na hrudi. Doporucil jsem podrobne vysetreni na kardiologii. Odmitl ÔÇö rekl, ze nema cas a nema penize. Manzelce jsem o navsteve nepsal ÔÇö lekar nema tuto povinnost. Ale rekl jsem mu, at ji rekne sam.",
+          "contradiction_keywords": [
+            "cervenci",
+            "bolesti na hrudi",
+            "odmitl",
+            "at ji rekne"
+          ],
+          "hidden_at_wisdom_below": 20
+        }
+      ],
+      "contradictions": [
+        {
+          "id": "doctor_visit",
+          "description": "Bartosova tvrdi, ze manzel nikdy nebyl u doktora. Doktor Havelka rika, ze ho videl v cervenci 1930 s bolesti na hrudi.",
+          "involves": [
+            "bartosova",
+            "doktor"
+          ],
+          "highlight_at_wisdom": 81,
+          "unlocks_confrontation": "bartosova"
+        },
+        {
+          "id": "insurance_timing",
+          "description": "Pojistku doporucil soused Krejci. Proc zrovna v lednu? Vedel Krejci neco o Bartosove zdravotnim stavu?",
+          "involves": [
+            "bartosova",
+            "pojistovna"
+          ],
+          "highlight_at_wisdom": 81,
+          "unlocks_confrontation": null
+        }
+      ],
+      "investigation": {
+        "interview": {
+          "target": "bartosova",
+          "target_label": "Ludmila Bartosova, obzalovana",
+          "reveals": "motivation",
+          "text": "Bartosova mluvi tise. Ruce v kline. Vite, jak to je, pane doktore, kdyz mate dve deti a manzel vydelava sotva na najem? Josef pracoval ctrnact hodin denne. Kazdy den. Nedele taky. Nikdy si nevzal volno. Rikala jsem mu ÔÇö odpocin si. Rikal ÔÇö nemuzu. Kdo by prodaval? Tak jsem si rekla ÔÇö aspon ta pojistka. Kdyby se neco stalo. A ono se stalo. A ted me za to soudite.",
+          "cost": 1,
+          "trait_effects": {
+            "vina": 2,
+            "nadeje": -1
+          }
+        },
+        "records": {
+          "source": "Spis Pojistovny Slavia + matrika obvodniho lekare",
+          "reveals": "facts",
+          "text": "Pojistna smlouva c. 4871/1931: pojistitel Josef Bartos, pojistna castka 800 Kc, opravnena osoba Ludmila Bartosova. Prihlasku vyplnil pojistny agent Miroslav Krejci ÔÇö soused Bartosovych a soucasne agent Slavie na castecny uvazek. Provize z uzavreni smlouvy: 40 Kc. Matrika MUDr. Havelky: 12.7.1930 ÔÇö Bartos Josef, 42 let, bolest na hrudi, dusnost pri zatezi. Doporuceno kardiologicke vysetreni. Pacient odmitl. Pozn.: manzelce nesdeleno na prani pacienta.",
+          "cost": 1,
+          "unlocks_contradiction": "doctor_visit"
+        },
+        "informant": {
+          "reveals": "context",
+          "cost": 1,
+          "variants": {
+            "lid_high": "Bartosovou znam. Slusna zenska. Drela jako kun. Ted je sama se dvema detmi a pojistovna ji taha k soudu o osm set korun. Osm set korun! To je pro ne rocni pojistne. Hanba.",
+            "kapital_high": "Pojistny podvod je pojistny podvod. Smlouva uzavrena patnact dni pred smrti? To je klasicka metoda. Pokud soud povoli plneni, kazdy druhy v Praze si pojisti umirajiciho pribuzneho.",
+            "default": "Smutny pripad. Bartos umrel, protoze nechodil k doktorovi. Zena se snazila zajistit rodinu. Pojistovna se brani. Nikdo tu neni padouch ÔÇö jen system, ktery nefunguje."
+          }
+        },
+        "confrontation": {
+          "target": "bartosova",
+          "target_label": "Ludmila Bartosova, obzalovana",
+          "requires_contradiction": "doctor_visit",
+          "requires_courage": 60,
+          "cost": 2,
+          "prompt": "Pani Bartosova, doktor Havelka uvadi, ze vas manzel ho navstivil v cervenci s bolesti na hrudi. Na prani manzela vam o tom nerekl. Opravdu jste nevedela, ze byl nemocny?",
+          "success": {
+            "text": "Bartosova se nadechne. Zastavi se. Pak velmi tise: Vedela jsem, ze neco neni v poradku. V noci se budil. Potil se. Ale nerekl mi co. A ja se neptala. Bala jsem se odpovedi. Tu pojistku... tu pojistku navrhl Krejci. On to vedel. Je to doktor? Ne. Ale videl Josefa kazdy den. Videl, jak hubne. Jak se zadychava. Prisel za mnou a rekl ÔÇö pani Bartosova, pojistete se. Pro jistotu. Ja jsem vedela proc to rika. Ale nepojmenovala jsem to.",
+            "reveals": "Bartosova tusila, ale nepojmenovala si to. Krejci ÔÇö soused a pojistny agent ÔÇö videl priznaky a navrhl pojistku. Otazka: je to podvod, nebo pojistka fungujici presne tak, jak ma?"
+          },
+          "failure": {
+            "text": "Bartosova zavre oci. Ne. Nevedela jsem nic. Muj muz mi nic nerekl. Hlas je tvrdy, definitivni. Odmita mluvit dal. Ale slzy v ocich rikaji neco jineho.",
+            "locks_testimony": "bartosova"
+          }
+        }
+      },
+      "verdicts": {
+        "guilty": {
+          "sentences": {
+            "maximum": {
+              "label": "6 mesicu podminecne, zamitnut├ş pojistneho plneni",
+              "description": "Podvod prokazan.",
+              "available_unless": {
+                "vina_above": 80
+              },
+              "effects": {
+                "integrita": 0,
+                "odvaha": 0,
+                "moudrost": 0,
+                "vina": 5,
+                "nadeje": -4,
+                "moc": 3,
+                "lid": -8,
+                "kapital": 6,
+                "finance": 10
+              }
+            },
+            "standard": {
+              "label": "Zamitnuti plneni, zadny trest odneti svobody",
+              "description": "Pojistka neplatna, ale okolnosti polehcujici.",
+              "effects": {
+                "integrita": 0,
+                "odvaha": 0,
+                "moudrost": 0,
+                "vina": 3,
+                "nadeje": -2,
+                "moc": 2,
+                "lid": -4,
+                "kapital": 4,
+                "finance": 10
+              }
+            },
+            "lenient": {
+              "label": "Castecne plneni ÔÇö 400 Kc pozustalym, dutka agentovi",
+              "description": "Kompromis.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 2,
+                "odvaha": 1,
+                "moudrost": 2,
+                "vina": 0,
+                "nadeje": 1,
+                "moc": -1,
+                "lid": 3,
+                "kapital": -2,
+                "finance": 10
+              }
+            },
+            "alternative": {
+              "label": "Plne plneni 800 Kc, trestni oznameni na agenta Krejciho",
+              "description": "Bartosova je obet, ne pachatel.",
+              "requires_investigation": 2,
+              "requires_contradiction": true,
+              "requires": {
+                "moudrost_min": 60
+              },
+              "effects": {
+                "integrita": 4,
+                "odvaha": 3,
+                "moudrost": 3,
+                "vina": -2,
+                "nadeje": 3,
+                "moc": -2,
+                "lid": 8,
+                "kapital": -4,
+                "finance": 10
+              }
+            }
+          }
+        },
+        "not_guilty": {
+          "approaches": {
+            "formal": {
+              "label": "Zprosteni ÔÇö podvod neprokazan",
+              "description": "Umysl neprokazan. Pojistka platna. Plneni narizeno.",
+              "effects": {
+                "integrita": 3,
+                "odvaha": 3,
+                "moudrost": 0,
+                "vina": -2,
+                "nadeje": 3,
+                "moc": -3,
+                "lid": 8,
+                "kapital": -6,
+                "finance": 10
+              }
+            },
+            "with_comment": {
+              "label": "Zprosteni s komentarem k praxi pojistovacich agentu",
+              "description": "Ben poznamena, ze system odmenuje agenty za uzavirani smluv bez ohledu na okolnosti.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 5,
+                "odvaha": 5,
+                "moudrost": 3,
+                "vina": -3,
+                "nadeje": 4,
+                "moc": -5,
+                "lid": 10,
+                "kapital": -8,
+                "finance": 10
+              }
+            }
+          }
+        },
+        "insufficient_evidence": {
+          "label": "Nedostatek dukazu",
+          "requires_investigation": 2,
+          "requires": {
+            "moudrost_min": 40
+          },
+          "options": {
+            "reinvestigate": {
+              "label": "Vratit k dosetreni ÔÇö vyslechnout agenta Krejciho",
+              "returns_in_days": 4,
+              "effects": {
+                "moudrost": 2,
+                "finance": 0
+              }
+            },
+            "close": {
+              "label": "Uzavrit ve prospech pozustale",
+              "effects": {
+                "moudrost": 1,
+                "vina": -1,
+                "nadeje": 1,
+                "finance": 5
+              }
+            }
+          }
+        }
+      },
+      "aftermath": {
+        "guilty_maximum": "Bartosova vstane. Kolena se ji tresou. Dve deti cekaji venku na chodbe ÔÇö divka drzi chlapce za ruku. Bartosova projde kolem nich, vezme je za ruce. Nic nerekne. Odchazeji.",
+        "guilty_standard": "Zadne penize. Zadne vezeni. Bartosova odchazi s prazdnyma rukama. Na chodbe se zastavi u okna. Diva se dolu na ulici. Zapisovatelka Kovarova tise rekne: Ta zena nema na tramvaj.",
+        "guilty_lenient": "Ctyri sta korun. Polovina toho, co ji patri. Polovina toho, co potrebuje. Bartosova prijima rozsudek jako clovek, ktery prestal verit, ze svet je spravedlivy ÔÇö ale je vdecny za kazdou drobnost.",
+        "guilty_alternative": "Osm set korun pro Bartosovou. Trestni oznameni na Krejciho. Bartosova place ÔÇö poprve. Ne z bolesti. Z ulevy. Krejci se na chodbe otoci a utece. Zapisovatelka zvedne hlavu.",
+        "not_guilty_formal": "Osm set korun. Soudne narizena vyplata. Zastupce pojistovny sklada papiry do aktovky. Ruce se mu tresou ÔÇö vzteky. Bartosova stoji. Pak se podiva na Bena. Prikyvne. Nic nerekne. Nemusi.",
+        "not_guilty_with_comment": "Ben cte komentar. O pojistnych agentech a jejich provizich. O vdovach a osirielych detech. O systemu, ktery bere penize od chudych a vraci je jen pod natlakem soudu."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "guilty_maximum",
+          "delay_days": 3,
+          "type": "fragment",
+          "text": "Svejda u vchodu: Pane doktore, ta pani ÔÇö ta vdova. Videl jsem ji vcera u zprostredkovny prace. Stala tam od rana. S detmi."
+        },
+        {
+          "trigger": "not_guilty",
+          "delay_days": 5,
+          "type": "fragment",
+          "text": "V novinach inzerat: Trafika Na rohu ÔÇö nova majitelka, novy sortiment. Otevreno denne. Pod tim drobnym pismem: Ludmila Bartosova."
+        },
+        {
+          "trigger": "guilty_alternative",
+          "delay_days": 4,
+          "type": "fragment",
+          "text": "Na chodbe soudu poznamka od sekretariatu: Pojistovna Slavia propustila pojistneho agenta Miroslava Krejciho. Zada o prezkum dalsich smluv uzavrenych timto agentem. Na stole lezi sest dalsich spisu."
+        }
+      ]
+    }
+  ]
+}

@@ -21,6 +21,12 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
 }
 
+#modal-pripad > .panel-papir {
+  max-width: 620px !important;
+  width: min(86vw, 620px) !important;
+  max-height: 84vh;
+}
+
 #modal-pripad > .panel-papir::before,
 #modal-archiv > .panel-papir::before {
   display: none;
@@ -308,10 +314,10 @@
 
 .pripad-panel {
   position: relative;
-  min-width: min(740px, 94vw);
-  width: min(740px, 94vw);
-  height: min(560px, 68vh);
-  max-height: 72vh;
+  min-width: 0;
+  width: min(620px, 86vw) !important;
+  height: min(660px, 78vh);
+  max-height: 82vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;

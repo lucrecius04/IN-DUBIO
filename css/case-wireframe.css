@@ -4,9 +4,9 @@
  */
 
 #modal-pripad .pripad-panel--wireframe {
-  min-width: min(580px, 94vw);
-  width: min(580px, 94vw);
-  max-width: 580px;
+  min-width: 0;
+  width: min(620px, 86vw) !important;
+  max-width: min(620px, 86vw) !important;
   background: #f5f0e6;
   border: 1px solid rgba(196, 163, 90, 0.28);
   border-radius: 8px;
@@ -460,4 +460,9 @@
 
 #modal-pripad .pripad-panel--wireframe .case-wf-odhalene-block {
   margin-top: 10px;
+}
+
+/* Test/UI: odhalená zjištění se ukazují jen ve spodním panelu průzkumu (#case-wf-findings). */
+#modal-pripad .pripad-panel--wireframe #pripad-odhalene-info {
+  display: none;
 }

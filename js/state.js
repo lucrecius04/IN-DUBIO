@@ -196,7 +196,7 @@ const State = (() => {
   const VYCHOZI_STAV = {
     currentDay: 1,
     phase: 'morning',          // morning | forenoon | noon | afternoon | evening | night
-    investigationActionsLeft: 2,
+    investigationActionsLeft: 10,
 
     traits: {
       Integrita: 70,
@@ -554,7 +554,7 @@ const State = (() => {
 
   function resetDen() {
     _stav.casesResolvedToday = [];
-    _stav.investigationActionsLeft = 2;
+    _stav.investigationActionsLeft = 10;
     _stav.phase = 'morning';
     _zarucEkonomiku();
     const den = Number(_stav.currentDay);

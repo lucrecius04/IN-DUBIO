@@ -49,6 +49,9 @@ const UI = (() => {
     if (ctx.preludeBtn && ctx.onPreludeBtn) {
       ctx.preludeBtn.removeEventListener('click', ctx.onPreludeBtn);
     }
+    if (ctx.aftermath && ctx.onAftermathClick) {
+      ctx.aftermath.removeEventListener('click', ctx.onAftermathClick);
+    }
   }
 
   function _anulujPredohruConsequence() {
@@ -61,6 +64,10 @@ const UI = (() => {
       el.classList.add('skryto');
       el.setAttribute('aria-hidden', 'true');
     }
+    const af = document.getElementById('case-wf-aftermath');
+    const nar = document.getElementById('case-wf-aftermath-narr');
+    if (af) af.classList.remove('case-wf-aftermath--visible');
+    if (nar) nar.textContent = '';
   }
 
   function _zavriPripadModal() {
@@ -119,7 +126,19 @@ const UI = (() => {
     }
   }
 
-  function _dokonciPredohruConsequence(pripad, rozsudek) {
+  function _textAftermath(pripad, rozsudek) {
+    const af = (pripad && pripad.aftermath && typeof pripad.aftermath === 'object') ? pripad.aftermath : null;
+    const id = String((rozsudek && rozsudek.id) || '');
+    if (af) {
+      if (af[id]) return String(af[id]);
+      if (id.startsWith('not_guilty_') && af.not_guilty) return String(af.not_guilty);
+      if (id.startsWith('guilty_') && af.guilty) return String(af.guilty);
+      if (id.startsWith('insufficient_') && af.insufficient) return String(af.insufficient);
+    }
+    return String((rozsudek && rozsudek.consequence) || (rozsudek && rozsudek.text) || '—');
+  }
+
+  function _dokoncitRozsudekPoAftermath(pripad, rozsudek) {
     if (!_predohraConsequenceCtx) return;
     const ctx = _predohraConsequenceCtx;
     _predohraConsequenceCtx = null;
@@ -129,6 +148,8 @@ const UI = (() => {
       prelude.classList.add('skryto');
       prelude.setAttribute('aria-hidden', 'true');
     }
+    const af = document.getElementById('case-wf-aftermath');
+    if (af) af.classList.remove('case-wf-aftermath--visible');
 
     if (typeof Desk !== 'undefined' && Desk.animujRazitko && typeof Cases !== 'undefined') {
       Desk.animujRazitko(Cases.typRazitkaProVerdikt(rozsudek.id));
@@ -137,6 +158,34 @@ const UI = (() => {
     if (typeof Cases !== 'undefined' && Cases.zpracujRozsudek) {
       Cases.zpracujRozsudek(pripad, rozsudek, { preskocRazitko: true });
     }
+  }
+
+  function _dokonciPredohruConsequence(pripad, rozsudek) {
+    if (!_predohraConsequenceCtx) return;
+    const ctx = _predohraConsequenceCtx;
+    if (ctx.stage === 'aftermath') {
+      _dokoncitRozsudekPoAftermath(pripad, rozsudek);
+      return;
+    }
+
+    const prelude = document.getElementById('pripad-consequence-prelude');
+    if (prelude) {
+      prelude.classList.add('skryto');
+      prelude.setAttribute('aria-hidden', 'true');
+    }
+    const af = document.getElementById('case-wf-aftermath');
+    const nar = document.getElementById('case-wf-aftermath-narr');
+    if (af && nar) {
+      nar.textContent = _textAftermath(pripad, rozsudek);
+      af.classList.add('case-wf-aftermath--visible');
+      const body = document.getElementById('case-wf-body');
+      if (body) body.scrollTop = body.scrollHeight;
+      const onAftermathClick = () => _dokoncitRozsudekPoAftermath(pripad, rozsudek);
+      af.addEventListener('click', onAftermathClick);
+      ctx.aftermath = af;
+      ctx.onAftermathClick = onAftermathClick;
+    }
+    ctx.stage = 'aftermath';
   }
 
   function _zobrazPredohruConsequenceAKlik(pripad, rozsudek, onRozsudek) {
@@ -175,7 +224,10 @@ const UI = (() => {
       prelude,
       preludeBtn,
       onPreludeBtn,
-      dokonci
+      dokonci,
+      stage: 'prelude',
+      aftermath: null,
+      onAftermathClick: null
     };
   }
 
@@ -1631,7 +1683,7 @@ const UI = (() => {
         title.style.minWidth = '0';
         title.style.marginBottom = '5px';
         title.style.letterSpacing = '0.18em';
-        title.textContent = nazev.toUpperCase();
+        title.textContent = `${nazev.toUpperCase()} (${Math.round(v)})`;
         const body = document.createElement('div');
         body.className = 'archiv-rozsudek-nazev';
         body.style.display = 'block';
@@ -1673,6 +1725,20 @@ const UI = (() => {
 
     } else if (tab === 'postavy') {
       obsah.innerHTML = '';
+      const frakceWrap = document.createElement('div');
+      frakceWrap.className = 'archiv-rozsudek-item';
+      frakceWrap.style.display = 'block';
+      frakceWrap.style.marginBottom = '14px';
+      frakceWrap.style.cursor = 'default';
+      const moc = Number(State.get('factions.Moc') ?? 50);
+      const kapital = Number(State.get('factions.Kapital') ?? 50);
+      const lid = Number(State.get('factions.Lid') ?? 50);
+      frakceWrap.innerHTML =
+        '<span class="archiv-rozsudek-den">FRAKCE (TEST)</span>' +
+        '<span class="archiv-rozsudek-nazev">Moc: ' + Math.round(moc) +
+        ' | Kapitál: ' + Math.round(kapital) +
+        ' | Lid: ' + Math.round(lid) + '</span>';
+      obsah.appendChild(frakceWrap);
       const grid = document.createElement('div');
       grid.className = 'postavy-mrizka';
       for (const v of Characters.getSeznamVizitek()) {
@@ -1821,10 +1887,7 @@ const UI = (() => {
     if (archiv && archiv.classList.contains('aktivni')) {
       const tabAktivni = document.querySelector('.archiv-tab--aktivni');
       if (tabAktivni && tabAktivni.dataset.tab === 'postavy') {
-        document.querySelectorAll('#archiv-obsah .postava-duvera[data-npc-id]').forEach(el => {
-          const id = el.getAttribute('data-npc-id');
-          if (id) el.textContent = Characters.getDuveraVizitka(id);
-        });
+        _vyplnArchivTab('postavy');
       }
       if (tabAktivni && tabAktivni.dataset.tab === 'stav-duse') {
         _vyplnArchivTab('stav-duse');
@@ -1964,12 +2027,13 @@ const UI = (() => {
       if (e.key === 'Enter') {
         const modalPripad = document.getElementById('modal-pripad');
         const prelude = document.getElementById('pripad-consequence-prelude');
+        const af = document.getElementById('case-wf-aftermath');
         const tag = (e.target && e.target.tagName) || '';
         if (
           modalPripad &&
           modalPripad.classList.contains('aktivni') &&
-          prelude &&
-          !prelude.classList.contains('skryto') &&
+          ((prelude && !prelude.classList.contains('skryto')) ||
+           (af && af.classList.contains('case-wf-aftermath--visible'))) &&
           _predohraConsequenceCtx &&
           typeof _predohraConsequenceCtx.dokonci === 'function' &&
           tag !== 'INPUT' &&
@@ -2003,8 +2067,10 @@ const UI = (() => {
         }
         const modalPripad = document.getElementById('modal-pripad');
         const prelude = document.getElementById('pripad-consequence-prelude');
+        const af = document.getElementById('case-wf-aftermath');
         if (modalPripad && modalPripad.classList.contains('aktivni') &&
-            prelude && !prelude.classList.contains('skryto') &&
+            ((prelude && !prelude.classList.contains('skryto')) ||
+             (af && af.classList.contains('case-wf-aftermath--visible'))) &&
             _predohraConsequenceCtx && typeof _predohraConsequenceCtx.dokonci === 'function') {
           _predohraConsequenceCtx.dokonci();
           return;

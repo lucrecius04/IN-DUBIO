@@ -205,7 +205,7 @@ const Engine = (() => {
     if (den % 7 === 1) {
       const v = State.get('nedele_volba');
       if (v === 'A' || v === 'D') {
-        State.set('investigationActionsLeft', 3);
+        State.set('investigationActionsLeft', 10);
       }
     }
 

@@ -10,10 +10,9 @@
 | 4 | pool_a1_vytrznost | Rozbité výlohy | 67/1931 | Rutinní | 3–6 | Karel Šimánek, student práv | Student nalezen na místě s kostkou v ruce. Házel? Nebo jen stál? A proč stál? |
 | 5 | pool_a1_nemocenska | Nemocenský lístek | 71/1931 | Morální dilema | 5–8 | Josef Kratochvíl, tkadlec | 12 let bez absence. Poprvé nemocen — koupil potvrzení od hovorového doktora. Závodní lékař, který ho usvědčuje, má finanční zájem na jeho vině. |
 | 6 | pool_a1_stara_rana | Stará rána | 79/1931 | Morální dilema | 7–10 | Marie Hofrová, v domácnosti | Manžel tvrdí, že ho srazila ze schodů. Záznamy odhalí dvě starší policejní návštěvy na adrese a zlomeninu Mariina zápěstí. |
-| 7 | pool_a1_zhar | Žhářství na Smíchově | 81/1931 | Rutinní | 3–6 | Antonín Houška, majitel kovodílny | Požár kovodílny, Slavia neplatí pojistku — benzín vs zkrat. Syn Zdeněk na dvoře v čase, kdy otec tvrdí, že byl doma. |
-| 8 | pool_a1_weiss | Herr Weiss | 83/1931 | Rutinní | 2–5 | Max Schwarz, účetní | Přišel z Berlína s padělaným pasem na jiné jméno. Ale pravý doklad si zachoval — a v aktovce knihu s věnováním od táty. |
-| 9 | pool_a1_stavba | Pád ze lešení | 85/1931 | Morální dilema | 5–10 | Ing. Miroslav Kolář, stavbyvedoucí | Smrt dělníka Tučka z lešení na Vinohradech. Tlak investora na termín vs kontrolní list s vadným čepem — věděl, nebo ne? |
-| 10 | pool_a1_exekuce | Záložna | 85/1931 | Morální dilema | 7–10 | Anna Součková, rolnice | Půjčila 180 Kč na léky pro krávy. Platila, dluh přesto narostl na 340 Kč. Exekutor přišel bez předem oznámení. Bila ho lopatou. |
+| 7 | pool_a1_zhar | Žhářství na Smíchově | 81/1931 | Rutinní | 3–6 | Antonín Houška, živnostník | Kovodílna hoří, pojišťovna odmítá platit. Houška tvrdí, že to byl zkrat. Soused ho ale viděl na dvoře ve čtyřicet minut, o nichž mlčí. |
+| 8 | pool_a1_doklady | Falešný průkaz | 83/1931 | Rutinní | 3–6 | Růžena Novotná, úřednice nádraží | Opatřila padělaný průkaz pro polského uprchlíka. Ze soucitu — nebo za čtyřicet korun? A kdo průkaz vyrobil? |
+| 9 | pool_a1_stavba | Pád ze lešení | 85/1931 | Morální dilema | 5–10 | Ing. Miroslav Kolář, stavbyvedoucí | Dělník spadl ze závadného lešení. Kolář o závadě věděl tři dny. Nedal ji opravit — protože investor tlačil na termín. |
 
 ---
 
@@ -167,47 +166,53 @@ Jitka po dlouhé pauze: „Otec ji chytil za zápěstí. Já ten zvuk znám od m
 `pool_a1_zhar` | Rutinní | Dny 3–6
 
 ### Obžalovaný
-**Antonín Houška**, 51 let, živnostník, majitel kovodílny v Plzeňské ulici na Smíchově. Ženatý, syn **Zdeněk** (19), dluh u záložny 1 400 Kč.
+**Antonín Houška**, 51 let, živnostník. Majitel kovodílny v Plzeňské ulici na Smíchově. Ženatý, syn Zdeněk (19). Dluh u záložny 1 400 Kč.
 
 ### Obžaloba
-Žhářství a pojistný podvod dle §166 a §197 trestního zákona. Požár 14. února 1931, škoda 2 300 Kč. Pojišťovna Slavia odmítá plnění 1 800 Kč — hasičský inspektor uvádí úmyslné použití hořlavé látky; Houška tvrdí zkrat a běžnou zásobu benzínu v dílně.
+Žhářství a pojistný podvod dle §166 a §197 trestního zákona. Požár provozovny v noci ze 13. na 14. února 1931. Škoda 2 300 Kč. Hasičský inspektor tvrdí, že k zapálení bylo použito pohonné hmoty. Pojišťovna Slavia odmítá plnit.
 
 ### Proč je to zajímavé pro hráče
-Dvě linie najednou: **technický spor** (ohnisko u nářadí vs rozvaděč, laboratoř vs výpověď živnostníka) a **časová skulina** (Houška doma od půl desáté vs soused Vrtal ho vidí na dvoře s mladým mužem). Konfrontace může odkrýt syna — otec pak není nutně žhář, ale člověk, který kryje dítě mlčením.
+Na povrchu: živnostník v dluzích zapaluje provozovnu pro pojistku. Pod povrchem: Houška požár nezaložil — udělal to jeho syn Zdeněk bez vědomí otce. Otec o tom ví. Nekryje firmu ani sebe — kryje dítě. Hráč soudí člověka, který možná nic neudělal, ale mlčí jako by udělal vše.
 
 ### Rozpory
-1. **Klíčový:** Čas návratu a přítomnost na dvoře vs výpověď o spánku doma
-2. Ohnisko a benzín — náhodné rozlití vs úmysl
+1. **Klíčový:** Houška tvrdí, že byl doma od půl desáté. Soused Vrtal ho viděl na dvoře kolem půl jedenácté s neznámým mladším mužem — čtyřicet minut, která ve výpovědi chybí
+2. Ohnisko požáru je sedm metrů od elektrického rozvaděče, který Houška označuje za příčinu
 
 ### Konfrontace
-Houška pod tlakem rozporu s Vrtalem: syn, důvod být na dvoře, hranice mezi spoluúčastí a přímým zapálením.
+Houška přizná přítomnost na místě — ale ne jako pachatel. „Byl jsem tam. Přišel jsem ho rozmluvit. Přišel jsem pozdě." Jméno syna nevysloví.
 
 ### Nejsilnější rozsudek
-**Alternativní — zastavení vůči otci, řízení vůči Zdeňkovi Houškovi** (zákon se ptá, koho vlastně soudí). Odložené fragmenty větví podle výsledku.
+**Alternativní — zastavení řízení, případ postoupen k prošetření Zdeňka Houšky.** Otec kryje dítě — zákon se musí ptát, koho vlastně soudí. Odložený důsledek: vyšetřování syna odloženo pro nedostatek důkazů, otec výpověď neposkytl.
+
+### Thematické echo
+Fassbinder a syn Konrad — otec kryje radikalizaci dítěte mlčením. Zde totéž, jiný konec příběhu.
 
 ---
 
-## PŘÍPAD 8: Herr Weiss (Sp. zn. 83/1931)
-`pool_a1_weiss` | Rutinní | Dny 2–5
+## PŘÍPAD 8: Falešný průkaz (Sp. zn. 83/1931)
+`pool_a1_doklady` | Rutinní | Dny 3–6
 
-### Obžalovaný
-**Max Schwarz**, 36 let, bez stálého zaměstnání, dříve účetní, Berlín. Bez stálého bydliště v ČSR. Ubytován od 4. února v penzionu Na příkopě.
+### Obžalovaná
+**Růžena Novotná**, 38 let, úřednice výpravní služby Hlavního nádraží v Praze. Svobodná, bezdětná. 11 let bez kárného řízení.
 
 ### Obžaloba
-Používání padělaných dokladů totožnosti dle §321 trestního zákona. Zadržen na Masarykově nádraží s falešným pasem na jméno Max Weiss, narozený v Liberci.
+Napomáhání k neoprávněnému pobytu a padělání veřejné listiny dle §107 a §199 trestního zákona. Opatřila padělaný průkaz totožnosti pro polského Žida Moritze Kleina, který vstoupil do ČSR bez dokladů. Klein byl deportován zpět do Polska, kde na něj čeká zatykač za „podvracení veřejného pořádku" — účast na dělnickém shromáždění.
 
 ### Proč je to zajímavé pro hráče
-V aktovce měl oba doklady — padělaný i pravý. Zkušený podvodník by pravý zničil. Schwarz ho zachoval. A s ním i starou knihu s věnováním „Maxovi od táty, Berlín, Chanuka 1922." Padělání nebylo způsob, jak se stát někým jiným — byl to klíč k hranici, za kterou chtěl zůstat tím, kým je. Rok 1931 v Berlíně, „nový vedoucí", „lidi jako já" — Schwarz nic neřekne explicitně. Zákon je jasný. Příběh se pod ním tepe.
+Čtyřicet korun, které Novotná přiznává jako odměnu za zprostředkování, deformuje celý případ: pomohla ze soucitu, nebo za peníze? Výslech ukáže, že korun bylo třeba na nájem a Klein je dal sám, spontánně. Záznamy odhalí, že Novotná není poprvé — za dva měsíce figuruje u tří podobných případů. Za ní stojí neformální síť s jedním starším mužem na Žižkově, tiskařem.
 
 ### Rozpory
-1. **Klíčový:** Zachovat oba doklady v jedné aktovce je amatérská chyba, nebo vědomé uchování identity
-2. Odmítl souhlas s prohlídkou aktovky — člověk prchající před zákonem by spolupracoval. Člověk, který se bojí uniformovaných z jiného důvodu, by odmítl
+1. **Klíčový:** Průkaz byl profesionálně vyroben s razítkem a správným papírem — Novotná k tomu nemá prostředky. Předala jen adresu zprostředkovatele. Kdo průkaz vyrobil?
+2. Novotná přiznává čtyřicet korun — ale Klein je dal spontánně, ona je v síti nefinancovala. Humanitární motiv a finanční detail se nevylučují, ale zakalují se navzájem
 
 ### Konfrontace
-Schwarz: „Protože jsem Max Schwarz. Ne Weiss. Nikdy jsem nebyl Weiss. Ten pas byl jen klíč." Po pauze o knize: „Jestli ji zabavíte, tak…" Nedokončí.
+Novotná dá adresu ulice — jméno ne. „Ten člověk pomohl víc lidem než vy za celý rok u soudu." Jméno tiskařského starce nevysloví.
 
 ### Nejsilnější rozsudek
-**Alternativní — odložení stíhání, Schwarz podá žádost o azyl.** Vlčkův dopis přijde obratem: „Precedenty v otázkách přistěhovalectví spadají do kompetence ministerstva, nikoli krajského soudu."
+**Alternativní — podmíněné zastavení, Novotná předá policii popis sítě.** Zájem státu je síť — ne úřednice na nástupišti. Odložený důsledek: starý tiskař zadržen, Novotná k výslechu nepředvolána.
+
+### Thematické echo
+Zákon na ochranu republiky — tentýž zákon jako v případu Fassbinder a jako velezrada na den 20. Deportace Kleina na základě polského politického zatykače: komentář k tomu, co zákon chrání a před čím.
 
 ---
 
@@ -215,53 +220,32 @@ Schwarz: „Protože jsem Max Schwarz. Ne Weiss. Nikdy jsem nebyl Weiss. Ten pas
 `pool_a1_stavba` | Morální dilema | Dny 5–10
 
 ### Obžalovaný
-**Ing. Miroslav Kolář**, 44 let, stavbyvedoucí, Stavební a.s. Dvořák & syn. Ženatý, dvě děti, hypotéka u záložny.
+**Ing. Miroslav Kolář**, 44 let, stavbyvedoucí, firma Stavební a.s. Dvořák & syn. Ženatý, dvě děti (11 a 8 let), hypotéka u záložny. Čistý rejstřík.
 
 ### Obžaloba
-Těžké ublížení na zdraví z nedbalosti dle §335 — smrt dělníka **Františka Tučka** (32) pádem ze lešení, nájemní dům Mánesova ulice, Vinohrady. Obhajoba: alkohol u oběti; obžaloba: vadné lešení a vědomé odkládání opravy.
+Těžké ublížení na zdraví z nedbalosti dle §335 trestního zákona — smrt dělníka Františka Tučka (32) pádem ze závadného lešení na stavbě v Mánesově ulici na Vinohradech. Tuček zemřel na místě.
 
-### Proč je to zajímavé pro hráče
-Střet **osobní odpověnosti** s **tlakem systému** (penále za prodlení, investor Ryba, ředitel firmy). Záznamy ukážou kontrolní list s vlastní poznámkou Koláře před nehodou — dělník Tuček závadu nahlásil. Konfrontace rozhodne, zda jde o čistou nedbalost, o vědomé riziko, nebo o přenos viny na strukturu (alternativní větev proti firmě / investorovi).
-
-### Rozpory
-1. **Klíčový:** Podpis a poznámka na čepu vs výpověď „o závadě jsem nevěděl“
-2. 1,1 promile u Tučka — polehčující pro obhajobu, nebo nerelevantní u zkušeného dělníka?
-
-### Konfrontace
-Kolář k času mezi nahlášením vady a pádem — tlak investora vs Tuček na lešení denně.
-
-### Nejsilnější rozsudek
-**Alternativní — svědectví proti řediteli a investorovi, trestní šetření firmy** (nástroj systému vs pachatel v sutáně). Odložený dopad: šetření na krajském soudu.
-
----
-
-## PŘÍPAD 10: Záložna (Sp. zn. 85/1931)
-`pool_a1_exekuce` | Morální dilema | Dny 7–10
-
-### Obžalovaná
-**Anna Součková**, 58 let, rolnice, hospodářství 4 ha, Ořech u Prahy. Vdova od 1923. Syn Josef (31), listonoš v Praze.
-
-### Obžaloba
-Násilný odpor veřejnému činiteli dle §81 trestního zákona — udeření exekutora Ing. Karla Štěpána násadou od lopaty při výkonu exekuce pro dluh 340 Kč.
-
-### Proč je to nejsilnější morální případ v tomto výběru
-Součková si v lednu 1929 půjčila 180 Kč na léky pro nemocné krávy. Platila co mohla. Záložna účtuje 18 % ročně — matematicky nemožné splatit při splátkách 6–8 Kč měsíčně. Dluh narostl na 340 Kč, aniž přestala platit. Exekutor přišel bez třídenního předem oznámení — doručenka nese razítko téhož dne. Součková je vdova sama na statku, bez brýlí nečte. Bila ho lopatou. §81 říká: vina. Příběh říká: co měla dělat?
+### Proč je to nejzávažnější morální případ druhé vlny
+Kolář závadu na lešení znal — podepsal kontrolní list tři dny před nehodou, vlastní rukou poznamenal: *čep v severovýchodním rohu — sledovat.* Tuček mu závadu přišel nahlásit osobně. Kolář mu přislíbil opravu do konce týdne. Nevykonal ji, protože oprávce stál 80 Kč a investor tlačil na termín pod hrozbou 200 Kč penále za každý den zdržení. Hráč nestojí před otázkou, zda Kolář selhal — stojí před otázkou, kdo za selhání odpovídá.
 
 ### Rozpory
-1. **Klíčový:** Datum doručenky = datum exekuce. Zákonná lhůta tří dnů nebyla dodržena — Součková nemohla vědět, kdo přichází
-2. Syn Josef zjistí: původní dluh 180 Kč, splácela 25 měsíců, dluh přesto 340 Kč — úrok převyšoval splátky od prvního dne
+1. **Klíčový:** Kolář tvrdí, že o závadě nevěděl — ale jeho vlastnoruční podpis a poznámka na kontrolním listu ze 14. února to vyvracejí. Tuček mu závadu hlásil osobně. Kolář ho poslal zpátky na práci s příslibem opravy
+2. Obhajoba staví na Tučkově 1,1 promile — ale lékař výslovně říká, že u zvyklého pijáka tato hodnota neznamená poruchu pohybu. Tuček byl příležitostný pijec, ne alkoholik
 
 ### Konfrontace
-Exekutor Štěpán konfrontován s datem doručenky. Po pauze přizná: záložna uplatnila výjimku u „hrozby znehodnocení majetku". Zákonnou, ale krajní. „Jestli ty dopisy četla — to nevím."
+Kolář se nezlomí výbuchem — zlomí se tichostí. „Věděl jsem, že na tom čepu pracuje každý den. Rozhodl jsem se počkat do pátku. Dnes je středa." Poslední slovo vysloví skoro pro sebe.
 
 ### Nejsilnější rozsudek
-**Alternativní — zproštění Součkové, přezkoumání zákonnosti postupu záložny.** Případ přerámován: pachatel je záložna, ne rolnice. Odložený důsledek: Závadová o tom napíše sloupek ve Svobodném obzoru. Pod pseudonymem, na třetí straně. Ale napíše.
+**Alternativní — podmíněné zastavení, Kolář svědčí proti řediteli firmy a investorovi.** Případ postoupen k trestnímu šetření firmy Dvořák & syn a investora JUDr. Karla Ryby. Odložený důsledek: Kolář jako svědek, šetření potrvá tři měsíce.
+
+### Thematické echo
+Případ 5 (nemocenská): systém trestá lidi za to, že se přizpůsobili systému. Kolář je součást řetězu, jehož začátek leží výš — a zákon ho vidí jako konec. Přímý předobraz politických případů Aktu 2–3, kde Ben bude stát na stejném místě jako Kolář.
 
 ---
 
 ## Designové poznámky
 
-### Společné rysy všech deseti případů v přehledové tabulce
+### Společné rysy všech devíti případů
 - Každý má **morální stín i u rutinního verdiktu** — neexistuje čistě „správné" rozhodnutí
 - Každý odráží **svět krize 1931** — chudoba, strach, systém pod tlakem
 - Každý obsahuje **alespoň jednu postavu, která není tím čím se zdá**
@@ -275,24 +259,19 @@ Exekutor Štěpán konfrontován s datem doručenky. Po pauze přizná: záložn
 - **Případ 4** (výlohy): skupinová odpovědnost — thematický předobraz politických případů Aktu 2–3
 - **Případ 5** (nemocenská): systém trestající chudé za to, že jsou chudí — třídní subtext celé hry
 - **Případ 6** (stará rána): zákon chrání instituce, ne lidi v nich — přímé echo ústřední otázky hry
-- **Případ 7** (žhářství): Smíchov, Slavia, záložna — stejná ekonomická krajina jako jiné případy; rodina jako důkaz i jako břemeno
-- **Případ 8** (Weiss): první signál toho, co přichází z Německa; Vlčkův dopis reaguje okamžitě
-- **Případ 9** (stavba): systém stavebnictví + investor — „kdo vlastně zabil Tučka“
-- **Případ 10** (záložna): Závadová napíše sloupek — první stopa, že sleduje Benova rozhodnutí ještě před tím, než ho kontaktuje osobně
-
-### Síť pojistného agenta Krejčího
-Agent Miroslav Krejčí figuruje v případě **Bartošová** (trafikant): pojistka 15 dní před smrtí manžela, provize 40 Kč; soused a zároveň agent Slavie. Některé alternativní verdikty vedou k trestnímu oznámení na Krejčího a k přezkumu dalších smluv.
-
-Hráč, který v případě 3 důkladně projde záznamy, vidí rizikový vzorec. Hra ho nikdy explicitně neukáže.
+- **Případ 7** (žhářství): otec kryje dítě mlčením — echo Fassbindera a syna Konrada; záložna jako nástroj destrukce
+- **Případ 8** (falešný průkaz): zákon na ochranu republiky jako nástroj deportace; co zákon chrání a před čím — předobraz dne 20
+- **Případ 9** (pád ze lešení): Kolář je článek v řetězu, jehož začátek leží výš — přímý předobraz Benovy situace v Aktu 2–3
 
 ### Technické parametry
 
-| Parametr | Rutinní (1–4, 7–8) | Morální dilema (5–6, 9–10) |
+| Parametr | Rutinní (1–4, 7–8) | Morální dilema (5–6, 9) |
 |----------|-------------------|------------------------|
-| Efekty na staty | ±1 až ±8 | ±2 až ±12 |
-| Počet rozporů | 2 | 2 |
+| Efekty na staty | ±1 až ±8 | ±2 až ±10 |
+| Počet rozporů | 1–2 | 2 |
 | Finanční odměna | +10 Kč base | +10 Kč base + morální bonus |
 | Konfrontace (Odvaha) | ≥60 | ≥60 |
+| Dostupné dny | 2–5 nebo 3–6 | 5–8 nebo 5–10 |
 
 ### Sp. zn. přehled (pro konzistenci)
 - 61/1931 — Malina (lékárna)
@@ -301,7 +280,7 @@ Hráč, který v případě 3 důkladně projde záznamy, vidí rizikový vzorec
 - 67/1931 — Šimánek (výlohy)
 - 71/1931 — Kratochvíl (nemocenská)
 - 79/1931 — Hofrová (stará rána)
-- 81/1931 — Houška (žhářství na Smíchově; `pool_a1_zhar`)
-- 83/1931 — Schwarz (Weiss; `pool_a1_weiss`)
-- 85/1931 — Kolář (`pool_a1_stavba`, pád ze lešení) a **týž rok a číslo řízení** — Součková (`pool_a1_exekuce`, exekuce); ve hře rozlišuj podle `id`, ne podle samotného čísla spisu
-- *Nové případy v budoucnu ideálně od Sp. zn. 87/1931 výš, ať se 85/1931 u Koláře a Součkové nemíchá v hlavě hráče*
+- 81/1931 — Houška (žhářství)
+- 83/1931 — Novotná (falešný průkaz)
+- 85/1931 — Kolář (pád ze lešení)
+- *Další případy začínají od Sp. zn. 87/1931*

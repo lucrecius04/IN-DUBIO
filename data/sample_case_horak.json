@@ -60,7 +60,7 @@
     "records": {
       "source": "Živnostenský rejstřík",
       "reveals": "facts",
-      "text": "Pekárna U Nováků: poslední kontrola 12. ledna 1931. Poznámka: „Nesrovnalosti v účetnictví, upozornění vydáno." Zavírací doba dle licence: Po–So 6:00–18:00.",
+      "text": "Pekárna U Nováků: poslední kontrola 12. ledna 1931. Poznámka: „Nesrovnalosti v účetnictví, upozornění vydáno.“ Zavírací doba dle licence: Po–So 6:00–18:00.",
       "unlocks_contradiction": "time_mismatch"
     },
     "informant": {
@@ -78,11 +78,11 @@
       "requires_courage": 60,
       "prompt": "Říkáte, že jste zavíral. Ale vaše zavírací doba je v osmnáct hodin. Proč jste zavíral ve tři odpoledne?",
       "success": {
-        "text": "Novák se odmlčí. Dlouho. Pak tiše: „...Měl jsem problémy. S licencí. Prodával jsem po zavírací době. Horák přišel ráno, řekl jsem mu ať přijde později, až zavřu. Pak jsem si to rozmyslel. Ale on přišel stejně."",
+        "text": "Novák se odmlčí. Dlouho. Pak tiše: „...Měl jsem problémy. S licencí. Prodával jsem po zavírací době. Horák přišel ráno, řekl jsem mu ať přijde později, až zavřu. Pak jsem si to rozmyslel. Ale on přišel stejně.“",
         "reveals": "Novák prodával na černo. Horákovi slíbil chleba na dluh, pak si to rozmyslel. Horák nepřišel krást — přišel si pro to co mu bylo slíbeno."
       },
       "failure": {
-        "text": "Novák se naježí. „Obviňujete mě? Já jsem poškozený! Ten muž mi ukradl chleba a vy se mě ptáte na zavírací dobu? S vámi už nebudu mluvit."",
+        "text": "Novák se naježí. „Obviňujete mě? Já jsem poškozený! Ten muž mi ukradl chleba a vy se mě ptáte na zavírací dobu? S vámi už nebudu mluvit.“",
         "locks_testimony": "novak"
       }
     }
@@ -196,7 +196,7 @@
       "trigger": "not_guilty",
       "delay_days": 5,
       "type": "letter",
-      "text": "Dopis od Vlčka. Formální, zdvořilý. Ale poslední věta: „Všiml jsem si jistého rozsudku ve věci Horák. Rád bych o tom pohovořil při příležitosti.""
+      "text": "Dopis od Vlčka. Formální, zdvořilý. Ale poslední věta: „Všiml jsem si jistého rozsudku ve věci Horák. Rád bych o tom pohovořil při příležitosti.“"
     },
     {
       "trigger": "guilty_alternative",
@@ -208,7 +208,7 @@
       "trigger": "acquitted",
       "delay_days": 6,
       "type": "fragment",
-      "text": "V novinách krátká zpráva. Soudce zprostil muže obžaloby z krádeže. „Stav nouze," citují. Pod článkem komentář: „Kam to spějeme, když krást chleba je v pořádku?""
+      "text": "V novinách krátká zpráva. Soudce zprostil muže obžaloby z krádeže. „Stav nouze,“ citují. Pod článkem komentář: „Kam to spějeme, když krást chleba je v pořádku?“"
     }
   ]
 }
