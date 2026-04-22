@@ -12,6 +12,7 @@
     "morning_fragment": "fragment_d1_morning",
     "cases": [
       "pool_a1_lekarna",
+      "pool_a1_tiskarna",
       "pool_a1_vyveseni",
       "pool_a1_trafika"
     ],
@@ -130,9 +131,21 @@
     ],
     "vlcek_letter": null,
     "noon_event": null,
-    "evening_choice": {
-      "text": "Syn Martin napsal dopis. Je nadšený z práv, z přednášek, z profesorů. „Otče, kdy mě přijdeš navštívit? Ukázal bych ti fakultu.“",
+    "evening_choice":         {
+          "text": "Syn Martin napsal dopis. Je nadšený z práv, z přednášek, z profesorů. „Otče, kdy mě přijdeš navštívit? Ukázal bych ti fakultu.“",
       "options": [
+        {
+          "text": "Koupit kvalitní kávu a tabák (−10 Kč) — zítra ráno o jednu kapku inkoustu navíc.",
+          "finance": -10,
+          "effects": {
+            "flags": [
+              {
+                "key": "rano_bonus_inkoust_z_kavy",
+                "value": true
+              }
+            ]
+          }
+        },
         {
           "text": "Odpíšeš: „Brzy, Martine.“",
           "effects": {
@@ -177,10 +190,11 @@
           }
         },
         {
-          "text": "Večeře v hostinci u nádraží — zaplatíš účet za sebe i za kolegu (−15 Kč).",
+          "text": "Večeře v hostinci u nádraží — zaplatíš rundu (−15 Kč), z ulice k tobě doléhají drby.",
           "finance": -15,
           "effects": {
-            "Vina": 3,
+            "Lid": 3,
+            "Moudrost": 2,
             "Nadeje": 2
           }
         }
@@ -290,6 +304,32 @@
           },
           "fragment_title": "Prázdný list",
           "fragment_text": "Pero leží vedle obálky. Zůstane ležet. Zítra zase začne týden, který nepočká — ale dnes ještě ne."
+        },
+        {
+          "id": "F",
+          "text": "Předplatit lepší noviny (−25 Kč) — pět dní budou záznamy v archivech stát 0 akcí.",
+          "finance": -25
+        },
+        {
+          "id": "G",
+          "text": "Anonymní dar charitě (−40 Kč) — když tě žere svědomí.",
+          "finance": -40,
+          "requires": {
+            "trait_max": {
+              "Integrita": 35
+            }
+          },
+          "effects": {
+            "Integrita": 10
+          }
+        },
+        {
+          "id": "H",
+          "text": "Poslat peníze Martinovi na kolej (−30 Kč).",
+          "finance": -30,
+          "effects": {
+            "Vina": -15
+          }
         }
       ]
     },
@@ -544,6 +584,32 @@
           },
           "fragment_title": "Prázdný list",
           "fragment_text": "Pero leží vedle obálky. Zůstane ležet. Zítra zase začne týden, který nepočká — ale dnes ještě ne."
+        },
+        {
+          "id": "F",
+          "text": "Předplatit lepší noviny (−25 Kč) — pět dní budou záznamy v archivech stát 0 akcí.",
+          "finance": -25
+        },
+        {
+          "id": "G",
+          "text": "Anonymní dar charitě (−40 Kč) — když tě žere svědomí.",
+          "finance": -40,
+          "requires": {
+            "trait_max": {
+              "Integrita": 35
+            }
+          },
+          "effects": {
+            "Integrita": 10
+          }
+        },
+        {
+          "id": "H",
+          "text": "Poslat peníze Martinovi na kolej (−30 Kč).",
+          "finance": -30,
+          "effects": {
+            "Vina": -15
+          }
         }
       ]
     },
@@ -815,6 +881,32 @@
           },
           "fragment_title": "Prázdný list",
           "fragment_text": "Pero leží vedle obálky. Zůstane ležet. Zítra zase začne týden, který nepočká — ale dnes ještě ne."
+        },
+        {
+          "id": "F",
+          "text": "Předplatit lepší noviny (−25 Kč) — pět dní budou záznamy v archivech stát 0 akcí.",
+          "finance": -25
+        },
+        {
+          "id": "G",
+          "text": "Anonymní dar charitě (−40 Kč) — když tě žere svědomí.",
+          "finance": -40,
+          "requires": {
+            "trait_max": {
+              "Integrita": 35
+            }
+          },
+          "effects": {
+            "Integrita": 10
+          }
+        },
+        {
+          "id": "H",
+          "text": "Poslat peníze Martinovi na kolej (−30 Kč).",
+          "finance": -30,
+          "effects": {
+            "Vina": -15
+          }
         }
       ]
     },
@@ -1108,6 +1200,32 @@
           },
           "fragment_title": "Prázdný list",
           "fragment_text": "Pero leží vedle obálky. Zůstane ležet. Zítra zase začne týden, který nepočká — ale dnes ještě ne."
+        },
+        {
+          "id": "F",
+          "text": "Předplatit lepší noviny (−25 Kč) — pět dní budou záznamy v archivech stát 0 akcí.",
+          "finance": -25
+        },
+        {
+          "id": "G",
+          "text": "Anonymní dar charitě (−40 Kč) — když tě žere svědomí.",
+          "finance": -40,
+          "requires": {
+            "trait_max": {
+              "Integrita": 35
+            }
+          },
+          "effects": {
+            "Integrita": 10
+          }
+        },
+        {
+          "id": "H",
+          "text": "Poslat peníze Martinovi na kolej (−30 Kč).",
+          "finance": -30,
+          "effects": {
+            "Vina": -15
+          }
         }
       ]
     },

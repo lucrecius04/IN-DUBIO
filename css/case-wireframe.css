@@ -14,13 +14,93 @@
 }
 
 #modal-pripad .pripad-panel--wireframe .pripad-zahlavi {
+  position: relative;
   background: #3d2b1f;
   border-bottom: 1px solid rgba(196, 163, 90, 0.35);
-  padding: 14px 48px 14px 20px;
+  padding: 14px 20px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 8px 14px;
+  gap: 10px 16px;
   align-items: start;
+}
+
+#modal-pripad .pripad-panel--wireframe .pripad-zahlavi-left {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#modal-pripad .pripad-panel--wireframe .pripad-zahlavi-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+#modal-pripad .pripad-panel--wireframe .pripad-zahlavi .pripad-zavrit-x {
+  position: static;
+  padding: 2px 6px;
+  margin: 0;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  min-width: 0;
+  max-width: min(280px, 44vw);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-slot.skryto {
+  display: none;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-header-wrap {
+  width: min(280px, 44vw);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn--start {
+  width: 100%;
+  box-sizing: border-box;
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud--detail {
+  min-width: 0;
+  max-width: min(280px, 44vw);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-focus-lock-actions--dual,
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-focus-lock-actions--solo {
+  margin: 0;
+}
+
+#modal-pripad .pripad-panel--wireframe .pripad-zahlavi-lead {
+  margin: 0;
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  line-height: 1.4;
+  color: rgba(216, 192, 155, 0.88);
+  max-height: 2.1em;
+  overflow: hidden;
+}
+
+#modal-pripad .pripad-panel--wireframe .pripad-zahlavi-lead:empty {
+  display: none;
+}
+
+#modal-pripad .pripad-panel--wireframe .pripad-zahlavi-akce {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: #c4a35a;
 }
 
 #modal-pripad .pripad-panel--wireframe .pripad-zahlavi-text {
@@ -107,6 +187,34 @@
 
 #modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn:hover {
   background: rgba(90, 66, 47, 0.95);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-focus-lock {
+  margin-top: 8px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px dashed rgba(196, 163, 90, 0.55);
+  background: rgba(40, 28, 18, 0.65);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-focus-lock-text {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: #e8c9a0;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-focus-lock-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-dots {
@@ -293,6 +401,25 @@
 #modal-pripad .pripad-panel--wireframe .clue--hunt-active {
   background: rgba(133, 183, 235, 0.14);
   box-shadow: inset 0 -1px 0 rgba(64, 102, 145, 0.28);
+}
+
+#modal-pripad .pripad-panel--wireframe .clue--focus-locked {
+  opacity: 0.48;
+  pointer-events: none;
+  filter: grayscale(0.35);
+}
+
+#modal-pripad.case-wf-hunt-stress--mid .pripad-panel--wireframe .case-wf-body,
+#modal-pripad.case-wf-hunt-stress--high .pripad-panel--wireframe .case-wf-body {
+  filter: blur(calc(0.25px + var(--case-wf-hunt-vignette, 0) * 1.1px));
+  transition: filter 0.35s ease;
+}
+
+#modal-pripad.case-wf-hunt-stress--mid .pripad-panel--wireframe,
+#modal-pripad.case-wf-hunt-stress--high .pripad-panel--wireframe {
+  box-shadow:
+    inset 0 0 0 9999px rgba(0, 0, 0, calc(0.07 + var(--case-wf-hunt-vignette, 0) * 0.38)),
+    inset 0 0 12px rgba(0, 0, 0, 0.16);
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-clue-confirm-wrap {
@@ -605,6 +732,25 @@
 #modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt.case-wf-verdict-opt--locked {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-v-blocked {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: #7a3a2a;
+  font-style: italic;
+  margin: 4px 0 0;
+  line-height: 1.35;
+}
+
+/* Zamčená varianta — jen upozornění, žádný nadpis ani důsledky (navnada) */
+#modal-pripad .pripad-panel--wireframe .case-wf-v-blocked--tease {
+  margin: 0;
+  padding: 2px 0 0;
+  text-align: left;
+  font-size: 11px;
+  line-height: 1.4;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-v-title {

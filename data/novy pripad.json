@@ -1,0 +1,177 @@
+{
+  "id": "pool_a1_tiskarna",
+  "slot": "pool",
+  "type": "routine",
+  "color": "#C4A35A",
+  "available_days": [3, 4, 5, 6],
+  "act": 1,
+  "weight_conditions": {
+    "base_weight": 1,
+    "kapital_below_40": 1.4
+  },
+  "title": "Noční směna",
+  "case_number": "Sp. zn. 84/1931",
+  "defendant": {
+    "name": "Alois Mareš",
+    "age": 32,
+    "occupation": "účetní tiskárny",
+    "detail": "zaměstnanec tiskárny Grafia, svobodný, v péči má nemocnou matku"
+  },
+  "charge": "Krádež vloupáním dle §171 trestního zákona, zpronevěra dle §183",
+  "description": "Z kanceláře tiskárny Grafia na Smíchově zmizela v noci ze 14. na 15. ledna 1931 hotovost ve výši 500 Kč určená na výplaty dělníků. Zámek u pokladny nebyl poškozen, což ukazuje na použití klíče. Obžalovaný Alois Mareš, který klíče držel, tvrdí, že v inkriminovanou dobu na pracovišti nebyl. Majitel tiskárny trvá na přísném potrestání, aby zastavil vlnu krádeží v průmyslovém areálu.",
+  "testimonies": [
+    {
+      "id": "mares",
+      "speaker": "Alois Mareš, obžalovaný",
+      "text": "Ten večer jsem v tiskárně vůbec nebyl. Od sedmi hodin jsem seděl v Obecním domě na veřejné schůzi Národní demokracie. <span class=\"clue\" data-clue-id=\"clue_speech_duration\">Poslouchal jsem projev pana poslance Kramáře, který trval skoro dvě hodiny až do devíti</span>. Pak jsem šel rovnou domů za matkou. <span class=\"clue\" data-clue-id=\"decoy_ticket\">Vstupné stálo pět korun</span>, což si pro mě jako účetního nemohu dovolit jen tak utrácet.",
+      "contradiction_keywords": ["trval", "dvě hodiny", "devíti"],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "volf",
+      "speaker": "Karel Volf, majitel tiskárny",
+      "text": "Mareš je hazardní hráč. Viděli ho v herně na Žižkově, jak rozhazuje peníze. <span class=\"clue\" data-clue-id=\"decoy_red_ink\">Našel jsem v jeho stole červený inkoust</span>, kterým někdo v knize jízd přepsal časy odjezdů. Je to zloděj a lhář. <span class=\"clue\" data-clue-id=\"decoy_safe_key\">Klíče od pokladny měl jen on a já</span>.",
+      "contradiction_keywords": ["herně", "červený inkoust"],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "meeting_interrupted",
+      "description": "Mareš tvrdí, že poslouchal dvouhodinový projev, ale schůze byla rozpuštěna policií po deseti minutách.",
+      "involves": ["mares", "records"],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": "mares"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "speech_timing_strong",
+    "pairs": [
+      {
+        "pair_id": "speech_timing_strong",
+        "a_id": "clue_speech_duration",
+        "b_id": "clue_police_report",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "financial_pressure",
+        "a_id": "decoy_ticket",
+        "b_id": "decoy_debt",
+        "strength": "medium"
+      }
+    ],
+    "decoys": [
+      "decoy_ticket",
+      "decoy_red_ink",
+      "decoy_safe_key",
+      "decoy_interview_mother"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 60,
+      "speed_upgrade_sec": 25,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": true
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        { "min": 60, "ids": ["pool_inv_confrontation"] }
+      ],
+      "verdicts": [
+        { "min": 40, "ids": ["guilty_lenient", "not_guilty_with_comment"] },
+        { "min": 80, "ids": ["guilty_alternative"] }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 40,
+          "unlock_actions": ["pool_inv_confrontation"],
+          "unlock_verdict_ids": ["guilty_alternative"]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "mares",
+      "target_label": "Alois Mareš, obžalovaný",
+      "reveals": "motivation",
+      "text": "Pane soudce, moje matka potřebuje léky na srdce. <span class=\"clue\" data-clue-id=\"decoy_interview_mother\">Pojišťovna je neproplácí</span>. Majitel Volf nám snížil platy o pětinu kvůli krizi, ale sám si kupuje nové auto. Já ty peníze nevzal, ale chápu, že podezřívají mě. Vždycky to odnese ten nejmenší.",
+      "cost": 1,
+      "trait_effects": { "vina": 3, "nadeje": -1 }
+    },
+    "records": {
+      "source": "Policejní hlášení — revír Smíchov",
+      "reveals": "facts",
+      "text": "Hlášení ze dne 14. ledna: Veřejná schůze v Obecním domě. <span class=\"clue\" data-clue-id=\"clue_police_report\">Zahájena v 19:00, rozpuštěna policií v 19:10 pro pokus o výtržnost skupinou radikálů</span>. Budova byla vyklizena do 19:30. Záznam o Marešovi: Dluží 150 Kč v ilegální herně 'U křížku'. <span class=\"clue\" data-clue-id=\"decoy_debt\">Věřitelé na něj podali podnět pro nesplácení</span>.",
+      "cost": 1,
+      "unlocks_contradiction": "meeting_interrupted"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "variants": {
+        "lid_high": "Mareš je obětní beránek. Volf pojistil tiskárnu na vysokou částku a teď hledá, jak ušetřit na lidech. Mareš je slušný kluk, jen má smůlu.",
+        "kapital_high": "Mareš je nespolehlivý živel. Má dluhy z karet a tiskárna s ním měla jen problémy. Pět set korun je pro takový podnik citelná ztráta.",
+        "default": "V tiskárně to vře. Dělníci nemají na nájem a Mareš jako účetní je mezi dvěma mlýnskými kameny."
+      }
+    },
+    "confrontation": {
+      "target": "mares",
+      "target_label": "Alois Mareš, obžalovaný",
+      "requires_contradiction": "meeting_interrupted",
+      "requires_courage": 50,
+      "cost": 2,
+      "prompt": "Pane Mareši, tvrdíte, že jste v Obecním domě poslouchal projev až do devíti večer. Ale policie schůzi rozehnala už v sedm deset. Kde jste byl ten zbytek času?",
+      "success": {
+        "text": "Mareš zbledne a začne se třást. Pane soudce... já... já tam nebyl. Styděl jsem se to přiznat. Byl jsem v herně. Chtěl jsem vyhrát na ty léky pro matku. Prohrál jsem i ty poslední peníze, co jsem měl. Ale přísahám, že v tiskárně jsem nebyl! Musel to být Volf sám!",
+        "reveals": "Marešovo alibi se zhroutilo. Priznává návštěvu herny, ale vinu za krádež stále popírá. Jeho finanční situace je však zoufalá."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "maximum": {
+          "label": "1 rok těžkého žaláře",
+          "description": "Vzhledem k recidivě v herně a zneužití důvěry.",
+          "effects": { "integrita": 1, "moudrost": 1, "vina": 10, "nadeje": -5, "moc": 5, "lid": -8, "finance": 20 }
+        },
+        "standard": {
+          "label": "3 měsíce vězení, náhrada škody",
+          "description": "Běžný postih za zpronevěru.",
+          "effects": { "integrita": 2, "vina": 5, "nadeje": -2, "moc": 2, "lid": -3, "finance": 20 }
+        },
+        "lenient": {
+          "label": "Podmíněný trest na 1 rok",
+          "description": "Přihlédnuto k péči o matku.",
+          "requires_investigation": 1,
+          "effects": { "integrita": 0, "vina": 2, "nadeje": 2, "moc": -2, "lid": 4, "finance": 10 }
+        },
+        "alternative": {
+          "label": "Veřejně prospěšné práce a splátkový kalendář",
+          "description": "Šance na nápravu bez vězení.",
+          "requires_investigation": 2,
+          "requires": { "moudrost_min": 50 },
+          "effects": { "integrita": 5, "moudrost": 4, "vina": 0, "nadeje": 5, "moc": -3, "lid": 7, "finance": 5 }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zproštění pro nedostatek přímých důkazů",
+          "description": "Nepodařilo se prokázat, že Mareš klíč použil.",
+          "effects": { "integrita": 3, "odvaha": 4, "moudrost": 2, "vina": -5, "moc": -4, "lid": 5, "finance": 0 }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_maximum": "Mareš se zhroutí na lavici. Rok života v cele na Pankráci. Volf spokojeně zaklapne desky a bez slova odejde ze síně.",
+    "guilty_alternative": "Ben diktuje splátkový kalendář. Mareš přikyvuje, v očích má naději. Volf se mračí, ale zákonu musí ustoupit.",
+    "not_guilty_formal": "Mareš odchází volný, ale s cejchem karbaníka. Volf na něj na chodbě zakřičí, že už v tiskárně nemá místo. Spravedlnost je někdy slepá k hladu."
+  }
+}

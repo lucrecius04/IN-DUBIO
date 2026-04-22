@@ -25,6 +25,8 @@ const SFX = (() => {
   let _kroky1Id = null;
   let _kroky2Id = null;
   let _ctxClock = null;
+  let _patraniHbCtx = null;
+  let _patraniHbLast = 0;
 
   function _cesta(klic) {
     const j = SOUBORY[klic];
@@ -132,11 +134,46 @@ const SFX = (() => {
     _prehrajJednorazove('pen_writing', VOL_PEN_WRITING);
   }
 
+  /** urgency 0 = začátek lovu, 1 = konec — zrychluje interval a sílu úderu */
+  function patraniHeartbeatTick(urgency01) {
+    if (!_odemceno) return;
+    const u = Math.max(0, Math.min(1, Number(urgency01) || 0));
+    if (u < 0.38) return;
+    const now = typeof performance !== 'undefined' ? performance.now() : Date.now();
+    const minGap = Math.max(220, 780 - Math.floor(560 * u));
+    if (now - _patraniHbLast < minGap) return;
+    _patraniHbLast = now;
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    try {
+      if (!_patraniHbCtx || _patraniHbCtx.state === 'closed') _patraniHbCtx = new AC();
+      const ctx = _patraniHbCtx;
+      ctx.resume().catch(() => {});
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.type = 'sine';
+      o.frequency.value = 52 + u * 18;
+      const vol = 0.06 + u * 0.14;
+      g.gain.value = 0;
+      o.connect(g).connect(ctx.destination);
+      o.start();
+      g.gain.linearRampToValueAtTime(vol, ctx.currentTime + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0008, ctx.currentTime + 0.11 + u * 0.05);
+      o.stop(ctx.currentTime + 0.18);
+    } catch (_e) { /* ignore */ }
+  }
+
+  function zastavPatraniHeartbeat() {
+    _patraniHbLast = 0;
+  }
+
   return {
     spustPoInterakci,
     rozsudekStamp,
     slozkaPaper,
     prechodNaDalsiDen,
-    penWriting
+    penWriting,
+    patraniHeartbeatTick,
+    zastavPatraniHeartbeat
   };
 })();

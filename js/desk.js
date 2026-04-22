@@ -68,6 +68,39 @@ const Desk = (() => {
 
   // --- Hlavní update funkce ---
 
+  function _aktualizujDeskTestStats() {
+    const el = document.getElementById('desk-test-stats');
+    if (!el) return;
+    const stav = State.get();
+    const tr = stav.traits && typeof stav.traits === 'object' ? stav.traits : {};
+    const fr = stav.factions && typeof stav.factions === 'object' ? stav.factions : {};
+    const fin = stav.finance && typeof stav.finance === 'object' ? stav.finance : {};
+    const n = (k) => {
+      const v = Number(tr[k]);
+      return Number.isFinite(v) ? v : 0;
+    };
+    const f = (k) => {
+      const v = Number(fr[k]);
+      return Number.isFinite(v) ? v : 0;
+    };
+    const bal = Number(fin.balance);
+    const dluh = Number(fin.dluh);
+    const uspory = Number.isFinite(bal) ? Math.round(bal) : 0;
+    const dluhTxt = Number.isFinite(dluh) && dluh > 0 ? `\nDluh: ${Math.round(dluh)} Kč` : '';
+    el.textContent =
+      `Integrita: ${n('Integrita')}\n` +
+      `Odvaha: ${n('Odvaha')}\n` +
+      `Moudrost: ${n('Moudrost')}\n` +
+      `Vina: ${n('Vina')}\n` +
+      `Naděje: ${n('Nadeje')}\n` +
+      `—\n` +
+      `Úspory: ${uspory} Kč${dluhTxt}\n` +
+      `—\n` +
+      `Moc: ${f('Moc')}\n` +
+      `Kapitál: ${f('Kapital')}\n` +
+      `Lid: ${f('Lid')}`;
+  }
+
   function aktualizujVse() {
     const stav = State.get();
     _aktualizujKalendar(stav.currentDay);
@@ -87,6 +120,7 @@ const Desk = (() => {
     if (typeof UI !== 'undefined' && UI.syncPostavyDuvera) {
       UI.syncPostavyDuvera();
     }
+    _aktualizujDeskTestStats();
   }
 
   function _hvezdicky(hodnota) {

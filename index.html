@@ -158,6 +158,26 @@
       box-shadow: none;
     }
 
+    /* Testovací přehled (dočasně) — vlevo u lampy */
+    .desk-scene-assets .desk-test-stats {
+      position: absolute;
+      left: min(2vw, 16px);
+      top: 22%;
+      z-index: 5;
+      max-width: min(200px, 28vw);
+      padding: 8px 10px;
+      font-family: ui-monospace, Consolas, monospace;
+      font-size: clamp(10px, 1.35vw, 12px);
+      line-height: 1.45;
+      color: rgba(245, 236, 218, 0.95);
+      text-shadow:
+        0 0 8px rgba(0, 0, 0, 0.95),
+        0 1px 2px rgba(0, 0, 0, 0.9);
+      white-space: pre-line;
+      pointer-events: none;
+      user-select: none;
+    }
+
     .desk-scene-assets #desk-lamp {
       position: absolute;
       left: 0%;
@@ -887,6 +907,7 @@
   </div>
 
   <div class="desk-scene-assets" aria-hidden="true">
+    <div id="desk-test-stats" class="desk-test-stats" title="Test: rysy, finance, frakce — odstranit před vydáním"></div>
     <img id="desk-lamp" src="src/lamp.png" alt="">
     <img id="desk-inkwell" src="src/inkwell.png" alt="">
     <img id="desk-photo" src="src/photo.png" alt="">
@@ -1015,12 +1036,19 @@
 <div id="modal-pripad" class="overlay" role="dialog" aria-modal="true">
   <div class="panel-papir pripad-panel pripad-panel--wireframe panel-papir--nastup">
     <div class="pripad-zahlavi">
-      <div class="pripad-zahlavi-text">
-        <div class="pripad-kategorie badge" id="pripad-kategorie-text">—</div>
-        <h2 class="pripad-nazev" id="pripad-nazev-text">Případ</h2>
-        <div class="pripad-obvineni sub" id="pripad-obvineni-text"></div>
+      <div class="pripad-zahlavi-left">
+        <div class="pripad-zahlavi-text">
+          <div class="pripad-kategorie badge" id="pripad-kategorie-text">—</div>
+          <h2 class="pripad-nazev" id="pripad-nazev-text">Případ</h2>
+          <div class="pripad-obvineni sub" id="pripad-obvineni-text"></div>
+        </div>
+        <p class="pripad-zahlavi-lead" id="pripad-zahlavi-lead" aria-label="Stručný popis"></p>
+        <div class="pripad-zahlavi-akce" id="case-wf-header-akce" aria-live="polite"></div>
       </div>
-      <button type="button" class="pripad-zavrit-x" id="pripad-zavrit-x" title="Zavřít (Esc)">✕</button>
+      <div class="pripad-zahlavi-right">
+        <button type="button" class="pripad-zavrit-x" id="pripad-zavrit-x" title="Zavřít (Esc)">✕</button>
+        <div id="case-wf-clue-hud-slot" class="case-wf-clue-hud-slot"></div>
+      </div>
     </div>
 
     <div class="case-wf-dots" id="case-wf-dots" aria-hidden="true">

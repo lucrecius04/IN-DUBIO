@@ -7,6 +7,13 @@ const Engine = (() => {
 
   let _denData = null;
 
+  /**
+   * Testování: u dne 1 nespouští dva modaly (modal-fragment) — ranní úvodní text
+   * a první dopis z dialogů (Vlček). Obálka / noviny na stole zůstanou, jdou otevřít ručně.
+   * Pro ostrý běh hry nastav na `false`.
+   */
+  const _SKIP_D1_INTRO_MODALS = true;
+
   function _vyhodnotTydenniBonusyKody() {
     const st = State.get('tydenni_statistiky');
     if (!st || typeof st !== 'object') return [];
@@ -209,6 +216,17 @@ const Engine = (() => {
       }
     }
 
+    if (State.get('flags.rano_bonus_inkoust_z_kavy')) {
+      State.set('flags.rano_bonus_inkoust_z_kavy', false);
+      const curInk = Number(State.get('investigationActionsLeft')) || 0;
+      State.set('investigationActionsLeft', curInk + 1);
+    }
+
+    const recUntil = State.get('flags.records_free_until_day');
+    if (recUntil != null && Number.isFinite(Number(recUntil)) && den > Number(recUntil)) {
+      State.set('flags.records_free_until_day', null);
+    }
+
     // Načti denní data
     _denData = DataLoader.ziskejDen(den);
 
@@ -245,6 +263,9 @@ const Engine = (() => {
 
     // Ranní fragment (den 8 — dopis o operaci jen jednou)
     let morningId = _denData?.morning_fragment;
+    if (den === 1 && _SKIP_D1_INTRO_MODALS) {
+      morningId = null;
+    }
     if (den === 8 && State.get('flags.dopis_operace_den8_viden')) {
       morningId = null;
     }
@@ -402,6 +423,9 @@ const Engine = (() => {
   // --- DIALOGY POSTAV ---
 
   async function _zpracujDialogyDne(den) {
+    if (den === 1 && _SKIP_D1_INTRO_MODALS) {
+      return;
+    }
     const dialogy = Characters.getDialogyDen(den);
     for (const { id, dialog } of dialogy) {
       State.oznacPostavuPotkanu(id);

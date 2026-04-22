@@ -893,6 +893,35 @@ const Cases = (() => {
     return null;
   }
 
+  /** Max. pokusů na spojení stop; 0 = bez limitu soustředění. */
+  function ziskejClueFocusMax(pripad) {
+    const cs = _clueSystem(pripad);
+    if (!cs) return 0;
+    const fa = cs.focus_attempts;
+    if (fa && fa.enabled === false) return 0;
+    const m = Number(fa && fa.max);
+    if (!Number.isFinite(m)) return 3;
+    return Math.max(0, Math.round(m));
+  }
+
+  function _thematicPairVzkus(pripad, aId, bId) {
+    const cs = _clueSystem(pripad);
+    const a = String(aId || '').trim();
+    const b = String(bId || '').trim();
+    if (!cs || !a || !b) return null;
+    const list = Array.isArray(cs.thematic_pairs) ? cs.thematic_pairs : [];
+    for (const row of list) {
+      if (!row || typeof row !== 'object') continue;
+      const pa = String(row.a_id || '').trim();
+      const pb = String(row.b_id || '').trim();
+      if ((a === pa && b === pb) || (a === pb && b === pa)) {
+        const msg = String(row.message || '').trim();
+        return msg || 'Tyto informace spolu souvisí, ale neprokazují lživou výpověď.';
+      }
+    }
+    return null;
+  }
+
   function _cluePotvrzeni(pripad) {
     if (!pripad || typeof State === 'undefined' || !State.ziskejCluePotvrzeni) return null;
     return State.ziskejCluePotvrzeni(pripad.id);
@@ -1059,7 +1088,7 @@ const Cases = (() => {
 
   /**
    * Two-Click vyhodnocení rozporu.
-   * @returns {{ok:boolean, reason?:string, pairId?:string, strength?:string, label?:string, aId?:string, bId?:string}}
+   * @returns {{ok:boolean, reason?:string, softFail?:boolean, softMessage?:string, pairId?:string, strength?:string, label?:string, aId?:string, bId?:string}}
    */
   function vyhodnotTwoClickRozpor(pripad, firstClueId, secondClueId) {
     const cs = _clueSystem(pripad);
@@ -1067,14 +1096,27 @@ const Cases = (() => {
     const a = String(firstClueId || '').trim();
     const b = String(secondClueId || '').trim();
     if (!a || !b || a === b) return { ok: false, reason: 'invalid' };
+    const thematic = _thematicPairVzkus(pripad, a, b);
+    if (thematic) {
+      return { ok: true, softFail: true, softMessage: thematic };
+    }
     const p = _clueParDleIds(pripad, a, b);
     if (!p) return { ok: false, reason: 'mismatch' };
     const pairId = String(p.pair_id || '').trim();
     if (!pairId) return { ok: false, reason: 'mismatch' };
+    if (p.soft_fail === true) {
+      const sm = String(p.soft_fail_message || '').trim();
+      return {
+        ok: true,
+        softFail: true,
+        softMessage: sm || 'Tyto informace spolu souvisí, ale neprokazují lživou výpověď.'
+      };
+    }
     const strengthRaw = String(p.strength || '').trim();
     const strength = strengthRaw || (String(cs.true_pair_id || '').trim() === pairId ? 'strong' : 'medium');
     return {
       ok: true,
+      softFail: false,
       pairId,
       strength,
       label: _cluePopisekSily(strength),
@@ -1381,7 +1423,8 @@ const Cases = (() => {
     maInformacniPrahyVerdiktu,
     jeTruePairNalezen,
     maPotvrzenouClueVazbu,
-    ziskejPotvrzenouClueVazbu
+    ziskejPotvrzenouClueVazbu,
+    ziskejClueFocusMax
   };
 
 })();

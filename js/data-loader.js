@@ -152,9 +152,11 @@ const DataLoader = (() => {
     }
     if (inv.records && inv.records.text) {
       const src = inv.records.source ? `(${inv.records.source})\n\n` : '';
+      const recCost = Number(inv.records.cost);
       hidden_info.push({
         id: 'pool_inv_records',
         action: 'records',
+        cost: Number.isFinite(recCost) && recCost > 0 ? recCost : 1,
         reveal: src + inv.records.text
       });
     }

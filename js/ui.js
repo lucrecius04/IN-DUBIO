@@ -48,9 +48,15 @@ const UI = (() => {
     endsAt: 0,
     timerId: null,
     durationSec: 0,
+    origDurationSec: 0,
     config: null,
     best: null,
-    hasRun: false
+    hasRun: false,
+    lastHeartbeatAt: 0,
+    /** Po odemčení soustředění za Moudrost: −15 s na další běh (kumulativně, max ~ základ). */
+    extraDurationCut: 0,
+    /** Po odemknutí za inkoust: zobrazit znovu „Zahájit“ i když už jedno pátrání proběhlo. */
+    zahajitPovolenoPoInkoustu: false
   };
 
   function _wfClueTimedCfg(pripad) {
@@ -71,9 +77,92 @@ const UI = (() => {
     };
   }
 
+  /** Timed hunt + zkrácení času podle Naděje / Viny (viz designový dodatek). */
+  function _wfCluePatraniRuntimeCfg(pripad) {
+    const base = _wfClueTimedCfg(pripad);
+    if (!base) return null;
+    let dur = base.durationSec;
+    const stressReasons = [];
+    const nd = Number(State.get('traits.Nadeje')) || 0;
+    const vn = Number(State.get('traits.Vina')) || 0;
+    if (nd <= 25) {
+      dur -= 15;
+      stressReasons.push({ sec: 15, text: 'Kriticky nízká Naděje' });
+    } else if (nd <= 40) {
+      dur -= 8;
+      stressReasons.push({ sec: 8, text: 'Nízká Naděje' });
+    }
+    if (vn >= 75) {
+      dur -= 12;
+      stressReasons.push({ sec: 12, text: 'Vysoká Vina' });
+    } else if (vn >= 60) {
+      dur -= 6;
+      stressReasons.push({ sec: 6, text: 'Vysoká Vina' });
+    }
+    dur = Math.max(20, Math.min(180, Math.round(dur)));
+    const cut = Number(_wfCluePatrani.extraDurationCut) || 0;
+    if (cut > 0) {
+      dur = Math.max(25, dur - cut);
+    }
+    return { ...base, durationSec: dur, stressReasons };
+  }
+
+  function _wfClueFocusMax(pripad) {
+    if (typeof Cases !== 'undefined' && Cases.ziskejClueFocusMax) {
+      return Number(Cases.ziskejClueFocusMax(pripad)) || 0;
+    }
+    return 0;
+  }
+
+  function _wfMoznostMaDostatekZdroju(moznost) {
+    if (!moznost || typeof moznost !== 'object') return true;
+    const finBal = Number(State.get('finance.balance')) || 0;
+    const fc = Number(moznost.finance);
+    if (Number.isFinite(fc) && fc < 0 && finBal < -fc) return false;
+    const req = moznost.requires;
+    if (req && typeof req === 'object' && req.trait_max && typeof req.trait_max === 'object') {
+      for (const [trait, maxVal] of Object.entries(req.trait_max)) {
+        const lim = Number(maxVal);
+        const v = Number(State.get('traits.' + trait));
+        if (Number.isFinite(lim) && Number.isFinite(v) && v > lim) return false;
+      }
+    }
+    return true;
+  }
+
   function _wfCluePatraniZastavTimer() {
     if (_wfCluePatrani.timerId) clearInterval(_wfCluePatrani.timerId);
     _wfCluePatrani.timerId = null;
+  }
+
+  /** Po neúspěšném běhu (čas, zavření spisu) — persist, aby po znovuotevření nebylo znovu „Zahájit“ zdarma. */
+  function _wfCluePatraniUlozKonecNeuspech(pripad) {
+    if (!pripad || typeof State === 'undefined' || !_wfClueTimedCfg(pripad)) return;
+    if (typeof Cases !== 'undefined' && Cases.maPotvrzenouClueVazbu && Cases.maPotvrzenouClueVazbu(pripad)) {
+      if (State.vymazCluePatraniSession) State.vymazCluePatraniSession(pripad.id);
+      State.uloz();
+      return;
+    }
+    if (State.ulozCluePatraniSession) {
+      State.ulozCluePatraniSession(pripad.id, {
+        hasRun: true,
+        needsPaidRetry: true,
+        extraDurationCut: Number(_wfCluePatrani.extraDurationCut) || 0
+      });
+    }
+    State.uloz();
+  }
+
+  function _wfCluePatraniNactiZeStavu(pripad) {
+    if (!pripad || typeof State === 'undefined' || !State.nactiCluePatraniSession || !_wfClueTimedCfg(pripad)) {
+      return;
+    }
+    const s = State.nactiCluePatraniSession(pripad.id);
+    if (!s) return;
+    if (s.hasRun) _wfCluePatrani.hasRun = true;
+    if (Number.isFinite(Number(s.extraDurationCut)) && Number(s.extraDurationCut) > 0) {
+      _wfCluePatrani.extraDurationCut = Number(s.extraDurationCut);
+    }
   }
 
   function _wfCluePatraniReset(keepRun = false) {
@@ -81,11 +170,21 @@ const UI = (() => {
     _wfCluePatrani.active = false;
     _wfCluePatrani.endsAt = 0;
     _wfCluePatrani.durationSec = 0;
+    _wfCluePatrani.origDurationSec = 0;
     _wfCluePatrani.config = null;
+    _wfCluePatrani.lastHeartbeatAt = 0;
     if (!keepRun) {
       _wfCluePatrani.best = null;
       _wfCluePatrani.hasRun = false;
+      _wfCluePatrani.extraDurationCut = 0;
+      _wfCluePatrani.zahajitPovolenoPoInkoustu = false;
     }
+    const mod = document.getElementById('modal-pripad');
+    if (mod) {
+      mod.classList.remove('case-wf-hunt-stress--mid', 'case-wf-hunt-stress--high');
+      mod.style.removeProperty('--case-wf-hunt-vignette');
+    }
+    if (typeof SFX !== 'undefined' && SFX.zastavPatraniHeartbeat) SFX.zastavPatraniHeartbeat();
     _wfCluePatraniHudUpdate();
   }
 
@@ -158,41 +257,210 @@ const UI = (() => {
     return `Nejlepší nalezená vazba: ${_wfClueSoudniTextSily(_wfCluePatrani.best.strength)}.`;
   }
 
+  /** Po skončení časovaného pátrání — bez „nejlepší průběžné“, jen výsledek. */
+  function _wfCluePatraniVysledekBestText() {
+    if (!_wfCluePatrani.best) return 'Objevená vazba: žádná.';
+    return `Objevená vazba: ${_wfClueSoudniTextSily(_wfCluePatrani.best.strength)}.`;
+  }
+
+  function _wfZahlaviPlainText(text) {
+    let s = String(text == null ? '' : text);
+    s = s.replace(/<[^>]+>/g, ' ');
+    s = s.replace(/\s+/g, ' ').trim();
+    return s;
+  }
+
+  /** Jeden řádek pod obviněním — pouze stručná pole z dat; bez celého spisu (lékárník, důkazy…). */
+  function _wfZahlaviKratkyPopis(pripad) {
+    if (!pripad) return '';
+    const raw = pripad.short_lead || pripad.short_description || '';
+    let plain = _wfZahlaviPlainText(raw);
+    const defName = _wfZahlaviPlainText(pripad.defendant?.name || '');
+    if (defName.length >= 2) {
+      const low = plain.toLowerCase();
+      const dLow = defName.toLowerCase();
+      if (low.startsWith(dLow)) {
+        plain = plain.slice(defName.length).replace(/^[\s,;.:\u2013\u2014-]+/, '').trim();
+      }
+    }
+    if (!plain) return '';
+    const max = 72;
+    if (plain.length <= max) return plain;
+    return plain.slice(0, max - 1).trimEnd() + '…';
+  }
+
+  function _wfAktualizujHeaderAkciPripadu() {
+    const el = document.getElementById('case-wf-header-akce');
+    if (!el) return;
+    const mod = document.getElementById('modal-pripad');
+    if (mod && mod.dataset.verdictMode === 'readonly') {
+      el.textContent = '';
+      return;
+    }
+    const z = Number(State.get('investigationActionsLeft')) || 0;
+    el.textContent = `Akce průzkumu: ${z}`;
+  }
+
   function _wfCluePatraniHudEnsure() {
-    const host = document.querySelector('#modal-pripad .pripad-panel--wireframe .pripad-zahlavi');
-    if (!host) return null;
-    let hud = document.getElementById('case-wf-clue-hud');
-    if (hud) return hud;
-    hud = document.createElement('div');
-    hud.id = 'case-wf-clue-hud';
-    hud.className = 'case-wf-clue-hud skryto';
-    hud.innerHTML =
-      `<div class="case-wf-clue-hud-line" id="case-wf-clue-hud-time">Probíhá vyšetřování: 0 s</div>` +
-      `<div class="case-wf-clue-hud-line case-wf-clue-hud-line--best" id="case-wf-clue-hud-best">Nejlepší nalezená vazba: zatím žádná.</div>` +
-      `<div class="case-wf-clue-hud-actions">` +
-      `<button type="button" class="case-wf-clue-hud-btn" id="case-wf-clue-hud-action">Spustit pátrání</button>` +
-      `<button type="button" class="case-wf-clue-hud-btn skryto" id="case-wf-clue-hud-confirm">Potvrdit vazbu</button>` +
-      `</div>`;
-    host.appendChild(hud);
-    return hud;
+    const legacy = document.getElementById('case-wf-clue-hud');
+    if (legacy && legacy.querySelector('#case-wf-clue-hud-time')) legacy.remove();
+
+    const slot = document.getElementById('case-wf-clue-hud-slot');
+    if (!slot) return null;
+
+    const migrateFrom = document.getElementById('case-wf-clue-status-slot');
+    let detail = document.getElementById('case-wf-clue-hud-detail');
+    if (detail && migrateFrom && detail.parentElement === migrateFrom) {
+      slot.insertBefore(detail, slot.firstChild);
+    }
+
+    if (!detail) {
+      detail = document.createElement('div');
+      detail.id = 'case-wf-clue-hud-detail';
+      detail.className = 'case-wf-clue-hud case-wf-clue-hud--detail skryto';
+      detail.innerHTML =
+        `<div class="case-wf-clue-hud-line" id="case-wf-clue-hud-time">Probíhá vyšetřování: 0 s</div>` +
+        `<div class="case-wf-clue-hud-line case-wf-clue-hud-line--best" id="case-wf-clue-hud-best">Nejlepší nalezená vazba: zatím žádná.</div>` +
+        `<div class="case-wf-clue-hud-line skryto" id="case-wf-clue-hud-focus"></div>` +
+        `<div class="case-wf-clue-focus-lock skryto" id="case-wf-clue-focus-lock">` +
+        `<div class="case-wf-clue-focus-lock-actions case-wf-clue-focus-lock-actions--dual">` +
+        `<button type="button" class="case-wf-clue-hud-btn" id="case-wf-clue-unlock-ink">Obnovit (−1 inkoust)</button>` +
+        `<button type="button" class="case-wf-clue-hud-btn" id="case-wf-clue-unlock-wis">−2 Moudrosti</button>` +
+        `</div></div>` +
+        `<div class="case-wf-clue-hud-actions case-wf-clue-hud-actions--detail">` +
+        `<button type="button" class="case-wf-clue-hud-btn skryto" id="case-wf-clue-hud-confirm">Potvrdit vazbu</button>` +
+        `</div>`;
+      slot.insertBefore(detail, slot.firstChild);
+    } else if (detail.parentElement !== slot) {
+      slot.insertBefore(detail, slot.firstChild);
+    }
+
+    let headerWrap = document.getElementById('case-wf-clue-hud-header-wrap');
+    if (!headerWrap) {
+      headerWrap = document.createElement('div');
+      headerWrap.id = 'case-wf-clue-hud-header-wrap';
+      headerWrap.className = 'case-wf-clue-hud-header-wrap';
+      headerWrap.innerHTML =
+        `<button type="button" class="case-wf-clue-hud-btn case-wf-clue-hud-btn--start" id="case-wf-clue-hud-action">Zahájit pátrání</button>`;
+      slot.appendChild(headerWrap);
+    } else if (headerWrap.parentElement !== slot) {
+      slot.appendChild(headerWrap);
+    }
+    if (detail && headerWrap && detail.nextElementSibling !== headerWrap) {
+      slot.insertBefore(detail, headerWrap);
+    }
+
+    const lockAct = detail?.querySelector('.case-wf-clue-focus-lock-actions');
+    if (lockAct && !document.getElementById('case-wf-clue-unlock-ink')) {
+      const ink = document.createElement('button');
+      ink.type = 'button';
+      ink.id = 'case-wf-clue-unlock-ink';
+      ink.className = 'case-wf-clue-hud-btn';
+      ink.textContent = 'Obnovit (−1 inkoust)';
+      lockAct.insertBefore(ink, lockAct.firstChild);
+    }
+
+    return document.getElementById('case-wf-clue-hud-detail');
   }
 
   function _wfCluePatraniHudUpdate(pripad = _wfClueAktivniPripad, onRozsudek = _wfClueAktivniOnRozsudek) {
-    const hud = _wfCluePatraniHudEnsure();
-    if (!hud) return;
-    const cfg = _wfClueTimedCfg(pripad);
-    if (!cfg || !pripad) {
-      hud.classList.add('skryto');
+    const detail = _wfCluePatraniHudEnsure();
+    const headerWrap = document.getElementById('case-wf-clue-hud-header-wrap');
+    const timed = !!_wfClueTimedCfg(pripad);
+    const runCfg = timed ? _wfCluePatraniRuntimeCfg(pripad) : null;
+    const maxF = _wfClueFocusMax(pripad);
+    if (!pripad || (!timed && maxF <= 0)) {
+      detail?.classList.add('skryto');
+      headerWrap?.classList.add('skryto');
+      _wfAktualizujHeaderAkciPripadu();
       return;
     }
-    hud.classList.remove('skryto');
+
     const aktivni = !!_wfCluePatrani.active;
     const timeEl = document.getElementById('case-wf-clue-hud-time');
     const bestEl = document.getElementById('case-wf-clue-hud-best');
+    const focusEl = document.getElementById('case-wf-clue-hud-focus');
+    const lockWrap = document.getElementById('case-wf-clue-focus-lock');
     const actionBtn = document.getElementById('case-wf-clue-hud-action');
     const confirmBtn = document.getElementById('case-wf-clue-hud-confirm');
+    const unlockInk = document.getElementById('case-wf-clue-unlock-ink');
+    const unlockWis = document.getElementById('case-wf-clue-unlock-wis');
 
-    if (aktivni) {
+    const matched = typeof Cases !== 'undefined' && Cases.maPotvrzenouClueVazbu && Cases.maPotvrzenouClueVazbu(pripad);
+    const locked = maxF > 0 && typeof State !== 'undefined' && State.jeClueFocusZamceno && State.jeClueFocusZamceno(pripad.id);
+    const huntSess = typeof State !== 'undefined' && State.nactiCluePatraniSession
+      ? State.nactiCluePatraniSession(pripad.id)
+      : null;
+    const needPaidHunt = !!(huntSess && huntSess.needsPaidRetry);
+    const fz = maxF > 0 && State.ziskejClueFocusZbyva ? State.ziskejClueFocusZbyva(pripad.id) : null;
+
+    if (focusEl) {
+      if (timed && aktivni && maxF > 0 && !matched) {
+        focusEl.classList.remove('skryto');
+        if (locked) {
+          focusEl.textContent = 'Soustředění: vyčerpáno (stopy zamčeny).';
+        } else if (fz) {
+          focusEl.textContent = `Soustředění: zbývá ${fz.remaining} z ${maxF} pokusů na špatné spojení.`;
+        } else {
+          focusEl.textContent = `Soustředění: ${maxF} pokusů na špatné spojení.`;
+        }
+      } else {
+        focusEl.classList.add('skryto');
+        focusEl.textContent = '';
+      }
+    }
+    if (lockWrap) {
+      if (matched) {
+        lockWrap.classList.add('skryto');
+      } else if (maxF > 0 && locked) {
+        lockWrap.classList.remove('skryto');
+      } else if (timed && needPaidHunt) {
+        lockWrap.classList.remove('skryto');
+      } else {
+        lockWrap.classList.add('skryto');
+      }
+    }
+
+    const zbyvaAkci = Number(State.get('investigationActionsLeft')) || 0;
+    if (unlockInk) {
+      unlockInk.disabled = zbyvaAkci < 1;
+      unlockInk.title =
+        zbyvaAkci < 1
+          ? 'Nemáte volnou sdílenou akci průzkumu (kapku inkoustu).'
+          : 'Odemkne stopy za jednu akci a ihned spustí nové pátrání; čas se oproti normě zkrátí o 15 s (kumulativně s dalšími obnovami).';
+      unlockInk.onclick = () => {
+        if (!pripad || !State.odemkniClueHuntDalsiBeh) return;
+        const ok = State.odemkniClueHuntDalsiBeh(pripad.id, maxF, 'ink');
+        if (!ok) {
+          zobrazStavovouZpravu(
+            'Nelze zaplatit další běh — nemáte volnou akci průzkumu, nebo není co odemykat.'
+          );
+          return;
+        }
+        _wfCluePatrani.extraDurationCut = (Number(_wfCluePatrani.extraDurationCut) || 0) + 15;
+        State.uloz();
+        _wfClueAplikujUzamceni(pripad);
+        _wfCluePatraniSpust(pripad, onRozsudek);
+        zobrazStavovouZpravu('Obětovali jste jednu akci průzkumu — stopy jsou odemčeny, pátrání běží znovu (kratší limit).');
+        Desk.aktualizujVse();
+      };
+    }
+    if (unlockWis) {
+      const moudrost = Number(State.get('traits.Moudrost')) || 0;
+      unlockWis.disabled = moudrost < 2;
+      unlockWis.title = moudrost < 2 ? 'Potřebujete alespoň 2 body Moudrosti.' : 'Odemkne stopy, −2 Moudrosti, a ihned spustí pátrání se zkráceným časem.';
+      unlockWis.onclick = () => {
+        if (!pripad || !State.odemkniClueHuntDalsiBeh) return;
+        const ok = State.odemkniClueHuntDalsiBeh(pripad.id, maxF, 'moudrost');
+        if (!ok) return;
+        _wfCluePatrani.extraDurationCut = (Number(_wfCluePatrani.extraDurationCut) || 0) + 15;
+        State.uloz();
+        _wfClueAplikujUzamceni(pripad);
+        _wfCluePatraniSpust(pripad, onRozsudek);
+      };
+    }
+
+    if (timed && aktivni) {
       if (timeEl) {
         timeEl.classList.remove('skryto');
         timeEl.textContent = `Probíhá vyšetřování: ${_wfCluePatraniZbyvaSec()} s`;
@@ -201,7 +469,6 @@ const UI = (() => {
         bestEl.classList.remove('skryto');
         bestEl.textContent = _wfCluePatraniBestText();
       }
-      if (actionBtn) actionBtn.classList.add('skryto');
       if (confirmBtn) {
         const muze = !!_wfClueKandidat;
         confirmBtn.classList.remove('skryto');
@@ -210,16 +477,15 @@ const UI = (() => {
           ? 'Potvrdit aktuálně nalezenou vazbu.'
           : 'Zatím nebyla nalezena žádná vazba.';
       }
-    } else if (_wfCluePatrani.hasRun) {
+    } else if (timed && _wfCluePatrani.hasRun) {
       if (timeEl) {
         timeEl.classList.remove('skryto');
         timeEl.textContent = 'Pátrání proběhlo.';
       }
       if (bestEl) {
         bestEl.classList.remove('skryto');
-        bestEl.textContent = _wfCluePatraniBestText();
+        bestEl.textContent = _wfCluePatraniVysledekBestText();
       }
-      if (actionBtn) actionBtn.classList.add('skryto');
       if (confirmBtn) {
         confirmBtn.classList.add('skryto');
         confirmBtn.disabled = true;
@@ -234,13 +500,18 @@ const UI = (() => {
         confirmBtn.title = '';
       }
       if (actionBtn) {
-        actionBtn.classList.remove('skryto');
-        actionBtn.textContent = `Spustit pátrání (${cfg.durationSec}s)`;
+        if (timed && runCfg) {
+          actionBtn.textContent = `Zahájit pátrání (${runCfg.durationSec}s)`;
+          actionBtn.title = '';
+          actionBtn.disabled = !!(maxF > 0 && locked && !matched);
+        }
       }
     }
     if (actionBtn) {
       actionBtn.onclick = () => {
         if (_wfCluePatrani.active) return;
+        if (!_wfClueTimedCfg(pripad)) return;
+        if (maxF > 0 && State.jeClueFocusZamceno && State.jeClueFocusZamceno(pripad.id)) return;
         _wfCluePatraniSpust(pripad, onRozsudek);
       };
     }
@@ -261,6 +532,25 @@ const UI = (() => {
         });
       };
     }
+
+    const showHeaderStart = !!(
+      timed &&
+      runCfg &&
+      !aktivni &&
+      !locked &&
+      !matched &&
+      (!_wfCluePatrani.hasRun || _wfCluePatrani.zahajitPovolenoPoInkoustu)
+    );
+    if (headerWrap) headerWrap.classList.toggle('skryto', !showHeaderStart);
+
+    const showDetail = !!(
+      timed &&
+      !matched &&
+      (aktivni || _wfCluePatrani.hasRun || (maxF > 0 && locked) || needPaidHunt)
+    );
+    if (detail) detail.classList.toggle('skryto', !showDetail);
+
+    _wfAktualizujHeaderAkciPripadu();
   }
 
   function _wfCluePatraniAktualizujUi() {
@@ -327,14 +617,17 @@ const UI = (() => {
   }
 
   function _wfCluePatraniSpust(pripad, onRozsudek) {
-    const cfg = _wfClueTimedCfg(pripad);
+    const cfg = _wfCluePatraniRuntimeCfg(pripad);
     if (!cfg) return;
+    _wfCluePatrani.zahajitPovolenoPoInkoustu = false;
     _wfCluePatraniZastavTimer();
     _wfCluePatrani.active = true;
     _wfCluePatrani.hasRun = true;
     _wfCluePatrani.durationSec = cfg.durationSec;
+    _wfCluePatrani.origDurationSec = cfg.durationSec;
     _wfCluePatrani.config = cfg;
     _wfCluePatrani.best = null;
+    _wfCluePatrani.lastHeartbeatAt = 0;
     _wfCluePatrani.endsAt = Date.now() + (cfg.durationSec * 1000);
     _wfClueResetVolby();
     _wfClueResetKandidata();
@@ -342,24 +635,55 @@ const UI = (() => {
     _wfClueVykresliPotvrzeni(pripad, onRozsudek);
     _wfCluePatraniAktualizujUi();
     _wfCluePatraniHudUpdate(pripad, onRozsudek);
+    const baseSec = (() => {
+      const b = _wfClueTimedCfg(pripad);
+      return b ? b.durationSec : cfg.durationSec;
+    })();
+    zobrazStavovouZpravu(`Pátrání spuštěno: základ ${baseSec} s → váš čas ${cfg.durationSec} s.`);
+    if (Array.isArray(cfg.stressReasons) && cfg.stressReasons.length) {
+      cfg.stressReasons.forEach((r, i) => {
+        if (!r || !r.text) return;
+        setTimeout(() => zobrazStavovouZpravu(`−${r.sec}s (${r.text})`), 140 + i * 400);
+      });
+    }
     _wfCluePatrani.timerId = setInterval(() => {
       const zbyva = _wfCluePatraniZbyvaSec();
+      const total = Number(_wfCluePatrani.origDurationSec) || cfg.durationSec || 1;
+      /** Mlžení / vigneta / tep až v posledních 15 s (u kratšího limitu celý zbytek času). */
+      const cutoff = Math.min(15, Math.max(1, total));
+      const mod = document.getElementById('modal-pripad');
+      if (mod) {
+        if (zbyva > cutoff) {
+          mod.classList.remove('case-wf-hunt-stress--mid', 'case-wf-hunt-stress--high');
+          mod.style.setProperty('--case-wf-hunt-vignette', '0');
+        } else {
+          const r = cutoff > 0 ? zbyva / cutoff : 0;
+          mod.classList.toggle('case-wf-hunt-stress--mid', r < 0.55 && r > 0.2);
+          mod.classList.toggle('case-wf-hunt-stress--high', r <= 0.2 && zbyva > 0);
+          const vig = 1 - r;
+          mod.style.setProperty('--case-wf-hunt-vignette', String(Math.max(0, Math.min(1, vig * 0.9))));
+        }
+      }
+      if (typeof SFX !== 'undefined' && SFX.patraniHeartbeatTick) {
+        const urgency =
+          zbyva > cutoff ? 0 : Math.max(0, Math.min(1, 1 - zbyva / cutoff));
+        SFX.patraniHeartbeatTick(urgency);
+      }
       _wfCluePatraniAktualizujUi();
       if (zbyva > 0) return;
-      const cfgNow = _wfCluePatrani.config || {};
-      const best = _wfCluePatrani.best ? { ..._wfCluePatrani.best } : null;
-      if (cfgNow.autoConfirmBestOnTimeout && best) {
-        const ok = _wfCluePotvrdKandidata(pripad, onRozsudek, best, { timeout: true, zbyvaSec: 0 });
-        if (ok) return;
+      if (
+        _wfCluePatraniAutoPotvrdNejlepsi(pripad, onRozsudek, { timeout: true, zbyvaSec: 0 })
+      ) {
+        return;
       }
       _wfCluePatraniReset(true);
+      _wfCluePatraniUlozKonecNeuspech(pripad);
       _wfClueResetVolby();
       _wfClueResetKandidata();
       _wfClueAplikujUzamceni(pripad);
       _wfClueVykresliPotvrzeni(pripad, onRozsudek);
       zobrazStavovouZpravu('Pátrání skončilo. Nenašli jste potvrzenou osu stop.');
     }, 250);
-    zobrazStavovouZpravu(`Pátrání spuštěno: máte ${cfg.durationSec} sekund na nalezení nejsilnější vazby.`);
   }
 
   function _wfCluePotvrdKandidata(pripad, onRozsudek, kandidat, opts = {}) {
@@ -373,6 +697,9 @@ const UI = (() => {
     }
     const res = Cases.potvrdTwoClickRozpor(pripad, final);
     if (!res || !res.ok) return false;
+    if (pripad && typeof State !== 'undefined' && State.vymazCluePatraniSession) {
+      State.vymazCluePatraniSession(pripad.id);
+    }
     _wfCluePatraniReset(true);
     _wfClueResetVolby();
     _wfClueResetKandidata();
@@ -389,6 +716,20 @@ const UI = (() => {
     const veta = _wfClueSoudniVetaSily(res.strength);
     zobrazStavovouZpravu(`Potvrzena osa stop. ${veta}${extra} Další kombinace už bonus nepřinesou.`);
     return true;
+  }
+
+  /**
+   * Po skončení běhu časovaného pátrání: nejvyšší nalezenou vazbu hned zapsat do stavu
+   * (Výsledek pátrání se pak čte z potvrzení ve spisu — bez dalšího tlačítka).
+   */
+  function _wfCluePatraniAutoPotvrdNejlepsi(pripad, onRozsudek, opts) {
+    if (!pripad) return false;
+    if (typeof Cases !== 'undefined' && Cases.maPotvrzenouClueVazbu && Cases.maPotvrzenouClueVazbu(pripad)) {
+      return true;
+    }
+    const b = _wfCluePatrani.best;
+    if (!b || !String(b.aId || '').trim() || !String(b.bId || '').trim()) return false;
+    return _wfCluePotvrdKandidata(pripad, onRozsudek, { ...b }, opts);
   }
 
   function _wfClueVykresliPotvrzeni(pripad, onRozsudek) {
@@ -432,6 +773,8 @@ const UI = (() => {
       row.appendChild(b);
       box.appendChild(row);
       host.appendChild(box);
+      // Po potvrzené vazbě (vč. auto z timeoutu) sjednotit se záhlavím: skrýt Obnovit, nelze se vrátit k pátrání
+      _wfCluePatraniHudUpdate(pripad, onRozsudek);
       return;
     }
     _wfCluePatraniHudUpdate(pripad, onRozsudek);
@@ -442,12 +785,6 @@ const UI = (() => {
       result.innerHTML = `<div class="case-wf-clue-confirm-title">Výsledek pátrání</div>`;
       const sub = document.createElement('div');
       sub.className = 'case-wf-clue-confirm-sub';
-      if (!confirmed && !_wfCluePatrani.active) {
-        sub.textContent = 'Pátrání zatím neproběhlo.';
-        result.appendChild(sub);
-        host.appendChild(result);
-        return;
-      }
       if (!confirmed && _wfCluePatrani.active && !_wfClueKandidat) {
         sub.textContent = 'Pátrání běží. Označte ve spise dvě stopy pro průběžné vyhodnocení.';
         result.appendChild(sub);
@@ -460,7 +797,16 @@ const UI = (() => {
         host.appendChild(result);
         return;
       }
-      return;
+      if (!confirmed && !_wfCluePatrani.active && !_wfCluePatrani.hasRun) {
+        sub.textContent = 'Pátrání zatím neproběhlo.';
+        result.appendChild(sub);
+        host.appendChild(result);
+        return;
+      }
+      if (!confirmed && !_wfCluePatrani.active && _wfCluePatrani.hasRun) {
+        // Běh už skončil: buď je výsledek ve stavu (výše se vykreslí v confirmed), nebo nic
+        return;
+      }
     }
     if (maPlnouInformovanost && !_wfClueKandidat && !(timedCfg && _wfCluePatrani.active)) {
       const infoBox = document.createElement('div');
@@ -566,29 +912,41 @@ const UI = (() => {
       : null;
     const pairIds = new Set(confirmed ? [confirmed.aId, confirmed.bId] : []);
     const timedCfg = _wfClueTimedCfg(pripad);
+    const maxF = _wfClueFocusMax(pripad);
+    const focusLocked = maxF > 0 && typeof State !== 'undefined' && State.jeClueFocusZamceno
+      ? State.jeClueFocusZamceno(pripad.id)
+      : false;
     modal.classList.toggle('case-wf-clue-timed', !!timedCfg);
-    modal.classList.toggle('case-wf-clue-hunt-active', !!timedCfg && !!_wfCluePatrani.active);
+    modal.classList.toggle('case-wf-clue-hunt-active', !!timedCfg && !!_wfCluePatrani.active && !focusLocked);
     for (const el of clues) {
-      const id = String(el.dataset.clueId || '').trim();
       el.classList.remove(
         'clue--match-persist',
         'clue--match-persist-weak',
         'clue--match-persist-medium',
         'clue--match-persist-strong',
         'clue--locked',
-        'clue--hunt-active'
+        'clue--hunt-active',
+        'clue--focus-locked'
       );
-      if (!matched) continue;
-      el.classList.add('clue--locked');
-      if (pairIds.has(id)) {
-        el.classList.add('clue--match-persist');
-        if (matchCls) el.classList.add(matchCls);
-      }
     }
-    if (!matched && timedCfg && _wfCluePatrani.active) {
+    if (matched) {
+      for (const el of clues) {
+        const id = String(el.dataset.clueId || '').trim();
+        el.classList.add('clue--locked');
+        if (pairIds.has(id)) {
+          el.classList.add('clue--match-persist');
+          if (matchCls) el.classList.add(matchCls);
+        }
+      }
+    } else if (focusLocked) {
+      clues.forEach(el => el.classList.add('clue--focus-locked'));
+    } else if (timedCfg && _wfCluePatrani.active) {
       clues.forEach(el => el.classList.add('clue--hunt-active'));
     }
-    if (!matched) _wfClueAplikujKandidatVizual();
+    // Při časovaném pátrání: barevné zvýraznění kandidáta jen během běhu, ne po skončení (vč. spotřebovaného soustředění)
+    if (!matched && !focusLocked && (!timedCfg || _wfCluePatrani.active)) {
+      _wfClueAplikujKandidatVizual();
+    }
   }
 
   function _wfJeVysokaMoudrostProRozpor(pripad) {
@@ -618,6 +976,11 @@ const UI = (() => {
     const clueId = String(clueEl.dataset.clueId || '').trim();
     if (!clueId) return;
     if (typeof Cases !== 'undefined' && Cases.maPotvrzenouClueVazbu && Cases.maPotvrzenouClueVazbu(pripad)) return;
+    const maxF0 = _wfClueFocusMax(pripad);
+    if (maxF0 > 0 && typeof State !== 'undefined' && State.jeClueFocusZamceno && State.jeClueFocusZamceno(pripad.id)) {
+      zobrazStavovouZpravu('Stopy jsou zamčeny — odemkněte je v panelu soustředění výše.');
+      return;
+    }
     const timedCfg = _wfClueTimedCfg(pripad);
     if (timedCfg && !_wfCluePatrani.active) {
       zobrazStavovouZpravu('Nejdřív spusťte pátrání. Pak můžete označovat stopy.');
@@ -646,8 +1009,43 @@ const UI = (() => {
       prvni.el.classList.add('clue--miss');
       clueEl.classList.add('clue--miss');
       if (typeof SFX !== 'undefined' && SFX.slozkaPaper) SFX.slozkaPaper();
-      zobrazStavovouZpravu('Tohle nesedí — zkuste jinou dvojici stop.');
+      const maxF2 = _wfClueFocusMax(pripad);
+      if (maxF2 > 0 && typeof State !== 'undefined' && State.spotrebujClueFocusTvrdyPokus) {
+        const st = State.spotrebujClueFocusTvrdyPokus(pripad.id, maxF2);
+        State.uloz();
+        if (st.locked && _wfCluePatrani.active) {
+          _wfCluePatraniZastavTimer();
+          _wfCluePatraniReset(true);
+          _wfClueResetKandidata();
+        }
+        if (st.locked) {
+          if (
+            _wfCluePatraniAutoPotvrdNejlepsi(pripad, _wfClueAktivniOnRozsudek, { timeout: false, zbyvaSec: 0 })
+          ) {
+            setTimeout(() => _wfClueResetVolby(), 260);
+            return;
+          }
+        }
+        _wfCluePatraniHudUpdate(pripad, _wfClueAktivniOnRozsudek);
+        _wfClueAplikujUzamceni(pripad);
+        _wfClueVykresliPotvrzeni(pripad, _wfClueAktivniOnRozsudek);
+        zobrazStavovouZpravu(
+          st.locked
+            ? 'Tohle nesedí — soustředění vyčerpáno, stopy se uzamkly.'
+            : `Tohle nesedí — zbývá ${st.remaining} pokusů na špatné spojení.`
+        );
+      } else {
+        zobrazStavovouZpravu('Tohle nesedí — zkuste jinou dvojici stop.');
+      }
       setTimeout(() => _wfClueResetVolby(), 260);
+      return;
+    }
+
+    if (vys.softFail === true) {
+      prvni.el.classList.remove('clue--selected');
+      clueEl.classList.remove('clue--selected');
+      zobrazStavovouZpravu(vys.softMessage || 'Tyto informace spolu souvisí, ale neprokazují lživou výpověď.');
+      setTimeout(() => _wfClueResetVolby(), 120);
       return;
     }
 
@@ -780,7 +1178,36 @@ const UI = (() => {
   }
 
   function _zavriPripadModal() {
-    _wfCluePatraniReset();
+    const pZav = _wfClueAktivniPripad;
+    const onZav = _wfClueAktivniOnRozsudek;
+    if (pZav && _wfCluePatrani.active && _wfClueTimedCfg(pZav)) {
+      const zbyvaZav = _wfCluePatraniZbyvaSec();
+      const bestZav = _wfCluePatrani.best ? { ..._wfCluePatrani.best } : null;
+      if (bestZav) {
+        const potvrzeno = _wfCluePotvrdKandidata(pZav, onZav, bestZav, {
+          timeout: false,
+          zbyvaSec: zbyvaZav
+        });
+        if (!potvrzeno) {
+          _wfCluePatraniZastavTimer();
+          _wfCluePatraniReset(true);
+          _wfCluePatraniUlozKonecNeuspech(pZav);
+          _wfClueResetVolby();
+          _wfClueResetKandidata();
+          _wfClueAplikujUzamceni(pZav);
+        }
+      } else {
+        _wfCluePatraniZastavTimer();
+        _wfCluePatraniReset(true);
+        _wfCluePatraniUlozKonecNeuspech(pZav);
+        _wfClueResetVolby();
+        _wfClueResetKandidata();
+        _wfClueAplikujUzamceni(pZav);
+        zobrazStavovouZpravu('Pátrání ukončeno zavřením spisu. Nenašli jste v čase potvrzenou osu stop.');
+      }
+    } else {
+      _wfCluePatraniReset();
+    }
     _wfClueResetVolby();
     _wfClueResetKandidata();
     document.getElementById('case-wf-clue-confirm-wrap')?.remove();
@@ -1485,8 +1912,9 @@ const UI = (() => {
     if (track) track.setAttribute('aria-valuenow', String(pct));
   }
 
-  function _wfFiltrovatVerdikty(pripad) {
-    if (!pripad.verdicts) return [];
+  /** Rysy (Odvaha / Moudrost / Vina) — pro zobrazení všech karet, blokace až dál. */
+  function _wfVerdiktyPouzeRysy(pripad) {
+    if (!pripad || !pripad.verdicts) return [];
     const odvaha = Number(State.get('traits.Odvaha')) || 0;
     const moudrost = Number(State.get('traits.Moudrost')) || 0;
     const vina = Number(State.get('traits.Vina')) || 0;
@@ -1494,12 +1922,20 @@ const UI = (() => {
       if (v.requires_odvaha_min != null && odvaha < Number(v.requires_odvaha_min)) return false;
       if (v.requires_moudrost_min != null && moudrost < Number(v.requires_moudrost_min)) return false;
       if (v.available_unless_vina_above != null && vina > Number(v.available_unless_vina_above)) return false;
+      return true;
+    });
+  }
+
+  function _wfFiltrovatVerdikty(pripad) {
+    return _wfVerdiktyPouzeRysy(pripad).filter(v => {
       if (typeof Cases !== 'undefined' && Cases.jeVerdiktOdemcenPoClue) {
         if (!Cases.jeVerdiktOdemcenPoClue(pripad, v.id)) return false;
       }
       return true;
     });
   }
+
+  const _WF_VERDIKT_BLOK_TITUL = 'Tento rozsudek nelze uplatnit.';
 
   function _wfPocetOdhalenychPruzkumu(pripad) {
     if (!pripad || !Array.isArray(pripad.hidden_info)) return 0;
@@ -1564,12 +2000,33 @@ const UI = (() => {
     return false;
   }
 
-  function _wfPruzkumTextProSkupinu(items, pripad) {
-    const nove = (items || []).filter(v => _wfJeNovyVerdikt(pripad, v && v.id)).length;
+  /**
+   * Rádek pod „Vinen“: jen když už je aspoň jeden „nový“ (pool) rozsudek reálně dostupný
+   * po průzkumu — ne jen naskriptovaný ve skupině.
+   */
+  function _wfPruzkumTextProSkupinu(items, pripad, dostupneIdSet) {
+    const set = dostupneIdSet instanceof Set ? dostupneIdSet : null;
+    const nove = (items || []).filter(v => {
+      if (!_wfJeNovyVerdikt(pripad, v && v.id)) return false;
+      const id = String((v && v.id) || '').trim();
+      if (!id) return false;
+      if (set && !set.has(id)) return false;
+      return true;
+    }).length;
     if (!nove) return null;
     if (nove === 1) return 'Průzkum: +1 nový rozsudek';
     if (nove >= 2 && nove <= 4) return `Průzkum: +${nove} nové rozsudky`;
     return `Průzkum: +${nove} nových rozsudků`;
+  }
+
+  /** Titulek karty trestu; u pool „nových“ po průzkumu jednou „Průzkum:“ (bez zdvojení z JSON). */
+  function _wfVerdiktTitulekProZobrazeni(pripad, r) {
+    const raw = String((r && r.text) || '—').trim();
+    if (_wfJeNovyVerdikt(pripad, r && r.id)) {
+      if (/^průzkum\s*:/i.test(raw)) return raw;
+      return 'Průzkum: ' + raw;
+    }
+    return raw;
   }
 
   function _wfVerdiktyDoSkupin(verdicts) {
@@ -1641,7 +2098,7 @@ const UI = (() => {
     _wfVerdictStampTeardown();
   }
 
-  function _wfVyplnStep2(grp, polozky, pripad, onRozsudek) {
+  function _wfVyplnStep2(grp, polozky, pripad, onRozsudek, dostupneIdSet) {
     const modWf = document.getElementById('modal-pripad');
     if (modWf && modWf.dataset.verdictMode === 'readonly') return;
     if (typeof State !== 'undefined' && pripad && State.jePripadUzavren && State.jePripadUzavren(pripad.id)) return;
@@ -1661,12 +2118,25 @@ const UI = (() => {
     for (const r of polozky) {
       const b = document.createElement('button');
       b.type = 'button';
-      const unlocked = _wfJeNovyVerdikt(pripad, r.id);
-      b.className = 'case-wf-verdict-opt' + (unlocked ? ' case-wf-verdict-opt--unlocked' : '');
-      b.innerHTML =
-        `<div class="case-wf-v-title">${unlocked ? 'Průzkum: ' : ''}${r.text || '—'}</div>` +
-        (r.consequence ? `<div class="case-wf-v-desc">${r.consequence}</div>` : '');
+      const klic = String(r.id || '');
+      const lzeZvolit = !dostupneIdSet || dostupneIdSet.has(klic);
+      b.disabled = !lzeZvolit;
+      const unlocked = lzeZvolit && _wfJeNovyVerdikt(pripad, r.id);
+      b.className = (
+        'case-wf-verdict-opt' +
+        (unlocked ? ' case-wf-verdict-opt--unlocked' : '') +
+        (!lzeZvolit ? ' case-wf-verdict-opt--locked' : '')
+      ).trim();
+      if (!lzeZvolit) b.title = _WF_VERDIKT_BLOK_TITUL;
+      if (!lzeZvolit) {
+        b.innerHTML = `<div class="case-wf-v-blocked case-wf-v-blocked--tease">${_WF_VERDIKT_BLOK_TITUL}</div>`;
+      } else {
+        b.innerHTML =
+          `<div class="case-wf-v-title">${_wfVerdiktTitulekProZobrazeni(pripad, r)}</div>` +
+          (r.consequence ? `<div class="case-wf-v-desc">${r.consequence}</div>` : '');
+      }
       b.addEventListener('click', () => {
+        if (b.disabled) return;
         step2.querySelectorAll('.case-wf-verdict-opt').forEach(x => x.classList.remove('case-wf-verdict-opt--selected'));
         b.classList.add('case-wf-verdict-opt--selected');
         _wfRozsudekVyber = { rozsudek: r };
@@ -1700,13 +2170,16 @@ const UI = (() => {
     _wfResetVerdictUi();
     _wfPripadCallback = onRozsudek;
     const dostupne = _wfFiltrovatVerdiktyPodlePruzkumu(pripad, _wfFiltrovatVerdikty(pripad));
+    const dostupneId = new Set(dostupne.map(v => String(v.id || '')));
+    const vsechny =
+      pripad && Array.isArray(pripad.verdicts) && pripad.verdicts.length ? pripad.verdicts : dostupne;
     const step1 = document.getElementById('case-wf-verdict-step1');
     const step1Wrap = document.getElementById('case-wf-step1-wrap');
     const confirmBtn = document.getElementById('case-wf-confirm-rozsudek');
     if (!step1 || !confirmBtn) return;
     if (step1Wrap) step1Wrap.classList.remove('skryto');
 
-    const g = _wfVerdiktyDoSkupin(dostupne);
+    const g = _wfVerdiktyDoSkupin(vsechny);
     const skupiny = [];
     if (g.guilty.length) {
       skupiny.push({
@@ -1737,13 +2210,13 @@ const UI = (() => {
 
     if (pouzitPoolSkupiny && skupiny.length === 1) {
       if (step1Wrap) step1Wrap.classList.add('skryto');
-      _wfVyplnStep2(skupiny[0].key, skupiny[0].items, pripad, onRozsudek);
+      _wfVyplnStep2(skupiny[0].key, skupiny[0].items, pripad, onRozsudek, dostupneId);
       _wfRozsudekVyber = { mode: 'twostep', grp: skupiny[0].key };
     } else if (pouzitPoolSkupiny) {
       for (const s of skupiny) {
         const b = document.createElement('button');
         b.type = 'button';
-        const unlockLine = _wfPruzkumTextProSkupinu(s.items, pripad);
+        const unlockLine = _wfPruzkumTextProSkupinu(s.items, pripad, dostupneId);
         const maBytUnlockedSkupina = !!unlockLine && s.key === 'insufficient';
         b.className = 'case-wf-verdict-opt' + (maBytUnlockedSkupina ? ' case-wf-verdict-opt--unlocked' : '');
         b.innerHTML =
@@ -1753,7 +2226,7 @@ const UI = (() => {
         b.addEventListener('click', () => {
           step1.querySelectorAll('.case-wf-verdict-opt').forEach(x => x.classList.remove('case-wf-verdict-opt--selected'));
           b.classList.add('case-wf-verdict-opt--selected');
-          _wfVyplnStep2(s.key, s.items, pripad, onRozsudek);
+          _wfVyplnStep2(s.key, s.items, pripad, onRozsudek, dostupneId);
         });
         step1.appendChild(b);
       }
@@ -1762,16 +2235,26 @@ const UI = (() => {
       if (step1Wrap) step1Wrap.classList.add('skryto');
       const leg = document.getElementById('case-wf-verdict-legacy');
       if (leg) leg.classList.remove('skryto');
-      for (const rozsudek of dostupne.length ? dostupne : []) {
+      for (const rozsudek of vsechny.length ? vsechny : []) {
         const btn = document.createElement('button');
         btn.type = 'button';
-        const unlocked = _wfJeNovyVerdikt(pripad, rozsudek.id);
-        btn.className = ('case-wf-verdict-opt ' + _rozsudekTrida(rozsudek.id)).trim() +
-          (unlocked ? ' case-wf-verdict-opt--unlocked' : '');
-        btn.innerHTML =
-          `<div class="case-wf-v-title">${unlocked ? 'Průzkum: ' : ''}${rozsudek.text || '—'}</div>` +
-          (rozsudek.consequence ? `<div class="case-wf-v-desc">${rozsudek.consequence}</div>` : '');
+        const kid = String(rozsudek.id || '');
+        const lzeZvolit = dostupneId.has(kid);
+        btn.disabled = !lzeZvolit;
+        if (!lzeZvolit) btn.title = _WF_VERDIKT_BLOK_TITUL;
+        const unlocked = lzeZvolit && _wfJeNovyVerdikt(pripad, rozsudek.id);
+        btn.className = (
+          'case-wf-verdict-opt ' + _rozsudekTrida(rozsudek.id) + (unlocked ? ' case-wf-verdict-opt--unlocked' : '') + (!lzeZvolit ? ' case-wf-verdict-opt--locked' : '')
+        ).trim();
+        if (!lzeZvolit) {
+          btn.innerHTML = `<div class="case-wf-v-blocked case-wf-v-blocked--tease">${_WF_VERDIKT_BLOK_TITUL}</div>`;
+        } else {
+          btn.innerHTML =
+            `<div class="case-wf-v-title">${_wfVerdiktTitulekProZobrazeni(pripad, rozsudek)}</div>` +
+            (rozsudek.consequence ? `<div class="case-wf-v-desc">${rozsudek.consequence}</div>` : '');
+        }
         btn.addEventListener('click', () => {
+          if (btn.disabled) return;
           leg.querySelectorAll('.case-wf-verdict-opt').forEach(x => x.classList.remove('case-wf-verdict-opt--selected'));
           btn.classList.add('case-wf-verdict-opt--selected');
           _wfRozsudekVyber = { mode: 'single', rozsudek };
@@ -1868,12 +2351,14 @@ const UI = (() => {
 
     _prepniTabPripadu('pripad');
     _wfVerdictRenderedForCaseId = null;
+    _wfClueAktivniPripad = pripad;
+    _wfClueAktivniOnRozsudek = onRozsudek;
     _wfCluePatraniReset();
+    _wfCluePatraniNactiZeStavu(pripad);
+    _wfCluePatraniHudUpdate(pripad, onRozsudek);
     _wfClueResetVolby();
     _wfClueResetKandidata();
     document.getElementById('case-wf-clue-confirm-wrap')?.remove();
-    _wfClueAktivniPripad = pripad;
-    _wfClueAktivniOnRozsudek = onRozsudek;
 
     const modP = document.getElementById('modal-pripad');
     if (modP) {
@@ -1902,6 +2387,9 @@ const UI = (() => {
     document.getElementById('pripad-nazev-text').textContent = pripad.title;
     document.getElementById('pripad-obvineni-text').textContent =
       `${pripad.defendant?.name || '—'}, ${pripad.charge || '—'}`;
+    const leadHdr = document.getElementById('pripad-zahlavi-lead');
+    if (leadHdr) leadHdr.textContent = _wfZahlaviKratkyPopis(pripad);
+    document.getElementById('case-wf-clue-hud-slot')?.classList.remove('skryto');
 
     const spZn = document.getElementById('pripad-spis-zn');
     if (spZn) spZn.textContent = (pripad.case_number || '—').trim();
@@ -1914,6 +2402,17 @@ const UI = (() => {
     if (Number.isFinite(denP) && denP % 7 === 1 && State.get('pondeli_moudrost_extra')) {
       situace = 'Odpočinutá neděle ti ještě rezonuje v hlavě — první řádky čteš jinak než obvykle.\n\n' + situace;
       State.set('pondeli_moudrost_extra', false);
+    }
+    if (_wfClueTimedCfg(pripad)) {
+      const ndS = Number(State.get('traits.Nadeje')) || 0;
+      const vnS = Number(State.get('traits.Vina')) || 0;
+      if (ndS <= 25 || vnS >= 70) {
+        situace =
+          'Třesou se ti ruce; dnes bude těžké udržet pozornost u detailů.\n\n' + situace;
+      }
+    }
+    if (typeof Cases !== 'undefined' && Cases.ziskejClueFocusMax && State.inicializujClueFocusPokudTreba) {
+      State.inicializujClueFocusPokudTreba(pripad.id, Cases.ziskejClueFocusMax(pripad));
     }
     _wfNastavRichText(document.getElementById('pripad-situace-text'), situace);
 
@@ -2006,6 +2505,10 @@ const UI = (() => {
     document.getElementById('pripad-nazev-text').textContent = pripad.title;
     document.getElementById('pripad-obvineni-text').textContent =
       `${pripad.defendant?.name || '—'}, ${pripad.charge || '—'}`;
+    const leadHdrR = document.getElementById('pripad-zahlavi-lead');
+    if (leadHdrR) leadHdrR.textContent = _wfZahlaviKratkyPopis(pripad);
+    document.getElementById('case-wf-clue-hud-slot')?.classList.add('skryto');
+    _wfAktualizujHeaderAkciPripadu();
 
     const spZnR = document.getElementById('pripad-spis-zn');
     if (spZnR) spZnR.textContent = (pripad.case_number || '—').trim();
@@ -2088,6 +2591,7 @@ const UI = (() => {
     if (!pripad.hidden_info || pripad.hidden_info.length === 0) {
       document.getElementById('prukzum-panel')?.classList.add('skryto');
       document.getElementById('case-wf-inform-wrap')?.classList.add('skryto');
+      _wfAktualizujHeaderAkciPripadu();
       return;
     }
     document.getElementById('prukzum-panel')?.classList.add('skryto');
@@ -2114,7 +2618,16 @@ const UI = (() => {
       }
 
       const jizOdhaleno = State.jeInfoOdhaleno(pripad.id, info.id);
-      const cena = Number(info.cost) > 0 ? Number(info.cost) : 1;
+      const denAkce = Number(State.get('currentDay')) || 0;
+      const recDo = State.get('flags.records_free_until_day');
+      const recFree =
+        info.action === 'records' &&
+        recDo != null &&
+        Number.isFinite(Number(recDo)) &&
+        denAkce > 0 &&
+        denAkce <= Number(recDo);
+      let cena = Number(info.cost) > 0 ? Number(info.cost) : 1;
+      if (recFree) cena = 0;
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'case-wf-action-btn' + (jizOdhaleno ? ' case-wf-action-btn--used' : '');
@@ -2124,7 +2637,16 @@ const UI = (() => {
       if (!jizOdhaleno) {
         btn.addEventListener('click', () => {
           const zbyvaji2 = State.get('investigationActionsLeft');
-          const cenaKlik = Number(info.cost) > 0 ? Number(info.cost) : 1;
+          const denK = Number(State.get('currentDay')) || 0;
+          const recDoK = State.get('flags.records_free_until_day');
+          const recFreeK =
+            info.action === 'records' &&
+            recDoK != null &&
+            Number.isFinite(Number(recDoK)) &&
+            denK > 0 &&
+            denK <= Number(recDoK);
+          let cenaKlik = Number(info.cost) > 0 ? Number(info.cost) : 1;
+          if (recFreeK) cenaKlik = 0;
           if (zbyvaji2 < cenaKlik) return;
 
           State.set('investigationActionsLeft', zbyvaji2 - cenaKlik);
@@ -2151,6 +2673,7 @@ const UI = (() => {
       wfAkce?.appendChild(btn);
     }
     _wfClueVykresliPotvrzeni(pripad, onRozsudek);
+    _wfAktualizujHeaderAkciPripadu();
   }
 
   function _zobrazOdhalenoInfo(kontejner, info) {
@@ -2428,7 +2951,15 @@ const UI = (() => {
       const btn = document.createElement('button');
       btn.className = 'btn-vecer';
       btn.textContent = moznost.text;
+      const ok = _wfMoznostMaDostatekZdroju(moznost);
+      btn.disabled = !ok;
+      if (!ok && Number(moznost.finance) < 0) {
+        btn.title = 'Nedostatek financí.';
+      } else if (!ok) {
+        btn.title = 'Tato volba teď není k dispozici.';
+      }
       btn.addEventListener('click', () => {
+        if (!_wfMoznostMaDostatekZdroju(moznost)) return;
         _zavriModal('modal-vecer');
         if (callback) callback(moznost);
       });
@@ -2458,15 +2989,24 @@ const UI = (() => {
       const btn = document.createElement('button');
       btn.className = 'btn-vecer';
       btn.textContent = moznost.text;
+      const okN = _wfMoznostMaDostatekZdroju(moznost);
+      btn.disabled = !okN;
+      if (!okN && Number(moznost.finance) < 0) btn.title = 'Nedostatek financí.';
+      else if (!okN) btn.title = 'Tato volba teď není k dispozici.';
       btn.addEventListener('click', () => {
+        if (!_wfMoznostMaDostatekZdroju(moznost)) return;
         _zavriModal('modal-vecer');
         const id = moznost.id;
-        if (id === 'A' || id === 'B' || id === 'C' || id === 'D' || id === 'E') {
+        if (['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].includes(id)) {
           State.set('nedele_volba', id);
         }
         if (id === 'C') State.set('pondeli_moudrost_extra', true);
         if (id === 'E') State.set('pondeli_vina_emotivni', true);
         aplikujVecerniNeboNedelniMoznost(moznost);
+        const denN = Number(State.get('currentDay')) || 0;
+        if (id === 'F' && denN > 0) {
+          State.set('flags.records_free_until_day', denN + 5);
+        }
         const ft = moznost.fragment_text;
         if (ft && String(ft).trim()) {
           zobrazFragment({

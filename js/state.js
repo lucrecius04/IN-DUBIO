@@ -76,6 +76,8 @@ const State = (() => {
     _normalizujUsedCaseIds();
     _normalizujCluePairsMatched();
     _normalizujClueConfirmations();
+    _normalizujClueFocusByCase();
+    _normalizujCluePatraniSession();
     _zarucRozhodovaciStyl();
     _zarucTydenniRozsireni();
     _zarucEkonomiku();
@@ -100,6 +102,13 @@ const State = (() => {
     ];
     for (const k of F) {
       if (typeof _stav.flags[k] !== 'boolean') _stav.flags[k] = false;
+    }
+    if (typeof _stav.flags.rano_bonus_inkoust_z_kavy !== 'boolean') {
+      _stav.flags.rano_bonus_inkoust_z_kavy = false;
+    }
+    if (_stav.flags.records_free_until_day != null) {
+      const rf = Number(_stav.flags.records_free_until_day);
+      _stav.flags.records_free_until_day = Number.isFinite(rf) ? rf : null;
     }
     if (_stav.flags.karas_dluh_do_dne != null && typeof _stav.flags.karas_dluh_do_dne !== 'number') {
       const x = Number(_stav.flags.karas_dluh_do_dne);
@@ -174,8 +183,8 @@ const State = (() => {
     if (!Number.isFinite(nm) || (nm !== 1 && nm !== 1.5)) {
       _stav.tydenni_nasobek_moudrosti = 1;
     }
-    if (_stav.nedele_volba != null && _stav.nedele_volba !== 'A' && _stav.nedele_volba !== 'B' &&
-        _stav.nedele_volba !== 'C' && _stav.nedele_volba !== 'D' && _stav.nedele_volba !== 'E') {
+    const NV = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+    if (_stav.nedele_volba != null && !NV.includes(String(_stav.nedele_volba))) {
       _stav.nedele_volba = null;
     }
     if (typeof _stav.pondeli_moudrost_extra !== 'boolean') _stav.pondeli_moudrost_extra = false;
@@ -259,7 +268,11 @@ const State = (() => {
       lepsi_lekar_do_dne:     null,
       uplatek_prijat:         false,
       bankrot_varovani_zobrazeno: false,
-      dluh_pribeh_spusten:    false
+      dluh_pribeh_spusten:    false,
+      /** Ráno po večerní kávě: +1 sdílená akce průzkumu (kapka inkoustu). */
+      rano_bonus_inkoust_z_kavy: false,
+      /** Záznamy v případech stojí 0 akcí do tohoto dne včetně (null = vypnuto). */
+      records_free_until_day: null
     },
 
     archive: {
@@ -278,6 +291,13 @@ const State = (() => {
     cluePairsMatched: {},
     /** Potvrzená dvojice stopy v případu: { caseId: { pairId, strength, aId, bId } } */
     clueConfirmations: {},
+    /** Soustředění u Two-Click: { caseId: { remaining: number, locked: boolean } } */
+    clueFocusByCase: {},
+    /**
+     * Časované pátrání (clue) — persistuje stav mezi zavřením a znovuotevřením spisu.
+     * { caseId: { hasRun, needsPaidRetry, extraDurationCut? } }
+     */
+    cluePatraniSession: {},
     // Které průzkumné informace byly odkryty: { caseId: [infoId, ...] }
     revealedInfo: {},
     /**
@@ -442,6 +462,180 @@ const State = (() => {
       }
       _stav.clueConfirmations[cid] = out;
     }
+  }
+
+  function _normalizujClueFocusByCase() {
+    if (!_stav.clueFocusByCase || typeof _stav.clueFocusByCase !== 'object') {
+      _stav.clueFocusByCase = {};
+      return;
+    }
+    for (const [cid, rec] of Object.entries(_stav.clueFocusByCase)) {
+      if (!rec || typeof rec !== 'object') {
+        delete _stav.clueFocusByCase[cid];
+        continue;
+      }
+      const rem = Number(rec.remaining);
+      _stav.clueFocusByCase[cid] = {
+        remaining: Number.isFinite(rem) ? Math.max(0, Math.round(rem)) : 0,
+        locked: !!rec.locked
+      };
+    }
+  }
+
+  function _normalizujCluePatraniSession() {
+    if (!_stav.cluePatraniSession || typeof _stav.cluePatraniSession !== 'object') {
+      _stav.cluePatraniSession = {};
+    }
+  }
+
+  function ulozCluePatraniSession(caseId, patch) {
+    const cid = String(caseId || '').trim();
+    if (!cid || !patch || typeof patch !== 'object') return;
+    _normalizujCluePatraniSession();
+    const prev =
+      _stav.cluePatraniSession[cid] && typeof _stav.cluePatraniSession[cid] === 'object'
+        ? _stav.cluePatraniSession[cid]
+        : {};
+    _stav.cluePatraniSession[cid] = { ...prev, ...patch };
+  }
+
+  function nactiCluePatraniSession(caseId) {
+    const cid = String(caseId || '').trim();
+    if (!cid) return null;
+    _normalizujCluePatraniSession();
+    const r = _stav.cluePatraniSession[cid];
+    return r && typeof r === 'object' ? { ...r } : null;
+  }
+
+  function vymazCluePatraniSession(caseId) {
+    const cid = String(caseId || '').trim();
+    if (!cid) return;
+    _normalizujCluePatraniSession();
+    delete _stav.cluePatraniSession[cid];
+  }
+
+  /**
+   * @param {string} caseId
+   * @param {number} maxPokusu 0 = bez limitu (neinicializuje se)
+   */
+  function inicializujClueFocusPokudTreba(caseId, maxPokusu) {
+    const max = Number(maxPokusu);
+    if (!Number.isFinite(max) || max <= 0) return;
+    const cid = String(caseId || '').trim();
+    if (!cid) return;
+    _normalizujClueFocusByCase();
+    if (_stav.clueFocusByCase[cid]) return;
+    _stav.clueFocusByCase[cid] = { remaining: max, locked: false };
+  }
+
+  function jeClueFocusZamceno(caseId) {
+    const cid = String(caseId || '').trim();
+    if (!cid) return false;
+    _normalizujClueFocusByCase();
+    const r = _stav.clueFocusByCase[cid];
+    return !!(r && r.locked);
+  }
+
+  function ziskejClueFocusZbyva(caseId) {
+    const cid = String(caseId || '').trim();
+    if (!cid) return null;
+    _normalizujClueFocusByCase();
+    const r = _stav.clueFocusByCase[cid];
+    if (!r) return null;
+    return { remaining: r.remaining, locked: !!r.locked };
+  }
+
+  /**
+   * Odečte jeden tvrdý pokus (špatné spojení). Při 0 uzamkne stopy.
+   * @returns {{ remaining: number, locked: boolean }}
+   */
+  function spotrebujClueFocusTvrdyPokus(caseId, maxPokusu) {
+    const max = Number(maxPokusu);
+    if (!Number.isFinite(max) || max <= 0) {
+      return { remaining: 999, locked: false };
+    }
+    const cid = String(caseId || '').trim();
+    if (!cid) return { remaining: max, locked: false };
+    _normalizujClueFocusByCase();
+    if (!_stav.clueFocusByCase[cid]) {
+      _stav.clueFocusByCase[cid] = { remaining: max, locked: false };
+    }
+    const r = _stav.clueFocusByCase[cid];
+    if (r.locked) return { remaining: r.remaining, locked: true };
+    const next = Math.max(0, (Number(r.remaining) || 0) - 1);
+    r.remaining = next;
+    if (next <= 0) {
+      r.locked = true;
+    }
+    return { remaining: r.remaining, locked: r.locked };
+  }
+
+  /**
+   * Odemkne stopy: `ink` = 1 sdílená akce průzkumu, `moudrost` = −2 Moudrosti (obě cesty v HUD).
+   * @returns {boolean}
+   */
+  function odemkniClueFocusZOplaty(caseId, maxPokusu, typ) {
+    const max = Number(maxPokusu);
+    if (!Number.isFinite(max) || max <= 0) return false;
+    const cid = String(caseId || '').trim();
+    if (!cid) return false;
+    _normalizujClueFocusByCase();
+    const r = _stav.clueFocusByCase[cid];
+    if (!r || !r.locked) return false;
+    const t = String(typ || '').trim();
+    if (t === 'ink') {
+      const z = Number(_stav.investigationActionsLeft) || 0;
+      if (z < 1) return false;
+      _stav.investigationActionsLeft = z - 1;
+      r.locked = false;
+      r.remaining = max;
+      return true;
+    }
+    if (t === 'moudrost') {
+      const m = Number(_stav.traits && _stav.traits.Moudrost) || 0;
+      if (m < 2) return false;
+      upravRys('Moudrost', -2);
+      r.locked = false;
+      r.remaining = max;
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Druhý a další běh časovaného pátrání: buď odemknutí zámku soustředění (špatné spoje),
+   * nebo zaplacení po neúspěšném běhu (needsPaidRetry), i když stopy nejsou zamčené.
+   */
+  function odemkniClueHuntDalsiBeh(caseId, maxPokusu, typ) {
+    const cid = String(caseId || '').trim();
+    if (!cid) return false;
+    const max = Number(maxPokusu);
+    const t = String(typ || '').trim();
+    _normalizujClueFocusByCase();
+    const ses = nactiCluePatraniSession(cid);
+    const needPaid = !!(ses && ses.needsPaidRetry);
+    const r = _stav.clueFocusByCase[cid];
+    const isLocked = r && r.locked;
+
+    if (isLocked) {
+      return odemkniClueFocusZOplaty(caseId, maxPokusu, typ);
+    }
+    if (!needPaid) return false;
+
+    if (t === 'ink') {
+      const z = Number(_stav.investigationActionsLeft) || 0;
+      if (z < 1) return false;
+      _stav.investigationActionsLeft = z - 1;
+    } else if (t === 'moudrost') {
+      const m = Number(_stav.traits && _stav.traits.Moudrost) || 0;
+      if (m < 2) return false;
+      upravRys('Moudrost', -2);
+    } else {
+      return false;
+    }
+
+    ulozCluePatraniSession(cid, { needsPaidRetry: false, hasRun: true });
+    return true;
   }
 
   function pridejPouzityPripad(id) {
@@ -749,7 +943,16 @@ const State = (() => {
     oznacClueParNalezen,
     ziskejCluePotvrzeni,
     nastavCluePotvrzeni,
-    resetTydenniStatistikyNedele
+    resetTydenniStatistikyNedele,
+    inicializujClueFocusPokudTreba,
+    jeClueFocusZamceno,
+    ziskejClueFocusZbyva,
+    spotrebujClueFocusTvrdyPokus,
+    odemkniClueFocusZOplaty,
+    ulozCluePatraniSession,
+    nactiCluePatraniSession,
+    vymazCluePatraniSession,
+    odemkniClueHuntDalsiBeh
   };
 
 })();
