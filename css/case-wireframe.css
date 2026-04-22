@@ -5,8 +5,8 @@
 
 #modal-pripad .pripad-panel--wireframe {
   min-width: 0;
-  width: min(620px, 86vw) !important;
-  max-width: min(620px, 86vw) !important;
+  width: min(780px, 92vw) !important;
+  max-width: min(780px, 92vw) !important;
   background: #f5f0e6;
   border: 1px solid rgba(196, 163, 90, 0.28);
   border-radius: 8px;
@@ -17,14 +17,17 @@
   background: #3d2b1f;
   border-bottom: 1px solid rgba(196, 163, 90, 0.35);
   padding: 14px 48px 14px 20px;
-  flex-direction: column;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 14px;
+  align-items: start;
 }
 
 #modal-pripad .pripad-panel--wireframe .pripad-zahlavi-text {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
 }
 
 #modal-pripad .pripad-panel--wireframe .pripad-kategorie.badge {
@@ -54,6 +57,56 @@
   font-size: 13px;
   color: #a0896e;
   margin-top: 2px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud {
+  min-width: 230px;
+  max-width: 280px;
+  padding: 6px 8px;
+  border: 1px solid rgba(196, 163, 90, 0.42);
+  border-radius: 6px;
+  background: rgba(38, 27, 19, 0.55);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-line {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: #d8c09b;
+  line-height: 1.45;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-line--best {
+  color: #a7d99d;
+  text-shadow: 0 0 10px rgba(78, 142, 66, 0.2);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-line.skryto {
+  display: none;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn {
+  border: 1px solid rgba(196, 163, 90, 0.62);
+  background: rgba(68, 49, 35, 0.95);
+  color: #e4d2b3;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn:hover {
+  background: rgba(90, 66, 47, 0.95);
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-dots {
@@ -161,6 +214,158 @@
   content: "\201c";
 }
 
+#modal-pripad:not(.case-wf-clue-timed) .pripad-panel--wireframe .clue[data-clue-id],
+#modal-pripad.case-wf-clue-hunt-active .pripad-panel--wireframe .clue[data-clue-id] {
+  border-bottom: 1px dashed rgba(196, 163, 90, 0.85);
+  cursor: pointer;
+  transition: background-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
+}
+
+#modal-pripad:not(.case-wf-clue-timed) .pripad-panel--wireframe .clue[data-clue-id]:hover,
+#modal-pripad.case-wf-clue-hunt-active .pripad-panel--wireframe .clue[data-clue-id]:hover {
+  background: rgba(196, 163, 90, 0.16);
+}
+
+#modal-pripad .pripad-panel--wireframe .clue--selected {
+  background: rgba(245, 216, 110, 0.52) !important;
+  color: #2f2318 !important;
+  box-shadow:
+    inset 0 -1px 0 rgba(166, 119, 0, 0.65),
+    0 0 0 1px rgba(201, 150, 37, 0.75),
+    0 0 9px rgba(201, 150, 37, 0.38);
+  border-radius: 3px;
+}
+
+#modal-pripad .pripad-panel--wireframe .clue--miss {
+  background: rgba(149, 33, 33, 0.2);
+}
+
+#modal-pripad .pripad-panel--wireframe .clue--match {
+  background: rgba(68, 155, 82, 0.28);
+  box-shadow: inset 0 -1px 0 rgba(40, 104, 49, 0.55);
+}
+
+#modal-pripad .pripad-panel--wireframe .clue--match-persist {
+  box-shadow: inset 0 -1px 0 rgba(40, 104, 49, 0.62);
+}
+
+#modal-pripad .pripad-panel--wireframe .clue--match-persist-weak {
+  background: rgba(196, 163, 90, 0.36);
+  box-shadow:
+    inset 0 -1px 0 rgba(166, 119, 0, 0.55),
+    0 0 0 1px rgba(166, 119, 0, 0.34);
+}
+
+#modal-pripad .pripad-panel--wireframe .clue--match-persist-medium {
+  background: rgba(86, 137, 183, 0.34);
+  box-shadow:
+    inset 0 -1px 0 rgba(52, 89, 128, 0.55),
+    0 0 0 1px rgba(52, 89, 128, 0.34);
+}
+
+#modal-pripad .pripad-panel--wireframe .clue--match-persist-strong {
+  background: rgba(68, 155, 82, 0.34);
+  box-shadow:
+    inset 0 -1px 0 rgba(40, 104, 49, 0.65),
+    0 0 0 1px rgba(40, 104, 49, 0.34);
+}
+
+#modal-pripad .pripad-panel--wireframe .clue--candidate-weak {
+  background: rgba(196, 163, 90, 0.22);
+  box-shadow: inset 0 -1px 0 rgba(166, 119, 0, 0.35);
+}
+
+#modal-pripad .pripad-panel--wireframe .clue--candidate-medium {
+  background: rgba(86, 137, 183, 0.22);
+  box-shadow: inset 0 -1px 0 rgba(52, 89, 128, 0.42);
+}
+
+#modal-pripad .pripad-panel--wireframe .clue--candidate-strong {
+  background: rgba(68, 155, 82, 0.24);
+  box-shadow: inset 0 -1px 0 rgba(40, 104, 49, 0.48);
+}
+
+#modal-pripad .pripad-panel--wireframe .clue--locked {
+  pointer-events: none;
+  cursor: default;
+}
+
+#modal-pripad .pripad-panel--wireframe .clue--hunt-active {
+  background: rgba(133, 183, 235, 0.14);
+  box-shadow: inset 0 -1px 0 rgba(64, 102, 145, 0.28);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-confirm-wrap {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px dashed #c4a35a;
+  border-radius: 6px;
+  background: rgba(196, 163, 90, 0.08);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-confirm-title {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6f563a;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-confirm-sub {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #4a3828;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hunt-meta {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: #5a4a35;
+  margin-bottom: 4px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hunt-best {
+  font-size: 12px;
+  color: #4a3828;
+  margin-bottom: 8px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-confirm-pair {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-confirm-item {
+  border: 1px solid #d4c4a8;
+  background: #f8f3e8;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #4a3828;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-confirm-btn {
+  margin-top: 10px;
+  border: 1px solid #8b7355;
+  background: #f4efe3;
+  color: #4a3828;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-confirm-btn:hover {
+  background: #efe6d2;
+}
+
 #modal-pripad .pripad-panel--wireframe .case-wf-contradiction {
   background: rgba(196, 163, 90, 0.14);
   border: 1px dashed #c4a35a;
@@ -260,6 +465,30 @@
   display: block;
 }
 
+/* Předehra / aftermath: interaktivní verdikt musí zmizet (jinak po zavření overlay zůstane klikatelný). */
+#modal-pripad.case-wf-in-consequence-flow #case-wf-step1-wrap,
+#modal-pripad.case-wf-in-consequence-flow #case-wf-step2-wrap,
+#modal-pripad.case-wf-in-consequence-flow #case-wf-verdict-legacy,
+#modal-pripad.case-wf-in-consequence-flow #case-wf-confirm-rozsudek {
+  display: none !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+/* Uzavřený případ (jen rekapitulace): krok 1/2 a Potvrdit nesmí zůstat klikatelné ani při chybějícím .skryto */
+#modal-pripad[data-verdict-mode="readonly"] #case-wf-step1-wrap,
+#modal-pripad[data-verdict-mode="readonly"] #case-wf-step2-wrap,
+#modal-pripad[data-verdict-mode="readonly"] #case-wf-verdict-legacy,
+#modal-pripad[data-verdict-mode="readonly"] #case-wf-confirm-rozsudek,
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly #case-wf-step1-wrap,
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly #case-wf-step2-wrap,
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly #case-wf-verdict-legacy,
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly #case-wf-confirm-rozsudek {
+  display: none !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
 /* Informovanost — progress podle odhalených kroků průzkumu u případu */
 #modal-pripad .pripad-panel--wireframe .case-wf-inform-wrap {
   margin-bottom: 14px;
@@ -349,10 +578,27 @@
   background: #e8dcc8;
 }
 
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--unlocked:hover:not(:disabled) {
+  border-color: rgba(72, 121, 162, 1);
+  background: #d1e1f0;
+}
+
 #modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt.case-wf-verdict-opt--selected {
   border-color: #c4a35a;
   background: rgba(196, 163, 90, 0.15);
   border-width: 2px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--unlocked.case-wf-verdict-opt--selected {
+  border-color: #2f5f8b;
+  background: #9fbddd;
+  box-shadow: inset 0 0 0 1px rgba(33, 72, 108, 0.26);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--unlocked {
+  border-color: rgba(72, 121, 162, 0.95);
+  background: #dce8f4;
+  box-shadow: inset 0 0 0 1px rgba(72, 121, 162, 0.22);
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt:disabled,
@@ -366,6 +612,15 @@
   font-weight: 700;
   color: #3d2b1f;
   margin-bottom: 2px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-v-unlock {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #3f627f;
+  margin-bottom: 4px;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-v-desc {
@@ -402,6 +657,11 @@
 #modal-pripad .pripad-panel--wireframe #case-wf-confirm-rozsudek:disabled {
   opacity: 0.35;
   cursor: not-allowed;
+  pointer-events: none !important;
+}
+
+#modal-pripad #case-wf-confirm-rozsudek[data-wf-verdict-committed="1"] {
+  pointer-events: none !important;
 }
 
 #modal-pripad .pripad-panel--wireframe #case-wf-aftermath {
@@ -465,4 +725,81 @@
 /* Test/UI: odhalená zjištění se ukazují jen ve spodním panelu průzkumu (#case-wf-findings). */
 #modal-pripad .pripad-panel--wireframe #pripad-odhalene-info {
   display: none;
+}
+
+/* Krok 2: systémový kurzor schovat jen nad „Potvrdit rozsudek“ (nad volbami zůstane výchozí kurzor). */
+#modal-pripad #case-wf-confirm-rozsudek:not(.skryto) {
+  cursor: none !important;
+}
+
+/* --- Verdikt krok 2: vlastní kurzor (kladivo / razítko): src/verdict-stamp.png --- */
+#modal-pripad .case-wf-verdict-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 140px;
+  height: 180px;
+  z-index: 10050;
+  pointer-events: none;
+  box-sizing: border-box;
+  background-color: transparent;
+  background-image: url("../src/verdict-stamp.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: drop-shadow(3px 5px 6px rgba(0, 0, 0, 0.35));
+}
+
+#modal-pripad .case-wf-verdict-cursor.skryto {
+  display: none !important;
+}
+
+#modal-pripad .pripad-panel--wireframe.case-wf-panel--shake-light {
+  animation: case-wf-shake-light 0.18s ease-in-out 1;
+}
+
+#modal-pripad .pripad-panel--wireframe.case-wf-panel--shake {
+  animation: case-wf-shake 0.26s ease-in-out 1;
+}
+
+@keyframes case-wf-shake-light {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-2px, 1px);
+  }
+  50% {
+    transform: translate(2px, -1px);
+  }
+  75% {
+    transform: translate(-1px, -1px);
+  }
+}
+
+@keyframes case-wf-shake {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  15% {
+    transform: translate(-5px, 2px) rotate(-0.4deg);
+  }
+  35% {
+    transform: translate(5px, -3px) rotate(0.5deg);
+  }
+  55% {
+    transform: translate(-4px, -2px) rotate(-0.3deg);
+  }
+  75% {
+    transform: translate(4px, 2px) rotate(0.3deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #modal-pripad .pripad-panel--wireframe.case-wf-panel--shake-light,
+  #modal-pripad .pripad-panel--wireframe.case-wf-panel--shake {
+    animation: none;
+  }
 }

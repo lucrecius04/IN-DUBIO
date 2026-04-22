@@ -26,12 +26,12 @@
         "detail": "majitel lékárny U Sv. Anny na Národní třídě, ženatý, bezdětný"
       },
       "charge": "Ohrožení zdraví veřejnosti dle §335 trestního zákona, nedovolené nakládání s léčivy dle §365",
-      "description": "Rudolf Malina, lékárník a majitel lékárny U Svaté Anny na Národní třídě v Praze, je obžalován z opakovaného ředění léčivých přípravků vodou a lihem za účelem zvýšení zisku. Kontrola provedená inspektorem zemského zdravotního úřadu dne 24. února 1931 odhalila, že nejméně tři přípravky — sirup kodeinový, tinktura digitalisová a jodová tinktura — obsahovaly nižší koncentraci účinné látky, než předepisuje lékopis.",
+      "description": "Rudolf Malina, lékárník a majitel lékárny U Svaté Anny na Národní třídě v Praze, je obžalován z opakovaného ředění léčivých přípravků vodou a lihem za účelem zvýšení zisku. Kontrola provedená inspektorem zemského zdravotního úřadu dne 24. února 1931 na základě anonymního podnětu odhalila, že nejméně tři přípravky — sirup kodeinový, tinktura digitalisová a jodová tinktura — obsahovaly nižší koncentraci účinné látky, než předepisuje lékopis. Poznámka ze spisu uvádí, že u jednoho laboratorního rozboru vznikla neobvykle široká odchylka měření.",
       "testimonies": [
         {
           "id": "inspektor",
           "speaker": "MUDr. Emil Procházka, zemský zdravotní inspektor",
-          "text": "Kontrolu jsem provedl na základě anonymního podnětu. Odebral jsem vzorky tří přípravků. Laboratorní rozbor potvrdil, že kodeinový sirup obsahoval pouze šedesát dva procent předepsané koncentrace. Tinkturu digitalisovou jsem nechal analyzovat dvakrát, výsledky se lišily — poprvé sedmdesát procent, podruhé osmdesát jedna procent.",
+          "text": "Kontrolu jsem provedl na základě <span class=\"clue\" data-clue-id=\"decoy_anonymous_tip\">anonymního podnětu</span>. Odebral jsem vzorky tří přípravků. Laboratorní rozbor potvrdil, že kodeinový sirup obsahoval pouze <span class=\"clue\" data-clue-id=\"decoy_kodein_62\">šedesát dva procent předepsané koncentrace</span>. Tinkturu digitalisovou jsem nechal analyzovat dvakrát, <span class=\"clue\" data-clue-id=\"clue_analysis_a\">výsledky se lišily — poprvé sedmdesát procent, podruhé osmdesát jedna procent</span>.",
           "contradiction_keywords": [
             "anonymniho podnetu",
             "dvakrat",
@@ -42,7 +42,7 @@
         {
           "id": "malina",
           "speaker": "Rudolf Malina, obžalovaný",
-          "text": "Nic jsem neředil. Přípravky připravuji přesně podle lékopisu. Suroviny jsou ale dnes nekvalitní — dodavatelé šetří na všem. Koupíte účinnou látku a dostanete poloviční sílu. Na to jsem inspektora upozornil, ale nezaznamenal si to.",
+          "text": "Nic jsem neředil. Přípravky připravuji přesně podle lékopisu. <span class=\"clue\" data-clue-id=\"decoy_bad_suppliers\">Suroviny jsou ale dnes nekvalitní — dodavatelé šetří na všem</span>. Koupíte účinnou látku a dostanete poloviční sílu. Na to jsem inspektora upozornil, ale nezaznamenal si to.",
           "contradiction_keywords": [
             "dodavatele",
             "nekvalitni",
@@ -53,7 +53,7 @@
         {
           "id": "kubova",
           "speaker": "Marie Kubová, zákaznice",
-          "text": "Chodím k panu Malinovi patnáct let. Loni na podzim mi předepsal doktor sirup na kašel pro dceru. Nebralo to. Vrátila jsem se k doktorovi, řekl ať zkusím jinou lékárnu. V lékárně U Červeného orla sirup zabral hned. Od té doby k Malinovi nechodím.",
+          "text": "Chodím k panu Malinovi <span class=\"clue\" data-clue-id=\"decoy_15_years\">patnáct let</span>. Loni na podzim mi předepsal doktor sirup na kašel pro dceru. Nebralo to. Vrátila jsem se k doktorovi, řekl ať zkusím jinou lékárnu. V lékárně U Červeného orla sirup zabral hned. Od té doby k Malinovi nechodím.",
           "contradiction_keywords": [
             "loni na podzim",
             "jinou lekarnu",
@@ -83,12 +83,116 @@
           "unlocks_confrontation": null
         }
       ],
+      "clue_system": {
+        "enabled": true,
+        "true_pair_id": "analysis_discrepancy_strong",
+        "pairs": [
+          {
+            "pair_id": "analysis_discrepancy_strong",
+            "a_id": "clue_analysis_a",
+            "b_id": "clue_haas_owner",
+            "strength": "strong"
+          },
+          {
+            "pair_id": "analysis_discrepancy_context",
+            "a_id": "clue_analysis_a",
+            "b_id": "decoy_anonymous_tip",
+            "strength": "medium"
+          },
+          {
+            "pair_id": "quality_pressure",
+            "a_id": "decoy_kodein_62",
+            "b_id": "decoy_bad_suppliers",
+            "strength": "weak"
+          }
+        ],
+        "decoys": [
+          "decoy_anonymous_tip",
+          "decoy_kodein_62",
+          "decoy_bad_suppliers",
+          "decoy_15_years",
+          "decoy_interview_price",
+          "decoy_records_controls"
+        ],
+        "timed_hunt": {
+          "enabled": true,
+          "duration_sec": 60,
+          "speed_upgrade_sec": 20,
+          "auto_confirm_best_on_timeout": true,
+          "timeout_downgrade": false
+        },
+        "info_threshold_unlocks": {
+          "actions": [
+            {
+              "min": 70,
+              "ids": [
+                "pool_inv_confrontation"
+              ]
+            }
+          ],
+          "verdicts": [
+            {
+              "min": 40,
+              "ids": [
+                "guilty_lenient",
+                "not_guilty_with_comment"
+              ]
+            },
+            {
+              "min": 70,
+              "ids": [
+                "insufficient_reinvestigate",
+                "insufficient_close"
+              ]
+            },
+            {
+              "min": 90,
+              "ids": [
+                "guilty_alternative"
+              ]
+            }
+          ]
+        },
+        "rewards": {
+          "on_confirm": {
+            "weak": {
+              "investigation_progress_delta": 10
+            },
+            "medium": {
+              "investigation_progress_delta": 20,
+              "unlock_actions": [
+                "pool_inv_confrontation"
+              ]
+            },
+            "strong": {
+              "investigation_progress_delta": 30,
+              "unlock_actions": [
+                "pool_inv_confrontation"
+              ],
+              "unlock_verdict_ids": [
+                "guilty_alternative",
+                "not_guilty_with_comment"
+              ]
+            }
+          },
+          "on_match": {
+            "investigation_progress_delta": 30,
+            "unlock_actions": [
+              "pool_inv_confrontation"
+            ],
+            "unlock_verdict_ids": [
+              "guilty_alternative",
+              "not_guilty_with_comment"
+            ]
+          }
+        }
+      },
       "investigation": {
         "interview": {
           "target": "malina",
           "target_label": "Rudolf Malina, obžalovaný",
           "reveals": "motivation",
-          "text": "Malina se podívá na své ruce. Dlouho mlčí. Pak: Pane doktore, víte kolik stojí dnes čistý kodein? Trojnásobek toho co před dvěma lety. A lidé nemají peníze. Přijdou s receptem a nemají na plnou cenu. Co mám dělat — odmítnout je? Poslat je domů s nemocným dítětem? Tak jim dám sirup. Trochu slabší. Ale dám. Protože jinak nedostanou nic.",
+            "text": "Malina se podívá na své ruce. Dlouho mlčí. Pak: Pane doktore, víte <span class=\"clue\" data-clue-id=\"decoy_interview_price\">kolik stojí dnes čistý kodein</span>? Trojnásobek toho co před dvěma lety. A lidé nemají peníze. Přijdou s receptem a nemají na plnou cenu. Co mám dělat — odmítnout je? Poslat je domů s nemocným dítětem? Tak jim dám sirup. Trochu slabší. Ale dám. Protože jinak nedostanou nic.",
           "cost": 1,
           "trait_effects": {
             "vina": 2,
@@ -98,7 +202,7 @@
         "records": {
           "source": "Obchodní rejstřík a živnostenský úřad",
           "reveals": "facts",
-          "text": "Lékárna U Sv. Anny: založena 1898 Rudolfem Malinou starším. Převzata synem 1919. Kontroly 1925 a 1928 — bez závad. Poznámka z ledna 1931: Firma Pražská léčiva a.s. podala nabídku na odkup provozovny. Majitel odmítl. Firma Pražská léčiva a.s. — majoritní vlastník: Viktor Haas.",
+            "text": "Lékárna U Sv. Anny: založena 1898 Rudolfem Malinou starším. Převzata synem 1919. <span class=\"clue\" data-clue-id=\"decoy_records_controls\">Kontroly 1925 a 1928 — bez závad</span>. Poznámka z ledna 1931: Firma Pražská léčiva a.s. podala nabídku na odkup provozovny. Majitel odmítl. Firma Pražská léčiva a.s. — majoritní vlastník: <span class=\"clue\" data-clue-id=\"clue_haas_owner\">Viktor Haas</span>.",
           "cost": 1,
           "unlocks_contradiction": "anonymous_tip"
         },

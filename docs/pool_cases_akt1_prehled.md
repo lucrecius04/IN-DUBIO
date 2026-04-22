@@ -305,3 +305,63 @@ Hráč, který v případě 3 důkladně projde záznamy, vidí rizikový vzorec
 - 83/1931 — Schwarz (Weiss; `pool_a1_weiss`)
 - 85/1931 — Kolář (`pool_a1_stavba`, pád ze lešení) a **týž rok a číslo řízení** — Součková (`pool_a1_exekuce`, exekuce); ve hře rozlišuj podle `id`, ne podle samotného čísla spisu
 - *Nové případy v budoucnu ideálně od Sp. zn. 87/1931 výš, ať se 85/1931 u Koláře a Součkové nemíchá v hlavě hráče*
+
+---
+
+## Kuchařka autora případu (praktický postup)
+
+Tento postup je praktický onboarding pro psaní dalších pool případů, aby nic nechybělo.
+
+### 1) Jádro případu
+- Definuj obžalobu (právní rámec), morální napětí (co je „spravedlivé"), a minimálně 1 hlavní rozpor.
+- Ujasni, jaké rozhodnutí může být právně správné vs. sociálně/morálně únosné.
+
+### 2) Rozvržení textů
+- Případ musí mít clues napříč vrstvami:
+  - `description` (spis),
+  - `testimonies[].text`,
+  - `investigation.interview/records/informant/confrontation`.
+- Nezakládat vše na jedné sekci.
+
+### 3) Clue systém (Two-Click)
+- Připrav:
+  - 1 silný pár (`strong`) = hlavní osa,
+  - 1–2 doplňkové páry (`medium/weak`),
+  - více red herrings (`decoys`).
+- Zásadní pravidlo: **1 `data-clue-id` = 1 unikátní stopa** v rámci případu.
+- Nepoužívej stejné `data-clue-id` na dvou různých větách (jinak se zvýrazní obě zároveň).
+
+### 4) Timed pátrání (pokud zapnuto)
+- Doporučené start hodnoty:
+  - `duration_sec`: 60,
+  - `speed_upgrade_sec`: 20,
+  - `auto_confirm_best_on_timeout`: true,
+  - `timeout_downgrade`: false.
+- Po skončení má zůstat zvýrazněná jen výsledná (nejlepší potvrzená) vazba.
+
+### 5) Odemykání akcí a verdiktů
+- V `info_threshold_unlocks` nadefinuj:
+  - `actions` (co se otevře při 40/70/90 %),
+  - `verdicts` (jaké varianty se odemknou).
+- `unlock_*` ID musí odpovídat reálným `hidden_info`/`verdict` ID.
+
+### 6) Rozsudky a jejich logika
+- Každý případ musí mít:
+  - `guilty` (víc variant trestu),
+  - `not_guilty`,
+  - ideálně i `insufficient_evidence`.
+- `effects` v JSON jsou **base vrstva**.
+- Nad base vrstvou v runtime běží meta:
+  - procesní kvalita (nizka/stredni/vysoka),
+  - normativní směr (legalistni/vyvazeny/socialni).
+
+### 7) Dopady po rozsudku
+- Napiš `aftermath` bez přímého hodnocení hráče.
+- Přidej aspoň jeden `delayed_consequence`, který připomene, že případ měl následky ve světě.
+
+### 8) Finální kontrola před zařazením
+- JSON validní.
+- Žádné duplicity `data-clue-id`.
+- `pairs` a `decoys` odkazují na existující clue ID v textech.
+- Odemykací ID (`unlock_actions`, `unlock_verdict_ids`, `info_threshold_unlocks`) jsou existující.
+- V případu existuje minimálně jedna smysluplná „právní“ i „morální“ interpretace.

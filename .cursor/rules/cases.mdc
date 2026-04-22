@@ -56,13 +56,60 @@ Výpovědi obsahují skryté rozpory — hra je NIKDY nevysvětluje.
 ## SYSTÉM ROZPORŮ — HRÁČ JE MUSÍ NAJÍT SÁM
 
 Každý případ má minimálně 1 rozpor ve výpovědích.
-HRA ROZPORY NEZVÝRAZŇUJE A NEVYSVĚTLUJE.
+Rozpory jsou primárně v textu a hra je nevysvětluje „za hráče".
 
-Moudrost ★☆☆☆☆ až ★★★★☆: žádná vizuální nápověda. Rozpory jsou v textu.
-Moudrost ★★★★★ (81-100): jemné čárkované podtržení klíčových slov. BEZ vysvětlení, bez ikony.
+Výchozí režim (mimo timed pátrání):
+- Moudrost ★☆☆☆☆ až ★★★★☆: žádná vizuální nápověda.
+- Moudrost ★★★★★ (81-100): možné jemné zvýraznění indicií, bez vysvětlení.
 
-Nikdy žádný box, ikona ani text „nesrovnalost nalezena."
-Hráč musí číst a myslet sám.
+Timed pátrání (pokud je v `clue_system.timed_hunt` zapnuto):
+- klikatelné stopy se vizuálně aktivují až po stisku `Spustit pátrání`,
+- během odpočtu jsou stopy aktivní, po potvrzení osy jsou uzamčené,
+- po potvrzení se barevně zvýrazní jen výsledná (nejlepší potvrzená) vazba.
+
+### Two-Click systém rozporů (Hledání rozporů)
+
+Dobrovolné: hráč může případ ignorovat a rovnou vynést základní rozsudek. Two-Click je vrstva pro hráče, kteří chtějí aktivně číst a odhalit pravdu.
+
+Clues nejsou jen v úvodním textu případu. Mohou být v:
+- spisu (`description` / runtime `situation`),
+- svědectvích (`testimonies[].text`),
+- výstupech průzkumu (`investigation.interview.text`, `records.text`, `informant.variants.*`, `confrontation.success.text`).
+
+V těchto textech nejsou klikací všechna slova. Autoři obalí jen vybrané věty/fráze:
+`<span class="clue" data-clue-id="...">...</span>`.
+
+V každém případě je cílově:
+- 1 skutečný pár rozporu (`A` + `B`) — správná kombinace.
+- ~5 dalších klikatelných frází jako falešné stopy (red herrings).
+
+Pravidlo pro autory dat:
+- **jedno `data-clue-id` = jedna unikátní stopa** v rámci případu,
+- nepoužívat stejné `data-clue-id` na dvou různých větách v různých blocích textu,
+- duplicity vedou k tomu, že se po potvrzení může podbarvit více míst zároveň.
+
+Flow:
+1. První klik = výběr stopy (žluté zvýraznění).
+2. Druhý klik = pokus o spárování.
+3. Neshoda → chyba + reset výběru.
+4. Shoda správného páru → zelený flash + potvrzení rozporu.
+
+Po potvrzení správného páru se aktivují až tři odměny:
+- A) bonus do ukazatele Informovanost / Průzkum (např. +30 %),
+- B) odemčení nové průzkumné akce (za inkoust),
+- C) odemčení specifičtějších rozsudků.
+
+Volitelná mini-hra (`timed_hunt`):
+- v hlavičce případu je panel pátrání (start / čas / nejlepší vazba / potvrdit),
+- bez spuštění pátrání nejsou timed stopy aktivní,
+- potvrzení během pátrání bere nejlepší nalezenou vazbu,
+- po doběhu času (pokud `auto_confirm_best_on_timeout`) se potvrdí nejlepší nalezená vazba automaticky.
+
+Implementačně:
+- párování se vyhodnocuje podle `data-clue-id` a mapy páru v datech případu,
+- odměny se vážou na „pair matched“ stav případu,
+- UI nesmí hráči předem odhalit, které stopy jsou správné.
+- hráči se zobrazuje textové (narativní) hodnocení vazby (např. „průkazná", „dobře podložená"), interně zůstává `weak/medium/strong`.
 
 ## SYSTÉM INKOUSTOVÝCH KAPEK
 
@@ -135,6 +182,29 @@ konfrontace = 100% zelená „kompletní"
 
 Zamčené verdikty/tresty = „?" sloty. Hráč neví co mu chybí.
 
+### Vizuální zvýraznění odemčených možností
+
+Rozsudky a tresty odemčené průzkumem (spotřeba akcí) nebo potvrzenou dvojicí stop musí být vizuálně odlišené od základních možností.
+
+UI pravidlo:
+- odemčená možnost má odlišnou barvu celého tlačítka (ne jen štítek),
+- text `Průzkum:` je přímo v názvu odemčené volby, např.:
+  `Průzkum: Pokuta 50 Kč, důtka`.
+
+Skupinová tlačítka (Krok 1):
+- pokud skupina obsahuje nové odemčené volby, zobrazit pod titulkem text:
+  - `Průzkum: +1 nový rozsudek`
+  - `Průzkum: +2 nové rozsudky`
+  - `Průzkum: +X nových rozsudků` (pro vyšší počty)
+
+Příklad:
+- `Vinen` a `Zproštění / nevinen` mohou zůstat základní,
+- `Nedostatek důkazů` se barevně zvýrazní až po odemčení průzkumem.
+
+Cíl:
+- hráč okamžitě vidí, co je základ a co už objevil aktivním průzkumem,
+- odemykání skrytých verdiktů a trestů je atraktivní a motivační.
+
 ### Dvoudílný rozsudek
 Krok 1 — VERDIKT: Vinen / Nevinen / Nedostatek důkazů / Zproštěn
 Krok 2 — TREST (objeví se po výběru verdiktu)
@@ -161,6 +231,23 @@ Po výběru obou kroků: „Potvrdit rozsudek" (nenávratné).
 | 1 akce | ne | „Věděl jsi víc — a přesto..." Vina +3 |
 | 2+ akce | ano | „Případ jsi prostudoval pečlivě." Finance +20, Moudrost +3 |
 | 2+ akce | ne | „Viděl jsi pravdu. Odvrátil ses." Vina +5, Integrita -3 |
+
+### Procesní kvalita + normativní směr (meta vrstva nad JSON body)
+
+Pevné body v `verdicts.*.effects` zůstávají **base vrstva**.
+Nad nimi běží meta-vrstva vyhodnocení:
+
+1. **Procesní kvalita** (`nizka` / `stredni` / `vysoka`)
+   - vstupy: informovanost, odhalené informace, potvrzená vazba, soulad s průzkumem,
+   - dopad primárně: `Moudrost`, `Vina`, `Integrita`.
+
+2. **Normativní směr rozsudku** (`legalistni` / `vyvazeny` / `socialni`)
+   - vstupy: charakter verdiktu a jeho dopady na frakce,
+   - dopad primárně: `Moc`, `Lid`, `Kapital`.
+
+Pravidlo vyvážení:
+- base JSON efekty = cca 70–85 % výsledku,
+- meta vrstva = cca 15–30 % výsledku.
 
 ## DOPAD PO ROZSUDKU
 
@@ -305,6 +392,75 @@ Funkce `_slozitPoolVerdikty` skládá ploché položky:
 **Filtr ve hře:** `_wfFiltrovatVerdikty` v `js/ui.js` skrývá položku, pokud nesplní `requires_moudrost_min`, `requires_odvaha_min` nebo `available_unless_vina_above` (aktuální stav rysů).
 
 Klíče `guilty.sentences` odpovídají souborům v poolu typicky: `maximum`, `standard`, `lenient`, `alternative` (volitelně další, např. `special`, pokud loader najde objekt).
+
+### `clue_system` (Two-Click rozpor)
+
+Volitelná větev pro interaktivní párování stop v textu (`<span class="clue" data-clue-id="...">`):
+
+| Pole | Význam |
+|------|--------|
+| `enabled` | Zapnutí mechaniky pro případ |
+| `true_pair_id` | ID skutečného rozporu (v tomto designu 1 pár) |
+| `pairs[]` | Seznam párů: `{ pair_id, a_id, b_id, strength }` |
+| `decoys[]` | Pole falešných klikatelných stop (`data-clue-id`) |
+| `rewards.on_confirm.<strength>.investigation_progress_delta` | Bonus do informovanosti po potvrzení osy |
+| `rewards.on_confirm.<strength>.unlock_actions[]` | ID průzkumných akcí odemčených potvrzenou osou |
+| `rewards.on_confirm.<strength>.unlock_verdict_ids[]` | ID verdiktů odemčených potvrzenou osou |
+| `info_threshold_unlocks.actions[]` | Prahové odemykání průzkumných akcí podle informovanosti |
+| `info_threshold_unlocks.verdicts[]` | Prahové odemykání verdiktů podle informovanosti |
+| `timed_hunt.enabled` | Zapnutí mini-hry pátrání |
+| `timed_hunt.duration_sec` | Délka odpočtu (doporučeno 45–90 s) |
+| `timed_hunt.speed_upgrade_sec` | Hranice pro rychlostní bonus při potvrzení |
+| `timed_hunt.auto_confirm_best_on_timeout` | Po doběhu času potvrdit nejlepší nalezenou vazbu |
+| `timed_hunt.timeout_downgrade` | Volitelné oslabení síly po timeoutu |
+
+Pravidlo párování:
+- hráč musí kliknout dvě odlišné stopy,
+- shoda = obě stopy patří do stejného `pair_id`,
+- neshoda = reset výběru bez odemčení odměn.
+
+Pozn.: `span.clue` může být v libovolném textovém poli, které UI renderuje v detailu případu (spis, svědectví, odhalené průzkumné výstupy). Cíl je, aby hráč hledal stopu aktivně i po použití Průzkumu.
+
+## KUCHAŘKA AUTORA PŘÍPADU (CHECKLIST)
+
+Použij tento postup pro každý nový případ:
+
+1. **Jádro případu**
+   - definuj obžalobu, minimálně jeden skrytý rozpor, hlavní morální napětí.
+
+2. **Textové vrstvy**
+   - `description` (spis), `testimonies[]`, `investigation.*.text`,
+   - clues rozprostři napříč vrstvami (nejen v úvodu).
+
+3. **Clue mapa**
+   - urči 1 silný pár (`strong`) + 1–2 slabší relevantní vazby (`medium/weak`) + red herrings,
+   - zkontroluj unikátnost `data-clue-id` (žádné duplicity stejného ID na různých větách).
+
+4. **Odměny a odemykání**
+   - nastav `rewards.on_confirm` po síle vazby,
+   - nastav `info_threshold_unlocks` pro akce a verdikty.
+
+5. **Timed pátrání (volitelně)**
+   - nastav `timed_hunt` parametry,
+   - ověř, že bez startu pátrání nejsou timed stopy aktivní.
+
+6. **Rozsudky**
+   - připrav plnou škálu (`guilty`, `not_guilty`, `insufficient_evidence`) a varianty,
+   - každé variantě dej smysluplné `effects` (base vrstva),
+   - ověř, co je základní a co je odemykané průzkumem/vazbami.
+
+7. **Meta logika hry**
+   - případ musí podporovat jak „právní", tak „morální" interpretaci,
+   - rozsudek má dávat smysl při nízké i vysoké procesní kvalitě (jiný risk, jiný dopad).
+
+8. **Aftermath + delayed**
+   - napiš aftermath bez hodnocení hráče,
+   - doplň odložený důsledek pro aspoň jednu klíčovou větev.
+
+9. **Technická kontrola**
+   - validní JSON,
+   - neexistující `clue-id` v párech/decoys,
+   - konzistence `unlock_*` ID vůči reálným `hidden_info` a `verdicts`.
 
 ### Legacy případy (`cases-akt*.json`)
 

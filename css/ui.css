@@ -22,9 +22,9 @@
 }
 
 #modal-pripad > .panel-papir {
-  max-width: 620px !important;
-  width: min(86vw, 620px) !important;
-  max-height: 84vh;
+  max-width: 780px !important;
+  width: min(92vw, 780px) !important;
+  max-height: 90vh;
 }
 
 #modal-pripad > .panel-papir::before,
@@ -315,9 +315,9 @@
 .pripad-panel {
   position: relative;
   min-width: 0;
-  width: min(620px, 86vw) !important;
-  height: min(660px, 78vh);
-  max-height: 82vh;
+  width: min(780px, 92vw) !important;
+  height: min(800px, 88vh);
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -406,6 +406,14 @@
   width: 100%;
   pointer-events: auto;
   text-align: center;
+}
+
+/* Dlouhý aftermath ve druhém kroku předehry — scroll, čitelnější řádkování */
+.pripad-consequence-prelude-inner--aftermath {
+  max-height: min(72vh, 640px);
+  overflow-y: auto;
+  text-align: left;
+  padding-right: 8px;
 }
 
 .pripad-consequence-prelude-text {

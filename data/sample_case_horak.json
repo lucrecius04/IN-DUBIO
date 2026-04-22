@@ -13,27 +13,27 @@
     "detail": "ženatý, 3 děti, propuštěn z Haasovy továrny"
   },
   "charge": "Krádež potravin dle §171 trestního zákona, škoda 4 Kč 80 hal.",
-  "description": "Jan Horák byl zadržen 28. února 1931 v pekárně U Nováků na Masarykově třídě. Dle výpovědi pekaře Antonína Nováka obžalovaný odcizil dva bochníky chleba v celkové hodnotě 4 Kč 80 hal. Obžalovaný se nebránil zadržení.",
+  "description": "Jan Horák byl zadržen 28. února 1931 v pekárně U Nováků na Masarykově třídě. Dle výpovědi pekaře Antonína Nováka obžalovaný odcizil <span class=\"clue\" data-clue-id=\"decoy_bread_value\">dva bochníky chleba v celkové hodnotě 4 Kč 80 hal.</span> Obžalovaný se nebránil zadržení.",
 
   "testimonies": [
     {
       "id": "novak",
       "speaker": "Antonín Novák, pekař, poškozený",
-      "text": "Chytil jsem ho za ruku přímo u regálu. Dva bochníky, žitné. Byl úterý, odpoledne, pamatuji si to přesně, protože jsem zrovna zavíral krám.",
+      "text": "Chytil jsem ho za ruku přímo u regálu. <span class=\"clue\" data-clue-id=\"decoy_rye\">Dva bochníky, žitné.</span> <span class=\"clue\" data-clue-id=\"clue_time_a\">Byl úterý, odpoledne, pamatuji si to přesně, protože jsem zrovna zavíral krám.</span>",
       "contradiction_keywords": ["úterý", "odpoledne", "zavíral krám"],
       "hidden_at_wisdom_below": null
     },
     {
       "id": "dvorak",
       "speaker": "Karel Dvořák, strážník",
-      "text": "Byl jsem přivolán v 15:40. Obžalovaný seděl na zemi před pekárnou, bochníky vedle něj. Nekládl odpor. Řekl jen: Děti nemají co jíst.",
+      "text": "Byl jsem přivolán v <span class=\"clue\" data-clue-id=\"decoy_1540\">15:40.</span> Obžalovaný seděl na zemi před pekárnou, bochníky vedle něj. <span class=\"clue\" data-clue-id=\"decoy_no_resist\">Nekládl odpor.</span> Řekl jen: Děti nemají co jíst.",
       "contradiction_keywords": ["15:40"],
       "hidden_at_wisdom_below": null
     },
     {
       "id": "horak",
       "speaker": "Jan Horák, obžalovaný",
-      "text": "Ano, vzal jsem ten chleba. Nebudu lhát. Tři dny jsme nejedli. Přišel jsem ráno, ale neměl jsem dost peněz.",
+      "text": "Ano, vzal jsem ten chleba. Nebudu lhát. <span class=\"clue\" data-clue-id=\"decoy_hunger\">Tři dny jsme nejedli.</span> <span class=\"clue\" data-clue-id=\"clue_time_b\">Přišel jsem ráno, ale neměl jsem dost peněz.</span>",
       "contradiction_keywords": ["ráno"],
       "hidden_at_wisdom_below": 20
     }
@@ -48,6 +48,36 @@
       "unlocks_confrontation": "novak"
     }
   ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "time_mismatch",
+    "pairs": [
+      {
+        "pair_id": "time_mismatch",
+        "a_id": "clue_time_a",
+        "b_id": "clue_time_b"
+      }
+    ],
+    "decoys": [
+      "decoy_bread_value",
+      "decoy_rye",
+      "decoy_1540",
+      "decoy_no_resist",
+      "decoy_hunger"
+    ],
+    "rewards": {
+      "on_match": {
+        "investigation_progress_delta": 30,
+        "unlock_actions": [
+          "pool_inv_confrontation"
+        ],
+        "unlock_verdict_ids": [
+          "guilty_alternative",
+          "not_guilty_with_comment"
+        ]
+      }
+    }
+  },
 
   "investigation": {
     "interview": {

@@ -54,12 +54,28 @@ const State = (() => {
     } catch (_) { /* ignore */ }
   }
 
+  function _zarucArchivVerdikty() {
+    if (!_stav.archive || typeof _stav.archive !== 'object') {
+      _stav.archive = {
+        verdicts: [],
+        fragments: [],
+        characters_met: [],
+        npc_interactions: [],
+        npc_last_words: {}
+      };
+    }
+    if (!Array.isArray(_stav.archive.verdicts)) _stav.archive.verdicts = [];
+  }
+
   function _nactiRawDoStavu(raw) {
     _stav = JSON.parse(raw);
     let d = Number(_stav.currentDay);
     if (!Number.isFinite(d) || d < 1) _stav.currentDay = 1;
+    _zarucArchivVerdikty();
     _normalizujArchivNpc();
     _normalizujUsedCaseIds();
+    _normalizujCluePairsMatched();
+    _normalizujClueConfirmations();
     _zarucRozhodovaciStyl();
     _zarucTydenniRozsireni();
     _zarucEkonomiku();
@@ -258,6 +274,10 @@ const State = (() => {
     casesResolvedToday: [],
     /** ID případů už vyřešených v tomto runu — náhodný pool je bez nich (fixed sloty výjimka). */
     usedCaseIds: [],
+    /** Nalezené Two-Click páry podle případu: { caseId: [pairId, ...] } */
+    cluePairsMatched: {},
+    /** Potvrzená dvojice stopy v případu: { caseId: { pairId, strength, aId, bId } } */
+    clueConfirmations: {},
     // Které průzkumné informace byly odkryty: { caseId: [infoId, ...] }
     revealedInfo: {},
     /**
@@ -384,10 +404,112 @@ const State = (() => {
     if (!Array.isArray(_stav.usedCaseIds)) _stav.usedCaseIds = [];
   }
 
+  function _normalizujCluePairsMatched() {
+    if (!_stav.cluePairsMatched || typeof _stav.cluePairsMatched !== 'object') {
+      _stav.cluePairsMatched = {};
+      return;
+    }
+    for (const [cid, arr] of Object.entries(_stav.cluePairsMatched)) {
+      if (!Array.isArray(arr)) {
+        _stav.cluePairsMatched[cid] = [];
+        continue;
+      }
+      _stav.cluePairsMatched[cid] = arr
+        .map(x => String(x || '').trim())
+        .filter(Boolean);
+    }
+  }
+
+  function _normalizujClueConfirmations() {
+    if (!_stav.clueConfirmations || typeof _stav.clueConfirmations !== 'object') {
+      _stav.clueConfirmations = {};
+      return;
+    }
+    for (const [cid, rec] of Object.entries(_stav.clueConfirmations)) {
+      if (!rec || typeof rec !== 'object') {
+        delete _stav.clueConfirmations[cid];
+        continue;
+      }
+      const out = {
+        pairId: String(rec.pairId || '').trim(),
+        strength: String(rec.strength || '').trim(),
+        aId: String(rec.aId || '').trim(),
+        bId: String(rec.bId || '').trim()
+      };
+      if (!out.pairId || !out.strength) {
+        delete _stav.clueConfirmations[cid];
+        continue;
+      }
+      _stav.clueConfirmations[cid] = out;
+    }
+  }
+
   function pridejPouzityPripad(id) {
-    if (!id) return;
+    if (id == null || id === '') return;
+    const s = String(id);
     _normalizujUsedCaseIds();
-    if (!_stav.usedCaseIds.includes(id)) _stav.usedCaseIds.push(id);
+    if (!_stav.usedCaseIds.some(x => String(x) === s)) _stav.usedCaseIds.push(s);
+  }
+
+  /** Je případ uzavřený rozsudkem (dnes, v archivu, nebo v usedCaseIds — vždy přes String). */
+  function jePripadUzavren(caseId) {
+    if (caseId == null || caseId === '') return false;
+    const id = String(caseId).trim();
+    if (!id) return false;
+    const dnes = _stav.casesResolvedToday || [];
+    if (dnes.some(x => String(x).trim() === id)) return true;
+    const arch = _stav.archive && _stav.archive.verdicts;
+    if (Array.isArray(arch) && arch.some(v => v && String(v.caseId ?? v.case_id ?? '').trim() === id)) return true;
+    const used = _stav.usedCaseIds || [];
+    if (used.some(x => String(x).trim() === id)) return true;
+    return false;
+  }
+
+  function jeClueParNalezen(caseId, pairId) {
+    if (caseId == null || pairId == null) return false;
+    const cid = String(caseId).trim();
+    const pid = String(pairId).trim();
+    if (!cid || !pid) return false;
+    _normalizujCluePairsMatched();
+    const arr = _stav.cluePairsMatched[cid] || [];
+    return arr.some(x => String(x).trim() === pid);
+  }
+
+  /**
+   * @returns {boolean} true pouze při prvním záznamu páru (idempotentní zápis).
+   */
+  function oznacClueParNalezen(caseId, pairId) {
+    if (caseId == null || pairId == null) return false;
+    const cid = String(caseId).trim();
+    const pid = String(pairId).trim();
+    if (!cid || !pid) return false;
+    _normalizujCluePairsMatched();
+    if (!Array.isArray(_stav.cluePairsMatched[cid])) _stav.cluePairsMatched[cid] = [];
+    const arr = _stav.cluePairsMatched[cid];
+    if (arr.some(x => String(x).trim() === pid)) return false;
+    arr.push(pid);
+    return true;
+  }
+
+  function ziskejCluePotvrzeni(caseId) {
+    if (caseId == null) return null;
+    const cid = String(caseId).trim();
+    if (!cid) return null;
+    _normalizujClueConfirmations();
+    return _stav.clueConfirmations[cid] || null;
+  }
+
+  function nastavCluePotvrzeni(caseId, potvrzeni) {
+    if (caseId == null || !potvrzeni || typeof potvrzeni !== 'object') return false;
+    const cid = String(caseId).trim();
+    const pairId = String(potvrzeni.pairId || '').trim();
+    const strength = String(potvrzeni.strength || '').trim();
+    const aId = String(potvrzeni.aId || '').trim();
+    const bId = String(potvrzeni.bId || '').trim();
+    if (!cid || !pairId || !strength) return false;
+    _normalizujClueConfirmations();
+    _stav.clueConfirmations[cid] = { pairId, strength, aId, bId };
+    return true;
   }
 
   /**
@@ -517,9 +639,16 @@ const State = (() => {
   }
 
   function pridejRozsudek(zaznam) {
-    // zaznam: { day, caseId, verdict, caseTitle }
-    _stav.archive.verdicts.push(zaznam);
-    _stav.casesResolvedToday.push(zaznam.caseId);
+    if (!zaznam || typeof zaznam !== 'object') return;
+    const raw = zaznam.caseId != null ? zaznam.caseId : zaznam.case_id;
+    const cid = raw != null && raw !== '' ? String(raw).trim() : '';
+    if (!cid) {
+      console.warn('[State] pridejRozsudek: záznam bez platného caseId', zaznam);
+      return;
+    }
+    _zarucArchivVerdikty();
+    _stav.archive.verdicts.push({ ...zaznam, caseId: cid });
+    _stav.casesResolvedToday.push(cid);
   }
 
   function oznacFragment(id) {
@@ -615,6 +744,11 @@ const State = (() => {
     resetDen,
     dalsiDen,
     pridejPouzityPripad,
+    jePripadUzavren,
+    jeClueParNalezen,
+    oznacClueParNalezen,
+    ziskejCluePotvrzeni,
+    nastavCluePotvrzeni,
     resetTydenniStatistikyNedele
   };
 
