@@ -277,6 +277,8 @@ const Engine = (() => {
       }
     }
 
+    await _zpracujRevizeDne(den);
+
     // Dialogy postav pro tento den
     await _zpracujDialogyDne(den);
 
@@ -511,6 +513,7 @@ const Engine = (() => {
   function spustKonec(typ) {
     State.set('gameOver', true);
     State.set('endingType', typ);
+    State.set('flags.stats_display_unlocked', true);
     State.uloz();
     Music.nastavStopu('epilog');
 
@@ -608,6 +611,38 @@ const Engine = (() => {
     return new Promise(resolve => {
       UI.zobrazModalDen23Krize(() => resolve());
     });
+  }
+
+  async function _zpracujRevizeDne(den) {
+    if (typeof State === 'undefined' || !State.vyzvedniRevizeProDen) return;
+    const revize = State.vyzvedniRevizeProDen(den);
+    if (!Array.isArray(revize) || revize.length === 0) return;
+    for (const rev of revize) {
+      const pripad = (typeof DataLoader !== 'undefined' && DataLoader.ziskejPripad)
+        ? DataLoader.ziskejPripad(rev.caseId)
+        : null;
+      const volba = await new Promise(resolve => {
+        UI.zobrazReviziPripadu(
+          {
+            ...rev,
+            caseTitle: rev.caseTitle || (pripad && pripad.title) || 'Neznámý spis',
+            verdictText: rev.verdictText || '—',
+            summaryShort: String(rev.payload && rev.payload.summaryShort || '').trim(),
+            optionAText: String(rev.payload && rev.payload.optionAText || '').trim(),
+            optionBText: String(rev.payload && rev.payload.optionBText || '').trim(),
+            pripad
+          },
+          choice => resolve(choice)
+        );
+      });
+      if (typeof Cases !== 'undefined' && Cases.zpracujVolbuRevize) {
+        const out = Cases.zpracujVolbuRevize(rev, volba);
+        if (out && out.note) UI.zobrazStavovouZpravu(out.note);
+      }
+      Desk.aktualizujVse();
+      Music.aktualizujStopu();
+      State.uloz();
+    }
   }
 
   function _cekej(ms) {

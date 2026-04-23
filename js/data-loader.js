@@ -144,40 +144,53 @@ const DataLoader = (() => {
     const hidden_info = [];
 
     if (inv.interview && inv.interview.text) {
-      hidden_info.push({
+      const cInt = Number(inv.interview.cost);
+      const rowI = {
         id: 'pool_inv_interview',
         action: 'witness',
-        reveal: inv.interview.text
-      });
+        reveal: inv.interview.text,
+        cost: Number.isFinite(cInt) && cInt > 0 ? cInt : 1
+      };
+      if (inv.interview.dirty_unlock !== undefined) rowI.dirty_unlock = inv.interview.dirty_unlock;
+      hidden_info.push(rowI);
     }
     if (inv.records && inv.records.text) {
       const src = inv.records.source ? `(${inv.records.source})\n\n` : '';
       const recCost = Number(inv.records.cost);
-      hidden_info.push({
+      const rowR = {
         id: 'pool_inv_records',
         action: 'records',
         cost: Number.isFinite(recCost) && recCost > 0 ? recCost : 1,
         reveal: src + inv.records.text
-      });
+      };
+      if (inv.records.dirty_unlock !== undefined) rowR.dirty_unlock = inv.records.dirty_unlock;
+      hidden_info.push(rowR);
     }
     if (inv.informant && inv.informant.variants) {
-      hidden_info.push({
+      const cInf = Number(inv.informant.cost);
+      const rowN = {
         id: 'pool_inv_informant',
         action: 'informant',
-        reveal: _vyberInformantText(inv.informant, stav)
-      });
+        reveal: _vyberInformantText(inv.informant, stav),
+        cost: Number.isFinite(cInf) && cInf > 0 ? cInf : 1
+      };
+      if (inv.informant.dirty_unlock !== undefined) rowN.dirty_unlock = inv.informant.dirty_unlock;
+      hidden_info.push(rowN);
     }
     const konf = inv.confrontation;
     if (konf && typeof konf === 'object' && (konf.prompt || (konf.success && konf.success.text))) {
       const casti = [];
       if (konf.prompt) casti.push(String(konf.prompt).trim());
       if (konf.success && konf.success.text) casti.push(String(konf.success.text).trim());
-      hidden_info.push({
+      const kCost = Number(konf.cost);
+      const rowK = {
         id: 'pool_inv_confrontation',
         action: 'confrontation',
         reveal: casti.filter(Boolean).join('\n\n'),
-        cost: 2
-      });
+        cost: Number.isFinite(kCost) && kCost > 0 ? kCost : 2
+      };
+      if (konf.dirty_unlock !== undefined) rowK.dirty_unlock = konf.dirty_unlock;
+      hidden_info.push(rowK);
     }
 
     const verdicts = _slozitPoolVerdikty(raw.verdicts);

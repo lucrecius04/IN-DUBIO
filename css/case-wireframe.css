@@ -39,10 +39,36 @@
   flex-shrink: 0;
 }
 
+#modal-pripad .pripad-panel--wireframe .pripad-zahlavi-close-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
 #modal-pripad .pripad-panel--wireframe .pripad-zahlavi .pripad-zavrit-x {
   position: static;
   padding: 2px 6px;
   margin: 0;
+}
+
+#modal-pripad .pripad-panel--wireframe .pripad-zahlavi .pripad-zpet-archiv {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 4px 10px;
+  color: rgba(45, 28, 12, 0.92);
+  background: rgba(255, 248, 230, 0.55);
+  border: 1px solid rgba(120, 80, 40, 0.35);
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset;
+}
+
+#modal-pripad .pripad-panel--wireframe .pripad-zahlavi .pripad-zpet-archiv:hover {
+  background: rgba(255, 252, 235, 0.88);
+  border-color: rgba(160, 110, 50, 0.55);
+  color: rgba(25, 12, 4, 0.98);
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-slot {
@@ -194,6 +220,15 @@
   cursor: not-allowed;
 }
 
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn--abort {
+  border-color: rgba(180, 96, 96, 0.55);
+  color: #e8c4c4;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn--abort:hover {
+  background: rgba(95, 42, 42, 0.55);
+}
+
 #modal-pripad .pripad-panel--wireframe .case-wf-clue-focus-lock {
   margin-top: 8px;
   padding: 8px;
@@ -320,6 +355,37 @@
 
 #modal-pripad .pripad-panel--wireframe .case-wf-testimony .case-wf-quote::after {
   content: "\201c";
+}
+
+/* Proklik do Knihovny (Slovník) — ve spisu i v záznamech s HTML z případu */
+#modal-pripad .pripad-panel--wireframe .knihovna-link,
+#modal-fragment .knihovna-link {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-style: inherit;
+  color: inherit;
+  text-decoration: underline dotted rgba(90, 55, 30, 0.55);
+  text-underline-offset: 2px;
+  cursor: pointer;
+  vertical-align: baseline;
+}
+
+#modal-pripad .pripad-panel--wireframe .knihovna-link:hover,
+#modal-fragment .knihovna-link:hover {
+  color: rgba(120, 50, 22, 0.95);
+  text-decoration-color: rgba(120, 50, 22, 0.75);
+}
+
+/* Časované pátrání (běh času nebo volba soustředění): encyklopedické prokliky nejsou klikatelné ani zvýrazněné */
+#modal-pripad.case-wf-clue-patrani-ui .pripad-panel--wireframe .knihovna-link {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none !important;
+  color: inherit;
 }
 
 #modal-pripad:not(.case-wf-clue-timed) .pripad-panel--wireframe .clue[data-clue-id],
@@ -509,9 +575,80 @@
 
 #modal-pripad .pripad-panel--wireframe .case-wf-pruzkum-row {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  align-items: stretch;
+  gap: 12px;
   flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-pruzkum-box {
+  flex: 1 1 220px;
+  min-width: 200px;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-pruzkum-box--ink {
+  background: rgba(255, 252, 245, 0.55);
+  border: 1px solid rgba(139, 115, 85, 0.45);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-pruzkum-box--stin {
+  background: rgba(55, 38, 28, 0.08);
+  border: 1px dashed rgba(139, 69, 19, 0.45);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-pruzkum-box-label {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b5340;
+  opacity: 0.92;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-pruzkum-shadow-act {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-dirty-cost-hint {
+  font-size: 11px;
+  line-height: 1.45;
+  color: #5c4030;
+  max-width: 36em;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-dirty-severity {
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  background: rgba(120, 70, 45, 0.12);
+  border: 1px solid rgba(139, 69, 19, 0.35);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-dirty-severity-title {
+  font-weight: 600;
+  font-size: 11px;
+  color: #4a2818;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-dirty-severity-desc {
+  font-size: 11px;
+  line-height: 1.45;
+  color: #5c3828;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-dirty-cost-line + .case-wf-dirty-cost-line {
+  margin-top: 6px;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-actions {
@@ -519,6 +656,13 @@
   gap: 8px;
   flex-wrap: wrap;
   flex: 1;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-action-note {
+  font-size: 11px;
+  line-height: 1.4;
+  color: #5b4a36;
+  font-style: italic;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-action-btn {
@@ -549,6 +693,20 @@
 #modal-pripad .pripad-panel--wireframe .case-wf-action-btn.case-wf-action-btn--locked {
   opacity: 0.35;
   cursor: not-allowed;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-action-btn.case-wf-action-btn--dirty,
+#modal-pripad .pripad-panel--wireframe .case-wf-action-btn.case-wf-action-btn--unofficial {
+  border-style: dashed;
+  border-color: #a67c52;
+  color: #6b3e2e;
+  background: rgba(166, 124, 82, 0.12);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-action-btn.case-wf-action-btn--dirty:hover:not(:disabled),
+#modal-pripad .pripad-panel--wireframe .case-wf-action-btn.case-wf-action-btn--unofficial:hover:not(:disabled) {
+  background: rgba(166, 124, 82, 0.22);
+  border-color: #8b4513;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-counter {
@@ -773,6 +931,14 @@
   font-size: 13px;
   color: #6b5a42;
   font-style: italic;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-v-impact {
+  margin-top: 6px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: #4a3426;
+  font-family: var(--pismo-typewriter, monospace);
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-v-req {

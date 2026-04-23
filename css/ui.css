@@ -1199,23 +1199,24 @@
 }
 
 /* ==========================================
-   ARCHIV — ŠUPLÍK
+   ZÁPISNÍK (modal archiv)
    ========================================== */
 
 #modal-archiv {
-  z-index: 200;
+  /* Nad spisem (200), pod dopady (220) a fragmentem (300) */
+  z-index: 215;
 }
 
 /* Konstantní výška okna — obsah záložky scrolluje uvnitř (neposouvá celý modal) */
 .archiv-panel {
-  max-width: 640px;
-  width: min(94vw, 640px);
+  max-width: 720px;
+  width: min(96vw, 720px);
   padding: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: min(520px, 82vh);
-  max-height: 85vh;
+  height: min(580px, 88vh);
+  max-height: 90vh;
   box-sizing: border-box;
 }
 
@@ -1240,17 +1241,19 @@
 
 .archiv-tabs {
   display: flex;
+  flex-wrap: wrap;
   border-bottom: 1px solid rgba(100, 60, 20, 0.2);
   background: transparent;
   flex-shrink: 0;
 }
 
 .archiv-tab {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
   text-align: center;
-  padding: 10px 8px;
+  padding: 10px 6px;
   font-family: var(--pismo-typewriter);
-  font-size: 9px;
+  font-size: 8px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-variant: normal;
@@ -1281,8 +1284,7 @@
 }
 
 .archiv-rozsudek-item {
-  display: flex;
-  gap: 12px;
+  display: block;
   padding: 10px 12px;
   margin-bottom: 8px;
   border: 1px solid rgba(100, 60, 20, 0.25);
@@ -1294,6 +1296,38 @@
     border-color var(--prechod-rychly),
     box-shadow var(--prechod-rychly),
     background var(--prechod-rychly);
+}
+
+.archiv-rozsudek-toggle {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+}
+
+.archiv-rozsudek-toggle-arrow {
+  font-family: var(--pismo-typewriter);
+  font-size: 11px;
+  color: rgba(95, 68, 43, 0.75);
+  transition: transform var(--prechod-rychly);
+}
+
+.archiv-rozsudek-item--open .archiv-rozsudek-toggle-arrow {
+  transform: rotate(180deg);
+}
+
+.archiv-rozsudek-head {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
 }
 
 .archiv-rozsudek-den {
@@ -1323,9 +1357,106 @@
   box-shadow: 0 0 0 1px rgba(200, 165, 90, 0.25);
 }
 
+.archiv-rozsudek-detail {
+  margin-top: 10px;
+}
+
+.archiv-rozsudek-detail .rozsudek-efekty-cisla {
+  margin-top: 0;
+}
+
+.archiv-rozsudek-unofficial {
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: 1px dashed rgba(120, 75, 45, 0.35);
+  background: rgba(166, 124, 82, 0.08);
+}
+
+.archiv-rozsudek-unofficial-title {
+  font-family: var(--pismo-typewriter);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5f3f2a;
+  margin-bottom: 4px;
+}
+
+.archiv-rozsudek-unofficial-text {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #5a3d28;
+}
+
+.archiv-rozsudek-detail-btn {
+  margin-top: 8px;
+  border: 1px solid rgba(100, 60, 20, 0.35);
+  background: rgba(245, 236, 215, 0.65);
+  color: #4b3321;
+  border-radius: 3px;
+  padding: 5px 10px;
+  font-family: var(--pismo-typewriter);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.archiv-rozsudek-detail-btn:hover {
+  background: rgba(250, 241, 222, 0.9);
+}
+
 /* ==========================================
    POSTAVY — vizitky ve šuplíku
    ========================================== */
+
+.postavy-frakce-blok {
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  border: 1px solid rgba(100, 60, 20, 0.25);
+  border-radius: 2px;
+  background: rgba(240, 232, 208, 0.35);
+}
+
+.postavy-frakce-nadpis {
+  font-family: var(--pismo-typewriter);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--barva-text-slaby);
+  margin-bottom: 8px;
+}
+
+.postavy-frakce-radek {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(100, 60, 20, 0.12);
+}
+
+.postavy-frakce-radek:last-child {
+  border-bottom: none;
+}
+
+.postavy-frakce-jmeno {
+  font-family: var(--pismo-typewriter);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: rgba(60, 40, 22, 0.75);
+  flex: 0 0 auto;
+}
+
+.postavy-frakce-popis {
+  font-family: var(--pismo-telo);
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(30, 15, 5, 0.88);
+  text-align: right;
+  flex: 1 1 auto;
+  min-width: 0;
+}
 
 .postavy-mrizka {
   display: flex;
@@ -1369,7 +1500,7 @@
 .postava-vizitka__left {
   flex: 1 1 auto;
   min-width: 0;
-  max-width: calc(100% - 4.5em);
+  max-width: calc(100% - 9.5rem);
 }
 
 .postava-vizitka-jmeno {
@@ -1393,12 +1524,143 @@
 
 .postava-duvera {
   flex: 0 0 auto;
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  line-height: 1;
+  max-width: 9.5rem;
+  font-size: 12px;
+  line-height: 1.2;
   font-family: var(--pismo-telo);
+  font-style: italic;
   text-align: right;
-  min-width: 3.2em;
+  color: rgba(30, 15, 5, 0.88);
+}
+
+/* --- Knihovna (záložka archivu) --- */
+
+.knihovna-nacitani,
+.knihovna-chyba,
+.knihovna-prazdne {
+  color: var(--barva-text-slaby);
+  font-style: italic;
+  text-align: center;
+}
+
+.archiv-obsah.archiv-obsah--knihovna {
+  display: flex;
+  flex-direction: column;
+}
+
+.knihovna-wrap--v2 {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.knihovna-podtabs {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  margin-bottom: 14px;
+  flex-shrink: 0;
+}
+
+.knihovna-podtab {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 8px 6px;
+  font-family: var(--pismo-typewriter);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(90, 62, 40, 0.7);
+  background: rgba(240, 228, 200, 0.35);
+  border: 1px solid rgba(100, 60, 20, 0.22);
+  border-radius: 2px;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.knihovna-podtab:hover {
+  color: rgba(45, 28, 12, 0.9);
+  border-color: rgba(160, 120, 70, 0.45);
+}
+
+.knihovna-podtab--aktivni {
+  color: rgba(35, 20, 8, 0.95);
+  background: rgba(252, 246, 230, 0.75);
+  border-color: rgba(200, 165, 90, 0.65);
+}
+
+.knihovna-panel {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.knihovna-perex {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  font-style: italic;
+  color: rgba(55, 35, 18, 0.78);
+}
+
+.knihovna-odstavec {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(30, 15, 5, 0.86);
+}
+
+.knihovna-sekce-nadpis {
+  font-family: var(--pismo-typewriter);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--barva-text-slaby);
+  margin: 16px 0 8px;
+}
+
+.knihovna-polozka--komorni > summary {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.knihovna-polozka {
+  margin-bottom: 8px;
+  border: 1px solid rgba(100, 60, 20, 0.22);
+  border-radius: 2px;
+  background: rgba(248, 242, 228, 0.45);
+}
+
+.knihovna-polozka > summary {
+  cursor: pointer;
+  padding: 8px 10px;
+  font-family: var(--pismo-serif);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(45, 28, 12, 0.92);
+  list-style: none;
+}
+
+.knihovna-polozka > summary::-webkit-details-marker {
+  display: none;
+}
+
+.knihovna-telo {
+  padding: 0 12px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(30, 15, 5, 0.86);
+  border-top: 1px solid rgba(100, 60, 20, 0.12);
+}
+
+.knihovna-telo-prazdne {
+  margin: 0;
+  font-style: italic;
+  color: var(--barva-text-slaby);
 }
 
 /* Profil postavy (modal nad šuplíkem) */
@@ -1594,10 +1856,12 @@
 }
 
 .postava-profil-duvera {
-  font-size: 18px;
-  letter-spacing: 0.18em;
+  font-size: 15px;
+  font-style: italic;
+  letter-spacing: 0.02em;
   margin-bottom: 16px;
   font-family: var(--pismo-telo);
+  color: rgba(30, 15, 5, 0.88);
 }
 
 .postava-profil-popis {
@@ -1636,8 +1900,18 @@
 }
 
 /* ==========================================
-   FINANCE V ŠUPLÍKU
+   FINANCE V ZÁPISNÍKU (záložka Souhrn)
    ========================================== */
+
+.archiv-souhrn-fin-sekce {
+  margin-top: 0.35rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(100, 60, 20, 0.18);
+}
+
+.archiv-souhrn-fin-sekce .finance-widget {
+  margin-bottom: 0;
+}
 
 .finance-widget {
   background: var(--barva-papir-stary);
@@ -2165,6 +2439,31 @@
   border-color: rgba(240, 220, 180, 0.5);
   color: var(--barva-papir-stary);
   padding-left: 18px;
+}
+
+.menu-stats-display-wrap {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(240, 220, 180, 0.1);
+}
+
+.menu-stats-display-hint {
+  margin: 0 0 10px;
+  font-family: var(--pismo-telo);
+  font-size: 11px;
+  font-style: italic;
+  line-height: 1.35;
+  color: rgba(240, 220, 180, 0.45);
+}
+
+.menu-stats-mode-btn {
+  font-size: 13px;
+  padding: 12px 0;
+}
+
+.menu-stats-mode-btn--aktivni {
+  color: var(--barva-papir-stary);
+  border-bottom-color: rgba(200, 165, 90, 0.45);
 }
 
 /* ==========================================

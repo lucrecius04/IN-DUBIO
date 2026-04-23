@@ -451,6 +451,48 @@ const Cases = (() => {
     return out;
   }
 
+  const _SKRYTY_VERDIKT_KOEF = 1.25;
+  const _SKRYTY_CAP = {
+    traits: 12,
+    factions: 12,
+    trust: 2,
+    finance: 250
+  };
+
+  function _clamp(n, min, max) {
+    return Math.max(min, Math.min(max, n));
+  }
+
+  function _vynasobDeltaObjCap(obj, coef, capAbs) {
+    const out = {};
+    for (const [k, raw] of Object.entries(obj || {})) {
+      const n = Number(raw);
+      if (!Number.isFinite(n) || n === 0) continue;
+      const scaled = Math.round(n * coef);
+      if (scaled === 0) continue;
+      out[k] = _clamp(scaled, -Math.abs(capAbs), Math.abs(capAbs));
+    }
+    return out;
+  }
+
+  function _applyHiddenVerdictMultiplier(base) {
+    const src = base || {};
+    const out = {
+      ...src,
+      traits: _vynasobDeltaObjCap(src.traits, _SKRYTY_VERDIKT_KOEF, _SKRYTY_CAP.traits),
+      factions: _vynasobDeltaObjCap(src.factions, _SKRYTY_VERDIKT_KOEF, _SKRYTY_CAP.factions),
+      trust: _vynasobDeltaObjCap(src.trust, _SKRYTY_VERDIKT_KOEF, _SKRYTY_CAP.trust),
+      finance: _clamp(
+        Math.round((Number(src.finance) || 0) * _SKRYTY_VERDIKT_KOEF),
+        -_SKRYTY_CAP.finance,
+        _SKRYTY_CAP.finance
+      ),
+      flags: [...(src.flags || [])]
+    };
+    if (src._ui_finance_label) out._ui_finance_label = src._ui_finance_label;
+    return out;
+  }
+
   function _nejvetsiKladnaFrakceZFactions(f) {
     if (!f || typeof f !== 'object') return null;
     let bestK = null;
@@ -603,11 +645,113 @@ const Cases = (() => {
     };
   }
 
+  function _jeSkrytyVerdiktOdemceny(pripad, rozsudek) {
+    const vid = String(rozsudek && rozsudek.id || '').trim();
+    if (!pripad || !vid) return false;
+    const infoPrahy = _informacniPrahyMap(pripad, 'verdicts');
+    const info = vypoctiInformovanostPripadu(pripad);
+    const infoPct = Number(info && info.pct);
+    const odemcenInfoPrahem =
+      infoPrahy.has(vid) &&
+      Number.isFinite(infoPct) &&
+      infoPct >= Number(infoPrahy.get(vid));
+
+    const potvrzeni = _cluePotvrzeni(pripad);
+    let odemcenClue = false;
+    if (potvrzeni) {
+      const rewards = _clueRewardsProSilu(pripad, potvrzeni.strength);
+      const unlockVerdicts = (rewards && Array.isArray(rewards.unlock_verdict_ids))
+        ? rewards.unlock_verdict_ids.map(x => String(x || '').trim()).filter(Boolean)
+        : [];
+      odemcenClue = unlockVerdicts.includes(vid);
+    }
+    return odemcenInfoPrahem || odemcenClue;
+  }
+
   function pripravSlouceneDusledky(pripad, rozsudek) {
-    const base = JSON.parse(JSON.stringify(rozsudek.consequences || {}));
+    const baseRaw = JSON.parse(JSON.stringify(rozsudek.consequences || {}));
+    const hiddenVerdictBoost = _jeSkrytyVerdiktOdemceny(pripad, rozsudek);
+    const base = hiddenVerdictBoost ? _applyHiddenVerdictMultiplier(baseRaw) : baseRaw;
     const { doplnek, narativ, meta } = vypoctiTypoveDoplnky(pripad, rozsudek);
     const merged = sloucitDusledky(base, doplnek);
-    return { merged, typNarativ: narativ, meta };
+    return {
+      merged,
+      typNarativ: narativ,
+      meta: {
+        ...(meta || {}),
+        hiddenVerdictBoost
+      }
+    };
+  }
+
+  function _defaultDirtyFinanceDelta(costKapky) {
+    const c = Math.max(1, Number(costKapky) || 1);
+    return c >= 2 ? -20 : -12;
+  }
+
+  function _dirtySpecProInfo(info) {
+    if (!info || info.dirty_unlock === false) return null;
+    if (String(info.action || '') === 'confrontation') return null;
+    const rawCost = Number(info.cost) > 0 ? Number(info.cost) : 1;
+    const spec = {
+      finance: _defaultDirtyFinanceDelta(rawCost),
+      traits: { Integrita: -2, Vina: 1 },
+      factions: {},
+      trust: {}
+    };
+    const o = info.dirty_unlock;
+    if (o && typeof o === 'object') {
+      if ('finance' in o && o.finance != null) spec.finance = Number(o.finance);
+      if (o.traits && typeof o.traits === 'object') {
+        for (const [k, v] of Object.entries(o.traits)) {
+          if (v != null) spec.traits[k] = Number(v);
+        }
+      }
+      if (o.factions && typeof o.factions === 'object') {
+        for (const [k, v] of Object.entries(o.factions)) {
+          if (v != null) spec.factions[k] = Number(v);
+        }
+      }
+      if (o.trust && typeof o.trust === 'object') {
+        for (const [k, v] of Object.entries(o.trust)) {
+          if (v != null) spec.trust[k] = Number(v);
+        }
+      }
+    }
+    return spec;
+  }
+
+  /** Součet všech neoficiálně odhalených průzkumů v daném spisu (bez výčtu jednotlivostí). */
+  function _souhrnNeoficialnichZdroju(pripad) {
+    const out = { count: 0, finance: 0, traits: {}, factions: {}, trust: {} };
+    if (!pripad || typeof State === 'undefined' || !Array.isArray(pripad.hidden_info)) return out;
+    const cid = String(pripad.id || '').trim();
+    if (!cid) return out;
+    for (const info of pripad.hidden_info) {
+      if (!info || !info.id) continue;
+      if (!State.jeInfoOdhaleno || !State.jeInfoOdhaleno(cid, info.id)) continue;
+      if (!State.zpusobOdhaleniInfo || State.zpusobOdhaleniInfo(cid, info.id) !== 'unofficial') continue;
+      const spec = _dirtySpecProInfo(info);
+      if (!spec) continue;
+      out.count += 1;
+      out.finance += Number(spec.finance) || 0;
+      for (const [k, d] of Object.entries(spec.traits || {})) {
+        const v = Number(d) || 0;
+        if (!v) continue;
+        out.traits[k] = (Number(out.traits[k]) || 0) + v;
+      }
+      for (const [k, d] of Object.entries(spec.factions || {})) {
+        const v = Number(d) || 0;
+        if (!v) continue;
+        out.factions[k] = (Number(out.factions[k]) || 0) + v;
+      }
+      for (const [k, d] of Object.entries(spec.trust || {})) {
+        const v = Number(d) || 0;
+        if (!v) continue;
+        out.trust[k] = (Number(out.trust[k]) || 0) + v;
+      }
+    }
+    return out;
   }
 
   function zpracujPrijetiUplatekPoModalu(pripad) {
@@ -648,9 +792,14 @@ const Cases = (() => {
       typNarativ:     typNarativ,
       dusledkyRadky:  dusledkyRadky,
       procesniKvalita: meta && meta.procesniKvalita ? meta.procesniKvalita.key : null,
-      normativniSmer: meta && meta.normativniSmer ? meta.normativniSmer.key : null
+      normativniSmer: meta && meta.normativniSmer ? meta.normativniSmer.key : null,
+      evidenceScore:  meta && meta.procesniKvalita ? meta.procesniKvalita.evidenceScore : null,
+      coherenceScore: meta && meta.procesniKvalita ? meta.procesniKvalita.coherenceScore : null,
+      hiddenVerdictBoost: !!(meta && meta.hiddenVerdictBoost),
+      unofficialSummary: _souhrnNeoficialnichZdroju(pripad)
     });
     State.pridejPouzityPripad(pripad.id);
+    _naplanovatReviziPoRozsudku(pripad, rozsudek, meta);
 
     if (pripad.recurring === true && pripad.thread) {
       _zpracujOpakovani(pripad, rozsudek);
@@ -751,7 +900,8 @@ const Cases = (() => {
       typNarativ:     typNarativ,
       dusledkyRadky:  dusledkyRadky,
       procesniKvalita: meta && meta.procesniKvalita ? meta.procesniKvalita.key : null,
-      normativniSmer: meta && meta.normativniSmer ? meta.normativniSmer.key : null
+      normativniSmer: meta && meta.normativniSmer ? meta.normativniSmer.key : null,
+      unofficialSummary: _souhrnNeoficialnichZdroju(pripad)
     });
     State.pridejPouzityPripad(pripad.id);
 
@@ -1035,6 +1185,60 @@ const Cases = (() => {
     };
   }
 
+  function _poolPocetOdhalenychAKonf(pripad) {
+    const cid = String(pripad && pripad.id != null ? pripad.id : '').trim();
+    const hidden = (pripad && Array.isArray(pripad.hidden_info)) ? pripad.hidden_info : [];
+    let n = 0;
+    let maKonf = false;
+    for (const i of hidden) {
+      if (!i || typeof State === 'undefined' || !State.jeInfoOdhaleno) continue;
+      if (!State.jeInfoOdhaleno(cid, i.id)) continue;
+      n++;
+      if (i.action === 'confrontation' || i.id === 'pool_inv_confrontation') maKonf = true;
+    }
+    return { n, maKonf };
+  }
+
+  /**
+   * Stejná logika jako `_wfFiltrovatVerdiktyPodlePruzkumu` v ui.js — jeden verdikt.
+   * Při `maInformacniPrahyVerdiktu` se počítání kroků neaplikuje (vrací true).
+   */
+  function poolVerdiktProjdePoctemPrůzkumu(pripad, verdictId) {
+    if (!pripad || pripad._fromPool !== true) return true;
+    if (!Array.isArray(pripad.hidden_info) || !pripad.hidden_info.length) return true;
+    if (maInformacniPrahyVerdiktu(pripad)) return true;
+    const id = String(verdictId || '').trim();
+    const { n, maKonf } = _poolPocetOdhalenychAKonf(pripad);
+    if (n === 0) {
+      return id === 'guilty_maximum' || id === 'guilty_standard' || id === 'not_guilty_formal';
+    }
+    if (n === 1) {
+      if (id.startsWith('insufficient_')) return false;
+      if (id === 'guilty_alternative' || id === 'guilty_special') return false;
+      return (
+        id === 'guilty_maximum' ||
+        id === 'guilty_standard' ||
+        id === 'guilty_lenient' ||
+        id === 'not_guilty_formal' ||
+        id === 'not_guilty_comment' ||
+        id === 'not_guilty_with_comment'
+      );
+    }
+    if (id === 'guilty_special') return maKonf;
+    if (id === 'guilty_alternative') return maKonf || n >= 3;
+    return true;
+  }
+
+  function _clueUnlockVerdictIds(pripad) {
+    const potvrzeni = _cluePotvrzeni(pripad);
+    if (!potvrzeni) return [];
+    const rewards = _clueRewardsProSilu(pripad, potvrzeni.strength);
+    const unlockVerdicts = (rewards && Array.isArray(rewards.unlock_verdict_ids))
+      ? rewards.unlock_verdict_ids.map(x => String(x || '').trim()).filter(Boolean)
+      : [];
+    return unlockVerdicts;
+  }
+
   function jePruzkumAkceOdemcenaPoClue(pripad, infoId) {
     const cs = _clueSystem(pripad);
     const iid = String(infoId || '').trim();
@@ -1061,7 +1265,11 @@ const Cases = (() => {
     const prahy = _informacniPrahyMap(pripad, 'verdicts');
     if (prahy.has(vid)) {
       const info = vypoctiInformovanostPripadu(pripad);
-      return info.pct >= Number(prahy.get(vid));
+      const min = Number(prahy.get(vid));
+      if (Number.isFinite(min) && info.pct >= min) return true;
+      const unlockVerdicts = _clueUnlockVerdictIds(pripad);
+      if (unlockVerdicts.includes(vid)) return true;
+      return false;
     }
     const potvrzeni = _cluePotvrzeni(pripad);
     if (!potvrzeni) return true;
@@ -1071,6 +1279,81 @@ const Cases = (() => {
       : [];
     if (!unlockVerdicts.includes(vid)) return true;
     return !!potvrzeni;
+  }
+
+  /** Krátký text pro tooltip u dostupného pool verdiktu — proč je k dispozici. */
+  function popisDuvoduVerdiktu(pripad, verdictId) {
+    const vid = String(verdictId || '').trim();
+    if (!pripad || !vid) return '';
+    if (!pripad._fromPool) return 'Dostupné podle rysů a dat případu.';
+    const casti = [];
+    const zakladni = vid === 'guilty_maximum' || vid === 'guilty_standard' || vid === 'not_guilty_formal';
+    if (zakladni) casti.push('Základní možnost — nevyžaduje průzkum.');
+
+    const { n, maKonf } = _poolPocetOdhalenychAKonf(pripad);
+    if (!maInformacniPrahyVerdiktu(pripad) && poolVerdiktProjdePoctemPrůzkumu(pripad, vid) && !zakladni) {
+      if (vid === 'guilty_special' && maKonf) casti.push('Po odhalené konfrontaci.');
+      else if (vid === 'guilty_alternative' && (maKonf || n >= 3)) {
+        casti.push(maKonf ? 'Po konfrontaci nebo po třech průzkumech.' : 'Po třech odkrytých průzkumech.');
+      } else if (vid.startsWith('insufficient_') && n >= 2) {
+        casti.push('Postup „nedostatek důkazů“ po více průzkumech.');
+      } else if (n >= 1) casti.push(`Postup průzkumu (${n} ${n === 1 ? 'odhalený krok' : 'odhalené kroky'}).`);
+    }
+
+    const prahy = _informacniPrahyMap(pripad, 'verdicts');
+    const u = _clueUnlockVerdictIds(pripad);
+    if (prahy.has(vid)) {
+      const min = Number(prahy.get(vid));
+      const pct = (vypoctiInformovanostPripadu(pripad) || {}).pct;
+      const pN = Number(pct);
+      if (Number.isFinite(min) && Number.isFinite(pN) && pN >= min) {
+        casti.push(`Informovanost ≥ ${min} % (nyní ${Math.round(pN)} %).`);
+      }
+      if (u.includes(vid)) casti.push('Splněna odměna z potvrzené osy stop (pátrání).');
+    } else if (u.includes(vid)) {
+      casti.push('Odemčeno potvrzenou osou stop (pátrání).');
+    }
+
+    if (!casti.length) {
+      const prahyF = _informacniPrahyMap(pripad, 'verdicts');
+      if (prahyF.has(vid)) {
+        const minF = Number(prahyF.get(vid));
+        const pctF = (vypoctiInformovanostPripadu(pripad) || {}).pct;
+        const pNF = Number(pctF);
+        if (Number.isFinite(minF) && Number.isFinite(pNF) && pNF < minF) {
+          return `Spis ještě nemluví dost nahlas — informovanost pod ${minF} % (teď asi ${Math.round(pNF)} %); až dozrá, tahle varianta začne dávat smysl.`;
+        }
+      }
+      return 'Současná situace případu už tuto možnost ve výchozí nabídce umožňuje.';
+    }
+    return casti.join(' ');
+  }
+
+  /** Proč verdikt v seznamu není klikací (krok 2 / zamčené). */
+  function popisNepristupnostiVerdiktu(pripad, verdictId) {
+    const vid = String(verdictId || '').trim();
+    const v = (pripad && Array.isArray(pripad.verdicts) ? pripad.verdicts : []).find(x => String(x.id || '') === vid);
+    const moudrost = Number(typeof State !== 'undefined' && State.get ? State.get('traits.Moudrost') : 0) || 0;
+    const odvaha = Number(typeof State !== 'undefined' && State.get ? State.get('traits.Odvaha') : 0) || 0;
+    const vina = Number(typeof State !== 'undefined' && State.get ? State.get('traits.Vina') : 0) || 0;
+    if (v && v.requires_moudrost_min != null && moudrost < Number(v.requires_moudrost_min)) {
+      const need = Number(v.requires_moudrost_min);
+      return `Ben na to ještě nemá klid v hlavě — potřebuje Moudrost aspoň ${need} (má ${moudrost}).`;
+    }
+    if (v && v.requires_odvaha_min != null && odvaha < Number(v.requires_odvaha_min)) {
+      const need = Number(v.requires_odvaha_min);
+      return `Ben z toho nemá dobrý pocit v žaludku — chybí mu odvaha v zádech, aspoň ${need} (má ${odvaha}).`;
+    }
+    if (v && v.available_unless_vina_above != null && vina > Number(v.available_unless_vina_above)) {
+      return 'Svědomí Benovi šeptá, že touto cestou teď nejde — tlak viny je moc velký na tuto formulaci.';
+    }
+    if (!jeVerdiktOdemcenPoClue(pripad, vid)) {
+      return 'Ben ještě nemá správnou osu ve spisu ani dost jistoty z pátrání, aby si na tenhle rozsudek troufl.';
+    }
+    if (!poolVerdiktProjdePoctemPrůzkumu(pripad, vid)) {
+      return 'Chybí ještě pár kroků ve vyšetřování — nebo konfrontace — než se tahle varianta otevře.';
+    }
+    return 'Tuhle variantu zatím nelze zvolit — spis na ni ještě nepustil.';
   }
 
   function bonusInformovanostiZaClue(pripad) {
@@ -1199,7 +1482,6 @@ const Cases = (() => {
       }
     }
     if (!maHint) soulad = false;
-    if (maPotvrzenouClueVazbu(pripad)) soulad = true;
     return { pouzitPruzkum, soulad };
   }
 
@@ -1223,35 +1505,39 @@ const Cases = (() => {
     return false;
   }
 
-  function _vyhodnotProcesniKvalitu(pripad, rozsudek) {
+  function _vypoctiEvidenceScore(pripad, rozsudek) {
     const pr = posoudPruzkumProVerdikt(pripad, rozsudek);
     const info = vypoctiInformovanostPripadu(pripad);
     const infoPct = Number(info && info.pct);
+    const revealed = Array.isArray(pripad && pripad.hidden_info)
+      ? pripad.hidden_info.filter(i => State.jeInfoOdhaleno(pripad.id, i.id)).length
+      : 0;
+    let score = Number.isFinite(infoPct) ? infoPct : 15;
+    score += Math.min(12, revealed * 3);
+    if (pr.pouzitPruzkum && pr.soulad) score += 6;
+    if (pr.pouzitPruzkum && !pr.soulad) score -= 8;
+    return _clamp(Math.round(score), 0, 100);
+  }
+
+  function _vypoctiCoherenceScore(pripad) {
     const potvrz = ziskejPotvrzenouClueVazbu(pripad);
-    let score = 0;
+    if (!potvrz) return 20;
+    if (potvrz.strength === 'strong') return 85;
+    if (potvrz.strength === 'medium') return 65;
+    if (potvrz.strength === 'weak') return 45;
+    return 35;
+  }
 
-    if (Number.isFinite(infoPct)) {
-      if (infoPct >= 90) score += 2;
-      else if (infoPct >= 70) score += 1;
-      else if (infoPct < 40) score -= 1;
+  function _vyhodnotProcesniKvalitu(pripad, rozsudek) {
+    const evidenceScore = _vypoctiEvidenceScore(pripad, rozsudek);
+    const coherenceScore = _vypoctiCoherenceScore(pripad);
+    if (evidenceScore < 45 || coherenceScore < 35) {
+      return { key: 'nizka', label: 'procesně slabé', evidenceScore, coherenceScore };
     }
-
-    if (potvrz) {
-      if (potvrz.strength === 'strong') score += 2;
-      else if (potvrz.strength === 'medium') score += 1;
+    if (evidenceScore >= 75 && coherenceScore >= 65) {
+      return { key: 'vysoka', label: 'procesně pečlivé', evidenceScore, coherenceScore };
     }
-
-    if (pr.pouzitPruzkum) score += 1;
-    if (pr.soulad) score += 1;
-    else if (pr.pouzitPruzkum) score -= 1;
-
-    if (score <= 0) {
-      return { key: 'nizka', label: 'procesně slabé' };
-    }
-    if (score <= 2) {
-      return { key: 'stredni', label: 'procesně přijatelné' };
-    }
-    return { key: 'vysoka', label: 'procesně pečlivé' };
+    return { key: 'stredni', label: 'procesně přijatelné', evidenceScore, coherenceScore };
   }
 
   function _urciNormativniSmerVerdiktu(rozsudek) {
@@ -1292,6 +1578,125 @@ const Cases = (() => {
     }
 
     return { doplnek, narativ };
+  }
+
+  function _spocitejSanciRevize(params) {
+    const evidence = Number(params && params.evidenceScore);
+    const coherence = Number(params && params.coherenceScore);
+    const procKey = String(params && params.procesniKvalita || '').trim();
+    const hardVerdict = !!(params && params.hardVerdict);
+    const ev = Number.isFinite(evidence) ? evidence : 15;
+    const co = Number.isFinite(coherence) ? coherence : 20;
+    const qualityBonus = procKey === 'vysoka' ? 12 : procKey === 'stredni' ? 5 : 0;
+    const hardVerdictBonus = hardVerdict ? 10 : 0;
+    const chanceRaw =
+      5 +
+      (70 - ev) * 0.45 +
+      (60 - co) * 0.35 +
+      hardVerdictBonus -
+      qualityBonus;
+    return _clamp(Math.round(chanceRaw), 5, 75);
+  }
+
+  function _naplanovatReviziPoRozsudku(pripad, rozsudek, meta) {
+    if (!pripad || !rozsudek || !meta || !meta.procesniKvalita) return;
+    if (String(rozsudek.id || '') === 'uplatek') return;
+    if (typeof State === 'undefined' || !State.pridejReviziPripadu) return;
+
+    const den = Number(State.get('currentDay'));
+    if (!Number.isFinite(den) || den < 1) return;
+    const evidenceScore = Number(meta.procesniKvalita.evidenceScore);
+    const coherenceScore = Number(meta.procesniKvalita.coherenceScore);
+    const hardVerdict = _verdiktJeTvrdyNaZlocin(rozsudek);
+    const appealChance = _spocitejSanciRevize({
+      evidenceScore,
+      coherenceScore,
+      procesniKvalita: meta.procesniKvalita.key,
+      hardVerdict
+    });
+    const roll = Math.random() * 100;
+    if (roll > appealChance) return;
+
+    const dueDay = den + 2 + Math.floor(Math.random() * 3);
+    const card = pripad.review_card && typeof pripad.review_card === 'object' ? pripad.review_card : {};
+    State.pridejReviziPripadu({
+      caseId: String(pripad.id || '').trim(),
+      caseTitle: String(pripad.title || '').trim(),
+      verdictId: String(rozsudek.id || '').trim(),
+      verdictText: String(rozsudek.text || '').trim(),
+      originalDay: den,
+      dueDay,
+      evidenceScore: Number.isFinite(evidenceScore) ? evidenceScore : 15,
+      coherenceScore: Number.isFinite(coherenceScore) ? coherenceScore : 20,
+      appealChance,
+      procesniKvalita: meta.procesniKvalita.key,
+      hardVerdict,
+      payload: {
+        summaryShort: String(card.summary_short || '').trim(),
+        optionAText: String(card.option_a_text || '').trim(),
+        optionBText: String(card.option_b_text || '').trim(),
+        uniqueEffectA: card.unique_effect_a && typeof card.unique_effect_a === 'object'
+          ? { ...card.unique_effect_a }
+          : null,
+        uniqueEffectB: card.unique_effect_b && typeof card.unique_effect_b === 'object'
+          ? { ...card.unique_effect_b }
+          : null
+      }
+    });
+  }
+
+  function _sestavDusledkyRevize(revize, volba) {
+    const e = Number(revize && revize.evidenceScore);
+    const c = Number(revize && revize.coherenceScore);
+    const proc = String(revize && revize.procesniKvalita || '').trim();
+    const hard = !!(revize && revize.hardVerdict);
+    const effects = { traits: {}, factions: {}, trust: {}, finance: 0, flags: [] };
+    let note = '';
+    if (volba === 'A') {
+      effects.traits.Moudrost = proc === 'vysoka' ? -1 : -2;
+      effects.traits.Vina = proc === 'vysoka' ? +1 : +2;
+      if (hard) effects.traits.Integrita = (effects.traits.Integrita || 0) - 2;
+      if (Number.isFinite(e) && e < 45) effects.factions.Lid = (effects.factions.Lid || 0) - 2;
+      if (Number.isFinite(c) && c < 35) effects.factions.Moc = (effects.factions.Moc || 0) - 2;
+      note = hard
+        ? 'Revize potvrdila tvrdý rozsudek, ale procedura vyvolala pochybnosti.'
+        : 'Rozsudek byl podržen, systém však zaznamenal procesní výhrady.';
+    } else {
+      effects.traits.Integrita = +1;
+      effects.traits.Vina = -1;
+      effects.factions.Moc = hard ? -3 : -2;
+      effects.factions.Lid = +2;
+      effects.finance = -10;
+      note = 'Rozsudek byl zmírněn po revizi. Veřejnost i mocenské kruhy to čtou rozdílně.';
+    }
+    return { effects, note };
+  }
+
+  function zpracujVolbuRevize(revize, volba) {
+    const c = String(volba || '').trim().toUpperCase();
+    if (!revize || (c !== 'A' && c !== 'B')) return null;
+    const { effects, note } = _sestavDusledkyRevize(revize, c);
+    const extra = revize.payload && c === 'A'
+      ? revize.payload.uniqueEffectA
+      : revize.payload && c === 'B'
+        ? revize.payload.uniqueEffectB
+        : null;
+    const merged = sloucitDusledky(effects, extra && typeof extra === 'object' ? extra : null);
+    _aplikujDusledky(merged);
+    if (typeof Finance !== 'undefined' && Finance.zkontrolujCilOperace) {
+      Finance.zkontrolujCilOperace();
+    }
+    if (typeof State !== 'undefined' && State.zalogujReviziPripadu) {
+      State.zalogujReviziPripadu({
+        day: State.get('currentDay'),
+        caseId: revize.caseId,
+        caseTitle: revize.caseTitle,
+        choice: c,
+        note,
+        effects: merged
+      });
+    }
+    return { choice: c, note, effects: merged };
   }
 
   function _aktualizujRozhodovaciStyl(pripad, rozsudek) {
@@ -1418,9 +1823,13 @@ const Cases = (() => {
     potvrdTwoClickRozpor,
     jePruzkumAkceOdemcenaPoClue,
     jeVerdiktOdemcenPoClue,
+    popisDuvoduVerdiktu,
+    popisNepristupnostiVerdiktu,
+    poolVerdiktProjdePoctemPrůzkumu,
     bonusInformovanostiZaClue,
     vypoctiInformovanostPripadu,
     maInformacniPrahyVerdiktu,
+    zpracujVolbuRevize,
     jeTruePairNalezen,
     maPotvrzenouClueVazbu,
     ziskejPotvrzenouClueVazbu,

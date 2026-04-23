@@ -249,6 +249,19 @@ Pravidlo vyvážení:
 - base JSON efekty = cca 70–85 % výsledku,
 - meta vrstva = cca 15–30 % výsledku.
 
+### Oddělení průzkumu vs. pátrání (kanon)
+
+- **Průzkum** = faktická opora rozhodnutí (evidence).
+- **Pátrání (Two-Click)** = koherence osy stop (coherence) + odemykání některých možností.
+- Pátrání samo o sobě nenahrazuje faktický soulad s průzkumem; obě osy se vyhodnocují zvlášť.
+
+### Skryté verdikty — povinná motivace
+
+Verdikty odemčené průzkumem/pátráním musí být systémově atraktivní:
+
+- baseline pravidlo: numerické důsledky odemčeného verdiktu dostanou fixní koeficient (aktuálně 1.25x),
+- volitelně může mít takový verdikt i unikátní efekt (`flags`, delayed trigger), ale koeficient je povinný základ.
+
 ## DOPAD PO ROZSUDKU
 
 Spis zmizí. Nahradí ho:
@@ -376,6 +389,14 @@ Loader mapuje jen **`speaker` → `label` / `source`** a **`text`**. Pole `id`, 
 | `informant` | `pool_inv_informant` | `informant` | výběr z `variants` dle frakcí (`moc_high` ≥60, `lid_high` ≥60, `kapital_high` ≥60, jinak `default`) | 1 |
 | `confrontation` | `pool_inv_confrontation` | `confrontation` | `prompt` + `success.text` | **2** |
 
+**Neoficiální zdroj (UI, dříve „nečistá cesta“):** u položek `hidden_info` kromě **konfrontace** lze vedle oficiálního tlačítka průzkumu (kapky) zobrazit druhé tlačítko **„Neoficiální zdroj“** — stejné `reveal` jako průzkum, bez kapek, za postih (výchozě finance cca −12 / −20 Kč podle `cost`, Integrita −2, Vina +1; override v JSON). Konfrontace je **výhradně** za akční body (inkoust), druhá cesta u ní **neexistuje**. Vypnutí: `dirty_unlock: false`. Data pole zůstává `dirty_unlock` v `pool_cases_*.json` → loader přenáší do `hidden_info[].dirty_unlock`. Při bezplatných záznamech se druhá cesta neukazuje. Moudrost po neoficiálním zdroji roste slaběji (násobek 2 oproti 3). Karta zjištění ve spisu má jiný štítek než tlačítko: např. „Zjištění — výslech (průzkum)“ vs. „… (neoficiální zdroj)“; způsob se ukládá ve stavu (`revealedInfoPath`).
+
+**Informovanost — tooltip:** lišta má shrnutí, že kromě odemykání části verdiktů vstupuje do **procesní kvality** a důsledků po rozsudku (metavrstva).
+
+**Verdikty — tooltip (krok 2):** u každé dostupné varianty krátký text, *proč* je zpřístupněná (základ / počet průzkumů / konfrontace / práh informovanosti / odměna z pátrání). U zamčených variant důvod blokace (rysy / průzkum / práh / pátrání). Implementace: `Cases.popisDuvoduVerdiktu`, `Cases.popisNepristupnostiVerdiktu` v `js/cases.js`, vykreslení v `js/ui.js`.
+
+**Pátrání vs. prah informovanosti (verdikty):** je-li verdikt v `info_threshold_unlocks.verdicts` s práhem `min`, považuje se za odemčený, pokud platí **informovanost ≥ min NEBO** je ID v `unlock_verdict_ids` u odměny za **již potvrzenou** osu stop (`jeVerdiktOdemcenPoClue` — varianta B). Jinak prah zůstává závazný jen jako alternativa k odměně z pátrání.
+
 Volitelná metadata u konfrontace v JSON (`requires_contradiction`, `requires_courage`, `failure`) — dokumentace pro scénář; **filtrace podle Odvahy zatím v UI není**.
 
 ### `verdicts` → pole `verdicts[]` s `id` pro dvojkrok UI
@@ -465,3 +486,16 @@ Použij tento postup pro každý nový případ:
 ### Legacy případy (`cases-akt*.json`)
 
 Struktura se může lišit; kanon pro nový obsah je **pool** výše. Při rozšíření loaderu nebo legacy držet shodné runtime pole: `testimony`, `hidden_info`, `verdicts`, `situation`.
+
+## Krátká revize spisu (odvolání) — autorská mini šablona
+
+Když se případ vrátí k revizi, hra zobrazí krátkou kartu (A/B volba), ne full replay.
+
+Doporučená data v případu:
+
+- `review_card.summary_short` — 2–3 věty, co se po pár dnech otevřelo.
+- `review_card.option_a_text` — stručný text volby „podržet rozsudek“.
+- `review_card.option_b_text` — stručný text volby „zmírnit/revidovat“.
+- `review_card.unique_effect_a` / `review_card.unique_effect_b` (volitelné) — extra dopad navíc k systémovým efektům revize.
+
+Pokud `review_card` chybí, engine použije generický fallback z názvu případu a původního verdiktu.

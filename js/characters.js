@@ -120,10 +120,12 @@ const Characters = (() => {
     return zakl + ' — ' + getNazev(npcId);
   }
 
+  /** Slovní vyjádření důvěry (0–3) — stejná škála jako v archivu u dopadů. */
+  const DUVERA_POPISEK = ['chladná', 'rezervovaná', 'vřelá', 'oddaná'];
+
   function getDuveraVizitka(id) {
-    const t = Math.max(0, Math.min(3, State.get('trust.' + id) ?? 0));
-    if (t === 0) return '○○○';
-    return '★'.repeat(t) + '☆'.repeat(3 - t);
+    const t = Math.max(0, Math.min(3, Number(State.get('trust.' + id)) || 0));
+    return DUVERA_POPISEK[t] || DUVERA_POPISEK[0];
   }
 
   function getDuveraIkony(id) {

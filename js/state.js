@@ -58,6 +58,7 @@ const State = (() => {
     if (!_stav.archive || typeof _stav.archive !== 'object') {
       _stav.archive = {
         verdicts: [],
+        case_reviews: [],
         fragments: [],
         characters_met: [],
         npc_interactions: [],
@@ -65,6 +66,7 @@ const State = (() => {
       };
     }
     if (!Array.isArray(_stav.archive.verdicts)) _stav.archive.verdicts = [];
+    if (!Array.isArray(_stav.archive.case_reviews)) _stav.archive.case_reviews = [];
   }
 
   function _nactiRawDoStavu(raw) {
@@ -78,10 +80,24 @@ const State = (() => {
     _normalizujClueConfirmations();
     _normalizujClueFocusByCase();
     _normalizujCluePatraniSession();
+    _normalizujReviewQueue();
     _zarucRozhodovaciStyl();
     _zarucTydenniRozsireni();
     _zarucEkonomiku();
     _normalizujTraitsFrakceATrust();
+    _normalizujStatsDisplay();
+  }
+
+  function _normalizujStatsDisplay() {
+    const povolene = ['intuitive', 'hybrid', 'spreadsheet'];
+    let m = String(_stav.statsDisplayMode || '').trim();
+    if (!povolene.includes(m)) m = 'hybrid';
+    _stav.statsDisplayMode = m;
+    if (typeof _stav.flags.stats_display_unlocked !== 'boolean') {
+      _stav.flags.stats_display_unlocked = _stav.gameOver === true;
+    } else if (_stav.gameOver === true) {
+      _stav.flags.stats_display_unlocked = true;
+    }
   }
 
   function _zarucEkonomiku() {
@@ -272,11 +288,14 @@ const State = (() => {
       /** Ráno po večerní kávě: +1 sdílená akce průzkumu (kapka inkoustu). */
       rano_bonus_inkoust_z_kavy: false,
       /** Záznamy v případech stojí 0 akcí do tohoto dne včetně (null = vypnuto). */
-      records_free_until_day: null
+      records_free_until_day: null,
+      /** Po dohrání běhu: nabídka režimu zobrazení statistik v menu. */
+      stats_display_unlocked: false
     },
 
     archive: {
       verdicts:          [],   // { day, caseId, verdict, caseTitle, verdictId?, consequences?, dusledkyRadky? }
+      case_reviews:      [],   // { day, caseId, choice, effects, note }
       fragments:         [],   // id přečtených fragmentů
       characters_met:    [],   // id postav se kterými hráč interagoval
       npc_interactions:  [],   // { npcId, day, label } — historie setkání
@@ -300,6 +319,8 @@ const State = (() => {
     cluePatraniSession: {},
     // Které průzkumné informace byly odkryty: { caseId: [infoId, ...] }
     revealedInfo: {},
+    /** U pool průzkumu: způsob odhalení { caseId: { infoId: 'official' | 'unofficial' } } */
+    revealedInfoPath: {},
     /**
      * Skryté vzorce rozhodování (streaky). Hráč je nevidí — ovlivňují pasivní bonusy a růst Moudrosti.
      */
@@ -326,10 +347,17 @@ const State = (() => {
     nedele_volba: null,
     pondeli_moudrost_extra: false,
     pondeli_vina_emotivni: false,
+    /** Fronta krátkých revizí případů splatných v budoucích dnech. */
+    reviewQueue: [],
 
     // Skryté proměnné pro konce
     gameOver:    false,
-    endingType:  null    // 'odvolani' | 'korupce' | 'atentát' | 'preziti' | 'hrdina'
+    endingType:  null,   // 'odvolani' | 'korupce' | 'atentát' | 'preziti' | 'hrdina'
+    /**
+     * Režim zobrazení čísel u dopadů (archiv, kompaktní řádky, modál důsledků).
+     * intuitive | hybrid (výchozí) | spreadsheet — přepínač v menu po dohrání.
+     */
+    statsDisplayMode: 'hybrid'
   };
 
   let _stav = JSON.parse(JSON.stringify(VYCHOZI_STAV));
@@ -486,6 +514,37 @@ const State = (() => {
     if (!_stav.cluePatraniSession || typeof _stav.cluePatraniSession !== 'object') {
       _stav.cluePatraniSession = {};
     }
+  }
+
+  function _normalizujReviewQueue() {
+    if (!Array.isArray(_stav.reviewQueue)) {
+      _stav.reviewQueue = [];
+      return;
+    }
+    const out = [];
+    for (const raw of _stav.reviewQueue) {
+      if (!raw || typeof raw !== 'object') continue;
+      const caseId = String(raw.caseId || '').trim();
+      const dueDay = Number(raw.dueDay);
+      const originalDay = Number(raw.originalDay);
+      if (!caseId || !Number.isFinite(dueDay) || !Number.isFinite(originalDay)) continue;
+      out.push({
+        id: String(raw.id || '').trim() || ('rev_' + caseId + '_' + originalDay + '_' + dueDay),
+        caseId,
+        caseTitle: String(raw.caseTitle || '').trim(),
+        verdictId: String(raw.verdictId || '').trim(),
+        verdictText: String(raw.verdictText || '').trim(),
+        originalDay: Math.max(1, Math.round(originalDay)),
+        dueDay: Math.max(1, Math.round(dueDay)),
+        evidenceScore: Math.max(0, Math.min(100, Math.round(Number(raw.evidenceScore) || 0))),
+        coherenceScore: Math.max(0, Math.min(100, Math.round(Number(raw.coherenceScore) || 0))),
+        appealChance: Math.max(0, Math.min(100, Math.round(Number(raw.appealChance) || 0))),
+        procesniKvalita: String(raw.procesniKvalita || '').trim(),
+        hardVerdict: !!raw.hardVerdict,
+        payload: raw.payload && typeof raw.payload === 'object' ? { ...raw.payload } : {}
+      });
+    }
+    _stav.reviewQueue = out;
   }
 
   function ulozCluePatraniSession(caseId, patch) {
@@ -857,12 +916,20 @@ const State = (() => {
     }
   }
 
-  function odhalInfoPripadu(caseId, infoId) {
+  function odhalInfoPripadu(caseId, infoId, opts) {
     _zarucTydenniRozsireni();
     if (!_stav.revealedInfo[caseId]) _stav.revealedInfo[caseId] = [];
     const arr = _stav.revealedInfo[caseId];
     if (arr.includes(infoId)) return;
     arr.push(infoId);
+
+    const sid = String(caseId || '').trim();
+    const iid = String(infoId || '').trim();
+    if (sid && iid) {
+      if (!_stav.revealedInfoPath[sid]) _stav.revealedInfoPath[sid] = {};
+      const unofficial = opts && opts.path === 'unofficial';
+      _stav.revealedInfoPath[sid][iid] = unofficial ? 'unofficial' : 'official';
+    }
 
     const den = Number(_stav.currentDay);
     if (!Number.isFinite(den) || den % 7 === 0) return;
@@ -873,6 +940,15 @@ const State = (() => {
 
   function jeInfoOdhaleno(caseId, infoId) {
     return (_stav.revealedInfo[caseId] ?? []).includes(infoId);
+  }
+
+  /** 'official' | 'unofficial' — jen informativní pro UI; výchozí official. */
+  function zpusobOdhaleniInfo(caseId, infoId) {
+    const sid = String(caseId || '').trim();
+    const iid = String(infoId || '').trim();
+    const m = _stav.revealedInfoPath[sid];
+    if (!m || !iid) return 'official';
+    return m[iid] === 'unofficial' ? 'unofficial' : 'official';
   }
 
   function resetDen() {
@@ -914,6 +990,62 @@ const State = (() => {
     _stav.tydenni_statistiky = _vychoziTydenniStatistiky();
   }
 
+  function pridejReviziPripadu(revize) {
+    if (!revize || typeof revize !== 'object') return false;
+    const caseId = String(revize.caseId || '').trim();
+    const dueDay = Number(revize.dueDay);
+    const originalDay = Number(revize.originalDay);
+    if (!caseId || !Number.isFinite(dueDay) || !Number.isFinite(originalDay)) return false;
+    _normalizujReviewQueue();
+    _stav.reviewQueue.push({
+      id: String(revize.id || '').trim() || ('rev_' + caseId + '_' + Math.round(originalDay) + '_' + Math.round(dueDay)),
+      caseId,
+      caseTitle: String(revize.caseTitle || '').trim(),
+      verdictId: String(revize.verdictId || '').trim(),
+      verdictText: String(revize.verdictText || '').trim(),
+      originalDay: Math.max(1, Math.round(originalDay)),
+      dueDay: Math.max(1, Math.round(dueDay)),
+      evidenceScore: Math.max(0, Math.min(100, Math.round(Number(revize.evidenceScore) || 0))),
+      coherenceScore: Math.max(0, Math.min(100, Math.round(Number(revize.coherenceScore) || 0))),
+      appealChance: Math.max(0, Math.min(100, Math.round(Number(revize.appealChance) || 0))),
+      procesniKvalita: String(revize.procesniKvalita || '').trim(),
+      hardVerdict: !!revize.hardVerdict,
+      payload: revize.payload && typeof revize.payload === 'object' ? { ...revize.payload } : {}
+    });
+    return true;
+  }
+
+  function vyzvedniRevizeProDen(den) {
+    const d = Number(den);
+    if (!Number.isFinite(d) || d < 1) return [];
+    _normalizujReviewQueue();
+    const due = [];
+    const keep = [];
+    for (const r of _stav.reviewQueue) {
+      if (Number(r.dueDay) <= d) due.push(r);
+      else keep.push(r);
+    }
+    due.sort((a, b) => Number(a.dueDay) - Number(b.dueDay) || Number(a.originalDay) - Number(b.originalDay));
+    _stav.reviewQueue = keep;
+    return due;
+  }
+
+  function zalogujReviziPripadu(zaznam) {
+    if (!zaznam || typeof zaznam !== 'object') return false;
+    const caseId = String(zaznam.caseId || '').trim();
+    if (!caseId) return false;
+    _zarucArchivVerdikty();
+    _stav.archive.case_reviews.push({
+      day: Number.isFinite(Number(zaznam.day)) ? Number(zaznam.day) : Number(_stav.currentDay),
+      caseId,
+      caseTitle: String(zaznam.caseTitle || '').trim(),
+      choice: String(zaznam.choice || '').trim(),
+      note: String(zaznam.note || '').trim(),
+      effects: zaznam.effects && typeof zaznam.effects === 'object' ? { ...zaznam.effects } : {}
+    });
+    return true;
+  }
+
   return {
     get,
     set,
@@ -935,6 +1067,7 @@ const State = (() => {
     zapisNpcPosledniDialog,
     odhalInfoPripadu,
     jeInfoOdhaleno,
+    zpusobOdhaleniInfo,
     resetDen,
     dalsiDen,
     pridejPouzityPripad,
@@ -944,6 +1077,9 @@ const State = (() => {
     ziskejCluePotvrzeni,
     nastavCluePotvrzeni,
     resetTydenniStatistikyNedele,
+    pridejReviziPripadu,
+    vyzvedniRevizeProDen,
+    zalogujReviziPripadu,
     inicializujClueFocusPokudTreba,
     jeClueFocusZamceno,
     ziskejClueFocusZbyva,

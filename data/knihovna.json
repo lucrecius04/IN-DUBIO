@@ -1,0 +1,62 @@
+{
+  "version": 2,
+  "pribeh": {
+    "perex": "Krátká orientace pro hráče — bez spoilerů na konkrétní případy.",
+    "body": "Hrajete za soudce Dr. Benedikta Vraného v první polovině třicátých let. Město ani stát nejsou pojmenovány doslova; jde o středoevropský rámec doby krize, nátlaků a státní mašinérie.\n\nVraný se vrací k přísaze u soudu s tíhou minulosti — rozhodnutí, která už jednou udělal, ho pronásledují. Každý den přináší nové spisy; večer a v neděli se otevírají osobní volby, které formují jeho nitro i okolí.\n\nCílem není „vyhrát“ — ale dohrát příběh s vědomím ceny, kterou za svá slova platí.",
+    "rozhodnuti": []
+  },
+  "pravidla": {
+    "perex": "Zkrácený přehled mechanismů — podrobnosti zůstávají ve hře a v nástrojích (zápisník, spisy).",
+    "body": "",
+    "bloky": [
+      {
+        "title": "Verdikty",
+        "body": "Každý uzavřený případ se promítne do financí, duše soudce, frakcí a důvěry vybraných postav. V archivu (zápisník) najdete přehled rozsudků a stav."
+      },
+      {
+        "title": "Průzkum a stopy",
+        "body": "Ve spisech lze čerpat skryté informace za sdílené denní akce. Neoficiální cesty mohou mít jiné náklady než úřední — projeví se v souhrnech u rozsudků."
+      },
+      {
+        "title": "Konce běhu",
+        "body": "Hra má několik konců podle dlouhodobého chování a klíčových voleb. Po dohrání lze v menu odemknout jemnější zobrazení statistik."
+      },
+      {
+        "title": "Frakce „Moc“",
+        "body": "Zjednodušený pól státní správy a bezpečnostních struktur. Není to jedna postava ani jedna strana — tlak, který doléhá na soudce z „oficiální“ strany."
+      },
+      {
+        "title": "Dny a fáze",
+        "body": "Hra je rozdělena na dny; během dne řešíte případy, večer často následuje volba s dopady na stav. Některé akce se resetují s novým dnem."
+      },
+      {
+        "title": "Sdílené akce průzkumu",
+        "body": "Za den je k dispozici omezený počet akcí na odhalování stop ve spisu. Po vyčerpání lze případ uzavřít i bez plného průzkumu — s jiným rozsahem informací."
+      },
+      {
+        "title": "Ukládání",
+        "body": "Postup se ukládá v prohlížeči (localStorage): automatické uložení a dvě ruční zálohy. Na jiném zařízení uložená pozice není."
+      }
+    ]
+  },
+  "slovnik": {
+    "perex": "Krátká hesla ke jménům a místům z reálného kontextu doby — ne k herním mechanismům. Ve spisech jsou některá slova prokliknutelná (otevřou příslušné heslo).",
+    "hesla": [
+      {
+        "id": "kramar",
+        "title": "Kramář",
+        "body": "Politická postava první republiky — v našem fiktivním městě může být zmíněna jako reference na národní politiku a rozpor mezi centrem a periferií. Nemusí přímo vstoupit do děje."
+      },
+      {
+        "id": "zizkov",
+        "title": "Žižkov",
+        "body": "Pražská čtvrť známá hustou zástavbou a dělnickým charakterem — ve hře slouží jako obecný symbol městského lidu, šumu a sociálního napětí, nikoli jako přesná geografická mapa."
+      },
+      {
+        "id": "smichov",
+        "title": "Smíchov",
+        "body": "Pražská čtvrť na levém břehu Vltavy — v době první republiky průmysl, závody, dělnické kolonie i menší podniky (např. tiskárny). Ve hře značí spíš průmyslový okraj města než turistické centrum."
+      }
+    ]
+  }
+}
