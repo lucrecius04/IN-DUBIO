@@ -1,5 +1,7 @@
 # IN DUBIO — Svět hry: Československo, březen 1931
 
+**Současnost hry** je březen 1931. Případy v textu smějí v důkazech a souvislostech pracovat s dřívějšími lety (1. republika, válka, starší statistiky) — srov. pravidlo času v `cases.mdc`.
+
 ## Referenční dokument pro psaní případů, fragmentů a dialogů
 Tento soubor NENÍ rules pro agenta. Je to výzkumný podklad pro autora obsahu.
 

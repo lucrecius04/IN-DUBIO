@@ -1,6 +1,10 @@
 # IN DUBIO — 20denní mapa scénáře (Akt 1, rámec)
 
-Tento dokument je **kanonický textový plán** pro rozvržení dní, večerů a emoční linky vedle tabulky `docs/InDubio_20dni_Mapa.xlsx` (listy `sheet1`–`sheet7`). Při rozporu mezi tabulkou a tímto textem upřednostni tento soubor pro vývoj příběhu a UI; čísla a přiřazení soudců drž v souladu s `data/days.json` a `.cursor/rules/cases.mdc`.
+Tento soubor je **kanonický textový plán** pro rozvržení dní, večerů a emoční linky. Leží ve složce `docs/scenar/` vedle tabulkových exportů (CSV). Volitelný přehled v Excelu: `docs/InDubio_20dni_Mapa.xlsx` (listy `sheet1`–`sheet7`).
+
+**Hierarchie:** při rozporu mezi **tímto MD** a **CSV v `docs/scenar/`** upřednostni nejdřív sladění CSV s tímto rámcem, pak úpravy MD. Čísla dní a obsah běžné hry se ladí v **`data/days.json`** (během vývoje se mění); rysy dne a soudci viz **`.cursor/rules/cases.mdc`**.
+
+Vstupní přehled celé složky: [`ReadMeScenar.md`](./ReadMeScenar.md).
 
 ---
 
@@ -27,7 +31,7 @@ Tento dokument je **kanonický textový plán** pro rozvržení dní, večerů a
 
 **Forma:** 1–3 obrazovky max.; žádné dlouhé expo. Preferuj **jednu volbu** s 2–4 variantami nebo krátký dialog + jedna volba.
 
-**Propojení s XLSX:** v mapě 20 dní vyhraď na každý pracovní den řádek nebo buňku „**Večer**“ s kódem scény (např. `EV-03-karas`) a odkazem na text v `docs/` nebo v `days.json`, až bude napojeno.
+**Propojení s tabulkami:** v `Mapa_20dni.csv` má každý pracovní den sloupce pro večer a poznámky; v `days.json` se obsah napojí až bude scénář nasazen do hry.
 
 ---
 
@@ -42,7 +46,7 @@ Tento dokument je **kanonický textový plán** pro rozvržení dní, večerů a
 | Rozhodnutí | 3. týden | Hráč volí, zda investuje čas / peníze / Naději; dopad na ranní texty nebo kapky. |
 | Vyústění (Akt 1) | před koncem 20 dní | Jedna silnější scéna (návštěva, dopis, hádkа), která se promítne do **stav ducha** nebo archivu fragmentů — bez nutnosti nové mechaniky. |
 
-**Kde to zapsat v produkci:** stejný list jako večery v `InDubio_20dni_Mapa.xlsx` — sloupec „**Emoce / matka**“ nebo poznámka u konkrétního dne; v `days.json` později `evening_scene_id` / `flags` dle implementace.
+**Kde to zapsat:** sloupec / poznámka v `Mapa_20dni.csv` a související řádky v dalších CSV (`Dopisy`, `Vlakna`…); v `days.json` později `evening_choice` / příznaky dle implementace.
 
 ---
 
@@ -57,12 +61,12 @@ Z `cases.mdc` (pro napojení případů na NPC / politiku):
 
 ---
 
-## 5. Co doplnit do Excel mapy, pokud tam chybí
+## 5. Co držet v mapě (CSV / Excel), pokud to chybí
 
-1. Řádek **Večer** u každého pracovního dne 1–20.  
-2. Sloupec **Emoční / rodina** (matka, dopis, návštěva).  
+1. **Večer** u každého pracovního dne 1–20.  
+2. Sloupec nebo poznámka **emoce / rodina** (matka, dopis, návštěva).  
 3. **Týdenní milníky** (konec týdne 7, 14, 20) — krátká věta „co hráč cítí jinak než včera“.  
-4. Odkaz na **konkrétní případ** ve slotu (ID z `pool_cases_akt1.json`), až je rozvržení fixní.
+4. Odkaz na **konkrétní případ** ve slotu (ID z `data/pool_cases_akt1.json`), až je rozvržení fixní.
 
 ---
 
@@ -70,4 +74,4 @@ Z `cases.mdc` (pro napojení případů na NPC / politiku):
 
 - **Večery** = strukturovaný slot po případech, epizodní výprávění, ne druhý spis.  
 - **Matka / rodina** = mezitýdenní emoční oblouk, vázaný na neděle a večerní volby.  
-- **XLSX** = přehledová mřížka; **tento MD** = význam a pořadí pro autory a programátory.
+- **CSV** = řádky a čísla pro autory a balanci; **tento MD** = význam a pořadí rámce; **`days.json`** = co zrovna běží ve hře.

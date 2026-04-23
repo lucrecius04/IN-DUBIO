@@ -36,7 +36,7 @@ OSOBNÍ: barva #5C2D6E | echo Benovy minulosti | efekty Vina ±5-10, Vztahy ±
 Pracovní dny: ranní fragment → případy dne → večerní volba.
 Sobota: bonusy + shrnutí. Neděle: volba volného dne. Žádné případy.
 
-**Scénář 20 dní (večery, emoční linka / matka, týdenní rytmus):** kanonický textový plán je v `docs/InDubio_20dni_Mapa-scenar.md` (doplněk k tabulce v `docs/InDubio_20dni_Mapa.xlsx`). Při rozporu preferuj tento MD pro vývoj; XLSX drží produkční přehled pro autory.
+**Scénář 20 dní (večery, emoční linka / matka, týdenní rytmus):** vstupní brána je `docs/scenar/ReadMeScenar.md`; rámec (význam večerů, matky, týdnů) je v `docs/scenar/InDubio_20dni_Mapa-scenar.md`; řádky dní v CSV ve stejné složce. Volitelný Excel: `docs/InDubio_20dni_Mapa.xlsx`.
 
 ## HARMONOGRAM VLÁKEN
 
@@ -357,7 +357,7 @@ JUSTICE: krajský soud, trestní zákon 1852, zákon na ochranu republiky č.50/
 8. Aftermath nikdy nehodnotí.
 9. Odložené důsledky = konkrétní obraz.
 10. Zamčené sloty NIKDY neprozrazují obsah — jen „?" a „Možnost není k dispozici."
-11. Případy musí být ZASAZENÉ V ČESKOSLOVENSKU 1931 — konkrétní reálie, instituce, zákony, místa.
+11. **Současnost děje** (probíhající soud, kampaň) = **březen 1931**, Československo — konkrétní reálie, instituce, zákony, místa. **Důkazy, výpovědi, motivace a odbočky do děje** smějí a mají sáhat **hluboko do minulosti** (předchozí roky, staré smlouvy, bývalé kauzy) — soud o tom dnes rozhoduje, text musí působit věrohodně pro 30. léta, ne pro „dnešek“ 21. století.
 12. Používat skutečné právní předpisy (trestní zákon 1852, zákon na ochranu republiky č.50/1923).
 13. Zmiňovat dobové instituce (zemský úřad, živnostenský rejstřík, Pojišťovna Slavia, Creditanstalt).
 14. Jména a místa česká/moravská/sudetská — Národní třída, Staroměstské náměstí, Žižkov, Smíchov.

@@ -4,6 +4,8 @@ globs: data/characters.json, data/fragments.json, data/days.json, data/pool_case
 alwaysApply: false
 ---
 
+**Plný kanon (postavy, 20 dní, osm konců, tón):** `docs/InDubio_StoryBible_v2_Cursor.txt` (v2.1). Tento `story.mdc` musí s ním být ve shodě ve faktech; není náhradou za celou bibli.
+
 ## ÚSTŘEDNÍ OTÁZKA
 „Může být jeden člověk spravedlivý v nespravedlivém světě?"
 Hra na tuto otázku NIKDY neodpoví. Osm konců = osm odpovědí, žádná správná.

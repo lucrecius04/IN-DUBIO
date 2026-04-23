@@ -1,0 +1,410 @@
+{
+  "id": "pool_a1_tiskarna",
+  "slot": "pool",
+  "type": "routine",
+  "color": "#C4A35A",
+  "available_days": [
+    3,
+    4,
+    5,
+    6
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "base_weight": 1,
+    "kapital_below_40": 1.4
+  },
+  "title": "Noční směna",
+  "case_number": "Sp. zn. 84/1931",
+  "defendant": {
+    "name": "Alois Mareš",
+    "age": 32,
+    "occupation": "účetní tiskárny",
+    "detail": "zaměstnanec tiskárny Grafia, svobodný, v péči má nemocnou matku"
+  },
+  "charge": "Krádež vloupáním dle §171 trestního zákona, zpronevěra dle §183 a pozměnění účetního záznamu",
+  "description": "V tiskárně Grafia na <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"smichov\" title=\"Slovník: Smíchov\">Smíchově</button> zmizelo z noční pokladny 500 Kčs určených na páteční mzdy dělníků. Skříň s hotovostí byla otevřena bez poškození zámku, ale stránka noční knihy byla vytržená. Obžalovaný účetní Alois Mareš tvrdí, že byl večer na politické schůzi v Obecním domě. Majitel Karel Volf žádá exemplární trest s tím, že bez rychlého rozsudku hrozí ve fabrice stávka.",
+  "testimonies": [
+    {
+      "id": "mares",
+      "speaker": "Alois Mareš, obžalovaný",
+      "text": "Byl jsem pryč. Od sedmi jsem seděl v Obecním domě a poslouchal projevy — mezi nimi i <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"kramar\" title=\"Slovník: Kramář\">Kramáře</button>. <span class=\"clue\" data-clue-id=\"clue_speech_duration\">Byla to dlouhá schůze, skoro do devíti</span>. Pak jsem šel domů k matce. <span class=\"clue\" data-clue-id=\"decoy_ticket\">Lístek stál pět korun</span> a ten jsem zaplatil z posledních drobných, ne z firemních peněz.",
+      "contradiction_keywords": [
+        "do devíti",
+        "dlouhá schůze"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "volf",
+      "speaker": "Karel Volf, majitel tiskárny",
+      "text": "Mareš má dluhy a hernu na <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"zizkov\" title=\"Slovník: Žižkov\">Žižkově</button> zná každý. Všichni to vědí. Peníze na výplaty připravuji osobně, klíč od pokladny měl jen on a já. <span class=\"clue\" data-clue-id=\"decoy_safe_key\">Nikdo třetí se k zámku nemohl dostat</span>. Kromě toho jsem v noční knize našel <span class=\"clue\" data-clue-id=\"decoy_red_ink\">přepisovaný čas červeným inkoustem</span>.",
+      "contradiction_keywords": [
+        "jen on a já",
+        "červeným inkoustem"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "krizova",
+      "speaker": "Růžena Křížová, strojmistryně noční směny",
+      "text": "Večer kolem osmé jsem slyšela na chodbě dva hlasy. Jeden byl Marešův, tím jsem si jistá. Druhý patřil panu Volfovi. <span class=\"clue\" data-clue-id=\"clue_shift_bell\">A v osm patnáct zazvonil noční zvonek kvůli přejímce papíru</span>, to se běžně zapisuje hned.",
+      "contradiction_keywords": [
+        "dva hlasy",
+        "v osm patnáct"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "meeting_interrupted",
+      "description": "Mareš mluví o schůzi trvající téměř do devíti, ale policejní protokol uvádí ukončení po deseti minutách.",
+      "involves": [
+        "mares",
+        "records"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": "mares"
+    },
+    {
+      "id": "third_key_exists",
+      "description": "Volf tvrdí, že klíč měli pouze dva lidé, ale registr klíčů uvádí i třetí služební duplikát.",
+      "involves": [
+        "volf",
+        "records"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": "mares"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "speech_timing_strong",
+    "pairs": [
+      {
+        "pair_id": "speech_timing_strong",
+        "a_id": "clue_speech_duration",
+        "b_id": "clue_police_report",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "third_key_medium",
+        "a_id": "decoy_safe_key",
+        "b_id": "clue_gate_log",
+        "strength": "medium"
+      }
+    ],
+    "decoys": [
+      "decoy_ticket",
+      "decoy_red_ink",
+      "decoy_debt",
+      "decoy_interview_mother",
+      "clue_shift_bell"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 65,
+      "speed_upgrade_sec": 22,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": true
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 55,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 40,
+          "ids": [
+            "guilty_lenient",
+            "not_guilty_with_comment"
+          ]
+        },
+        {
+          "min": 70,
+          "ids": [
+            "insufficient_reopen"
+          ]
+        },
+        {
+          "min": 85,
+          "ids": [
+            "guilty_alternative",
+            "guilty_special"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 45,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "guilty_alternative",
+            "insufficient_reopen"
+          ],
+          "narrative_lines": [
+            "Čas schůze a zápis v knize hlídky už nejdou slepit do jedné soukromé pravdy.",
+            "Marešův klid ve výpovědi se vám rozpadá na drobné úlomky — každý odkaz na politiku teď zní jako alibi.",
+            "Volfův hlas na chodbě a zvonění přejímky nejsou ozdoba; jsou to body, které drží obžalobu při zemi i ve vzduchu."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "mares",
+      "target_label": "Alois Mareš, obžalovaný",
+      "reveals": "motivation",
+      "text": "Moje matka je po druhém záchvatu. <span class=\"clue\" data-clue-id=\"decoy_interview_mother\">Léky z Podolí nejsou v seznamu pojišťovny</span>. Volf nám srazil mzdy, ale slíbil, že když budu mlčet o nočních přesčasech bez příplatků, dostanu zálohu. Nedostal jsem nic. Peníze jsem nevzal, pane doktore. Jen jsem lhal o tom večeru.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 2
+        },
+        "trust": {
+          "horakova": -1
+        }
+      }
+    },
+    "records": {
+      "source": "Policejní a podnikový protokol — Smíchov",
+      "reveals": "facts",
+      "text": "Protokol revíru <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"smichov\" title=\"Slovník: Smíchov\">Smíchov</button>: <span class=\"clue\" data-clue-id=\"clue_police_report\">schůze v Obecním domě zahájena v 19:00, ukončena v 19:10, budova vyklizena do 19:30</span>. Podnikový registr klíčů uvádí třetí duplikát uložený u vrátnice: <span class=\"clue\" data-clue-id=\"clue_gate_log\">výdej duplikátu 14. ledna v 19:42 na podpis K. Volf</span>. U Mareše evidován dluh 150 Kčs z herny <span class=\"clue\" data-clue-id=\"decoy_debt\">U křížku</span>.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -18,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1
+        }
+      },
+      "unlocks_contradiction": "meeting_interrupted"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -5,
+        "traits": {
+          "Vina": 1
+        },
+        "factions": {
+          "Lid": -2,
+          "Kapital": 2
+        },
+        "trust": {
+          "karas": -1
+        }
+      },
+      "variants": {
+        "lid_high": "Volf chce na Mareše hodit nejen krádež, ale i ztrátu zakázky od zemského úřadu. Když padne účetní, padne i odborová stížnost. V dělnické šatně se říká, že někdo z vedení sahal do mezd dávno před tou nocí.",
+        "moc_high": "Na <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"smichov\" title=\"Slovník: Smíchov\">Smíchově</button> je nervózní nálada. Pokud rozsudek bude měkký, může to zvednout řeči o slabosti soudu. Tiskárna navíc tiskne letáky pro dvě soupeřící strany. Ministerstvo sleduje každý konflikt kolem ní.",
+        "kapital_high": "Grafia stojí na jediné velké zakázce. Jakmile se rozšíří zpráva, že pokladna byla otevřena interně, banka zmrazí úvěr. Volf potřebuje rychlý viník, jinak mu padne provoz.",
+        "default": "V tiskárně je strach i hlad. Mareš dluží, Volf tlačí na výkon, dělníci čekají na mzdu. V noci zmizely peníze i jedna stránka z knihy - někdo nekradl jen hotovost, ale i čas."
+      }
+    },
+    "confrontation": {
+      "target": "mares",
+      "target_label": "Alois Mareš, obžalovaný",
+      "requires_contradiction": "meeting_interrupted",
+      "requires_courage": 50,
+      "cost": 2,
+      "prompt": "Pane Mareši, schůze skončila po deseti minutách. A v registru klíčů je duplikát vydaný na podpis pana Volfa. Lhal jste kvůli herně, nebo kvůli někomu jinému?",
+      "success": {
+        "text": "Mareš si zakryje ústa rukou. Když ji dá dolů, mluví potichu: Volf mě poslal do herny s obálkou pro věřitele, aby mi později mohl říct, že jsem tam byl celý večer. Měl jsem pak přepsat noční knihu. Odmítl jsem. Druhý den už chyběly peníze i stránka. Já jsem zbaběle zalhal, protože jsem se bál, že mě zavřou i bez toho.",
+        "reveals": "Mareš přiznává lež a dluhy, ale tvrdí, že byl tlačen do role náhradního viníka. Objevuje se motiv manipulace s duplikátem klíče i účetní knihou."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "maximum": {
+          "label": "1 rok těžkého žaláře",
+          "description": "Soud uvěří, že Mareš spojil dluhy, lež a přímý přístup k pokladně.",
+          "effects": {
+            "integrita": 1,
+            "moudrost": 1,
+            "vina": 10,
+            "nadeje": -5,
+            "moc": 5,
+            "lid": -8,
+            "finance": 20
+          }
+        },
+        "standard": {
+          "label": "4 měsíce vězení a náhrada škody",
+          "description": "Přímý postih za porušení důvěry v podniku.",
+          "effects": {
+            "integrita": 2,
+            "vina": 5,
+            "nadeje": -2,
+            "moc": 2,
+            "lid": -3,
+            "finance": 20
+          }
+        },
+        "lenient": {
+          "label": "Podmíněný trest na 18 měsíců",
+          "description": "Uznání viny s ohledem na péči o matku a tlak zaměstnavatele.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 0,
+            "vina": 2,
+            "nadeje": 2,
+            "moc": -2,
+            "lid": 4,
+            "finance": 10
+          }
+        },
+        "alternative": {
+          "label": "Veřejně prospěšné práce + kontrolovaná náhrada škody",
+          "description": "Sankce bez vězení, s dohledem soudu a auditním dohledem tiskárny.",
+          "requires_investigation": 2,
+          "requires": {
+            "moudrost_min": 55
+          },
+          "effects": {
+            "integrita": 5,
+            "moudrost": 4,
+            "vina": 0,
+            "nadeje": 5,
+            "moc": -3,
+            "lid": 7,
+            "finance": 5
+          }
+        },
+        "special": {
+          "label": "Průzkum: Vina Mareše, ale nařízen forenzní audit vedení",
+          "description": "Mareš je potrestán, současně soud otevírá vyšetření manipulace s klíči a mzdovou knihou.",
+          "requires_investigation": 3,
+          "requires": {
+            "moudrost_min": 65,
+            "odvaha_min": 55
+          },
+          "effects": {
+            "integrita": 7,
+            "odvaha": 3,
+            "moudrost": 5,
+            "vina": 1,
+            "nadeje": 4,
+            "moc": -6,
+            "lid": 8,
+            "finance": 8
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zproštění pro nedostatek přímých důkazů",
+          "description": "Neprokázalo se, že Mareš fyzicky otevřel pokladnu a odnesl hotovost.",
+          "effects": {
+            "integrita": 3,
+            "odvaha": 4,
+            "moudrost": 2,
+            "vina": -5,
+            "moc": -4,
+            "lid": 5,
+            "finance": 0
+          }
+        },
+        "with_comment": {
+          "label": "Zproštění s komentářem k mzdovým praktikám tiskárny",
+          "description": "Soud přizná nejasnosti v důkazech a veřejně upozorní na tlak zaměstnavatele.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 5,
+            "odvaha": 3,
+            "moudrost": 3,
+            "vina": -3,
+            "moc": -6,
+            "lid": 7,
+            "finance": 5
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "requires": {
+        "moudrost_min": 55
+      },
+      "options": {
+        "reopen": {
+          "label": "Vrátit k došetření hospodářské policii",
+          "description": "Soud neuzavírá věc a žádá došetření duplikátu klíče i účetní knihy.",
+          "effects": {
+            "integrita": 4,
+            "moudrost": 3,
+            "vina": 1,
+            "nadeje": 1,
+            "moc": -2,
+            "lid": 3,
+            "finance": 8
+          }
+        },
+        "close": {
+          "label": "Uzavřít bez rozsudku, se správním dohledem",
+          "description": "Spis je uzavřen pro nedostatek důkazů, tiskárna podléhá správní kontrole.",
+          "effects": {
+            "integrita": 1,
+            "moudrost": 2,
+            "vina": 2,
+            "nadeje": -1,
+            "moc": 1,
+            "lid": 1,
+            "finance": 5
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_maximum": "Mareš se složí na lavici, jako by mu někdo podrazil kolena. Volf jen jednou kývne zapisovatelce a odchází bez ohlédnutí. Dělníci čekající na chodbě se rozejdou beze slov.",
+    "guilty_standard": "Rozsudek dopadne tvrdě, ale ne definitivně. Mareš se ještě stihne otočit k Růženě Křížové; ona mu jen přiloží dlaň na prsa, krátké gesto, které znamená vydrž.",
+    "guilty_lenient": "Mareš děkuje, i když ví, že jde domů s cejchem. Volf si zapisuje něco do notýsku, tentokrát bez výrazu. Na galerii je slyšet úlevný výdech dělníků.",
+    "guilty_alternative": "Ben diktuje podmínky dohledu. Volf protestuje jen napůl - ví, že úplná výhra mu unikla. Mareš poprvé zvedne hlavu a dívá se soudci přímo do očí.",
+    "guilty_special": "Soud dopadne na Mareše, ale tentokrát i na stůl vedení. Slovo audit v síni zazní jako cizí kov. Volf zbledne. Křížová se usměje jen koutkem.",
+    "not_guilty_formal": "Mareš odchází volný, ale v obličeji má stejný strach jako při příchodu. Volf ho mine na chodbě tak těsně, že se jejich kabáty dotknou. Nikdo nic neřekne.",
+    "not_guilty_with_comment": "Komentář k mzdám a nočním přesčasům dopadne na síň tvrději než samotné zproštění. Volf sevře desky oběma rukama. Dělníci vzadu si mezi sebou poprvé začnou šeptat nahlas.",
+    "insufficient_reopen": "Spis se vrací na hospodářskou policii. Nikdo neodchází spokojený. Mareš má pár týdnů navíc; Volf pár týdnů strachu navíc.",
+    "insufficient_close": "Případ je uzavřen bez viny i bez očištění. Volf mluví o vítězství rozumu. Mareš o tomtéž večeru balí věci ze stolu účetního."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "guilty_special",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "Hospodářská policie provedla v Grafii kontrolu mzdových knih. Dvě stránky byly vedeny dvojmo. Ve Svobodném obzoru se objevila stručná zmínka: Noční směny už nejsou jen interní věc podniku."
+    },
+    {
+      "trigger": "not_guilty_with_comment",
+      "delay_days": 5,
+      "type": "letter",
+      "text": "Krátký dopis z ministerstva: Komentáře soudu k pracovním podmínkám přesahují rámec trestního řízení. Věřím, že příště zůstanete u podstaty skutku. Podpis: Vlček."
+    },
+    {
+      "trigger": "insufficient_reopen",
+      "delay_days": 6,
+      "type": "fragment",
+      "text": "<button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"smichov\" title=\"Slovník: Smíchov\">Smíchovská</button> vrátnice hlásí, že podpis v registru klíčů byl přepsán přes původní iniciály. Vyšetřovatel žádá nové výslechy vedení tiskárny."
+    }
+  ]
+}
