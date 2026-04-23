@@ -36,6 +36,8 @@ OSOBNÍ: barva #5C2D6E | echo Benovy minulosti | efekty Vina ±5-10, Vztahy ±
 Pracovní dny: ranní fragment → případy dne → večerní volba.
 Sobota: bonusy + shrnutí. Neděle: volba volného dne. Žádné případy.
 
+**Scénář 20 dní (večery, emoční linka / matka, týdenní rytmus):** kanonický textový plán je v `docs/InDubio_20dni_Mapa-scenar.md` (doplněk k tabulce v `docs/InDubio_20dni_Mapa.xlsx`). Při rozporu preferuj tento MD pro vývoj; XLSX drží produkční přehled pro autory.
+
 ## HARMONOGRAM VLÁKEN
 
 Božena: D1, 4, 8, 13, 18 (slot 1)
@@ -189,7 +191,7 @@ Rozsudky a tresty odemčené průzkumem (spotřeba akcí) nebo potvrzenou dvojic
 UI pravidlo:
 - odemčená možnost má odlišnou barvu celého tlačítka (ne jen štítek),
 - text `Průzkum:` je přímo v názvu odemčené volby, např.:
-  `Průzkum: Pokuta 50 Kč, důtka`.
+  `Průzkum: Pokuta 50 Kčs, důtka`.
 
 Skupinová tlačítka (Krok 1):
 - pokud skupina obsahuje nové odemčené volby, zobrazit pod titulkem text:
@@ -264,6 +266,8 @@ Verdikty odemčené průzkumem/pátráním musí být systémově atraktivní:
 
 ## DOPAD PO ROZSUDKU
 
+**Typ případu (kód):** po uzavření spisu přidá `Cases.vypoctiTypoveDoplnky` k finance typový příplatek — **morální +25 Kčs**, **politický +35 Kčs**, **osobní +30 Kčs** (rutinní bez tohoto řádku). U **morální / politický / osobní** navíc `_bonusInkoustZaNarocnySpis`: **+1** `investigationActionsLeft`. Souhrn pro hráče také v `data/knihovna.json` a `.cursor/rules/economy.mdc`.
+
 Spis zmizí. Nahradí ho:
 1. Razítko VYŘEŠENO (červená = odsouzení, modrá = zproštění, šedá = odloženo)
 2. Narativní fragment 2-3 věty. Nikdy nehodnotí hráče.
@@ -308,7 +312,7 @@ Konzistentní (5+ stejným směrem): MOC +10 nebo LID +10
 
 ### Integrita pod 10
 - ZMIZÍ verdikty: zproštění obžaloby, alternativní tresty, komentáře
-- PŘIBUDE: volba „Přijmout úplatek" u každého případu (skryté +50-100 Kč, Integrita -15)
+- PŘIBUDE: volba „Přijmout úplatek" u každého případu (skryté +50-100 Kčs, Integrita -15)
 - Zamčené „?" sloty u odstraněných verdiktů se NEZOBRAZUJÍ (zmizí úplně, jako by neexistovaly)
 
 ### Odvaha pod 10
@@ -375,6 +379,7 @@ Kořen: `{ "pool_cases_akt1": [ { …případ… }, … ] }`.
 | `description` | → runtime `situation` (text „skutku“) |
 | `contradictions` | Autorům + text rozporu v modalu (`pripad.contradictions`); `highlight_at_wisdom` / `contradiction_keywords` zatím **neřeší** engine |
 | `aftermath`, `delayed_consequences` | Texty / triggery pro budoucí dopady (ne vše je nutně napojeno) |
+| `correct_verdict` | **Nepoužívá se** v herní logice (legacy v některých `cases-akt*.json`). Úklis: `node tools/patch-case-bonus-data.js` pole maže. |
 
 ### `testimonies[]` (JSON) → `testimony[]` (runtime)
 
@@ -389,11 +394,17 @@ Loader mapuje jen **`speaker` → `label` / `source`** a **`text`**. Pole `id`, 
 | `informant` | `pool_inv_informant` | `informant` | výběr z `variants` dle frakcí (`moc_high` ≥60, `lid_high` ≥60, `kapital_high` ≥60, jinak `default`) | 1 |
 | `confrontation` | `pool_inv_confrontation` | `confrontation` | `prompt` + `success.text` | **2** |
 
-**Neoficiální zdroj (UI, dříve „nečistá cesta“):** u položek `hidden_info` kromě **konfrontace** lze vedle oficiálního tlačítka průzkumu (kapky) zobrazit druhé tlačítko **„Neoficiální zdroj“** — stejné `reveal` jako průzkum, bez kapek, za postih (výchozě finance cca −12 / −20 Kč podle `cost`, Integrita −2, Vina +1; override v JSON). Konfrontace je **výhradně** za akční body (inkoust), druhá cesta u ní **neexistuje**. Vypnutí: `dirty_unlock: false`. Data pole zůstává `dirty_unlock` v `pool_cases_*.json` → loader přenáší do `hidden_info[].dirty_unlock`. Při bezplatných záznamech se druhá cesta neukazuje. Moudrost po neoficiálním zdroji roste slaběji (násobek 2 oproti 3). Karta zjištění ve spisu má jiný štítek než tlačítko: např. „Zjištění — výslech (průzkum)“ vs. „… (neoficiální zdroj)“; způsob se ukládá ve stavu (`revealedInfoPath`).
+**Neoficiální zdroj (UI, dříve „nečistá cesta“):** u položek `hidden_info` kromě **konfrontace** lze vedle oficiálního tlačítka průzkumu (kapky) zobrazit druhé tlačítko **„Neoficiální zdroj“** — stejné `reveal` jako průzkum, bez kapek, za postih (výchozě finance cca −12 / −20 Kčs podle `cost`, Integrita −2, Vina +1; override v JSON). Konfrontace je **výhradně** za akční body (inkoust), druhá cesta u ní **neexistuje**. Vypnutí: `dirty_unlock: false`. Data pole zůstává `dirty_unlock` v `pool_cases_*.json` → loader přenáší do `hidden_info[].dirty_unlock`. Při bezplatných záznamech se druhá cesta neukazuje. Moudrost po neoficiálním zdroji roste slaběji (násobek 2 oproti 3). Karta zjištění ve spisu má jiný štítek než tlačítko: např. „Zjištění — výslech (průzkum)“ vs. „… (neoficiální zdroj)“; způsob se ukládá ve stavu (`revealedInfoPath`).
 
 **Informovanost — tooltip:** lišta má shrnutí, že kromě odemykání části verdiktů vstupuje do **procesní kvality** a důsledků po rozsudku (metavrstva).
 
 **Verdikty — tooltip (krok 2):** u každé dostupné varianty krátký text, *proč* je zpřístupněná (základ / počet průzkumů / konfrontace / práh informovanosti / odměna z pátrání). U zamčených variant důvod blokace (rysy / průzkum / práh / pátrání). Implementace: `Cases.popisDuvoduVerdiktu`, `Cases.popisNepristupnostiVerdiktu` v `js/cases.js`, vykreslení v `js/ui.js`.
+
+**Slabý podklad (UI):** při nízké informovanosti drobné upozornění **jen u tlačítek konkrétních verdiktů v kroku 2** — ne u výběru skupiny v kroku 1, ne u legacy seznamu. `_wfHtmlUpozorneniSlabySpis` v `js/ui.js`.
+
+**Předběžný hint dopadů (krok 2):** finance číslem v **Kčs**; traits / důvěra jako osy bez čísel; **frakce** jedním řádkem `Frakce: A, B` (deduplikace názvů). `_wfVerdiktDopadovyHint` v `js/ui.js`.
+
+**Archiv Rozsudky:** filtr podle typu případu, štítek na řádku, uložené **`caseType`** v záznamu (`State.pridejRozsudek`). Starší save bez `caseType` dopočítá typ ze spisu. `js/ui.js` (`_vyplnArchivTab`). Pod filtrem krátký blok **trendů** (směr výroků, uložená procesní / normativní meta kde je) — bez hodnocení „správnosti“ rozhodnutí.
 
 **Pátrání vs. prah informovanosti (verdikty):** je-li verdikt v `info_threshold_unlocks.verdicts` s práhem `min`, považuje se za odemčený, pokud platí **informovanost ≥ min NEBO** je ID v `unlock_verdict_ids` u odměny za **již potvrzenou** osu stop (`jeVerdiktOdemcenPoClue` — varianta B). Jinak prah zůstává závazný jen jako alternativa k odměně z pátrání.
 
@@ -427,6 +438,8 @@ Volitelná větev pro interaktivní párování stop v textu (`<span class="clue
 | `rewards.on_confirm.<strength>.investigation_progress_delta` | Bonus do informovanosti po potvrzení osy |
 | `rewards.on_confirm.<strength>.unlock_actions[]` | ID průzkumných akcí odemčených potvrzenou osou |
 | `rewards.on_confirm.<strength>.unlock_verdict_ids[]` | ID verdiktů odemčených potvrzenou osou |
+| `rewards.on_confirm.<strength>.narrative_lines[]` | Volitelné: krátké odstavce (typicky **3 věty** podle síly vazby); po potvrzení osy se zobrazí modal v `#modal-pripad`, tlačítko **Rozumím** dokončí vykreslení potvrzení ve spisu (`js/ui.js`). |
+| `rewards.on_confirm.<strength>.narrative` | Alternativa k `narrative_lines`: jeden řetězec, odstavce oddělte `\n\n`. |
 | `info_threshold_unlocks.actions[]` | Prahové odemykání průzkumných akcí podle informovanosti |
 | `info_threshold_unlocks.verdicts[]` | Prahové odemykání verdiktů podle informovanosti |
 | `timed_hunt.enabled` | Zapnutí mini-hry pátrání |
@@ -459,6 +472,7 @@ Použij tento postup pro každý nový případ:
 
 4. **Odměny a odemykání**
    - nastav `rewards.on_confirm` po síle vazby,
+   - u každé sily (`weak` / `medium` / `strong`) zvaž **`narrative_lines`**: tři krátké věty v barvě „zápis z pátrání“ — od náznaku přes střední jistotu po pevné spojení faktů (bez prozrazení správného páru mimo tento moment),
    - nastav `info_threshold_unlocks` pro akce a verdikty.
 
 5. **Timed pátrání (volitelně)**
@@ -468,6 +482,7 @@ Použij tento postup pro každý nový případ:
 6. **Rozsudky**
    - připrav plnou škálu (`guilty`, `not_guilty`, `insufficient_evidence`) a varianty,
    - každé variantě dej smysluplné `effects` (base vrstva),
+   - ke každému **viditelnému** textu verdiktu (`label` / `description` / `consequence`) přidej větu **lidského dopadu** — co to znamená pro obžalovaného, poškozeného nebo rodinu (ne jen paragraf nebo částku),
    - ověř, co je základní a co je odemykané průzkumem/vazbami.
 
 7. **Meta logika hry**
@@ -490,6 +505,8 @@ Struktura se může lišit; kanon pro nový obsah je **pool** výše. Při rozš
 ## Krátká revize spisu (odvolání) — autorská mini šablona
 
 Když se případ vrátí k revizi, hra zobrazí krátkou kartu (A/B volba), ne full replay.
+
+**Univerzální dopis na stole (jedna šablona pro všechny revize):** obálka / lístek z úřadu nebo z advokacie má společný rámec („věc se vrací k přezkumu“), konkrétní jméno a číslo spisu se doplní z dat případu. Autor případu nepíše nový typ dopisu pro každý JSON — jen `review_card.*` a případné unikátní efekty. Viz také `docs/spis-patrani-pruzkum-rozsudek.md`.
 
 Doporučená data v případu:
 

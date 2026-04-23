@@ -18,7 +18,7 @@
     "detail": "zaměstnanec tiskárny Grafia, svobodný, v péči má nemocnou matku"
   },
   "charge": "Krádež vloupáním dle §171 trestního zákona, zpronevěra dle §183",
-  "description": "Z kanceláře tiskárny Grafia na Smíchově zmizela v noci ze 14. na 15. ledna 1931 hotovost ve výši 500 Kč určená na výplaty dělníků. Zámek u pokladny nebyl poškozen, což ukazuje na použití klíče. Obžalovaný Alois Mareš, který klíče držel, tvrdí, že v inkriminovanou dobu na pracovišti nebyl. Majitel tiskárny trvá na přísném potrestání, aby zastavil vlnu krádeží v průmyslovém areálu.",
+  "description": "Z kanceláře tiskárny Grafia na Smíchově zmizela v noci ze 14. na 15. ledna 1931 hotovost ve výši 500 Kčs určená na výplaty dělníků. Zámek u pokladny nebyl poškozen, což ukazuje na použití klíče. Obžalovaný Alois Mareš, který klíče držel, tvrdí, že v inkriminovanou dobu na pracovišti nebyl. Majitel tiskárny trvá na přísném potrestání, aby zastavil vlnu krádeží v průmyslovém areálu.",
   "testimonies": [
     {
       "id": "mares",
@@ -105,7 +105,7 @@
     "records": {
       "source": "Policejní hlášení — revír Smíchov",
       "reveals": "facts",
-      "text": "Hlášení ze dne 14. ledna: Veřejná schůze v Obecním domě. <span class=\"clue\" data-clue-id=\"clue_police_report\">Zahájena v 19:00, rozpuštěna policií v 19:10 pro pokus o výtržnost skupinou radikálů</span>. Budova byla vyklizena do 19:30. Záznam o Marešovi: Dluží 150 Kč v ilegální herně 'U křížku'. <span class=\"clue\" data-clue-id=\"decoy_debt\">Věřitelé na něj podali podnět pro nesplácení</span>.",
+      "text": "Hlášení ze dne 14. ledna: Veřejná schůze v Obecním domě. <span class=\"clue\" data-clue-id=\"clue_police_report\">Zahájena v 19:00, rozpuštěna policií v 19:10 pro pokus o výtržnost skupinou radikálů</span>. Budova byla vyklizena do 19:30. Záznam o Marešovi: Dluží 150 Kčs v ilegální herně 'U křížku'. <span class=\"clue\" data-clue-id=\"decoy_debt\">Věřitelé na něj podali podnět pro nesplácení</span>.",
       "cost": 1,
       "unlocks_contradiction": "meeting_interrupted"
     },

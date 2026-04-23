@@ -12,8 +12,8 @@
     "occupation": "dělník",
     "detail": "ženatý, 3 děti, propuštěn z Haasovy továrny"
   },
-  "charge": "Krádež potravin dle §171 trestního zákona, škoda 4 Kč 80 hal.",
-  "description": "Jan Horák byl zadržen 28. února 1931 v pekárně U Nováků na Masarykově třídě. Dle výpovědi pekaře Antonína Nováka obžalovaný odcizil <span class=\"clue\" data-clue-id=\"decoy_bread_value\">dva bochníky chleba v celkové hodnotě 4 Kč 80 hal.</span> Obžalovaný se nebránil zadržení.",
+  "charge": "Krádež potravin dle §171 trestního zákona, škoda 4 Kčs 80 hal.",
+  "description": "Jan Horák byl zadržen 28. února 1931 v pekárně U Nováků na Masarykově třídě. Dle výpovědi pekaře Antonína Nováka obžalovaný odcizil <span class=\"clue\" data-clue-id=\"decoy_bread_value\">dva bochníky chleba v celkové hodnotě 4 Kčs 80 hal.</span> Obžalovaný se nebránil zadržení.",
 
   "testimonies": [
     {
@@ -131,7 +131,7 @@
           }
         },
         "standard": {
-          "label": "Pokuta 10 Kč",
+          "label": "Pokuta 10 Kčs",
           "description": "Standardní sazba za drobnou krádež.",
           "effects": {
             "integrita": 0, "odvaha": 0, "moudrost": 0, "vina": 2, "nadeje": -1,
@@ -139,7 +139,7 @@
           }
         },
         "lenient": {
-          "label": "Pokuta 3 Kč, podmínka",
+          "label": "Pokuta 3 Kčs, podmínka",
           "description": "Symbolický trest. Pod minimální sazbu, odůvodněný stavem nouze.",
           "effects": {
             "integrita": 1, "odvaha": 0, "moudrost": 0, "vina": 1, "nadeje": 0,

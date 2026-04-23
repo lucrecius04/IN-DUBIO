@@ -546,33 +546,6 @@ const Cases = (() => {
     const doplnek = { traits: {}, factions: {}, trust: {}, finance: 0, flags: [] };
     const narativ = [];
 
-    if (typ === 'rutinni') {
-      const correctId = pripad.correct_verdict;
-      if (correctId) {
-        const ok = rozsudek.id === correctId;
-        if (ok && pouzit) {
-          doplnek.finance = 20;
-          doplnek._ui_finance_label = 'Odměna za správný rozsudek (s průzkumem)';
-          narativ.push('Pečlivé vyšetřování. +20 Kč.');
-        } else if (ok) {
-          doplnek.finance = 10;
-          doplnek._ui_finance_label = 'Odměna za správný rozsudek';
-          narativ.push('Rozsudek odpovídá důkazům. +10 Kč.');
-        } else if (!ok) {
-          doplnek.finance = -15;
-          doplnek.traits.Moudrost = pouzit ? -1 : -2;
-          doplnek._ui_finance_label = pouzit
-            ? 'Pokuta — rozsudek neobstál'
-            : 'Pokuta — rozsudek zpochybněn';
-          narativ.push(
-            pouzit
-              ? 'Přes pečlivé vyšetřování rozsudek neobstál. -15 Kč.'
-              : 'Váš rozsudek byl zpochybněn vyšší instancí. -15 Kč.'
-          );
-        }
-      }
-    }
-
     if (typ === 'moralni' && pouzit) {
       doplnek.traits.Moudrost = (doplnek.traits.Moudrost || 0) + 3;
     }
@@ -591,8 +564,8 @@ const Cases = (() => {
     }
 
     if (typ === 'moralni') {
-      doplnek.finance = (Number(doplnek.finance) || 0) + 10;
-      doplnek._ui_finance_label = 'Odměna za uzavření morálního případu';
+      doplnek.finance = (Number(doplnek.finance) || 0) + 25;
+      doplnek._ui_finance_label = 'Odměna za uzavření morálního případu (+25 Kčs)';
     }
 
     if (typ === 'politicky') {
@@ -609,8 +582,8 @@ const Cases = (() => {
       if (pouzit && soulad) {
         doplnek.traits.Moudrost = (doplnek.traits.Moudrost || 0) + 3;
       }
-      doplnek.finance = (Number(doplnek.finance) || 0) + 10;
-      doplnek._ui_finance_label = 'Odměna za uzavření politického případu';
+      doplnek.finance = (Number(doplnek.finance) || 0) + 35;
+      doplnek._ui_finance_label = 'Odměna za uzavření politického případu (+35 Kčs)';
     }
 
     if (typ === 'osobni') {
@@ -627,8 +600,8 @@ const Cases = (() => {
         doplnek.traits.Moudrost = (doplnek.traits.Moudrost || 0) + 2;
         doplnek.traits.Vina = (doplnek.traits.Vina || 0) - 2;
       }
-      doplnek.finance = (Number(doplnek.finance) || 0) + 10;
-      doplnek._ui_finance_label = 'Odměna za uzavření osobního případu';
+      doplnek.finance = (Number(doplnek.finance) || 0) + 30;
+      doplnek._ui_finance_label = 'Odměna za uzavření osobního případu (+30 Kčs)';
     }
 
     const metaMix = _metaDoplnkyZaKvalituANormu(procesniKvalita, normativniSmer);
@@ -682,6 +655,15 @@ const Cases = (() => {
         hiddenVerdictBoost
       }
     };
+  }
+
+  /** +1 sdílená akce průzkumu po uzavření morálního / politického / osobního spisu. */
+  function _bonusInkoustZaNarocnySpis(pripad) {
+    if (!pripad || typeof State === 'undefined') return;
+    const t = typProZobrazeni(pripad);
+    if (t === 'rutinni' || !t) return;
+    const cur = Number(State.get('investigationActionsLeft')) || 0;
+    State.set('investigationActionsLeft', cur + 1);
   }
 
   function _defaultDirtyFinanceDelta(costKapky) {
@@ -771,7 +753,7 @@ const Cases = (() => {
       }
     };
     const { merged, typNarativ, meta } = pripravSlouceneDusledky(pripad, rozsudek);
-    merged._ui_finance_label = `Úplatek: +${castka} Kč`;
+    merged._ui_finance_label = `Úplatek: +${castka} Kčs`;
     const dusledkyRadky = UI.vypoctiDusledkyRadky(merged);
 
     Finance.prijmoutUplatek(castka, pripad.title || '');
@@ -785,6 +767,7 @@ const Cases = (() => {
     State.pridejRozsudek({
       day:            den,
       caseId:         String(pripad.id).trim(),
+      caseType:       typProZobrazeni(pripad),
       verdict:        rozsudek.text,
       caseTitle:      pripad.title,
       verdictId:      rozsudek.id,
@@ -798,6 +781,7 @@ const Cases = (() => {
       hiddenVerdictBoost: !!(meta && meta.hiddenVerdictBoost),
       unofficialSummary: _souhrnNeoficialnichZdroju(pripad)
     });
+    _bonusInkoustZaNarocnySpis(pripad);
     State.pridejPouzityPripad(pripad.id);
     _naplanovatReviziPoRozsudku(pripad, rozsudek, meta);
 
@@ -844,7 +828,9 @@ const Cases = (() => {
       const mo = document.getElementById('modal-pripad');
       if (mo && mo.classList.contains('aktivni') && State.jePripadUzavren(pripad.id)) UI.zobrazPripadReadonly(pripad);
     }
-    UI.zobrazStavovouZpravu(`Úplatek: ${castka} Kč`);
+    const spisTypU = typProZobrazeni(pripad);
+    const inkMsgU = spisTypU !== 'rutinni' ? ' +1 sdílená akce průzkumu.' : '';
+    UI.zobrazStavovouZpravu(`Úplatek: ${castka} Kčs${inkMsgU}`);
     setTimeout(() => Engine.zkontrolujKonecDne(), 500);
 
     if (_onRozsudekCallback) _onRozsudekCallback(pripad, rozsudek);
@@ -893,6 +879,7 @@ const Cases = (() => {
     State.pridejRozsudek({
       day:            den,
       caseId:         String(pripad.id).trim(),
+      caseType:       typProZobrazeni(pripad),
       verdict:        rozsudek.text,
       caseTitle:      pripad.title,
       verdictId:      rozsudek.id,
@@ -903,6 +890,7 @@ const Cases = (() => {
       normativniSmer: meta && meta.normativniSmer ? meta.normativniSmer.key : null,
       unofficialSummary: _souhrnNeoficialnichZdroju(pripad)
     });
+    _bonusInkoustZaNarocnySpis(pripad);
     State.pridejPouzityPripad(pripad.id);
 
     // Zkontroluj opakující se vlákna
@@ -957,7 +945,9 @@ const Cases = (() => {
     }
 
     // Zpráva
-    UI.zobrazStavovouZpravu(`Rozsudek: ${rozsudek.text}`);
+    const spisTypR = typProZobrazeni(pripad);
+    const inkMsgR = spisTypR !== 'rutinni' ? ' +1 sdílená akce průzkumu.' : '';
+    UI.zobrazStavovouZpravu(`Rozsudek: ${rozsudek.text}${inkMsgR}`);
 
     // Zkontroluj konec dne
     setTimeout(() => Engine.zkontrolujKonecDne(), 500);

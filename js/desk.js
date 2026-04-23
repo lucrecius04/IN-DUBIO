@@ -86,7 +86,7 @@ const Desk = (() => {
     const bal = Number(fin.balance);
     const dluh = Number(fin.dluh);
     const uspory = Number.isFinite(bal) ? Math.round(bal) : 0;
-    const dluhTxt = Number.isFinite(dluh) && dluh > 0 ? `\nDluh: ${Math.round(dluh)} Kč` : '';
+    const dluhTxt = Number.isFinite(dluh) && dluh > 0 ? `\nDluh: ${Math.round(dluh)} Kčs` : '';
     el.textContent =
       `Integrita: ${n('Integrita')}\n` +
       `Odvaha: ${n('Odvaha')}\n` +
@@ -94,7 +94,7 @@ const Desk = (() => {
       `Vina: ${n('Vina')}\n` +
       `Naděje: ${n('Nadeje')}\n` +
       `—\n` +
-      `Úspory: ${uspory} Kč${dluhTxt}\n` +
+      `Úspory: ${uspory} Kčs${dluhTxt}\n` +
       `—\n` +
       `Moc: ${f('Moc')}\n` +
       `Kapitál: ${f('Kapital')}\n` +
@@ -196,7 +196,7 @@ const Desk = (() => {
     panel.innerHTML = '';
     const r1 = document.createElement('div');
     r1.className = 'finance-radek finance-radek--uspory';
-    r1.textContent = 'Úspory: ' + t.uspory + ' Kč';
+    r1.textContent = 'Úspory: ' + t.uspory + ' Kčs';
     panel.appendChild(r1);
     const r2 = document.createElement('div');
     r2.className = 'finance-radek finance-radek--tydenni ' + (t.operaceTrida || 'finance--neutral');
@@ -205,7 +205,7 @@ const Desk = (() => {
     if (dluh > 0) {
       const r3 = document.createElement('div');
       r3.className = 'finance-radek finance-radek--dluh';
-      r3.textContent = 'Dluh: ' + Math.round(dluh) + ' Kč';
+      r3.textContent = 'Dluh: ' + Math.round(dluh) + ' Kčs';
       panel.appendChild(r3);
     }
   }

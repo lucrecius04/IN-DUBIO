@@ -6,63 +6,63 @@ alwaysApply: false
 
 ## EKONOMIKA
 
-Výchozí úspory: 120 Kč
-Denní výdaje: -55 Kč (nájem + jídlo + lékař)
+Výchozí úspory: 120 Kčs
+Denní výdaje: -55 Kčs (nájem + jídlo + lékař)
 
 ### Příjmy z rozsudků (závisí na kvalitě)
-- Rozsudek bez průzkumu: +5 Kč
-- Rozsudek s 1 akcí průzkumu, odpovídá faktům: +10 Kč
-- Rozsudek s 1 akcí, neodpovídá faktům: +5 Kč
-- Rozsudek s 2 akcemi + rozpor nalezen, odpovídá: +20 Kč
-- Rozsudek s 2 akcemi, neodpovídá: +5 Kč
-- Morální/politický případ: +10 Kč bonus (vždy, navíc k výše uvedenému)
+- Rozsudek bez průzkumu: +5 Kčs
+- Rozsudek s 1 akcí průzkumu, odpovídá faktům: +10 Kčs
+- Rozsudek s 1 akcí, neodpovídá faktům: +5 Kčs
+- Rozsudek s 2 akcemi + rozpor nalezen, odpovídá: +20 Kčs
+- Rozsudek s 2 akcemi, neodpovídá: +5 Kčs
+- Morální případ: +25 Kčs typově · politický: +35 Kčs · osobní: +30 Kčs (vždy navíc k výše uvedenému) + 1 sdílená akce průzkumu (inkoust)
 
 ### Týdenní plat
-+80 Kč každou neděli (5 výplat celkem: dny 5, 10, 15, 20 — sobota/neděle cykly)
++80 Kčs každou neděli (5 výplat celkem: dny 5, 10, 15, 20 — sobota/neděle cykly)
 
 ### Ekonomická matematika (hráč to nevidí, ale my to potřebujeme)
-Denní bilance: 2 případy × průměr 10 Kč = +20 Kč. Minus 55 Kč výdajů = -35 Kč/den.
-Za 5 pracovních dní: -175 Kč příjmy +100 Kč z případů +80 Kč plat = +5 Kč týdně (sotva přežití).
-Za 20 dní bez bonusů a úplatků: 120 start + cca 20 Kč = 140 Kč na konci. NESTAČÍ na operaci.
+Denní bilance: 2 případy — čistě rutinní dávají orientačně +20 Kčs/den z výplat; barevná složka přidá typový příplatek (25–35 Kčs) a +1 inkoust. Minus 55 Kčs výdajů.
+Za 5 pracovních dní: orientačně −175 Kčs výdaje + příjmy z případů (silně závislé na typu) +80 Kčs plat — u rutiny sotva přežití, u mixu s barevnými spisy výrazně lepší.
+Za 20 dní bez bonusů a úplatků: u čistě rutinní linky stále cca 140 Kčs na konci — NESTAČÍ na operaci; typové příplatky situaci mění.
 
 To je záměr. Bez Haase nebo bonusů hráč NEMŮŽE zaplatit operaci čistě. Musí být pečlivý, nebo přijmout kompromis.
 
 ### Klíčové ekonomické momenty
 
-Den 2: Pekař zvýšil ceny. Denní výdaje +3 Kč (celkem 58 Kč) — drobný šok, buduje návyk sledovat finance.
+Den 2: Pekař zvýšil ceny. Denní výdaje +3 Kčs (celkem 58 Kčs) — drobný šok, buduje návyk sledovat finance.
 
-Den 6: DOPIS OD DOKTORA — matčina operace 400 Kč. Deadline den 16. Od této chvíle hráč počítá peníze.
+Den 6: DOPIS OD DOKTORA — matčina operace 400 Kčs. Deadline den 16. Od této chvíle hráč počítá peníze.
 
-Den 10: Haasova vizitka bez textu. Finance <80 Kč: vizitka svítí zlatě.
+Den 10: Haasova vizitka bez textu. Finance <80 Kčs: vizitka svítí zlatě.
 
-Den 13: Účet za uhlí navíc. -15 Kč jednorázově. Tlak sílí.
+Den 13: Účet za uhlí navíc. -15 Kčs jednorázově. Tlak sílí.
 
-Den 16: HAAS PŘIJDE OSOBNĚ — nabídka 300 Kč za jeden rozsudek.
-  - Finance >400 Kč (téměř nemožné bez bonusů): Haas nabízí, Ben může odmítnout bez stresu.
-  - Finance 200-400 Kč: Nabídka je lákavá ale ne nutná.
-  - Finance <200 Kč: Nabídka je matematicky nevyhnutelná. Odmítnutí = matka nedostane operaci.
-  - Finance <50 Kč: Haasova obálka svítí zlatě. Krizový moment.
+Den 16: HAAS PŘIJDE OSOBNĚ — nabídka 300 Kčs za jeden rozsudek.
+  - Finance >400 Kčs (téměř nemožné bez bonusů): Haas nabízí, Ben může odmítnout bez stresu.
+  - Finance 200-400 Kčs: Nabídka je lákavá ale ne nutná.
+  - Finance <200 Kčs: Nabídka je matematicky nevyhnutelná. Odmítnutí = matka nedostane operaci.
+  - Finance <50 Kčs: Haasova obálka svítí zlatě. Krizový moment.
 
-Den 16 (alternativa): Pokud hráč odmítne Haase a Finance <100 Kč:
-  - Závadová nabídne půjčku od Řádu: 200 Kč, žádný úrok, ale „jednou budeme potřebovat laskavost." (= cesta k ŘÁD konci)
-  - Karas nabídne osobní půjčku: 100 Kč, žádné podmínky, ale Karas si tím koupí Benovo tiché přehlížení jeho zrady.
+Den 16 (alternativa): Pokud hráč odmítne Haase a Finance <100 Kčs:
+  - Závadová nabídne půjčku od Řádu: 200 Kčs, žádný úrok, ale „jednou budeme potřebovat laskavost." (= cesta k ŘÁD konci)
+  - Karas nabídne osobní půjčku: 100 Kčs, žádné podmínky, ale Karas si tím koupí Benovo tiché přehlížení jeho zrady.
 
 ### Finanční bonusy
 Sobotní bonusy:
-- Pečlivý (průzkum 75%+): +15 Kč
-- Nezávislý (bez úplatku): +10 Kč
-- Odvážný (žádný odložen): +20 Kč
+- Pečlivý (průzkum 75%+): +15 Kčs
+- Nezávislý (bez úplatku): +10 Kčs
+- Odvážný (žádný odložen): +20 Kčs
 
 Nedělní volby:
-- Navštívit matku: -5 Kč (jízdné, dárky)
-- Kostel: 0 Kč
-- Spisy: 0 Kč
-- Procházka: 0 Kč
+- Navštívit matku: -5 Kčs (jízdné, dárky)
+- Kostel: 0 Kčs
+- Spisy: 0 Kčs
+- Procházka: 0 Kčs
 
 ### Speciální příjmy/výdaje
-Úplatek (dostupný při Integritě ★☆☆☆☆): +50-100 Kč za případ, ale Integrita -15.
-Vlčkova žádost splněna: +30 Kč jednorázově, MOC +15.
-Haasova nabídka přijata: +300 Kč jednorázově, Integrita -20, KAPITÁL +20.
+Úplatek (dostupný při Integritě ★☆☆☆☆): +50-100 Kčs za případ, ale Integrita -15.
+Vlčkova žádost splněna: +30 Kčs jednorázově, MOC +15.
+Haasova nabídka přijata: +300 Kčs jednorázově, Integrita -20, KAPITÁL +20.
 
 ### TŘI KRIZOVÉ STAVY
 
@@ -70,20 +70,20 @@ Haasova nabídka přijata: +300 Kč jednorázově, Integrita -20, KAPITÁL +20.
 
 #### Finanční krize (Finance = 0)
 Ben nepřestane soudit — přestane jíst.
-- Výdaje klesnou na 40 Kč/den (šetří na jídle)
+- Výdaje klesnou na 40 Kčs/den (šetří na jídle)
 - Naděje -3 KAŽDÝ DEN dokud Finance = 0
 - Ranní fragmenty temnější: „Ruce se třesou. Od hladu, nebo od něčeho jiného?"
 - Haasova obálka na stole SVÍTÍ ZLATĚ — hráč ji může otevřít kdykoli
 - Záchranná lana (jednorázová):
   A) Přijmout Haasovu nabídku (pokud ještě nebyla využita)
-  B) Karasova půjčka 50 Kč (Karas důvěra +1)
-  C) Závadové půjčka 200 Kč (Závadová důvěra +1, ale „jednou budeme potřebovat laskavost")
+  B) Karasova půjčka 50 Kčs (Karas důvěra +1)
+  C) Závadové půjčka 200 Kčs (Závadová důvěra +1, ale „jednou budeme potřebovat laskavost")
 - Pokud vše odmítne: hra pokračuje v krizovém režimu do konce. Naděje padá. Konec PŘEŽITÍ téměř jistý.
 
 #### Krize integrity (Integrita pod 10)
 Ben se stává Vlčkovým nástrojem. Neodchází — ale ztrácí možnosti.
 - ZMIZÍ: zproštění obžaloby, alternativní tresty, komentáře k rozsudkům
-- PŘIBUDE: možnost přijmout úplatek u každého případu (+50-100 Kč, Integrita -15)
+- PŘIBUDE: možnost přijmout úplatek u každého případu (+50-100 Kčs, Integrita -15)
 - Vlček píše přátelsky — „spolupráce je radost"
 - Zapisovatelka se na Bena přestane dívat
 - Narativní tón: mechanický, šedý, bez emocí
@@ -109,7 +109,7 @@ Matka nedostane operaci. Hra NEKONČÍ.
 ### Zobrazení financí
 Hráč vidí:
 - Peněženku na stole (tloušťka odpovídá stavu)
-- Přibližnou částku v notýsku (zaokrouhlenou: „kolem 80 Kč", ne „83 Kč")
+- Přibližnou částku v notýsku (zaokrouhlenou: „kolem 80 Kčs", ne „83 Kčs")
 - Účty a dopisy (doktor, účet za uhlí) jako fyzické objekty na stole
 
 Hráč NEVIDÍ:

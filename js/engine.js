@@ -460,7 +460,7 @@ const Engine = (() => {
     const denHaas = State.get('currentDay');
     const fragment = DataLoader.ziskejFragment('haas_obalka');
     const haasText = fragment?.text ||
-      'Vážený pane doktore,\n\nDovolujeme si Vás informovat, že náš klient pan průmyslník Haas přiložil k tomuto dopisu výraz své úcty ve výši 800 Kč.\n\nVěříme, že budete jeho záležitostem věnovat patřičnou pozornost.\n\nS uctivým pozdravem,\nJUDr. Haas & synové, advokátní kancelář';
+      'Vážený pane doktore,\n\nDovolujeme si Vás informovat, že náš klient pan průmyslník Haas přiložil k tomuto dopisu výraz své úcty ve výši 800 Kčs.\n\nVěříme, že budete jeho záležitostem věnovat patřičnou pozornost.\n\nS uctivým pozdravem,\nJUDr. Haas & synové, advokátní kancelář';
     State.zalogujNpcSetkani('haas', denHaas, 'Obálka od advokáta (Haas)', haasText);
     State.zapisNpcPosledniDialog('haas', denHaas, haasText);
 

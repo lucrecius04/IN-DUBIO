@@ -941,6 +941,16 @@
   font-family: var(--pismo-typewriter, monospace);
 }
 
+#modal-pripad .pripad-panel--wireframe .case-wf-v-podklad {
+  margin-top: 6px;
+  padding-top: 5px;
+  border-top: 1px dotted rgba(139, 115, 85, 0.45);
+  font-size: 11px;
+  line-height: 1.4;
+  color: #6b5340;
+  font-style: italic;
+}
+
 #modal-pripad .pripad-panel--wireframe .case-wf-v-req {
   font-size: 11px;
   color: #a03030;
@@ -1107,6 +1117,71 @@
   75% {
     transform: translate(4px, 2px) rotate(0.3deg);
   }
+}
+
+/* Krátký narativ po potvrzené ose stop (nad panelem spisu) */
+#modal-pripad .case-wf-clue-narrative-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(25, 14, 6, 0.52);
+  box-sizing: border-box;
+}
+
+#modal-pripad .case-wf-clue-narrative-card {
+  max-width: min(440px, 92vw);
+  background: #faf6ee;
+  border: 1px solid rgba(120, 80, 40, 0.45);
+  border-radius: 6px;
+  padding: 18px 20px 16px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+}
+
+#modal-pripad .case-wf-clue-narrative-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(35, 20, 8, 0.92);
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+
+#modal-pripad .case-wf-clue-narrative-body {
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(40, 22, 10, 0.9);
+  margin-bottom: 14px;
+}
+
+#modal-pripad .case-wf-clue-narr-p {
+  margin: 0 0 0.65em;
+}
+
+#modal-pripad .case-wf-clue-narr-p:last-child {
+  margin-bottom: 0;
+}
+
+#modal-pripad .case-wf-clue-narrative-ok {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid rgba(100, 65, 30, 0.45);
+  background: linear-gradient(180deg, #f0e4cc 0%, #e2d2b0 100%);
+  color: rgba(30, 14, 4, 0.95);
+}
+
+#modal-pripad .case-wf-clue-narrative-ok:hover {
+  border-color: rgba(80, 50, 20, 0.65);
+  background: linear-gradient(180deg, #faf0dc 0%, #e8d8b8 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {

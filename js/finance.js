@@ -34,7 +34,7 @@ const Finance = (() => {
   }
 
   /**
-   * Nedělní výplata +80 Kč — idempotentně podle záznamu ve stavu.
+   * Nedělní výplata +80 Kčs — idempotentně podle záznamu ve stavu.
    * @returns {boolean} true pokud se právě připsalo
    */
   function aplikujNedelniVyplatu(den) {
@@ -64,7 +64,7 @@ const Finance = (() => {
       t.uplatek_prijat = true;
       State.set('tydenni_statistiky', t);
     }
-    UI.zobrazStavovouZpravu(`Přijal jsi ${c} Kč.`);
+    UI.zobrazStavovouZpravu(`Přijal jsi ${c} Kčs.`);
     zkontrolujCilOperace();
   }
 
@@ -75,7 +75,7 @@ const Finance = (() => {
   }
 
   function _zaloguj(delta, popis) {
-    console.log(`Finance: ${delta > 0 ? '+' : ''}${delta} Kč (${popis || '—'})`);
+    console.log(`Finance: ${delta > 0 ? '+' : ''}${delta} Kčs (${popis || '—'})`);
   }
 
   /** Varování při záporném zůstatku + příznak pro UI. */
@@ -126,7 +126,7 @@ const Finance = (() => {
   /**
    * Texty pro panel financí na stole (pravý sloupec).
    */
-  /** Nastaví příznak zaplacené operace při dosažení 400 Kč (pokud nebyla odložena). */
+  /** Nastaví příznak zaplacené operace při dosažení 400 Kčs (pokud nebyla odložena). */
   function zkontrolujCilOperace() {
     if (State.get('flags.operace_odlozena') === true) return;
     if ((Number(getZustatek()) || 0) >= OPERACE_CIL_KC) {
@@ -138,7 +138,7 @@ const Finance = (() => {
     const uspory = Math.round(Number(getZustatek()) || 0);
     const tydenKc = 7 * DENNI_VYDAJE_KC;
     const radekOperace =
-      `Týdenní náklady: ${tydenKc} Kč (${DENNI_VYDAJE_KC} Kč/den)`;
+      `Týdenní náklady: ${tydenKc} Kčs (${DENNI_VYDAJE_KC} Kčs/den)`;
 
     return {
       uspory,

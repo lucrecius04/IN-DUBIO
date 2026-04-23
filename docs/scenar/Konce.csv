@@ -1,0 +1,9 @@
+﻿Konec;INT;ODV;MOU;VIN;NAD;MOC;LID;KAP;Vlcek;Zavad;Karas;Benes;D8;D13;D16;D18;Rod.list;Finance;Pruzkum;Emoce
+1. PREZITI;30-70;30-70;--;30-70;30-70;30-70;--;--;1-2;0-1;1-2;--;--;--;--;--;--;--;--;Prazdnota
+2. KORUPCE;<=20;--;--;--;--;--;--;--;>=2/Haas;--;--;--;Splnil;--;Prijal;--;--;--;--;Hnusnost
+3. HRDINA;>=80;>=80;--;--;--;--;--;--;0;>=2;--;--;Odmitl;--;Odmitl;--;POUZIL;--;--;Horkosladko
+4. UTEK;--;--;--;--;--;--;--;--;--;>=2;--;--;--;--;--;Poslechl;--;>300;--;Utek
+5. SMIRENI;>=60;--;--;<=20;--;--;--;--;--;--;--;scena;--;Prijal;Odmitl;--;--;--;--;Klid
+6. ATENTAT;>=60;>=80;--;--;--;<=20;--;--;0;--;--;--;Odmitl;--;Odmitl;Ignoroval;NEPOUZIL;--;--;Tragicka velikost
+7. RAD;--;--;--;--;--;--;--;--;odmitl;3;--;--;Odmitl;--;--;--;POUZIL;--;--;Temna ironie
+8. ANNA;--;--;--;<=20;--;--;--;--;odmitl;odmitl;--;scena;Odmitl;Prijal;Odmitl;--;--;<100;80%+;Ticha katarze

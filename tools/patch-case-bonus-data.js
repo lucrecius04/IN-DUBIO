@@ -1,5 +1,5 @@
 /**
- * Úprava JSON případů: correct_verdict (rutinní), typy, political_stance, personal_outcome.
+ * Úprava JSON případů: typy, political_stance, personal_outcome; odstranění zastaralého correct_verdict.
  * Spuštění: node tools/patch-case-bonus-data.js
  */
 const fs = require('fs');
@@ -21,38 +21,6 @@ const TYPE_FIX = {
   case_haas_2: 'politicky',
   case_haas_3: 'politicky',
   case_068: 'politicky'
-};
-
-const CORRECT_VERDICT = {
-  case_002: 'acquit',
-  case_003: 'kauci_zpet',
-  case_004: 'nahrada_skody',
-  case_bozena_1: 'bozena_odlozit',
-  case_009: 'nahrada',
-  case_010: 'podminka',
-  case_pozemek_1: 'dvarak_presun',
-  case_bozena_2: 'odlozit',
-  case_015: 'napomenuti',
-  case_016: 'vraceni_penez',
-  case_017: 'plna_nahrada',
-  case_018: 'podminka',
-  case_019: 'acquit',
-  case_020: 'postpone',
-  case_022: 'podminka',
-  case_023: 'pokuta_plna',
-  case_026: 'vondracek_vinen',
-  case_bozena_3: 'bozena_obec',
-  case_pozemek_2: 'treti_geometr',
-  case_029: 'podminka_spoluprace',
-  case_bozena_4: 'pripad_uzavrit',
-  case_pozemek_3: 'strom_neutral',
-  case_bozena_5: 'zamitnut',
-  case_pozemek_4: 'strom_chraneny',
-  case_bozena_6: 'bozena_muzeum',
-  case_pozemek_5: 'kompromis',
-  case_bozena_7: 'obec_povinnost',
-  'case_pospísil_4': 'barta_vinen',
-  case_bozena_8: 'bozena_svobodna'
 };
 
 const POLITICAL_STANCE = {
@@ -130,11 +98,7 @@ function patchCase(c) {
   const id = c.id;
   if (TYPE_FIX[id]) c.type = TYPE_FIX[id];
 
-  if (c.type === 'rutinni' && CORRECT_VERDICT[id]) {
-    c.correct_verdict = CORRECT_VERDICT[id];
-  } else if (c.correct_verdict) {
-    delete c.correct_verdict;
-  }
+  if (c.correct_verdict) delete c.correct_verdict;
 
   patchVerdictMap(c, POLITICAL_STANCE);
 

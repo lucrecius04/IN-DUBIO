@@ -10,45 +10,45 @@ Tento soubor NENÍ rules pro agenta. Je to výzkumný podklad pro autora obsahu.
 ### Měsíční příjmy (1930, průměr ČSR)
 | Profese | Měsíční plat |
 |---------|-------------|
-| Průměrná mzda | 789 Kč |
-| Úředník (muž) | 1 550 Kč |
-| Úřednice (žena) | 840 Kč |
-| Horník | 940 Kč |
-| Dělník | 550 Kč |
-| Zemědělec (muž) | 525 Kč |
-| Zemědělkyně | 315 Kč |
-| Učitel | ~1 200 Kč |
-| Soudce (krajský) | ~1 800-2 200 Kč (odhad dle úřednických tabulek) |
+| Průměrná mzda | 789 Kčs |
+| Úředník (muž) | 1 550 Kčs |
+| Úřednice (žena) | 840 Kčs |
+| Horník | 940 Kčs |
+| Dělník | 550 Kčs |
+| Zemědělec (muž) | 525 Kčs |
+| Zemědělkyně | 315 Kčs |
+| Učitel | ~1 200 Kčs |
+| Soudce (krajský) | ~1 800-2 200 Kčs (odhad dle úřednických tabulek) |
 
 ### Kolik co stojí
 | Položka | Cena |
 |---------|------|
-| 1 kg chleba | 3,40 Kč |
-| 1 kg brambor | 0,96 Kč |
-| 1 litr mléka | ~2 Kč |
-| 1 vejce | 0,85 Kč |
-| 1 kg vepřového | 16,90 Kč |
-| 1 kg másla | 25,75 Kč |
-| Půllitr piva | 2,90 Kč |
-| Pánská košile | 25 Kč |
-| Ostříhání u kadeřníka | 4 Kč |
-| Jízdenka na vlak (20 km) | 5 Kč |
-| Lístek do kina | 2-5 Kč |
-| Denní noviny | 0,50-1 Kč |
-| Nájem malého bytu (Praha) | ~200-350 Kč/měsíc |
-| Kilo uhlí | ~0,80 Kč |
+| 1 kg chleba | 3,40 Kčs |
+| 1 kg brambor | 0,96 Kčs |
+| 1 litr mléka | ~2 Kčs |
+| 1 vejce | 0,85 Kčs |
+| 1 kg vepřového | 16,90 Kčs |
+| 1 kg másla | 25,75 Kčs |
+| Půllitr piva | 2,90 Kčs |
+| Pánská košile | 25 Kčs |
+| Ostříhání u kadeřníka | 4 Kčs |
+| Jízdenka na vlak (20 km) | 5 Kčs |
+| Lístek do kina | 2-5 Kčs |
+| Denní noviny | 0,50-1 Kčs |
+| Nájem malého bytu (Praha) | ~200-350 Kčs/měsíc |
+| Kilo uhlí | ~0,80 Kčs |
 
 ### Herní ekonomika — kontext
-Benův plat ~1 800 Kč/měsíc = 80 Kč/týden (v herní verzi). Denní výdaje 55 Kč = nájem + jídlo + drobnosti. Operace matky 400 Kč = asi 5 měsíčních platů dělníka. Haasových 300 Kč = půlroční plat zemědělce. To je obrovsky lákavé pro kohokoli — natož pro soudce, kterému klesá příjem.
+Benův plat ~1 800 Kčs/měsíc = 80 Kčs/týden (v herní verzi). Denní výdaje 55 Kčs = nájem + jídlo + drobnosti. Operace matky 400 Kčs = asi 5 měsíčních platů dělníka. Haasových 300 Kčs = půlroční plat zemědělce. To je obrovsky lákavé pro kohokoli — natož pro soudce, kterému klesá příjem.
 
 ---
 
 ## 2. KAŽDODENNÍ ŽIVOT V PRAZE 1931
 
 ### Ráno
-Ben vstane kolem šesté. Byt ve starším činžáku — vysoké stropy, studená podlaha, kamna na uhlí. Snídaně: chléb s máslem nebo sádlem, žitná káva (pravá káva je luxus — 80 Kč/kg). V zimě/na jaře je v bytě zima, pokud šetří na uhlí.
+Ben vstane kolem šesté. Byt ve starším činžáku — vysoké stropy, studená podlaha, kamna na uhlí. Snídaně: chléb s máslem nebo sádlem, žitná káva (pravá káva je luxus — 80 Kčs/kg). V zimě/na jaře je v bytě zima, pokud šetří na uhlí.
 
-Cesta do práce: tramvají nebo pěšky. Praha má elektrickou tramvaj od 1891. Jízdenka ~1 Kč. Ben pravděpodobně chodí pěšky přes Karlův most nebo tramvají. Cestou vidí fronty u pekárny, plakáty na zdech (komunistické, fašistické, vládní), podomní obchodníky, žebráky.
+Cesta do práce: tramvají nebo pěšky. Praha má elektrickou tramvaj od 1891. Jízdenka ~1 Kčs. Ben pravděpodobně chodí pěšky přes Karlův most nebo tramvají. Cestou vidí fronty u pekárny, plakáty na zdech (komunistické, fašistické, vládní), podomní obchodníky, žebráky.
 
 ### Soud
 Krajský soud v Praze sídlí v masivní budově z konce 19. století. Dlouhé chodby, vysoká okna, vůně starého dřeva a tabáku. Soudní síň: vyvýšená lavice pro soudce, pod ním zapisovatelka, naproti obžalovaný, po stranách svědci. Veřejnost na lavicích vzadu — ale v roce 1931 chodí méně lidí, protože každý pracuje (kdo může) nebo hledá práci.
@@ -56,12 +56,12 @@ Krajský soud v Praze sídlí v masivní budově z konce 19. století. Dlouhé c
 Soudce rozhoduje sám v méně závažných věcech (krádeže, drobné podvody, výtržnosti). U závažnějších tvoří tříčlenný senát. Politické případy podle zákona na ochranu republiky mohou jít k Státnímu soudu v Praze.
 
 ### Oběd
-Pokud Ben obědvá: hostinec nebo jídelna. Polévka + hlavní jídlo + pivo = 5-8 Kč. Hovězí svíčková, vepřový řízek, knedlíky. Hospody jsou plné — ale atmosféra je jiná než dřív. Méně smíchu, více šeptání. Lidé mluví o cenách, o práci, o politice.
+Pokud Ben obědvá: hostinec nebo jídelna. Polévka + hlavní jídlo + pivo = 5-8 Kčs. Hovězí svíčková, vepřový řízek, knedlíky. Hospody jsou plné — ale atmosféra je jiná než dřív. Méně smíchu, více šeptání. Lidé mluví o cenách, o práci, o politice.
 
 ### Odpoledne/večer
 Po práci: domů, nebo kavárna, nebo hospoda. Kavárny jsou centrem společenského života — noviny na stojanu, šachy, karty, debaty. V Praze: Kavárna Slavia, Kavárna Louvre, Kavárna Union. Hraje se jazz (R. A. Dvorský), swingové orchestry. Rozhlas: Československý rozhlas vysílá od 1923, v roce 1931 má asi 500 000 koncesionářů. Ben pravděpodobně nemá rozhlas — je to náklad navíc.
 
-Kino: v Praze desítky kin. V roce 1931 přechod na zvukový film. Bio Lucerna, Bio Koruna, Kino Passage. Vstupné 2-5 Kč. Hrají se české i zahraniční filmy. Ben chodil do kina s Annou — teď nechodí.
+Kino: v Praze desítky kin. V roce 1931 přechod na zvukový film. Bio Lucerna, Bio Koruna, Kino Passage. Vstupné 2-5 Kčs. Hrají se české i zahraniční filmy. Ben chodil do kina s Annou — teď nechodí.
 
 ### Neděle
 Volný den. Kostely plné. Sokol cvičí. Fotbalové zápasy (SK Libeň, 1. FC Praha). Výlety za město — vlak do okolí Prahy — Prokopské údolí, Šárka. Návštěvy příbuzných. Psaní dopisů — Ben by měl psát Martinovi do Brna.
@@ -129,9 +129,9 @@ Elektrická tramvaj (od 1891). Autobusy. Vlakové spojení Praha–Brno (4–5 h
 ## 5. KULTURA A VOLNÝ ČAS
 
 ### Co lidé dělají po práci
-- **Kavárny**: čtou noviny (na stojanu, nemusí kupovat), hrají šachy, debatují. Káva 3-4 Kč.
-- **Hospody**: pivo, karty, politické debaty. Pivo 2,90 Kč za půllitr.
-- **Kina**: zvukový film od 1930. V Praze desítky kin. Vstupné 2-5 Kč. Charlie Chaplin, Marlene Dietrich, české grotesky.
+- **Kavárny**: čtou noviny (na stojanu, nemusí kupovat), hrají šachy, debatují. Káva 3-4 Kčs.
+- **Hospody**: pivo, karty, politické debaty. Pivo 2,90 Kčs za půllitr.
+- **Kina**: zvukový film od 1930. V Praze desítky kin. Vstupné 2-5 Kčs. Charlie Chaplin, Marlene Dietrich, české grotesky.
 - **Divadlo**: Městské divadlo v Praze (česky), Deutsches Haus (německy). Leoš Janáček zemřel 1928 — jeho opery se stále hrají.
 - **Rozhlas**: Československý rozhlas z Prahy. Zprávy, hudba, přednášky. Koncesní poplatek.
 - **Sokol**: tělovýchovná organizace, cvičení, společenské akce. Alternativy: Orel (katolický), DTJ (dělnický).
@@ -145,7 +145,7 @@ Noviny: viz výše. Knihy: Čapek (Válka s mloky vyjde až 1936, ale Povídky z
 Jazz a swing v kavárnách. R. A. Dvorský. Orchestry. Lidová hudba na venkově. V hospodách harmonika, zpěv. Gramofon je luxus, ale kdo ho má, pouští desky.
 
 ### Co BEN konkrétně dělá
-Ben je osamělý intelektuál. Pravděpodobně: čte v kavárně (Lidové noviny, právnická literatura). Pije — ne jako alkoholik, ale „sklenička na noc" se proměnila v „sklenička po obědě." Kouří (cigarety — Egypt, Lux — 1-2 Kč za krabičku). Chodí na procházky po Vyšehradu. Nechodí do kina (chodil s Annou). Nechodí na fotbal (chodil s Karasem, ale teď je to jiné). Psát Martinovi = sedí u stolu, pero, inkoust, papír. Dopisy jdou poštou — dva dny Praha–Brno.
+Ben je osamělý intelektuál. Pravděpodobně: čte v kavárně (Lidové noviny, právnická literatura). Pije — ne jako alkoholik, ale „sklenička na noc" se proměnila v „sklenička po obědě." Kouří (cigarety — Egypt, Lux — 1-2 Kčs za krabičku). Chodí na procházky po Vyšehradu. Nechodí do kina (chodil s Annou). Nechodí na fotbal (chodil s Karasem, ale teď je to jiné). Psát Martinovi = sedí u stolu, pero, inkoust, papír. Dopisy jdou poštou — dva dny Praha–Brno.
 
 ---
 

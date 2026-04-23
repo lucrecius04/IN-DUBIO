@@ -5,4 +5,4 @@ Texty pro design, autorování a orientaci v kódu. Kanon detailů zůstává v 
 | Soubor | Obsah |
 |--------|--------|
 | [herni-smycka-a-cile.md](./herni-smycka-a-cile.md) | Jak hra ubíhá den za dnem, fáze, stůl, uložení, technické konce hry vs. naratální osm konců |
-| [spis-patrani-pruzkum-rozsudek.md](./spis-patrani-pruzkum-rozsudek.md) | Jeden spis v modálu: text, pátrání (clues), průzkum, inkoust, neoficiální zdroj, rozsudek, důsledky |
+| [spis-patrani-pruzkum-rozsudek.md](./spis-patrani-pruzkum-rozsudek.md) | Jeden spis v modálu: text, pátrání (clues), průzkum, inkoust, neoficiální zdroj, rozsudek (včetně slabého podkladu jen v kroku 2), důsledky, archiv Rozsudků (filtr typu, `caseType`) |

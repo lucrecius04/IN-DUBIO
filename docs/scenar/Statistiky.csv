@@ -1,0 +1,11 @@
+﻿Vlastnost;Vychozi;1star;2star;3star;4star;5star;Efekt nizko;Efekt vysoko
+Integrita;70;0-20;21-40;41-60;61-80;81-100;Uplatek, Vlcek pratelsky;Skryty rozsudek, svedci otevrenejsi
+Odvaha;50;0-20;21-40;41-60;61-80;81-100;Jen bezpecne, Odlozit zvyrazneno;+3 akce, Verejne prohlaseni
+Moudrost;55;0-20;21-40;41-60;61-80;81-100;Zaznamy nic, hola fakta;Skryta motivace, 2 info za 1
+Vina;60;0-20;21-40;41-60;61-80;81-100;Fragment smireni (TRIGGER);Zmizi Max trest, cervene varovani
+Nadeje;60;0-20;21-40;41-60;61-80;81-100;Zmizi optimist. volba (TRIGGER);4. kreativni rozsudek
+;;;;;;;;
+FRAKCE;Vychozi;1dot;2dot;3dot;4dot;5dot;Efekt nizko;Efekt vysoko
+MOC;50;<=20;21-40;41-60;61-80;>=80;Vzdorovat (TRIGGER ATENTAT);Odvazne zmizi, Vlcek sef
+LID;50;<=20;21-40;41-60;61-80;>=80;Svedci odmitaji (TRIGGER);Informator levnejsi, Zavadova+1
+KAPITAL;50;<=20;21-40;41-60;61-80;>=80;Haas agresivni, Fin-20%;Haas vyssi uplatek, Int-1/den

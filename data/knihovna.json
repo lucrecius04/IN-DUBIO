@@ -2,7 +2,7 @@
   "version": 2,
   "pribeh": {
     "perex": "Krátká orientace pro hráče — bez spoilerů na konkrétní případy.",
-    "body": "Hrajete za soudce Dr. Benedikta Vraného v první polovině třicátých let. Město ani stát nejsou pojmenovány doslova; jde o středoevropský rámec doby krize, nátlaků a státní mašinérie.\n\nVraný se vrací k přísaze u soudu s tíhou minulosti — rozhodnutí, která už jednou udělal, ho pronásledují. Každý den přináší nové spisy; večer a v neděli se otevírají osobní volby, které formují jeho nitro i okolí.\n\nCílem není „vyhrát“ — ale dohrát příběh s vědomím ceny, kterou za svá slova platí.",
+    "body": "Hrajete za soudce JUDr. Benedikta Vraného v první polovině třicátých let. Město ani stát nejsou pojmenovány doslova; jde o středoevropský rámec doby krize, nátlaků a státní mašinérie.\n\nVraný se vrací k přísaze u soudu s tíhou minulosti — rozhodnutí, která už jednou udělal, ho pronásledují. Každý den přináší nové spisy; večer a v neděli se otevírají osobní volby, které formují jeho nitro i okolí.\n\nCílem není „vyhrát“ — ale dohrát příběh s vědomím ceny, kterou za svá slova platí.",
     "rozhodnuti": []
   },
   "pravidla": {
@@ -16,6 +16,14 @@
       {
         "title": "Průzkum a stopy",
         "body": "Ve spisech lze čerpat skryté informace za sdílené denní akce. Neoficiální cesty mohou mít jiné náklady než úřední — projeví se v souhrnech u rozsudků."
+      },
+      {
+        "title": "Procesní kvalita a revize",
+        "body": "Informovanost (lišta ve spisu) a rozsah průzkumu ovlivňují, jak „pevně“ vypadá váš postup vůči institucím: u slabšího podkladu častěji přibývá tlak na Moudrost a Vinu a roste šance, že se k uzavřené věci později vrátí krátká revize spisu. To nemusí znamenat morálně špatné rozhodnutí — jde o riziko procesního omylu a o to, že spis neobstojí tak snadno při kontrole.\n\nU případů z poolu neexistuje jediné předepsané ID verdiktu z kódu; šedá zóna stojí na důkazech a kompromisech. Nátlak typu „úřad očekává výsledek X“ nebo korupce řešte vždy v konkrétním příběhu případu (text, volby, důsledky), ne globálním přepínači „správně/špatně“.\n\nRozhodnutí ostře proti tomu, co spis a nápovědy z průzkumu naznačují, se promítají přes slabší proces a souhrnné důsledky."
+      },
+      {
+        "title": "Typy případů — rutinní, morální, politický, osobní",
+        "body": "Rutinní: klasická soudní agenda — skutek ve spisu, tresty a náhrady; často více obhajitelných výstupů a důraz na průzkum a párování stop. Morální: zákon nestačí sám o sobě — tření mezi lidmi, institucemi nebo škodou, která není jen „čísla v řádcích“; v důsledcích verdiktů typicky výraznější práce s Integritou a Nadějí, průzkum posiluje Moudrost a soulad s hinty může výrazně hýbat frakcemi. Politický: rozhodnutí má politický odstín (vztah k moci, úřadu, Vlčkovi); silněji se projevuje u frakce Moc a u Integrity; průzkum v souladu s nápovědou přidává Moudrost. Osobní: Benedikt není úplně mimo hru — vazba na něj, na rodinu nebo na minulost; u variant „férově / se stranou“ se mění Integrita, Odvaha a Vina jinak než u čistě cizího sporu.\n\nTypové příplatky: morální spis (modrá složka) +25 Kčs, politický (červená) +35 Kčs, osobní (zelená) +30 Kčs navíc oproti rutinní zlaté složce. Po uzavření barevného spisu přibude také +1 sdílená akce průzkumu (kapka inkoustu).\n\nJak případ odladit od rutiny (nápady pro autory): časový tlak z titulku soudu nebo z tisku; jedna drahá neoficiální stopa s jasnou morální cenou; odkaz na starší spis nebo na osobu z jiného dne; přítomnost veřejnosti nebo odborů v síni; souběžný civilní a trestní náboj; jednorázová výjimka z procedury, která má jméno a tvář, ne jen číslo paragrafu.\n\nDalší odlišení typů mimo peníze a čísla statů (lze mixovat v obsahu): jiná úvodní lišta nebo poznámka („tento spis hlídá ministerstvo“); u politických vyšší riziko revize nebo citlivější archivní stopa; u osobních vždy srozumitelná volba férově / se stranou; u morálních silnější vazba na večerní volby nebo delší dopadové texty; odlišné záhlaví spisu; u jednoho typu přísnější limit na neoficiální zdroj; stres nebo časovač při pátrání jen u vybraného typu. Nic z toho není povinné — jde o nástroje, aby barevná složka působila jako jiný druh práce."
       },
       {
         "title": "Konce běhu",

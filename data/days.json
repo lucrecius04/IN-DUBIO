@@ -135,7 +135,7 @@
           "text": "Syn Martin napsal dopis. Je nadšený z práv, z přednášek, z profesorů. „Otče, kdy mě přijdeš navštívit? Ukázal bych ti fakultu.“",
       "options": [
         {
-          "text": "Koupit kvalitní kávu a tabák (−10 Kč) — zítra ráno o jednu kapku inkoustu navíc.",
+          "text": "Koupit kvalitní kávu a tabák (−10 Kčs) — zítra ráno o jednu kapku inkoustu navíc.",
           "finance": -10,
           "effects": {
             "flags": [
@@ -190,7 +190,7 @@
           }
         },
         {
-          "text": "Večeře v hostinci u nádraží — zaplatíš rundu (−15 Kč), z ulice k tobě doléhají drby.",
+          "text": "Večeře v hostinci u nádraží — zaplatíš rundu (−15 Kčs), z ulice k tobě doléhají drby.",
           "finance": -15,
           "effects": {
             "Lid": 3,
@@ -307,12 +307,12 @@
         },
         {
           "id": "F",
-          "text": "Předplatit lepší noviny (−25 Kč) — pět dní budou záznamy v archivech stát 0 akcí.",
+          "text": "Předplatit lepší noviny (−25 Kčs) — pět dní budou záznamy v archivech stát 0 akcí.",
           "finance": -25
         },
         {
           "id": "G",
-          "text": "Anonymní dar charitě (−40 Kč) — když tě žere svědomí.",
+          "text": "Anonymní dar charitě (−40 Kčs) — když tě žere svědomí.",
           "finance": -40,
           "requires": {
             "trait_max": {
@@ -325,7 +325,7 @@
         },
         {
           "id": "H",
-          "text": "Poslat peníze Martinovi na kolej (−30 Kč).",
+          "text": "Poslat peníze Martinovi na kolej (−30 Kčs).",
           "finance": -30,
           "effects": {
             "Vina": -15
@@ -478,7 +478,7 @@
           }
         },
         {
-          "text": "Objednat konzultaci u renomovaného lékaře pro matku (−15 Kč, Naděje +3).",
+          "text": "Objednat konzultaci u renomovaného lékaře pro matku (−15 Kčs, Naděje +3).",
           "finance": -15,
           "effects": {
             "Nadeje": 3,
@@ -587,12 +587,12 @@
         },
         {
           "id": "F",
-          "text": "Předplatit lepší noviny (−25 Kč) — pět dní budou záznamy v archivech stát 0 akcí.",
+          "text": "Předplatit lepší noviny (−25 Kčs) — pět dní budou záznamy v archivech stát 0 akcí.",
           "finance": -25
         },
         {
           "id": "G",
-          "text": "Anonymní dar charitě (−40 Kč) — když tě žere svědomí.",
+          "text": "Anonymní dar charitě (−40 Kčs) — když tě žere svědomí.",
           "finance": -40,
           "requires": {
             "trait_max": {
@@ -605,7 +605,7 @@
         },
         {
           "id": "H",
-          "text": "Poslat peníze Martinovi na kolej (−30 Kč).",
+          "text": "Poslat peníze Martinovi na kolej (−30 Kčs).",
           "finance": -30,
           "effects": {
             "Vina": -15
@@ -676,7 +676,7 @@
           }
         },
         {
-          "text": "Koupíš si nové rukavice a levnější tabák — drobnost, která stejně bolí (−15 Kč).",
+          "text": "Koupíš si nové rukavice a levnější tabák — drobnost, která stejně bolí (−15 Kčs).",
           "finance": -15,
           "effects": {
             "Vina": 4
@@ -884,12 +884,12 @@
         },
         {
           "id": "F",
-          "text": "Předplatit lepší noviny (−25 Kč) — pět dní budou záznamy v archivech stát 0 akcí.",
+          "text": "Předplatit lepší noviny (−25 Kčs) — pět dní budou záznamy v archivech stát 0 akcí.",
           "finance": -25
         },
         {
           "id": "G",
-          "text": "Anonymní dar charitě (−40 Kč) — když tě žere svědomí.",
+          "text": "Anonymní dar charitě (−40 Kčs) — když tě žere svědomí.",
           "finance": -40,
           "requires": {
             "trait_max": {
@@ -902,7 +902,7 @@
         },
         {
           "id": "H",
-          "text": "Poslat peníze Martinovi na kolej (−30 Kč).",
+          "text": "Poslat peníze Martinovi na kolej (−30 Kčs).",
           "finance": -30,
           "effects": {
             "Vina": -15
@@ -1037,7 +1037,7 @@
           }
         },
         {
-          "text": "Zaplatíš nocní kočár domů místo šalin — spěcháš z toho unavenější (−15 Kč).",
+          "text": "Zaplatíš nocní kočár domů místo šalin — spěcháš z toho unavenější (−15 Kčs).",
           "finance": -15,
           "effects": {
             "Vina": 3,
@@ -1203,12 +1203,12 @@
         },
         {
           "id": "F",
-          "text": "Předplatit lepší noviny (−25 Kč) — pět dní budou záznamy v archivech stát 0 akcí.",
+          "text": "Předplatit lepší noviny (−25 Kčs) — pět dní budou záznamy v archivech stát 0 akcí.",
           "finance": -25
         },
         {
           "id": "G",
-          "text": "Anonymní dar charitě (−40 Kč) — když tě žere svědomí.",
+          "text": "Anonymní dar charitě (−40 Kčs) — když tě žere svědomí.",
           "finance": -40,
           "requires": {
             "trait_max": {
@@ -1221,7 +1221,7 @@
         },
         {
           "id": "H",
-          "text": "Poslat peníze Martinovi na kolej (−30 Kč).",
+          "text": "Poslat peníze Martinovi na kolej (−30 Kčs).",
           "finance": -30,
           "effects": {
             "Vina": -15

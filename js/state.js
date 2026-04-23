@@ -263,7 +263,7 @@ const State = (() => {
       balance: 150,
       /** Kumulovaný dluh (nájem apod.). */
       dluh: 0,
-      /** Dny (7,14,21,28), ve kterých už proběhla nedělní výplata +80 Kč. */
+      /** Dny (7,14,21,28), ve kterých už proběhla nedělní výplata +80 Kčs. */
       vyplataPrijataVDnech: []
     },
 
@@ -294,7 +294,7 @@ const State = (() => {
     },
 
     archive: {
-      verdicts:          [],   // { day, caseId, verdict, caseTitle, verdictId?, consequences?, dusledkyRadky? }
+      verdicts:          [],   // { day, caseId, caseType?, verdict, caseTitle, verdictId?, consequences?, dusledkyRadky? }
       case_reviews:      [],   // { day, caseId, choice, effects, note }
       fragments:         [],   // id přečtených fragmentů
       characters_met:    [],   // id postav se kterými hráč interagoval
@@ -957,7 +957,7 @@ const State = (() => {
     _stav.phase = 'morning';
     _zarucEkonomiku();
     const den = Number(_stav.currentDay);
-    // Pevné denní výdaje −55 Kč za každý dokončený den (při přechodu na další den).
+    // Pevné denní výdaje −55 Kčs za každý dokončený den (při přechodu na další den).
     if (Number.isFinite(den) && den >= 1) {
       const pred = Number(_stav.finance.balance) || 0;
       upravFinance(-55);

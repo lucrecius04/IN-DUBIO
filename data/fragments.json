@@ -27,13 +27,13 @@
     "id": "fragment_d8_morning",
     "type": "letter",
     "title": "Dopis od doktora Síbra",
-    "text": "Vážený pane doktore,\n\ndovolujeme si Vás informovat, že stav Vaší paní matky Alžběty Černé si vyžaduje operaci bez zbytečného odkladu.\n\nCelkové náklady na zákrok a pobyt jsou stanoveny na 400 Kč. Nejvhodnější termín by měl být do 23. března — déle bych nerad sliboval.\n\nS lékařskou úctou,\nMUDr. Síbr, Zemská nemocnice"
+    "text": "Vážený pane doktore,\n\ndovolujeme si Vás informovat, že stav Vaší paní matky Alžběty Černé si vyžaduje operaci bez zbytečného odkladu.\n\nCelkové náklady na zákrok a pobyt jsou stanoveny na 400 Kčs. Nejvhodnější termín by měl být do 23. března — déle bych nerad sliboval.\n\nS lékařskou úctou,\nMUDr. Síbr, Zemská nemocnice"
   },
   {
     "id": "fragment_vyplata",
     "type": "letter",
     "title": "Výplata",
-    "text": "Na stole leží obálka s výplatou. 80 Kč."
+    "text": "Na stole leží obálka s výplatou. 80 Kčs."
   },
   {
     "id": "fragment_ekonomika_dluh_krize",
@@ -105,7 +105,7 @@
     "id": "haas_obalka",
     "type": "letter",
     "title": "Obálka od Haasova advokáta",
-    "text": "Vážený pane doktore,\n\nDovolujeme si Vás informovat, že náš klient, pan průmyslník Roman Haas, přiložil k tomuto dopisu výraz své úcty v hotovosti ve výši 800 Kč.\n\nVěříme, že budete jeho záležitostem věnovat patřičnou pozornost a že naše spolupráce bude oboustranně prospěšná.\n\nS uctivým pozdravem,\nJUDr. Pavel Haas, advokátní kancelář Haas & synové\n\n[Uvnitř obálky: osm stokorunových bankovek. Čerstvě tištěných.]"
+    "text": "Vážený pane doktore,\n\nDovolujeme si Vás informovat, že náš klient, pan průmyslník Roman Haas, přiložil k tomuto dopisu výraz své úcty v hotovosti ve výši 800 Kčs.\n\nVěříme, že budete jeho záležitostem věnovat patřičnou pozornost a že naše spolupráce bude oboustranně prospěšná.\n\nS uctivým pozdravem,\nJUDr. Pavel Haas, advokátní kancelář Haas & synové\n\n[Uvnitř obálky: osm stokorunových bankovek. Čerstvě tištěných.]"
   },
   {
     "id": "fragment_d7_nedele_rano",

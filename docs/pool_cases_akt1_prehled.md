@@ -13,7 +13,7 @@
 | 7 | pool_a1_zhar | Žhářství na Smíchově | 81/1931 | Rutinní | 3–6 | Antonín Houška, majitel kovodílny | Požár kovodílny, Slavia neplatí pojistku — benzín vs zkrat. Syn Zdeněk na dvoře v čase, kdy otec tvrdí, že byl doma. |
 | 8 | pool_a1_weiss | Herr Weiss | 83/1931 | Rutinní | 2–5 | Max Schwarz, účetní | Přišel z Berlína s padělaným pasem na jiné jméno. Ale pravý doklad si zachoval — a v aktovce knihu s věnováním od táty. |
 | 9 | pool_a1_stavba | Pád ze lešení | 85/1931 | Morální dilema | 5–10 | Ing. Miroslav Kolář, stavbyvedoucí | Smrt dělníka Tučka z lešení na Vinohradech. Tlak investora na termín vs kontrolní list s vadným čepem — věděl, nebo ne? |
-| 10 | pool_a1_exekuce | Záložna | 85/1931 | Morální dilema | 7–10 | Anna Součková, rolnice | Půjčila 180 Kč na léky pro krávy. Platila, dluh přesto narostl na 340 Kč. Exekutor přišel bez předem oznámení. Bila ho lopatou. |
+| 10 | pool_a1_exekuce | Záložna | 85/1931 | Morální dilema | 7–10 | Anna Součková, rolnice | Půjčila 180 Kčs na léky pro krávy. Platila, dluh přesto narostl na 340 Kčs. Exekutor přišel bez předem oznámení. Bila ho lopatou. |
 
 ---
 
@@ -77,7 +77,7 @@ Fassbinder přizná: syn se v Lipsku změnil. „Vím, že se změnil. Ale je to
 Pojistný podvod. Manžel Josef zemřel 18. ledna na srdeční selhání. Pojistka uzavřena 3. ledna — 15 dní předtím. Pojišťovna Slavia odmítá plnit.
 
 ### Proč je to nejemotivnější případ
-Muž pracoval 14 hodin denně, nikdy nešel k doktoru, zemřel v 43 na srdce. Žena se dvěma dětmi potřebuje 800 Kč. Pojistný agent Krejčí (soused) doporučil pojistku — a inkasoval 40 Kč provizi. Využil situace?
+Muž pracoval 14 hodin denně, nikdy nešel k doktoru, zemřel v 43 na srdce. Žena se dvěma dětmi potřebuje 800 Kčs. Pojistný agent Krejčí (soused) doporučil pojistku — a inkasoval 40 Kčs provizi. Využil situace?
 
 ### Rozpory
 1. Bartošová říká „nikdy nebyl u doktora" — doktor Havelka ho viděl v červenci s bolestí na hrudi
@@ -98,7 +98,7 @@ Muž pracoval 14 hodin denně, nikdy nešel k doktoru, zemřel v 43 na srdce. Ž
 **Karel Šimánek**, 24 let, student třetího ročníku Právnické fakulty Karlovy univerzity. Syn žižkovského pekaře, čistý rejstřík.
 
 ### Obžaloba
-Výtržnictví a poškození cizí věci dle §314 trestního zákona. Rozbití výlohy kožené galanterie Jakuba Meisela na Vodičkově ulici. Škoda 120 Kč.
+Výtržnictví a poškození cizí věci dle §314 trestního zákona. Rozbití výlohy kožené galanterie Jakuba Meisela na Vodičkově ulici. Škoda 120 Kčs.
 
 ### Proč je to zajímavé pro hráče
 Student práv bez vyhlídek na práci. Přišel ze schůzky Akademického národního spolku a ocitl se u rozbitého okna s kostkou v ruce. Zákon vs. skupinová dynamika. Trestní odpovědnost jednoho za čin mnohých.
@@ -122,10 +122,10 @@ Student práv bez vyhlídek na práci. Přišel ze schůzky Akademického národ
 **Josef Kratochvíl**, 42 let, tkadlec, Textile Praga a.s., Smíchov. Vdovec, syn Ladislav (17, učeň). 12 let ve stejném závodě bez jediné absence.
 
 ### Obžaloba
-Podvod dle §197 trestního zákona — předložení padělaného lékařského potvrzení za účelem vylákání 14 dní nemocenské (98 Kč).
+Podvod dle §197 trestního zákona — předložení padělaného lékařského potvrzení za účelem vylákání 14 dní nemocenské (98 Kčs).
 
 ### Proč je to zajímavé pro hráče
-Kratochvíl byl skutečně nemocen — ale zákonný doktor stál 20 Kč. Zaplatil 5 Kč „hovorovému doktorovi" z Holešovic. Klíčový obrat: závodní lékař MUDr. Mašek, který ho usvědčuje, má prémii vázanou na nízkou nemocnost. Kratochvílova absence způsobila, že prémie propadla. Má Mašek zájem na odsouzení?
+Kratochvíl byl skutečně nemocen — ale zákonný doktor stál 20 Kčs. Zaplatil 5 Kčs „hovorovému doktorovi" z Holešovic. Klíčový obrat: závodní lékař MUDr. Mašek, který ho usvědčuje, má prémii vázanou na nízkou nemocnost. Kratochvílova absence způsobila, že prémie propadla. Má Mašek zájem na odsouzení?
 
 ### Rozpory
 1. **Klíčový:** Sousedka nebyla celý týden svědkem žádného doktora, Mašek tvrdí, že domácí návštěvy vůbec nedělá — kdo je ten „mladší muž s potvrzením"?
@@ -167,10 +167,10 @@ Jitka po dlouhé pauze: „Otec ji chytil za zápěstí. Já ten zvuk znám od m
 `pool_a1_zhar` | Rutinní | Dny 3–6
 
 ### Obžalovaný
-**Antonín Houška**, 51 let, živnostník, majitel kovodílny v Plzeňské ulici na Smíchově. Ženatý, syn **Zdeněk** (19), dluh u záložny 1 400 Kč.
+**Antonín Houška**, 51 let, živnostník, majitel kovodílny v Plzeňské ulici na Smíchově. Ženatý, syn **Zdeněk** (19), dluh u záložny 1 400 Kčs.
 
 ### Obžaloba
-Žhářství a pojistný podvod dle §166 a §197 trestního zákona. Požár 14. února 1931, škoda 2 300 Kč. Pojišťovna Slavia odmítá plnění 1 800 Kč — hasičský inspektor uvádí úmyslné použití hořlavé látky; Houška tvrdí zkrat a běžnou zásobu benzínu v dílně.
+Žhářství a pojistný podvod dle §166 a §197 trestního zákona. Požár 14. února 1931, škoda 2 300 Kčs. Pojišťovna Slavia odmítá plnění 1 800 Kčs — hasičský inspektor uvádí úmyslné použití hořlavé látky; Houška tvrdí zkrat a běžnou zásobu benzínu v dílně.
 
 ### Proč je to zajímavé pro hráče
 Dvě linie najednou: **technický spor** (ohnisko u nářadí vs rozvaděč, laboratoř vs výpověď živnostníka) a **časová skulina** (Houška doma od půl desáté vs soused Vrtal ho vidí na dvoře s mladým mužem). Konfrontace může odkrýt syna — otec pak není nutně žhář, ale člověk, který kryje dítě mlčením.
@@ -242,14 +242,14 @@ Kolář k času mezi nahlášením vady a pádem — tlak investora vs Tuček na
 **Anna Součková**, 58 let, rolnice, hospodářství 4 ha, Ořech u Prahy. Vdova od 1923. Syn Josef (31), listonoš v Praze.
 
 ### Obžaloba
-Násilný odpor veřejnému činiteli dle §81 trestního zákona — udeření exekutora Ing. Karla Štěpána násadou od lopaty při výkonu exekuce pro dluh 340 Kč.
+Násilný odpor veřejnému činiteli dle §81 trestního zákona — udeření exekutora Ing. Karla Štěpána násadou od lopaty při výkonu exekuce pro dluh 340 Kčs.
 
 ### Proč je to nejsilnější morální případ v tomto výběru
-Součková si v lednu 1929 půjčila 180 Kč na léky pro nemocné krávy. Platila co mohla. Záložna účtuje 18 % ročně — matematicky nemožné splatit při splátkách 6–8 Kč měsíčně. Dluh narostl na 340 Kč, aniž přestala platit. Exekutor přišel bez třídenního předem oznámení — doručenka nese razítko téhož dne. Součková je vdova sama na statku, bez brýlí nečte. Bila ho lopatou. §81 říká: vina. Příběh říká: co měla dělat?
+Součková si v lednu 1929 půjčila 180 Kčs na léky pro nemocné krávy. Platila co mohla. Záložna účtuje 18 % ročně — matematicky nemožné splatit při splátkách 6–8 Kčs měsíčně. Dluh narostl na 340 Kčs, aniž přestala platit. Exekutor přišel bez třídenního předem oznámení — doručenka nese razítko téhož dne. Součková je vdova sama na statku, bez brýlí nečte. Bila ho lopatou. §81 říká: vina. Příběh říká: co měla dělat?
 
 ### Rozpory
 1. **Klíčový:** Datum doručenky = datum exekuce. Zákonná lhůta tří dnů nebyla dodržena — Součková nemohla vědět, kdo přichází
-2. Syn Josef zjistí: původní dluh 180 Kč, splácela 25 měsíců, dluh přesto 340 Kč — úrok převyšoval splátky od prvního dne
+2. Syn Josef zjistí: původní dluh 180 Kčs, splácela 25 měsíců, dluh přesto 340 Kčs — úrok převyšoval splátky od prvního dne
 
 ### Konfrontace
 Exekutor Štěpán konfrontován s datem doručenky. Po pauze přizná: záložna uplatnila výjimku u „hrozby znehodnocení majetku". Zákonnou, ale krajní. „Jestli ty dopisy četla — to nevím."
@@ -281,7 +281,7 @@ Exekutor Štěpán konfrontován s datem doručenky. Po pauze přizná: záložn
 - **Případ 10** (záložna): Závadová napíše sloupek — první stopa, že sleduje Benova rozhodnutí ještě před tím, než ho kontaktuje osobně
 
 ### Síť pojistného agenta Krejčího
-Agent Miroslav Krejčí figuruje v případě **Bartošová** (trafikant): pojistka 15 dní před smrtí manžela, provize 40 Kč; soused a zároveň agent Slavie. Některé alternativní verdikty vedou k trestnímu oznámení na Krejčího a k přezkumu dalších smluv.
+Agent Miroslav Krejčí figuruje v případě **Bartošová** (trafikant): pojistka 15 dní před smrtí manžela, provize 40 Kčs; soused a zároveň agent Slavie. Některé alternativní verdikty vedou k trestnímu oznámení na Krejčího a k přezkumu dalších smluv.
 
 Hráč, který v případě 3 důkladně projde záznamy, vidí rizikový vzorec. Hra ho nikdy explicitně neukáže.
 
@@ -291,7 +291,7 @@ Hráč, který v případě 3 důkladně projde záznamy, vidí rizikový vzorec
 |----------|-------------------|------------------------|
 | Efekty na staty | ±1 až ±8 | ±2 až ±12 |
 | Počet rozporů | 2 | 2 |
-| Finanční odměna | +10 Kč base | +10 Kč base + morální bonus |
+| Finanční odměna | +10 Kčs base | +10 Kčs base + typový příplatek (morální +25 / politický +35 / osobní +30 Kčs) +1 inkoust u barevné složky |
 | Konfrontace (Odvaha) | ≥60 | ≥60 |
 
 ### Sp. zn. přehled (pro konzistenci)

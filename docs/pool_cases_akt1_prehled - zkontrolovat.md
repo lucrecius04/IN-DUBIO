@@ -76,7 +76,7 @@ Fassbinder přizná: syn se v Lipsku změnil. „Vím, že se změnil. Ale je to
 Pojistný podvod. Manžel Josef zemřel 18. ledna na srdeční selhání. Pojistka uzavřena 3. ledna — 15 dní předtím. Pojišťovna Slavia odmítá plnit.
 
 ### Proč je to nejemotivnější případ
-Muž pracoval 14 hodin denně, nikdy nešel k doktoru, zemřel v 43 na srdce. Žena se dvěma dětmi potřebuje 800 Kč. Pojistný agent Krejčí (soused) doporučil pojistku — a inkasoval 40 Kč provizi. Využil situace?
+Muž pracoval 14 hodin denně, nikdy nešel k doktoru, zemřel v 43 na srdce. Žena se dvěma dětmi potřebuje 800 Kčs. Pojistný agent Krejčí (soused) doporučil pojistku — a inkasoval 40 Kčs provizi. Využil situace?
 
 ### Rozpory
 1. Bartošová říká „nikdy nebyl u doktora" — doktor Havelka ho viděl v červenci s bolestí na hrudi
@@ -97,7 +97,7 @@ Muž pracoval 14 hodin denně, nikdy nešel k doktoru, zemřel v 43 na srdce. Ž
 **Karel Šimánek**, 24 let, student třetího ročníku Právnické fakulty Karlovy univerzity. Syn žižkovského pekaře, čistý rejstřík.
 
 ### Obžaloba
-Výtržnictví a poškození cizí věci dle §314 trestního zákona. Rozbití výlohy kožené galanterie Jakuba Meisela na Vodičkově ulici. Škoda 120 Kč.
+Výtržnictví a poškození cizí věci dle §314 trestního zákona. Rozbití výlohy kožené galanterie Jakuba Meisela na Vodičkově ulici. Škoda 120 Kčs.
 
 ### Proč je to zajímavé pro hráče
 Student práv bez vyhlídek na práci. Přišel ze schůzky Akademického národního spolku a ocitl se u rozbitého okna s kostkou v ruce. Zákon vs. skupinová dynamika. Trestní odpovědnost jednoho za čin mnohých.
@@ -121,10 +121,10 @@ Student práv bez vyhlídek na práci. Přišel ze schůzky Akademického národ
 **Josef Kratochvíl**, 42 let, tkadlec, Textile Praga a.s., Smíchov. Vdovec, syn Ladislav (17, učeň). 12 let ve stejném závodě bez jediné absence.
 
 ### Obžaloba
-Podvod dle §197 trestního zákona — předložení padělaného lékařského potvrzení za účelem vylákání 14 dní nemocenské (98 Kč).
+Podvod dle §197 trestního zákona — předložení padělaného lékařského potvrzení za účelem vylákání 14 dní nemocenské (98 Kčs).
 
 ### Proč je to zajímavé pro hráče
-Kratochvíl byl skutečně nemocen — ale zákonný doktor stál 20 Kč. Zaplatil 5 Kč „hovorovému doktorovi" z Holešovic. Klíčový obrat: závodní lékař MUDr. Mašek, který ho usvědčuje, má prémii vázanou na nízkou nemocnost. Kratochvílova absence způsobila, že prémie propadla. Má Mašek zájem na odsouzení?
+Kratochvíl byl skutečně nemocen — ale zákonný doktor stál 20 Kčs. Zaplatil 5 Kčs „hovorovému doktorovi" z Holešovic. Klíčový obrat: závodní lékař MUDr. Mašek, který ho usvědčuje, má prémii vázanou na nízkou nemocnost. Kratochvílova absence způsobila, že prémie propadla. Má Mašek zájem na odsouzení?
 
 ### Rozpory
 1. **Klíčový:** Sousedka nebyla celý týden svědkem žádného doktora, Mašek tvrdí, že domácí návštěvy vůbec nedělá — kdo je ten „mladší muž s potvrzením"?
@@ -166,10 +166,10 @@ Jitka po dlouhé pauze: „Otec ji chytil za zápěstí. Já ten zvuk znám od m
 `pool_a1_zhar` | Rutinní | Dny 3–6
 
 ### Obžalovaný
-**Antonín Houška**, 51 let, živnostník. Majitel kovodílny v Plzeňské ulici na Smíchově. Ženatý, syn Zdeněk (19). Dluh u záložny 1 400 Kč.
+**Antonín Houška**, 51 let, živnostník. Majitel kovodílny v Plzeňské ulici na Smíchově. Ženatý, syn Zdeněk (19). Dluh u záložny 1 400 Kčs.
 
 ### Obžaloba
-Žhářství a pojistný podvod dle §166 a §197 trestního zákona. Požár provozovny v noci ze 13. na 14. února 1931. Škoda 2 300 Kč. Hasičský inspektor tvrdí, že k zapálení bylo použito pohonné hmoty. Pojišťovna Slavia odmítá plnit.
+Žhářství a pojistný podvod dle §166 a §197 trestního zákona. Požár provozovny v noci ze 13. na 14. února 1931. Škoda 2 300 Kčs. Hasičský inspektor tvrdí, že k zapálení bylo použito pohonné hmoty. Pojišťovna Slavia odmítá plnit.
 
 ### Proč je to zajímavé pro hráče
 Na povrchu: živnostník v dluzích zapaluje provozovnu pro pojistku. Pod povrchem: Houška požár nezaložil — udělal to jeho syn Zdeněk bez vědomí otce. Otec o tom ví. Nekryje firmu ani sebe — kryje dítě. Hráč soudí člověka, který možná nic neudělal, ale mlčí jako by udělal vše.
@@ -226,7 +226,7 @@ Zákon na ochranu republiky — tentýž zákon jako v případu Fassbinder a ja
 Těžké ublížení na zdraví z nedbalosti dle §335 trestního zákona — smrt dělníka Františka Tučka (32) pádem ze závadného lešení na stavbě v Mánesově ulici na Vinohradech. Tuček zemřel na místě.
 
 ### Proč je to nejzávažnější morální případ druhé vlny
-Kolář závadu na lešení znal — podepsal kontrolní list tři dny před nehodou, vlastní rukou poznamenal: *čep v severovýchodním rohu — sledovat.* Tuček mu závadu přišel nahlásit osobně. Kolář mu přislíbil opravu do konce týdne. Nevykonal ji, protože oprávce stál 80 Kč a investor tlačil na termín pod hrozbou 200 Kč penále za každý den zdržení. Hráč nestojí před otázkou, zda Kolář selhal — stojí před otázkou, kdo za selhání odpovídá.
+Kolář závadu na lešení znal — podepsal kontrolní list tři dny před nehodou, vlastní rukou poznamenal: *čep v severovýchodním rohu — sledovat.* Tuček mu závadu přišel nahlásit osobně. Kolář mu přislíbil opravu do konce týdne. Nevykonal ji, protože oprávce stál 80 Kčs a investor tlačil na termín pod hrozbou 200 Kčs penále za každý den zdržení. Hráč nestojí před otázkou, zda Kolář selhal — stojí před otázkou, kdo za selhání odpovídá.
 
 ### Rozpory
 1. **Klíčový:** Kolář tvrdí, že o závadě nevěděl — ale jeho vlastnoruční podpis a poznámka na kontrolním listu ze 14. února to vyvracejí. Tuček mu závadu hlásil osobně. Kolář ho poslal zpátky na práci s příslibem opravy
@@ -269,7 +269,7 @@ Případ 5 (nemocenská): systém trestá lidi za to, že se přizpůsobili syst
 |----------|-------------------|------------------------|
 | Efekty na staty | ±1 až ±8 | ±2 až ±10 |
 | Počet rozporů | 1–2 | 2 |
-| Finanční odměna | +10 Kč base | +10 Kč base + morální bonus |
+| Finanční odměna | +10 Kčs base | +10 Kčs base + typový příplatek (morální +25 / politický +35 / osobní +30 Kčs) +1 inkoust u barevné složky |
 | Konfrontace (Odvaha) | ≥60 | ≥60 |
 | Dostupné dny | 2–5 nebo 3–6 | 5–8 nebo 5–10 |
 

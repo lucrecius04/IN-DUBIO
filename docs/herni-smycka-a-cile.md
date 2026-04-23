@@ -25,7 +25,7 @@ Hráč je soudce Benedikt Vraný. Hra probíhá po **dnech** řízených `data/d
 - Vyprší případné **ráno bonusy** (např. káva → +1 kapka).
 - Po uplynutí platnosti se vymaže `flags.records_free_until_day`.
 - Načtou se data dne, nastaví se **případy dne** (`Cases.nastavPripadyProDen`), aktualizují se **složky** na stole.
-- **Ekonomika ráno:** lékařský buff, Karasův dluh, **nedělní výplata** (+80 Kč na vybraných dnech), varování při bankrotu, dluh > 100, speciální **den 23** (modal krize).
+- **Ekonomika ráno:** lékařský buff, Karasův dluh, **nedělní výplata** (+80 Kčs na vybraných dnech), varování při bankrotu, dluh > 100, speciální **den 23** (modal krize).
 - **Ranní fragment** podle `days.json` (u testovacího režimu může být den 1 zjednodušen).
 - **Revize spisů** naplánované na tento den (`State.vyzvedniRevizeProDen`) — krátká volba A/B v modálu.
 - **Dialogy postav** jako dopisy/fragmenty (den 1 může být v testu přeskočen).
@@ -91,8 +91,8 @@ Konce nastaví `gameOver`, `endingType`, uloží stav a zobrazí **UI epilog** (
 
 1. Ráno: přečíst krátké texty, případně volby (neděle, dopisy).  
 2. Otevřít **oba případy** (nebo jeden, podle dne), prostudovat spis, volitelně **pátrat** a **zkoumat**.  
-3. Před potvrzením vidět **předběžný dopad** (finance číslem, ostatní osy bez čísel), pak vynést **rozsudek** — nenávratně.  
-4. Po vynesení dohledat přesná čísla v **readonly detailu spisu** i v šuplíku **Rozsudky** (rozbalení řádku), včetně agregovaného součtu využití neoficiálních zdrojů.  
+3. Před potvrzením vidět **předběžný dopad** (finance číslem v Kčs, ostatní osy bez čísel; frakce jedním řádkem), pak vynést **rozsudek** — nenávratně.  
+4. Po vynesení dohledat přesná čísla v **readonly detailu spisu** i v šuplíku **Rozsudky** (rozbalení řádku; volitelně **filtr podle typu případu**), včetně agregovaného součtu využití neoficiálních zdrojů.  
 5. Až je den uzavřený → **Další den** → večerní volba a noční texty → další kalendářní den.  
 6. Hra končí po **30 dnech** (výchozí `preziti` epilog) nebo dříve při splnění podmínek speciálního konce.
 

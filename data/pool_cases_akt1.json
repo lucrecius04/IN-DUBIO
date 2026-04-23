@@ -163,12 +163,22 @@
         "rewards": {
           "on_confirm": {
             "weak": {
-              "investigation_progress_delta": 10
+              "investigation_progress_delta": 10,
+              "narrative_lines": [
+                "Dvě čísla z laboratoře na sebe upozorní, ale sama o sobě neřeknou, zda šlo o úmysl.",
+                "Stále je možné mluvit o chybě přístroje, špatné kalibraci nebo lidské nepozornosti při přepisu.",
+                "Přesto vám spis začne šustět jinak — jako by se pod obhajobou objevila tenká trhlina."
+              ]
             },
             "medium": {
               "investigation_progress_delta": 20,
               "unlock_actions": [
                 "pool_inv_confrontation"
+              ],
+              "narrative_lines": [
+                "Rozpor mezi měřeními už není jen technická poznámka v okraji protokolu.",
+                "Inspektorova pečlivost a lékárníkova jistota se střetávají v jednom bodě: buď někdo lže, nebo něco zakrývá.",
+                "Konfrontace se rýsuje jako další krok — a víte, že už nejde jen o papír, ale o tvář."
               ]
             },
             "strong": {
@@ -179,6 +189,11 @@
               "unlock_verdict_ids": [
                 "guilty_alternative",
                 "not_guilty_with_comment"
+              ],
+              "narrative_lines": [
+                "Spojení obou stop drží pohromadě jako pečeť: rozptyl měření a vlastnictví vzorku nelze oddělit náhodou.",
+                "V hlavě se vám seřadí časová osa — kdo měl přístup, kdo podepsal protokol, kdo z něj těžil.",
+                "Soudní sál je pořád daleko, ale ve spisu už je cítit chlad ocelové logiky: tady někdo věděl víc, než řekl."
               ]
             }
           },
@@ -261,7 +276,7 @@
               }
             },
             "standard": {
-              "label": "Pokuta 200 Kč, podmíněné uzavření lékárny",
+              "label": "Pokuta 200 Kčs, podmíněné uzavření lékárny",
               "description": "Standardní trest.",
               "effects": {
                 "integrita": 1,
@@ -276,7 +291,7 @@
               }
             },
             "lenient": {
-              "label": "Pokuta 50 Kč, důtka",
+              "label": "Pokuta 50 Kčs, důtka",
               "description": "Symbolický trest.",
               "requires_investigation": 1,
               "effects": {
@@ -543,7 +558,7 @@
               }
             },
             "standard": {
-              "label": "Pokuta 150 Kč, zabavení výtisků",
+              "label": "Pokuta 150 Kčs, zabavení výtisků",
               "description": "Trest za nedbalost.",
               "effects": {
                 "integrita": 0,
@@ -705,7 +720,7 @@
         "detail": "dvě děti (12 a 8 let), žije na Žižkově"
       },
       "charge": "Pojistný podvod dle §197 trestního zákona",
-      "description": "Ludmila Bartošová, vdova po trafikantovi Josefu Bartošovi, je obžalovaná z pojistného podvodu. Její manžel zemřel 18. ledna 1931 na srdeční selhání ve věku 43 let. Pojistná smlouva uzavřená u Pojišťovny Slavia dne 3. ledna 1931 — tedy pouhých patnáct dní před smrtí — opravňuje pozůstalou k výplatě 800 Kč. Pojišťovna odmítla plnit.",
+      "description": "Ludmila Bartošová, vdova po trafikantovi Josefu Bartošovi, je obžalovaná z pojistného podvodu. Její manžel zemřel 18. ledna 1931 na srdeční selhání ve věku 43 let. Pojistná smlouva uzavřená u Pojišťovny Slavia dne 3. ledna 1931 — tedy pouhých patnáct dní před smrtí — opravňuje pozůstalou k výplatě 800 Kčs. Pojišťovna odmítla plnit.",
       "testimonies": [
         {
           "id": "pojistovna",
@@ -779,7 +794,7 @@
         "records": {
           "source": "Spis Pojišťovny Slavia + matrika obvodního lékaře",
           "reveals": "facts",
-          "text": "Pojistná smlouva č. 4871/1931: pojistitel Josef Bartoš, pojistná částka 800 Kč, oprávněná osoba Ludmila Bartošová. Přihlášku vyplnil pojistný agent Miroslav Krejčí — soused Bartošových a současně agent Slavie na částečný úvazek. Provize z uzavření smlouvy: 40 Kč. Matrika MUDr. Havelky: 12.7.1930 — Bartoš Josef, 42 let, bolest na hrudi, dušnost při zátěži. Doporučeno kardiologické vyšetření. Pacient odmítl. Pozn.: manželce nesděleno na přání pacienta.",
+          "text": "Pojistná smlouva č. 4871/1931: pojistitel Josef Bartoš, pojistná částka 800 Kčs, oprávněná osoba Ludmila Bartošová. Přihlášku vyplnil pojistný agent Miroslav Krejčí — soused Bartošových a současně agent Slavie na částečný úvazek. Provize z uzavření smlouvy: 40 Kčs. Matrika MUDr. Havelky: 12.7.1930 — Bartoš Josef, 42 let, bolest na hrudi, dušnost při zátěži. Doporučeno kardiologické vyšetření. Pacient odmítl. Pozn.: manželce nesděleno na přání pacienta.",
           "cost": 1,
           "unlocks_contradiction": "doctor_visit"
         },
@@ -846,7 +861,7 @@
               }
             },
             "lenient": {
-              "label": "Částečné plnění — 400 Kč pozůstalým, důtka agentovi",
+              "label": "Částečné plnění — 400 Kčs pozůstalým, důtka agentovi",
               "description": "Kompromis.",
               "requires_investigation": 1,
               "effects": {
@@ -862,7 +877,7 @@
               }
             },
             "alternative": {
-              "label": "Plné plnění 800 Kč, trestní oznámení na agenta Krejčího",
+              "label": "Plné plnění 800 Kčs, trestní oznámení na agenta Krejčího",
               "description": "Bartošová je oběť, ne pachatel.",
               "requires_investigation": 2,
               "requires_contradiction": true,
@@ -1006,7 +1021,7 @@
         "detail": "syn žižkovského pekaře, bezdlužný, čistý rejstřík, bydliště Žižkov"
       },
       "charge": "Výtržnictví a poškození cizí věci dle §314 trestního zákona",
-      "description": "Karel Šimánek, student Právnické fakulty Karlovy univerzity, je obžalován z rozbití výlohy kožené galanterie Jakuba Meisela na Vodičkově ulici čp. 12 v Praze dne 28. února 1931 ve večerních hodinách. Hlídkující stražmistr Miroslav Turek nalezl Šimánka na místě činu s dlažební kostkou v ruce. Škoda odhadnuta na 120 Kč. Obžalovaný tvrdí, že kostku zvedl ze země poté, co skutečný pachatel prchl.",
+      "description": "Karel Šimánek, student Právnické fakulty Karlovy univerzity, je obžalován z rozbití výlohy kožené galanterie Jakuba Meisela na Vodičkově ulici čp. 12 v Praze dne 28. února 1931 ve večerních hodinách. Hlídkující stražmistr Miroslav Turek nalezl Šimánka na místě činu s dlažební kostkou v ruce. Škoda odhadnuta na 120 Kčs. Obžalovaný tvrdí, že kostku zvedl ze země poté, co skutečný pachatel prchl.",
       "testimonies": [
         {
           "id": "turek",
@@ -1112,7 +1127,7 @@
         "guilty": {
           "sentences": {
             "maximum": {
-              "label": "3 měsíce podmíněně, náhrada škody 120 Kč",
+              "label": "3 měsíce podmíněně, náhrada škody 120 Kčs",
               "description": "Přítomnost na místě činu s předmětem činu v ruce — plný rozsah §314.",
               "available_unless": {
                 "vina_above": 80
@@ -1130,7 +1145,7 @@
               }
             },
             "standard": {
-              "label": "Pokuta 80 Kč, náhrada škody 120 Kč",
+              "label": "Pokuta 80 Kčs, náhrada škody 120 Kčs",
               "description": "Aktivní přítomnost u činu, přímé spáchání neprokázáno.",
               "effects": {
                 "integrita": 0,
@@ -1145,7 +1160,7 @@
               }
             },
             "lenient": {
-              "label": "Pokuta 30 Kč, povinná náhrada škody",
+              "label": "Pokuta 30 Kčs, povinná náhrada škody",
               "description": "Šimánek jednal pod vlivem skupiny; přímá fyzická účast na hodu neprokázána.",
               "requires_investigation": 1,
               "effects": {
@@ -1304,7 +1319,7 @@
         "detail": "vdovec, syn Ladislav (17 let, učeň), 12 let ve stejném závodě, čistý rejstřík"
       },
       "charge": "Podvod dle §197 trestního zákona — předložení padělaného lékařského potvrzení za účelem vylákání nemocenské dávky",
-      "description": "Josef Kratochvíl, tkadlec s dvanáctiletou nepřerušenou praxí v závodu Textile Praga na Smíchově, je obžalován z předložení padělaného potvrzení o pracovní neschopnosti ze dne 12. února 1931. Závodní lékař MUDr. Antonín Mašek odmítá potvrzení jako falzifikát — uvádí, že daného dne Kratochvíla nevyšetřoval a podpis není jeho. Kratochvíl trvá na tom, že byl skutečně nemocen a že lékař přišel k němu domů. Na základě potvrzení mu bylo vyplaceno 14 dní nemocenské dávky ve výši 98 Kč, které zaměstnavatel nyní nárokuje zpět.",
+      "description": "Josef Kratochvíl, tkadlec s dvanáctiletou nepřerušenou praxí v závodu Textile Praga na Smíchově, je obžalován z předložení padělaného potvrzení o pracovní neschopnosti ze dne 12. února 1931. Závodní lékař MUDr. Antonín Mašek odmítá potvrzení jako falzifikát — uvádí, že daného dne Kratochvíla nevyšetřoval a podpis není jeho. Kratochvíl trvá na tom, že byl skutečně nemocen a že lékař přišel k němu domů. Na základě potvrzení mu bylo vyplaceno 14 dní nemocenské dávky ve výši 98 Kčs, které zaměstnavatel nyní nárokuje zpět.",
       "testimonies": [
         {
           "id": "masek",
@@ -1378,7 +1393,7 @@
         "records": {
           "source": "Závodní kartotéka Textile Praga a.s. a zápisník MUDr. Maška",
           "reveals": "facts",
-          "text": "Závodní kartotéka: Kratochvíl Josef, nástup 1919, dvanáct let bez jediné absence. Hodnocení: spolehlivý, pravidelný. Zápisník MUDr. Maška — 12. února 1931: pacienti Novák, Blahout, Říha. Kratochvíl chybí. Smluvní ujednání MUDr. Maška: honorář 180 Kč/měsíc + prémie 15 Kč za každý týden, kdy celková nemocnost závodníků nepřekročí 5 %. Únor 1931: Kratochvílova 14denní absence způsobila překročení kvóty — prémie propadla. Laboratorní posudek předloženého potvrzení: papír neodpovídá standardnímu tisku závodní ambulance Textile Praga — liší se gramáží a formátem záhlaví.",
+          "text": "Závodní kartotéka: Kratochvíl Josef, nástup 1919, dvanáct let bez jediné absence. Hodnocení: spolehlivý, pravidelný. Zápisník MUDr. Maška — 12. února 1931: pacienti Novák, Blahout, Říha. Kratochvíl chybí. Smluvní ujednání MUDr. Maška: honorář 180 Kčs/měsíc + prémie 15 Kčs za každý týden, kdy celková nemocnost závodníků nepřekročí 5 %. Únor 1931: Kratochvílova 14denní absence způsobila překročení kvóty — prémie propadla. Laboratorní posudek předloženého potvrzení: papír neodpovídá standardnímu tisku závodní ambulance Textile Praga — liší se gramáží a formátem záhlaví.",
           "cost": 1,
           "unlocks_contradiction": "domaci_navsteva"
         },
@@ -1412,7 +1427,7 @@
         "guilty": {
           "sentences": {
             "maximum": {
-              "label": "2 měsíce podmíněně, vrácení 98 Kč nemocenské",
+              "label": "2 měsíce podmíněně, vrácení 98 Kčs nemocenské",
               "description": "Předložení falzifikátu za účelem majetkového prospěchu — §197 naplněn.",
               "available_unless": {
                 "vina_above": 80
@@ -1430,7 +1445,7 @@
               }
             },
             "standard": {
-              "label": "Pokuta 50 Kč, vrácení nemocenské",
+              "label": "Pokuta 50 Kčs, vrácení nemocenské",
               "description": "Podvod z nouze — trest bez odnětí svobody.",
               "effects": {
                 "integrita": 0,
@@ -1445,7 +1460,7 @@
               }
             },
             "lenient": {
-              "label": "Symbolická pokuta 15 Kč, nemocenská prominuta",
+              "label": "Symbolická pokuta 15 Kčs, nemocenská prominuta",
               "description": "Dvanáct let bezúhonné práce jako silná polehčující okolnost.",
               "requires_investigation": 1,
               "effects": {
@@ -1729,7 +1744,7 @@
               }
             },
             "standard": {
-              "label": "Pokuta 60 Kč, podmíněný dohled",
+              "label": "Pokuta 60 Kčs, podmíněný dohled",
               "description": "Provinění uznáno, okolnosti polehčující.",
               "effects": {
                 "integrita": 0,
@@ -1895,10 +1910,10 @@
         "name": "Antonín Houška",
         "age": 51,
         "occupation": "živnostník, majitel kovodílny",
-        "detail": "provozovna v Plzeňské ulici na Smíchově, ženatý, syn Zdeněk (19), dluh u záložny 1 400 Kč"
+        "detail": "provozovna v Plzeňské ulici na Smíchově, ženatý, syn Zdeněk (19), dluh u záložny 1 400 Kčs"
       },
       "charge": "Žhářství a pojistný podvod dle §166 a §197 trestního zákona",
-      "description": "Antonín Houška, majitel kovodílny v Plzeňské ulici na Smíchově, je obžalován ze žhářství a pojistného podvodu. Dne 14. února 1931 krátce po půlnoci zachvátil provozovnu požár, který způsobil škodu 2 300 Kč. Pojišťovna Slavia odmítla vyplatit pojistné plnění ve výši 1 800 Kč poté, co hasičský inspektor v závěrečné zprávě uvedl, že k zapálení bylo použito hořlavé pohonné látky. Houška tvrdí, že požár způsobilo zkratování elektrického vedení, a přítomnost benzínu vysvětluje běžnou provozní zásobou dílny.",
+      "description": "Antonín Houška, majitel kovodílny v Plzeňské ulici na Smíchově, je obžalován ze žhářství a pojistného podvodu. Dne 14. února 1931 krátce po půlnoci zachvátil provozovnu požár, který způsobil škodu 2 300 Kčs. Pojišťovna Slavia odmítla vyplatit pojistné plnění ve výši 1 800 Kčs poté, co hasičský inspektor v závěrečné zprávě uvedl, že k zapálení bylo použito hořlavé pohonné látky. Houška tvrdí, že požár způsobilo zkratování elektrického vedení, a přítomnost benzínu vysvětluje běžnou provozní zásobou dílny.",
       "testimonies": [
         {
           "id": "inspektor_hasic",
@@ -1971,7 +1986,7 @@
         "records": {
           "source": "Obchodní rejstřík, záložna Záložna smíchovská, spis pojišťovny Slavia",
           "reveals": "facts",
-          "text": "Kovodílna Houška: živnostenský list od 1907. Poslední audit záložny z října 1930: závod v provozním útlumu, tržby klesly o 43 % za dva roky. Zástavní právo na vybavení dílny od listopadu 1930. Pojistná smlouva u Pojišťovny Slavia: uzavřena v září 1929 — tedy osmnáct měsíců před požárem. Syn Zdeněk Houška: evidován jako pomocný dělník bez stálého místa. V záložně zjištěno: dne 13. února — den před požárem — Zdeněk Houška vybral z otcova účtu 12 Kč. Zbývající zůstatek: 3 Kč.",
+          "text": "Kovodílna Houška: živnostenský list od 1907. Poslední audit záložny z října 1930: závod v provozním útlumu, tržby klesly o 43 % za dva roky. Zástavní právo na vybavení dílny od listopadu 1930. Pojistná smlouva u Pojišťovny Slavia: uzavřena v září 1929 — tedy osmnáct měsíců před požárem. Syn Zdeněk Houška: evidován jako pomocný dělník bez stálého místa. V záložně zjištěno: dne 13. února — den před požárem — Zdeněk Houška vybral z otcova účtu 12 Kčs. Zbývající zůstatek: 3 Kčs.",
           "cost": 1,
           "unlocks_contradiction": "cas_navratu"
         },
@@ -2005,7 +2020,7 @@
         "guilty": {
           "sentences": {
             "maximum": {
-              "label": "1 rok vězení, náhrada škody pojišťovně 1 800 Kč",
+              "label": "1 rok vězení, náhrada škody pojišťovně 1 800 Kčs",
               "description": "Žhářství prokázáno, úmysl zřejmý.",
               "available_unless": {
                 "vina_above": 80
@@ -2023,7 +2038,7 @@
               }
             },
             "standard": {
-              "label": "Pokuta 300 Kč, podmíněný trest 6 měsíců",
+              "label": "Pokuta 300 Kčs, podmíněný trest 6 měsíců",
               "description": "Vina uznána, polehčující okolnosti přihlédnuty.",
               "effects": {
                 "integrita": 1,
@@ -2330,7 +2345,7 @@
               }
             },
             "standard": {
-              "label": "Pokuta 120 Kč, povinná registrace u cizineckého oddělení",
+              "label": "Pokuta 120 Kčs, povinná registrace u cizineckého oddělení",
               "description": "Padělání prokázáno, deportace nenařízena — ČSR nezavazuje k navrácení.",
               "effects": {
                 "integrita": 1,
@@ -2576,7 +2591,7 @@
         "records": {
           "source": "Firemní archiv Stavební a.s. Dvořák & syn; stavební inspekce zemského úřadu; záznamy záložny",
           "reveals": "facts",
-          "text": "Kontrolní list lešení ze 14. února 1931, podpis: M. Kolář. Poznámka vlastní rukou: čep v severovýchodním rohu — sledovat. Lešení neopraveno. Oprávce přivolán 19. února — dva dny po nehodě. Investor: Bytová společnost Vinohrady s.r.o., majoritní podíl ve vlastnictví JUDr. Karla Ryby, advokáta. Stavební zakázka s penalizační doložkou 200 Kč/den za prodlení. Tuček František: pracovní smlouva od září 1930, hodnocení vzorný. Záložna: Kolář — hypotéka 3 200 Kč, zůstatek 2 100 Kč, splátka 85 Kč/měsíc.",
+          "text": "Kontrolní list lešení ze 14. února 1931, podpis: M. Kolář. Poznámka vlastní rukou: čep v severovýchodním rohu — sledovat. Lešení neopraveno. Oprávce přivolán 19. února — dva dny po nehodě. Investor: Bytová společnost Vinohrady s.r.o., majoritní podíl ve vlastnictví JUDr. Karla Ryby, advokáta. Stavební zakázka s penalizační doložkou 200 Kčs/den za prodlení. Tuček František: pracovní smlouva od září 1930, hodnocení vzorný. Záložna: Kolář — hypotéka 3 200 Kčs, zůstatek 2 100 Kčs, splátka 85 Kčs/měsíc.",
           "cost": 1,
           "unlocks_contradiction": "kolin_podpis"
         },
@@ -2611,7 +2626,7 @@
         "guilty": {
           "sentences": {
             "maximum": {
-              "label": "18 měsíců vězení, náhrada pozůstalým 1 200 Kč",
+              "label": "18 měsíců vězení, náhrada pozůstalým 1 200 Kčs",
               "description": "Vědomé odložení opravy se znalostí rizika — hrubá nedbalost přecházející v úmyslné jednání.",
               "available_unless": {
                 "vina_above": 80
@@ -2629,7 +2644,7 @@
               }
             },
             "standard": {
-              "label": "6 měsíců podmíněně, náhrada pozůstalým 600 Kč, zákaz výkonu funkce stavbyvedoucího na 2 roky",
+              "label": "6 měsíců podmíněně, náhrada pozůstalým 600 Kčs, zákaz výkonu funkce stavbyvedoucího na 2 roky",
               "description": "Hrubá nedbalost prokázána. Ekonomický tlak jako polehčující, nikoli zbavující okolnost.",
               "effects": {
                 "integrita": 3,
@@ -2644,7 +2659,7 @@
               }
             },
             "lenient": {
-              "label": "Pokuta 400 Kč, náhrada pozůstalým 300 Kč, podmíněné zastavení řízení",
+              "label": "Pokuta 400 Kčs, náhrada pozůstalým 300 Kčs, podmíněné zastavení řízení",
               "description": "Kolář jednal pod tlakem zaměstnavatele. Přímé zavinění sdílené — firma, investor, systém bez inspekce.",
               "requires_investigation": 1,
               "effects": {
@@ -2812,7 +2827,7 @@
         "detail": "hospodářství 4 ha, obec Ořech u Prahy; vdova od 1923; syn Josef (31) v Praze, pracuje jako listonoš; sama na statku"
       },
       "charge": "Násilný odpor veřejnému činiteli dle §81 trestního zákona — udeření exekutora Ing. Karla Štěpána násadou od lopaty při výkonu exekuce dne 17. února 1931",
-      "description": "Anna Součková, rolnice z Ořechu u Prahy, je obžalována z násilného odporu exekutorovi Ing. Karlu Štěpánovi při výkonu exekuce na movitý majetek. Exekutor Štěpán přišel 17. února 1931 na základě příkazu k výkonu rozhodnutí vydaného Záložnou sv. Václava v Praze pro dluh 340 Kč. Součková ho udeřila násadou od lopaty do předloktí — zhmoždění, pracovní neschopnost tři dny. Součková tvrdí, že nevěděla, kdo přichází, a myslela si, že jde o zloděje.",
+      "description": "Anna Součková, rolnice z Ořechu u Prahy, je obžalována z násilného odporu exekutorovi Ing. Karlu Štěpánovi při výkonu exekuce na movitý majetek. Exekutor Štěpán přišel 17. února 1931 na základě příkazu k výkonu rozhodnutí vydaného Záložnou sv. Václava v Praze pro dluh 340 Kčs. Součková ho udeřila násadou od lopaty do předloktí — zhmoždění, pracovní neschopnost tři dny. Součková tvrdí, že nevěděla, kdo přichází, a myslela si, že jde o zloděje.",
       "testimonies": [
         {
           "id": "stepan",
@@ -2861,7 +2876,7 @@
         },
         {
           "id": "vyse_dluhu",
-          "description": "Původní dluh byl 180 Kč, nyní je 340 Kč. Záložna sv. Václava — úrok 18 % ročně. Součková splácela, ale splátky nestačily pokrýt ani úrok. Dluh matematicky nemohl klesnout. Věděla Součková, co podepisuje?",
+          "description": "Původní dluh byl 180 Kčs, nyní je 340 Kčs. Záložna sv. Václava — úrok 18 % ročně. Součková splácela, ale splátky nestačily pokrýt ani úrok. Dluh matematicky nemohl klesnout. Věděla Součková, co podepisuje?",
           "involves": [
             "souckova",
             "syn_josef"
@@ -2885,7 +2900,7 @@
         "records": {
           "source": "Záložna sv. Václava Praha — smlouva a výpis splátková knihy",
           "reveals": "facts",
-          "text": "Záložna sv. Václava Praha: Smlouva č. 441/1929. Součková Anna, Ořech. Výše půjčky: 180 Kč, datum 14. ledna 1929. Úroková sazba: 18 % ročně, splatnost měsíčně. Výpis splátkové knihy: Součková splácela nepravidelně — v průměru 6,80 Kč měsíčně. Matematická poznámka: pro splacení jistiny při 18 % ročním úroku by musela splácet minimálně 12,40 Kč měsíčně — jen aby dluh neroste. Při splátkách 6,80 Kč rostl dluh o cca 1,90 Kč měsíčně. Za 25 měsíců: nárůst o 47,50 Kč + penále za prodlení 112,50 Kč = celkem 340 Kč. Doručenka exekučního příkazu: razítko poštovního doručení 17. února 1931 — týž den jako exekuce. Zákonná lhůta tří dnů nebyla dodržena.",
+          "text": "Záložna sv. Václava Praha: Smlouva č. 441/1929. Součková Anna, Ořech. Výše půjčky: 180 Kčs, datum 14. ledna 1929. Úroková sazba: 18 % ročně, splatnost měsíčně. Výpis splátkové knihy: Součková splácela nepravidelně — v průměru 6,80 Kčs měsíčně. Matematická poznámka: pro splacení jistiny při 18 % ročním úroku by musela splácet minimálně 12,40 Kčs měsíčně — jen aby dluh neroste. Při splátkách 6,80 Kčs rostl dluh o cca 1,90 Kčs měsíčně. Za 25 měsíců: nárůst o 47,50 Kčs + penále za prodlení 112,50 Kčs = celkem 340 Kčs. Doručenka exekučního příkazu: razítko poštovního doručení 17. února 1931 — týž den jako exekuce. Zákonná lhůta tří dnů nebyla dodržena.",
           "cost": 1,
           "unlocks_contradiction": "oznameni_exekuce"
         },
@@ -2937,7 +2952,7 @@
               }
             },
             "standard": {
-              "label": "Pokuta 40 Kč, bez náhrady",
+              "label": "Pokuta 40 Kčs, bez náhrady",
               "description": "Odpor uznán, polehčující okolnosti zohledněny.",
               "effects": {
                 "integrita": 0,
@@ -3053,7 +3068,7 @@
       },
       "aftermath": {
         "guilty_maximum": "Součková vstane. Nic neřekne. Syn Josef stojí u dveří a sleduje ji — přišel z Prahy vlakem, vzal si volno. Matka jde kolem něj a nevzhlédne. On jí položí ruku na rameno. Ona zastaví. Pak jdou spolu ven.",
-        "guilty_standard": "Čtyřicet korun. Součková si promne ruce — zvyk. Exekutor Štěpán odchází z budovy první. Dluh 340 Kč zůstává. Záložna sv. Václava jistě pošle nového exekutora. Za čtyři dny, nebo čtyři týdny. Tentokrát možná se třemi dny předem.",
+        "guilty_standard": "Čtyřicet korun. Součková si promne ruce — zvyk. Exekutor Štěpán odchází z budovy první. Dluh 340 Kčs zůstává. Záložna sv. Václava jistě pošle nového exekutora. Za čtyři dny, nebo čtyři týdny. Tentokrát možná se třemi dny předem.",
         "guilty_lenient": "Písemná omluva. Součková přikývne. Syn Josef ji vezme za ruku a šeptá jí do ucha. Ona přikývne znovu. Komoda u ní doma zůstane — exekuce je pozastavena do vyřešení procesního sporu záložny. To syn nezmiňuje nahlas. Ale ví to.",
         "guilty_alternative": "Právní zástupce záložny vstane tak rychle, až mu sjede aktovka ze stolu. Součková sedí klidně a dívá se, jak ji zvedá. Exekutor Štěpán si upraví kravatu. Zapisovatelka Kovářová přestane psát — poprvé za celé líčení. Tichá síň.",
         "not_guilty_formal": "Součková si sedne zpátky na lavici, i když může jít. Sedí tam minutu. Pak vstane, dojde ke svému synovi a podá mu ruku — ne objetí, jen ruku, jako když obchodní partneři uzavřou dohodu. Odcházejí.",
@@ -3064,7 +3079,7 @@
           "trigger": "guilty_maximum",
           "delay_days": 3,
           "type": "fragment",
-          "text": "Na stole leží zpráva z Ořechu u Prahy. Exekutor Štěpán provedl zabavení movitého majetku — stůl, dvě stoličky, komoda. Celková odhadní hodnota 85 Kč. Dluh Součkové tím klesl na 255 Kč. Syn Josef si vzal půjčku od záložny v Praze na doplatek."
+          "text": "Na stole leží zpráva z Ořechu u Prahy. Exekutor Štěpán provedl zabavení movitého majetku — stůl, dvě stoličky, komoda. Celková odhadní hodnota 85 Kčs. Dluh Součkové tím klesl na 255 Kčs. Syn Josef si vzal půjčku od záložny v Praze na doplatek."
         },
         {
           "trigger": "not_guilty",
@@ -3105,7 +3120,7 @@
         "detail": "zaměstnanec tiskárny Grafia, svobodný, v péči má nemocnou matku"
       },
       "charge": "Krádež vloupáním dle §171 trestního zákona, zpronevěra dle §183 a pozměnění účetního záznamu",
-      "description": "V tiskárně Grafia na <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"smichov\" title=\"Slovník: Smíchov\">Smíchově</button> zmizelo z noční pokladny 500 Kč určených na páteční mzdy dělníků. Skříň s hotovostí byla otevřena bez poškození zámku, ale stránka noční knihy byla vytržená. Obžalovaný účetní Alois Mareš tvrdí, že byl večer na politické schůzi v Obecním domě. Majitel Karel Volf žádá exemplární trest s tím, že bez rychlého rozsudku hrozí ve fabrice stávka.",
+      "description": "V tiskárně Grafia na <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"smichov\" title=\"Slovník: Smíchov\">Smíchově</button> zmizelo z noční pokladny 500 Kčs určených na páteční mzdy dělníků. Skříň s hotovostí byla otevřena bez poškození zámku, ale stránka noční knihy byla vytržená. Obžalovaný účetní Alois Mareš tvrdí, že byl večer na politické schůzi v Obecním domě. Majitel Karel Volf žádá exemplární trest s tím, že bez rychlého rozsudku hrozí ve fabrice stávka.",
       "testimonies": [
         {
           "id": "mares",
@@ -3233,6 +3248,11 @@
               "unlock_verdict_ids": [
                 "guilty_alternative",
                 "insufficient_reopen"
+              ],
+              "narrative_lines": [
+                "Čas schůze a zápis v knize hlídky už nejdou slepit do jedné soukromé pravdy.",
+                "Marešův klid ve výpovědi se vám rozpadá na drobné úlomky — každý odkaz na politiku teď zní jako alibi.",
+                "Volfův hlas na chodbě a zvonění přejímky nejsou ozdoba; jsou to body, které drží obžalobu při zemi i ve vzduchu."
               ]
             }
           }
@@ -3259,7 +3279,7 @@
         "records": {
           "source": "Policejní a podnikový protokol — Smíchov",
           "reveals": "facts",
-          "text": "Protokol revíru <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"smichov\" title=\"Slovník: Smíchov\">Smíchov</button>: <span class=\"clue\" data-clue-id=\"clue_police_report\">schůze v Obecním domě zahájena v 19:00, ukončena v 19:10, budova vyklizena do 19:30</span>. Podnikový registr klíčů uvádí třetí duplikát uložený u vrátnice: <span class=\"clue\" data-clue-id=\"clue_gate_log\">výdej duplikátu 14. ledna v 19:42 na podpis K. Volf</span>. U Mareše evidován dluh 150 Kč z herny <span class=\"clue\" data-clue-id=\"decoy_debt\">U křížku</span>.",
+          "text": "Protokol revíru <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"smichov\" title=\"Slovník: Smíchov\">Smíchov</button>: <span class=\"clue\" data-clue-id=\"clue_police_report\">schůze v Obecním domě zahájena v 19:00, ukončena v 19:10, budova vyklizena do 19:30</span>. Podnikový registr klíčů uvádí třetí duplikát uložený u vrátnice: <span class=\"clue\" data-clue-id=\"clue_gate_log\">výdej duplikátu 14. ledna v 19:42 na podpis K. Volf</span>. U Mareše evidován dluh 150 Kčs z herny <span class=\"clue\" data-clue-id=\"decoy_debt\">U křížku</span>.",
           "cost": 1,
           "dirty_unlock": {
             "finance": -18,
