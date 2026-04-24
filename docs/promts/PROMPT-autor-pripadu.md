@@ -7,8 +7,17 @@ Následující text zkopíruj celý, nahraď zástupné značky **XXX** a příp
 ## Kontext, který model potřebuje mimo tento text
 
 - Tento soubor dává **pravidla, strukturu, tón a očekávání výstupu**. Není v něm **svět, postavy ani ceny** — to přilož zvlášť.  
-- **Doporučené přílohy** (nepovinně všechny, podle týmu): [`../world-reference.md`](../world-reference.md) (ceny, reálie 1931), [`../../data/knihovna.json`](../../data/knihovna.json) (hesla u odkazů), [`../../data/characters.json`](../../data/characters.json) (konkrétní NPC), řádek z [`../scenar/Mapa_20dni.csv`](../scenar/Mapa_20dni.csv) + [`../scenar/Pripady.csv`](../scenar/Pripady.csv) pro daný den, vzorový JSON [`../Pripady/pool_a1_tiskarna-vzor_Nocni-smena.json`](../Pripady/pool_a1_tiskarna-vzor_Nocni-smena.json).  
+- **Doporučené přílohy** (nepovinně všechny, podle týmu): [`../world-reference.md`](../world-reference.md) (ceny, reálie 1931), [`../../data/knihovna.json`](../../data/knihovna.json) (hesla u odkazů), [`../../data/characters.json`](../../data/characters.json) (konkrétní NPC), řádek z [`../scenar/Mapa_20dni.csv`](../scenar/Mapa_20dni.csv) (včetně sloupců *Modif_dne*, *Vecer_doplnek*, *Patrani_navrh*) + [`../scenar/Pripady.csv`](../scenar/Pripady.csv) pro daný den, přehled [`../scenar/Milniky-dynamika-akt1.md`](../scenar/Milniky-dynamika-akt1.md), vzorový JSON [`../Pripady/pool_a1_tiskarna-vzor_Nocni-smena.json`](../Pripady/pool_a1_tiskarna-vzor_Nocni-smena.json).  
 - **Story Bible (kanon lore):** soubor `docs/InDubio_StoryBible_v2_Cursor.txt` (v2.1). Přilož ho k zadání, pokud generuješ děj navázaný na postavy nebo metapříběh; u čistě „poolových“ kauz může stačit `world-reference.md` + tým. Pravidla mechanik spisu: **`.cursor/rules/cases.mdc`**.
+
+## Třetí spis a spis light (plánovaný obsah Aktu 1)
+
+- **Třetí spis** na stole až od **15. herního dne** (začátek 3. týdne). Kanonický popis: `.cursor/rules/cases.mdc` (sekce *Třetí spis na stole*, *Spis light*); v Knihovně jde o text v záložce **Pravidla** (bloky stejného jména), ne o slovníková hesla.
+- Když tým zadává **třetí / dodatečnou kauzu**, piš ji do **`data/pool_cases_light_akt1.json`** (pole `pool_cases_light_akt1`), **ne** do hlavního `data/pool_cases_akt1.json`, pokud výslovně nejde o plný případ.
+- V kořeni objektu případu vždy **`"case_profile": "light"`** a `id` s doporučeným prefixem **`pool_light_a1_`** (nesmí kolidovat s `pool_a1_*`).
+- **Spis light:** kratší `description` (2–3 věty), **1–2** výpovědi, průzkum zjednodušit (často výslech + záznamy; konfrontace jen výjimečně), užší strom **`verdicts`** než u plné kauzy; `clue_system` volitelné, s méně falešnými stopami pokud zapnuto.
+- Děj **nezávislý na hlavním příběhu** hry — žádné povinné plotové postavy z Bible jako nosič kauzy; atmosféra města a úřadu.
+- V textu musí být **čitelný důvod**, proč úřad Benovi třetí věc přidělí (důvěra / delegace / naléhavost), ne „odměna za číslo“. Frakce (Moc/Lid/Kapital) mohou ovlivnit **nádech** věci; **primární** je důvěra instituce a reputace — viz pravidla.
 
 ---
 
@@ -57,8 +66,14 @@ Vytvoř **jeden** plný herní **objekt případu** (jedna položka v poli pool 
 ## Rozsudky (pool struktura: guilty / not_guilty / insufficient + varianty)
 
 - Každá uvedená varianta má srozumitelné **popisy**; u variant přidej **krátkou větu lidského dopadu** (k čemu trest odsoudí obžalovaného / blízké) — není jen suchý paragraf.  
+- U odemykaných variant používej prefix `Alternativa:` v `label` (nikdy `Průzkum:` / `Doplnění:`).  
+- U „Alternativa“ variant může být záměrně nižší přímý finance efekt než u tradičního trestu, ale má mít výraznější dopad na rysy/frakce/pověst.  
 - Nevkládej tři identické „šablony“ trestů; **ohledně citového i právního tónu** se může lišit u morálního a rutinního kádrů.  
 - Srovnej `requires` (moudrost, odvaha) s designem, pokud jsou uvedeny v zadání `XXX_omezeni_rysy`.
+- Předehra rozsudku má v UI generickou protokolární větu (`Jménem republiky se vynáší tento rozsudek.`); proto text varianty piš jako navazující konkrétní dopad (unikátní k případu).
+- Volitelně může alternativa přidat bonus inkoustu na další ráno přes `effects.flags`, např. `{ "key": "bonus_inkoust_rano", "value": 1 }` nebo výjimečně `2`.
+- Pokud použiješ `bonus_inkoust_rano`, počítej s tím, že se hráči ukáže přímo v hintu varianty jako `Inkoust: +1/+2 do dalšího pracovního dne`.
+- V rámci celé sady pool případů mířit orientačně na ~60 % alternativních větví s inkoustovým bonusem; `+2` používej střídmě (silné nebo riskantní alternativy).
 
 ## Doplňovací rekvizity
 

@@ -9,9 +9,10 @@ Tato složka je **jedno místo** pro denní mapu, případy ve dnech, vlákna, d
 | Co | Kde |
 |----|-----|
 | **Rámec 20 dní** (týdny, večery, matka, soudci) | [`InDubio_20dni_Mapa-scenar.md`](./InDubio_20dni_Mapa-scenar.md) — jen tento soubor; **nekopíruj** jeho text jinam. |
-| **Řádek za řádkem 20 herních dní** (sloty, typy, dopisy, večery v tabulce) | [`Mapa_20dni.csv`](./Mapa_20dni.csv) |
+| **Milníky, limity revizí, dynamika 2. poloviny aktu** | [`Milniky-dynamika-akt1.md`](./Milniky-dynamika-akt1.md) |
+| **Řádek za řádkem 20 herních dní** (sloty, typy, dopisy, večery v tabulce) | [`Mapa_20dni.csv`](./Mapa_20dni.csv) — sloupce *Modif_dne*, *Vecer_doplnek*, *Patrani_navrh* |
 | **Případy podle slotu** (ID, typ, Haas, odložené důsledky…) | [`Pripady.csv`](./Pripady.csv) |
-| **Ekonomika / bilance** | [`Balancing.csv`](./Balancing.csv) |
+| **Ekonomika / bilance** | [`Balancing.csv`](./Balancing.csv) — sloupec *Scenar_modif_navrh* (návrhy k pozdějšímu ladění) |
 | **Dopisy** | [`Dopisy.csv`](./Dopisy.csv) |
 | **Vlákna** | [`Vlakna.csv`](./Vlakna.csv) |
 | **Konce** | [`Konce.csv`](./Konce.csv) |
@@ -36,6 +37,7 @@ docs/
     ReadMeScenar.md            ← tento soubor (vstupní brána)
     InDubio_20dni_Mapa-scenar.md   ← rámec: večery, matka, týdny, soudci
     Mapa_20dni.csv
+    Milniky-dynamika-akt1.md
     Pripady.csv
     Balancing.csv
     Dopisy.csv

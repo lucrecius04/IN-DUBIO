@@ -9,6 +9,7 @@ Texty pro design, autorování a orientaci v kódu. Kanon detailů mechanik zůs
 **[`scenar/ReadMeScenar.md`](./scenar/ReadMeScenar.md)** — vstupní brána, přehled CSV a vztah k `days.json` / poolu.
 
 - Rámec (večery, matka, týdny, soudci): [`scenar/InDubio_20dni_Mapa-scenar.md`](./scenar/InDubio_20dni_Mapa-scenar.md) — jen tam, bez kopírování do jiných souborů.
+- Milníky, limity revizí, dynamika 2. poloviny aktu: [`scenar/Milniky-dynamika-akt1.md`](./scenar/Milniky-dynamika-akt1.md) + sloupce v [`scenar/Mapa_20dni.csv`](./scenar/Mapa_20dni.csv) / [`scenar/Balancing.csv`](./scenar/Balancing.csv).
 - Lore a postavy: **Story Bible** — `InDubio_StoryBible_v2_Cursor.txt` v `docs/` (v2.1), není duplikována ve `scenar/`.
 
 ## Případy (JSON) a prompty

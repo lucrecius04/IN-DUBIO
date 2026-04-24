@@ -287,11 +287,17 @@
             "nadeje": 5,
             "moc": -3,
             "lid": 7,
-            "finance": 5
+            "finance": 5,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
           }
         },
         "special": {
-          "label": "Průzkum: Vina Mareše, ale nařízen forenzní audit vedení",
+          "label": "Alternativa: Vina Mareše, ale nařízen forenzní audit vedení",
           "description": "Mareš je potrestán, současně soud otevírá vyšetření manipulace s klíči a mzdovou knihou.",
           "requires_investigation": 3,
           "requires": {
@@ -306,7 +312,13 @@
             "nadeje": 4,
             "moc": -6,
             "lid": 8,
-            "finance": 8
+            "finance": 8,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 2
+              }
+            ]
           }
         }
       }
@@ -337,7 +349,13 @@
             "vina": -3,
             "moc": -6,
             "lid": 7,
-            "finance": 5
+            "finance": 5,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
           }
         }
       }
@@ -357,7 +375,13 @@
             "nadeje": 1,
             "moc": -2,
             "lid": 3,
-            "finance": 8
+            "finance": 8,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
           }
         },
         "close": {

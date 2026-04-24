@@ -26,6 +26,7 @@ Oddělené od průzkumu: jde o **koherenci stop** v textu, ne o „faktický vý
 - Správný pár: odměny dle dat — např. bonus informovanosti, `unlock_actions`, `unlock_verdict_ids`.  
 - **Timed hunt** (`timed_hunt`): stopy jsou plně aktivní až po **Zahájit pátrání**, běží odpočet, lze potvrdit nejlepší vazbu.  
 - **Moudrost ★★★★★** může jemně podtrhnout indície; hra **neprozrazuje** správný pár.
+- **Scénář dne:** u případů navázaných na den drž v zadání sloupec *Patrani_navrh* v [`scenar/Mapa_20dni.csv`](./scenar/Mapa_20dni.csv) (std / stress / klid) a význam v [`scenar/Milniky-dynamika-akt1.md`](./scenar/Milniky-dynamika-akt1.md) — jde o náladu a tempo textů kolem pátrání, ne o změnu engine pravidel.
 
 **Krátký narativ po potvrzení osy:** v datech případu lze u `clue_system.rewards.on_confirm.<weak|medium|strong>` doplnit `narrative_lines` (doporučeno tři věty podle síly) nebo jedno pole `narrative` s odstavci oddělenými prázdným řádkem. Po potvrzení vazby se v modálu spisu zobrazí překryv s textem a tlačítkem **Rozumím**; teprve poté se ve spisu dokončí vizuální potvrzení páru stop.
 
@@ -81,13 +82,13 @@ Implementace: `js/ui.js`, `js/cases.js` (`popisDuvoduVerdiktu`, `jeVerdiktOdemce
 
 1. **Výběr skupiny** (Vinen / Nevinen / Nedostatek důkazů / … podle dat).  
 2. **Výběr konkrétní varianty** (trest, přístup…).  
-3. **Potvrdit** — spustí se předehra s důsledky, poté `Cases.zpracujRozsudek`.
+3. **Potvrdit** — spustí se předehra (`Jménem republiky se vynáší tento rozsudek.` + konkrétní věta varianty), poté `Cases.zpracujRozsudek`.
 
 ### Filtrování nabídky
 
 - Verdikty a tresty mohou vyžadovat **Moudrost**, **Odvahu**, omezení podle **Viny**.  
 - Počet **odhalených** položek `hidden_info` u pool případů **filtruje** dostupné varianty (`_wfFiltrovatVerdiktyPodlePruzkumu` v `ui.js`).  
-- **Odemčené** možnosti mají být **vizuálně odlišené** a v textu označené jako zásluha průzkumu (`cases.mdc`).
+- **Odemčené** možnosti mají být **vizuálně odlišené** a v textu označené prefixem `Alternativa:` (`cases.mdc`).
 
 ### Upozornění na slabý podklad
 

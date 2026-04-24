@@ -20,7 +20,7 @@ Vstupní přehled celé složky: [`ReadMeScenar.md`](./ReadMeScenar.md).
 
 ## 2. Večerní příběhy a volby (struktura výprávění)
 
-**Slot:** ihned po uzavření obou případů dne (nebo po jednom, pokud testuješ tři ID — před releasem zpět na dva).
+**Slot:** ihned po uzavření obou případů dne (nebo po jednom, pokud testuješ tři ID — před releasem zpět na dva). Po **dvou vynesených rozsudcích** musí jít den ukončit i s případným třetím spisem nedotčeným (`cases.mdc`).
 
 **Funkce večera:**
 
@@ -31,7 +31,9 @@ Vstupní přehled celé složky: [`ReadMeScenar.md`](./ReadMeScenar.md).
 
 **Forma:** 1–3 obrazovky max.; žádné dlouhé expo. Preferuj **jednu volbu** s 2–4 variantami nebo krátký dialog + jedna volba.
 
-**Propojení s tabulkami:** v `Mapa_20dni.csv` má každý pracovní den sloupce pro večer a poznámky; v `days.json` se obsah napojí až bude scénář nasazen do hry.
+**Od cca 10. dne (druhá polovina aktu):** večery mohou nést **druhou vrstvu** — odložený dopad včerejšího dne, ostřejší reakci NPC na verdikt, nebo krátký „dohled“ bez nové mechaniky. V `Mapa_20dni.csv` je to sloupec **Vecer_doplnek** (návrhy pro `Vlakna.csv` / `Dopisy.csv` / `evening_choice`).
+
+**Propojení s tabulkami:** v `Mapa_20dni.csv` má každý pracovní den sloupce pro večer, poznámky a dále **Modif_dne**, **Vecer_doplnek**, **Patrani_navrh**; v `Balancing.csv` sloupec **Scenar_modif_navrh**. V `days.json` se obsah napojí až bude scénář nasazen do hry. Přehled milníků: [`Milniky-dynamika-akt1.md`](./Milniky-dynamika-akt1.md).
 
 ---
 
@@ -66,12 +68,42 @@ Z `cases.mdc` (pro napojení případů na NPC / politiku):
 1. **Večer** u každého pracovního dne 1–20.  
 2. Sloupec nebo poznámka **emoce / rodina** (matka, dopis, návštěva).  
 3. **Týdenní milníky** (konec týdne 7, 14, 20) — krátká věta „co hráč cítí jinak než včera“.  
-4. Odkaz na **konkrétní případ** ve slotu (ID z `data/pool_cases_akt1.json`), až je rozvržení fixní.
+4. Odkaz na **konkrétní případ** ve slotu (ID z `data/pool_cases_akt1.json` / případně `pool_cases_light_akt1.json`), až je rozvržení fixní.  
+5. Sloupce **Modif_dne**, **Vecer_doplnek**, **Patrani_navrh** v `Mapa_20dni.csv` a **Scenar_modif_navrh** v `Balancing.csv` — orientační návrhy pro pozdější balance (bez závazných čísel).
 
 ---
 
-## 6. Shrnutí
+## 6. Morální a politický tlak v čase
 
-- **Večery** = strukturovaný slot po případech, epizodní výprávění, ne druhý spis.  
+První týden je záměrně **rutinnější**; od **D5–D7** mapa přidává **Mor** a **Pol** (viz `Mapa_20dni.csv` / `Pripady.csv`). Druhá polovina aktu zvyšuje podíl náročnějších typů a **větvení** (VETVENI v poznámkách) — cílem je, aby hráč cítil **zhoršující se klima** města a úřadu, ne jen víc textu. Přesné váhy poolu se doladí v kódu a `days.json` podle hratelnosti.
+
+---
+
+## 7. Modifikátory dne (ekonomika / inkoust) — návrh bez čísel
+
+- Občas změnit **rozpočet dne** (sdílený inkoust, výdaje, jednorázový bonus) s **důvodem v ranním fragmentu nebo dopise**.  
+- Plán: sloupec **Modif_dne** + **Scenar_modif_navrh** v CSV; konkrétní čísla až v `Balancing.csv` po playtestu.  
+- Nesmí to přerůst v mikromanagement — max. několik „zvláštních“ dní na akt (už teď např. countdown k D16, Haas, zvraty).
+
+---
+
+## 8. Revize / odvolání — limity (aby nevyřadily nové kauzy)
+
+- **Strop (návrh Akt 1):** nejvýše **2** krátké **revizní karty** na celý 20denní průchod **nebo** nejvýše **1** revize na **7 po sobě jdoucích herních dní** s případy — platí přísnější z obou limitů.  
+- Revize je **krátká karta** (A/B), nikdy celý den místo nových spisů.  
+- Časté vrácení věci **snižuje důvěru instituce** a šanci na třetí spis (`cases.mdc`) — tlak narativní, ne spam odvolání.
+
+---
+
+## 9. Pátrání a průzkum — náladové dny
+
+- Sloupec **Patrani_navrh**: `std` = bez zvláštní úpravy; `stress` = kratší čas / vyšší stres v textu (naváže na Vina/Naděje v UI); `klid` = zdůrazněná rutina.  
+- Mapa už označuje návrhy u D9, D12, D14, D18 — doladit při implementaci timed hunt a textů.
+
+---
+
+## 10. Shrnutí
+
+- **Večery** = strukturovaný slot po případech, epizodní výprávění, ne druhý spis; od poloviny aktu mohou nést **druhou vrstvu** (*Vecer_doplnek*).  
 - **Matka / rodina** = mezitýdenní emoční oblouk, vázaný na neděle a večerní volby.  
-- **CSV** = řádky a čísla pro autory a balanci; **tento MD** = význam a pořadí rámce; **`days.json`** = co zrovna běží ve hře.
+- **CSV** = řádky a čísla pro autory a balanci (včetně sloupců dynamiky); **tento MD** = význam a pořadí rámce; **[`Milniky-dynamika-akt1.md`](./Milniky-dynamika-akt1.md)** = milníky, limity revizí a odkazy; **`days.json`** = co zrovna běží ve hře.

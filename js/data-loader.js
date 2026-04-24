@@ -43,6 +43,7 @@ const DataLoader = (() => {
   ];
 
   const SOUBOR_POOL_AKT1 = 'data/pool_cases_akt1.json';
+  const SOUBOR_POOL_LIGHT_AKT1 = 'data/pool_cases_light_akt1.json';
 
   /** Efekty z pool JSON (malá písmena) → consequences pro engine/UI. */
   function _poolEffectsNaConsequences(eff) {
@@ -67,7 +68,16 @@ const DataLoader = (() => {
     if (Number.isFinite(Number(e.lid)) && Number(e.lid) !== 0) factions.Lid = Number(e.lid);
     if (Number.isFinite(Number(e.kapital)) && Number(e.kapital) !== 0) factions.Kapital = Number(e.kapital);
     const finance = Number.isFinite(Number(e.finance)) ? Number(e.finance) : 0;
-    return { traits, factions, trust: {}, finance, flags: [] };
+    const flags = [];
+    if (Array.isArray(e.flags)) {
+      for (const f of e.flags) {
+        if (!f || typeof f !== 'object') continue;
+        const key = String(f.key || '').trim();
+        if (!key) continue;
+        flags.push({ key, value: f.value });
+      }
+    }
+    return { traits, factions, trust: {}, finance, flags };
   }
 
   function _vyberInformantText(inv, stav) {
@@ -258,8 +268,21 @@ const DataLoader = (() => {
       _cache.poolCasesAkt1 = [];
     }
 
+    try {
+      const odpovedLight = await fetch(SOUBOR_POOL_LIGHT_AKT1);
+      if (!odpovedLight.ok) throw new Error(`HTTP ${odpovedLight.status}`);
+      const lightJson = await odpovedLight.json();
+      const poleL = lightJson && typeof lightJson === 'object' && Array.isArray(lightJson.pool_cases_light_akt1)
+        ? lightJson.pool_cases_light_akt1
+        : [];
+      _cache.poolCasesLightAkt1 = poleL;
+    } catch (e) {
+      console.warn(`Nelze načíst ${SOUBOR_POOL_LIGHT_AKT1}:`, e.message);
+      _cache.poolCasesLightAkt1 = [];
+    }
+
     console.log(
-      `[DataLoader] případy akt1/2/3: ${_cache.casesAkt1.length} / ${_cache.casesAkt2.length} / ${_cache.casesAkt3.length}, pool akt1: ${_cache.poolCasesAkt1.length}`
+      `[DataLoader] případy akt1/2/3: ${_cache.casesAkt1.length} / ${_cache.casesAkt2.length} / ${_cache.casesAkt3.length}, pool akt1: ${_cache.poolCasesAkt1.length}, pool light akt1: ${_cache.poolCasesLightAkt1.length}`
     );
     return _cache;
   }
@@ -292,6 +315,11 @@ const DataLoader = (() => {
     if (Array.isArray(pool)) {
       const raw = pool.find(c => c && String(c.id || '').trim() === k);
       if (raw) return normalizujPoolPripad(raw);
+    }
+    const poolLight = ziskej('poolCasesLightAkt1');
+    if (Array.isArray(poolLight)) {
+      const rawL = poolLight.find(c => c && String(c.id || '').trim() === k);
+      if (rawL) return normalizujPoolPripad(rawL);
     }
     const cases = ziskej('cases');
     if (!cases) return null;

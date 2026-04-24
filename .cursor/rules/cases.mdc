@@ -1,6 +1,6 @@
 ---
 description: Systém případů, průzkumu, rozporů a denního cyklu IN DUBIO
-globs: js/cases.js, js/data-loader.js, js/ui.js, data/pool_cases_akt1.json, data/cases-akt1.json, data/cases-akt2.json, data/cases-akt3.json, data/days.json
+globs: js/cases.js, js/data-loader.js, js/ui.js, data/pool_cases_akt1.json, data/pool_cases_light_akt1.json, data/cases-akt1.json, data/cases-akt2.json, data/cases-akt3.json, data/days.json
 alwaysApply: false
 ---
 
@@ -30,13 +30,55 @@ OSOBNÍ: barva #5C2D6E | echo Benovy minulosti | efekty Vina ±5-10, Vztahy ±
 
 ## DENNÍ STRUKTURA — 20 DNÍ
 
-**Cíl:** 2 případy denně (slot 1 + slot 2). Kapky sdílené mezi oběma.
-**Test:** `data/days.json` může dočasně odkazovat na **3** ID z `pool_cases_akt1.json` — před releasem sjednotit na dva sloty.
+**Cíl:** 2 případy denně (slot 1 + slot 2). Kapky sdílené mezi všemi spisy, které jsou daný den na stole (viz níže u třetího spisu).
+**Test:** `data/days.json` může dočasně odkazovat na **3** ID — třetí slot viz sekce **Třetí spis** (od 3. týdne, podmíněně); před releasem držet konzistenci s implementací v `cases.js` / `engine.js`.
 
 Pracovní dny: ranní fragment → případy dne → večerní volba.
 Sobota: bonusy + shrnutí. Neděle: volba volného dne. Žádné případy.
 
-**Scénář 20 dní (večery, emoční linka / matka, týdenní rytmus):** vstupní brána je `docs/scenar/ReadMeScenar.md`; rámec (význam večerů, matky, týdnů) je v `docs/scenar/InDubio_20dni_Mapa-scenar.md`; řádky dní v CSV ve stejné složce. Volitelný Excel: `docs/InDubio_20dni_Mapa.xlsx`.
+**Scénář 20 dní (večery, emoční linka / matka, týdenní rytmus):** vstupní brána je `docs/scenar/ReadMeScenar.md`; rámec (význam večerů, matky, týdnů) je v `docs/scenar/InDubio_20dni_Mapa-scenar.md`; řádky dní v CSV ve stejné složce. **Dynamika pozdější části aktu** (morální/politický tlak, návrhy modifikátorů dne, druhá vrstva večerů, limity revizí, náladové pátrání): `docs/scenar/Milniky-dynamika-akt1.md` + sloupce v `Mapa_20dni.csv` a `Balancing.csv`. Volitelný Excel: `docs/InDubio_20dni_Mapa.xlsx`.
+
+## TŘETÍ SPIS NA STOLE (OD 3. TÝDNE)
+
+**Časová brána:** od **15. herního dne** (začátek 3. týdne při běžném kalendáři 20 pracovních dní v měsíci). První dva týdny vždy jen **dva** spisy — hráč se naučí tempo, průzkum, pátrání a dvojkrok rozsudku bez dalšího šumu.
+
+**Co se mění:** od splnění podmínky může být na stole **třetí** spis (třetí složka). Hráč si **sám zvolí**, zda ten den uzavře **dva** nebo **tři** případy; po **dvou vynesených rozsudcích** musí být možné **ukončit den** i s třetím spisem nedotčeným (třetí je bonusová zátěž, ne povinná třetí instance stejné délky — ideálně **spis light**, viz vlastní sekce).
+
+**Narativní pravidlo (povinné):** musí být **čitelný důvod v textu / UI**, proč úřad Benovi třetí věc přihodí (důvěra k jeho práci, rutinní delegace, naléhavost agendy, výjimka z rozvrhu). Nesmí to působit jako náhodná „odměna za číslo“ bez kontextu.
+
+**Kdo rozhoduje o dostupnosti třetího slotu (designová hierarchie):**
+
+1. **Primární — důvěra vůči instituci / reputace u soudu:** procedurální legitimita, zda je Ben brán jako spolehlivý rozhodce. Mapuje se na **Integritu**, dlouhodobě stabilní výkon a na to, že spisy **nehází zpět** kvůli procesním průšvihům. Časté **vrácení věci k revizi / odvolání** reputaci instituce vůči němu **oslabuje** → třetí spis se **neobjeví**, nebo se objeví až později / méně často, dokud se obraz nezlepší.
+2. **Sekundární — rysy postavy:** např. **Moudrost** jako práh „už není nováček“ (rozumně nízký práh — ne exkluzivní grind).
+3. **Terciární — frakce (Moc / Lid / Kapital):** **nejsou totéž** co instituce. Frakce spíš **modifikují tvar** třetího spisu (politický nádech, citlivost, kdo tlačí agendou), **ne** primární vypínač „mám / nemám třetí slot“. Váha frakcí v odemykání musí být **menší** než u důvěry instituce a rysů.
+
+**Limit výskytu:** za jednu kampaň (jeden průchod hrou) se třetí spis může objevit **nejvýše 10×** (počítají se dny, kdy je třetí slot aktivní / kdy je třetí případ nabídnut — přesná implementace v `State` + `cases.js`). Cílová velikost poolu pro třetí větev: **cca 15** kauz v `data/pool_cases_light_akt1.json`, aby zůstal rozptyl i po opakováních.
+
+**Data:** třetí ID v `days.json` buď jen od D15+, nebo placeholder a engine třetí přídá dynamicky po vyhodnocení podmínek — držet jednu strategii v kódu a tady ji zrcadlit.
+
+**Dopady vráceného spisu (revize / odvolání)** — navrhovaný rámec pro obsah i mechaniku (čísla ladit později):
+
+- **Slabší pozice vůči instituci:** dočasně nižší šance na třetí spis, nebo odložení „bonusové“ agendy.
+- **Krátkodobý psychický / procesní odraz:** lehký postih **Integrita** nebo **Moudrost** (pochybnost o postupu), případně **Naděje** dolů / **Vina** nahoru podle tónu scény.
+- **Frakční reakce (sekundárně):** strana, která v revizi „prohrála“, může zvednout tlak v příštích dnech (text + frakční posun), bez toho, aby frakce sama o sobě uzamykala třetí slot.
+
+## SPIS LIGHT (TŘETÍ / DODATEČNÁ KAUZA)
+
+Samostatný pool: **`data/pool_cases_light_akt1.json`** (stejný technický tvar jako položky v `pool_cases_akt1.json`, načítá `DataLoader` přes `normalizujPoolPripad`). V JSON doporučeno pole **`"case_profile": "light"`** pro dokumentaci a budoucí UI filtry.
+
+**Účel:** kratší, samostatné kauzy **mimo hlavní dějové vlákno** (žádné povinné plotové postavy z Story Bible jako nosič případu). Doplňková agenda soudu — rutinní nebo lehce morální tření bez epické zátěže.
+
+**Doporučené limity obsahu (autor):**
+
+| Oblast | Plný pool | Spis light |
+|--------|-----------|------------|
+| `description` (skutek) | 3–5 vět | **2–3 věty** |
+| `testimonies` | 2–3 karty | **1–2 karty**, 2–3 věty |
+| Průzkum (`investigation`) | až 4 akce vč. konfrontace | typicky **výslech + záznamy**; konfrontace jen výjimečně a musí sedět na krátký spis |
+| `verdicts` | plná škála dle typu | **užší strom** — méně alternativ, méně podmínek; stále dvojkrok UI kde to dává smysl |
+| `clue_system` | často zapnuto | **volitelné**; pokud ano, méně `decoys`, jednodušší odměny |
+
+**ID:** prefix např. `pool_light_a1_*`, aby nekolidovaly s `pool_a1_*`.
 
 ## HARMONOGRAM VLÁKEN
 
@@ -116,7 +158,7 @@ Implementačně:
 ## SYSTÉM INKOUSTOVÝCH KAPEK
 
 Akce = kapky inkoustu v kalamáři. Vizuální zobrazení na stole.
-Kapky SDÍLENÉ mezi oběma případy dne.
+Kapky **sdílené mezi všemi případy**, které jsou daný den aktivní na stole (standardně 2; od 3. týdne podmíněně až 3). Konkrétní počty kapek denně se ladí až se stabilní ekonomikou hry.
 
 ### Kapacita
 Výchozí: 2 kapky/den. Maximum: 5 kapek/den.
@@ -172,6 +214,9 @@ Konfrontace se nezobrazuje VŮBEC dokud nejsou splněny obě podmínky.
 2 akce + rozpor = 90% zelená „pečlivý"
 konfrontace = 100% zelená „kompletní"
 
+Poznámka k baseline:
+- Informovanost nezačíná na 0 %, ale na 15 % — Ben má už ze samotného spisu minimální procesní základ.
+
 ### Průzkum odemyká možnosti rozsudku
 
 | Průzkum | Viditelné verdikty a tresty |
@@ -190,14 +235,23 @@ Rozsudky a tresty odemčené průzkumem (spotřeba akcí) nebo potvrzenou dvojic
 
 UI pravidlo:
 - odemčená možnost má odlišnou barvu celého tlačítka (ne jen štítek),
-- text `Průzkum:` je přímo v názvu odemčené volby, např.:
-  `Průzkum: Pokuta 50 Kčs, důtka`.
+- text `Alternativa:` je přímo v názvu odemčené volby, např.:
+  `Alternativa: Pokuta 50 Kčs, důtka`.
+- u odemčené možnosti je viditelný mini-štítek `Alternativa` na kartě (bez prozrazení podmínky).
 
 Skupinová tlačítka (Krok 1):
 - pokud skupina obsahuje nové odemčené volby, zobrazit pod titulkem text:
-  - `Průzkum: +1 nový rozsudek`
-  - `Průzkum: +2 nové rozsudky`
-  - `Průzkum: +X nových rozsudků` (pro vyšší počty)
+  - `Alternativa: +1 nový rozsudek`
+  - `Alternativa: +2 nové rozsudky`
+  - `Alternativa: +X nových rozsudků` (pro vyšší počty)
+
+Zamčené možnosti zůstávají beze stop:
+- zachovat `?` / blok „Tento rozsudek nelze uplatnit“,
+- bez viditelného důvodu na kartě; tooltip držet neutrálně (`Ben tento rozsudek zatím nemůže uplatnit.`), bez konkrétních statů/prahů.
+
+Ceremonie odemčení:
+- po odemčení nové varianty krátký pulse/focus efekt sekce rozsudku (cca 500–700 ms),
+- bez modalu navíc a bez prozrazení podmínky.
 
 Příklad:
 - `Vinen` a `Zproštění / nevinen` mohou zůstat základní,
@@ -210,6 +264,16 @@ Cíl:
 ### Dvoudílný rozsudek
 Krok 1 — VERDIKT: Vinen / Nevinen / Nedostatek důkazů / Zproštěn
 Krok 2 — TREST (objeví se po výběru verdiktu)
+
+Nad kartami Krok 2 je kontextový box:
+- `Podklad spisu: nízký / střední / silný`,
+- `Koherence stop: nepotvrzená / slabá / střední / silná`.
+Je to informační kontext, ne doporučení konkrétní varianty.
+
+Význam koherence pro hráče:
+- vyšší koherence zlepšuje procesní kvalitu (nižší riziko procesní chyby),
+- vstupuje do odemykání části variant (přes pátrání / info prahy / reward unlocky),
+- nízká nebo nepotvrzená koherence drží rozhodnutí ve vyšší nejistotě (vyšší riziko pozdější revize).
 
 Pokud VINEN:
 - Maximální — zmizí při Vina ★★★★★
@@ -263,10 +327,18 @@ Verdikty odemčené průzkumem/pátráním musí být systémově atraktivní:
 
 - baseline pravidlo: numerické důsledky odemčeného verdiktu dostanou fixní koeficient (aktuálně 1.25x),
 - volitelně může mít takový verdikt i unikátní efekt (`flags`, delayed trigger), ale koeficient je povinný základ.
+- designový pattern: „alternativa“ může mít nižší přímý finance efekt než tradiční trest, ale výraznější dopad na rysy/frakce/důvěru.
+- volitelně lze přidat bonus vyšetřovacích akcí na další ráno přes `effects.flags`: `{ "key": "bonus_inkoust_rano", "value": 1 }` nebo `{ "key": "bonus_inkoust_rano", "value": 2 }`.
+- cílově pro pool: přibližně **60 %** alternativních větví (`guilty.alternative` / `guilty.special`) by mělo mít `bonus_inkoust_rano` (většinou `+1`, výjimečně `+2`), aby hráč mohl aktivně ovlivňovat tempo průzkumu.
 
 ## DOPAD PO ROZSUDKU
 
 **Typ případu (kód):** po uzavření spisu přidá `Cases.vypoctiTypoveDoplnky` k finance typový příplatek — **morální +25 Kčs**, **politický +35 Kčs**, **osobní +30 Kčs** (rutinní bez tohoto řádku). U **morální / politický / osobní** navíc `_bonusInkoustZaNarocnySpis`: **+1** `investigationActionsLeft`. Souhrn pro hráče také v `data/knihovna.json` a `.cursor/rules/economy.mdc`.
+
+Předehra po potvrzení rozsudku:
+- nejdřív protokolární věta (generická): `Jménem republiky se vynáší tento rozsudek.`,
+- pak konkrétní věta/fragment z dané varianty rozsudku.
+Hybridní model: generický rámec + případová věta.
 
 Spis zmizí. Nahradí ho:
 1. Razítko VYŘEŠENO (červená = odsouzení, modrá = zproštění, šedá = odloženo)
@@ -364,6 +436,15 @@ JUSTICE: krajský soud, trestní zákon 1852, zákon na ochranu republiky č.50/
 15. Klíčová slova s encyklopedickým heslem označit v JSON: encyclopedia_links: ["heslo_id1", "heslo_id2"].
 16. Každý případ by měl letmo odrážet dobu — chudoba, strach, politické napětí, národnostní třecí plochy.
 
+## JSON — `data/pool_cases_light_akt1.json` (spisy light)
+
+Kořen: `{ "version": 1, "pool_cases_light_akt1": [ … ] }`.
+
+- Stejná stavebnice polí jako u `pool_cases_akt1.json` (`normalizujPoolPripad` v `js/data-loader.js`).
+- Každá položka má mít **`"case_profile": "light"`** a unikátní `id` (doporučený prefix `pool_light_a1_`).
+- Cíl **~15** položek v souboru; v kampani se třetí spis nabízí **max. 10×** (viz sekce Třetí spis).
+- Obsah: **nezávislé** kauzy, bez vázání na hlavní příběhové vlákno hry.
+
 ## JSON — `data/pool_cases_akt1.json` (zdroj) → runtime (`normalizujPoolPripad` v `js/data-loader.js`)
 
 Kořen: `{ "pool_cases_akt1": [ { …případ… }, … ] }`.
@@ -402,7 +483,7 @@ Loader mapuje jen **`speaker` → `label` / `source`** a **`text`**. Pole `id`, 
 
 **Slabý podklad (UI):** při nízké informovanosti drobné upozornění **jen u tlačítek konkrétních verdiktů v kroku 2** — ne u výběru skupiny v kroku 1, ne u legacy seznamu. `_wfHtmlUpozorneniSlabySpis` v `js/ui.js`.
 
-**Předběžný hint dopadů (krok 2):** finance číslem v **Kčs**; traits / důvěra jako osy bez čísel; **frakce** jedním řádkem `Frakce: A, B` (deduplikace názvů). `_wfVerdiktDopadovyHint` v `js/ui.js`.
+**Předběžný hint dopadů (krok 2):** finance číslem v **Kčs**; traits / důvěra jako osy bez čísel; **frakce** jedním řádkem `Frakce: A, B` (deduplikace názvů). Pokud má varianta `effects.flags` s `bonus_inkoust_rano`, hint musí přidat větu `Inkoust: +1` nebo `Inkoust: +2 do dalšího pracovního dne.` `_wfVerdiktDopadovyHint` v `js/ui.js`.
 
 **Archiv Rozsudky:** filtr podle typu případu, štítek na řádku, uložené **`caseType`** v záznamu (`State.pridejRozsudek`). Starší save bez `caseType` dopočítá typ ze spisu. `js/ui.js` (`_vyplnArchivTab`). Pod filtrem krátký blok **trendů** (směr výroků, uložená procesní / normativní meta kde je) — bez hodnocení „správnosti“ rozhodnutí.
 
@@ -459,6 +540,10 @@ Pozn.: `span.clue` může být v libovolném textovém poli, které UI renderuje
 
 Použij tento postup pro každý nový případ:
 
+0. **Kam soubor patří**
+   - **Plný pool** (`data/pool_cases_akt1.json`): standardní dvojice spisů dne, plná šíře průzkumu a verdiktů dle typu.
+   - **Spis light** (`data/pool_cases_light_akt1.json`): jen pro **třetí / zkrácenou** kauzu — vždy `"case_profile": "light"`, doporučený prefix `id` jako `pool_light_a1_*`, kratší texty a užší strom podle sekce *Spis light*; děj **nezávislý** na hlavním příběhu. Pravidla **třetího spisu** (od D15, důvěra instituce, max 10× v kampani) drž v narativním zdůvodnění, ne v hackování struktury JSON.
+
 1. **Jádro případu**
    - definuj obžalobu, minimálně jeden skrytý rozpor, hlavní morální napětí.
 
@@ -498,6 +583,10 @@ Použij tento postup pro každý nový případ:
    - neexistující `clue-id` v párech/decoys,
    - konzistence `unlock_*` ID vůči reálným `hidden_info` a `verdicts`.
 
+10. **Scénář a dynamika dne**
+   - u případu vázaného na konkrétní den zkontrolovat `docs/scenar/Mapa_20dni.csv` (sloupce *Modif_dne*, *Vecer_doplnek*, *Patrani_navrh*) a přehled `docs/scenar/Milniky-dynamika-akt1.md` (milníky, limity revizí),
+   - `review_card` / revize spisu držet řídké — viz limity v `Milniky-dynamika-akt1.md` §4 a `InDubio_20dni_Mapa-scenar.md` §8.
+
 ### Legacy případy (`cases-akt*.json`)
 
 Struktura se může lišit; kanon pro nový obsah je **pool** výše. Při rozšíření loaderu nebo legacy držet shodné runtime pole: `testimony`, `hidden_info`, `verdicts`, `situation`.
@@ -505,6 +594,10 @@ Struktura se může lišit; kanon pro nový obsah je **pool** výše. Při rozš
 ## Krátká revize spisu (odvolání) — autorská mini šablona
 
 Když se případ vrátí k revizi, hra zobrazí krátkou kartu (A/B volba), ne full replay.
+
+**Důsledky pro meta-hru (souvislost s třetím spisem):** vrácená věc má Benovi **snížit důvěru instituce** (reputace u soudu), ne jen „frakční bod“. Navrhované směry dopadů (konkrétní čísla až při balanci): dočasně **horší šance / odložení třetího spisu**, krátkodobý postih **Integrita** nebo **Moudrost**, případně **Naděje** dolů / **Vina** nahoru podle tónu; **frakční posun** jen tam, kde to dává děj (strana, která revizí prohrává). Revize nesmí být kosmetická — hráč musí cítit, že se **něco uvolnilo nebo přituhlo** vůči jeho pozici u úřadu.
+
+**Frekvence:** strop počtu revizí za průchod / za sedmidenní okno viz `docs/scenar/Milniky-dynamika-akt1.md` §4 — cílem není, aby ve 3.–4. týdnu hráč dělal jen odvolání místo nových kauz.
 
 **Univerzální dopis na stole (jedna šablona pro všechny revize):** obálka / lístek z úřadu nebo z advokacie má společný rámec („věc se vrací k přezkumu“), konkrétní jméno a číslo spisu se doplní z dat případu. Autor případu nepíše nový typ dopisu pro každý JSON — jen `review_card.*` a případné unikátní efekty. Viz také `docs/spis-patrani-pruzkum-rozsudek.md`.
 

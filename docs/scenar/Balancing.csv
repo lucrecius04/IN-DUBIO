@@ -1,28 +1,28 @@
-﻿Den;Prijmy (2 pripady);Plat;Vydaje;Specialni;Denni bilance;Kumulativni;Poznamky
-0;--;--;--;--;--;120;Vychozi uspory
-1;20;0;-55;0;-35;85;
-2;20;0;-58;0;-38;47;+3 vydaje
-3;20;0;-58;0;-38;9;
-4;20;0;-58;0;-38;-29;
-5;20;0;-58;0;-38;-67;
-SO;0;0;0;15;15;-52;Bonus peclivy
-NE;0;80;0;-5;75;23;Plat + matka
-6;20;0;-58;0;-38;-15;Dopis doktor
-7;20;0;-58;0;-38;-53;
-8;20;0;-58;0;-38;-91;Vlckovo ocekavani
-9;20;0;-58;0;-38;-129;
-10;20;0;-58;0;-38;-167;Vizitka
-SO;0;0;0;15;15;-152;Bonus
-NE;0;80;0;0;80;-72;Plat
-11;20;0;-58;0;-38;-110;
-12;20;0;-58;0;-38;-148;
-13;20;0;-58;-15;-53;-201;Uhli -15
-14;20;0;-58;0;-38;-239;
-15;20;0;-58;0;-38;-277;Zvraty
-SO;0;0;0;15;15;-262;Bonus
-NE;0;80;0;-5;75;-187;Plat + matka
-16;20;0;-58;0;-38;-225;HAAS: +300 pokud prijme
-17;20;0;-58;0;-38;-263;
-18;20;0;-58;0;-38;-301;
-19;20;0;-58;0;-38;-339;
-20;10;0;-58;0;-48;-387;Jen 1 pripad
+﻿Den;Prijmy (2 pripady);Plat;Vydaje;Specialni;Denni bilance;Kumulativni;Poznamky;Scenar_modif_navrh
+0;--;--;--;--;--;120;Vychozi uspory;viz Milniky-dynamika-akt1.md §3
+1;20;0;-55;0;-35;85;;std
+2;20;0;-58;0;-38;47;+3 vydaje;ekonom_tlak_navaz_Map_D2
+3;20;0;-58;0;-38;9;;std
+4;20;0;-58;0;-38;-29;;std
+5;20;0;-58;0;-38;-67;;std
+SO;0;0;0;15;15;-52;Bonus peclivy;
+NE;0;80;0;-5;75;23;Plat + matka;
+6;20;0;-58;0;-38;-15;Dopis doktor;countdown_navaz_Map_D6
+7;20;0;-58;0;-38;-53;;std
+8;20;0;-58;0;-38;-91;Vlckovo ocekavani;VETVENI1_navaz
+9;20;0;-58;0;-38;-129;;stress_den_navaz_Map_D9
+10;20;0;-58;0;-38;-167;Vizitka;tlak_urad_navaz_Map_D10
+SO;0;0;0;15;15;-152;Bonus;
+NE;0;80;0;0;80;-72;Plat;
+11;20;0;-58;0;-38;-110;;std
+12;20;0;-58;0;-38;-148;;std
+13;20;0;-58;-15;-53;-201;Uhli -15;Benes_milnik
+14;20;0;-58;0;-38;-239;;std
+15;20;0;-58;0;-38;-277;Zvraty;zvraty+treti_spis_plan
+SO;0;0;0;15;15;-262;Bonus;
+NE;0;80;0;-5;75;-187;Plat + matka;matka_milnik
+16;20;0;-58;0;-38;-225;HAAS: +300 pokud prijme;Haas_vecer_navaz
+17;20;0;-58;0;-38;-263;;std
+18;20;0;-58;0;-38;-301;;Karas_var_navaz
+19;20;0;-58;0;-38;-339;;std
+20;10;0;-58;0;-48;-387;Jen 1 pripad;finale_1slot

@@ -27,7 +27,7 @@ Hráč je soudce Benedikt Vraný. Hra probíhá po **dnech** řízených `data/d
 - Načtou se data dne, nastaví se **případy dne** (`Cases.nastavPripadyProDen`), aktualizují se **složky** na stole.
 - **Ekonomika ráno:** lékařský buff, Karasův dluh, **nedělní výplata** (+80 Kčs na vybraných dnech), varování při bankrotu, dluh > 100, speciální **den 23** (modal krize).
 - **Ranní fragment** podle `days.json` (u testovacího režimu může být den 1 zjednodušen).
-- **Revize spisů** naplánované na tento den (`State.vyzvedniRevizeProDen`) — krátká volba A/B v modálu.
+- **Revize spisů** naplánované na tento den (`State.vyzvedniRevizeProDen`) — krátká volba A/B v modálu. **Frekvenci a limity** drží scénář (`docs/scenar/Milniky-dynamika-akt1.md` §4, `InDubio_20dni_Mapa-scenar.md` §8): revize nesmí zahltit 3.–4. týden tak, že by ustoupily **nové** případy; při implementaci ověř strop (např. max počet revizí na průchod / na 7 dní).
 - **Dialogy postav** jako dopisy/fragmenty (den 1 může být v testu přeskočen).
 - **Nedělní volba** (`nedelni_volba` v datech dne), pokud je v `days.json`.
 

@@ -927,6 +927,50 @@
   margin-bottom: 4px;
 }
 
+#modal-pripad .pripad-panel--wireframe .case-wf-v-badge {
+  display: inline-block;
+  margin-bottom: 4px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1f4668;
+  background: rgba(114, 154, 191, 0.28);
+  border: 1px solid rgba(72, 121, 162, 0.45);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-step2-context {
+  margin: 0 0 10px;
+  padding: 8px 10px;
+  border-left: 3px solid rgba(106, 138, 170, 0.8);
+  background: rgba(186, 206, 224, 0.3);
+  color: #3f2e20;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+#modal-pripad.case-wf-unlock-pulse .pripad-panel--wireframe #case-wf-sec-verdict,
+#modal-pripad .pripad-panel--wireframe #case-wf-sec-verdict.case-wf-unlock-pulse {
+  animation: caseWfUnlockPulse 0.62s ease-out;
+}
+
+@keyframes caseWfUnlockPulse {
+  0% {
+    box-shadow: inset 0 0 0 0 rgba(72, 121, 162, 0);
+    transform: translateY(0);
+  }
+  25% {
+    box-shadow: inset 0 0 0 2px rgba(72, 121, 162, 0.36), 0 0 0 1px rgba(72, 121, 162, 0.18);
+    transform: translateY(-1px);
+  }
+  100% {
+    box-shadow: inset 0 0 0 0 rgba(72, 121, 162, 0);
+    transform: translateY(0);
+  }
+}
+
 #modal-pripad .pripad-panel--wireframe .case-wf-v-desc {
   font-size: 13px;
   color: #6b5a42;
@@ -1038,6 +1082,29 @@
 
 #modal-pripad .pripad-panel--wireframe #case-wf-verdict-readonly {
   margin-top: 8px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-readonly-meta {
+  margin: 0 0 10px;
+  padding: 9px 10px;
+  border-left: 3px solid rgba(106, 138, 170, 0.85);
+  background: rgba(186, 206, 224, 0.28);
+  color: #3f2e20;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-readonly-meta-row {
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-readonly-meta-row + .case-wf-readonly-meta-row {
+  margin-top: 2px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-readonly-meta-row--muted {
+  margin-top: 5px;
+  color: #5b4634;
+  font-style: italic;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-odhalene-block {

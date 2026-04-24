@@ -1321,29 +1321,7 @@ const Cases = (() => {
 
   /** Proč verdikt v seznamu není klikací (krok 2 / zamčené). */
   function popisNepristupnostiVerdiktu(pripad, verdictId) {
-    const vid = String(verdictId || '').trim();
-    const v = (pripad && Array.isArray(pripad.verdicts) ? pripad.verdicts : []).find(x => String(x.id || '') === vid);
-    const moudrost = Number(typeof State !== 'undefined' && State.get ? State.get('traits.Moudrost') : 0) || 0;
-    const odvaha = Number(typeof State !== 'undefined' && State.get ? State.get('traits.Odvaha') : 0) || 0;
-    const vina = Number(typeof State !== 'undefined' && State.get ? State.get('traits.Vina') : 0) || 0;
-    if (v && v.requires_moudrost_min != null && moudrost < Number(v.requires_moudrost_min)) {
-      const need = Number(v.requires_moudrost_min);
-      return `Ben na to ještě nemá klid v hlavě — potřebuje Moudrost aspoň ${need} (má ${moudrost}).`;
-    }
-    if (v && v.requires_odvaha_min != null && odvaha < Number(v.requires_odvaha_min)) {
-      const need = Number(v.requires_odvaha_min);
-      return `Ben z toho nemá dobrý pocit v žaludku — chybí mu odvaha v zádech, aspoň ${need} (má ${odvaha}).`;
-    }
-    if (v && v.available_unless_vina_above != null && vina > Number(v.available_unless_vina_above)) {
-      return 'Svědomí Benovi šeptá, že touto cestou teď nejde — tlak viny je moc velký na tuto formulaci.';
-    }
-    if (!jeVerdiktOdemcenPoClue(pripad, vid)) {
-      return 'Ben ještě nemá správnou osu ve spisu ani dost jistoty z pátrání, aby si na tenhle rozsudek troufl.';
-    }
-    if (!poolVerdiktProjdePoctemPrůzkumu(pripad, vid)) {
-      return 'Chybí ještě pár kroků ve vyšetřování — nebo konfrontace — než se tahle varianta otevře.';
-    }
-    return 'Tuhle variantu zatím nelze zvolit — spis na ni ještě nepustil.';
+    return 'Ben tento rozsudek zatím nemůže uplatnit.';
   }
 
   function bonusInformovanostiZaClue(pripad) {

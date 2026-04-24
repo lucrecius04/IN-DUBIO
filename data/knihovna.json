@@ -14,12 +14,20 @@
         "body": "Každý uzavřený případ se promítne do financí, duše soudce, frakcí a důvěry vybraných postav. V archivu (zápisník) najdete přehled rozsudků a stav."
       },
       {
+        "title": "Alternativní verdikty",
+        "body": "Možnosti označené jako „Alternativa“ často mají nižší okamžitý finance efekt než tradiční tresty, ale výrazněji hýbou rysy, pověstí u frakcí a někdy i důvěrou postav.\n\nU vybraných variant může být navíc odložený procesní bonus: +1 až +2 sdílené akce průzkumu (inkoust) na další ráno. Ve výběru variant to uvidíš přímo v hintu jako `Inkoust: +1/+2 do dalšího pracovního dne`. Ber to jako důsledek netradičního postupu, ne jako jistou odměnu po každém případu."
+      },
+      {
         "title": "Průzkum a stopy",
-        "body": "Ve spisech lze čerpat skryté informace za sdílené denní akce. Neoficiální cesty mohou mít jiné náklady než úřední — projeví se v souhrnech u rozsudků."
+        "body": "Ve spisech můžeš odhalovat skryté informace za sdílené denní akce.\n\nPátrání (Two-Click) je doplněk k průzkumu: v textu spisu páruješ dvě stopy, které spolu věcně souvisí. Potvrzená vazba zpřesňuje obraz případu a může odemknout další varianty rozsudku nebo bonus.\n\nPátrání není povinné, ale při složitějších spisech se vyplatí.\n\nČasovač je nastaven tak, aby po spuštění bylo na začátku vidět 60 sekund.\n\nKolik času ve skutečnosti dostaneš, ovlivňuje i duševní stav postavy: vyšší Vina a nízká Naděje čas pátrání zkracují.\n\nKdyž si během pátrání přikoupíš další pokus, běh navazuje na předchozí tempo a bývá kratší než první pokus. Je to záměr: další pokusy představují tlak a únavu, ne čistý restart."
       },
       {
         "title": "Procesní kvalita a revize",
         "body": "Informovanost (lišta ve spisu) a rozsah průzkumu ovlivňují, jak „pevně“ vypadá váš postup vůči institucím: u slabšího podkladu častěji přibývá tlak na Moudrost a Vinu a roste šance, že se k uzavřené věci později vrátí krátká revize spisu. To nemusí znamenat morálně špatné rozhodnutí — jde o riziko procesního omylu a o to, že spis neobstojí tak snadno při kontrole.\n\nU případů z poolu neexistuje jediné předepsané ID verdiktu z kódu; šedá zóna stojí na důkazech a kompromisech. Nátlak typu „úřad očekává výsledek X“ nebo korupce řešte vždy v konkrétním příběhu případu (text, volby, důsledky), ne globálním přepínači „správně/špatně“.\n\nRozhodnutí ostře proti tomu, co spis a nápovědy z průzkumu naznačují, se promítají přes slabší proces a souhrnné důsledky."
+      },
+      {
+        "title": "Podklad spisu a koherence stop",
+        "body": "Podklad spisu je orientační síla důkazů, které máš před rozsudkem. Nízký = rozhoduješ s tenkou oporou a soud častěji chybuje. Střední = spis je použitelný, ale vyplatí se doplnit průzkum. Silný = podklady jsou pevné a procesně stabilnější.\n\nKoherence stop říká, jak pevně drží potvrzená osa pátrání (two-click). Nepotvrzená = vazba zatím není ověřená. Slabá = náznak, ne jistota. Střední = použitelná opora. Silná = pevně potvrzená vazba.\n\nDopad koherence v praxi: vyšší koherence zlepšuje procesní kvalitu rozhodnutí (nižší riziko procesní chyby), může odemykat některé alternativní varianty rozsudku a posiluje stabilitu dopadů po rozsudku. Nízká nebo nepotvrzená koherence naopak zvyšuje nejistotu, že se věc v čase vrátí jako revize. Tyto ukazatele nejsou příkaz ke konkrétní volbě; jsou to orientační informace o riziku rozhodnutí."
       },
       {
         "title": "Typy případů — rutinní, morální, politický, osobní",
@@ -40,6 +48,14 @@
       {
         "title": "Sdílené akce průzkumu",
         "body": "Za den je k dispozici omezený počet akcí na odhalování stop ve spisu. Po vyčerpání lze případ uzavřít i bez plného průzkumu — s jiným rozsahem informací."
+      },
+      {
+        "title": "Třetí spis (od 3. týdne)",
+        "body": "První dva týdny máš na stole vždy dva spisy. Od začátku třetího týdne (od 15. herního dne) se může objevit třetí — jen když na to máš u soudu reputaci: úřad ti věří, že zátěž ustojíš. Důležitá je hlavně důvěra instituce (procedura, poctivost práce); Moudrost a další rysy hrají vedlejší roli. Politické frakce (Moc, Lid, Kapital) spíš ovlivní, jak ten třetí spis „voní“ a kdo ho na tebe nabalí — nejsou stejné jako instituce a nemají být hlavním spínačem.\n\nTřetí spis není povinnost: můžeš vynést dva rozsudky a den ukončit i s třetím spisem nedotčeným. Třetí kauza se v kampani nabízí nejvýše desetkrát; v souboru `pool_cases_light_akt1.json` je pro ni připravený samostatný soubor kauz (cíl kolem 15 kousků). Když se ti věci často vrací v revizi, úřad ti další spisy spíš nepřidá — musí být cítit důsledek."
+      },
+      {
+        "title": "Spis light",
+        "body": "Třetí položka na stole má být kratší záležitost: méně textu, méně průzkumných větví a užší nabídka rozsudků než u plné kauzy. Děj není svázaný s hlavním příběhem hry — jde o samostatné městské nebo úřední incidenty, které doplňují atmosféru doby. Technicky jde o položky v `pool_cases_light_akt1.json` se značkou „light“ (viz pravidla pro autory v repozitáři)."
       },
       {
         "title": "Ukládání",

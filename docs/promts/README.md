@@ -1,6 +1,6 @@
 # Prompty pro autory (IN DUBIO)
 
-**Lore a 20denní rámec:** `docs/InDubio_StoryBible_v2_Cursor.txt` (v2.1). **Současnost děje hry** = březen 1931; spisy smějí v důkazech pracovat s dřívější minulostí. Reálie a ceny: [`../world-reference.md`](../world-reference.md).
+**Lore a 20denní rámec:** `docs/InDubio_StoryBible_v2_Cursor.txt` (v2.1). **Současnost děje hry** = březen 1931; spisy smějí v důkazech pracovat s dřívější minulostí. Reálie a ceny: [`../world-reference.md`](../world-reference.md). **Dynamika dne / milníky / limity revizí:** [`../scenar/Milniky-dynamika-akt1.md`](../scenar/Milniky-dynamika-akt1.md) + řádek dne v [`../scenar/Mapa_20dni.csv`](../scenar/Mapa_20dni.csv).
 
 ## Workflow
 

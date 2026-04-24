@@ -221,6 +221,13 @@ const Engine = (() => {
       const curInk = Number(State.get('investigationActionsLeft')) || 0;
       State.set('investigationActionsLeft', curInk + 1);
     }
+    const bonusInkoustRaw = Number(State.get('flags.bonus_inkoust_rano'));
+    if (Number.isFinite(bonusInkoustRaw) && bonusInkoustRaw > 0) {
+      const bonusInkoust = Math.max(1, Math.min(2, Math.round(bonusInkoustRaw)));
+      State.set('flags.bonus_inkoust_rano', 0);
+      const curInk = Number(State.get('investigationActionsLeft')) || 0;
+      State.set('investigationActionsLeft', curInk + bonusInkoust);
+    }
 
     const recUntil = State.get('flags.records_free_until_day');
     if (recUntil != null && Number.isFinite(Number(recUntil)) && den > Number(recUntil)) {
