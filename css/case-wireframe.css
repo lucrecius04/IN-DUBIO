@@ -349,12 +349,25 @@
   font-style: italic;
 }
 
+#modal-pripad .pripad-panel--wireframe .case-wf-testimony .case-wf-quote .clue[data-clue-id] {
+  color: inherit;
+}
+
 #modal-pripad .pripad-panel--wireframe .case-wf-testimony .case-wf-quote::before {
   content: "\201e";
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-testimony .case-wf-quote::after {
   content: "\201c";
+}
+
+/* body má .bez-vyberu — ve spisu jde znovu normálně označovat text. */
+#modal-pripad .pripad-panel--wireframe .case-wf-case-text,
+#modal-pripad .pripad-panel--wireframe .case-wf-testimony,
+#modal-pripad .pripad-panel--wireframe .case-wf-finding-text,
+#modal-pripad .pripad-panel--wireframe .clue[data-clue-id] {
+  user-select: text;
+  -webkit-user-select: text;
 }
 
 /* Proklik do Knihovny (Slovník) — ve spisu i v záznamech s HTML z případu */
@@ -388,6 +401,8 @@
   color: inherit;
 }
 
+/* Stopy: nečasovaný = vždy klikací vzhled. Časované = stejný vzhled až během běhu
+   (modal .case-wf-clue-hunt-active), mimo běh vypadají jako běžný text. */
 #modal-pripad:not(.case-wf-clue-timed) .pripad-panel--wireframe .clue[data-clue-id],
 #modal-pripad.case-wf-clue-hunt-active .pripad-panel--wireframe .clue[data-clue-id] {
   border-bottom: 1px dashed rgba(196, 163, 90, 0.85);
@@ -469,10 +484,16 @@
   box-shadow: inset 0 -1px 0 rgba(64, 102, 145, 0.28);
 }
 
+/* Uzamčení soustředění: stopy nejdou kliknout, ale zůstávají stejně čitelné jako okolní text. */
 #modal-pripad .pripad-panel--wireframe .clue--focus-locked {
-  opacity: 0.48;
   pointer-events: none;
-  filter: grayscale(0.35);
+  cursor: not-allowed;
+  color: inherit;
+  opacity: 1;
+  filter: none;
+  background: rgba(50, 38, 24, 0.07);
+  box-shadow: inset 0 0 0 1px rgba(90, 70, 50, 0.18);
+  border-radius: 2px;
 }
 
 #modal-pripad.case-wf-hunt-stress--mid .pripad-panel--wireframe .case-wf-body,

@@ -10,6 +10,8 @@ Tento prompt použij, když máš **hotový JSON jednoho případu** z `data/poo
 
 Jsi **editor / rozšiřovatel** obsahu pro soudní hru IN DUBIO (Československo, první republika, **březen 1931** jako současnost kauzy; texty důkazů smějí sahat do minulosti dle původní logiky). Respektuj **původní děj, jména a strukturu** případu. Neměň skutkovou podstatu, dokud tým explicitně neřekne jinak.
 
+**Tvůrčí laťka (vedle mechaniky):** pracuj i jako **spolutvůrce** — posil **motivace postav** v textu, drž **krátkou zapletku** a **logickou důkazní osu** (vrstvy spisu na sebe musí rozumně navazovat). Nové stopy, úpravy výpovědí nebo `narrative_lines` mají dávat **dějový i rozumový** smysl, ne působit jako ozdoba. Tón zůstává **soudní a úřední** 30. let; **číselné `effects` a týmem nedotčené limity nemaž**, pokud tým neřekne jinak.
+
 ## Vstup (připoj k zadání)
 
 1. **Celý JSON objekt** daného případu (jedna položka z poolu).  
@@ -23,6 +25,7 @@ Dle projektových pravidel a mechanik ve hře prověř a **doplněk tam, kde chy
 
 ### A) Pátrání (Two-Click) — `clue_system.rewards.on_confirm`
 
+- Při **nových nebo upravených** stopách a párech: drž **`.cursor/rules/cases.mdc` — Two-Click, odstavec o exaktní realitě**: stopy a správné páry z **hmatatelných údajů** ve spise (čas, číslo, místo, záznam…), ne z čistě emočních / neprokazatelných vět. Viz příklady *dobře* vs *špatně* v pravidlech.  
 - Pokud je `clue_system.enabled: true` a existuje `on_confirm` pro `weak` / `medium` / `strong` **s odměnami** (nebo očekáváme tři úrovně sily dle párů), u každé **úrovně, která může nastat** doplni pole **`narrative_lines`**: obvykle **3 krátké věty** v tónu „záznam z pátrání“ — reagují na to, co hráč spojil, **neprozrazuj** přímo řešení, gradují od slabší jistoty po silnější.  
 - **Neukládej** kód navíc — text musí být v rámci existujících odměn. Pokud u některé sily pár není, danou větev nemusíš plnit.  
 - Inspirace strukturou: případy, kde je to hotové (např. *lékárna* = tři síly; *tiskárna* = alespoň u `strong`).

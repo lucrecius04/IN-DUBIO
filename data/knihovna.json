@@ -22,6 +22,10 @@
         "body": "Ve spisech můžeš odhalovat skryté informace za sdílené denní akce.\n\nPátrání (Two-Click) je doplněk k průzkumu: v textu spisu páruješ dvě stopy, které spolu věcně souvisí. Potvrzená vazba zpřesňuje obraz případu a může odemknout další varianty rozsudku nebo bonus.\n\nPátrání není povinné, ale při složitějších spisech se vyplatí.\n\nČasovač je nastaven tak, aby po spuštění bylo na začátku vidět 60 sekund.\n\nKolik času ve skutečnosti dostaneš, ovlivňuje i duševní stav postavy: vyšší Vina a nízká Naděje čas pátrání zkracují.\n\nKdyž si během pátrání přikoupíš další pokus, běh navazuje na předchozí tempo a bývá kratší než první pokus. Je to záměr: další pokusy představují tlak a únavu, ne čistý restart."
       },
       {
+        "title": "Síla vazby a „měkké“ spojení",
+        "body": "Silná a střední vazba z pátrání jde vždy potvrdit a zapsat do spisu (osa koherence). Nuance typu „sama o sobě to ještě neprokazuje vše“ patří do textu po potvrzení, ne do mechaniky, která by vazbu neukládala.\n\nSlabá vazba může zůstat jen náznakem: hra tě může upozornit, že jde o souvislost bez plné důkazní síly, a tuto „měkkou“ roli nemusí ukládat stejně jako u silné či střední vazby."
+      },
+      {
         "title": "Procesní kvalita a revize",
         "body": "Informovanost (lišta ve spisu) a rozsah průzkumu ovlivňují, jak „pevně“ vypadá váš postup vůči institucím: u slabšího podkladu častěji přibývá tlak na Moudrost a Vinu a roste šance, že se k uzavřené věci později vrátí krátká revize spisu. To nemusí znamenat morálně špatné rozhodnutí — jde o riziko procesního omylu a o to, že spis neobstojí tak snadno při kontrole.\n\nU případů z poolu neexistuje jediné předepsané ID verdiktu z kódu; šedá zóna stojí na důkazech a kompromisech. Nátlak typu „úřad očekává výsledek X“ nebo korupce řešte vždy v konkrétním příběhu případu (text, volby, důsledky), ne globálním přepínači „správně/špatně“.\n\nRozhodnutí ostře proti tomu, co spis a nápovědy z průzkumu naznačují, se promítají přes slabší proces a souhrnné důsledky."
       },

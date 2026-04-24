@@ -1,0 +1,349 @@
+{
+  "id": "pool_a1_exekuce",
+  "slot": "pool",
+  "type": "moral_dilemma",
+  "color": "#2C4A7C",
+  "available_days": [7, 8, 9, 10],
+  "act": 1,
+  "weight_conditions": {
+    "base_weight": 1,
+    "vina_above_60": 1.2,
+    "lid_above_60": 1.4,
+    "finance_below_100": 1.3
+  },
+  "encyclopedia_links": [
+    "exekuce",
+    "zalozna",
+    "rolnicke_zadluzeni",
+    "hospodarska_krize"
+  ],
+  "title": "Záložna",
+  "case_number": "Sp. zn. 86/1931",
+  "defendant": {
+    "name": "Anna Součková",
+    "age": 58,
+    "occupation": "rolnice",
+    "detail": "hospodářství 4 ha, obec Ořech u Prahy; vdova od 1923; syn Josef (31) v Praze, pracuje jako listonoš; sama na statku"
+  },
+  "charge": "Násilný odpor veřejnému činiteli dle §81 trestního zákona — udeření exekutora Ing. Karla Štěpána násadou od lopaty při výkonu exekuce dne 17. února 1931",
+  "description": "Anna Součková, rolnice z Ořechu u Prahy, je obžalována z násilného odporu exekutorovi Ing. Karlu Štěpánovi při výkonu exekuce na movitý majetek. Exekutor Štěpán přišel 17. února 1931 na základě příkazu k výkonu rozhodnutí vydaného Záložnou sv. Václava v Praze pro dluh 340 Kčs. Součková ho udeřila násadou od lopaty do předloktí — zhmoždění, pracovní neschopnost tři dny. Součková tvrdí, že nevěděla, kdo přichází, a myslela si, že jde o zloděje.",
+  "testimonies": [
+    {
+      "id": "stepan",
+      "speaker": "Ing. Karel Štěpán, soudní exekutor, 44 let",
+      "text": "Přijel jsem ve čtvrt na deset dopoledne, zaklepal na dveře, představil se jménem a funkcí, předložil exekuční příkaz. Součková otevřela dveře, vzala příkaz, přečetla si ho — nebo se tak tvářila — a pak sáhla za dveře a udeřila mě. Vůbec nic nenaznačovalo, že mě považuje za zloděje. Věděla přesně, kdo jsem a proč jsem tam. V exekuční praxi pro záložny působím už šest let — toto chování je na místě naprosto výjimečné.",
+      "contradiction_keywords": ["přečetla si ho", "zaklepal na dveře", "exekuční praxi šest let"],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "souckova",
+      "speaker": "Anna Součková, obžalovaná",
+      "text": "Přišel chlap v civilu, zaťukal a chtěl vstoupit do domu. Já jsem vdova, sama na statku, bylo dopoledne. Papír mi strčil do ruky — já bez brýlí nečtu. Bála jsem se. Vzala jsem lopatu, co stála za dveřmi — vždy ji tam mám, když jsem sama. Když ke mně leze cizí mužský, já nevím kdo je. Trochu jsem ho praštila, to přiznám. Ale zloděje bych ho praštila víc.",
+      "contradiction_keywords": ["bez brýlí nečtu", "strčil do ruky", "zloděje bych víc"],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "syn_josef",
+      "speaker": "Josef Souček, syn obžalované, 31 let, listonoš",
+      "text": "Matka mi o exekuci řekla až po té události. Nevěděl jsem, že dluh je tak velký — věděl jsem, že záložna existuje, ale matka mi nikdy neřekla kolik. Zjistil jsem to sám. Původně si půjčila sto osmdesát korun v devětadvacátém — na léky pro krávy. Od té doby platila každý měsíc, co mohla. Ale záložna má osmnáct procent ročně a matka to nespočítala. Nikdo jí to nevysvětlil. Teď dluhuje tři sta čtyřicet — více než dvojnásobek původní půjčky.",
+      "contradiction_keywords": ["sto osmdesát korun", "osmnáct procent", "nikdo jí to nevysvětlil"],
+      "hidden_at_wisdom_below": 20
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "oznameni_exekuce",
+      "description": "Exekutor tvrdí, že příkaz k exekuci byl Součkové doručen předem poštou — ale zákon vyžaduje doručení alespoň tři dny předem. Datum na doručence a datum exekuce jsou identické. Šel exekutor bez předchozího oznámení?",
+      "involves": ["stepan", "souckova"],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": "stepan"
+    },
+    {
+      "id": "vyse_dluhu",
+      "description": "Původní dluh byl 180 Kčs, nyní je 340 Kčs. Záložna sv. Václava — úrok 18 % ročně. Součková splácela, ale splátky nestačily pokrýt ani úrok. Dluh matematicky nemohl klesnout. Věděla Součková, co podepisuje?",
+      "involves": ["souckova", "syn_josef"],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": null
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "clues": [
+      {
+        "data-clue-id": "exekuce_bryle_rozpor",
+        "type": "weak",
+        "label": "Rozpor výpovědí — přečetla příkaz, nebo ne?",
+        "source": "testimony:stepan,testimony:souckova",
+        "hint": "Štěpán říká, že Součková příkaz četla — nebo se tak tvářila. Součková říká, že bez brýlí nečte. Nikdo nezjistil, zda brýle ten den u sebe měla.",
+        "artifact": "Výpovědi Ing. Karla Štěpána a Anny Součkové, zapsáno 20. února 1931"
+      },
+      {
+        "data-clue-id": "exekuce_math_dluh",
+        "type": "medium",
+        "label": "Splátková kniha — 6,80 Kčs průměr vs. potřebných 12,40 Kčs",
+        "source": "investigation:records",
+        "hint": "Při 18 % ročním úroku musela Součková splácet nejméně 12,40 Kčs, aby dluh neroste. Splácela průměrně 6,80 Kčs. Dluh nemohl od první splátky klesnout — záložna to věděla.",
+        "artifact": "Smlouva č. 441/1929 a výpis splátkové knihy, Záložna sv. Václava Praha"
+      },
+      {
+        "data-clue-id": "exekuce_dorucenka_lhuta",
+        "type": "strong",
+        "label": "Doručenka — razítko 17. února, exekuce 17. února, zákonná lhůta tří dnů",
+        "source": "investigation:records,testimony:stepan",
+        "hint": "Zákon ukládá třídenní lhůtu od doručení příkazu. Razítko na doručence a datum výkonu exekuce jsou shodné. Součková mohla poprvé vidět datum příkazu ve chvíli, kdy Štěpán stál u dveří.",
+        "artifact": "Doručenka exekučního příkazu, poštovní razítko 17. února 1931; Záložna sv. Václava Praha"
+      }
+    ],
+    "rewards": {
+      "on_confirm": {
+        "weak": {
+          "label": "Stopa: Brýle a pochybnost",
+          "description": "Štěpán tvrdí, že Součková příkaz četla nebo se tak tvářila. Součková tvrdí, že bez brýlí nečte. Tento rozpor nelze dokazatelně rozseknout — nikdo nezjistil, zda brýle ten den u sebe vůbec měla.",
+          "trait_effects": {
+            "moudrost": 1
+          },
+          "narrative_lines": [
+            "Štěpán říká: přečetla si ho. Součková říká: bez brýlí nečtu. Jeden z nich lže nebo se mýlí.",
+            "Nikdo při výslechu nezjistil, zda Součková brýle ten den u sebe měla — tato otázka nebyla položena.",
+            "Pochybnost o přečtení příkazu je věc, která může změnit celou logiku Součkové obrany."
+          ]
+        },
+        "medium": {
+          "label": "Stopa: Matematika, které nikdo nerozuměl",
+          "description": "Při 18 % ročním úroku by Součková musela splácet nejméně 12,40 Kčs měsíčně, aby dluh neroste. Splácela průměrně 6,80 Kčs. Dluh matematicky nemohl klesnout od první splátky — a spis nezaznamenává, že by jí záložna tuto matematiku při podpisu vysvětlila.",
+          "trait_effects": {
+            "moudrost": 2,
+            "vina": 1
+          },
+          "narrative_lines": [
+            "Čísla ve splátkové knize vypovídají jasně: 6,80 Kčs měsíčně nestačilo pokrýt ani úrok.",
+            "Původní dluh 180 Kčs nemohl za žádných okolností při tomto splácení klesnout — jen narůstat o přibližně dvě koruny měsíčně.",
+            "Zda záložna Součkové tuto matematiku vysvětlila při podpisu smlouvy v roce 1929, spis mlčí."
+          ]
+        },
+        "strong": {
+          "label": "Stopa: Doručenka s datem, které nic neohlásilo",
+          "description": "Zákonná třídenní lhůta mezi doručením exekučního příkazu a jeho výkonem nebyla dodržena. Razítko doručenky a datum výkonu jsou shodné — 17. února 1931. Součková mohla poprvé vidět datum příkazu ve chvíli, kdy Štěpán stál na prahu.",
+          "trait_effects": {
+            "moudrost": 3,
+            "vina": 2
+          },
+          "narrative_lines": [
+            "Razítko poštovního doručení: 17. února 1931. Datum výkonu exekuce: 17. února 1931. Totožné.",
+            "Zákon ukládá třídenní lhůtu, aby dlužník mohl zaplatit nebo podat námitky — tato lhůta poskytnuta nebyla.",
+            "Součková mohla poprvé vidět datum exekučního příkazu ve chvíli, kdy exekutor stál na prahu; to není informovanost, to je hotová věc."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "souckova",
+      "target_label": "Anna Součková, obžalovaná",
+      "reveals": "motivation",
+      "text": "Součková si opírá ruce o stůl. Drsné ruce — rolnické. V devětadvacátém mi v lednu onemocněly tři krávy. Bez krav není mléko, bez mléka není na nájem, bez nájmu přijdu o statek. Půjčila jsem si od záložny. Platila jsem každý měsíc — osm korun, deset korun, co jsem měla. Vždy jsem platila. A přesto rostlo. Až najednou přijde cizí chlap a chce vzít komodu. Tu komodu měl můj muž od táty. A já jsem bez brýlí, sama, a bála jsem se. Pane doktore — co jsem měla dělat?",
+      "cost": 1,
+      "trait_effects": {
+        "vina": 3,
+        "nadeje": -2
+      }
+    },
+    "records": {
+      "source": "Záložna sv. Václava Praha — smlouva a výpis splátkové knihy",
+      "reveals": "facts",
+      "text": "Záložna sv. Václava Praha: Smlouva č. 441/1929. Součková Anna, Ořech. Výše půjčky: 180 Kčs, datum 14. ledna 1929. Úroková sazba: 18 % ročně, splatnost měsíčně. Výpis splátkové knihy: Součková splácela nepravidelně — v průměru 6,80 Kčs měsíčně. Matematická poznámka: pro splacení jistiny při 18 % ročním úroku by musela splácet minimálně 12,40 Kčs měsíčně — jen aby dluh neroste. Při splátkách 6,80 Kčs rostl dluh o cca 1,90 Kčs měsíčně (průměr; v měsících s nulovou nebo velmi nízkou splátkou úrok a penále jistinu táhly výš rychleji). Za 25 měsíců: nárůst o 47,50 Kčs + penále za prodlení 112,50 Kčs = celkem 340 Kčs. Doručenka exekučního příkazu: razítko poštovního doručení 17. února 1931 — týž den jako exekuce. Zákonná lhůta tří dnů nebyla dodržena.",
+      "cost": 1,
+      "unlocks_contradiction": "oznameni_exekuce"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "variants": {
+        "lid_high": "Záložna sv. Václava — víte kolik mají podobných případů jako Součková? Venkov se topí v dluzích. Osmnáct procent jsou lichvářské podmínky pro chudého rolníka. Zákon říká, že smlouva je platná, když ji podepíše. Ale kdo jí to vysvětlil? Přišli za ní v nouzi, dali jí pero a řekli podepište. A teď ji soudíte.",
+        "kapital_high": "Záložna má zákonné právo vymáhat dluh. Exekutor má zákonný mandát. Pokud rolníci začnou bít exekutory, instituce kreditního trhu přestane fungovat. Kdo pak půjčí příště, když přijde nouze? Zákon musí být vymáhán jednotně.",
+        "default": "Součková není špatná žena. Ale zákon neumožňuje bít exekutory, i kdyby záložna postupovala podle zákona. Otázka je, jestli postupovala. Datum na doručence je zajímavé, pane doktore. Velmi zajímavé."
+      }
+    },
+    "confrontation": {
+      "target": "stepan",
+      "target_label": "Ing. Karel Štěpán, exekutor",
+      "requires_contradiction": "oznameni_exekuce",
+      "requires_courage": 60,
+      "cost": 2,
+      "prompt": "Pane Štěpáne, doručenka exekučního příkazu nese razítko téhož dne jako výkon exekuce — 17. února. Zákon ukládá lhůtu tří dnů. Jak mohla obžalovaná vědět, že přicházíte?",
+      "success": {
+        "text": "Štěpán se zastaví. Přejede rukou po zápěstí — tam, kde ho Součková udeřila. Záložna mě pověřila provedením bez odkladu. Existuje výjimka u dluhů hrozících znehodnocením majetku — záložna ji uplatnila. Uznávám, že… doručení předem a provedení téhož dne je… hraničním postupem. Ale zákonným. Součková o dluhu věděla — záložna ji kontaktovala opakovaně dopisem. Chvíli mlčí. Jestli ty dopisy četla — to nevím.",
+        "reveals": "Exekutor jednal na základě výjimky, která je zákonná, ale krajně nevhodná pro negramotnou vdovu na samotě. Součková o exekuci možná věděla z dopisů záložny — ale datum dne samotné exekuce mohla vidět poprvé ten den. Její obrana o strachu ze zloděje může být pravdivá."
+      },
+      "failure": {
+        "text": "Štěpán ztuhne. Postupoval jsem plně v souladu se zákonem. Záložna má oprávnění. Já plním příkaz soudu. Nesnesu spekulace o zákonnosti svého postupu.",
+        "locks_testimony": "stepan"
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "maximum": {
+          "label": "2 měsíce podmíněně, náhrada ušlé mzdy exekutorovi",
+          "description": "Soud shledává obžalovanou vinnou dle §81 trestního zákona; násilí vůči veřejnému činiteli při výkonu funkce bylo prokázáno. Součková obdrží podmíněný dvouměsíční trest; dluh 340 Kčs záložně zůstává nedotčen a na statku v Ořechu lze očekávat novou exekuci. Exekutor Štěpán pokračuje ve výkonu funkce bez důsledků pro záložnu. Josef Souček si vezme půjčku v Praze na doplatek — to mu záložna umožní.",
+          "available_unless": {
+            "vina_above": 80
+          },
+          "effects": {
+            "integrita": -1,
+            "odvaha": 0,
+            "moudrost": 0,
+            "vina": 4,
+            "nadeje": -4,
+            "moc": 4,
+            "lid": -8,
+            "kapital": 3,
+            "finance": 10
+          }
+        },
+        "standard": {
+          "label": "Pokuta 40 Kčs, bez náhrady",
+          "description": "Soud uznává odpor při polehčujících okolnostech a ukládá pokutu čtyřicet korun. Dluh 340 Kčs záložně zůstává; záložna nečelí žádnému přezkumu podmínek smlouvy ani výjimečného doručení. Součková zaplatí pokutu — a bude čekat, kdy přijde nový exekutor, tentokrát možná se třemi dny předem.",
+          "effects": {
+            "integrita": 0,
+            "odvaha": 0,
+            "moudrost": 0,
+            "vina": 2,
+            "nadeje": -2,
+            "moc": 2,
+            "lid": -4,
+            "kapital": 1,
+            "finance": 10
+          }
+        },
+        "lenient": {
+          "label": "Podmíněné zastavení — písemná omluva exekutorovi",
+          "description": "Soud konstatuje opodstatněný strach jako polehčující okolnost; útok byl nepřiměřený, okolnosti exekuce jsou zohledněny. Součková napíše písemnou omluvu; exekuce je podmíněně pozastavena do vyřešení procesního sporu o doručení příkazu. Josef Souček ví o pozastavení exekuce — Součková zatím ne. Záložna mlčí a čeká.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 2,
+            "odvaha": 2,
+            "moudrost": 2,
+            "vina": 0,
+            "nadeje": 2,
+            "moc": -1,
+            "lid": 5,
+            "kapital": -1,
+            "finance": 10
+          }
+        },
+        "alternative": {
+          "label": "Zproštění Součkové, přezkoumání zákonnosti exekučního postupu záložny",
+          "description": "Alternativa: Soud zprošťuje Součkovou na základě procesního pochybení záložny — doručení příkazu téhož dne jako exekuce Součkovou řádně neinformovalo — a předává případ k přezkumu podmínek smlouvy. Záložna sv. Václava poprvé stojí před soudem jako strana, nikoli jako věřitel. Josef Souček si nedělá poznámky — prostě poslouchá. Eliška Závadová má materiál na sloupek.",
+          "requires_investigation": 2,
+          "requires_contradiction": true,
+          "requires": {
+            "moudrost_min": 60
+          },
+          "effects": {
+            "integrita": 5,
+            "odvaha": 5,
+            "moudrost": 4,
+            "vina": -2,
+            "nadeje": 5,
+            "moc": -4,
+            "lid": 10,
+            "kapital": -6,
+            "finance": 10
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zproštění — oprávněná obrana, úmysl napadení veřejného činitele neprokázán",
+          "description": "Soud zprošťuje obžalovanou pro pochybnost. Součková nevěděla o totožnosti příchozího s dostatečnou jistotou; úmysl napadení veřejného činitele nebyl prokázán. Dluh 340 Kčs záložně zůstává; exekutor Štěpán odchází bez komentáře. Na statku v Ořechu bude příště exekutor — se třemi dny předem.",
+          "effects": {
+            "integrita": 3,
+            "odvaha": 3,
+            "moudrost": 0,
+            "vina": -1,
+            "nadeje": 3,
+            "moc": -4,
+            "lid": 7,
+            "kapital": -2,
+            "finance": 10
+          }
+        },
+        "with_comment": {
+          "label": "Zproštění s komentářem k úrokovým podmínkám záložny a procesnímu pochybení",
+          "description": "Soud zprošťuje Součkovou obžaloby a formálně poukazuje na kombinaci nevýhodných úrokových podmínek a nedostatečného procesního oznámení jako systémový kontext případu. Záložna sv. Václava obdrží kopii odůvodnění. Josef Souček si dělá poznámky. Exekutor Štěpán stojí u dveří a nedívá se na nikoho.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 6,
+            "odvaha": 7,
+            "moudrost": 3,
+            "vina": -3,
+            "nadeje": 5,
+            "moc": -7,
+            "lid": 12,
+            "kapital": -8,
+            "finance": 10
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "label": "Nedostatek důkazů",
+      "requires_investigation": 2,
+      "requires": {
+        "moudrost_min": 40
+      },
+      "options": {
+        "reinvestigate": {
+          "label": "Vrátit k došetření — ověřit zákonnost doručení příkazu záložnou",
+          "returns_in_days": 4,
+          "effects": {
+            "moudrost": 2,
+            "finance": 0
+          }
+        },
+        "close": {
+          "label": "Uzavřít — věc odložena bez trestu, dluh zůstává",
+          "effects": {
+            "moudrost": 1,
+            "vina": 1,
+            "nadeje": -1,
+            "finance": 5
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_maximum": "Součková vstane. Nic neřekne. Syn Josef stojí u dveří a sleduje ji — přišel z Prahy vlakem, vzal si volno. Matka jde kolem něj a nevzhlédne. On jí položí ruku na rameno. Ona zastaví. Pak jdou spolu ven.",
+    "guilty_standard": "Čtyřicet korun. Součková si promne ruce — zvyk. Exekutor Štěpán odchází z budovy první. Dluh 340 Kčs zůstává. Záložna sv. Václava jistě pošle nového exekutora. Za čtyři dny, nebo čtyři týdny. Tentokrát možná se třemi dny předem.",
+    "guilty_lenient": "Písemná omluva. Součková přikývne. Syn Josef ji vezme za ruku a šeptá jí do ucha. Ona přikývne znovu. Komoda u ní doma zůstane — exekuce je pozastavena do vyřešení procesního sporu záložny. To syn nezmiňuje nahlas. Ale ví to.",
+    "guilty_alternative": "Právní zástupce záložny vstane tak rychle, až mu sjede aktovka ze stolu. Součková sedí klidně a dívá se, jak ji zvedá. Exekutor Štěpán si upraví kravatu. Zapisovatelka Kovářová přestane psát — poprvé za celé líčení. Tichá síň.",
+    "not_guilty_formal": "Součková si sedne zpátky na lavici, i když může jít. Sedí tam minutu. Pak vstane, dojde ke svému synovi a podá mu ruku — ne objetí, jen ruku, jako když obchodní partneři uzavřou dohodu. Odcházejí.",
+    "not_guilty_with_comment": "Soud čte komentář. Pomalu, přesněji než obvykle. O úrocích. O doručenkách. O ženě, která podepisuje smlouvu bez vysvětlení. Štěpán stojí u dveří s rukama v kapsách. Syn Josef si dělá poznámky na papír. Součková poslouchá se skloněnou hlavou."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "guilty_maximum",
+      "delay_days": 3,
+      "type": "fragment",
+      "text": "Na stole leží zpráva z Ořechu u Prahy. Exekutor Štěpán provedl zabavení movitého majetku — stůl, dvě stoličky, komoda. Celková odhadní hodnota 85 Kčs. Dluh Součkové tím klesl na 255 Kčs. Syn Josef si vzal půjčku od záložny v Praze na doplatek."
+    },
+    {
+      "trigger": "not_guilty",
+      "delay_days": 5,
+      "type": "letter",
+      "text": "Dopis od Vlčka. Zdvořilý, kratší než obvykle: Případ Součková. Zaznamenal jsem rozsudek. Zákon na ochranu exekutorů při výkonu funkce existuje z dobrého důvodu. Doufám, že v budoucích případech podobné povahy vezmete tento princip na vědomí."
+    },
+    {
+      "trigger": "guilty_alternative",
+      "delay_days": 6,
+      "type": "fragment",
+      "text": "Ve Svobodném obzoru Eliška Závadová — pod pseudonymem — krátký sloupek: Záložna sv. Václava přezkoumává osm smluv uzavřených v letech 1928–1930 po rozhodnutí krajského soudu. Sloupek je na třetí straně. Ale je tam."
+    }
+  ]
+}

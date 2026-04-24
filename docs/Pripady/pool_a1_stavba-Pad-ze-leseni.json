@@ -1,0 +1,351 @@
+{
+  "id": "pool_a1_stavba",
+  "slot": "pool",
+  "type": "moral_dilemma",
+  "color": "#2C4A7C",
+  "available_days": [5, 6, 7, 8, 9, 10],
+  "act": 1,
+  "weight_conditions": {
+    "base_weight": 1,
+    "integrita_above_60": 1.3,
+    "vina_above_50": 1.4,
+    "nadeje_below_50": 1.2
+  },
+  "title": "Pád ze lešení",
+  "case_number": "Sp. zn. 85/1931",
+  "defendant": {
+    "name": "Ing. Miroslav Kolář",
+    "age": 44,
+    "occupation": "stavbyvedoucí, firma Stavební a.s. Dvořák & syn",
+    "detail": "ženatý, dvě děti (11 a 8 let), hypotéka u záložny, čistý rejstřík"
+  },
+  "charge": "Těžké ublížení na zdraví z nedbalosti dle §335 trestního zákona — smrt dělníka následkem porušení stavebních předpisů",
+  "description": "Ing. Miroslav Kolář, stavbyvedoucí firmy Stavební a.s. Dvořák & syn, je obžalován z nedbalostního způsobení smrti. Dne 17. února 1931 v ranních hodinách upadl dělník František Tuček (32 let) ze lešení ve třetím patře rozestavěného nájemního domu v Mánesově ulici na Vinohradech. Tuček zemřel na místě na mnohočetná poranění hlavy a trupu. Obhajoba tvrdí, že Tuček byl v době nehody pod vlivem alkoholu. Obžaloba dokládá, že lešení neodpovídalo stavebním předpisům a že Kolář o závadě věděl.",
+  "testimonies": [
+    {
+      "id": "lekar_dvorak",
+      "speaker": "MUDr. Alois Dvořák, obvodní lékař, provedl pitevní prohlídku",
+      "text": "Tuček zemřel okamžitě následkem pádu z výšky přibližně osmi metrů. Lékařská prohlídka na místě prokázala hladinu alkoholu 1,1 promile. To je hodnota, která u zvyklého pijáka neznamená výraznou poruchu pohybu — ale u abstinenta ano. Z kartotéky nevyplývá, že by Tuček byl v léčbě, a kolegové ho popisují jako příležitostného pijce. Zda alkohol k pádu přispěl, nemohu s jistotou říct. Pád ze lešení v tomto stavu by přežil, pokud by bylo lešení správně zajištěno.",
+      "contradiction_keywords": ["1,1 promile", "spravne zajisteno", "nemohu s jistotou"],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "kolar",
+      "speaker": "Ing. Miroslav Kolář, obžalovaný",
+      "text": "Lešení prošlo kontrolou 10. února. Protokol existuje. Tuček byl zkušený dělník — věděl, jak se na lešení pohybovat. V den nehody jsem byl na staveništi od sedmi ráno. O žádné závadě jsem nevěděl. Pokud se lešení uvolnilo, stalo se tak bez mé vědomosti a bez možnosti to předvídat. Smrt pana Tučka mě zasáhla. Mám rodinu. Vím co to znamená.",
+      "contradiction_keywords": ["10. unora", "protokol existuje", "bez me vedomosti"],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "delnik_sykora",
+      "speaker": "Bedřich Sýkora, dělník, pracoval se zemřelým Tučkem",
+      "text": "Franta věděl co dělá. Deset let na stavbách, nikdy pád. Ten den byl střízlivý — pil jsem s ním den před tím večer, ale ráno byl jako vždy. Lešení jsme si sami prohlédli — na čepu v rohu chyběl klin. To jsme viděli oba. Franta řekl, ať to nahlásí mistrovi. Šel za mistrem. Co mu mistr řekl, nevím. Za hodinu Franta spadl.",
+      "contradiction_keywords": ["chybel klin", "sel za mistrem", "za hodinu spadl"],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "kolin_podpis",
+      "description": "Kolář tvrdí, že o závadě nevěděl. Ale Sýkora říká, že Tuček šel závadu nahlásit mistrovi — Kolářovi. A v záznamu firmy existuje kontrolní list z 14. února, tři dny před nehodou, podepsaný Kolářem. Co je v tom protokolu?",
+      "involves": ["kolar", "delnik_sykora"],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": "kolar"
+    },
+    {
+      "id": "alkohol_pochybnost",
+      "description": "Lékař říká, že 1,1 promile u zvyklého pijáka neznamená poruchu pohybu. Kolář stojí obranu na Tučkově opilosti — ale jeho kolegové ho popisují jako příležitostného pijce, ne alkoholika. Polehčující nebo matoucí?",
+      "involves": ["lekar_dvorak", "kolar", "delnik_sykora"],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": null
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "clues": [
+      {
+        "data-clue-id": "stavba_promile_lek",
+        "type": "weak",
+        "label": "Pitevní protokol — 1,1 promile",
+        "source": "testimony:lekar_dvorak",
+        "hint": "Lékař připouští nejistotu. Co přesně 1,1 promile znamená pro člověka, jehož kolegové popisují jako příležitostného pijce — a jaký dopad mělo na jeho pohyb na lešení?",
+        "artifact": "Pitevní zpráva č. 17/1931, MUDr. Alois Dvořák, 17. února 1931"
+      },
+      {
+        "data-clue-id": "stavba_sykora_cep",
+        "type": "medium",
+        "label": "Sýkorova výpověď — chybějící klin a hodina mezi nahlášením a pádem",
+        "source": "testimony:delnik_sykora",
+        "hint": "Tuček závadu viděl, nahlásil ji mistrovi a za hodinu byl mrtvý. Co se odehrálo v té hodině — a proč na lešení nikdo nic neopravil?",
+        "artifact": "Výpověď Bedřicha Sýkory, dělník, zapsáno 19. února 1931, stavební inspekce zemského úřadu"
+      },
+      {
+        "data-clue-id": "stavba_kontrolni_list",
+        "type": "strong",
+        "label": "Kontrolní list — 14. února 1931, podpis Kolář, poznámka vlastní rukou",
+        "source": "investigation:records",
+        "hint": "Na listu stojí Kolářovým písmem: čep v severovýchodním rohu — sledovat. Datum: tři dny před nehodou. Lešení opraveno nebylo. Oprávce přišel 19. února.",
+        "artifact": "Kontrolní list lešení č. 4/1931, firemní archiv Stavební a.s. Dvořák & syn"
+      }
+    ],
+    "rewards": {
+      "on_confirm": {
+        "weak": {
+          "label": "Stopa: Promile bez jistoty",
+          "description": "Pitevní zpráva uvádí 1,1 promile. Lékař sám připouští, že u příležitostného pijce nelze jednoznačně hovořit o poruše pohybu. Obhajoba pracuje s nejistotou — ale nejistota sama o sobě Koláře nezbavuje odpovědnosti za stav lešení.",
+          "trait_effects": {
+            "moudrost": 1
+          },
+          "narrative_lines": [
+            "V pitevní zprávě je číslo: 1,1 promile. Číslo bez kontextu nic nedokazuje.",
+            "MUDr. Dvořák sám říká — u zvyklého pijáka to nemusí znamenat poruchu pohybu; Tučkovi kolegové ho za alkoholika nepovažují.",
+            "Kolář staví obranu na tomto pilíři. Pilíř se neodkládá, ale není ani pevný."
+          ]
+        },
+        "medium": {
+          "label": "Stopa: Hodina mezi nahlášením a pádem",
+          "description": "Tuček šel za mistrem po zjištění chybějícího klínu. Za hodinu zemřel. Tento časový sled vyplývá z Sýkorovy výpovědi a dosud nebyl při výslechu zpochybněn. Co se mezi tím odehrálo — a kdo o tom ví?",
+          "trait_effects": {
+            "moudrost": 2,
+            "vina": 1
+          },
+          "narrative_lines": [
+            "Sýkora říká bez zaváhání: Tuček šel za mistrem. Závadu viděli oba, postupoval správně.",
+            "Hodina mezi nahlášením a pádem je doložitelný fakt — a Kolář ji ve výpovědi přeskočil bez komentáře.",
+            "Co Kolář Tučkovi řekl: tato otázka u výslechu dosud nezazněla. To je mezera, kterou spis dosud nezaplnil."
+          ]
+        },
+        "strong": {
+          "label": "Stopa: Kolářovo vlastní svědectví na papíře",
+          "description": "Kontrolní list z 14. února 1931 nese Kolářův podpis a jeho vlastní poznámku o čepu v severovýchodním rohu. Lešení nebylo opraveno. Oprávce byl přivolán 19. února — dva dny po Tučkově smrti. Pět dní uplynulo mezi zápisem a opravou. Tuček je nepřežil.",
+          "trait_effects": {
+            "moudrost": 3,
+            "vina": 2
+          },
+          "narrative_lines": [
+            "Datum, podpis, poznámka vlastní rukou — tři dny před pádem Kolář závadu znal a napsal to sám.",
+            "Vzdálenost mezi zápisem a objednanou opravou je přesně pět dní; Tuček ji zkrátil na tři.",
+            "Kontrolní list není obžalobou — ale je to Kolářovo vlastní přiznání, které nebylo určeno soudu."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "kolar",
+      "target_label": "Ing. Miroslav Kolář, obžalovaný",
+      "reveals": "motivation",
+      "text": "Kolář se neopírá o stůl. Sedí rovně, jako člověk zvyklý na porady a protokoly. Pak něco povolí — ramena, nebo hlas, těžko říct co přesně. Investor tlačil na termín. Dvě stě korun penále za každý den prodlení. Oprávce lešení bylo třeba objednat zvlášť — osmdesát korun a dva dny čekání. Ředitel mi řekl: jedeme dál, záplatovat to za pohybu. Dal jsem to na sebe. Přikrývám si ústa na sekundu. Myslel jsem, že vydrží. Výpočet jsem dělal v hlavě, ne na papíře. Byl to špatný výpočet.",
+      "cost": 1,
+      "trait_effects": {
+        "vina": 3,
+        "nadeje": -2
+      }
+    },
+    "records": {
+      "source": "Firemní archiv Stavební a.s. Dvořák & syn; stavební inspekce zemského úřadu; záznamy záložny",
+      "reveals": "facts",
+      "text": "Kontrolní list lešení ze 14. února 1931, podpis: M. Kolář. Poznámka vlastní rukou: čep v severovýchodním rohu — sledovat. Lešení neopraveno. Oprávce přivolán 19. února — dva dny po nehodě. Investor: Bytová společnost Vinohrady s.r.o., majoritní podíl ve vlastnictví JUDr. Karla Ryby, advokáta. Stavební zakázka s penalizační doložkou 200 Kčs/den za prodlení. Tuček František: pracovní smlouva od září 1930, hodnocení vzorný. Záložna: Kolář — hypotéka 3 200 Kčs, zůstatek 2 100 Kčs, splátka 85 Kčs/měsíc.",
+      "cost": 1,
+      "unlocks_contradiction": "kolin_podpis"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "variants": {
+        "lid_high": "Tuček měl rodinu na Žižkově. Ženu a tři děti. Teď žena pere cizí prádlo. Na stavbách se ví, že lešení bylo špatné — dělníci to viděli. Ale kdo by si stěžoval? Kdo by ho propustil, kdyby si stěžoval?",
+        "kapital_high": "Kolář je solidní inženýr. Pracoval na třech stavbách, žádný incident. Stavebnictví má svá rizika — alkohol na staveništi je problém, který si dělníci přinášejí sami. Zákon nemůže stavět šibenici za každou nehodu.",
+        "moc_high": "Investor Ryba je advokát s konexemi na zemský úřad. Stavební inspekce nádvoří navštívila jednou za celou stavbu. Kolář je nastrčený — ředitel firmy Dvořák podepsal zadávací podmínky s těmi penálemi osobně. Kolář za ním nestojí dost vysoko.",
+        "default": "Na Vinohradech se říká, že Kolář je slušný pán. Ale ten dům — šli na něj rychle. Příliš rychle. V hospodě Na Slupi se stavbaři baví. Říkají: dvacet dní předstihu a jeden mrtvý. To je obchod."
+      }
+    },
+    "confrontation": {
+      "target": "kolar",
+      "target_label": "Ing. Miroslav Kolář, obžalovaný",
+      "requires_contradiction": "kolin_podpis",
+      "requires_courage": 60,
+      "cost": 2,
+      "prompt": "Pane inženýre, v kontrolním listu ze 14. února — tři dny před nehodou — je Váš vlastnoruční podpis a Vaše vlastnoruční poznámka: čep v severovýchodním rohu, sledovat. Tuček vám přišel závadu nahlásit. Co jste mu řekl?",
+      "success": {
+        "text": "Kolář dlouho nic neříká. V soudní síni je slyšet tikání hodin a vzdálený hlas z chodby. Pak: Řekl jsem mu, že to vím. Že to nechám opravit do konce týdne. Měl jít zpátky na práci. On šel. Odmlka. Ředitel mi ten den ráno zavolal. Řekl, ať to řeším sám a nezdržuji. Věděl jsem, že oprávce stojí osmdesát korun a dva dny. Věděl jsem, že Tuček na tom čepu pracuje každý den. Rozhodl jsem se počkat do pátku. Dnes je středa. Hlas se nezlomí, ale ztiší se na poslední slovo. Středa.",
+        "reveals": "Kolář závadu znal tři dny předem. Tuček mu ji nahlásil osobně — a dostal příslib opravy, který Kolář pod tlakem investora nedodržel. Toto není nedbalost z nevědomosti. Je to vědomé odložení rozhodnutí s fatálním výsledkem. Kdo nese vinu — Kolář, nebo ředitel, který tlačil na termín?"
+      },
+      "failure": {
+        "text": "Kolář se podívá na kontrolní list. Pak na Bena. Poznámka je tam proto, abych to sledoval — ne proto, že jsem věděl o závadě. Sledovat je součástí mé práce. Ke každému čepu nemohu volat oprávce. Hlas je pevný, ale příliš pevný — jako naučená lekce.",
+        "locks_testimony": "kolar"
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "maximum": {
+          "label": "18 měsíců vězení, náhrada pozůstalým 1 200 Kčs",
+          "description": "Soud shledává obžalovaného vinným v plném rozsahu. Vědomé odložení opravy se znalostí rizika představuje hrubou nedbalost přecházející v úmyslné opomenutí povinné péče. Kolářova rodina přijde o příjem na osmnáct měsíců; hypotéka záložně přestane být splácena a dům bude ohrožen. Tučkova vdova na Žižkově obdrží tisíc dvě stě korun — přibližně dva měsíce rodinného příjmu. Firma Dvořák & syn vydá tiskové prohlášení a pokračuje v práci bez přerušení.",
+          "available_unless": {
+            "vina_above": 80
+          },
+          "effects": {
+            "integrita": 2,
+            "odvaha": 2,
+            "moudrost": 0,
+            "vina": 5,
+            "nadeje": -5,
+            "moc": 2,
+            "lid": -2,
+            "kapital": -4,
+            "finance": 10
+          }
+        },
+        "standard": {
+          "label": "6 měsíců podmíněně, náhrada pozůstalým 600 Kčs, zákaz výkonu funkce stavbyvedoucího na 2 roky",
+          "description": "Soud konstatuje hrubou nedbalost; ekonomický tlak investora je polehčující okolností, nikoli okolností zbavující odpovědnosti. Kolář přijde o živnost stavbyvedoucího na dva roky a bude odkázán na práci projektanta — hypotéka je ohrožena, ale přežitelná. Tučkova rodina dostane šest set korun; to pokryje přibližně tři a půl měsíce nájmu na Žižkově. Dělníci z Mánesovy ulice dosvědčili, co věděli o lešení — žádný z nich za to nedostane nic.",
+          "effects": {
+            "integrita": 3,
+            "odvaha": 2,
+            "moudrost": 2,
+            "vina": 3,
+            "nadeje": -2,
+            "moc": 0,
+            "lid": 2,
+            "kapital": -3,
+            "finance": 10
+          }
+        },
+        "lenient": {
+          "label": "Pokuta 400 Kčs, náhrada pozůstalým 300 Kčs, podmíněné zastavení řízení",
+          "description": "Soud uznává systémový tlak, v němž obžalovaný jednal. Čtyři sta korun pokuta pro stát, tři sta korun pro Tučkovu rodinu — méně než dva měsíce nájmu. Kolář si zachová místo; hypotéka přežije. Firma Dvořák & syn zůstane nedotčena. Investor Ryba o případu ví; jeho jméno u soudu nezazní.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 0,
+            "odvaha": 1,
+            "moudrost": 2,
+            "vina": 2,
+            "nadeje": 0,
+            "moc": -1,
+            "lid": 3,
+            "kapital": -1,
+            "finance": 10
+          }
+        },
+        "alternative": {
+          "label": "Podmíněné zastavení — Kolář svědčí proti řediteli firmy a investorovi, případ postoupen k trestnímu šetření firmy Dvořák & syn",
+          "description": "Soud podmíněně zastavuje trestní stíhání Koláře výměnou za úplnou výpověď o podmínkách zakázky. Ředitel Dvořák a investor Ryba budou předvoláni. Pro Tučkovu vdovu tato cesta nepřináší okamžitou náhradu — ale poprvé se jméno toho, kdo doložky podepsal, dostane do soudního spisu. Kolář je nástroj systému; zákon se musí ptát, kdo systém nastavil.",
+          "requires_investigation": 2,
+          "requires_contradiction": true,
+          "requires": {
+            "moudrost_min": 60
+          },
+          "effects": {
+            "integrita": 5,
+            "odvaha": 6,
+            "moudrost": 5,
+            "vina": -2,
+            "nadeje": 4,
+            "moc": -5,
+            "lid": 7,
+            "kapital": -6,
+            "finance": 10
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zproštění — nedbalost nepřekročila zákonný práh",
+          "description": "Soud zprošťuje obžalovaného pro pochybnost. Alkohol jako spolupříčina pádu nelze vyloučit; závada byla zaznamenána k průběžnému sledování, nikoli jako bezprostřední nebezpečí. Kolář vyjde z budovy soudu k rodině. Tučkova vdova se to dozví do poledne; pro tři děti na Žižkově tento výrok neznamená nic konkrétního. Dělníci na Mánesově ulici se vrátí na lešení — dnes již opravené.",
+          "effects": {
+            "integrita": -2,
+            "odvaha": -1,
+            "moudrost": 0,
+            "vina": 4,
+            "nadeje": -4,
+            "moc": 2,
+            "lid": -6,
+            "kapital": 4,
+            "finance": 10
+          }
+        },
+        "with_comment": {
+          "label": "Zproštění s komentářem — případ postoupen stavební inspekci zemského úřadu",
+          "description": "Soud zprošťuje Koláře obžaloby, přičemž formálně upozorňuje zemský úřad na absenci pravidelné stavební inspekce na staveništi a na praxi penalizačních doložek, které přenášejí riziko na stavbyvedoucí mimo dosah kontroly. Tučkova rodina z trestního řízení nic nezíská — ale stavební inspekce dostane spis. Kolář odejde; Sýkora zůstane sedět na zadní lavici a dívá se na dveře, ne na soudce.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 0,
+            "odvaha": 2,
+            "moudrost": 3,
+            "vina": 2,
+            "nadeje": -1,
+            "moc": -1,
+            "lid": -2,
+            "kapital": 1,
+            "finance": 10
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "label": "Nedostatek důkazů",
+      "requires_investigation": 2,
+      "requires": {
+        "moudrost_min": 40
+      },
+      "options": {
+        "reinvestigate": {
+          "label": "Vrátit k došetření — výslech ředitele Dvořáka a investora Ryby",
+          "returns_in_days": 5,
+          "effects": {
+            "moudrost": 3,
+            "finance": 0
+          }
+        },
+        "close": {
+          "label": "Uzavřít — nehoda v rámci přijatelného stavebního rizika",
+          "effects": {
+            "moudrost": 0,
+            "vina": 5,
+            "nadeje": -3,
+            "finance": 5
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_maximum": "Kolářova žena sedí vzadu na lavici. Neudělala ani pohyb celé líčení — jen seděla s rukama v klíně. Teď vstane. Vezme kabátek malé dcery, která usnula vedle ní. Kolář stojí u stolu. Nedívá se za ní. Na Žižkově Tučkova vdova vaří polévku pro tři děti. Neví ještě, kolik dostane.",
+    "guilty_standard": "Šest měsíců podmíněně. Dva roky zákaz. Kolář si přepočítá — bez místa stavbyvedoucího bude muset zpátky ke stolu. Projektování, kanceláře. Hypotéka přežije, ale jen tak. Tučkova rodina dostane šest set korun. Na Žižkově je měsíční nájem sto osmdesát.",
+    "guilty_lenient": "Čtyři sta korun pokuta. Kolář stojí rovně jako celé líčení. Tři sta náhrady pro Tučkovy. Podmíněné zastavení. Venku na chodbě potká Sýkorovy oči — dělník Sýkora na něj čeká, nevíme proč. Kolář projde kolem. Sýkora ho nechá projít.",
+    "guilty_alternative": "Kolář si sedne ke stolu se zapisovatelkou. Diktuje. Jméno ředitele Dvořáka. Jméno investora Ryby. Datum, kdy dostal pokyn jet dál. Datum, kdy podepsal kontrolní list. Zapisovatelka píše. Kolář mluví tiše a přesně — jako člověk, který ví, že tohle je poslední věc, kterou může pro Tučka udělat.",
+    "not_guilty_formal": "Kolář je zproštěn. Vyjde na chodbu. Žena na něj čeká — sáhne mu na ruku. On ji nezachytí, ale neodejde. Stojí u okna a dívá se na dvůr. Na Mánesově ulici stojí rozestavěný dům. Práce pokračuje. Lešení je opravené.",
+    "not_guilty_with_comment": "Soud čte komentář o stavební inspekci. O zemském úřadu, který kontroloval staveniště jednou za rok. O penalizačních doložkách, které jsou zákonné. O dělnících, kteří nemají s čím srovnávat. Kolář poslouchá se sklopenou hlavou. Sýkora v zadní řadě poslouchá taky — ale nedívá se na soudce. Dívá se na Koláře."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "guilty_maximum",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "V novinách krátká zpráva — tři řádky, osmá strana: Stavbyvedoucí odsouzen za smrt dělníka na Vinohradech. Firma Dvořák & syn vydala prohlášení: soustrast pozůstalým, Kolář jednal mimo svůj mandát. Dům na Mánesově ulici byl dostavěn 3. března. Kolaudace proběhla bez závad."
+    },
+    {
+      "trigger": "not_guilty",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "Švejda u vchodu, potlačeným hlasem: Ta rodina z Žižkova, pane doktore. Tučkovi. Žena podala žalobu na firmu Dvořák — civilní, ne trestní. Prý ji poradil někdo z odborů. Advokát ji zastupuje za symbolický honorář. Švejda chvíli mlčí. Tři děti, pane doktore."
+    },
+    {
+      "trigger": "guilty_alternative",
+      "delay_days": 8,
+      "type": "fragment",
+      "text": "Zpráva z krajského soudu, oddělení obchodní agendy: Zahájeno trestní šetření ve věci firmy Stavební a.s. Dvořák & syn a investora JUDr. Karla Ryby — porušení stavebního zákona, zavinění na pracovním úrazu. Kolář předvolán jako svědek, nikoli obžalovaný. Šetření potrvá odhadem tři měsíce."
+    }
+  ],
+  "encyclopedia_links": [
+    "stavebni_zakon",
+    "nedbalost_trestni",
+    "leseni_predpisy",
+    "vinohrady",
+    "pracovni_urazy"
+  ]
+}

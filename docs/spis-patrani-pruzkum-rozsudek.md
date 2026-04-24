@@ -22,6 +22,7 @@ Případ se neotevírá jako záložky, ale jako **jeden svislý dokument** v mo
 
 Oddělené od průzkumu: jde o **koherenci stop** v textu, ne o „faktický výslech“.
 
+- **Kotva ve spise:** stopy a správné páry musí být z **exaktní, hmatatelné** reality (číslo, čas, místo, záznam, citace) — ne z čistě emočních nebo neprokazatelných vět. Příklady a zákaz „pocitových“ párů: **`.cursor/rules/cases.mdc`** (Two-Click, *Kvalita stop a párů*).  
 - **První klik** označí stopu, **druhý** zkouší **párování** stejného `data-clue-id` podle mapy párů v datech případu.  
 - Správný pár: odměny dle dat — např. bonus informovanosti, `unlock_actions`, `unlock_verdict_ids`.  
 - **Timed hunt** (`timed_hunt`): stopy jsou plně aktivní až po **Zahájit pátrání**, běží odpočet, lze potvrdit nejlepší vazbu.  

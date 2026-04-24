@@ -1,0 +1,444 @@
+{
+  "id": "pool_a1_vytrznost",
+  "slot": "pool",
+  "type": "routine",
+  "color": "#C4A35A",
+  "available_days": [
+    3,
+    4,
+    5,
+    6
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "base_weight": 0.9,
+    "moc_above_60": 1.4,
+    "odvaha_below_40": 0.5,
+    "lid_above_60": 1.2
+  },
+  "encyclopedia_links": [
+    "zakon_na_ochranu_republiky",
+    "akademicke_spolky",
+    "antisemitismus"
+  ],
+  "title": "Rozbité výlohy",
+  "case_number": "Sp. zn. 67/1931",
+  "defendant": {
+    "name": "Karel Šimánek",
+    "age": 24,
+    "occupation": "student třetího ročníku Právnické fakulty Karlovy univerzity",
+    "detail": "syn žižkovského pekaře, bezdlužný, čistý rejstřík, bydliště Žižkov"
+  },
+  "charge": "Výtržnictví a poškození cizí věci dle §314 trestního zákona",
+  "description": "Karel Šimánek, student Právnické fakulty Karlovy univerzity, je obžalován z rozbití výlohy kožené galanterie Jakuba Meisela na Vodičkově ulici čp. 12 v Praze dne 28. února 1931 ve večerních hodinách. Hlídkující stražmistr Miroslav Turek nalezl Šimánka na místě činu s dlažební kostkou v ruce. Škoda odhadnuta na 120 Kčs. Obžalovaný tvrdí, že kostku zvedl ze země poté, co skutečný pachatel prchl.",
+  "testimonies": [
+    {
+      "id": "turek",
+      "speaker": "Stražmistr Miroslav Turek, Státní policie Praha",
+      "text": "Hlídkoval jsem na Vodičkově kolem čtvrt na jedenáct, když jsem uslyšel ránu skla. Obrátil jsem se a viděl jsem muže stát přímo před výlohou Meiselovy prodejny s dlažební kostkou v ruce. Přiblížil jsem se. Muž neutíkal — stál tam jako přibitý. <span class=\"clue\" data-clue-id=\"clue_strepy_na_klope\">Na klopě jeho kabátu jsem zaznamenal střepy skla</span>. Při protokolárním zápisu uvedl, že kostku zvedl ze země a že skutečný pachatel proběhl kolem něj.",
+      "contradiction_keywords": [
+        "na klopě",
+        "střepy skla",
+        "zvedl ze země"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "simanek",
+      "speaker": "Karel Šimánek, obžalovaný",
+      "text": "<span class=\"clue\" data-clue-id=\"decoy_prednaska_claim\">Vracel jsem se z přednášky na fakultě</span> — diskutujeme o aktuálních společenských otázkách, nic nezákonného. Slyšel jsem ránu a zastavil se. Kolem mě proběhl někdo v čepici, neviděl jsem mu do tváře, ale <span class=\"clue\" data-clue-id=\"decoy_kostka_na_dlazbe\">kostka po něm zůstala ležet na dlažbě. Zvedl jsem ji</span> — byl jsem zmaten, sám nevím proč. Hned nato přišel stražmistr. Meisela znám od dětství, jeho dcera Hana chodila se mnou na gymnázium. Nemám jediný důvod mu ubližovat.",
+      "contradiction_keywords": [
+        "přednášky na fakultě",
+        "kostka ležela na dlažbě",
+        "kolem mě proběhl"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "meiselova",
+      "speaker": "Hana Meiselová, dcera majitele prodejny, 28 let",
+      "text": "Byla jsem v zadním skladu, když jsem uslyšela ránu. Vyběhla jsem. Našla jsem pana Šimánka stát u rozbité výlohy — ano, znám ho ze školy. Vypadal zmateně. Ne vystrašeně — zmateně. <span class=\"clue\" data-clue-id=\"decoy_vyhyba\">Poslední dobou se nám vyhýbá.</span> Minulý týden jsem ho viděla na Václavském náměstí se skupinou studentů, kteří rozdávali letáky. <span class=\"clue\" data-clue-id=\"decoy_neohlédl\">Ani se neohlédl.</span>",
+      "contradiction_keywords": [
+        "vyhýbá",
+        "letáky",
+        "neohlédl"
+      ],
+      "hidden_at_wisdom_below": 20
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "strepy_na_klope",
+      "description": "Stražmistr zaznamenal střepy skla na KLOPĚ Šimánkova kabátu. Střepy z praskající výlohy se při standardním nárazu šíří do vzdálenosti maximálně jednoho metru od bodu dopadu — a to horizontálně při zemi, nikoli ve výšce hrudi. Šimánek tvrdí, že stál 'několik metrů stranou' a kostku 'zvedl ze země'. Obojí nemůže být pravda zároveň.",
+      "involves": [
+        "turek",
+        "simanek"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": "simanek"
+    },
+    {
+      "id": "prednaska_na_fakulte",
+      "description": "Šimánek tvrdí, že šel z přednášky na Právnické fakultě. Evidenční kniha fakulty zaznamenává všechny veřejné přednášky — ověřitelné.",
+      "involves": [
+        "simanek"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": null
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "physical_lie_strong",
+    "focus_attempts": {
+      "max": 3
+    },
+    "thematic_pairs": [],
+    "pairs": [
+      {
+        "pair_id": "physical_lie_strong",
+        "a_id": "clue_strepy_na_klope",
+        "b_id": "clue_zadna_prednaska",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "group_context_medium",
+        "a_id": "clue_slavia_schuzka",
+        "b_id": "clue_dva_vzdalujici",
+        "strength": "medium"
+      },
+      {
+        "pair_id": "behavioral_distance_weak",
+        "a_id": "decoy_vyhyba",
+        "b_id": "decoy_neohlédl",
+        "strength": "weak",
+        "soft_fail": true
+      }
+    ],
+    "decoys": [
+      "decoy_prednaska_claim",
+      "decoy_kostka_na_dlazbe",
+      "decoy_vyhyba",
+      "decoy_neohlédl"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 60,
+      "speed_upgrade_sec": 20,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 70,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 40,
+          "ids": [
+            "guilty_lenient",
+            "not_guilty_with_comment"
+          ]
+        },
+        {
+          "min": 70,
+          "ids": [
+            "insufficient_reinvestigate",
+            "insufficient_close"
+          ]
+        },
+        {
+          "min": 90,
+          "ids": [
+            "guilty_alternative"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "weak": {
+          "investigation_progress_delta": 10,
+          "narrative_lines": [
+            "Chování před činem není totéž co čin sám — Šimánek se mohl vyhýbat ze studu, ze strachu, nebo z viny.",
+            "Dva záblesky pozorování: z pohledu dcery majitele to vypadá ošklivě, z pohledu soudu je to příliš málo.",
+            "Spis hledá víc než špatné manýry. Hledá fakt, který drží pohromadě s kamenem v ruce."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 20,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "narrative_lines": [
+            "Schůzka spolku skončila v 22:05. Stražmistr zaznamenal dvě osoby vzdálující se ulicí. Jedna zůstala — druhá zmizela.",
+            "Šimánek nebyl sám. To není spekulace — je to zápisník stražmistra Turka. A ten se nemýlí.",
+            "Spis se otočí od výlohy ke skupině: kdo s ním šel, kdo rozhodl, kdo utekl jako první."
+          ]
+        },
+        "strong": {
+          "investigation_progress_delta": 30,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "guilty_alternative",
+            "not_guilty_with_comment"
+          ],
+          "narrative_lines": [
+            "Střepy na klopě ve výšce hrudi a prázdná stránka v evidenční knize fakulty netvoří dvě náhody — tvoří jednu lež.",
+            "Šimánek stál u výlohy. Ne metr za ní, ne přes ulici — přímo u ní. Fyzika střepů to neumí jinak.",
+            "Spis se uzamkne kolem otázky, kterou zákon umí zodpovědět jinak než svědomí: kde končí přítomnost a kde začíná vina."
+          ]
+        }
+      },
+      "on_match": {
+        "investigation_progress_delta": 30,
+        "unlock_actions": [
+          "pool_inv_confrontation"
+        ],
+        "unlock_verdict_ids": [
+          "guilty_alternative",
+          "not_guilty_with_comment"
+        ]
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "simanek",
+      "target_label": "Karel Šimánek, obžalovaný",
+      "reveals": "motivation",
+      "text": "Šimánek se dívá na stůl. Dlouze. Pak: Byl jsem na schůzce. Akademický národní spolek — Kavárna Slavia. Není to nezákonné. Skončilo to po desáté. Šel jsem domů, někteří ze schůzky šli stejnou trasou. U výlohy jsem se zastavil. Ostatní... ti ostatní šli dál. Zamlčí se. Otec přišel před třemi měsíci o čtyři odběratele. Já mám promoci za rok. Práce není. Na fakultě nám otevřeně říkají, že stejně nenastoupíme. Člověk hledá… Nedokončí větu.",
+      "cost": 1,
+      "trait_effects": {
+        "vina": 1,
+        "nadeje": -1
+      }
+    },
+    "records": {
+      "source": "Evidenční kniha Právnické fakulty UK + znalecký posudek rozptylu střepů",
+      "reveals": "facts",
+      "text": "Právnická fakulta UK — evidenční kniha veřejných přednášek: <span class=\"clue\" data-clue-id=\"clue_zadna_prednaska\">dne 28. února 1931 nebyla naplánována žádná přednáška ani veřejná akademická akce</span>. Zápisník stražmistra Turka: na místě činu zpozoroval ve chvíli příjezdu <span class=\"clue\" data-clue-id=\"clue_dva_vzdalujici\">dvě osoby vzdálující se spěšně ulicí</span> — zadržitelný byl pouze Šimánek. Znalecký posudek: střepy z okenního skla při nárazu dosahují ve výšce hrudi (85–100 cm) vzdálenosti 0,4 až 0,9 metru od bodu dopadu. Kavárna Slavia: v registru spolkových akcí evidována <span class=\"clue\" data-clue-id=\"clue_slavia_schuzka\">schůzka Akademického národního spolku ukončená ve 22:05</span>.",
+      "cost": 1,
+      "unlocks_contradiction": "prednaska_na_fakulte"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "variants": {
+        "moc_high": "Akademický národní spolek je sledován od podzimu. Mají seznam členů — Šimánek je tam od října. Tyhle kroužky vypadají jako debatní kluby, ale organizují. Dnes výloha, zítra pochod. Policie to ví. Vy byste to vědět měl taky.",
+        "lid_high": "Šimánek není padouch. Je to vystrašený kluk, který nenašel práci a teď hledá, koho za to vinit. Systém ho zklamal a on si nenašel lepší odpověď. Meiselova výloha za to nemůže. Ale na takové argumenty čtyřiadvacetiletý student neslyší.",
+        "default": "V Praze se teď dějí věci. Výlohy se rozbíjejí po nocích. Letáky lepí po zdech. Nikdo nic nevidí, nikdo nic neslyší. Je to jako v třiadvacátém v Mnichově — jen pomaleji a tiše. Zatím."
+      }
+    },
+    "confrontation": {
+      "target": "simanek",
+      "target_label": "Karel Šimánek, obžalovaný",
+      "requires_contradiction": "strepy_na_klope",
+      "requires_courage": 60,
+      "cost": 2,
+      "prompt": "Pane Šimánku, střepy skla na klopě vašeho kabátu jsou fyzikálně neslučitelné s tím, že jste stál několik metrů od výlohy. Na fakultě se 28. února žádná přednáška nekonala. Kde jste skutečně byl a co jste dělal bezprostředně před příchodem stražmistra Turka?",
+      "success": {
+        "text": "Šimánek zavře oči. Otevře je. Byl jsem tam. Nestál jsem 'několik metrů stranou'. Stál jsem přímo u výlohy. Kostku ale neházel já — házel ji Novotný, spolkový. Já jsem tam prostě stál. Jako debil. Nevím proč jsem nešel dál. Novotný utekl, já zůstal. Možná jsem čekal, až přijde někdo a zastaví mě. Hlas mu trochu selže. Hana Meiselová seděla se mnou tři roky v lavici.",
+        "reveals": "Šimánek byl fyzicky přítomen u výlohy a nic nezastavil. Kostku hodil jiný člen spolku. Šimánek je svědek, spoluviník, nebo oběť skupinové dynamiky — záleží na pohledu. Právní vina a morální vina se zde ostře rozcházejí."
+      },
+      "failure": {
+        "text": "Šimánek ztvrdne. Zákon vyžaduje důkaz, pane doktore. Ne fyzikální spekulace. Mám právo na mlčení a využívám ho.",
+        "locks_testimony": "simanek"
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "maximum": {
+          "label": "3 měsíce podmíněně, náhrada škody 120 Kčs",
+          "description": "Soud uznává obžalovaného Karla Šimánka vinným z výtržnictví a z poškození cizí věci dle § 314; ukládá se podmíněný trest odnětí svobody v trvání tří měsíců a povinná náhrada škody 120 Kčs. Záznam o odsouzení uzavře Šimánkovi dveře k advokátní praxi — rok před promocí na Právnické fakultě.",
+          "available_unless": {
+            "vina_above": 80
+          },
+          "effects": {
+            "integrita": -1,
+            "odvaha": 0,
+            "moudrost": 0,
+            "vina": 3,
+            "nadeje": -2,
+            "moc": 5,
+            "lid": -5,
+            "kapital": 0,
+            "finance": 10
+          }
+        },
+        "standard": {
+          "label": "Pokuta 80 Kčs, náhrada škody 120 Kčs",
+          "description": "Obžalovanému se ukládá pokuta 80 Kčs a povinná náhrada škody 120 Kčs majiteli prodejny; přímé spáchání hodu kostkou se přes fyzické důkazy neprokáže nad rozumnou pochybnost. Žižkovský pekař zaplatí pokutu z peněz, které nemá — a jeho syn bude celý život vědět, že se nezastavil.",
+          "effects": {
+            "integrita": 0,
+            "odvaha": 0,
+            "moudrost": 0,
+            "vina": 2,
+            "nadeje": -1,
+            "moc": 2,
+            "lid": -3,
+            "kapital": 0,
+            "finance": 10
+          }
+        },
+        "lenient": {
+          "label": "Pokuta 30 Kčs, povinná náhrada škody",
+          "description": "Obžalovanému se ukládá pokuta 30 Kčs a povinná náhrada škody; přímá fyzická účast na hodu neprokázána, jednání pod vlivem skupinové dynamiky vzato v úvahu. Meisel dostane náhradu — Šimánek dostane šanci, která ho může buď zastavit, nebo přesvědčit, že za všechno vyjde levně. Inkoust: +1 do dalšího pracovního dne.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 1,
+            "odvaha": 1,
+            "moudrost": 0,
+            "vina": 0,
+            "nadeje": 1,
+            "moc": -2,
+            "lid": 3,
+            "kapital": 0,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "alternative": {
+          "label": "Podmíněné zastavení — Šimánek předá informace o spolku",
+          "description": "Trestní stíhání se podmíněně zastavuje; Šimánek se zavazuje poskytnout orgánům státní bezpečnosti úplné informace o organizační struktuře Akademického národního spolku. Výloha zůstane ještě týden zatlučená prkny — ale Novotný bude mít důvod být nervózní. Inkoust: +1 do dalšího pracovního dne.",
+          "requires_investigation": 2,
+          "requires_contradiction": true,
+          "requires": {
+            "moudrost_min": 60
+          },
+          "effects": {
+            "integrita": 2,
+            "odvaha": 2,
+            "moudrost": 3,
+            "vina": -1,
+            "nadeje": 1,
+            "moc": 3,
+            "lid": 1,
+            "kapital": 0,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Formální zproštění — hod kostkou neprokázán",
+          "description": "Držení předmětu není totožné s jeho použitím; pochybnost se vykládá ve prospěch obžalovaného. Šimánek odchází bez záznamu — Jakub Meisel zaplatí novou výlohu z vlastní kapsy. Hana Meiselová to bude vědět celý život. Inkoust: +1 do dalšího pracovního dne.",
+          "effects": {
+            "integrita": 2,
+            "odvaha": 3,
+            "moudrost": 0,
+            "vina": -1,
+            "nadeje": 2,
+            "moc": -4,
+            "lid": 4,
+            "kapital": 0,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "with_comment": {
+          "label": "Zproštění s komentářem ke skupinové odpovědnosti",
+          "description": "Obžalovaný se zprošťuje obžaloby; soud připojuje komentář, že stíhání okrajových přihlížečů místo organizátorů skupinové akce je právně i preventivně neúčinné — odpovědnost se rozplývá tam, kde zákon nemá dost nástrojů, aby zasáhl ty, kdo opravdu rozhodli. Inkoust: +1 do dalšího pracovního dne.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 4,
+            "odvaha": 5,
+            "moudrost": 2,
+            "vina": -2,
+            "nadeje": 3,
+            "moc": -7,
+            "lid": 6,
+            "kapital": 0,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "label": "Nedostatek důkazů",
+      "requires_investigation": 2,
+      "requires": {
+        "moudrost_min": 40
+      },
+      "options": {
+        "reinvestigate": {
+          "label": "Vrátit k došetření — prošetřit spolek a identifikovat Novotného",
+          "returns_in_days": 5,
+          "effects": {
+            "moudrost": 2,
+            "finance": 0
+          }
+        },
+        "close": {
+          "label": "Uzavřít",
+          "effects": {
+            "moudrost": 1,
+            "vina": 1,
+            "finance": 5
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_maximum": "Šimánek stojí. Nepodívá se na Hanu Meiselovou. Ona stojí ve dveřích soudní síně a dívá se na jeho záda. Za oknem projíždí tramvaj. Únorové odpoledne. Brzy bude jaro.",
+    "guilty_standard": "Šimánek přikývne. Osmdesát korun pokuta, sto dvacet náhrada. Otec to zaplatí — z peněz, které nemá. Hana Meiselová sklání hlavu nad kabelkou. Zapisovatelka píše. Jako vždy.",
+    "guilty_lenient": "Třicet korun. Šimánek se zdvihne a poprvé se podívá Haně Meiselové do tváře. Ona se nedívá zpět. Z chodby se ozve smích — někdo z právní praxe čeká na svůj případ. Tento případ není nic zvláštního.",
+    "guilty_alternative": "Šimánek sedí naproti policejnímu inspektorovi a diktuje jména. Pomalu. Jako by každé jméno bylo fyzická námaha. Hana Meiselová to neví. Zapisovatelka si všimne, že Ben drží pero jinak než obvykle.",
+    "not_guilty_formal": "Šimánek vstane. Na klopě kabátu — tam, kde byly střepy — je teď čistá látka. Někdo to vyčistil. Hana Meiselová odchází první. Na chodbě se zastaví u okna a dívá se dolů na Vodičkovu ulici.",
+    "not_guilty_with_comment": "Ben čte poznámku nahlas. O organizacích a o jednotlivcích. O odpovědnosti, která se rozplývá ve skupině — ale zatýká se vždy jen jednoho. Šimánek stojí s rukama podél těla. Výloha Meiselovy prodejny je zatím zakryta prknem."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "guilty_maximum",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "Ve Svobodném obzoru krátká zpráva: Student odsouzen za výtržnictví na Vodičkové. Pod tím anonymní dopis redakci: Proč soud nestíhá celý spolek? Redakce dopis otiskla — ale jen do poloviny."
+    },
+    {
+      "trigger": "not_guilty",
+      "delay_days": 3,
+      "type": "fragment",
+      "text": "Švejda u vchodu: Pane doktore, slyšel jste? V Josefově rozbili minulou noc dvě výlohy. Říkají, že jsou to ti studenti. Jiní říkají, že to jsou provokatéři. Švejda pokrčí rameny. Já to nevím."
+    },
+    {
+      "trigger": "guilty_alternative",
+      "delay_days": 5,
+      "type": "letter",
+      "text": "Dopis od Vlčka. Zdvořilý, suchý: Zaznamenal jsem případ Šimánek. Spolupráce obžalovaného s orgány je vždy vítána. Doufám, že informace povedou k příslušným opatřením. Rád bych byl informován o dalším vývoji."
+    }
+  ]
+}

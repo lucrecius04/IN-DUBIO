@@ -1,0 +1,416 @@
+{
+  "id": "pool_a1_vyveseni",
+  "slot": "pool",
+  "type": "routine",
+  "color": "#C4A35A",
+  "available_days": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "base_weight": 0.8,
+    "moc_above_60": 1.4,
+    "odvaha_below_40": 0.5
+  },
+  "title": "Závadný plakát",
+  "case_number": "Sp. zn. 63/1931",
+  "defendant": {
+    "name": "Heinrich Fassbinder",
+    "age": 52,
+    "occupation": "knihkupec",
+    "detail": "sudetský Němec, majitel knihkupectví na Celetné ulici, vdovec, syn studuje v Lipsku"
+  },
+  "charge": "Šíření protistátních tiskovin dle zákona na ochranu republiky č. 50/1923 Sb.",
+  "description": "Heinrich Fassbinder, knihkupec německé národnosti, je obžalován z vystavení plakátu s textem Ein Volk — Ein Recht — Eine Zukunft ve výloze svého obchodu. Hlídka Státní policie plakát zabavila dne 26. února 1931. Obžaloba tvrdí, že text je pangermánského charakteru. Fassbinder tvrdí, že šlo o reklamní plakát na knihu stejného názvu, vydanou v Berlíně.",
+  "testimonies": [
+    {
+      "id": "straznik",
+      "speaker": "Václav Horyna, strážmistr Státní policie",
+      "text": "Plakát jsem zaznamenal při obchůzce dne 26. února v <span class=\"clue\" data-clue-id=\"decoy_police_hour\">osmnáct hodin</span>. Byl umístěn ve výloze <span class=\"clue\" data-clue-id=\"decoy_german_books\">vedle knih v německém jazyce</span>. Text je jednoznačně pangermánského charakteru. Heslo Jeden národ — jedno právo se v té či oné podobě objevuje na letácích DNSAP. Fassbindera jsem vyzval k odstranění. Odmítl a prohlásil, že to je název knihy.",
+      "contradiction_keywords": [
+        "osmnact hodin",
+        "vedle knih",
+        "nazev knihy"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "fassbinder",
+      "speaker": "Heinrich Fassbinder, obžalovaný",
+      "text": "Jsem knihkupec třicet let. Prodávám knihy v němčině i češtině. Ten plakát je reklamní materiál od nakladatele — <span class=\"clue\" data-clue-id=\"clue_postal_delivery\">přišel poštou spolu s výtisky knihy</span>. Kniha je <span class=\"clue\" data-clue-id=\"clue_philosophy_claim\">filozofická esej o právech menšin v Evropě</span>. Není to politický leták. <span class=\"clue\" data-clue-id=\"decoy_no_party\">Nikdy jsem nebyl členem žádné politické strany</span>.",
+      "contradiction_keywords": [
+        "postou spolu s vytisky",
+        "filozoficka esej",
+        "prava mensin"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "sousedka",
+      "speaker": "Božena Králová, majitelka kloboučnictví vedle",
+      "text": "Pana Fassbindera znám léta. Slušný člověk, vždycky pozdraví česky. Ale ten plakát — to vypadalo jinak. Velká písmena, černé na bílém. <span class=\"clue\" data-clue-id=\"decoy_poster_appearance\">Jako ty letáky, co lepí po noci na zdi</span>. Zákaznice se mě ptaly, co to vedle vyvěsili. Jedné jsem řekla, že to je reklama na knihu. Ale sama jsem si tím jistá nebyla.",
+      "contradiction_keywords": [
+        "velka pismena",
+        "jako ty letaky",
+        "jista nebyla"
+      ],
+      "hidden_at_wisdom_below": 20
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "book_existence",
+      "description": "Fassbinder tvrdí, že plakát je reklamou na konkrétní knihu. Ale existuje ta kniha? A pokud ano — je opravdu filozofická esej, nebo politický pamflet?",
+      "involves": [
+        "fassbinder",
+        "straznik"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": "fassbinder"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "ideology_mismatch_strong",
+    "focus_attempts": {
+      "max": 3
+    },
+    "thematic_pairs": [],
+    "pairs": [
+      {
+        "pair_id": "ideology_mismatch_strong",
+        "a_id": "clue_philosophy_claim",
+        "b_id": "clue_publisher_nsdap",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "delivery_chain_medium",
+        "a_id": "clue_postal_delivery",
+        "b_id": "clue_konrad_sender",
+        "strength": "medium"
+      },
+      {
+        "pair_id": "visual_context_weak",
+        "a_id": "decoy_poster_appearance",
+        "b_id": "decoy_german_books",
+        "strength": "weak",
+        "soft_fail": true
+      }
+    ],
+    "decoys": [
+      "decoy_police_hour",
+      "decoy_german_books",
+      "decoy_no_party",
+      "decoy_poster_appearance"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 60,
+      "speed_upgrade_sec": 20,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 70,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 40,
+          "ids": [
+            "guilty_lenient",
+            "not_guilty_with_comment"
+          ]
+        },
+        {
+          "min": 70,
+          "ids": [
+            "insufficient_reinvestigate",
+            "insufficient_close"
+          ]
+        },
+        {
+          "min": 90,
+          "ids": [
+            "guilty_alternative"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "weak": {
+          "investigation_progress_delta": 10,
+          "narrative_lines": [
+            "Výloha jako obraz sám o sobě — velká písmena, sousedka váhá, strážník sahá po zápisníku.",
+            "Podobnost s politickým materiálem ještě nedokazuje totožnost. V roce 1931 ale platí, že dojem je polovina obžaloby.",
+            "Spis zatím neví, co hledat — ale ví, že to, co viselo ve výloze, nebyla obyčejná reklama."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 20,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "narrative_lines": [
+            "Zásilka z Lipska, odesílatel syn — to není obchodní rutina, to je linka vedoucí daleko od Celetné.",
+            "Fassbinder zásilku vysvětluje jako poštu; v celním záznamu ale odesílatel stojí v řádku důrazně — ne beze jména.",
+            "Spis se otočí: jde nejen o to, co viselo ve výloze, ale kdo to na Celetnou poslal a v jakém kontextu."
+          ]
+        },
+        "strong": {
+          "investigation_progress_delta": 30,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "guilty_alternative",
+            "not_guilty_with_comment"
+          ],
+          "narrative_lines": [
+            "Katalog řadí knihu k politické publicistice, výpověď k filozofii; úřední seznam k nakladateli s tím nejde srovnat, aniž by spis musel rozhodnout, kde je polopravda.",
+            "Fassbinder buď nevěděl, co prodává — nebo věděl lépe, než přiznal. Zákon mezi těmito dvěma možnostmi nerozlišuje tak snadno, jak by se mohlo zdát.",
+            "Spis se uzamkne kolem jediné otázky: kde přesně skončí nevědomost otce a kde začne odpovědnost knihkupce."
+          ]
+        }
+      },
+      "on_match": {
+        "investigation_progress_delta": 30,
+        "unlock_actions": [
+          "pool_inv_confrontation"
+        ],
+        "unlock_verdict_ids": [
+          "guilty_alternative",
+          "not_guilty_with_comment"
+        ]
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "fassbinder",
+      "target_label": "Heinrich Fassbinder, obžalovaný",
+      "reveals": "motivation",
+      "text": "Fassbinder mluví tiše, pečlivě. Můj syn Konrad studuje v Lipsku. Filozofii. Ta kniha je z jeho oboru. Poslal mi ji, ať ji vystavím. Chtěl jsem mu udělat radost — víte, jak to je, když syn o něco požádá. Nevěděl jsem, že text hesla... že to může vypadat politicky. Pro mě to byl název knihy. Nic víc. Odmlčí se. Moje žena byla Češka. Zemřela v třiadvacátém. Já tuhle zemi miluji. Obě její části.",
+      "cost": 1,
+      "trait_effects": {
+        "vina": 1
+      }
+    },
+    "records": {
+      "source": "Katalog knihkupeckého spolku a celní záznamy",
+      "reveals": "facts",
+      "text": "Kniha Ein Volk — Ein Recht — Eine Zukunft autora Ernsta Wieganda, vydaná nakladatelstvím Volk und Geist, Berlin 1930. Katalogizována jako politická publicistika. Nakladatelství Volk und Geist je v červenci 1930 uvedeno v <span class=\"clue\" data-clue-id=\"clue_publisher_nsdap\">seznamu nakladatelství blízkých NSDAP</span> zpracovaném zpravodajským oddílem Ministerstva vnitra. Celní záznam: zásilka 15 výtisků přijatá na adresu knihkupectví Fassbinder dne 20. února 1931. Odesílatel: <span class=\"clue\" data-clue-id=\"clue_konrad_sender\">Konrad Fassbinder, Lipsko</span>.",
+      "cost": 1,
+      "unlocks_contradiction": "book_existence"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "variants": {
+        "lid_high": "Fassbinder je neškodný starý pán. Ale v Praze je atmosféra napjatá — Němci se sdružují, Češi jsou nervózní. Policie hledá záminky. Toho chlapa chytili, protože potřebovali někoho chytit.",
+        "moc_high": "Ty knihy z Berlína nejsou náhoda. To je systém — posílají materiály přes soukromé osoby, aby se vyhnuli cenzuře. Fassbinder je buď naivní, nebo lže. Obojí je nebezpečné.",
+        "default": "Fassbinder? Slušný, ale naivní. Syn v Lipsku — to je dnes podezřelé samo o sobě. Ale jestli ten chlap chtěl svrhnout republiku plakátem ve výloze, tak je to ten nejhloupější spiklenec v historii."
+      }
+    },
+    "confrontation": {
+      "target": "fassbinder",
+      "target_label": "Heinrich Fassbinder, obžalovaný",
+      "requires_contradiction": "book_existence",
+      "requires_courage": 60,
+      "cost": 2,
+      "prompt": "Pane Fassbindere, nakladatelství Volk und Geist je evidováno jako blízké NSDAP. Kniha je klasifikována jako politická publicistika, ne filozofická esej. Věděl jste to?",
+      "success": {
+        "text": "Fassbinder zbledne. Sundá brýle. Nasadí je zpět. Konrad mi... Konrad mi řekl, že je to filozofie. Já tu knihu nečetl. Nečetl jsem ji, pane doktore. Vím jak to zní. Ale je to pravda — já čtu česky lépe než německy, moje žena... Hlas mu selže. Konrad se změnil. V těch dopisech z Lipska. Já vím, že se změnil. Ale je to můj syn.",
+        "reveals": "Fassbinder nevěděl o politickém pozadí knihy. Ale jeho syn Konrad v Lipsku se radikalizuje. Fassbinder je nevinný prostředník — ale materiál, který šířil, je skutečně protistátní."
+      },
+      "failure": {
+        "text": "Fassbinder ztvrdne. Jsem knihkupec. Prodávám knihy. Nebudu se zodpovídat za to, co v nich někdo napíše. To byste musel zavřít každé knihkupectví v Praze.",
+        "locks_testimony": "fassbinder"
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "maximum": {
+          "label": "3 měsíce vězení, uzavření provozovny",
+          "description": "Soud odsuzuje obžalovaného Heinricha Fassbindera k trestu odnětí svobody v trvání tří měsíců; knihkupectví na Celetné ulici se uzavírá neprodleně. Pro Fassbindera to znamená konec podniku, který vedl třicet let; syn v Lipsku zůstane bez zprávy — a bez vědomí, co způsobil.",
+          "available_unless": {
+            "vina_above": 80
+          },
+          "effects": {
+            "integrita": -2,
+            "odvaha": 0,
+            "moudrost": 0,
+            "vina": 4,
+            "nadeje": -4,
+            "moc": 8,
+            "lid": -6,
+            "kapital": 0,
+            "finance": 10
+          }
+        },
+        "standard": {
+          "label": "Pokuta 150 Kčs, zabavení výtisků",
+          "description": "Obžalovanému se ukládá pokuta sto padesát korun a veškeré výtisky sporného titulu se zabavují. Fassbinder platí cenu za balík, který přijal bez otázek — syn v Lipsku, který jej odeslal, nezaplatí nic.",
+          "effects": {
+            "integrita": 0,
+            "odvaha": 0,
+            "moudrost": 0,
+            "vina": 2,
+            "nadeje": -1,
+            "moc": 4,
+            "lid": -3,
+            "kapital": 0,
+            "finance": 10
+          }
+        },
+        "lenient": {
+          "label": "Zabavení výtisků, důtka",
+          "description": "Výtisky se zabavují; obžalovanému se uděluje důtka za nedbalé nakládání s tiskovinami pochybného původu. Provoz knihkupectví může pokračovat; výloha na Celetné bude příště prázdnější — a opatrnější.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 1,
+            "odvaha": 1,
+            "moudrost": 0,
+            "vina": 0,
+            "nadeje": 1,
+            "moc": -2,
+            "lid": 2,
+            "kapital": 0,
+            "finance": 10
+          }
+        },
+        "alternative": {
+          "label": "Zabavení výtisků, Fassbinder předá informace policii",
+          "description": "Výtisky se zabavují; obžalovaný se zavazuje poskytnout orgánům státní bezpečnosti údaje o distribuční síti nakladatelství Volk und Geist. Stát získá výzvědné souvislosti; Fassbinder tím může vyvrátit, že by šlo o vědomou kriminální spolupráci, nikoli jen o odeslaný balík. Inkoust: +1 do dalšího pracovního dne.",
+          "requires_investigation": 2,
+          "requires_contradiction": true,
+          "requires": {
+            "moudrost_min": 60
+          },
+          "effects": {
+            "integrita": 2,
+            "odvaha": 2,
+            "moudrost": 3,
+            "vina": -1,
+            "nadeje": 1,
+            "moc": 3,
+            "lid": 0,
+            "kapital": 0,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Formální zproštění",
+          "description": "Pro neprokázání úmyslu soud zprošťuje obžalovaného Heinricha Fassbindera obžaloby v plném rozsahu. Knihkupectví na Celetné může dál fungovat. Fassbinder opouští síň jako volný občan. Strážmistr Horyna, který plakát u výlohy zastavil, odchází z jednání neuspokojen: trestu se Fassbinder nedočká. Inkoust: +1 do dalšího pracovního dne.",
+          "effects": {
+            "integrita": 3,
+            "odvaha": 4,
+            "moudrost": 0,
+            "vina": -1,
+            "nadeje": 2,
+            "moc": -8,
+            "lid": 5,
+            "kapital": 0,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "with_comment": {
+          "label": "Zproštění s komentářem o přehnaném výkladu zákona",
+          "description": "Soud zprošťuje obžalovaného; k výroku připojuje komentář, že zákon na ochranu republiky má bránit skutečné hrozbě řádu, ne stíhat knihkupce, jimž nebyl důkazně prokázán úmysl. Fassbinder slyší v soudní síně uznání v češtině — naléhavější než cokoli od doby, kdy žila jeho žena. Inkoust: +1 do dalšího pracovního dne.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 5,
+            "odvaha": 6,
+            "moudrost": 2,
+            "vina": -2,
+            "nadeje": 3,
+            "moc": -12,
+            "lid": 8,
+            "kapital": 0,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "label": "Nedostatek důkazů",
+      "requires_investigation": 2,
+      "requires": {
+        "moudrost_min": 40
+      },
+      "options": {
+        "reinvestigate": {
+          "label": "Vrátit k došetření — prověřit nakladatelství a syna",
+          "returns_in_days": 5,
+          "effects": {
+            "moudrost": 2,
+            "finance": 0
+          }
+        },
+        "close": {
+          "label": "Uzavřít",
+          "effects": {
+            "moudrost": 1,
+            "vina": 1,
+            "finance": 5
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_maximum": "Fassbinder stojí. Nehýbe se. Strážník mu sáhne na rameno. Pojďte. Fassbinder se otočí ke dveřím. Na chodbě nikdo nečeká. Syn je v Lipsku. Žena je mrtvá. Knihkupectví na Celetné bude zítra zavřené. Poprvé za třicet let.",
+    "guilty_standard": "Fassbinder platí pokutu. Sto padesát korun. Výtisky zabaveny. Na chodbě se zastaví. Otočí se zpět: Pane doktore — mohu si nechat jeden výtisk? Pro syna. Aby věděl, co způsobil. Ben neodpoví.",
+    "guilty_lenient": "Fassbinder přikývne. Důtka. Mohl dopadnout hůř. Venku se rozhlédne po Celetné ulici. Výloha je prázdná. Zítra tam dá české klasiky. Němčinu schová dozadu.",
+    "guilty_alternative": "Fassbinder sedí naproti inspektorovi z Ministerstva vnitra. Diktuje adresy. Jména. Nakladatelství v Berlíně, v Drážďanech, v Lipsku. Ruce se mu třesou. Zapisovatelka si všimne — ale nepřestane psát.",
+    "not_guilty_formal": "Fassbinder vstane. Brýle mu sklouznou. Chytí je. Děkuji, řekne česky. Čistě, bez přízvuku. Třicet let mezi Čechy. Strážmistr Horyna odchází beze slova.",
+    "not_guilty_with_comment": "Ben čte komentář. O zákonech, které mají chránit, ne pronásledovat. O knihkupcích a plakátech. O strachu, který dělá z reklamy zločin."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "guilty_maximum",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "V novinách krátká zpráva: Německý knihkupec odsouzen za protistátní činnost. Pod tím komentář: Republika se brání. Další den: Protest německých obchodníků na Celetné. Policie zasahuje."
+    },
+    {
+      "trigger": "not_guilty",
+      "delay_days": 4,
+      "type": "letter",
+      "text": "Dopis od Vlčka. Krátký, suše zdvořilý: Zaznamenal jsem rozsudek ve věci Fassbinder. Zákon na ochranu republiky je pilířem naší demokracie. Spoléhám na Vaši soudnost v budoucích případech."
+    }
+  ]
+}

@@ -1,0 +1,440 @@
+{
+  "id": "pool_a1_stara_rana",
+  "slot": "pool",
+  "type": "moral_dilemma",
+  "color": "#2C4A7C",
+  "available_days": [
+    7,
+    8,
+    9,
+    10
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "base_weight": 0.9,
+    "vina_above_60": 1.3,
+    "nadeje_below_40": 1.4,
+    "lid_above_60": 1.2
+  },
+  "encyclopedia_links": [
+    "zizkov",
+    "socialni_pece",
+    "postaveni_zen"
+  ],
+  "title": "Stará rána",
+  "case_number": "Sp. zn. 79/1931",
+  "defendant": {
+    "name": "Marie Hofrová",
+    "age": 44,
+    "occupation": "v domácnosti",
+    "detail": "vdaná, dcera Jitka (16 let), manžel Václav Hofr (48), dělník, Žižkov"
+  },
+  "charge": "Těžké ublížení na zdraví dle §152 trestního zákona — způsobení trojité zlomeniny předloktí manželu",
+  "description": "Marie Hofrová je obžalována z těžkého ublížení na zdraví svému manželi Václavu Hofrovi dne 20. února 1931 v jejich bytě na Žižkově. Václav Hofr byl nalezen na úpatí schodiště s trojitou zlomeninou pravého předloktí. Vypovídá, že ho manželka srazila ze schodů. Marie Hofrová tvrdí, že manžel upadl sám po příchodu z hospody. Na místo přivolala policii jejich šestnáctiletá dcera Jitka.",
+  "testimonies": [
+    {
+      "id": "hofr",
+      "speaker": "Václav Hofr, poškozený, 48 let, dělník",
+      "text": "Přišel jsem domů. Měl jsem tak <span class=\"clue\" data-clue-id=\"decoy_dve_sklenky\">dvě sklenky, nic přepjatého</span>. Stál jsem na schodišti a ona mě strčila. <span class=\"clue\" data-clue-id=\"decoy_zezadu\">Zezadu. Bez varování.</span> Ztratil jsem rovnováhu a letěl dolů. Zlomil jsem si ruku o zábradlí. Ona tam stála nahoře a dívala se. Chci, aby byla potrestána. Je nebezpečná.",
+      "contradiction_keywords": [
+        "dvě sklenky",
+        "zezadu",
+        "dívala se"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "hofrova",
+      "speaker": "Marie Hofrová, obžalovaná",
+      "text": "Václav přišel hlučný. Křičel. Pak šel po schodech nahoru, zakopnul a spadl. Já stála v chodbě <span class=\"clue\" data-clue-id=\"decoy_za_rohem\">u ložnice — to je za schodištěm, za rohem</span> — a nic jsem mu neudělala. Jitka se lekla a zavolala policii. <span class=\"clue\" data-clue-id=\"decoy_hodny_kdyz_nepije\">Václav je hodný člověk, když nepije.</span> To víte, jak to někdy bývá.",
+      "contradiction_keywords": [
+        "u ložnice",
+        "za schodištěm",
+        "hodný člověk"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "jitka",
+      "speaker": "Jitka Hofrová, dcera obžalované, 16 let",
+      "text": "Slyšela jsem, jak přišel otec. Pak jsem slyšela, jak se hádají. Pak jsem slyšela — <span class=\"clue\" data-clue-id=\"clue_praskot\">něco prasklo</span>. Pak pád. Vyběhla jsem na chodbu. Otec ležel dole. <span class=\"clue\" data-clue-id=\"decoy_matka_plakala\">Matka stála nahoře. Plakala.</span> Co se přesně stalo jsem neviděla, nebyla jsem u toho. Zavolala jsem policii, protože otec nereagoval.",
+      "contradiction_keywords": [
+        "něco prasklo",
+        "před pádem",
+        "matka plakala"
+      ],
+      "hidden_at_wisdom_below": 20
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "praskot_pred_padem",
+      "description": "Jitka slyšela 'něco prasknout' PŘED pádem. Prostý pád ze schodů nevydává zvuky před nárazem. Prasknout mohly klouby nebo kosti — jiný mechanismus předcházející pádu. Co se na schodišti skutečně stalo?",
+      "involves": [
+        "jitka",
+        "hofrova"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": "jitka"
+    },
+    {
+      "id": "dvě_sklenky",
+      "description": "Václav Hofr tvrdí 'dvě sklenky'. Lékařská zpráva zaznamenala hladinu alkoholu v krvi. Čísla a slova se neshodují.",
+      "involves": [
+        "hofr"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": null
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "pattern_violence_strong",
+    "focus_attempts": {
+      "max": 3
+    },
+    "thematic_pairs": [],
+    "pairs": [
+      {
+        "pair_id": "pattern_violence_strong",
+        "a_id": "clue_stara_zlomenina",
+        "b_id": "clue_policejni_vyjezdy",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "alcohol_mechanism_medium",
+        "a_id": "clue_alkohol_krev",
+        "b_id": "clue_praskot",
+        "strength": "medium"
+      },
+      {
+        "pair_id": "accounts_mismatch_weak",
+        "a_id": "decoy_dve_sklenky",
+        "b_id": "decoy_za_rohem",
+        "strength": "weak",
+        "soft_fail": true
+      }
+    ],
+    "decoys": [
+      "decoy_dve_sklenky",
+      "decoy_zezadu",
+      "decoy_za_rohem",
+      "decoy_hodny_kdyz_nepije",
+      "decoy_matka_plakala"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 60,
+      "speed_upgrade_sec": 20,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 70,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 40,
+          "ids": [
+            "guilty_lenient",
+            "not_guilty_with_comment"
+          ]
+        },
+        {
+          "min": 70,
+          "ids": [
+            "insufficient_reinvestigate",
+            "insufficient_close"
+          ]
+        },
+        {
+          "min": 90,
+          "ids": [
+            "guilty_alternative"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "weak": {
+          "investigation_progress_delta": 10,
+          "narrative_lines": [
+            "Václav lže o skleničkách, nebo si to opravdu nepamatuje. Marie tvrdí polohu za rohem. Ani jedno pádu nevysvětlí.",
+            "Dvě verze téhož okamžiku se vylučují — ale bez třetího faktu spis nemá kde stát.",
+            "Hledá se bod, kde jedna z verzí fyzicky nemůže obstát. Zatím ho spis nemá."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 20,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "narrative_lines": [
+            "Přes dva a půl promile není 'trochu přepjatý' — je to člověk, který ztrácí rovnováhu i bez cizí pomoci.",
+            "Jitka slyšela prasknutí před pádem. Padající muž nevydává zvuky dopředu. Jiný mechanismus pádu předcházel.",
+            "Spis se otočí k Mariiným rukám: co se stalo bezprostředně před tím, než Václav ztratil rovnováhu."
+          ]
+        },
+        "strong": {
+          "investigation_progress_delta": 30,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "guilty_alternative",
+            "not_guilty_with_comment"
+          ],
+          "narrative_lines": [
+            "Hojící se zlomenina zápěstí, léčená svépomocí. Dva policejní výjezdy — oba bez svědectví poškozené.",
+            "Záznamy z roku 1928 a 1930 říkají víc, než říkají dnešní výpovědi: Marie Hofrová jednou nevystoupila, nebo dvakrát.",
+            "Spis přestane být o tom, co se stalo 20. února. Stane se o tom, co se dělo roky předtím — a co zákon dosud nezaznamenal."
+          ]
+        }
+      },
+      "on_match": {
+        "investigation_progress_delta": 30,
+        "unlock_actions": [
+          "pool_inv_confrontation"
+        ],
+        "unlock_verdict_ids": [
+          "guilty_alternative",
+          "not_guilty_with_comment"
+        ]
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "hofrova",
+      "target_label": "Marie Hofrová, obžalovaná",
+      "reveals": "motivation",
+      "text": "Marie Hofrová sedí se sepjatýma rukama. Dlouho mlčí. Pak: Pane doktore, Václav je takový, když pije. Byl takový vždy. Já to vím a Jitka to ví. Toho večera přišel a začal. O penězích, o tom, že jsem k ničemu. Chytil mě za zápěstí. Já jsem se vytrhla. On ztratil rovnováhu. To je celá pravda. Ukáže levé zápěstí — podlitina v podobě čtyř prstů, stará nanejvýš tři dny. Tiše: Václav je dobrý člověk. Jen ty sklenky.",
+      "cost": 1,
+      "trait_effects": {
+        "vina": 3,
+        "nadeje": -2
+      }
+    },
+    "records": {
+      "source": "Lékařská zpráva MUDr. Procházky a policejní záznamy z adresy",
+      "reveals": "facts",
+      "text": "Lékařská zpráva: Václav Hofr, 48 let — trojitá zlomenina pravého předloktí, kompatibilní s pádem. <span class=\"clue\" data-clue-id=\"clue_alkohol_krev\">Hladina alkoholu v krvi: 2,6 promile (přibližně šest až osm decilitrů čistého lihu — nikoli dvě sklenky).</span> Doplňkový nález: <span class=\"clue\" data-clue-id=\"clue_stara_zlomenina\">hojící se zlomenina levého zápěstí Marie Hofrové, stará přibližně čtyři až osm týdnů, léčena svépomocí.</span> Policejní záznamy: Adresa Hofr, Žižkov — <span class=\"clue\" data-clue-id=\"clue_policejni_vyjezdy\">výjezdy 14. března 1928 a 7. listopadu 1930. Oba případy uzavřeny bez trestního oznámení — poškozená odmítla vypovídat.</span>",
+      "cost": 1,
+      "unlocks_contradiction": "dvě_sklenky"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "variants": {
+        "lid_high": "Na Žižkově to ví každý v domě. Slyší se to přes zdi. Policie přijela dvakrát a dvakrát odjela. Zákon říká, že muž je pánem domu. Ona nemá kam jít, dcera nemá kam jít. A teď ji tahají k soudu, protože se vytrhla.",
+        "moc_high": "Rodina je základ řádu. Pokud žena může shodit manžela ze schodů a být zprostěna viny, kam to vede? Zákon existuje proto, aby chránil instituce — ne aby omlouval výbuchy temperamentu.",
+        "default": "Hofrovi jsou Hofrovi. Starý příběh. Alkohol, křik, občas něco praskne. Sousedé říkají, že Marie nikdy nikomu neřekla ani slovo. Teď to řekly schody."
+      }
+    },
+    "confrontation": {
+      "target": "jitka",
+      "target_label": "Jitka Hofrová, dcera",
+      "requires_contradiction": "praskot_pred_padem",
+      "requires_courage": 60,
+      "cost": 2,
+      "prompt": "Jitko, slyšela jsi 'něco prasknout' ještě před tím, než otec spadl. Pád ze schodů takový zvuk nevydává předem. Co přesně jsi slyšela a v jakém pořadí?",
+      "success": {
+        "text": "Jitka se dívá na ruce. Na kolena. Pak: Otec ji chytil za zápěstí. Já ten zvuk znám od malička — to není dřevo ani nábytek. Je to jiné. Pak ona vykřikla. Pak on spadl. Dívka se nevzlykne, ale hlas je tenký jako papír. Zavolala jsem policii, protože jsem se bála, že ho zabila. Ne… Odmlčí se. Bála jsem se, že ho nezabila dost.",
+        "reveals": "Václav Hofr chytil Marie za zápěstí — stará zlomenina naznačuje, že to není poprvé. Marie se vytrhla. Hofr ztratil rovnováhu. Právní otázka zní: je vytržení z násilného úchopu obranné jednání, nebo útok?"
+      },
+      "failure": {
+        "text": "Jitka zavře oči. Nepamatuji si přesně. Bylo to rychlé. Opravdu nevím, co bylo napřed. Hlas je plochý. Naučený.",
+        "locks_testimony": "jitka"
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "maximum": {
+          "label": "6 měsíců podmíněně, náhrada léčebných výloh",
+          "description": "Soud uznává obžalovanou Marie Hofrovou vinnou těžkým ublížením na zdraví; ukládá se podmíněný trest šesti měsíců a povinná náhrada léčebných výloh. Jitka Hofrová se vrátí do bytu, kde Václav čeká se sádrou na ruce — zákon tuto situaci nedokáže sám od sebe změnit.",
+          "available_unless": {
+            "vina_above": 80
+          },
+          "effects": {
+            "integrita": -1,
+            "odvaha": 0,
+            "moudrost": 0,
+            "vina": 5,
+            "nadeje": -4,
+            "moc": 2,
+            "lid": -8,
+            "kapital": 0,
+            "finance": 10
+          }
+        },
+        "standard": {
+          "label": "Pokuta 60 Kčs, podmíněný dohled",
+          "description": "Soud uznává obžalovanou vinnou s přihlédnutím k polehčujícím okolnostem; ukládá se pokuta 60 Kčs a podmíněný dohled. Václav Hofr se vrátí domů. Marie pokutu uhradí ze společných peněz manželů. Dům na Žižkově zůstane stejný.",
+          "effects": {
+            "integrita": 0,
+            "odvaha": 0,
+            "moudrost": 0,
+            "vina": 3,
+            "nadeje": -2,
+            "moc": 1,
+            "lid": -4,
+            "kapital": 0,
+            "finance": 10
+          }
+        },
+        "lenient": {
+          "label": "Podmíněné zastavení, sociální dohled rodiny",
+          "description": "Soud shledává, že obranné jednání nelze vyloučit, a podmíněně zastavuje trestní řízení s uložením sociálního dohledu; primárním nástrojem musí být péče, nikoli trest. Jitka Hofrová bude mít poprvé adresu a jméno, kde může požádat o pomoc. Inkoust: +1 do dalšího pracovního dne.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 2,
+            "odvaha": 2,
+            "moudrost": 2,
+            "vina": 0,
+            "nadeje": 2,
+            "moc": -1,
+            "lid": 5,
+            "kapital": 0,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "alternative": {
+          "label": "Přerušení řízení — vzájemné ublížení, obě strany předány sociálním službám",
+          "description": "Soud přerušuje trestní řízení a věc přerámovává jako rodinnou krizi vyžadující zásah sociálních služeb; obě strany se předávají příslušné péči bez odsouzení. Marie ani Václav Hofr nejsou potrestáni trestem odnětí svobody — ale Jitka dostane sociální pracovnici, která přijde i příště. Precedent. Inkoust: +2 do dalšího pracovního dne.",
+          "requires_investigation": 2,
+          "requires_contradiction": true,
+          "requires": {
+            "moudrost_min": 60
+          },
+          "effects": {
+            "integrita": 5,
+            "odvaha": 4,
+            "moudrost": 4,
+            "vina": -2,
+            "nadeje": 4,
+            "moc": -2,
+            "lid": 8,
+            "kapital": 0,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zproštění — úmyslné zavinění neprokázáno",
+          "description": "Soud shledává, že úmyslné zavinění obžalované nebylo prokázáno; mechanismus pádu je kompatibilní s neúmyslnou příčinou a pochybnost se vykládá ve prospěch obžalované. Václav Hofr odchází bez odškodnění. Marie Hofrová odchází s pravou rukou volnou — levou drží jinak než ráno.",
+          "effects": {
+            "integrita": 3,
+            "odvaha": 3,
+            "moudrost": 0,
+            "vina": -1,
+            "nadeje": 3,
+            "moc": -3,
+            "lid": 6,
+            "kapital": 0,
+            "finance": 10
+          }
+        },
+        "with_comment": {
+          "label": "Zproštění s komentářem k opakovaným policejním výjezdům",
+          "description": "Soud zprošťuje obžalovanou obžaloby a připojuje formální komentář k policejním výjezdům z let 1928 a 1930; doporučuje přezkum postupu orgánů v případech, kdy poškozená odmítá vypovídat. Jitka Hofrová stojí vzpřímeně a dívá se na Bena — jako by čekala, zda slova budou mít důsledky. Inkoust: +1 do dalšího pracovního dne.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 5,
+            "odvaha": 6,
+            "moudrost": 3,
+            "vina": -2,
+            "nadeje": 4,
+            "moc": -5,
+            "lid": 9,
+            "kapital": 0,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "label": "Nedostatek důkazů",
+      "requires_investigation": 2,
+      "requires": {
+        "moudrost_min": 40
+      },
+      "options": {
+        "reinvestigate": {
+          "label": "Vrátit k došetření — výslech sousedů z domu",
+          "returns_in_days": 4,
+          "effects": {
+            "moudrost": 2,
+            "finance": 0
+          }
+        },
+        "close": {
+          "label": "Uzavřít — rodina nepožaduje pokračování",
+          "effects": {
+            "moudrost": 1,
+            "vina": 2,
+            "nadeje": -1,
+            "finance": 5
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_maximum": "Marie Hofrová vstane. Jitka na ni čeká u dveří — nepřišla s otcem, přišla sama. Matka a dcera odcházejí spolu chodbou. Václav Hofr sedí na lavici s ramenem v sádře. Nikdo k němu nejde.",
+    "guilty_standard": "Šedesát korun. Marie Hofrová si zatne rty. Levé zápěstí drží zvláštně — stará rána. Stražmistr ji doprovodí ke dveřím. Václav Hofr čeká venku na chodbě. Vidí, jak vychází. Nic neřekne. Ani ona.",
+    "guilty_lenient": "Sociální dohled. Marie Hofrová přikývne. Jitka stojí u okna a dívá se ven na Prahu. Václav Hofr odchází první. Zápěstí má v sádře. Chůze mírně nestabilní. Tři schodky dolů zvládne bez pomoci.",
+    "guilty_alternative": "Sociální pracovnice si zapisuje adresu. Marie a Václav Hofr sedí na opačných koncích lavice a nezdvíhají oči. Jitka stojí mezi nimi jako zeď. Nikdo ji o to neprosil. Sama se tam postavila.",
+    "not_guilty_formal": "Václav Hofr vstane a odejde bez slova. Marie Hofrová zůstane sedět. Jitka přistoupí k matce a vezme ji za ruku — za pravou, ne za levou. Zapisovatelka to vidí. Ben to vidí. Nikdo nic neřekne.",
+    "not_guilty_with_comment": "Ben čte komentář. O policejních výjezdech, které nic nevyřešily. O zákoně, který chrání domácnost, ale ne lidi v ní. Marie Hofrová poslouchá se skloněnou hlavou. Jitka stojí vzpřímeně a dívá se přímo na Bena. Jako by čekala, zda to myslí vážně."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "guilty_maximum",
+      "delay_days": 3,
+      "type": "fragment",
+      "text": "Švejda u vchodu: Ta žena ze Žižkova, pane doktore. Prý se manžel vrátil domů ten stejný den. Sádra na ruce a všechno. Švejda to říká tiše, skoro pro sebe."
+    },
+    {
+      "trigger": "not_guilty",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "Na stole leží stížnost. Václav Hofr, Žižkov — žádá o odvolání rozsudku. Přiložen lékařský posudek o trojité zlomenině. Bez dalšího komentáře. Zapisovatelka Kovářová ji položí na Benův stůl a odejde."
+    },
+    {
+      "trigger": "guilty_alternative",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "Zpráva sociální pracovnice: Rodina Hofr, Žižkov — první návštěva proběhla. Pan Hofr nebyl přítomen. Paní Hofrová spolupracuje. Dcera Jitka — šikovná dívka. Ptala se, jestli může sociální pracovnici navštívit sama."
+    }
+  ]
+}

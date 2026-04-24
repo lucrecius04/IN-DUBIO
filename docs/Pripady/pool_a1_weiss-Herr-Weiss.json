@@ -1,0 +1,427 @@
+{
+  "id": "pool_a1_weiss",
+  "slot": "pool",
+  "type": "routine",
+  "color": "#C4A35A",
+  "available_days": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "base_weight": 0.8,
+    "moc_above_60": 1.3,
+    "integrita_above_70": 1.2,
+    "odvaha_below_40": 0.6
+  },
+  "encyclopedia_links": [
+    "zakon_na_ochranu_republiky",
+    "nemecka_mensina",
+    "nsdap",
+    "uprchlici"
+  ],
+  "title": "Herr Weiss",
+  "case_number": "Sp. zn. 83/1931",
+  "defendant": {
+    "name": "Max Schwarz, alias Max Weiss",
+    "age": 36,
+    "occupation": "bez stálého zaměstnání, dříve účetní",
+    "detail": "bez stálého bydliště v ČSR; ubytován od 4. února 1931 v penzionu Na příkopě; přízvuk: německý; tvrdí, že pochází z Berlína"
+  },
+  "charge": "Používání padělaných dokladů totožnosti dle §321 trestního zákona",
+  "description": "Muž označující se jako Max Weiss byl zadržen 22. února 1931 na Masarykově nádraží v Praze při rutinní kontrole přistěhovaleckých dokumentů. Předložil pas na jméno Max Weiss, narozený 14. března 1895 v Liberci. V jeho aktovce byl nalezen druhý doklad — průkaz pojišťovacího spolku na jméno Max Schwarz, narozený 14. března 1895 v Berlíně. <span class=\"clue\" data-clue-id=\"datum_narozeni_oba_doklady\">Obě rodná data shodná</span>. Pas Weiss je podle odborného posudku padělek.",
+  "testimonies": [
+    {
+      "id": "inspektor_novak",
+      "speaker": "Inspektor Jiří Novák, cizinecké oddělení Státní policie Praha",
+      "text": "Zadrželi jsme ho při standardní přehlídce vlakového nádraží. Choval se nervózně — <span class=\"clue\" data-clue-id=\"decoy_weiss_sledovani_policistu\">příliš pozorně sledoval pohyby uniformovaných</span>. To samo o sobě nestačí, ale upoutalo naši pozornost. Předložil pas Weiss — na první pohled v pořádku. Pak jsem si všiml aktovky. <span class=\"clue\" data-clue-id=\"odmitnuta_prohlidka\">Požádal jsem o souhlas s prohlídkou, odmítl</span>. Provedli jsme ji z moci úřední. <span class=\"clue\" data-clue-id=\"oba_dokumenty_aktovka\">Pas je padělek — to potvrdil znalec. Druhý doklad je pravý.</span> Skutečné jméno je Schwarz.",
+      "contradiction_keywords": [
+        "sledoval pohyby uniformovaných",
+        "odmítl souhlas",
+        "na první pohled v pořádku"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "schwarz",
+      "speaker": "Max Schwarz, obžalovaný",
+      "text": "Schwarz je moje jméno. Pas na Weisse jsem koupil v Berlíně před odjezdem — <span class=\"clue\" data-clue-id=\"decoy_weiss_sto_marek\">za sto marek</span> od člověka, jehož jméno neznám. Vím, že to bylo nezákonné. Ale kdybych cestoval pod svým jménem, nepustili by mě přes hranici. V Německu jsem ztratil zaměstnání v srpnu — firma, kde jsem pracoval, dostala nový vedoucí. Ten vedoucí byl explicitní, proč nepotřebuje lidi jako já. Jinak se nevyjádří. Dívá se na ruce.",
+      "contradiction_keywords": [
+        "za sto marek",
+        "kdybych cestoval pod svým jménem",
+        "lidi jako já"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "hosinska",
+      "speaker": "Božena Hošinská, majitelka penzionu Na příkopě, 62 let",
+      "text": "Pan Weiss — teď vím, že Schwarz — bydlel u mě osmnáct dní. Tichý, slušný, <span class=\"clue\" data-clue-id=\"decoy_weiss_zaplatil_predem\">zaplatil předem</span>. Neobtěžoval. Jednou v noci, bylo to kolem druhé, <span class=\"clue\" data-clue-id=\"decoy_weiss_nocni_plac\">jsem slyšela skrz zeď — pláč</span>. Myslela jsem, že se mi zdálo. Ráno byl jako vždy — zdvořilý, popřál dobré ráno, nesnídal. Měl u sebe jen jeden kufřík a aktovku. V aktovce nosil knihu — viděla jsem ji jednou, když hledal doklady. Stará, opotřebovaná. Uvnitř na předsádce bylo napsáno něco německy.",
+      "contradiction_keywords": [
+        "slyšela pláč",
+        "stará kniha",
+        "předsádka"
+      ],
+      "hidden_at_wisdom_below": 20
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "dvojite_doklady",
+      "description": "Schwarz měl v aktovce oba doklady — pravý i padělaný. Zkušený falzifikátor by pravý doklad zničil nebo nezpůsobně uschoval. Nosit oba v jedné aktovce je amatérská chyba, nebo vědomé zachování vlastní identity.",
+      "involves": [
+        "schwarz",
+        "inspektor_novak"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": "schwarz"
+    },
+    {
+      "id": "duvod_nervozity",
+      "description": "Inspektor říká, že Schwarz sledoval pohyby uniformovaných — ale odmítl prohlídku aktovky. Člověk, který se chce vyhnout odhalení, by spolupracoval. Člověk, který se bojí uniformovaných z jiného důvodu, by odmítl.",
+      "involves": [
+        "schwarz",
+        "inspektor_novak"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": null
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "weiss_aktovka_rejstrik_strong",
+    "focus_attempts": {
+      "max": 3
+    },
+    "thematic_pairs": [],
+    "pairs": [
+      {
+        "pair_id": "weiss_aktovka_rejstrik_strong",
+        "a_id": "oba_dokumenty_aktovka",
+        "b_id": "rejstrik_berlin_mitte_schwarz",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "weiss_kniha_rejstrik_medium",
+        "a_id": "venovani_chanuka_1922",
+        "b_id": "rejstrik_berlin_mitte_schwarz",
+        "strength": "medium"
+      },
+      {
+        "pair_id": "weiss_nervozita_datum_slaby",
+        "a_id": "odmitnuta_prohlidka",
+        "b_id": "datum_narozeni_oba_doklady",
+        "strength": "weak",
+        "soft_fail": true,
+        "soft_fail_message": "Chování na nástupišti a shodné datum na obou papírech k sobě patří, ale ještě nesvazují oficiální zázemí v Berlíně s tím, co se našlo v aktovce v jediném okamžiku."
+      }
+    ],
+    "decoys": [
+      "decoy_weiss_sledovani_policistu",
+      "decoy_weiss_sto_marek",
+      "decoy_weiss_zaplatil_predem",
+      "decoy_weiss_nocni_plac",
+      "decoy_weiss_pas_hranice"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 60,
+      "speed_upgrade_sec": 20,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 70,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 40,
+          "ids": [
+            "guilty_lenient",
+            "not_guilty_with_comment"
+          ]
+        },
+        {
+          "min": 70,
+          "ids": [
+            "insufficient_reinvestigate",
+            "insufficient_close"
+          ]
+        },
+        {
+          "min": 90,
+          "ids": [
+            "guilty_alternative"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "weak": {
+          "investigation_progress_delta": 10,
+          "narrative_lines": [
+            "Nervozita na nástupišti a shodné datum na obou dokladech — to jsou fakta. Spis říká: byl zde, věděl, co nese.",
+            "Odmítnutí prohlídky nezní jako sebejistota. Zní jako strach z toho, co se ukáže — nebo z toho, kdo se ptá.",
+            "Jeden člověk, dvě jména, stejné narozeniny. Záměr je zřejmý. Důvod zatím ne."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 20,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "narrative_lines": [
+            "Věnování z roku 1922 a berlínský rejstřík mluví jedním jazykem: Schwarz pocházel z Berlína, ne z Liberce. Pas lhal o místě, ne o člověku.",
+            "Dvacet let u Hartmann & Söhne, registrace zrušena v prosinci. Kniha od táty ho přežila o celý jeden stát.",
+            "V Praze se nepřihlásil nikde — ani u židovské obce. Přišel, aniž by chtěl být nalezen. To není lhostejnost. To je opatrnost."
+          ]
+        },
+        "strong": {
+          "investigation_progress_delta": 30,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "guilty_alternative",
+            "not_guilty_with_comment"
+          ],
+          "narrative_lines": [
+            "Oba doklady v aktovce najednou — a berlínský rejstřík to potvrzuje: Schwarz existoval, byl zaměstnán, byl evidován. Weiss byl jméno na papíře.",
+            "Zkušený podvodník pravý doklad odstraní. Schwarz ho neodstranil. Potřeboval ho mít — jako doklad, kdo je.",
+            "Zachovaný průkaz. Zachovaná kniha. Zachované jméno v aktovce, která se otevřela na nástupišti. Spis ukazuje na člověka, který neprchal před sebou."
+          ]
+        }
+      },
+      "on_match": {
+        "investigation_progress_delta": 30,
+        "unlock_actions": [
+          "pool_inv_confrontation"
+        ],
+        "unlock_verdict_ids": [
+          "guilty_alternative",
+          "not_guilty_with_comment"
+        ]
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "schwarz",
+      "target_label": "Max Schwarz, obžalovaný",
+      "reveals": "motivation",
+      "text": "Schwarz si rovná manžety. Zvyk z doby, kdy byl účetním. V Berlíně jsem pracoval dvacet let pro tutéž firmu. Pak přišel nový vedoucí. Dal mi výpověď v srpnu — bez udání důvodu, ale důvod byl jasný každému v kanceláři. Odmlčí se. V říjnu začaly nepokoje v naší čtvrti. V listopadu rozbili okno naší synagogy. V prosinci jsem prodal byt. Pas na Weisse byl cestou sem — ne proto, abych utekl před zákonem. <span class=\"clue\" data-clue-id=\"decoy_weiss_pas_hranice\">Ale proto, aby mě nezdrželi na hranici</span>. Jsem účetní, ne zločinec. Hledám práci, ne potíže.",
+      "cost": 1,
+      "trait_effects": {
+        "vina": 1,
+        "nadeje": -2
+      }
+    },
+    "records": {
+      "source": "Berlínský policejní rejstřík (diplomatická cesta) + zápis židovské obce Praha",
+      "reveals": "facts",
+      "text": "<span class=\"clue\" data-clue-id=\"rejstrik_berlin_mitte_schwarz\">Berlínský rejstřík: Schwarz Max, narozen 14.3.1895, Berlin-Mitte. Bez trestního záznamu. Zaměstnání: účetní, firma Hartmann & Söhne, 1909–1930. Výpověď srpen 1930. Registrace v Berlíně zrušena prosinec 1930.</span> Diplomatická poznámka: žádost o výpis podána 27. února 1931 — odpověď přišla, ale jen záznam o existenci, nikoli o trestní bezúhonnosti, ta nebyla potvrzena ani vyvrácena. Pražská židovská obec: příchozí z Německa v prosinci 1930–únoru 1931 — evidováno 23 osob. Schwarz mezi nimi není — nepřihlásil se. <span class=\"clue\" data-clue-id=\"venovani_chanuka_1922\">Kniha nalezená v aktovce: věnování na předsádce — německy: 'Maxovi od táty. Berlín, Chanuka 1922.'</span>",
+      "cost": 1,
+      "unlocks_contradiction": "dvojite_doklady"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "variants": {
+        "moc_high": "Falzifikáty cestovních dokladů jsou problém, který se v posledních měsících zhoršuje. Každý druhý příchozí z Německa má doklady, které jsou přinejmenším sporné. Pokud soud neukáže, že to má důsledky, budeme mít Prahu plnou lidí bez identity. To není xenofobie — to je pořádek.",
+        "lid_high": "Z Německa přicházejí lidé, kteří nemají jinou možnost. Cestovat pod vlastním jménem znamená být zastaven na hranici — nebo hůř. Schwarz není první ani poslední. Zákon říká podvod. Já říkám — zákon nevznikl pro tohle.",
+        "default": "Schwarz je jeden z mnoha. Od loňského roku jich přijde každý měsíc víc. Jedni mají papíry, druzí ne. Jedni hledají práci, druzí nevíme co. Soud musí rozhodnout, jak k nim přistupovat. Zatím žádný precedent neexistuje."
+      }
+    },
+    "confrontation": {
+      "target": "schwarz",
+      "target_label": "Max Schwarz, obžalovaný",
+      "requires_contradiction": "dvojite_doklady",
+      "requires_courage": 60,
+      "cost": 2,
+      "prompt": "Pane Schwarzi, v aktovce jste měl oba doklady — padělaný i pravý. Zkušený podvodník by pravý doklad odstranil. Vy jste ho neodstranil. Proč jste si zachoval doklad, který vás usvědčuje?",
+      "success": {
+        "text": "Schwarz se dlouho nedívá na Bena. Pak: Protože jsem Max Schwarz. Ne Weiss. Nikdy jsem nebyl Weiss. Ten pas byl jen... klíč. Ke dveřím, které by se jinak neotevřely. Ale za těmi dveřmi jsem stále já. Odmlčí se. Táta mi tu knihu dal před devíti lety. Na chanuku. Jestli ji zabavíte, tak... Nedokončí. Přejede rukou po hraně stolu.",
+        "reveals": "Schwarz si zachoval pravý doklad záměrně — jako důkaz vlastní identity. Padělání nebylo způsobem, jak se stát někým jiným, ale způsobem, jak překonat hranici a zůstat tím, kým je. Právní vina je jasná. Morální posouzení je mnohem složitější."
+      },
+      "failure": {
+        "text": "Schwarz skloní hlavu. Udělal jsem chybu. To je vše, co mám k tomu říct.",
+        "locks_testimony": "schwarz"
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "maximum": {
+          "label": "3 měsíce odnětí svobody, deportace do Německa",
+          "description": "Max Schwarz se dopustil padělání cestovního dokladu dle §321 trestního zákona a nelegálního vstupu na území republiky. Soud ukládá trest odnětí svobody v délce tří měsíců a nařizuje deportaci do Německa — do země, z níž obžalovaný odešel. Schwarz bude vydán pohraničním orgánům. Knihu dostane zpět. Co se stane za hranicí, spis neeviduje. Hošinská se o rozsudku dozví ze dveří pokoje, který zůstane prázdný. Inspektor Novák přikývne a odvede obžalovaného.",
+          "available_unless": {
+            "vina_above": 80
+          },
+          "effects": {
+            "integrita": -2,
+            "odvaha": 0,
+            "moudrost": 0,
+            "vina": 5,
+            "nadeje": -4,
+            "moc": 6,
+            "lid": -7,
+            "kapital": 0,
+            "finance": 10
+          }
+        },
+        "standard": {
+          "label": "Pokuta 120 Kčs, povinná registrace u cizineckého oddělení",
+          "description": "Max Schwarz se dopustil padělání cestovního dokladu dle §321 trestního zákona. Soud ukládá peněžitý trest ve výši sto dvaceti korun a povinnou registraci u cizineckého oddělení Státní policie Praha do čtrnácti dnů od vynesení rozsudku. Deportace se nenařizuje — republika nezavazuje k navracení do třetích zemí v případech bez trestní recidivy. Schwarz zůstává v ČSR jako evidovaný cizinec bez stálého pobytového statutu. Hošinská mu může ponechat pokoj — pokud se zaregistruje. Inspektor Novák mu podá formulář. Je psaný česky.",
+          "effects": {
+            "integrita": 1,
+            "odvaha": 1,
+            "moudrost": 0,
+            "vina": 2,
+            "nadeje": -1,
+            "moc": 3,
+            "lid": -2,
+            "kapital": 0,
+            "finance": 10
+          }
+        },
+        "lenient": {
+          "label": "Podmíněný trest, povinná legalizace pobytu do 30 dnů",
+          "description": "Max Schwarz se dopustil padělání dokladů dle §321, avšak soud bere na vědomí okolnosti, za nichž byl trestný čin spáchán. Výkon trestu se podmíněně odkládá. Obžalovaný je povinen do třiceti dnů legalizovat svůj pobyt prostřednictvím cizineckého oddělení — jinak trest nastoupí v plném rozsahu. Schwarz má třicet dní, aby si v ČSR vydobyl místo na papíře. Hošinská na chodbě čeká. Třicet dní je dost — nebo právě dost málo.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 2,
+            "odvaha": 2,
+            "moudrost": 1,
+            "vina": 0,
+            "nadeje": 2,
+            "moc": -1,
+            "lid": 4,
+            "kapital": 0,
+            "finance": 10
+          }
+        },
+        "alternative": {
+          "label": "Alternativa: Odložení trestního stíhání — Schwarz podá žádost o azyl, soud vyčká výsledku",
+          "description": "Trestní stíhání se odkládá z důvodu probíhajícího azylového řízení. Důvody, pro něž obžalovaný opustil zemi původu, jsou relevantní pro posouzení jeho trestní odpovědnosti a budou předmětem šetření diplomatického oddělení Ministerstva vnitra. Obžalovaný setrvá na území republiky pod povinností pravidelného hlášení u cizineckého oddělení. Výsledek azylového řízení spis neeviduje. Schwarz bude čekat — tentokrát pod vlastním jménem, na půdě republiky, která zatím neví, jak ho nazvat.",
+          "requires_investigation": 2,
+          "requires_contradiction": true,
+          "requires": {
+            "moudrost_min": 60
+          },
+          "effects": {
+            "integrita": 4,
+            "odvaha": 4,
+            "moudrost": 3,
+            "vina": -1,
+            "nadeje": 3,
+            "moc": -4,
+            "lid": 6,
+            "kapital": 0,
+            "finance": 10,
+            "flags": ["azylovy_precedent"]
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zproštění — okolnosti vylučují trestní odpovědnost",
+          "description": "Max Schwarz se zprošťuje obžaloby z padělání dokladů dle §321. Soud shledává, že obžalovaný jednal pod bezprostředním nátlakem okolností, jež jeho trestní odpovědnost vylučují — konkrétně hrozby pronásledování v zemi původu, kterou zákon roku 1931 výslovně nepředvídal. Schwarz odchází bez odsouzení. Bez legálního statusu. Bez záruky. Zákon mu nedluží nic — ani mu nic neposkytl. Hošinská na chodbě říká něco tiše. Schwarz přikývne.",
+          "effects": {
+            "integrita": 3,
+            "odvaha": 4,
+            "moudrost": 0,
+            "vina": -1,
+            "nadeje": 3,
+            "moc": -6,
+            "lid": 7,
+            "kapital": 0,
+            "finance": 10
+          }
+        },
+        "with_comment": {
+          "label": "Zproštění s komentářem k absenci právní úpravy postavení uprchlíků",
+          "description": "Max Schwarz se zprošťuje obžaloby z padělání dokladů dle §321. Soud zároveň konstatuje, že platné právo roku 1931 neobsahuje žádnou proceduru pro osoby prchající před politickým nebo rasovým pronásledováním — a že tato mezera zákona nemůže jít k tíži obžalovaného. Komentář se stává součástí spisu. Inspektor Novák si ho přečte. Schwarz stojí a dívá se na knihu v aktovce. Co si s komentářem udělají lidé výš — to spis neeviduje.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 5,
+            "odvaha": 6,
+            "moudrost": 3,
+            "vina": -2,
+            "nadeje": 4,
+            "moc": -9,
+            "lid": 9,
+            "kapital": 0,
+            "finance": 10,
+            "flags": ["komentar_mezera_zakona"]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "label": "Nedostatek důkazů",
+      "requires_investigation": 2,
+      "requires": {
+        "moudrost_min": 40
+      },
+      "options": {
+        "reinvestigate": {
+          "label": "Vrátit k došetření — ověřit totožnost diplomatickou cestou",
+          "returns_in_days": 6,
+          "effects": {
+            "moudrost": 2,
+            "finance": 0
+          }
+        },
+        "close": {
+          "label": "Uzavřít — podmíněné propuštění, Schwarz musí legalizovat pobyt",
+          "effects": {
+            "moudrost": 1,
+            "vina": 0,
+            "nadeje": 1,
+            "finance": 5
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_maximum": "Inspektor Novák přistoupí k Schwarzovi. Pojďte. Schwarz vstane. V aktovce nechá knihu — na stole, u mikrofonu. Zapisovatelka si jí všimne. Ben si jí všimne. Nikdo nic neřekne. Po chvíli Schwarz zaváhá, vrátí se, vezme ji a odejde.",
+    "guilty_standard": "Sto dvacet korun a registrace. Schwarz přikývne. Na tváři nic. Je zvyklý dostávat zprávy s klidnou tváří. Inspektor Novák mu podá formulář k registraci. Je psaný česky. Schwarz ho čte pomalu, bez potíží — češtinu umí.",
+    "guilty_lenient": "Schwarz dostane lhůtu třicet dní. Vstane, nakloní se k Benovi přes stůl — krátce, formálně — a řekne česky: Děkuji. Pak odejde. Hošinská na chodbě na něj čeká. Vzala mu kufřík.",
+    "guilty_alternative": "Úředník Ministerstva vnitra si zapisuje Schwarzovo jméno. Schwarz sedí vzpřímeně. Na tváři výraz člověka, který čeká na výsledky zkoušky — ví, že udělal vše, co mohl, a teď záleží na ostatních. Hošinská přinesla do chodby kafe. Nikdo si ho nevšimne.",
+    "not_guilty_formal": "Schwarz vstane. Chvíli stojí. Pak se otočí ke dveřím — a na chodbě na něj čeká Hošinská. Říká mu něco tiše. Schwarz přikývne. Odcházejí spolu.",
+    "not_guilty_with_comment": "Ben čte komentář. O zákonech, které nestačí době. O lidech, kteří přicházejí a zákon neví, jak je nazvat — ne zločinci, ne občany, ne nic. Inspektor Novák poslouchá se složenýma rukama. Schwarz stojí a dívá se na knihu v aktovce."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "guilty_maximum",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "Ve Svobodném obzoru kratký odstavec: Berlínský Němec deportován po zjištění padělané totožnosti. Soud odmítl zohledňovat okolnosti. Pod tím v menším tisku: reakce pražské židovské obce — bez komentáře."
+    },
+    {
+      "trigger": "not_guilty",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "Hošinská u vchodu. Zřídka přichází k soudu. Pane doktore — pan Schwarz se ptá, jestli by mu mohla paní Kovářová doporučit někoho, kdo mu pomůže s českou žádostí o živnostenský list. Prý umí účtovat třemi jazyky. Zapisovatelka to slyší a nic neřekne."
+    },
+    {
+      "trigger": "guilty_alternative",
+      "delay_days": 7,
+      "type": "letter",
+      "text": "Dopis od Vlčka. Kratký, suchý: Věc Schwarz. Zaznamenal jsem Vaše rozhodnutí předat případ diplomatickému oddělení. Dovolte mi poznamenat, že precedenty v otázkách přistěhovalectví spadají do kompetence ministerstva, nikoli krajského soudu. Spolehám na Vaši soudnost v budoucích případech podobné povahy."
+    }
+  ]
+}

@@ -132,6 +132,11 @@ Pravidlo pro autory dat:
 - nepoužívat stejné `data-clue-id` na dvou různých větách v různých blocích textu,
 - duplicity vedou k tomu, že se po potvrzení může podbarvit více míst zároveň.
 
+**Kvalita stop a párů (exaktní realita, ne pocity):** každá klikatelná stopa má být **hmatatelná ve spise** — konkrétní údaj, na který hráč ukáže prstem (čas, datum, jméno, místo, procento, evidenční číslo, citace z knihy/jednacího protokolu, údaj z faktury apod.). Správný pár `A`+`B` staví **rozpor nebo pevné spojení mezi dvěma takovými úlomky**; hráč tím v hlavě „dokládá“ nesoulad nebo nepopiratelné spojení faktů.
+
+- **Dobře (směr pro páry):** úřední záznam říká X, výpověď jinde říká Y a X/Y se vylučují; měření A vs měření B; „klíč měl jen A“ + záznam o mimořádném výdeji duplikátu; reklamní tvrzení A + proti němu tvrdé datum/listina B.
+- **Špatně (nepoužívat pro páry ani jako jediný obsah stopy, pokud to jde jinak):** čistě emoční nebo atmosférické věty bez kotvy („bál se“, „měl špatný pocit“, „ulice byla potichu“); dvě vágne charakteristiky, které nelze s ničím ve spise přečíslovat; „podle mě lhal“ bez vazby na fakt. Red herring může být emočněji zbarvený, ale **rozhodující pár a silná/medium** vazba musí být z **fakticistních** stopek.
+
 Flow:
 1. První klik = výběr stopy (žluté zvýraznění).
 2. Druhý klik = pokus o spárování.
@@ -528,6 +533,7 @@ Volitelná větev pro interaktivní párování stop v textu (`<span class="clue
 | `timed_hunt.speed_upgrade_sec` | Hranice pro rychlostní bonus při potvrzení |
 | `timed_hunt.auto_confirm_best_on_timeout` | Po doběhu času potvrdit nejlepší nalezenou vazbu |
 | `timed_hunt.timeout_downgrade` | Volitelné oslabení síly po timeoutu |
+| `soft_fail` | Volitelné u páru. **Pouze u `strength: "weak"`.** U `strong` a `medium` **nepoužívat** — tyto vazby musí jít potvrdit a uložit do stavu; nuance a pochyby patří do `rewards.on_confirm.<strength>.narrative_lines` (ne do větve, která neukládá pár). Pokud je spojení narrativně jen „náznak“, dej `weak` + případně `soft_fail`, nikoli `medium` + `soft_fail`. |
 
 Pravidlo párování:
 - hráč musí kliknout dvě odlišné stopy,
@@ -553,6 +559,8 @@ Použij tento postup pro každý nový případ:
 
 3. **Clue mapa**
    - urči 1 silný pár (`strong`) + 1–2 slabší relevantní vazby (`medium/weak`) + red herrings,
+   - stopy a páry buď z **hmatatelných údajů** ve spise (čas, číslo, místo, záznam…), ne z čistě emočních párů — viz sekce *Two-Click* výše (*Kvalita stop a párů*),
+   - u `clue_system.pairs[]` nastav `soft_fail` **jen** u `strength: "weak"`. U **silné a střední** vazby nikoliv — jde o potvrditelnou osu; opatrné formulace dej do `rewards.on_confirm` (viz řádek `soft_fail` v tabulce `clue_system`),
    - zkontroluj unikátnost `data-clue-id` (žádné duplicity stejného ID na různých větách).
 
 4. **Odměny a odemykání**

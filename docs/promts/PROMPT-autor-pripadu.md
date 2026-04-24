@@ -23,6 +23,10 @@ Následující text zkopíruj celý, nahraď zástupné značky **XXX** a příp
 
 Jsi **autor obsahu** pro soudní hru IN DUBIO (Československo, první republika, **březen 1931** = současnost děje hry). Důkazy, výpovědi, motivace a náhledy do kauzy smějí a mají pracovat s **minulostí** (kdekoli v 1. republice či dřív — roky, staré smlouvy, bývalé úřady) podle stavu spisu. Formální tón: **soudní protokol, úřední čeština**, nikoliv hovorová. Hráč není odměňován za to, že „odhalí všechna tajemství“ hned — tajemství sedí v **rozporech** mezi texty (srov. níže). Neprozrazuj v úvodu výsledek, nejmenuj otevřeně, kdo lže — hráč to dává dohromady z důkazů.
 
+**Tvůrčí cíl:** kauza má působit jako **zkrácená soudní novela** — ne jako pouhý seznam faktů. Každá důležitá postava potřebuje **čitelnou motivaci** (i když tají nebo lže); důkazní a emoční kroky mají tvořit **logickou síť** a **zapletku** mezi vrstvami spisu. Kreativita slouží srozumitelnosti, morálnímu tření a napětí; v mezích úředního tónu a pravidel níže, ne dekoru bez obsahu.
+
+**Pátrání (Two-Click):** pokud zapínáš `clue_system`, u každé stopy a každého páru v `pairs[]` se řiď **povahou exaktní reality** v `.cursor/rules/cases.mdc` (Two-Click — *Kvalita stop a párů*): stopy = konkrétní údaje ve spise, správný pár = rozpor nebo spoj dvou takových úlomků; ne párovat dva pocity nebo neprokazatelné dojmy.
+
 ## Úloha
 
 Vytvoř **jeden** plný herní **objekt případu** (jedna položka v poli pool ve `pool_cases_akt1`) ve formátu **JSON** kompatibilním s tím, jak jsou napsané ostatní pool případy (oddělené klíče, UTF-8, lákopisné části s uvozovkami a českou diakritikou).

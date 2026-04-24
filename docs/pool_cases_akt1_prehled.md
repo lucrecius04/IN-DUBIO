@@ -13,7 +13,7 @@
 | 7 | pool_a1_zhar | Žhářství na Smíchově | 81/1931 | Rutinní | 3–6 | Antonín Houška, majitel kovodílny | Požár kovodílny, Slavia neplatí pojistku — benzín vs zkrat. Syn Zdeněk na dvoře v čase, kdy otec tvrdí, že byl doma. |
 | 8 | pool_a1_weiss | Herr Weiss | 83/1931 | Rutinní | 2–5 | Max Schwarz, účetní | Přišel z Berlína s padělaným pasem na jiné jméno. Ale pravý doklad si zachoval — a v aktovce knihu s věnováním od táty. |
 | 9 | pool_a1_stavba | Pád ze lešení | 85/1931 | Morální dilema | 5–10 | Ing. Miroslav Kolář, stavbyvedoucí | Smrt dělníka Tučka z lešení na Vinohradech. Tlak investora na termín vs kontrolní list s vadným čepem — věděl, nebo ne? |
-| 10 | pool_a1_exekuce | Záložna | 85/1931 | Morální dilema | 7–10 | Anna Součková, rolnice | Půjčila 180 Kčs na léky pro krávy. Platila, dluh přesto narostl na 340 Kčs. Exekutor přišel bez předem oznámení. Bila ho lopatou. |
+| 10 | pool_a1_exekuce | Záložna | 86/1931 | Morální dilema | 7–10 | Anna Součková, rolnice | Půjčila 180 Kčs na léky pro krávy. Platila, dluh přesto narostl na 340 Kčs. Exekutor přišel bez předem oznámení. Bila ho lopatou. |
 
 ---
 
@@ -235,7 +235,7 @@ Kolář k času mezi nahlášením vady a pádem — tlak investora vs Tuček na
 
 ---
 
-## PŘÍPAD 10: Záložna (Sp. zn. 85/1931)
+## PŘÍPAD 10: Záložna (Sp. zn. 86/1931)
 `pool_a1_exekuce` | Morální dilema | Dny 7–10
 
 ### Obžalovaná
@@ -303,8 +303,8 @@ Hráč, který v případě 3 důkladně projde záznamy, vidí rizikový vzorec
 - 79/1931 — Hofrová (stará rána)
 - 81/1931 — Houška (žhářství na Smíchově; `pool_a1_zhar`)
 - 83/1931 — Schwarz (Weiss; `pool_a1_weiss`)
-- 85/1931 — Kolář (`pool_a1_stavba`, pád ze lešení) a **týž rok a číslo řízení** — Součková (`pool_a1_exekuce`, exekuce); ve hře rozlišuj podle `id`, ne podle samotného čísla spisu
-- *Nové případy v budoucnu ideálně od Sp. zn. 87/1931 výš, ať se 85/1931 u Koláře a Součkové nemíchá v hlavě hráče*
+- 85/1931 — Kolář (`pool_a1_stavba`, pád ze lešení); 86/1931 — Součková (`pool_a1_exekuce`, *Záložna*). Ve hře stačí spisům rozumět; `id` případu je vždy jednoznačné.
+- *Nové případy v budoucnu ideálně od Sp. zn. 87/1931 výš, ať se čísla v jednom aktu zbytečně nepletou.*
 
 ---
 

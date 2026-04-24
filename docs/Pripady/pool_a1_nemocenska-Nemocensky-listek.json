@@ -1,0 +1,449 @@
+{
+  "id": "pool_a1_nemocenska",
+  "slot": "pool",
+  "type": "moral_dilemma",
+  "color": "#2C4A7C",
+  "available_days": [
+    5,
+    6,
+    7,
+    8
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "base_weight": 1,
+    "vina_above_60": 1.2,
+    "finance_below_100": 1.4,
+    "lid_above_60": 1.3
+  },
+  "encyclopedia_links": [
+    "nemocenske_pojisteni",
+    "zavodna_medicina",
+    "hospodarska_krize"
+  ],
+  "title": "Nemocenský lístek",
+  "case_number": "Sp. zn. 71/1931",
+  "defendant": {
+    "name": "Josef Kratochvíl",
+    "age": 42,
+    "occupation": "tkalcovský dělník, Textile Praga a.s., Smíchov",
+    "detail": "vdovec, syn Ladislav (17 let, učeň), 12 let ve stejném závodě, čistý rejstřík"
+  },
+  "charge": "Podvod dle §197 trestního zákona — předložení padělaného lékařského potvrzení za účelem vylákání nemocenské dávky",
+  "description": "Josef Kratochvíl, tkadlec s dvanáctiletou nepřerušenou praxí v závodu Textile Praga na Smíchově, je obžalován z předložení padělaného potvrzení o pracovní neschopnosti ze dne 12. února 1931. Závodní lékař MUDr. Antonín Mašek odmítá potvrzení jako falzifikát — uvádí, že daného dne Kratochvíla nevyšetřoval a podpis není jeho. Kratochvíl trvá na tom, že byl skutečně nemocen a že lékař přišel k němu domů. Na základě potvrzení mu bylo vyplaceno 14 dní nemocenské dávky ve výši 98 Kčs, které zaměstnavatel nyní nárokuje zpět.",
+  "testimonies": [
+    {
+      "id": "masek",
+      "speaker": "MUDr. Antonín Mašek, závodní lékař Textile Praga a.s.",
+      "text": "To potvrzení jsem nevystavil. Podpis není můj — za dvacet let podepsal jsem tisíce dokumentů a poznám svůj podpis. Dne 12. února jsem přijal v závodní ambulanci tři pacienty. Kratochvíl mezi nimi není — <span class=\"clue\" data-clue-id=\"decoy_masek_zaspisnik\">zápisník je přesný, vedu ho s přesností, ne z hlavy</span>. A ještě jedno: <span class=\"clue\" data-clue-id=\"decoy_domaci_navstevy\">já domácí návštěvy nedělám</span>. Mám smlouvu se závodem, nikoliv s jednotlivými dělníky.",
+      "contradiction_keywords": [
+        "tři pacienty",
+        "domácí návštěvy nedělám",
+        "zápisník"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "kratochvil",
+      "speaker": "Josef Kratochvíl, obžalovaný",
+      "text": "Byl jsem nemocen. <span class=\"clue\" data-clue-id=\"decoy_tri_dny\">Horečka tři dny, nemohl jsem vstát.</span> Soused zavolal doktora — přišel mladší muž, vyšetřil mě, napsal potvrzení, <span class=\"clue\" data-clue-id=\"decoy_pět_korun\">vzal pět korun</span>. Nevěděl jsem, že to bude problém. Dvanáct let v té továrně, dvanáct let ani jeden nemocný den — tohle byl první. Proč bych si tohle vymýšlel?",
+      "contradiction_keywords": [
+        "soused zavolal",
+        "pět korun",
+        "přišel mladší muž"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "horakova_sousedka",
+      "speaker": "Blažena Horáková, sousedka, 61 let, v domácnosti",
+      "text": "Kratochvíl byl nemocen, to potvrdím. <span class=\"clue\" data-clue-id=\"decoy_ctvrtek_patek\">Nosila jsem mu ve čtvrtek a v pátek polévku — ležel, byl horký, mluvil trochu zmateně.</span> Ale doktor? Já jsem doma od rána do večera, chodba je úzká, každého bych slyšela. <span class=\"clue\" data-clue-id=\"decoy_zadny_doktor\">Žádný doktor ten týden nepřišel.</span> Alespoň ne přes den.",
+      "contradiction_keywords": [
+        "ve čtvrtek a v pátek",
+        "žádný doktor",
+        "alespoň ne přes den"
+      ],
+      "hidden_at_wisdom_below": 20
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "domaci_navsteva",
+      "description": "Kratochvíl říká, že lékař přišel domů. Mašek tvrdí, že domácí návštěvy vůbec nedělá. Sousedka Horáková nebyla za celý týden svědkem žádného doktora. Kdo je ten 'mladší muž s potvrzením'?",
+      "involves": [
+        "kratochvil",
+        "masek",
+        "horakova_sousedka"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": "masek"
+    },
+    {
+      "id": "delka_nemocenske",
+      "description": "Sousedka potvrzuje nemoc ve čtvrtek a v pátek — dva dny. Kratochvíl sám říká 'tři dny'. Potvrzení ale pokrývá 14 dní pracovní neschopnosti. Proč čtrnáct?",
+      "involves": [
+        "kratochvil",
+        "horakova_sousedka"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": null
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "forgery_conflict_strong",
+    "focus_attempts": {
+      "max": 3
+    },
+    "thematic_pairs": [],
+    "pairs": [
+      {
+        "pair_id": "forgery_conflict_strong",
+        "a_id": "clue_papir_laborator",
+        "b_id": "clue_masek_premie",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "duration_nobody_medium",
+        "a_id": "clue_zaspisnik",
+        "b_id": "decoy_tri_dny",
+        "strength": "medium"
+      },
+      {
+        "pair_id": "illness_confirmed_weak",
+        "a_id": "decoy_ctvrtek_patek",
+        "b_id": "decoy_zadny_doktor",
+        "strength": "weak",
+        "soft_fail": true
+      }
+    ],
+    "decoys": [
+      "decoy_masek_zaspisnik",
+      "decoy_domaci_navstevy",
+      "decoy_tri_dny",
+      "decoy_pět_korun",
+      "decoy_ctvrtek_patek",
+      "decoy_zadny_doktor"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 60,
+      "speed_upgrade_sec": 20,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 70,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 40,
+          "ids": [
+            "guilty_lenient",
+            "not_guilty_with_comment"
+          ]
+        },
+        {
+          "min": 70,
+          "ids": [
+            "insufficient_reinvestigate",
+            "insufficient_close"
+          ]
+        },
+        {
+          "min": 90,
+          "ids": [
+            "guilty_alternative"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "weak": {
+          "investigation_progress_delta": 10,
+          "narrative_lines": [
+            "Sousedka přinesla polévku ve čtvrtek a v pátek — a za celý týden neslyšela žádného doktora. Obě věci mohou být pravda.",
+            "Kratochvíl byl nemocen. O tom spor není. Ale nemoc a lístek jsou dvě různé věci.",
+            "Spis hledá mezičlánek: kdo napsal čtrnáct dní, když sousedka potvrdí nanejvýš dva."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 20,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "narrative_lines": [
+            "Zápisník Maška ze dne 12. února: tři pacienti, žádný z nich Kratochvíl. Tři dny horečky ale Kratochvíl sám nepopírá.",
+            "Závodní doktor ho toho dne neviděl. Kdo tedy napsal potvrzení — a kde vzal čtrnáct dní?",
+            "Spis se otočí k postavě, která v textu zatím nemá příjmení: mladší muž, pět korun, Holešovice."
+          ]
+        },
+        "strong": {
+          "investigation_progress_delta": 30,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "guilty_alternative",
+            "not_guilty_with_comment"
+          ],
+          "narrative_lines": [
+            "Laboratorní posudek mluví jasně: papír není závodní, záhlaví se liší. To jsou fakta bez výkladu.",
+            "Ale fakta má i Maškova smlouva: prémie propadla právě kvůli čtrnácti dnům Kratochvílovy absence. Patnáct korun. Motiv, který zákon nazývá podjatostí.",
+            "Spis stojí na rozkřižovatce: potvrzení je pravděpodobně padělané — ale svědek, který to tvrdí, má důvod lhát. In dubio má v tomto případu konkrétní jméno a konkrétní částku."
+          ]
+        }
+      },
+      "on_match": {
+        "investigation_progress_delta": 30,
+        "unlock_actions": [
+          "pool_inv_confrontation"
+        ],
+        "unlock_verdict_ids": [
+          "guilty_alternative",
+          "not_guilty_with_comment"
+        ]
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "kratochvil",
+      "target_label": "Josef Kratochvíl, obžalovaný",
+      "reveals": "motivation",
+      "text": "Kratochvíl si prohlíží ruce. Tkadlecké ruce — rozšířené klouby, ztvrdlá kůže. Pane doktore, v Holešovicích je jeden člověk. Hovorový doktor mu říkají. Přijde, podívá se, napíše. Pět korun. Zákonný doktor by byl dvacet korun a čekací lhůta u závodního. A já nemohl vstát. Tak jsem poslal souseda. Nevěděl jsem, že lístek bude problém — myslel jsem, lístek je lístek. Po dvanácti letech. Dvanácti. Zvedne hlavu. Syn nastoupil jako učeň minulý měsíc. Bál jsem se, že pokud přijdu o místo...",
+      "cost": 1,
+      "trait_effects": {
+        "vina": 2,
+        "nadeje": -2
+      }
+    },
+    "records": {
+      "source": "Závodní kartotéka Textile Praga a.s. a zápisník MUDr. Maška",
+      "reveals": "facts",
+      "text": "Závodní kartotéka: Kratochvíl Josef, nástup 1919, dvanáct let bez jediné absence. Hodnocení: spolehlivý, pravidelný. Zápisník MUDr. Maška — <span class=\"clue\" data-clue-id=\"clue_zaspisnik\">12. února 1931: pacienti Novák, Blahout, Říha. Kratochvíl chybí.</span> Smluvní ujednání MUDr. Maška: <span class=\"clue\" data-clue-id=\"clue_masek_premie\">honorář 180 Kčs/měsíc + prémie 15 Kčs za každý týden, kdy celková nemocnost závodníků nepřekročí 5 %. Únor 1931: Kratochvílova 14denní absence způsobila překročení kvóty — prémie propadla.</span> <span class=\"clue\" data-clue-id=\"clue_papir_laborator\">Laboratorní posudek předloženého potvrzení: papír neodpovídá standardnímu tisku závodní ambulance Textile Praga — liší se gramáží a formátem záhlaví.</span>",
+      "cost": 1,
+      "unlocks_contradiction": "domaci_navsteva"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "variants": {
+        "lid_high": "V Holešovicích, na Žižkově, ve Vršovicích — všude jsou tihle hovoroví doktoři. Dělník, který onemocní a nemá na závodního lékaře a nesmí si dovolit ztratit místo, potřebuje potvrzení. Systém ho do toho tlačí. Zákon říká podvod. Já říkám — zákon nevznikl pro lidi v Kratochvílově situaci.",
+        "kapital_high": "Pokud soud povolí tato potvrzení, každý dělník si koupí čtrnáct dní volna za pět korun. Továrny přestanou fungovat. Mašek má pravdu — pravidla platí pro všechny, nebo neplatí vůbec.",
+        "default": "Kratochvíl není první a nebude poslední. Ti hovoroví doktoři fungují otevřeně — policie to ví a zavírá oči, protože jinak by musela stíhat polovinu Žižkova. Někdo musí být příkladem. Kratochvíl se prostě octl ve špatný čas na špatném místě."
+      }
+    },
+    "confrontation": {
+      "target": "masek",
+      "target_label": "MUDr. Antonín Mašek, závodní lékař",
+      "requires_contradiction": "domaci_navsteva",
+      "requires_courage": 60,
+      "cost": 2,
+      "prompt": "Pane doktore, vaše odměna zahrnuje prémii vázanou přímo na nemocnost závodníků. Kratochvílova čtrnáctidenní absence způsobila, že jste o únorovou prémii přišel. Může tato okolnost ovlivnit jistotu, s níž identifikujete podpis na sporném potvrzení?",
+      "success": {
+        "text": "Mašek se zastaví. Přejede rukou po stole. Pak: Prémie je legitimní součástí smlouvy. Ale… připouštím, že jsem potvrzení viděl pouze jednou a ve spěchu. Mám jistotu ohledně svého podpisu. Ale zda jsem Kratochvíla toho dne skutečně nevyšetřil… zápisník je přesný, ale… Zatváří se nepohodlně. Doporučuji nezávislé znalecké posouzení.",
+        "reveals": "Maškova jistota má trhliny. Konflikt zájmů je reálný a prokazatelný. Potvrzení může být padělek — ale Maškovo svědectví samo o sobě nestačí k odsouzení."
+      },
+      "failure": {
+        "text": "Mašek vstane. Jsem lékař s dvacetiletou praxí. Naznačujete, že lžu pro patnáct korun? Stojím si za každým slovem svého svědectví. Dobrý den, pane doktore.",
+        "locks_testimony": "masek"
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "maximum": {
+          "label": "2 měsíce podmíněně, vrácení 98 Kčs nemocenské",
+          "description": "Soud uznává obžalovaného Josefa Kratochvíla vinným z podvodu dle § 197; ukládá se mu podmíněný trest odnětí svobody v trvání dvou měsíců a povinné vrácení 98 Kčs z vyplacené nemocenské dávky. Továrna Textile Praga dostane záminku — po dvanácti letech bez jediné absence Kratochvíl zřejmě přijde o místo a syn přijde o jistotu, na níž celá rodina stojí.",
+          "available_unless": {
+            "vina_above": 80
+          },
+          "effects": {
+            "integrita": 0,
+            "odvaha": 0,
+            "moudrost": 0,
+            "vina": 4,
+            "nadeje": -3,
+            "moc": 2,
+            "lid": -7,
+            "kapital": 4,
+            "finance": 10
+          }
+        },
+        "standard": {
+          "label": "Pokuta 50 Kčs, vrácení nemocenské",
+          "description": "Obžalovanému se ukládá pokuta 50 Kčs a povinné vrácení nemocenské dávky 98 Kčs; odnětí svobody se neukládá s ohledem na dosavadní bezúhonnost. Kratochvíl se vrátí do tkalcovny — zatím — ale dluh 148 Kčs musí splatit z výdělku, který vydělává po korunách.",
+          "effects": {
+            "integrita": 0,
+            "odvaha": 0,
+            "moudrost": 0,
+            "vina": 2,
+            "nadeje": -1,
+            "moc": 1,
+            "lid": -4,
+            "kapital": 2,
+            "finance": 10
+          }
+        },
+        "lenient": {
+          "label": "Symbolická pokuta 15 Kčs, nemocenská prominuta",
+          "description": "S přihlédnutím k dvanácti letům bezúhonné práce a k prokázané reálné nemoci se obžalovanému ukládá symbolická pokuta 15 Kčs a nemocenská dávka se promíjí. Kratochvíl odchází bez dluhu — syn Ladislav dostane rok a půl na výuční list bez nové krize v rodině. Inkoust: +1 do dalšího pracovního dne.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 1,
+            "odvaha": 1,
+            "moudrost": 1,
+            "vina": 0,
+            "nadeje": 2,
+            "moc": -1,
+            "lid": 5,
+            "kapital": -1,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "alternative": {
+          "label": "Podmíněné zastavení, přešetření prémie MUDr. Maška",
+          "description": "Trestní stíhání se podmíněně zastavuje; věc smluvního ujednání závodního lékaře MUDr. Maška — prémie vázané přímo na míru nemocnosti zaměstnanců — se předává tovární inspekci k přezkumu. Kratochvíl zůstává zaměstnancem. Mašek bude muset vysvětlit systém, v němž je odměňován za zdraví jiných. Inkoust: +1 do dalšího pracovního dne.",
+          "requires_investigation": 2,
+          "requires_contradiction": true,
+          "requires": {
+            "moudrost_min": 60
+          },
+          "effects": {
+            "integrita": 4,
+            "odvaha": 3,
+            "moudrost": 4,
+            "vina": -2,
+            "nadeje": 3,
+            "moc": -2,
+            "lid": 8,
+            "kapital": -4,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zproštění — pravost potvrzení neprokázána",
+          "description": "Pro zpochybněné svědectví závodního lékaře a nedostatek nezávislých důkazů se obžalovaný Josef Kratochvíl zprošťuje obžaloby v plném rozsahu; nemocenská dávka se nevymáhá. Kratochvíl zůstane v závodu — dvanáct let, třináctý rok začíná. Inkoust: +1 do dalšího pracovního dne.",
+          "effects": {
+            "integrita": 3,
+            "odvaha": 3,
+            "moudrost": 0,
+            "vina": -1,
+            "nadeje": 3,
+            "moc": -3,
+            "lid": 7,
+            "kapital": -3,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "with_comment": {
+          "label": "Zproštění s komentářem k systému závodní medicíny",
+          "description": "Obžalovaný se zprošťuje obžaloby; soud připojuje komentář, že závodní lékař s přímou finanční vazbou na míru nemocnosti zaměstnanců není způsobilým nezávislým svědkem v otázkách pracovní neschopnosti. Systém, který takový střet zájmů umožňuje, poškozuje jak spravedlnost, tak pracovníky, jimž má sloužit. Inkoust: +2 do dalšího pracovního dne.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 6,
+            "odvaha": 5,
+            "moudrost": 3,
+            "vina": -2,
+            "nadeje": 4,
+            "moc": -5,
+            "lid": 10,
+            "kapital": -7,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "label": "Nedostatek důkazů",
+      "requires_investigation": 2,
+      "requires": {
+        "moudrost_min": 40
+      },
+      "options": {
+        "reinvestigate": {
+          "label": "Vrátit k došetření — znalecké posouzení podpisu",
+          "returns_in_days": 4,
+          "effects": {
+            "moudrost": 2,
+            "finance": 0
+          }
+        },
+        "close": {
+          "label": "Uzavřít — věc promlčena",
+          "effects": {
+            "moudrost": 1,
+            "vina": 0,
+            "nadeje": 1,
+            "finance": 5
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_maximum": "Kratochvíl se zvedne. Pomalu, jako člověk, který si tento moment přehrával celé dny. Devadesát osm korun z nemocenské zpátky, dva měsíce podmíněně — o nic víc se v tom papíru nebije. Syn dostane výučný list za rok a půl. Do té doby to nějak půjde. Zapisovatelka píše rozsudek. Okno je zamlžené.",
+    "guilty_standard": "Padesát korun a vrácení nemocenské. Kratochvíl přikývne. Mašek si skládá zápisník do aktovky. Nepohlédnou na sebe. Na chodbě čeká syn — sedmnáct let, učeň, ještě neumí skrýt, co se mu píše v tváři.",
+    "guilty_lenient": "Kratochvíl se posadí, pak vstane. Patnáct korun. Nemocenská odpuštěna. Nic neřekne. U dveří se otočí a podívá se na Bena. Otevře ústa. Zavře je. Odejde.",
+    "guilty_alternative": "Mašek odchází z budovy o samotě. Kratochvíl sedí na chodbě a čeká na protokol. Syn přišel s ním — drží otcovu aktovku, i když v ní není nic. Zapisovatelka Kovářová si to všimne a přestane na chvíli psát.",
+    "not_guilty_formal": "Zástupce továrny sklání hlavu nad složkou. Kratochvíl stojí. Pak si sáhne do náprsní kapsy — cigára Egypt, ohnutá. Nabídne Benovi. Ben odmítne. Kratochvíl si jedno zapálí hned ve dveřích. Je to nezákonné. Nikoho to nezajímá.",
+    "not_guilty_with_comment": "Ben čte komentář. O závodní medicíně. O systému, kde lékař vydělává na zdraví pracovníků — a ztrácí, když jsou nemocní. Mašek stojí ztuhlý. Kratochvíl kouká do stropu. Zapisovatelka přestane psát a poslouchá."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "guilty_maximum",
+      "delay_days": 3,
+      "type": "fragment",
+      "text": "Švejda u vchodu: Ten tkadlec, pane doktore. Slyšel jsem, že ho propustili. Prý ředitel přišel hned po rozsudku s papírem. Říkají, že továrna na to čekala."
+    },
+    {
+      "trigger": "not_guilty",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "Ve Svobodném obzoru krátká zpráva: Soud zprostil dělníka obvinění z padělání. Anonymní dopis čtenáře pod tím: Hovorový doktor v Holešovicích má od pondělí frontu od rána. Říkají, že za pět korun napíše cokoli."
+    },
+    {
+      "trigger": "guilty_alternative",
+      "delay_days": 6,
+      "type": "fragment",
+      "text": "Na stole leží zpráva z tovární inspekce. Závodní lékař MUDr. Mašek, Textile Praga a.s. — prémie vázaná na nemocnost zaměstnanců. Inspekce doporučuje přezkum smlouvy. Kratochvíl stále pracuje ve stejné továrně."
+    }
+  ]
+}
