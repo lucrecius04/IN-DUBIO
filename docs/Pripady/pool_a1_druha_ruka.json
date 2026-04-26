@@ -1,0 +1,443 @@
+{
+  "id": "pool_a1_druha_ruka",
+  "slot": "pool",
+  "type": "moral_dilemma",
+  "color": "#2C4A7C",
+  "available_days": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "base_weight": 1,
+    "kapital_above_60": 1.3,
+    "lid_below_40": 1.2
+  },
+  "title": "Druhá ruka",
+  "case_number": "Sp. zn. 90/1931",
+  "defendant": {
+    "name": "Václav Šrámek",
+    "age": 48,
+    "occupation": "notářský kancelista",
+    "detail": "kancelista v notářské kanceláři doktora Horáka na Malé Straně, ženatý, dvě dospělé dcery, třicet let praxe"
+  },
+  "charge": "Padělání a pozměnění veřejné listiny dle §199 trestního zákona č. 117/1852 — obžalovaný měl po podpisu závěti zůstavitele Augustina Čermáka dodatečně sestavit a opatřit pozměněným datem přípisek ke spisu, čímž měnil dědické podíly bez zákonné notářské formy.",
+  "description": "Augustin Čermák, jednasedmdesátiletý majitel cihelny v <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"holesovice\" title=\"Slovník: Holešovice\">Holešovicích</button>, zemřel 12. února 1931. Závěť pořídil 8. února v notářské kanceláři doktora Horáka; hlavní text odkazoval dvě třetiny cihelny mladšímu synu Jiřímu a třetinu staršímu Pavlovi. Spolu se závětí byl však nalezen přípisek — rovněž datovaný 8. února — jenž mění podíly na rovný díl. Mladší syn Jiří podal trestní oznámení: notářský deník zaznamenává pro celou schůzku pouhých patnáct minut a chemický rozbor prokazuje jiný inkoust v přípisku než v hlavním textu závěti. Kancelista Václav Šrámek trvá na tom, že oba dokumenty sepsal téhož dne podle výslovného přání zůstavitele.",
+  "testimonies": [
+    {
+      "id": "sramek",
+      "speaker": "Václav Šrámek, obžalovaný",
+      "text": "Pana Čermáka jsem znal třicet let. Věděl jsem, jak přemýšlí, jak mluví, když mu na něčem záleží. <span class=\"clue\" data-clue-id=\"decoy_oral_instruction\">Řekl mi přímo: chci, aby oba dostali stejně. Pavel pracoval pro podnik stejně jako Jiří, jen mu otec nikdy neřekl dost</span>. Závěť i přípisek vznikly téhož dne, jedno perem, druhé po přestávce. <span class=\"clue\" data-clue-id=\"decoy_sramek_wife\">Moje žena je od podzimu léčena v sanatoriu na Letné — to snad nehraje roli v tom, co jsem napsal nebo nenapsal</span>.",
+      "contradiction_keywords": [
+        "přípisek",
+        "téhož dne"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "jiri",
+      "speaker": "Jiří Čermák, mladší syn a oznamovatel",
+      "text": "<span class=\"clue\" data-clue-id=\"decoy_father_told\">Otec mi týden před sepsáním závěti říkal, že má vše zařízeno tak, jak jsem vždy věděl</span>. To jsou jeho přesná slova. Přišel jsem do kanceláře den po pohřbu, vzal spis a četl. Přípisek tam nebyl ještě v pátek. <span class=\"clue\" data-clue-id=\"decoy_pavel_jan\">Pavel navštívil Šrámka v lednu — samo o sobě nic, ale Pavel tehdy potřeboval peníze a Šrámek mu je sehnal</span>. Podpis na přípisku je neobratný. Otec psal krasopis.",
+      "contradiction_keywords": [
+        "v pátek",
+        "podpis"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "kolarova",
+      "speaker": "Alžběta Kolářová, asistentka notářské kanceláře",
+      "text": "Pan Šrámek pracuje s největší pečlivostí, to mohu potvrdit bez váhání. Dne 8. února přišel pan Čermák dopoledne. <span class=\"clue\" data-clue-id=\"clue_session_duration\">Seděli spolu nejméně hodinu, možná déle — já sama jsem jim přinesla čaj</span>. Deník si vedeme stručně; přesný čas záleží na tom, kolik toho bylo k přepisu. Pane doktore, v té kanceláři se taková věc nestala za celých dvaadvacet let.",
+      "contradiction_keywords": [
+        "hodinu",
+        "deník"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "log_vs_ink",
+      "description": "Návštěvní deník notářské kanceláře uvádí pro schůzku 8. února patnáct minut. Chemický rozbor potvrzuje jiný typ inkoustu v přípisku než v závěti. Oba dokumenty nemohou vzniknout za patnáct minut jedním sepsáním — a pokud vznikly odděleně, nemohou mít totéž datum.",
+      "involves": [
+        "records",
+        "sramek"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": "sramek"
+    },
+    {
+      "id": "witness_vs_log",
+      "description": "Asistentka Kolářová popisuje přibližně hodinovou schůzku a přinesený čaj; úřední deník ji zkracuje na patnáct minut. Jedno z toho je nepřesné — buď záznam, nebo výpověď ženy, která má zájem chránit svého zaměstnavatele.",
+      "involves": [
+        "kolarova",
+        "records"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": "sramek"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "log_ink_strong",
+    "pairs": [
+      {
+        "pair_id": "log_ink_strong",
+        "a_id": "clue_visit_log",
+        "b_id": "clue_ink_analysis",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "witness_log_medium",
+        "a_id": "clue_session_duration",
+        "b_id": "clue_visit_log",
+        "strength": "medium"
+      }
+    ],
+    "decoys": [
+      "decoy_oral_instruction",
+      "decoy_sramek_wife",
+      "decoy_father_told",
+      "decoy_pavel_jan",
+      "decoy_loan_200"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 60,
+      "speed_upgrade_sec": 20,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 55,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 40,
+          "ids": [
+            "guilty_lenient",
+            "not_guilty_with_comment"
+          ]
+        },
+        {
+          "min": 70,
+          "ids": [
+            "insufficient_reopen"
+          ]
+        },
+        {
+          "min": 85,
+          "ids": [
+            "guilty_alternative",
+            "guilty_special"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 45,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "guilty_alternative",
+            "insufficient_reopen"
+          ],
+          "narrative_lines": [
+            "Patnáct minut v deníku a jiný inkoust v přípisku — dva záznamy, které nelze uvést do souladu jedním výkladem bez trhlin.",
+            "Šrámkovo slovo stojí osamocené: deník ho neoprošťuje, chemický rozbor ho nezachraňuje, zbývá jen to, co tvrdí o přání zůstavitele.",
+            "Přípisek mohl vzniknout kdykoli — možná téhož dne, ale ne za patnáct minut, které deník nabízí jako celou schůzku."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 20,
+          "narrative_lines": [
+            "Kolářová mluví o hodině práce — deník uvádí patnáct minut. Jedno z toho musí být nepřesné; záleží, komu věříte a proč.",
+            "Asistentka si zápisník neprohledala; úřední deník mlčí za svoji stranu. Mezera mezi oběma záznamy se nevysvětlí sama."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "sramek",
+      "target_label": "Václav Šrámek, obžalovaný",
+      "reveals": "motivation",
+      "text": "Šrámek si vybere slova pomalu, jako by každé vážil. Pan Čermák starší mu byl více než klientem — pomáhal mu při studiu, zaručil se za něj u doktora Horáka. <span class=\"clue\" data-clue-id=\"decoy_loan_200\">Půjčku dvěsta korun od Pavla v prosinci vysvětluje jako zálohu na letní léčebné výlohy ženy, přislíbenou ústně ještě v říjnu</span>. Trvá na tom, že Pavel při tom nezmiňoval závěť ani otce. Závěrem doplní tichým hlasem: Starý pán mi říkal, že Pavel byl vždy ten druhý syn. Věřil jsem mu.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 1
+        },
+        "factions": {
+          "Kapital": -1
+        }
+      }
+    },
+    "records": {
+      "source": "Notářská kancelář doktora Horáka, Chemický ústav Karlovy university — Praha",
+      "reveals": "facts",
+      "text": "Návštěvní deník kanceláře: záznam ze dne 8. února 1931, 9:15 — <span class=\"clue\" data-clue-id=\"clue_visit_log\">jméno A. Čermák, délka schůzky 15 minut, kancelista V. Šrámek, podpis</span>. Chemický posudek Ústavu soudního lékařství ze dne 10. března 1931: <span class=\"clue\" data-clue-id=\"clue_ink_analysis\">přípisek (list č. 2 závěti) obsahuje uhličitan draselný v jiném poměru než hlavní text (list č. 1) — jde s největší pravděpodobností o dva odlišné inkousty ze dvou výrobních šarží</span>. Oba listy jsou na papíře téhož vodoznaku a formátu.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -18,
+        "traits": {
+          "Moudrost": 1,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1
+        }
+      },
+      "unlocks_contradiction": "log_vs_ink"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -5,
+        "traits": {
+          "Vina": 1
+        },
+        "factions": {
+          "Kapital": 2,
+          "Lid": -1
+        }
+      },
+      "variants": {
+        "default": "Notářský přípisek k závěti musí v ČSR splňovat stejnou formu jako původní listina — podpis zůstavitele, přítomnost notáře nebo kancelisty s plnou mocí a zpravidla dva svědci. Pokud některá z náležitostí chybí nebo je datum pozměněno, celý přípisek nemá právní účinky. Notářský deník je soukromá záležitost kanceláře — nepodléhá státnímu auditu, ale soudu musí být předložen k nahlédnutí.",
+        "kapital_high": "V notářském prostředí platí nepsaná zásada: co klient řekl ústně a co podepsal, jsou dvě odlišné skutečnosti. Starší kancelista, který pamatuje klienty padesát let a sám rozhodne, co chtěli říct, riskuje nejen trestní stíhání — riskuje pověst celé kanceláře. A doktor Horák je v Praze znám."
+      }
+    },
+    "confrontation": {
+      "target": "sramek",
+      "target_label": "Václav Šrámek, obžalovaný",
+      "requires_contradiction": "log_vs_ink",
+      "requires_courage": 60,
+      "cost": 2,
+      "prompt": "Pane Šrámku, deník vaší kanceláře uvádí patnáct minut. Chemický posudek prokazuje jiný inkoust v přípisku. Oba dokumenty nemohou vzniknout za patnáct minut jedním perem téhož dne. Kdy přesně jste přípisek sepsal a proč nese datum osmého února?",
+      "success": {
+        "text": "Šrámek si přikryje oči dlaní a chvíli se nehýbe. Pak dá ruku dolů a mluví bez přestávky, tiše, jako by četl z listiny, kterou si celý měsíc opakoval pro sebe: Přišel ke mně druhý den, deváteho. Sám, bez advokáta, bez Jiřího. Říkal, že si to v noci rozmyslel — chce rovný díl, protože Pavel pro ten podnik pracoval stejně jako Jiří, jen otec to nikdy neřekl nahlas. Napsal jsem přípisek. Chtěl ho podepsat. Ale ruka se mu třásla tak, že ani nedržel pero. Pomohl jsem mu — vedl jsem mu ruku. Datum jsem napsal osmého, protože jinak by bylo jasné, že při sepsání nebyl svědek ani advokát a přípisek by byl neplatný. Věděl jsem, co dělám. Věřil jsem, že vím také, co chtěl.",
+        "reveals": "Šrámek přiznává, že přípisek vznikl 9. února, nikoli 8. února, a že datum bylo záměrně pozměněno. Přiznává rovněž, že podpis zůstavitele provedl de facto on sám, protože Čermákovi se třásla ruka. Tvrdí, že jednal v souladu s vůlí umírajícího, avšak bez zákonné formy. Obsah přípisku může odpovídat skutečnému záměru zůstavitele — to není prokázáno ani vyvráceno."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "maximum": {
+          "label": "2 roky vězení a prohlášení přípisku za neplatný",
+          "description": "Soud uzná úmyslné padělání data i podpisu za prokázané. Šrámek přijde o místo, o čest kancelisty a téměř jistě i o vyhlídky na důchod — ve věku osmačtyřiceti let nastupuje do vězení jako muž bez profese. Pavel Čermák přichází o dědický podíl z přípisku; cihelna připadne Jiřímu v podílu dvě třetiny.",
+          "effects": {
+            "integrita": 2,
+            "moudrost": 1,
+            "vina": 12,
+            "nadeje": -8,
+            "moc": 8,
+            "lid": -10,
+            "finance": 35
+          }
+        },
+        "standard": {
+          "label": "Podmíněný trest 2 roky s odkladem a civilní řízení o platnosti závěti",
+          "description": "Šrámek je odsouzen za pozměnění data, avšak věc platnosti přípisku se přenáší do civilního soudu, jenž posoudí vůli zůstavitele nezávisle. Šrámek si zachovává svobodu, ale ztrácí kancelářské místo a reputaci — jeho žena se o rozsudku dozví dříve, než se vrátí domů.",
+          "effects": {
+            "integrita": 3,
+            "moudrost": 1,
+            "vina": 8,
+            "nadeje": -3,
+            "moc": 4,
+            "lid": -5,
+            "finance": 30
+          }
+        },
+        "lenient": {
+          "label": "Podmíněný trest 1 rok s přihlédnutím k okolnostem",
+          "description": "Soud přihlédne k bezúhonnému záznamu, věku a péči o nemocnou ženu. Šrámek je uznán vinným, ale trest zůstane na papíře, dokud se nedopustí dalšího přečinu. Civilní řízení o přípisku probíhá dál. Pro mnoho kolegů bude cejch odsouzeného kancelisty horší než samotný trest.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 1,
+            "moudrost": 2,
+            "vina": 4,
+            "nadeje": 2,
+            "moc": 1,
+            "lid": 3,
+            "finance": 25
+          }
+        },
+        "alternative": {
+          "label": "Alternativa: Trestní stíhání přerušeno, nařízen nezávislý znalecký přezkum obsahu závěti",
+          "description": "Soud uzná procesní pochybení, ale přeruší trestní řízení a nařídí grafologický a historický znalecký posudek k otázce, zda přípisek vyjadřoval skutečnou vůli zůstavitele. Šrámek není odsouzen ani zproštěn — případ se přesouvá do roviny, kde záleží na faktech, ne jen na formě. Bratři čekají na výsledek znalce, nikoliv soudce.",
+          "requires_investigation": 2,
+          "requires": {
+            "moudrost_min": 60
+          },
+          "effects": {
+            "integrita": 7,
+            "moudrost": 5,
+            "vina": 1,
+            "nadeje": 5,
+            "moc": -5,
+            "lid": 6,
+            "finance": 25,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "special": {
+          "label": "Alternativa: Vina za formu, soud doporučuje přezkum notářské praxe a zkoumání vůle zůstavitele",
+          "description": "Šrámek je odsouzen za padělání data a podpisu, ale soud veřejně zaznamená, že obsah přípisku mohl odpovídat skutečné vůli zůstavitele a že zákon nezná cestu, jak to nyní dokázat. Doporučení směřuje k revizi notářského procesu při pořizování závětí vážně nemocných klientů. Pro Šrámka je to rozsudek i jakési posthumní zadostiučinění — právně nevymahatelné, ale zaznamenané.",
+          "requires_investigation": 3,
+          "requires": {
+            "moudrost_min": 70,
+            "odvaha_min": 60
+          },
+          "effects": {
+            "integrita": 9,
+            "moudrost": 6,
+            "odvaha": 4,
+            "vina": 2,
+            "nadeje": 6,
+            "moc": -8,
+            "lid": 9,
+            "finance": 20,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zproštění pro nedostatek přímých důkazů o úmyslném padělání",
+          "description": "Chemický rozbor ani zkrácený deník neprokazují za hranici pochybnosti, že Šrámek jednal záměrně a s podvodným úmyslem. Platnost přípisku je civilní otázka — trestní řízení se uzavírá. Pavel Čermák může podat žalobu ve věci dědictví; výsledek závisí na civilním soudci, ne na tomto rozsudku.",
+          "effects": {
+            "integrita": 4,
+            "odvaha": 3,
+            "moudrost": 2,
+            "vina": -6,
+            "nadeje": 3,
+            "moc": -5,
+            "lid": 6,
+            "finance": 20
+          }
+        },
+        "with_comment": {
+          "label": "Zproštění s komentářem soudu k notářské formě a doporučením nezávislého přezkumu",
+          "description": "Soud zprostí Šrámka trestní odpovědnosti, ale zaznamená pochybnosti o procesním postupu kanceláře a doporučí civilnímu soudu věc závěti přezkoumat prostřednictvím nezávislého znalce. Šrámek odchází volný, ale kancelář i Pavel dostávají signál, že případ neskončil papírovou formulací.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 6,
+            "odvaha": 4,
+            "moudrost": 4,
+            "vina": -4,
+            "nadeje": 4,
+            "moc": -7,
+            "lid": 8,
+            "finance": 25,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "requires": {
+        "moudrost_min": 55
+      },
+      "options": {
+        "reopen": {
+          "label": "Vrátit k došetření — grafologický posudek a výslech rodinného advokáta",
+          "description": "Soud neshledá dostatečné důkazy k rozhodnutí a žádá grafologický rozbor podpisu na přípisku spolu s výslechem advokáta Čermákovy rodiny, jenž byl přítomen sepisu hlavní závěti. Šrámek zůstává ve volnosti; cihelna stojí v limbu dědické nejistoty a dělníci čekají.",
+          "effects": {
+            "integrita": 4,
+            "moudrost": 4,
+            "vina": 1,
+            "nadeje": 2,
+            "moc": -2,
+            "lid": 4,
+            "finance": 20,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "close": {
+          "label": "Uzavřít pro nedostatek důkazů bez dalšího opatření",
+          "description": "Spis je uzavřen pro neprůkaznost. Přípisek zůstane právně nezpochybněn trestní cestou; dědicové se musí obrátit na civilní soud. Šrámek se vrátí do kanceláře — ale Jiří Čermák si zapamatuje soudce, který případ pustil bez stopy.",
+          "effects": {
+            "integrita": 1,
+            "moudrost": 2,
+            "vina": 2,
+            "nadeje": -2,
+            "moc": 2,
+            "lid": 1,
+            "finance": 15
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_maximum": "Šrámek vstane bez dechu, jako by zpráva teprve doháněla slova. Jiří Čermák složí spis pod paží a odchází beze slova. Kolářová stojí v zadní části síně; zakousne se do rtu a nic neříká.",
+    "guilty_standard": "Rozsudek padne věcně, bez patosu. Šrámek zapne knoflík u kabátu a počká, až zapisovatelka dočte. Civilní soud se sejde za tři týdny — tam bude záležet na jiných zákonech.",
+    "guilty_lenient": "Šrámek kývne, jako by čekal horší. Jiří si zapíše číslo rozsudku do notýsku. Na chodbě si minou pohled, ale ani jeden nezastaví.",
+    "guilty_alternative": "Soudní síň se vylidní s nečekanou rychlostí. Šrámek vyjde první, bez Kolářové. Znalecký posudek přijde za měsíc, možná za dva. Cihelna mezitím čeká na dědice.",
+    "guilty_special": "Šrámek je odsouzen. Pak zazní slovo o přezkumu notářské praxe — a výraz Jiřího Čermáka se změní. Nemusel vyhrát tak složitě.",
+    "not_guilty_formal": "Šrámek je volný. Ale přípisek stále leží ve spisu dědického řízení a civilní soud teprve otevírá svůj deník. Jiří se zvedne z lavice dřív, než zapisovatelka doříká formulaci.",
+    "not_guilty_with_comment": "Komentář soudu k přezkumu dopadne tiše, ale trvale. Šrámek dá ruce do kapes. Jiří Čermák zavolá svému advokátovi ještě před odchodem ze síně.",
+    "insufficient_reopen": "Spis odchází na jiný stůl. Cihelna stojí nečinně — dělníci čekají na pravomocné dědice. Šrámek jde domů přes Malostranské náměstí, pomalu.",
+    "insufficient_close": "Případ je uzavřen bez verdiktu. Přípisek zůstává platný i neplatný zároveň, dokud ho civilní soud neposoudí. Oba bratři si říkají, že vyhrál ten druhý."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "guilty_special",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "Notářská komora pro Prahu vydala interní oběžník o postupu při sepisování závětí u nemocných nebo starých klientů. Bez odkazu na případ Šrámek — ale načasování je zřejmé."
+    },
+    {
+      "trigger": "not_guilty_with_comment",
+      "delay_days": 4,
+      "type": "letter",
+      "text": "Na stůl přijde krátká nota od advokáta Čermákovy rodiny: civilní soud přijal návrh na znalecký přezkum přípisku. Grafolog a specialista na historické inkousty jsou přivoláni. Případ pokračuje — jen jinde."
+    },
+    {
+      "trigger": "insufficient_reopen",
+      "delay_days": 6,
+      "type": "fragment",
+      "text": "Soudní znalec z Chemického ústavu Karlovy university zažádal o přístup k originálnímu přípisku. Kolářová písemně odmítla vydat deník bez soudního příkazu. Šrámek mezitím podal žádost o dovolenou."
+    }
+  ]
+}

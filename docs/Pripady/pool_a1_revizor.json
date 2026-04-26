@@ -1,0 +1,441 @@
+{
+  "id": "pool_a1_revizor",
+  "slot": "pool",
+  "type": "moral_dilemma",
+  "color": "#C4A35A",
+  "available_days": [
+    1,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "base_weight": 1,
+    "lid_above_60": 1.3
+  },
+  "title": "Revizor",
+  "case_number": "Sp. zn. 89/1931",
+  "defendant": {
+    "name": "Josef Kopecký",
+    "age": 48,
+    "occupation": "revizor jízdenek",
+    "detail": "zaměstnanec Elektrických podniků hlavního města Prahy, devatenáct let bez kázeňského záznamu, ženatý, dvě dospívající dcery"
+  },
+  "charge": "Přijímání úplatků v úřední funkci dle §315 trestního zákona a porušení povinností veřejného zaměstnance",
+  "description": "Revizor Josef Kopecký je obžalován z opakovaného přijímání peněžních obnosů od cestujících, kteří cestovali bez platné jízdenky v Elektrických podnicích hlavního města Prahy. Podle podání jeho kolegy, revizora Miroslava Hájka, měl Kopecký v lednu 1931 na trase číslo jedenáct nejméně dvacetkrát propustit cestující výměnou za drobné platby. Kopecký vinu odmítá a připouští pouze, že příležitostně propustil zjevně nuzné cestující bez postihu a bez přijetí jakéhokoli obnosu. Oznámení bylo podáno dva dny poté, co Hájek obdržel záporné stanovisko personální komise, jejímž členem byl i Kopecký. Morálním těžištěm případu není jen otázka, zda úředník bral peníze — ale zda svědek, který to tvrdí, říká pravdu.",
+  "testimonies": [
+    {
+      "id": "kopecky",
+      "speaker": "Josef Kopecký, obžalovaný",
+      "text": "Devatenáct let kontroluji jízdenky a nikdy jsem do kapsy nedal haléř, který mi nepatřil. Přiznám, že jsem někdy pustil dělníka bez lístku, když bylo zjevné, že přišel o práci a nemá na nejzákladnější věci — ale to přece není korupce, to je lidský soud. <span class=\"clue\" data-clue-id=\"clue_prosinec_pismo\">Koncem prosince jsem o těchto situacích sám písemně upozornil dispečink a žádal jsem jasnou instrukci, jak postupovat.</span> Pan Hájek podal oznámení přesně čtyřicet osm hodin poté, co mu komise podruhé zamítla vedoucí místo. <span class=\"clue\" data-clue-id=\"decoy_leta_sluzby\">Devatenáct let v tomto podniku bez jediné stížnosti — a tohle je moje odměna.</span>",
+      "contradiction_keywords": [
+        "dispečink",
+        "prosinec",
+        "písemně"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "hajek",
+      "speaker": "Miroslav Hájek, revizor, oznamovatel",
+      "text": "Viděl jsem to na vlastní oči, pane doktore. <span class=\"clue\" data-clue-id=\"clue_hajekov_trasa\">Bylo to na trase číslo jedenáct, poblíž zastávky u Průmyslového paláce v Holešovicích, v první polovině ledna.</span> Cestující mu podal hrst drobných a Kopecký ho propustil beze slova a bez záznamu. <span class=\"clue\" data-clue-id=\"decoy_pocet_stiznosti\">Strojvedoucí na té lince mi říkal, že podobných případů bylo v celém měsíci nejméně dvacet.</span> Nešlo mi o kariéru. Šlo mi o důvěru veřejnosti v kontrolní systém, který reprezentujeme.",
+      "contradiction_keywords": [
+        "trasa číslo jedenáct",
+        "Průmyslový palác",
+        "Holešovice",
+        "první polovina ledna"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "novackova",
+      "speaker": "Božena Nováčková, pravidelná cestující",
+      "text": "Kopeckého znám z tramvaje deset, možná dvanáct let. Vždy slušný, nikdy nepovýšený. V prosinci — nebo snad v listopadu, nemohu si být jista — jsem jednou viděla, jak pustil dělníka s prázdnýma rukama. <span class=\"clue\" data-clue-id=\"decoy_novalek_gesto\">Něco si podali — ale co to bylo přesně, z druhého konce vagónu nebylo rozeznat.</span> <span class=\"clue\" data-clue-id=\"decoy_novalek_trasa\">Bylo to na té naší trase — třetí nebo pátá, co jezdí přes Smíchov.</span> Nic víc vám říct nemohu.",
+      "contradiction_keywords": [
+        "třetí nebo pátá",
+        "Smíchov",
+        "prosinci"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "trasa_hajekov_klam",
+      "description": "Hájek tvrdí, že Kopeckého viděl na trase číslo jedenáct v Holešovicích v lednu — ale výkaz přiřazení revizorů uvádí, že Kopecký celý leden sloužil na trase číslo sedm. Trasu jedenáct obsluhoval v lednu Hájek sám.",
+      "involves": [
+        "hajek",
+        "records"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": "hajek"
+    },
+    {
+      "id": "prosinec_pismo_dopis",
+      "description": "Kopecký tvrdí, že o situaci předem písemně informoval dispečink. Doručovací kniha eviduje dopis z konce prosince 1930, ale bez záznamu o jakémkoli vyřízení nebo předání nadřízenému.",
+      "involves": [
+        "kopecky",
+        "records"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": "hajek"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "hajekov_trasa_strong",
+    "pairs": [
+      {
+        "pair_id": "hajekov_trasa_strong",
+        "a_id": "clue_hajekov_trasa",
+        "b_id": "clue_sluzebni_zaznam",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "prosinec_dopis_medium",
+        "a_id": "clue_prosinec_pismo",
+        "b_id": "clue_zaznam_doruceni",
+        "strength": "medium"
+      }
+    ],
+    "decoys": [
+      "decoy_pocet_stiznosti",
+      "decoy_novalek_gesto",
+      "decoy_novalek_trasa",
+      "decoy_leta_sluzby",
+      "clue_hajekov_motivace"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 60,
+      "speed_upgrade_sec": 20,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 55,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 40,
+          "ids": [
+            "guilty_lenient",
+            "not_guilty_with_comment"
+          ]
+        },
+        {
+          "min": 70,
+          "ids": [
+            "insufficient_reopen"
+          ]
+        },
+        {
+          "min": 85,
+          "ids": [
+            "guilty_alternative",
+            "not_guilty_system"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 45,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "guilty_alternative",
+            "insufficient_reopen"
+          ],
+          "narrative_lines": [
+            "Hájkova trasa jedenáct a Kopeckého výkaz ze sedmičky nepatří do stejného týdne — ani do stejného úseku města.",
+            "Oznámení přišlo čtyřicet osm hodin po záporné komisi; přesnost tohoto načasování začíná být sama o sobě výpovědí.",
+            "Průmyslový palác leží na holešovickém úseku trasy jedenáct — trasa sedm tam nikdy nejede a Hájek to ví."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 20,
+          "unlock_verdict_ids": [
+            "guilty_lenient"
+          ],
+          "narrative_lines": [
+            "Kopecký zaslal varování dřív, než existovalo obvinění — dispečink ho přijal a uložil bez odpovědi.",
+            "Úředník, který sám žádá instrukci, se nechová jako ten, kdo pravidlo vědomě obchází.",
+            "Nevyřízený dopis není důkaz neviny — ale je to stopa do kanceláře, kde se mlčením rozhodovalo."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "kopecky",
+      "target_label": "Josef Kopecký, obžalovaný",
+      "reveals": "motivation",
+      "text": "Hájek žádal vedoucí funkci v říjnu, podruhé v listopadu loňského roku. Byl jsem jedním z komisařů a hlasoval jsem otevřeně proti — ne ze zloby, ale proto, že <span class=\"clue\" data-clue-id=\"clue_hajekov_motivace\">třikrát ztratil zápisník se záznamy průjezdů; na to ho písemně upozornila i správa dispečinku.</span> Čtyřicet osm hodin po druhém záporném stanovisku komise přišlo trestní oznámení na mě. Nehledám, pane doktore, spravedlnost — hledám jen, aby spis obsahoval i tento fakt.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 2
+        }
+      }
+    },
+    "records": {
+      "source": "Výkaz Elektrických podniků hlavního města Prahy, leden 1931, a doručovací kniha dispečinku",
+      "reveals": "facts",
+      "text": "Výkaz přiřazení revizorů, leden 1931: <span class=\"clue\" data-clue-id=\"clue_sluzebni_zaznam\">revizor Kopecký Josef přiřazen k trase číslo sedm (Náměstí Republiky — Braník) po celý leden 1931.</span> Trasa číslo jedenáct (Vinohrady — Holešovice, průmyslový obvod) obsluhována v daném období revizory Hájkem a Brožem. Doručovací kniha dispečinku: <span class=\"clue\" data-clue-id=\"clue_zaznam_doruceni\">dne 28. prosince 1930 zaevidován dopis č. 1124/1930, odesilatel revizor J. Kopecký — bez záznamu o vyřízení nebo předání nadřízenému referentu.</span>",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -18,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1
+        }
+      },
+      "unlocks_contradiction": "trasa_hajekov_klam"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -5,
+        "traits": {
+          "Vina": 1
+        },
+        "factions": {
+          "Lid": -1,
+          "Kapital": 2
+        }
+      },
+      "variants": {
+        "default": "Odborový důvěrník traťového úseku, potichu, u dveří: 'Elektrické podniky právě připravují nový vnitřní předpis, který by umožňoval propouštět revizory bez penzijního nároku po dosažení stanoveného počtu odsloužených let. Kopecký byl letos na samém prahu. Hájek by nastoupil za nižší nástupní mzdu. A vedení o oznámení vědělo dřív, než se stalo úředním podáním — dva dny předtím se zástupce podniku sešel s komisařem na Malé Straně. Nevím, co si řekli. Ale vím, kdy.'"
+      }
+    },
+    "confrontation": {
+      "target": "hajek",
+      "target_label": "Miroslav Hájek, revizor",
+      "requires_contradiction": "trasa_hajekov_klam",
+      "requires_courage": 50,
+      "cost": 2,
+      "prompt": "Pane Hájku, výkaz přiřazení revizorů říká, že trasa číslo jedenáct patřila v lednu vám — nikoli Kopeckému. Jak jste ho mohl pozorovat u zastávky u Průmyslového paláce v Holešovicích?",
+      "success": {
+        "text": "Hájek stiskne rty. Pohledí na okno, pak zpět. 'Možná to bylo koncem února,' řekne nakonec. Jenže Průmyslový palác leží na holešovickém úseku trasy jedenáct — trasa sedm, Kopeckého leden i únor, tam nejede. Hájek to ví. Odvrátí pohled a nepřidá nic dalšího.",
+        "reveals": "Hájkova výpověď o místě a době pozorování se rozpadá: přesunem na únor sám popírá obžalobu datovanou do ledna, a geografický rozpor s trasou sedm zůstává. Zbývá otázka, co přesně viděla Nováčková — a zda Hájek vůbec kdy stál na téže zastávce jako Kopecký."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "maximum": {
+          "label": "Propuštění ze služby a pokuta 200 Kčs",
+          "description": "Soud uvěří, že Kopecký systematicky zneužíval postavení revizora k vlastnímu prospěchu. Po devatenácti letech odchází bez nároku na penzi — manželka a dvě dcery přicházejí o jediný příjem rodiny.",
+          "effects": {
+            "integrita": 1,
+            "vina": 10,
+            "nadeje": -5,
+            "moc": 5,
+            "lid": -8,
+            "finance": 20
+          }
+        },
+        "standard": {
+          "label": "Pokuta 80 Kčs a důtka s podmíněným ponecháním ve funkci",
+          "description": "Soud přijme za prokázané alespoň opakované propouštění cestujících bez záznamu. Kopecký si místo udrží, ale cejch pochybné věrnosti v aktech podniku ho bude provázet do konce služby.",
+          "effects": {
+            "integrita": 2,
+            "vina": 5,
+            "nadeje": -2,
+            "moc": 2,
+            "lid": -3,
+            "finance": 15
+          }
+        },
+        "lenient": {
+          "label": "Napomenutí a správní dohled po dobu šesti měsíců",
+          "description": "Soud uzná formální pochybení v propouštění cestujících bez záznamu, bez peněžního trestu. Kopecký přichází o část autority, ale rodina není přímě ohrožena.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 0,
+            "vina": 2,
+            "nadeje": 2,
+            "moc": -2,
+            "lid": 4,
+            "finance": 10
+          }
+        },
+        "alternative": {
+          "label": "Alternativa: Symbolická pokuta 10 Kčs a správní přezkum nakládání s interními oznámeními v podniku",
+          "description": "Soud uzná formální pochybení, ale nařídí podniku odpovědět, proč prosincový dopis revizora Kopeckého leží v doručovací knize bez vyřízení. Kopecký zůstane ve funkci; vedení musí veřejně doložit svůj postup. Riziková varianta — Elektrické podniky ji nepřijmou mlčky.",
+          "requires_investigation": 2,
+          "requires": {
+            "moudrost_min": 55
+          },
+          "effects": {
+            "integrita": 5,
+            "moudrost": 4,
+            "vina": 0,
+            "nadeje": 5,
+            "moc": -4,
+            "lid": 7,
+            "finance": 5,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zproštění pro neprokázanost obžaloby",
+          "description": "Důkazy nestačí k závěru o přijímání peněz. Kopecký odchází s čistým záznamem — ale Hájkovo oznámení zůstane v aktech podniku a v paměti kolegů.",
+          "effects": {
+            "integrita": 3,
+            "odvaha": 3,
+            "moudrost": 2,
+            "vina": -5,
+            "moc": -4,
+            "lid": 4,
+            "finance": 0
+          }
+        },
+        "with_comment": {
+          "label": "Zproštění s komentářem soudu k věrohodnosti obžalobního podnětu",
+          "description": "Soud zprostí Kopeckého a veřejně upozorní na načasování a okolnosti Hájkova oznámení. Kopecký je čistý; Hájek má co vysvětlovat nadřízeným i kolegům.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 5,
+            "odvaha": 4,
+            "moudrost": 3,
+            "vina": -3,
+            "moc": -6,
+            "lid": 7,
+            "finance": 5,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "system": {
+          "label": "Alternativa: Zproštění a podnět k přezkumu nakládání s interními oznámeními u Elektrických podniků",
+          "description": "Soud nejen zprostí Kopeckého, ale formálně upozorní zemský úřad na možné zneužívání interních donosů k personálním čistkám v komunálních podnicích. Riziková varianta — vedení podniku to nenechá bez odpovědi a Vlčkův úřad si povšimne.",
+          "requires_investigation": 2,
+          "requires": {
+            "moudrost_min": 65,
+            "odvaha_min": 55
+          },
+          "effects": {
+            "integrita": 7,
+            "odvaha": 5,
+            "moudrost": 5,
+            "vina": -4,
+            "nadeje": 5,
+            "moc": -8,
+            "lid": 9,
+            "finance": 8,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "requires": {
+        "moudrost_min": 55
+      },
+      "options": {
+        "reopen": {
+          "label": "Vrátit k přešetření hospodářskou inspekcí",
+          "description": "Soud považuje důkazy za rozporuplné a vrací věc k prověření výkazů přiřazení tras a doručovací knihy dispečinku. Kopecký čeká; Hájek také.",
+          "effects": {
+            "integrita": 4,
+            "moudrost": 3,
+            "vina": 1,
+            "nadeje": 1,
+            "moc": -2,
+            "lid": 2,
+            "finance": 8,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "close": {
+          "label": "Zamítnout pro nedostatek důkazů bez dalšího řízení",
+          "description": "Spis je uzavřen. Kopecký není odsouzen ani plně očištěn — v podniku si každý výsledek přečte po svém a podle potřeby.",
+          "effects": {
+            "integrita": 1,
+            "moudrost": 2,
+            "vina": 2,
+            "nadeje": -1,
+            "moc": 1,
+            "lid": 1,
+            "finance": 5
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_maximum": "Kopecký se nezhroutí — zbledne. Podá ruku zapisovatelce jako by se loučil s někým, kdo mu rozuměl. Hájek stojí u okna a nedívá se. Venku za sklem tramvaj zazvoní a projede beze stop.",
+    "guilty_standard": "Důtka dopadne tiše jako razítko na mokrý papír. Kopecký přikývne. Ví, že záznam v aktech je navždy; to se nepřepíše, ať se stane cokoli. Hájek odchází první a nezastaví se ve dveřích.",
+    "guilty_lenient": "Napomenutí zazní v síni skoro jako omluva. Kopecký si otře ruce do kalhot. Hájek si něco poznačí do zápisníku — tentokrát toho, který ztratit neplánuje.",
+    "guilty_alternative": "Rozsudek dopadne nezvykle. Zástupce vedení podniku, který seděl ve třetí lavici, si vymění pohled s mužem v šedém kabátě a oba odcházejí před závěrečnou formulí. Kopecký poprvé od zahájení řízení vydechne rovnými plícemi.",
+    "not_guilty_formal": "Zproštění přijde suše, bez komentáře. Kopecký si sáhne do kapsy, jako by hledal jízdenku, kterou tam nemá. Hájek odchází zadním vchodem. V záznamu zůstane jen číslo případu a datum.",
+    "not_guilty_with_comment": "Soudcův komentář k načasování oznámení zazní v síni pomalu a jasně. Kopecký si přikryje oči dlaní — ne ze smutku, ze studu, že to trvalo tak dlouho, než to někdo řekl nahlas. Hájek neopustí budovu dřív, než si přečte protokol.",
+    "not_guilty_system": "Podání k zemskému úřadu ohledně personálního řádu komunálních podniků se dostane do novin jako šestivěté oznámení v kronice. Vedení Elektrických podniků vydá prohlášení o důvěře ve své zaměstnance. Žádný z přítomných novinářů mu neuvěří.",
+    "insufficient_reopen": "Věc se vrací. Kopecký dostane pár týdnů navíc; Hájek pár nocí méně klidu. Výkaz tras čeká na stole inspektora a prosincový dopis na stole někoho jiného.",
+    "insufficient_close": "Nikdo nevyhrál. Kopecký odchází přesně s tím, co přinesl — ani víc, ani méně. V aktech podniku zůstane jen stín podání bez rozsudku a jméno bez cejchu, které ale také bez čistého záznamu nestojí zpříma."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "guilty_alternative",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "Elektrické podniky podaly žádost o výjimku ze správního přezkumu, odůvodněnou naléhavostí provozu. Žádost leží ve frontě na zemském úřadě. Kopecký zatím jezdí na sedmičce."
+    },
+    {
+      "trigger": "not_guilty_system",
+      "delay_days": 4,
+      "type": "letter",
+      "text": "Krátký lístek na stole, bez záhlaví: Váš komentář k personálnímu řádu Elektrických podniků překročil rámec trestního rozsudku. Doporučuji příště větší zdržení — pro vaši vlastní pohodlnost. Podpis: Vlček."
+    },
+    {
+      "trigger": "insufficient_reopen",
+      "delay_days": 6,
+      "type": "fragment",
+      "text": "Hospodářská inspekce požádala o originál doručovací knihy dispečinku za prosinec 1930. Vedení Elektrických podniků sdělilo, že kniha je v archivu a bude zapůjčena do čtrnácti pracovních dnů."
+    }
+  ]
+}

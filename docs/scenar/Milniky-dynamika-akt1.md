@@ -30,6 +30,13 @@ Neděle a soboty: emoční / ekonomické **mezihry** (viz mapa-scenář §1 a §
 
 V **`Mapa_20dni.csv`** už typy **Mor** / **Pol** přibývají od D5–D7 a dál. Tento soubor **neřeší váhy** — jen připomíná: druhá polovina aktu má **víc politických a morálních rozhodnutí** než úvod; nové případy nesmí ustoupit jen „papírování odvolání“ (viz §4).
 
+### 2b) Pool v mapě — typ slotu vs. výjimky (netradiční, rebus)
+
+- **Scénář už říká *kdy* jaký druh slotu:** ve **`Pripady.csv`** a **`Mapa_20dni.csv`** je u řádku dne sloupec **Typ** (`Rut` / `Mor` / `Pol`) a **Vrstva** (`Tyč` / `Pool` / `Var`) — to je přehled *morálka a politika v čase* oproti tyčím (Božena, Pospíšil, Hranice…).
+- **Kódové váhy herního typu případu** (kolik % rutinní / morální / politický / osobní v náhodném výběru poolu): **`.cursor/rules/cases.mdc`** → sekce *VÁHOVÁNÍ PŘÍPADŮ (20 dní)* + *Pool — trestní náročnost vs. týden* (1. týden lehčí trestní tón; 2.–3. týden smí občas těžší obžaloba; výjimečně i **jasný záporák** — spor spíš o **přísnost trestu** než o zproštění).
+- **Netradiční pool kauza (1–2 na Akt 1):** v CSV / poznámce označ např. **`Netradiční pool`** u vybraného **Pool** řádku; konkrétní modely (formální věc, řetěz příkazu, …) jsou v `cases.mdc` → *Pool — netradiční modely*.
+- **Rebus / nejednoznačná odpovědnost (cca 1–2× ve 3. týdnu, orientačně D11–16):** v poznámce např. **`Rebus pool`** (sloupec *Pozn* v `Pripady.csv` nebo poznámka u dne v mapě); pravidla a omezení JSON v `cases.mdc` → *Pool — rebus / nejasné kauzy*.
+
 ---
 
 ## 3) Modifikátory dne (ekonomika / inkoust — návrh)

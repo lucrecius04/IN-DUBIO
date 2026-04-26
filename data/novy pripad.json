@@ -72,7 +72,7 @@
       "duration_sec": 60,
       "speed_upgrade_sec": 25,
       "auto_confirm_best_on_timeout": true,
-      "timeout_downgrade": true
+      "timeout_downgrade": false
     },
     "info_threshold_unlocks": {
       "actions": [

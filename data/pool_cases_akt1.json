@@ -4317,7 +4317,7 @@
           "duration_sec": 65,
           "speed_upgrade_sec": 22,
           "auto_confirm_best_on_timeout": true,
-          "timeout_downgrade": true
+          "timeout_downgrade": false
         },
         "info_threshold_unlocks": {
           "actions": [
@@ -4669,6 +4669,1694 @@
           "delay_days": 6,
           "type": "fragment",
           "text": "<button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"smichov\" title=\"Slovník: Smíchov\">Smíchovská</button> vrátnice hlásí, že podpis v registru klíčů byl přepsán přes původní iniciály. Vyšetřovatel žádá nové výslechy vedení tiskárny."
+        }
+      ]
+    },
+    {
+      "id": "pool_a1_spravce",
+      "title": "Zmizelý dopis",
+      "case_number": "Sp. zn. 87/1931",
+      "slot": "pool",
+      "act": 1,
+      "type": "moral_dilemma",
+      "color": "#2C4A7C",
+      "available_days": [
+        1,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "weight_conditions": {},
+      "defendant": {
+        "name": "Jaroslav Blecha",
+        "age": 49,
+        "occupation": "správce nájemního domu",
+        "detail": "Dříve tesař u Pražských staveb, od roku 1928 správce nájemního domu č.p. 214 v ulici Chelčického na Žižkově. Ženatý, manželka Alžběta trpí chronickým zánětem kloubů a v posledním roce prakticky nevychází. Starší dcera Marta pracuje jako švadlena."
+      },
+      "charge": "Zpronevěra svěřených finančních prostředků dle §183 trestního zákona č. 117/1852 v platném znění. Obžalovaný v období říjen až prosinec 1930 nepředal majiteli nemovitosti Eugenu Taussigovi nájemné v úhrnné výši 520 Kčs, jež v témže období přijal od nájemníků do vlastních rukou.",
+      "description": "Správce nájemního domu Jaroslav Blecha je obžalován ze zpronevěry 520 Kčs nájemného za čtvrtý kvartál roku 1930. Majitel domu Eugen Taussig schodek odhalil při ročním vyúčtování v lednu 1931 a neprodleně podal trestní oznámení. Blecha přijetí hotovosti od nájemníků nezapírá, tvrdí však, že celou částku v plné výši vynaložil na havarijní opravu vodoinstalace a výměnu shnilých okenních rámů, k nimž dal příkaz sám, neboť majitel na jeho opakované žádosti nereagoval. Na stole leží opis dopisu, jejž prý Blecha Taussigovi odeslal doporučeně v září 1930, a faktura žižkovského tesáře Antonína Beneše na přesně 520 Kčs. Taussig prohlašuje, že žádný dopis v průběhu roku 1930 neobdržel a k žádné opravě nedal souhlas.",
+      "testimonies": [
+        {
+          "speaker": "Eugen Taussig, 61 let, rentier, Praha-Vinohrady (poškozený)",
+          "text": "Jsem vlastníkem předmětné nemovitosti od roku 1921. Správce Blecha byl mým zaměstnancem na základě písemné smlouvy a byl povinen nájemné přijímat, řádně zaznamenávat a každé čtvrtletí mi je v plné výši předávat; k jakékoli opravě musel předem obdržet můj písemný souhlas a výslovné finanční krytí. <span class=\"clue\" data-clue-id=\"clue_taussig_zadny_dopis\">Žádnou písemnou žádost o provedení oprav ani upozornění na technické závady jsem od správce Blechů v průběhu celého roku 1930 neobdržel.</span> <span class=\"clue\" data-clue-id=\"clue_taussig_cervenec\">Dům jsem osobně navštívil v červenci 1930 a shledal jej v plně provozuschopném stavu bez zjevných závad.</span> Blecha jednal zcela bez mého vědomí a způsobil mi majetkovou újmu. <span class=\"clue\" data-clue-id=\"clue_taussig_prodej\">Přiznám, že jsem v listopadu 1930 přizval soudního odhadce — posuzoval jsem, zda a za kolik mohu nemovitost v příštích letech prodat. To s touto věcí nesouvisí.</span>"
+        },
+        {
+          "speaker": "Věra Kopecká, 54 let, nájemnice v bytě č. 3, Žižkov (svědkyně)",
+          "text": "<span class=\"clue\" data-clue-id=\"clue_kopecka_zari\">Koncem září přestala v bytě řádně téct teplá voda — potrubí u kuchyňského spoje cedilo a na přilehlé zdi se začala šířit vlhkost.</span> Pan Blecha přišel bez vyzvání ještě téhož týdne, závadu si prohlédl a slíbil zařídit nápravu. Za dva týdny dorazil tesař, potrubí opravil a bylo po potížích. <span class=\"clue\" data-clue-id=\"clue_kopecka_majitel\">Od pana Taussiga jsem za celý rok 1930 neslyšela ani slova — ani přes Blechů, ani osobně.</span> Nevím, co si mezi sebou psali."
+        },
+        {
+          "speaker": "Antonín Beneš, 38 let, tesař a instalatér, Žižkov (svědek)",
+          "text": "Pan Blecha mě přivolal začátkem října loňského roku. Práce obnášela opravu vodovodního rozvodu v přízemí a výměnu dvou dřevěných okenních rámů v prvním patře, kde dřevo vykazovalo hnilobu. <span class=\"clue\" data-clue-id=\"clue_benes_castka\">Celková cena za provedené dílo činila 520 Kčs; přijal jsem platbu v hotovosti ve dvou splátkách — 250 Kčs dne 18. října a 270 Kčs dne 3. listopadu 1930.</span> Fakturu jsem vystavil na jméno Blecha, neboť s ním jsem dohodu uzavřel. Majitele domu jsem nikdy neviděl ani neslyšel."
+        }
+      ],
+      "contradictions": [
+        {
+          "id": "dopis_doruceni",
+          "description": "Taussig uvádí, že žádný dopis neobdržel, poštovní kniha ale eviduje převzetí zásilky č. 4471 dne 16. září 1930.",
+          "involves": [
+            "taussig",
+            "posta"
+          ],
+          "highlight_at_wisdom": 81,
+          "unlocks_confrontation": "taussig"
+        },
+        {
+          "id": "oprava_bez_souhlasu",
+          "description": "Blecha tvrdí, že opravy byly havarijní a nutné, Taussig namítá, že bez výslovného souhlasu nesměl použít nájemné.",
+          "involves": [
+            "blecha",
+            "taussig"
+          ],
+          "highlight_at_wisdom": 81,
+          "unlocks_confrontation": null
+        }
+      ],
+      "investigation": {
+        "interview": {
+          "target": "blecha",
+          "target_label": "Jaroslav Blecha, obžalovaný",
+          "reveals": "motivation",
+          "cost": 1,
+          "text": "Blecha vyjme z aktovky sešit provozních zápisků a předloží opis dopisu datovaného 14. září 1930, adresovaného Eugenu Taussigovi. <span class=\"clue\" data-clue-id=\"clue_dopis_zavady\">Dopis popisuje praskající potrubí u bytu č. 3 a shnilé okenní rámy u bytu č. 6 v prvním patře; Blecha v něm žádá majitele o souhlas a finanční krytí do 30. září — v opačném případě si vyhrazuje právo zadat opravu z nájemního výnosu, jejž posléze refunduje.</span> Razítko odesílatele žižkovské pošty je čitelné. Razítko příjemce chybí — jde o opis, nikoli o vrácený originál."
+        },
+        "records": {
+          "source": "Kniha doporučených zásilek, poštovní úřad Žižkov",
+          "reveals": "facts",
+          "cost": 1,
+          "text": "Poštovní úřad na Žižkově vede vázanou knihu doporučených zásilek v číslovné řadě. <span class=\"clue\" data-clue-id=\"clue_postovni_razitko\">Pod zásilkou č. 4471, odeslanou dne 14. září 1930, figuruje jako adresát »E. Taussig, Mánesova 12, Praha-Vinohrady«; ve sloupci Převzetí je uveden datum 16. září 1930 spolu s nečitelným podpisem příjemce.</span> Záznam je proveden tintou shodného odstínu jako ostatní záznamy na téže stránce a nevykazuje stopy opravy ani přepisu."
+        },
+        "informant": {
+          "reveals": "context",
+          "cost": 1,
+          "variants": {
+            "lid_high": "Mrázek potvrdí, že mu správce Blecha v říjnu skutečně vyměnil okenní rám. »Říkal mi, že pan majitel dal souhlas. Já se nevyptával.« Po chvíli mlčení dodá: <span class=\"clue\" data-clue-id=\"clue_blecha_dluh\">»V listopadu Blecha obcházel sousedy a ptal se o půjčku tří set korun. Prý kvůli lékaři pro ženu. Sehnal je od Kubáta z druhého patra.</span>«",
+            "kapital_high": "Mrázek připustí, že oprava proběhla, ale dodá, že Blecha mluvil o penězích i mimo správu domu. <span class=\"clue\" data-clue-id=\"clue_blecha_dluh\">»Půjčku sháněl po sousedech, aspoň tři sta korun, prý kvůli lékaři.«</span> Podle Mrázka to ukazuje, že správce byl pod tlakem dluhů.",
+            "default": "Mrázek potvrdí říjnovou výměnu okenního rámu a zároveň připomene Blechovu listopadovou žádost o půjčku. <span class=\"clue\" data-clue-id=\"clue_blecha_dluh\">»Tři sta korun kvůli lékaři pro ženu, to říkal.«</span>"
+          }
+        },
+        "confrontation": {
+          "target": "taussig",
+          "target_label": "Eugen Taussig, poškozený",
+          "requires_contradiction": "dopis_doruceni",
+          "requires_courage": 60,
+          "cost": 2,
+          "prompt": "Pane Taussigu, poštovní kniha uvádí převzetí zásilky č. 4471 dne 16. září 1930. Jak vysvětlíte, že jste ve výpovědi uvedl, že jste žádný dopis neobdržel?",
+          "success": {
+            "text": "Taussig si stránku prohlíží déle, než by přečtení čísla vyžadovalo. »Mohl jsem dopis dostat — nevzpomínám si na nic konkrétního.« Pak rychle přejde na právní rovinu: »I kdybych ho obdržel, Blecha nemohl disponovat nájemným bez výslovného písemného souhlasu. To stanoví smlouva.«",
+            "reveals": "Taussig neudrží kategorické popření doručení a přesouvá obranu na formální porušení smlouvy."
+          }
+        }
+      },
+      "clue_system": {
+        "enabled": true,
+        "true_pair_id": "pair_postal",
+        "pairs": [
+          {
+            "pair_id": "pair_postal",
+            "a_id": "clue_taussig_zadny_dopis",
+            "b_id": "clue_postovni_razitko",
+            "strength": "strong"
+          },
+          {
+            "pair_id": "pair_zavady",
+            "a_id": "clue_dopis_zavady",
+            "b_id": "clue_kopecka_zari",
+            "strength": "medium"
+          },
+          {
+            "pair_id": "pair_dluh",
+            "a_id": "clue_benes_castka",
+            "b_id": "clue_blecha_dluh",
+            "strength": "weak",
+            "soft_fail": true
+          }
+        ],
+        "decoys": [
+          "clue_taussig_cervenec",
+          "clue_kopecka_majitel",
+          "clue_taussig_prodej"
+        ],
+        "rewards": {
+          "on_confirm": {
+            "strong": {
+              "investigation_progress_delta": 25,
+              "unlock_actions": [
+                "pool_inv_confrontation"
+              ],
+              "unlock_verdict_ids": [
+                "guilty_alternative",
+                "not_guilty_with_report"
+              ],
+              "narrative_lines": [
+                "Zásilka č. 4471 existuje ve dvou světech najednou: v poštovní knize jako doručená a podepsaná, v Taussigově výpovědi jako nikdy nevyslaná.",
+                "Podpis na knize doporučené pošty nelze smazat tak snadno jako nevyhovující dopis z psacího stolu.",
+                "Blecha porušil zákon — to se nezměnilo. Ale zákon byl porušen i na straně druhé a druhý konec té šňůry vede na Vinohrady."
+              ]
+            },
+            "medium": {
+              "investigation_progress_delta": 15,
+              "unlock_actions": [],
+              "unlock_verdict_ids": [
+                "guilty_lenient"
+              ],
+              "narrative_lines": [
+                "Kopecká popsala praskající potrubí u svého bytu č. 3 ke konci září; Blechův dopis ze 14. září zmiňuje přesně byt č. 3.",
+                "Blecha dopis napsal dřív, než si nájemníci stihli stěžovat — nebo aspoň tvrdí, že napsal.",
+                "Závady v domě existovaly. Dopis existoval. Zda dopis dorazil — to je jiná otázka a jiný spis."
+              ]
+            },
+            "weak": {
+              "investigation_progress_delta": 5,
+              "narrative_lines": [
+                "Finanční potíže správce jsou na stole — ale 520 Kčs je přesně cena fakturovaných oprav, ne výše jeho rodinného dluhu.",
+                "Schodek v nájemném a půjčka od souseda se udály ve stejném měsíci, ale nesčítají se do jednoho zločinu.",
+                "Mrzutá shoda okolností — nebo záměr zařídit jednu nouzovou operaci penězi určenými k jiné? Spis na to odpověď nedává."
+              ]
+            }
+          }
+        },
+        "info_threshold_unlocks": {
+          "actions": [
+            {
+              "min": 30,
+              "ids": [
+                "pool_inv_records"
+              ]
+            },
+            {
+              "min": 50,
+              "ids": [
+                "pool_inv_informant"
+              ]
+            },
+            {
+              "min": 70,
+              "ids": [
+                "pool_inv_confrontation"
+              ]
+            }
+          ],
+          "verdicts": [
+            {
+              "min": 45,
+              "ids": [
+                "guilty_lenient"
+              ]
+            },
+            {
+              "min": 75,
+              "ids": [
+                "guilty_alternative",
+                "not_guilty_with_report"
+              ]
+            }
+          ]
+        },
+        "timed_hunt": {
+          "enabled": true,
+          "duration_sec": 60,
+          "speed_upgrade_sec": 25,
+          "auto_confirm_best_on_timeout": true,
+          "timeout_downgrade": false
+        }
+      },
+      "verdicts": {
+        "guilty": {
+          "sentences": {
+            "maximum": {
+              "id": "guilty_maximum",
+              "label": "Odsouzení — šest měsíců nepodmíněně, náhrada škody",
+              "description": "Jménem republiky se vynáší tento rozsudek. Obžalovaný se dopustil zpronevěry ve smyslu §183 trestního zákona. Soud ukládá trest odnětí svobody v trvání šesti měsíců nepodmíněně a povinnost nahradit Eugenu Taussigovi způsobenou škodu ve výši 520 Kčs do třiceti dnů od nabytí právní moci rozsudku.",
+              "consequence": "Blecha nastoupí do vazby; správcovské místo zanikne ze dne na den. Alžběta Blechová zůstane bez příjmu a odkázána na dceru. Nájemníci z Chelčického 214 dostanou oznámení o hledání nového správce.",
+              "effects": {
+                "finance": 35,
+                "integrita": -10,
+                "nadeje": -8,
+                "vina": 7,
+                "lid": -12,
+                "kapital": 8
+              }
+            },
+            "standard": {
+              "id": "guilty_standard",
+              "label": "Odsouzení podmíněně — náhrada škody",
+              "description": "Jménem republiky se vynáší tento rozsudek. Obžalovaný je uznán vinným zpronevěrou dle §183. Soud ukládá podmíněný trest odnětí svobody v trvání tří měsíců se zkušební dobou dvou let a povinnost uhradit Eugenu Taussigovi 520 Kčs do šedesáti dnů.",
+              "consequence": "Blecha zůstane doma, ale dluh 520 Kčs se stane jeho osobní pohledávkou — bez správcovské mzdy jej bude splácet roky. Právo na místo mu rozsudek formálně nebere, ale Taussig smlouvu vypoví.",
+              "effects": {
+                "finance": 35,
+                "integrita": -4,
+                "nadeje": -4,
+                "vina": 3,
+                "lid": -7,
+                "kapital": 4
+              }
+            },
+            "lenient": {
+              "id": "guilty_lenient",
+              "label": "Mírné odsouzení — zastavení po doložení faktur",
+              "description": "Jménem republiky se vynáší tento rozsudek. S přihlédnutím k doloženým výdajům na opravu a k absenci znaku majetkového obohacení soud ukládá podmíněné zastavení trestního stíhání s povinností předat faktury za opravu jako součást ročního vyúčtování správy domu.",
+              "consequence": "Taussig podá stížnost k zemskému soudu. Blecha si správcovské místo zachová — zatím. V domě zavládne mlčenlivé napětí a nikdo nebude vědět, čí slovo platilo.",
+              "requires": {
+                "moudrost_min": 40
+              },
+              "effects": {
+                "finance": 25,
+                "integrita": 2,
+                "nadeje": 2,
+                "vina": 1,
+                "lid": -3,
+                "kapital": 1
+              }
+            },
+            "alternative": {
+              "id": "guilty_alternative",
+              "label": "Alternativa: Přerušení řízení — přezkum doručení zásilky č. 4471",
+              "description": "Jménem republiky se vynáší tento rozsudek. Soud shledává skutkový stav nedostatečně objasněným v otázce doručení dopisu ze 14. září 1930. Trestní stíhání obžalovaného se odkládá a věc se předává poštovnímu kontrolnímu orgánu k ověření záznamu č. 4471; výsledek přezkumu bude podkladem pro další postup.",
+              "consequence": "Blecha odejde ze soudní síně prozatím volný. Taussig zbledne. Poštovní záznam č. 4471 přestane být věcí správcova svědomí a stane se otázkou pro státní orgán. Kdo nakonec přijde hůř — spis to neříká.",
+              "requires": {
+                "moudrost_min": 60,
+                "odvaha_min": 50
+              },
+              "effects": {
+                "finance": 25,
+                "integrita": 10,
+                "nadeje": 7,
+                "vina": -5,
+                "lid": 10,
+                "kapital": -9,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              },
+              "hint": "Inkoust: +1 do dalšího pracovního dne."
+            }
+          }
+        },
+        "not_guilty": {
+          "approaches": {
+            "basic": {
+              "id": "not_guilty_basic",
+              "label": "Zproštění — výdaje prokázány, obohacení nenastalo",
+              "description": "Jménem republiky se vynáší tento rozsudek. Soud neshledává naplnění znaku majetkového obohacení jako podmínky skutkové podstaty §183, neboť vynaložená částka odpovídá doloženým nákladům na opravu nemovitosti, přičemž správce z ní žádný osobní prospěch nevyvodil. Obžalovaný se zprošťuje.",
+              "consequence": "Blecha opustí soudní síň s fakturou v aktovce a nejistou budoucností zaměstnání. Taussig má právo podat civilní žalobu — a pravděpodobně ji podá.",
+              "effects": {
+                "finance": 25,
+                "integrita": 5,
+                "nadeje": 5,
+                "vina": -3,
+                "lid": 8,
+                "kapital": -6
+              }
+            },
+            "with_report": {
+              "id": "not_guilty_with_report",
+              "label": "Zproštění s podnětem státnímu zastupitelství",
+              "description": "Jménem republiky se vynáší tento rozsudek. Obžalovaný se zprošťuje obžaloby. Soud současně předává státnímu zastupitelství podnět k prošetření, zda výpověď Eugena Taussiga o nepřijetí dopisu ze 14. září 1930 je slučitelná s obsahem poštovní knihy doporučených zásilek č. 4471.",
+              "consequence": "Za čtyři dny vyjde v Lidových novinách krátký sloupek o pronajímateli a zapomenuté zásilce. Žádné jméno — ale Taussigovi sousedé na Vinohradech vědí dost. Blecha si správcovské místo nejspíš stejně neudrží — Taussig smlouvu vypoví. Ale odejde jinak.",
+              "requires": {
+                "moudrost_min": 55,
+                "odvaha_min": 60
+              },
+              "effects": {
+                "finance": 25,
+                "integrita": 12,
+                "nadeje": 8,
+                "vina": -6,
+                "lid": 13,
+                "kapital": -11,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              },
+              "hint": "Inkoust: +1 do dalšího pracovního dne."
+            }
+          }
+        },
+        "insufficient_evidence": {
+          "id": "insufficient_evidence",
+          "label": "Nedostatek důkazů — vrátit k doplnění",
+          "description": "Jménem republiky se vynáší tento rozsudek. Soud shledává, že skutkový stav ve věci doručení dopisu ze 14. září 1930 nebyl v tomto řízení náležitě osvětlen. Věc se vrací k došetření, zejména k ověření záznamu žižkovského poštovního úřadu.",
+          "consequence": "Blecha je prozatím na svobodě, ale kauza visí. Taussig podá stížnost na průtahy. Poštovní úřad bude dotázán — ale na odpověď si bude třeba počkat.",
+          "requires": {
+            "moudrost_min": 45
+          },
+          "effects": {
+            "finance": 10,
+            "integrita": -3,
+            "nadeje": 1,
+            "vina": 0,
+            "lid": 2,
+            "kapital": -2
+          }
+        }
+      },
+      "aftermath": {
+        "guilty_maximum": "Blecha nastoupil do vazby sedm dní po vynesení rozsudku. Alžběta Blechová přijala pomoc od dcery Marty a od sousedky Mrázkové. Dům v Chelčického ulici přečkal jaro bez správce; Taussig najal náhradníka za čtvrtinu původní mzdy. Nájemníci si nestěžovali — báli se, že příště za nimi nepřijde nikdo.",
+        "guilty_standard": "Blecha zůstal doma, ale dluh se nehromadil pomaleji. Taussig smlouvu vypověděl do měsíce. Nájemníci si začali stěžovat u obecního úřadu — jenže tam nikdo nevyřizoval stížnosti na byty s funkčním potrubím.",
+        "guilty_lenient": "Blecha si místo udržel do léta. Taussigova stížnost k zemskému soudu putovala přes čtyři referenty a nikdo ji nepředal dál. Dům stál. Nový správce si při nastoupení v srpnu postěžoval, že v prvním patře tahají okna — ale to byl přece jiný rám.",
+        "guilty_alternative": "Poštovní přezkum skončil po šesti týdnech zprávou: zásilka č. 4471 byla doručena a podpis příjemce odpovídá vzoru na jiných zásilkách téhož adresáta. Taussig po celou tu dobu tvrdil, že jde o záměnu. Blecha mezitím ztratil místo — Taussig smlouvu vypověděl v den, kdy úřad zahájil přezkum.",
+        "not_guilty_basic": "Taussig podal civilní žalobu o náhradu škody. Soud ji přijal k řízení. Blecha si správcovské místo stejně neudržel — Taussig přišel osobně a vypověděl smlouvu ústně. Při odchodu se neohlédl.",
+        "not_guilty_with_report": "Státní zastupitelství věc uložilo bez usnesení o zahájení šetření — nedostatek veřejného zájmu. Ale krátký novinový sloupek způsobil, že Taussig prodej domu odložil o rok. Blecha dostal nové správcovské místo na Vinohradech. Ne u Taussiga.",
+        "insufficient_evidence": "Poštovní úřad odepsal za tři týdny, že záznamy za září 1930 jsou v pořádku a k nahlížení. Nikdo si pro ně nepřišel. Případ zůstal otevřen v registru do konce roku."
+      },
+      "delayed_consequences": [
+        {
+          "trigger_verdict_ids": [
+            "not_guilty_with_report",
+            "guilty_alternative"
+          ],
+          "delay_days": 4,
+          "text": "Na stole leží Lidové noviny s podtrženým odstavcem na třetí straně: »Poštovní zásilky a zapomenuté podpisy — co se stane, když majitel neví, co přijal?« Bez jmen. Ale s datem zásilky č. 4471."
+        },
+        {
+          "trigger_verdict_ids": [
+            "guilty_maximum"
+          ],
+          "delay_days": 7,
+          "text": "Zapisovatelka Kovářová potichu upozorní, že v domě v Chelčického ulici je nový správce. Nájemníci prý vymalovat nemohli — nikdo nevěděl, na koho se obrátit."
+        }
+      ],
+      "review_card": {
+        "summary_short": "Poštovní kontrolní orgán doložil, že zásilka č. 4471 ze dne 14. září 1930 byla doručena a podpis příjemce odpovídá jiným zásilkám téhož adresáta. Taussigova výpověď o nepřijetí dopisu dostala trhlinu.",
+        "option_a_text": "Podržet původní rozsudek — procedurální překročení správce zůstává prokázané bez ohledu na otázku dopisu.",
+        "option_b_text": "Zmírnit trest — nová skutečnost mění morální obraz jednání a váhu přitěžujících okolností.",
+        "unique_effect_a": {
+          "integrita": -3,
+          "vina": 2
+        },
+        "unique_effect_b": {
+          "integrita": 5,
+          "nadeje": 3,
+          "vina": -3
+        }
+      },
+      "narrative_link": null
+    },
+    {
+      "id": "pool_a1_bytova_komise",
+      "slot": "pool",
+      "type": "moral_dilemma",
+      "color": "#2C4A7C",
+      "available_days": [
+        1,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "act": 1,
+      "weight_conditions": {
+        "base_weight": 1,
+        "lid_below_40": 1.3
+      },
+      "title": "Bytová komise",
+      "case_number": "Sp. zn. 88/1931",
+      "defendant": {
+        "name": "František Dolejš",
+        "age": 44,
+        "occupation": "úředník obecní bytové komise, Praha VIII",
+        "detail": "ženatý, otec tří dětí; čtrnáct let v úřadu bez stížnosti, bez záznamu"
+      },
+      "charge": "Zneužití pravomoci veřejného činitele dle §328 trestního zákona a pozměnění úředního záznamu dle §311",
+      "description": "Obecní bytová komise pro obvod Praha VIII přidělila prázdný třípokojový byt v Libni vdově Marii Novotné se třemi dětmi, přestože na řadě byl Bedřich Vaněk — obchodní zástupce s evidovanou přihláškou o třináct dní nižšího pořadového čísla. Obžalovaný Dolejš, jenž přidělení jako jediný podepsal, tvrdí, že přihláška Novotných nesla datum šestého února, tedy starší než Vaněkův zápis. Podací deník komise však Novotnou eviduje jako záznam č. 231 ze dne jedenáctého února — plných sedmnáct položek za Vaňkem. V šuplíku Dolejšova stolu byl nalezen lístek s číslem bytu a příjmením Novotná bez data ani vysvětlení. Morální napětí: úřad má pravidla, která chrání všechny žadatele stejně — ale pravidla neznají, komu příští týden přijde exekutor.",
+      "testimonies": [
+        {
+          "id": "dolejs",
+          "speaker": "František Dolejš, obžalovaný",
+          "text": "Přihláška paní Novotné přišla s datem šestého února — sama mi ji donesla do okénka a datum bylo vyplněno již při podání. <span class=\"clue\" data-clue-id=\"clue_dolejs_datum\">Zařadil jsem ji podle data na přihlášce, protože zavedená praxe komise uznává datum sepsání žádosti, ne datum zápisu do podacího deníku</span>. Pan Vaněk se dostavil sám až osmého. Lístek v šuplíku? Zapisuji si čísla bytů, abych se v agendě neztratil. Přidělení bytu bylo v souladu s pravidly, jak je zde po léta dodržujeme.",
+          "contradiction_keywords": [
+            "šestého února",
+            "datum na přihlášce"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "vanek",
+          "speaker": "Bedřich Vaněk, poškozený žadatel",
+          "text": "Svou přihlášku jsem odevzdal osmého února v půl desáté dopoledne, vrátná Šímová mi stvrdila příjem vlastním razítkem. V podacím deníku nesu <span class=\"clue\" data-clue-id=\"clue_vanek_cislo_214\">pořadové číslo 214 z roku 1931</span>. Na úřadě mi ukázali, že Novotná je číslo 231 — a přesto dostala byt, který mi podle pořadníku náleží. Čekám rok a půl. Zákon hovoří jasně, nebo jsem se mýlil, že zákon platí pro každého?",
+          "contradiction_keywords": [
+            "číslo 214",
+            "Novotná jako číslo 231"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "horackova",
+          "speaker": "Emilie Horáčková, úřednice bytové komise",
+          "text": "Paní Novotnou si vybavuji. Přišla do kanceláře <span class=\"clue\" data-clue-id=\"clue_horackova_datum_navstevy\">v týdnu po svátku Matky Boží — to bylo nejdříve devátého nebo desátého února</span>, přesný den si netroufám říci. Pan Dolejš ji přijal u okénka, já zpracovávala nájemní listy za přepážkou. <span class=\"clue\" data-clue-id=\"decoy_razitko_dolejs\">Datum na přihlášce psal vždy ten, kdo přihlášku přijímal — razítko č. 7 patří panu Dolejšovi</span>. Zda datum odpovídalo skutečnosti, nemohu říci.",
+          "contradiction_keywords": [
+            "nejdříve devátého nebo desátého",
+            "razítko č. 7 patří panu Dolejšovi"
+          ],
+          "hidden_at_wisdom_below": null
+        }
+      ],
+      "contradictions": [
+        {
+          "id": "datum_prihlasky_vs_denik",
+          "description": "Dolejš uvádí datum přihlášky šestého února; podací deník komise eviduje Novotnou pod číslem 231 s datem jedenáctého února. Čísla deníku jsou přidělována chronologicky a Vaněk nese číslo 214 z osmého února — sedmnáct položek dřív.",
+          "involves": [
+            "dolejs",
+            "records"
+          ],
+          "highlight_at_wisdom": 81,
+          "unlocks_confrontation": "dolejs"
+        },
+        {
+          "id": "datum_navstevy_svedkyne",
+          "description": "Horáčková si Novotnou pamatuje nejdříve devátého nebo desátého února, tedy nejméně tři dny po datu, jež Dolejš uvádí na přihlášce.",
+          "involves": [
+            "horackova",
+            "dolejs"
+          ],
+          "highlight_at_wisdom": 81,
+          "unlocks_confrontation": "dolejs"
+        }
+      ],
+      "clue_system": {
+        "enabled": true,
+        "true_pair_id": "datum_denik_strong",
+        "pairs": [
+          {
+            "pair_id": "datum_denik_strong",
+            "a_id": "clue_dolejs_datum",
+            "b_id": "clue_podaci_denik_zaznam",
+            "strength": "strong"
+          },
+          {
+            "pair_id": "datum_svedkyne_medium",
+            "a_id": "clue_horackova_datum_navstevy",
+            "b_id": "clue_dolejs_datum",
+            "strength": "medium"
+          }
+        ],
+        "decoys": [
+          "decoy_razitko_dolejs",
+          "clue_vanek_cislo_214",
+          "decoy_listek_suplik"
+        ],
+        "timed_hunt": {
+          "enabled": true,
+          "duration_sec": 60,
+          "speed_upgrade_sec": 20,
+          "auto_confirm_best_on_timeout": true,
+          "timeout_downgrade": false
+        },
+        "info_threshold_unlocks": {
+          "actions": [
+            {
+              "min": 50,
+              "ids": [
+                "pool_inv_confrontation"
+              ]
+            }
+          ],
+          "verdicts": [
+            {
+              "min": 35,
+              "ids": [
+                "guilty_lenient",
+                "not_guilty_with_comment"
+              ]
+            },
+            {
+              "min": 65,
+              "ids": [
+                "insufficient_reopen"
+              ]
+            },
+            {
+              "min": 85,
+              "ids": [
+                "guilty_alternative"
+              ]
+            }
+          ]
+        },
+        "rewards": {
+          "on_confirm": {
+            "strong": {
+              "investigation_progress_delta": 40,
+              "unlock_actions": [
+                "pool_inv_confrontation"
+              ],
+              "unlock_verdict_ids": [
+                "guilty_alternative",
+                "insufficient_reopen"
+              ],
+              "narrative_lines": [
+                "Datum na přihlášce a pořadové číslo v deníku hovoří o dvou různých dnech — a deník se neplní zpětně.",
+                "Sedmnáct položek mezi Novotnou a Vaňkem nevzniklo samo o sobě; někdo přihlášku do rejstříku zapsal, až když Vaněk byl dávno zapsán.",
+                "Dolejšova praxe uznávání starších datací naráží na jeden prostý fakt: čísla podacího deníku jdou jen dopředu."
+              ]
+            },
+            "medium": {
+              "investigation_progress_delta": 18,
+              "unlock_actions": [],
+              "unlock_verdict_ids": [],
+              "narrative_lines": [
+                "Horáčková si Novotnou pamatuje až po svátku — a to je nejméně tři dny po datu na přihlášce.",
+                "Paměť úřednice není listinný doklad, ale přesnost, s níž si vybavuje týden, vytváří pochybu.",
+                "Datum šestého února na přihlášce nemusí odpovídat dni podání — ale kdo ho napsal, zůstává otázkou."
+              ]
+            }
+          }
+        }
+      },
+      "investigation": {
+        "interview": {
+          "target": "dolejs",
+          "target_label": "František Dolejš, obžalovaný",
+          "reveals": "motivation",
+          "text": "Dolejš se odmlčí a hledí na stůl. Teprve pak řekne potichu: Novotná přišla jedenáctého. Přinesla děti s sebou — tři, malé. Říkala, že příští týden přijde exekutor z bytu na Žižkově. Datum na přihlášce jsem napsal já. Šestého jsem v úřadu nebyl, to je pravda. <span class=\"clue\" data-clue-id=\"decoy_listek_suplik\">Lístek v šuplíku je z té doby — připomínka sobě samému, abych přidělení stihl dříve, než Vaněk zjistí, co se chystá</span>. Nevzal jsem ani haléř. Jen jsem rozhodl místo komise.",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Integrita": -1,
+              "Vina": 1
+            },
+            "trust": {
+              "horakova": -1
+            }
+          }
+        },
+        "records": {
+          "source": "Podací deník obecní bytové komise Praha VIII, únor 1931",
+          "reveals": "facts",
+          "text": "Podací deník uvádí záznam č. 214/1931 na jméno Bedřich Vaněk, datum přijetí 8. února 1931, příjem potvrdila vrátná Šímová razítkem č. 3. Záznam č. 231/1931 na jméno Marie Novotná nese datum <span class=\"clue\" data-clue-id=\"clue_podaci_denik_zaznam\">11. února 1931 — zápis do deníku provedl F. Dolejš vlastním rukopisem</span>. Přihláška Novotné v pořadníku žadatelů nese naopak datum 6. února a otisk razítka č. 7 přiděleného Dolejšovi. Razítko č. 7 bylo Dolejšovi vydáno jako nové dne 9. února 1931, po ztrátě předchozího — viz evidenční kniha kancelářských potřeb. Přihláška Novotné v knize přihlášek k bytům absentuje; do spisu ji předložil teprve Dolejš při výslechu.",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -18,
+            "traits": {
+              "Integrita": -2,
+              "Vina": 1
+            },
+            "factions": {
+              "Moc": 1
+            }
+          },
+          "unlocks_contradiction": "datum_prihlasky_vs_denik"
+        },
+        "informant": {
+          "reveals": "context",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -5,
+            "traits": {
+              "Vina": 1
+            },
+            "factions": {
+              "Lid": -2,
+              "Kapital": 2
+            }
+          },
+          "variants": {
+            "kapital_high": "Na chodbě se šeptá, že pan Vaněk je spřízněn s realitní kanceláří, která má zájem o domy v Libni. Přidělení obecního bytu by mu pomohlo s potvrzením adresy pro obchodní rejstřík. Stížnost šla k soudu překvapivě rychle — ještě dříve, než Vaněk obdržel písemné zamítnutí. Odkud věděl s takovým předstihem?",
+            "default": "Vaněk prý podal stížnost tentýž den, kdy se dozvěděl o přidělení bytu Novotné — ještě před doručením písemného rozhodnutí. Někdo v komisi ho informoval okamžitě. Horáčková nebo vrátná Šímová — těžko říci, ale bylo to rychle."
+          }
+        },
+        "confrontation": {
+          "target": "dolejs",
+          "target_label": "František Dolejš, obžalovaný",
+          "requires_contradiction": "datum_prihlasky_vs_denik",
+          "requires_courage": 55,
+          "cost": 2,
+          "prompt": "Pane Dolejši, razítko č. 7 vám bylo vydáno teprve devátého února — a na přihlášce Novotné stojí datum šestého. Razítkem, které jste tehdy ještě neměl. Datum jste napsal zpětně, to je jisté. Proč?",
+          "success": {
+            "text": "Dolejš nesklouzne do výmluv. Říká klidně, ale bez výrazu: Ano. Přihláška přišla jedenáctého. Datum šestého jsem napsal já. Novotná přinesla výpověď z bytu s termínem dvacátého března — a tři děti, z nichž nejstarší bylo deset. Vaněk čeká na druhý byt, slyšel jsem to od Šímové. Mohl jsem se mýlit. Ale nevzal jsem peníze. Jen jsem rozhodl o naléhavosti bez souhlasu komise. To je pravda.",
+            "reveals": "Dolejš přiznává zpětné dopsání data a vědomé přeskočení pořadníku. Motivem je skutečná nouze Novotné, nikoli úplatek. Vaněk měl mít v záloze jiný byt — ale to Dolejš nedokázal."
+          }
+        }
+      },
+      "verdicts": {
+        "guilty": {
+          "sentences": {
+            "maximum": {
+              "label": "6 měsíců vězení a okamžité odvolání z funkce",
+              "description": "Soud shledal Dolejše vinným zneužitím pravomoci a pozměněním záznamu; přidělení bytu je prohlášeno za neplatné. Čtrnáct let bezúhonné služby se uzavírá trestním rejstříkem a ztrátou místa — rodina přijde o jediný příjem v době, kdy je práce k nenalezení.",
+              "effects": {
+                "integrita": 1,
+                "moudrost": 1,
+                "vina": 8,
+                "nadeje": -5,
+                "moc": 5,
+                "lid": -6,
+                "finance": 10
+              }
+            },
+            "standard": {
+              "label": "Podmíněný trest a správní suspenze na šest měsíců",
+              "description": "Dolejš je uznán vinným, avšak trest je odložen pod podmínkou bezúhonnosti. Na půl roku je suspendován bez platu — vězení se vyhne, ale rodina bude živořit ze spoření, pokud nějaké má.",
+              "effects": {
+                "integrita": 2,
+                "moudrost": 1,
+                "vina": 4,
+                "nadeje": -1,
+                "moc": 2,
+                "lid": -2,
+                "finance": 10
+              }
+            },
+            "lenient": {
+              "label": "Uznání viny s podmíněným upuštěním od trestu pro polehčující okolnosti",
+              "description": "Soud zohlednil čtrnáct let bezúhonné služby a absence osobního prospěchu. Dolejš zůstane ve funkci pod správním dohledem, ale záznam v rejstříku ho bude provázet. Byt Novotné soud postoupí k přezkumu komise — kdo ho dostane, nevíme.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 1,
+                "moudrost": 2,
+                "vina": 2,
+                "nadeje": 2,
+                "moc": -1,
+                "lid": 3,
+                "finance": 8
+              }
+            },
+            "alternative": {
+              "label": "Alternativa: Vina Dolejše, avšak nařízen audit pořadníku bytové komise",
+              "description": "Dolejš nese odpovědnost za pozměnění záznamu, ale soud zároveň nařizuje přezkum celého systému přidělování bytů komisí Praha VIII. Otázka není jen Dolejšovo pochybení — je to i systém bez kontrolního mechanismu, který manipulaci umožnil. Novotná v bytě prozatím zůstává do rozhodnutí komise.",
+              "requires_investigation": 2,
+              "requires": {
+                "moudrost_min": 55,
+                "odvaha_min": 45
+              },
+              "effects": {
+                "integrita": 6,
+                "moudrost": 4,
+                "odvaha": 2,
+                "vina": 1,
+                "nadeje": 4,
+                "moc": -4,
+                "lid": 5,
+                "finance": 6,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "not_guilty": {
+          "approaches": {
+            "formal": {
+              "label": "Zproštění pro neprokázání úmyslu způsobit újmu",
+              "description": "Dolejš datum pozměnil, avšak soud nenalezl důkaz úplatku ani prokázaného záměru poškodit Vaňka — jednal v přesvědčení o naléhavosti. Dolejš odchází volný, pořadník však zůstává zpochybněn a Novotná v nejistotě.",
+              "effects": {
+                "integrita": 2,
+                "odvaha": 3,
+                "moudrost": 1,
+                "vina": -3,
+                "moc": -3,
+                "lid": 4,
+                "finance": 0
+              }
+            },
+            "with_comment": {
+              "label": "Zproštění s komentářem k absenci dohledu v komisích",
+              "description": "Soud zprošťuje Dolejše, avšak veřejně upozorní, že postup přidělování obecních bytů postrádá ověřovací mechanismus proti zpětnému vyplňování dat. Nikdo nebude potrestán — ale úřad bude muset odpovědět. Vaněk dostane byt jako první na příštím přidělení.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 4,
+                "odvaha": 2,
+                "moudrost": 3,
+                "vina": -2,
+                "moc": -5,
+                "lid": 6,
+                "finance": 5,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "insufficient_evidence": {
+          "requires": {
+            "moudrost_min": 50
+          },
+          "options": {
+            "reopen": {
+              "label": "Vrátit k přešetření se zaměřením na evidenci razítek",
+              "description": "Soud neshledává dostatek podkladů k výroku a žádá hospodářskou kontrolu o posouzení, zda razítko č. 7 skutečně odpovídá době vydání. Dolejš ve funkci prozatím zůstává; přidělení bytu Novotné je dočasně pozastaveno — rodina čeká ve starém bytě.",
+              "effects": {
+                "integrita": 3,
+                "moudrost": 3,
+                "vina": 1,
+                "nadeje": 1,
+                "moc": -1,
+                "lid": 2,
+                "finance": 6,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "close": {
+              "label": "Uzavřít bez rozsudku a postoupit věc správní komisi",
+              "description": "Trestní soud věc odevzdává správní komisi k přezkumu přidělení; trestní stránka se uzavírá pro nedostatek důkazů. Dolejš zůstane ve funkci bez trestního záznamu. Vaněk podá správní opravný prostředek.",
+              "effects": {
+                "integrita": 1,
+                "moudrost": 2,
+                "vina": 2,
+                "nadeje": -1,
+                "moc": 1,
+                "lid": 1,
+                "finance": 5
+              }
+            }
+          }
+        }
+      },
+      "aftermath": {
+        "guilty_maximum": "Dolejš si vezme kabát ze stojanu sám a bez spěchu. U dveří se otočí ke Horáčkové; ona sklopí hlavu. Výrok prohlašující přidělení za neplatné se dotkne i Novotné — ta o tom zatím neví a vaří večeři v libněvském bytě.",
+        "guilty_standard": "Suspenze projde síní jako suchý závan. Dolejš mlčí, ruce mu leží na okraji stolu příliš klidně. Horáčková si zapisuje něco do notýsku. Vaněk čeká na chodbě se složenými pažemi a nedívá se na nikoho.",
+        "guilty_lenient": "Dolejš přikývne. Záznam ho bude provázet, ale dnes jede domů. Vaněk na chodbě zakleje potichu a odejde bez ohlédnutí. Novotná o výsledku uslyší od vrátné.",
+        "guilty_alternative": "Slovo audit zaráží síň jako cizí předmět. Dolejš je odsouzen, ale tentokrát to nesedí jen na jeho záda — a to všichni cítí. Horáčková pokývne. Vaněk odchází nespokojen, ale bez argumentu.",
+        "not_guilty_formal": "Zproštění nezní jako vítězství. Dolejš si uvolní límec, ale oči má stále dole. Vaněk odejde jako první, tiše, aniž by dal najevo, co plánuje dál.",
+        "not_guilty_with_comment": "Komentář k absenci dohledu zazní v síni déle než samotný rozsudek. Horáčková zvedne ruku, jako by se chtěla přihlásit, a pak ji zase spustí. Vaněk vytáhne pero a začne psát na záložku svého deníčku.",
+        "insufficient_reopen": "Případ zůstane otevřený a nikdo neodchází spokojený. Dolejš sedí u stolu jako přibitý. Vaněk řekne tiše jen: A jak dlouho? Soud mu neodpoví.",
+        "insufficient_close": "Případ přechází ke správní komisi bez trestního výroku. Dolejš to přijme bez odporu. Vaněk to komentuje tak nahlas, že to slyší i vrátná u vchodu."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "guilty_alternative",
+          "delay_days": 5,
+          "type": "fragment",
+          "text": "Hospodářská kontrola zahájila přezkum přidělení bytů komisí Praha VIII za uplynulých dvanáct měsíců. Ve Svobodném obzoru vyšla tři řádky pod rubrikou Správa a zákon: Úřad připouští, že systém evidování žádostí nebyl dostatečně chráněn proti zpětným zápisům."
+        },
+        {
+          "trigger": "not_guilty_with_comment",
+          "delay_days": 4,
+          "type": "letter",
+          "text": "Přípis z presidia zemského úřadu: Komentář soudu k evidenci podání bytové komise byl předán příslušnému referátu. Doporučujeme, aby soud v budoucnu ponechal správní analýzu orgánům k tomu povolaneným. Razítko zemského úřadu, podpis čitelný."
+        },
+        {
+          "trigger": "insufficient_reopen",
+          "delay_days": 6,
+          "type": "fragment",
+          "text": "Hospodářská kontrola ověřila evidenční knihu kancelářských potřeb: razítko č. 7 bylo Dolejšovi vydáno dne devátého února 1931 jako náhrada za ztracené. Otisk na přihlášce Novotné s datem šestého února je technicky nemožný. Vyšetřovatel žádá Dolejšovu výpověď znovu."
+        }
+      ]
+    },
+    {
+      "id": "pool_a1_revizor",
+      "slot": "pool",
+      "type": "moral_dilemma",
+      "color": "#C4A35A",
+      "available_days": [
+        1,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "act": 1,
+      "weight_conditions": {
+        "base_weight": 1,
+        "lid_above_60": 1.3
+      },
+      "title": "Revizor",
+      "case_number": "Sp. zn. 89/1931",
+      "defendant": {
+        "name": "Josef Kopecký",
+        "age": 48,
+        "occupation": "revizor jízdenek",
+        "detail": "zaměstnanec Elektrických podniků hlavního města Prahy, devatenáct let bez kázeňského záznamu, ženatý, dvě dospívající dcery"
+      },
+      "charge": "Přijímání úplatků v úřední funkci dle §315 trestního zákona a porušení povinností veřejného zaměstnance",
+      "description": "Revizor Josef Kopecký je obžalován z opakovaného přijímání peněžních obnosů od cestujících, kteří cestovali bez platné jízdenky v Elektrických podnicích hlavního města Prahy. Podle podání jeho kolegy, revizora Miroslava Hájka, měl Kopecký v lednu 1931 na trase číslo jedenáct nejméně dvacetkrát propustit cestující výměnou za drobné platby. Kopecký vinu odmítá a připouští pouze, že příležitostně propustil zjevně nuzné cestující bez postihu a bez přijetí jakéhokoli obnosu. Oznámení bylo podáno dva dny poté, co Hájek obdržel záporné stanovisko personální komise, jejímž členem byl i Kopecký. Morálním těžištěm případu není jen otázka, zda úředník bral peníze — ale zda svědek, který to tvrdí, říká pravdu.",
+      "testimonies": [
+        {
+          "id": "kopecky",
+          "speaker": "Josef Kopecký, obžalovaný",
+          "text": "Devatenáct let kontroluji jízdenky a nikdy jsem do kapsy nedal haléř, který mi nepatřil. Přiznám, že jsem někdy pustil dělníka bez lístku, když bylo zjevné, že přišel o práci a nemá na nejzákladnější věci — ale to přece není korupce, to je lidský soud. <span class=\"clue\" data-clue-id=\"clue_prosinec_pismo\">Koncem prosince jsem o těchto situacích sám písemně upozornil dispečink a žádal jsem jasnou instrukci, jak postupovat.</span> Pan Hájek podal oznámení přesně čtyřicet osm hodin poté, co mu komise podruhé zamítla vedoucí místo. <span class=\"clue\" data-clue-id=\"decoy_leta_sluzby\">Devatenáct let v tomto podniku bez jediné stížnosti — a tohle je moje odměna.</span>",
+          "contradiction_keywords": [
+            "dispečink",
+            "prosinec",
+            "písemně"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "hajek",
+          "speaker": "Miroslav Hájek, revizor, oznamovatel",
+          "text": "Viděl jsem to na vlastní oči, pane doktore. <span class=\"clue\" data-clue-id=\"clue_hajekov_trasa\">Bylo to na trase číslo jedenáct, poblíž zastávky u Průmyslového paláce v Holešovicích, v první polovině ledna.</span> Cestující mu podal hrst drobných a Kopecký ho propustil beze slova a bez záznamu. <span class=\"clue\" data-clue-id=\"decoy_pocet_stiznosti\">Strojvedoucí na té lince mi říkal, že podobných případů bylo v celém měsíci nejméně dvacet.</span> Nešlo mi o kariéru. Šlo mi o důvěru veřejnosti v kontrolní systém, který reprezentujeme.",
+          "contradiction_keywords": [
+            "trasa číslo jedenáct",
+            "Průmyslový palác",
+            "Holešovice",
+            "první polovina ledna"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "novackova",
+          "speaker": "Božena Nováčková, pravidelná cestující",
+          "text": "Kopeckého znám z tramvaje deset, možná dvanáct let. Vždy slušný, nikdy nepovýšený. V prosinci — nebo snad v listopadu, nemohu si být jista — jsem jednou viděla, jak pustil dělníka s prázdnýma rukama. <span class=\"clue\" data-clue-id=\"decoy_novalek_gesto\">Něco si podali — ale co to bylo přesně, z druhého konce vagónu nebylo rozeznat.</span> <span class=\"clue\" data-clue-id=\"decoy_novalek_trasa\">Bylo to na té naší trase — třetí nebo pátá, co jezdí přes Smíchov.</span> Nic víc vám říct nemohu.",
+          "contradiction_keywords": [
+            "třetí nebo pátá",
+            "Smíchov",
+            "prosinci"
+          ],
+          "hidden_at_wisdom_below": null
+        }
+      ],
+      "contradictions": [
+        {
+          "id": "trasa_hajekov_klam",
+          "description": "Hájek tvrdí, že Kopeckého viděl na trase číslo jedenáct v Holešovicích v lednu — ale výkaz přiřazení revizorů uvádí, že Kopecký celý leden sloužil na trase číslo sedm. Trasu jedenáct obsluhoval v lednu Hájek sám.",
+          "involves": [
+            "hajek",
+            "records"
+          ],
+          "highlight_at_wisdom": 81,
+          "unlocks_confrontation": "hajek"
+        },
+        {
+          "id": "prosinec_pismo_dopis",
+          "description": "Kopecký tvrdí, že o situaci předem písemně informoval dispečink. Doručovací kniha eviduje dopis z konce prosince 1930, ale bez záznamu o jakémkoli vyřízení nebo předání nadřízenému.",
+          "involves": [
+            "kopecky",
+            "records"
+          ],
+          "highlight_at_wisdom": 81,
+          "unlocks_confrontation": "hajek"
+        }
+      ],
+      "clue_system": {
+        "enabled": true,
+        "true_pair_id": "hajekov_trasa_strong",
+        "pairs": [
+          {
+            "pair_id": "hajekov_trasa_strong",
+            "a_id": "clue_hajekov_trasa",
+            "b_id": "clue_sluzebni_zaznam",
+            "strength": "strong"
+          },
+          {
+            "pair_id": "prosinec_dopis_medium",
+            "a_id": "clue_prosinec_pismo",
+            "b_id": "clue_zaznam_doruceni",
+            "strength": "medium"
+          }
+        ],
+        "decoys": [
+          "decoy_pocet_stiznosti",
+          "decoy_novalek_gesto",
+          "decoy_novalek_trasa",
+          "decoy_leta_sluzby",
+          "clue_hajekov_motivace"
+        ],
+        "timed_hunt": {
+          "enabled": true,
+          "duration_sec": 60,
+          "speed_upgrade_sec": 20,
+          "auto_confirm_best_on_timeout": true,
+          "timeout_downgrade": false
+        },
+        "info_threshold_unlocks": {
+          "actions": [
+            {
+              "min": 55,
+              "ids": [
+                "pool_inv_confrontation"
+              ]
+            }
+          ],
+          "verdicts": [
+            {
+              "min": 40,
+              "ids": [
+                "guilty_lenient",
+                "not_guilty_with_comment"
+              ]
+            },
+            {
+              "min": 70,
+              "ids": [
+                "insufficient_reopen"
+              ]
+            },
+            {
+              "min": 85,
+              "ids": [
+                "guilty_alternative",
+                "not_guilty_system"
+              ]
+            }
+          ]
+        },
+        "rewards": {
+          "on_confirm": {
+            "strong": {
+              "investigation_progress_delta": 45,
+              "unlock_actions": [
+                "pool_inv_confrontation"
+              ],
+              "unlock_verdict_ids": [
+                "guilty_alternative",
+                "insufficient_reopen"
+              ],
+              "narrative_lines": [
+                "Hájkova trasa jedenáct a Kopeckého výkaz ze sedmičky nepatří do stejného týdne — ani do stejného úseku města.",
+                "Oznámení přišlo čtyřicet osm hodin po záporné komisi; přesnost tohoto načasování začíná být sama o sobě výpovědí.",
+                "Průmyslový palác leží na holešovickém úseku trasy jedenáct — trasa sedm tam nikdy nejede a Hájek to ví."
+              ]
+            },
+            "medium": {
+              "investigation_progress_delta": 20,
+              "unlock_verdict_ids": [
+                "guilty_lenient"
+              ],
+              "narrative_lines": [
+                "Kopecký zaslal varování dřív, než existovalo obvinění — dispečink ho přijal a uložil bez odpovědi.",
+                "Úředník, který sám žádá instrukci, se nechová jako ten, kdo pravidlo vědomě obchází.",
+                "Nevyřízený dopis není důkaz neviny — ale je to stopa do kanceláře, kde se mlčením rozhodovalo."
+              ]
+            }
+          }
+        }
+      },
+      "investigation": {
+        "interview": {
+          "target": "kopecky",
+          "target_label": "Josef Kopecký, obžalovaný",
+          "reveals": "motivation",
+          "text": "Hájek žádal vedoucí funkci v říjnu, podruhé v listopadu loňského roku. Byl jsem jedním z komisařů a hlasoval jsem otevřeně proti — ne ze zloby, ale proto, že <span class=\"clue\" data-clue-id=\"clue_hajekov_motivace\">třikrát ztratil zápisník se záznamy průjezdů; na to ho písemně upozornila i správa dispečinku.</span> Čtyřicet osm hodin po druhém záporném stanovisku komise přišlo trestní oznámení na mě. Nehledám, pane doktore, spravedlnost — hledám jen, aby spis obsahoval i tento fakt.",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Integrita": -1,
+              "Vina": 2
+            }
+          }
+        },
+        "records": {
+          "source": "Výkaz Elektrických podniků hlavního města Prahy, leden 1931, a doručovací kniha dispečinku",
+          "reveals": "facts",
+          "text": "Výkaz přiřazení revizorů, leden 1931: <span class=\"clue\" data-clue-id=\"clue_sluzebni_zaznam\">revizor Kopecký Josef přiřazen k trase číslo sedm (Náměstí Republiky — Braník) po celý leden 1931.</span> Trasa číslo jedenáct (Vinohrady — Holešovice, průmyslový obvod) obsluhována v daném období revizory Hájkem a Brožem. Doručovací kniha dispečinku: <span class=\"clue\" data-clue-id=\"clue_zaznam_doruceni\">dne 28. prosince 1930 zaevidován dopis č. 1124/1930, odesilatel revizor J. Kopecký — bez záznamu o vyřízení nebo předání nadřízenému referentu.</span>",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -18,
+            "traits": {
+              "Integrita": -2,
+              "Vina": 1
+            },
+            "factions": {
+              "Moc": 1
+            }
+          },
+          "unlocks_contradiction": "trasa_hajekov_klam"
+        },
+        "informant": {
+          "reveals": "context",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -5,
+            "traits": {
+              "Vina": 1
+            },
+            "factions": {
+              "Lid": -1,
+              "Kapital": 2
+            }
+          },
+          "variants": {
+            "default": "Odborový důvěrník traťového úseku, potichu, u dveří: 'Elektrické podniky právě připravují nový vnitřní předpis, který by umožňoval propouštět revizory bez penzijního nároku po dosažení stanoveného počtu odsloužených let. Kopecký byl letos na samém prahu. Hájek by nastoupil za nižší nástupní mzdu. A vedení o oznámení vědělo dřív, než se stalo úředním podáním — dva dny předtím se zástupce podniku sešel s komisařem na Malé Straně. Nevím, co si řekli. Ale vím, kdy.'"
+          }
+        },
+        "confrontation": {
+          "target": "hajek",
+          "target_label": "Miroslav Hájek, revizor",
+          "requires_contradiction": "trasa_hajekov_klam",
+          "requires_courage": 50,
+          "cost": 2,
+          "prompt": "Pane Hájku, výkaz přiřazení revizorů říká, že trasa číslo jedenáct patřila v lednu vám — nikoli Kopeckému. Jak jste ho mohl pozorovat u zastávky u Průmyslového paláce v Holešovicích?",
+          "success": {
+            "text": "Hájek stiskne rty. Pohledí na okno, pak zpět. 'Možná to bylo koncem února,' řekne nakonec. Jenže Průmyslový palác leží na holešovickém úseku trasy jedenáct — trasa sedm, Kopeckého leden i únor, tam nejede. Hájek to ví. Odvrátí pohled a nepřidá nic dalšího.",
+            "reveals": "Hájkova výpověď o místě a době pozorování se rozpadá: přesunem na únor sám popírá obžalobu datovanou do ledna, a geografický rozpor s trasou sedm zůstává. Zbývá otázka, co přesně viděla Nováčková — a zda Hájek vůbec kdy stál na téže zastávce jako Kopecký."
+          }
+        }
+      },
+      "verdicts": {
+        "guilty": {
+          "sentences": {
+            "maximum": {
+              "label": "Propuštění ze služby a pokuta 200 Kčs",
+              "description": "Soud uvěří, že Kopecký systematicky zneužíval postavení revizora k vlastnímu prospěchu. Po devatenácti letech odchází bez nároku na penzi — manželka a dvě dcery přicházejí o jediný příjem rodiny.",
+              "effects": {
+                "integrita": 1,
+                "vina": 10,
+                "nadeje": -5,
+                "moc": 5,
+                "lid": -8,
+                "finance": 20
+              }
+            },
+            "standard": {
+              "label": "Pokuta 80 Kčs a důtka s podmíněným ponecháním ve funkci",
+              "description": "Soud přijme za prokázané alespoň opakované propouštění cestujících bez záznamu. Kopecký si místo udrží, ale cejch pochybné věrnosti v aktech podniku ho bude provázet do konce služby.",
+              "effects": {
+                "integrita": 2,
+                "vina": 5,
+                "nadeje": -2,
+                "moc": 2,
+                "lid": -3,
+                "finance": 15
+              }
+            },
+            "lenient": {
+              "label": "Napomenutí a správní dohled po dobu šesti měsíců",
+              "description": "Soud uzná formální pochybení v propouštění cestujících bez záznamu, bez peněžního trestu. Kopecký přichází o část autority, ale rodina není přímě ohrožena.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 0,
+                "vina": 2,
+                "nadeje": 2,
+                "moc": -2,
+                "lid": 4,
+                "finance": 10
+              }
+            },
+            "alternative": {
+              "label": "Alternativa: Symbolická pokuta 10 Kčs a správní přezkum nakládání s interními oznámeními v podniku",
+              "description": "Soud uzná formální pochybení, ale nařídí podniku odpovědět, proč prosincový dopis revizora Kopeckého leží v doručovací knize bez vyřízení. Kopecký zůstane ve funkci; vedení musí veřejně doložit svůj postup. Riziková varianta — Elektrické podniky ji nepřijmou mlčky.",
+              "requires_investigation": 2,
+              "requires": {
+                "moudrost_min": 55
+              },
+              "effects": {
+                "integrita": 5,
+                "moudrost": 4,
+                "vina": 0,
+                "nadeje": 5,
+                "moc": -4,
+                "lid": 7,
+                "finance": 5,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "not_guilty": {
+          "approaches": {
+            "formal": {
+              "label": "Zproštění pro neprokázanost obžaloby",
+              "description": "Důkazy nestačí k závěru o přijímání peněz. Kopecký odchází s čistým záznamem — ale Hájkovo oznámení zůstane v aktech podniku a v paměti kolegů.",
+              "effects": {
+                "integrita": 3,
+                "odvaha": 3,
+                "moudrost": 2,
+                "vina": -5,
+                "moc": -4,
+                "lid": 4,
+                "finance": 0
+              }
+            },
+            "with_comment": {
+              "label": "Zproštění s komentářem soudu k věrohodnosti obžalobního podnětu",
+              "description": "Soud zprostí Kopeckého a veřejně upozorní na načasování a okolnosti Hájkova oznámení. Kopecký je čistý; Hájek má co vysvětlovat nadřízeným i kolegům.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 5,
+                "odvaha": 4,
+                "moudrost": 3,
+                "vina": -3,
+                "moc": -6,
+                "lid": 7,
+                "finance": 5,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "system": {
+              "label": "Alternativa: Zproštění a podnět k přezkumu nakládání s interními oznámeními u Elektrických podniků",
+              "description": "Soud nejen zprostí Kopeckého, ale formálně upozorní zemský úřad na možné zneužívání interních donosů k personálním čistkám v komunálních podnicích. Riziková varianta — vedení podniku to nenechá bez odpovědi a Vlčkův úřad si povšimne.",
+              "requires_investigation": 2,
+              "requires": {
+                "moudrost_min": 65,
+                "odvaha_min": 55
+              },
+              "effects": {
+                "integrita": 7,
+                "odvaha": 5,
+                "moudrost": 5,
+                "vina": -4,
+                "nadeje": 5,
+                "moc": -8,
+                "lid": 9,
+                "finance": 8,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 2
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "insufficient_evidence": {
+          "requires": {
+            "moudrost_min": 55
+          },
+          "options": {
+            "reopen": {
+              "label": "Vrátit k přešetření hospodářskou inspekcí",
+              "description": "Soud považuje důkazy za rozporuplné a vrací věc k prověření výkazů přiřazení tras a doručovací knihy dispečinku. Kopecký čeká; Hájek také.",
+              "effects": {
+                "integrita": 4,
+                "moudrost": 3,
+                "vina": 1,
+                "nadeje": 1,
+                "moc": -2,
+                "lid": 2,
+                "finance": 8,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "close": {
+              "label": "Zamítnout pro nedostatek důkazů bez dalšího řízení",
+              "description": "Spis je uzavřen. Kopecký není odsouzen ani plně očištěn — v podniku si každý výsledek přečte po svém a podle potřeby.",
+              "effects": {
+                "integrita": 1,
+                "moudrost": 2,
+                "vina": 2,
+                "nadeje": -1,
+                "moc": 1,
+                "lid": 1,
+                "finance": 5
+              }
+            }
+          }
+        }
+      },
+      "aftermath": {
+        "guilty_maximum": "Kopecký se nezhroutí — zbledne. Podá ruku zapisovatelce jako by se loučil s někým, kdo mu rozuměl. Hájek stojí u okna a nedívá se. Venku za sklem tramvaj zazvoní a projede beze stop.",
+        "guilty_standard": "Důtka dopadne tiše jako razítko na mokrý papír. Kopecký přikývne. Ví, že záznam v aktech je navždy; to se nepřepíše, ať se stane cokoli. Hájek odchází první a nezastaví se ve dveřích.",
+        "guilty_lenient": "Napomenutí zazní v síni skoro jako omluva. Kopecký si otře ruce do kalhot. Hájek si něco poznačí do zápisníku — tentokrát toho, který ztratit neplánuje.",
+        "guilty_alternative": "Rozsudek dopadne nezvykle. Zástupce vedení podniku, který seděl ve třetí lavici, si vymění pohled s mužem v šedém kabátě a oba odcházejí před závěrečnou formulí. Kopecký poprvé od zahájení řízení vydechne rovnými plícemi.",
+        "not_guilty_formal": "Zproštění přijde suše, bez komentáře. Kopecký si sáhne do kapsy, jako by hledal jízdenku, kterou tam nemá. Hájek odchází zadním vchodem. V záznamu zůstane jen číslo případu a datum.",
+        "not_guilty_with_comment": "Soudcův komentář k načasování oznámení zazní v síni pomalu a jasně. Kopecký si přikryje oči dlaní — ne ze smutku, ze studu, že to trvalo tak dlouho, než to někdo řekl nahlas. Hájek neopustí budovu dřív, než si přečte protokol.",
+        "not_guilty_system": "Podání k zemskému úřadu ohledně personálního řádu komunálních podniků se dostane do novin jako šestivěté oznámení v kronice. Vedení Elektrických podniků vydá prohlášení o důvěře ve své zaměstnance. Žádný z přítomných novinářů mu neuvěří.",
+        "insufficient_reopen": "Věc se vrací. Kopecký dostane pár týdnů navíc; Hájek pár nocí méně klidu. Výkaz tras čeká na stole inspektora a prosincový dopis na stole někoho jiného.",
+        "insufficient_close": "Nikdo nevyhrál. Kopecký odchází přesně s tím, co přinesl — ani víc, ani méně. V aktech podniku zůstane jen stín podání bez rozsudku a jméno bez cejchu, které ale také bez čistého záznamu nestojí zpříma."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "guilty_alternative",
+          "delay_days": 5,
+          "type": "fragment",
+          "text": "Elektrické podniky podaly žádost o výjimku ze správního přezkumu, odůvodněnou naléhavostí provozu. Žádost leží ve frontě na zemském úřadě. Kopecký zatím jezdí na sedmičce."
+        },
+        {
+          "trigger": "not_guilty_system",
+          "delay_days": 4,
+          "type": "letter",
+          "text": "Krátký lístek na stole, bez záhlaví: Váš komentář k personálnímu řádu Elektrických podniků překročil rámec trestního rozsudku. Doporučuji příště větší zdržení — pro vaši vlastní pohodlnost. Podpis: Vlček."
+        },
+        {
+          "trigger": "insufficient_reopen",
+          "delay_days": 6,
+          "type": "fragment",
+          "text": "Hospodářská inspekce požádala o originál doručovací knihy dispečinku za prosinec 1930. Vedení Elektrických podniků sdělilo, že kniha je v archivu a bude zapůjčena do čtrnácti pracovních dnů."
+        }
+      ]
+    },
+    {
+      "id": "pool_a1_druha_ruka",
+      "slot": "pool",
+      "type": "moral_dilemma",
+      "color": "#2C4A7C",
+      "available_days": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "act": 1,
+      "weight_conditions": {
+        "base_weight": 1,
+        "kapital_above_60": 1.3,
+        "lid_below_40": 1.2
+      },
+      "title": "Druhá ruka",
+      "case_number": "Sp. zn. 90/1931",
+      "defendant": {
+        "name": "Václav Šrámek",
+        "age": 48,
+        "occupation": "notářský kancelista",
+        "detail": "kancelista v notářské kanceláři doktora Horáka na Malé Straně, ženatý, dvě dospělé dcery, třicet let praxe"
+      },
+      "charge": "Padělání a pozměnění veřejné listiny dle §199 trestního zákona č. 117/1852 — obžalovaný měl po podpisu závěti zůstavitele Augustina Čermáka dodatečně sestavit a opatřit pozměněným datem přípisek ke spisu, čímž měnil dědické podíly bez zákonné notářské formy.",
+      "description": "Augustin Čermák, jednasedmdesátiletý majitel cihelny v <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"holesovice\" title=\"Slovník: Holešovice\">Holešovicích</button>, zemřel 12. února 1931. Závěť pořídil 8. února v notářské kanceláři doktora Horáka; hlavní text odkazoval dvě třetiny cihelny mladšímu synu Jiřímu a třetinu staršímu Pavlovi. Spolu se závětí byl však nalezen přípisek — rovněž datovaný 8. února — jenž mění podíly na rovný díl. Mladší syn Jiří podal trestní oznámení: notářský deník zaznamenává pro celou schůzku pouhých patnáct minut a chemický rozbor prokazuje jiný inkoust v přípisku než v hlavním textu závěti. Kancelista Václav Šrámek trvá na tom, že oba dokumenty sepsal téhož dne podle výslovného přání zůstavitele.",
+      "testimonies": [
+        {
+          "id": "sramek",
+          "speaker": "Václav Šrámek, obžalovaný",
+          "text": "Pana Čermáka jsem znal třicet let. Věděl jsem, jak přemýšlí, jak mluví, když mu na něčem záleží. <span class=\"clue\" data-clue-id=\"decoy_oral_instruction\">Řekl mi přímo: chci, aby oba dostali stejně. Pavel pracoval pro podnik stejně jako Jiří, jen mu otec nikdy neřekl dost</span>. Závěť i přípisek vznikly téhož dne, jedno perem, druhé po přestávce. <span class=\"clue\" data-clue-id=\"decoy_sramek_wife\">Moje žena je od podzimu léčena v sanatoriu na Letné — to snad nehraje roli v tom, co jsem napsal nebo nenapsal</span>.",
+          "contradiction_keywords": [
+            "přípisek",
+            "téhož dne"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "jiri",
+          "speaker": "Jiří Čermák, mladší syn a oznamovatel",
+          "text": "<span class=\"clue\" data-clue-id=\"decoy_father_told\">Otec mi týden před sepsáním závěti říkal, že má vše zařízeno tak, jak jsem vždy věděl</span>. To jsou jeho přesná slova. Přišel jsem do kanceláře den po pohřbu, vzal spis a četl. Přípisek tam nebyl ještě v pátek. <span class=\"clue\" data-clue-id=\"decoy_pavel_jan\">Pavel navštívil Šrámka v lednu — samo o sobě nic, ale Pavel tehdy potřeboval peníze a Šrámek mu je sehnal</span>. Podpis na přípisku je neobratný. Otec psal krasopis.",
+          "contradiction_keywords": [
+            "v pátek",
+            "podpis"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "kolarova",
+          "speaker": "Alžběta Kolářová, asistentka notářské kanceláře",
+          "text": "Pan Šrámek pracuje s největší pečlivostí, to mohu potvrdit bez váhání. Dne 8. února přišel pan Čermák dopoledne. <span class=\"clue\" data-clue-id=\"clue_session_duration\">Seděli spolu nejméně hodinu, možná déle — já sama jsem jim přinesla čaj</span>. Deník si vedeme stručně; přesný čas záleží na tom, kolik toho bylo k přepisu. Pane doktore, v té kanceláři se taková věc nestala za celých dvaadvacet let.",
+          "contradiction_keywords": [
+            "hodinu",
+            "deník"
+          ],
+          "hidden_at_wisdom_below": null
+        }
+      ],
+      "contradictions": [
+        {
+          "id": "log_vs_ink",
+          "description": "Návštěvní deník notářské kanceláře uvádí pro schůzku 8. února patnáct minut. Chemický rozbor potvrzuje jiný typ inkoustu v přípisku než v závěti. Oba dokumenty nemohou vzniknout za patnáct minut jedním sepsáním — a pokud vznikly odděleně, nemohou mít totéž datum.",
+          "involves": [
+            "records",
+            "sramek"
+          ],
+          "highlight_at_wisdom": 81,
+          "unlocks_confrontation": "sramek"
+        },
+        {
+          "id": "witness_vs_log",
+          "description": "Asistentka Kolářová popisuje přibližně hodinovou schůzku a přinesený čaj; úřední deník ji zkracuje na patnáct minut. Jedno z toho je nepřesné — buď záznam, nebo výpověď ženy, která má zájem chránit svého zaměstnavatele.",
+          "involves": [
+            "kolarova",
+            "records"
+          ],
+          "highlight_at_wisdom": 81,
+          "unlocks_confrontation": "sramek"
+        }
+      ],
+      "clue_system": {
+        "enabled": true,
+        "true_pair_id": "log_ink_strong",
+        "pairs": [
+          {
+            "pair_id": "log_ink_strong",
+            "a_id": "clue_visit_log",
+            "b_id": "clue_ink_analysis",
+            "strength": "strong"
+          },
+          {
+            "pair_id": "witness_log_medium",
+            "a_id": "clue_session_duration",
+            "b_id": "clue_visit_log",
+            "strength": "medium"
+          }
+        ],
+        "decoys": [
+          "decoy_oral_instruction",
+          "decoy_sramek_wife",
+          "decoy_father_told",
+          "decoy_pavel_jan",
+          "decoy_loan_200"
+        ],
+        "timed_hunt": {
+          "enabled": true,
+          "duration_sec": 60,
+          "speed_upgrade_sec": 20,
+          "auto_confirm_best_on_timeout": true,
+          "timeout_downgrade": false
+        },
+        "info_threshold_unlocks": {
+          "actions": [
+            {
+              "min": 55,
+              "ids": [
+                "pool_inv_confrontation"
+              ]
+            }
+          ],
+          "verdicts": [
+            {
+              "min": 40,
+              "ids": [
+                "guilty_lenient",
+                "not_guilty_with_comment"
+              ]
+            },
+            {
+              "min": 70,
+              "ids": [
+                "insufficient_reopen"
+              ]
+            },
+            {
+              "min": 85,
+              "ids": [
+                "guilty_alternative",
+                "guilty_special"
+              ]
+            }
+          ]
+        },
+        "rewards": {
+          "on_confirm": {
+            "strong": {
+              "investigation_progress_delta": 45,
+              "unlock_actions": [
+                "pool_inv_confrontation"
+              ],
+              "unlock_verdict_ids": [
+                "guilty_alternative",
+                "insufficient_reopen"
+              ],
+              "narrative_lines": [
+                "Patnáct minut v deníku a jiný inkoust v přípisku — dva záznamy, které nelze uvést do souladu jedním výkladem bez trhlin.",
+                "Šrámkovo slovo stojí osamocené: deník ho neoprošťuje, chemický rozbor ho nezachraňuje, zbývá jen to, co tvrdí o přání zůstavitele.",
+                "Přípisek mohl vzniknout kdykoli — možná téhož dne, ale ne za patnáct minut, které deník nabízí jako celou schůzku."
+              ]
+            },
+            "medium": {
+              "investigation_progress_delta": 20,
+              "narrative_lines": [
+                "Kolářová mluví o hodině práce — deník uvádí patnáct minut. Jedno z toho musí být nepřesné; záleží, komu věříte a proč.",
+                "Asistentka si zápisník neprohledala; úřední deník mlčí za svoji stranu. Mezera mezi oběma záznamy se nevysvětlí sama."
+              ]
+            }
+          }
+        }
+      },
+      "investigation": {
+        "interview": {
+          "target": "sramek",
+          "target_label": "Václav Šrámek, obžalovaný",
+          "reveals": "motivation",
+          "text": "Šrámek si vybere slova pomalu, jako by každé vážil. Pan Čermák starší mu byl více než klientem — pomáhal mu při studiu, zaručil se za něj u doktora Horáka. <span class=\"clue\" data-clue-id=\"decoy_loan_200\">Půjčku dvěsta korun od Pavla v prosinci vysvětluje jako zálohu na letní léčebné výlohy ženy, přislíbenou ústně ještě v říjnu</span>. Trvá na tom, že Pavel při tom nezmiňoval závěť ani otce. Závěrem doplní tichým hlasem: Starý pán mi říkal, že Pavel byl vždy ten druhý syn. Věřil jsem mu.",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Integrita": -1,
+              "Vina": 1
+            },
+            "factions": {
+              "Kapital": -1
+            }
+          }
+        },
+        "records": {
+          "source": "Notářská kancelář doktora Horáka, Chemický ústav Karlovy university — Praha",
+          "reveals": "facts",
+          "text": "Návštěvní deník kanceláře: záznam ze dne 8. února 1931, 9:15 — <span class=\"clue\" data-clue-id=\"clue_visit_log\">jméno A. Čermák, délka schůzky 15 minut, kancelista V. Šrámek, podpis</span>. Chemický posudek Ústavu soudního lékařství ze dne 10. března 1931: <span class=\"clue\" data-clue-id=\"clue_ink_analysis\">přípisek (list č. 2 závěti) obsahuje uhličitan draselný v jiném poměru než hlavní text (list č. 1) — jde s největší pravděpodobností o dva odlišné inkousty ze dvou výrobních šarží</span>. Oba listy jsou na papíře téhož vodoznaku a formátu.",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -18,
+            "traits": {
+              "Moudrost": 1,
+              "Vina": 1
+            },
+            "factions": {
+              "Moc": 1
+            }
+          },
+          "unlocks_contradiction": "log_vs_ink"
+        },
+        "informant": {
+          "reveals": "context",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -5,
+            "traits": {
+              "Vina": 1
+            },
+            "factions": {
+              "Kapital": 2,
+              "Lid": -1
+            }
+          },
+          "variants": {
+            "default": "Notářský přípisek k závěti musí v ČSR splňovat stejnou formu jako původní listina — podpis zůstavitele, přítomnost notáře nebo kancelisty s plnou mocí a zpravidla dva svědci. Pokud některá z náležitostí chybí nebo je datum pozměněno, celý přípisek nemá právní účinky. Notářský deník je soukromá záležitost kanceláře — nepodléhá státnímu auditu, ale soudu musí být předložen k nahlédnutí.",
+            "kapital_high": "V notářském prostředí platí nepsaná zásada: co klient řekl ústně a co podepsal, jsou dvě odlišné skutečnosti. Starší kancelista, který pamatuje klienty padesát let a sám rozhodne, co chtěli říct, riskuje nejen trestní stíhání — riskuje pověst celé kanceláře. A doktor Horák je v Praze znám."
+          }
+        },
+        "confrontation": {
+          "target": "sramek",
+          "target_label": "Václav Šrámek, obžalovaný",
+          "requires_contradiction": "log_vs_ink",
+          "requires_courage": 60,
+          "cost": 2,
+          "prompt": "Pane Šrámku, deník vaší kanceláře uvádí patnáct minut. Chemický posudek prokazuje jiný inkoust v přípisku. Oba dokumenty nemohou vzniknout za patnáct minut jedním perem téhož dne. Kdy přesně jste přípisek sepsal a proč nese datum osmého února?",
+          "success": {
+            "text": "Šrámek si přikryje oči dlaní a chvíli se nehýbe. Pak dá ruku dolů a mluví bez přestávky, tiše, jako by četl z listiny, kterou si celý měsíc opakoval pro sebe: Přišel ke mně druhý den, deváteho. Sám, bez advokáta, bez Jiřího. Říkal, že si to v noci rozmyslel — chce rovný díl, protože Pavel pro ten podnik pracoval stejně jako Jiří, jen otec to nikdy neřekl nahlas. Napsal jsem přípisek. Chtěl ho podepsat. Ale ruka se mu třásla tak, že ani nedržel pero. Pomohl jsem mu — vedl jsem mu ruku. Datum jsem napsal osmého, protože jinak by bylo jasné, že při sepsání nebyl svědek ani advokát a přípisek by byl neplatný. Věděl jsem, co dělám. Věřil jsem, že vím také, co chtěl.",
+            "reveals": "Šrámek přiznává, že přípisek vznikl 9. února, nikoli 8. února, a že datum bylo záměrně pozměněno. Přiznává rovněž, že podpis zůstavitele provedl de facto on sám, protože Čermákovi se třásla ruka. Tvrdí, že jednal v souladu s vůlí umírajícího, avšak bez zákonné formy. Obsah přípisku může odpovídat skutečnému záměru zůstavitele — to není prokázáno ani vyvráceno."
+          }
+        }
+      },
+      "verdicts": {
+        "guilty": {
+          "sentences": {
+            "maximum": {
+              "label": "2 roky vězení a prohlášení přípisku za neplatný",
+              "description": "Soud uzná úmyslné padělání data i podpisu za prokázané. Šrámek přijde o místo, o čest kancelisty a téměř jistě i o vyhlídky na důchod — ve věku osmačtyřiceti let nastupuje do vězení jako muž bez profese. Pavel Čermák přichází o dědický podíl z přípisku; cihelna připadne Jiřímu v podílu dvě třetiny.",
+              "effects": {
+                "integrita": 2,
+                "moudrost": 1,
+                "vina": 12,
+                "nadeje": -8,
+                "moc": 8,
+                "lid": -10,
+                "finance": 35
+              }
+            },
+            "standard": {
+              "label": "Podmíněný trest 2 roky s odkladem a civilní řízení o platnosti závěti",
+              "description": "Šrámek je odsouzen za pozměnění data, avšak věc platnosti přípisku se přenáší do civilního soudu, jenž posoudí vůli zůstavitele nezávisle. Šrámek si zachovává svobodu, ale ztrácí kancelářské místo a reputaci — jeho žena se o rozsudku dozví dříve, než se vrátí domů.",
+              "effects": {
+                "integrita": 3,
+                "moudrost": 1,
+                "vina": 8,
+                "nadeje": -3,
+                "moc": 4,
+                "lid": -5,
+                "finance": 30
+              }
+            },
+            "lenient": {
+              "label": "Podmíněný trest 1 rok s přihlédnutím k okolnostem",
+              "description": "Soud přihlédne k bezúhonnému záznamu, věku a péči o nemocnou ženu. Šrámek je uznán vinným, ale trest zůstane na papíře, dokud se nedopustí dalšího přečinu. Civilní řízení o přípisku probíhá dál. Pro mnoho kolegů bude cejch odsouzeného kancelisty horší než samotný trest.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 1,
+                "moudrost": 2,
+                "vina": 4,
+                "nadeje": 2,
+                "moc": 1,
+                "lid": 3,
+                "finance": 25
+              }
+            },
+            "alternative": {
+              "label": "Alternativa: Trestní stíhání přerušeno, nařízen nezávislý znalecký přezkum obsahu závěti",
+              "description": "Soud uzná procesní pochybení, ale přeruší trestní řízení a nařídí grafologický a historický znalecký posudek k otázce, zda přípisek vyjadřoval skutečnou vůli zůstavitele. Šrámek není odsouzen ani zproštěn — případ se přesouvá do roviny, kde záleží na faktech, ne jen na formě. Bratři čekají na výsledek znalce, nikoliv soudce.",
+              "requires_investigation": 2,
+              "requires": {
+                "moudrost_min": 60
+              },
+              "effects": {
+                "integrita": 7,
+                "moudrost": 5,
+                "vina": 1,
+                "nadeje": 5,
+                "moc": -5,
+                "lid": 6,
+                "finance": 25,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "special": {
+              "label": "Alternativa: Vina za formu, soud doporučuje přezkum notářské praxe a zkoumání vůle zůstavitele",
+              "description": "Šrámek je odsouzen za padělání data a podpisu, ale soud veřejně zaznamená, že obsah přípisku mohl odpovídat skutečné vůli zůstavitele a že zákon nezná cestu, jak to nyní dokázat. Doporučení směřuje k revizi notářského procesu při pořizování závětí vážně nemocných klientů. Pro Šrámka je to rozsudek i jakési posthumní zadostiučinění — právně nevymahatelné, ale zaznamenané.",
+              "requires_investigation": 3,
+              "requires": {
+                "moudrost_min": 70,
+                "odvaha_min": 60
+              },
+              "effects": {
+                "integrita": 9,
+                "moudrost": 6,
+                "odvaha": 4,
+                "vina": 2,
+                "nadeje": 6,
+                "moc": -8,
+                "lid": 9,
+                "finance": 20,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 2
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "not_guilty": {
+          "approaches": {
+            "formal": {
+              "label": "Zproštění pro nedostatek přímých důkazů o úmyslném padělání",
+              "description": "Chemický rozbor ani zkrácený deník neprokazují za hranici pochybnosti, že Šrámek jednal záměrně a s podvodným úmyslem. Platnost přípisku je civilní otázka — trestní řízení se uzavírá. Pavel Čermák může podat žalobu ve věci dědictví; výsledek závisí na civilním soudci, ne na tomto rozsudku.",
+              "effects": {
+                "integrita": 4,
+                "odvaha": 3,
+                "moudrost": 2,
+                "vina": -6,
+                "nadeje": 3,
+                "moc": -5,
+                "lid": 6,
+                "finance": 20
+              }
+            },
+            "with_comment": {
+              "label": "Zproštění s komentářem soudu k notářské formě a doporučením nezávislého přezkumu",
+              "description": "Soud zprostí Šrámka trestní odpovědnosti, ale zaznamená pochybnosti o procesním postupu kanceláře a doporučí civilnímu soudu věc závěti přezkoumat prostřednictvím nezávislého znalce. Šrámek odchází volný, ale kancelář i Pavel dostávají signál, že případ neskončil papírovou formulací.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 6,
+                "odvaha": 4,
+                "moudrost": 4,
+                "vina": -4,
+                "nadeje": 4,
+                "moc": -7,
+                "lid": 8,
+                "finance": 25,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "insufficient_evidence": {
+          "requires": {
+            "moudrost_min": 55
+          },
+          "options": {
+            "reopen": {
+              "label": "Vrátit k došetření — grafologický posudek a výslech rodinného advokáta",
+              "description": "Soud neshledá dostatečné důkazy k rozhodnutí a žádá grafologický rozbor podpisu na přípisku spolu s výslechem advokáta Čermákovy rodiny, jenž byl přítomen sepisu hlavní závěti. Šrámek zůstává ve volnosti; cihelna stojí v limbu dědické nejistoty a dělníci čekají.",
+              "effects": {
+                "integrita": 4,
+                "moudrost": 4,
+                "vina": 1,
+                "nadeje": 2,
+                "moc": -2,
+                "lid": 4,
+                "finance": 20,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "close": {
+              "label": "Uzavřít pro nedostatek důkazů bez dalšího opatření",
+              "description": "Spis je uzavřen pro neprůkaznost. Přípisek zůstane právně nezpochybněn trestní cestou; dědicové se musí obrátit na civilní soud. Šrámek se vrátí do kanceláře — ale Jiří Čermák si zapamatuje soudce, který případ pustil bez stopy.",
+              "effects": {
+                "integrita": 1,
+                "moudrost": 2,
+                "vina": 2,
+                "nadeje": -2,
+                "moc": 2,
+                "lid": 1,
+                "finance": 15
+              }
+            }
+          }
+        }
+      },
+      "aftermath": {
+        "guilty_maximum": "Šrámek vstane bez dechu, jako by zpráva teprve doháněla slova. Jiří Čermák složí spis pod paží a odchází beze slova. Kolářová stojí v zadní části síně; zakousne se do rtu a nic neříká.",
+        "guilty_standard": "Rozsudek padne věcně, bez patosu. Šrámek zapne knoflík u kabátu a počká, až zapisovatelka dočte. Civilní soud se sejde za tři týdny — tam bude záležet na jiných zákonech.",
+        "guilty_lenient": "Šrámek kývne, jako by čekal horší. Jiří si zapíše číslo rozsudku do notýsku. Na chodbě si minou pohled, ale ani jeden nezastaví.",
+        "guilty_alternative": "Soudní síň se vylidní s nečekanou rychlostí. Šrámek vyjde první, bez Kolářové. Znalecký posudek přijde za měsíc, možná za dva. Cihelna mezitím čeká na dědice.",
+        "guilty_special": "Šrámek je odsouzen. Pak zazní slovo o přezkumu notářské praxe — a výraz Jiřího Čermáka se změní. Nemusel vyhrát tak složitě.",
+        "not_guilty_formal": "Šrámek je volný. Ale přípisek stále leží ve spisu dědického řízení a civilní soud teprve otevírá svůj deník. Jiří se zvedne z lavice dřív, než zapisovatelka doříká formulaci.",
+        "not_guilty_with_comment": "Komentář soudu k přezkumu dopadne tiše, ale trvale. Šrámek dá ruce do kapes. Jiří Čermák zavolá svému advokátovi ještě před odchodem ze síně.",
+        "insufficient_reopen": "Spis odchází na jiný stůl. Cihelna stojí nečinně — dělníci čekají na pravomocné dědice. Šrámek jde domů přes Malostranské náměstí, pomalu.",
+        "insufficient_close": "Případ je uzavřen bez verdiktu. Přípisek zůstává platný i neplatný zároveň, dokud ho civilní soud neposoudí. Oba bratři si říkají, že vyhrál ten druhý."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "guilty_special",
+          "delay_days": 5,
+          "type": "fragment",
+          "text": "Notářská komora pro Prahu vydala interní oběžník o postupu při sepisování závětí u nemocných nebo starých klientů. Bez odkazu na případ Šrámek — ale načasování je zřejmé."
+        },
+        {
+          "trigger": "not_guilty_with_comment",
+          "delay_days": 4,
+          "type": "letter",
+          "text": "Na stůl přijde krátká nota od advokáta Čermákovy rodiny: civilní soud přijal návrh na znalecký přezkum přípisku. Grafolog a specialista na historické inkousty jsou přivoláni. Případ pokračuje — jen jinde."
+        },
+        {
+          "trigger": "insufficient_reopen",
+          "delay_days": 6,
+          "type": "fragment",
+          "text": "Soudní znalec z Chemického ústavu Karlovy university zažádal o přístup k originálnímu přípisku. Kolářová písemně odmítla vydat deník bez soudního příkazu. Šrámek mezitím podal žádost o dovolenou."
         }
       ]
     }

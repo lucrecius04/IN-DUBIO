@@ -1,0 +1,416 @@
+{
+  "id": "pool_a1_bytova_komise",
+  "slot": "pool",
+  "type": "moral_dilemma",
+  "color": "#2C4A7C",
+  "available_days": [
+    1,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "base_weight": 1,
+    "lid_below_40": 1.3
+  },
+  "title": "Bytová komise",
+  "case_number": "Sp. zn. 88/1931",
+  "defendant": {
+    "name": "František Dolejš",
+    "age": 44,
+    "occupation": "úředník obecní bytové komise, Praha VIII",
+    "detail": "ženatý, otec tří dětí; čtrnáct let v úřadu bez stížnosti, bez záznamu"
+  },
+  "charge": "Zneužití pravomoci veřejného činitele dle §328 trestního zákona a pozměnění úředního záznamu dle §311",
+  "description": "Obecní bytová komise pro obvod Praha VIII přidělila prázdný třípokojový byt v Libni vdově Marii Novotné se třemi dětmi, přestože na řadě byl Bedřich Vaněk — obchodní zástupce s evidovanou přihláškou o třináct dní nižšího pořadového čísla. Obžalovaný Dolejš, jenž přidělení jako jediný podepsal, tvrdí, že přihláška Novotných nesla datum šestého února, tedy starší než Vaněkův zápis. Podací deník komise však Novotnou eviduje jako záznam č. 231 ze dne jedenáctého února — plných sedmnáct položek za Vaňkem. V šuplíku Dolejšova stolu byl nalezen lístek s číslem bytu a příjmením Novotná bez data ani vysvětlení. Morální napětí: úřad má pravidla, která chrání všechny žadatele stejně — ale pravidla neznají, komu příští týden přijde exekutor.",
+  "testimonies": [
+    {
+      "id": "dolejs",
+      "speaker": "František Dolejš, obžalovaný",
+      "text": "Přihláška paní Novotné přišla s datem šestého února — sama mi ji donesla do okénka a datum bylo vyplněno již při podání. <span class=\"clue\" data-clue-id=\"clue_dolejs_datum\">Zařadil jsem ji podle data na přihlášce, protože zavedená praxe komise uznává datum sepsání žádosti, ne datum zápisu do podacího deníku</span>. Pan Vaněk se dostavil sám až osmého. Lístek v šuplíku? Zapisuji si čísla bytů, abych se v agendě neztratil. Přidělení bytu bylo v souladu s pravidly, jak je zde po léta dodržujeme.",
+      "contradiction_keywords": [
+        "šestého února",
+        "datum na přihlášce"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "vanek",
+      "speaker": "Bedřich Vaněk, poškozený žadatel",
+      "text": "Svou přihlášku jsem odevzdal osmého února v půl desáté dopoledne, vrátná Šímová mi stvrdila příjem vlastním razítkem. V podacím deníku nesu <span class=\"clue\" data-clue-id=\"clue_vanek_cislo_214\">pořadové číslo 214 z roku 1931</span>. Na úřadě mi ukázali, že Novotná je číslo 231 — a přesto dostala byt, který mi podle pořadníku náleží. Čekám rok a půl. Zákon hovoří jasně, nebo jsem se mýlil, že zákon platí pro každého?",
+      "contradiction_keywords": [
+        "číslo 214",
+        "Novotná jako číslo 231"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "horackova",
+      "speaker": "Emilie Horáčková, úřednice bytové komise",
+      "text": "Paní Novotnou si vybavuji. Přišla do kanceláře <span class=\"clue\" data-clue-id=\"clue_horackova_datum_navstevy\">v týdnu po svátku Matky Boží — to bylo nejdříve devátého nebo desátého února</span>, přesný den si netroufám říci. Pan Dolejš ji přijal u okénka, já zpracovávala nájemní listy za přepážkou. <span class=\"clue\" data-clue-id=\"decoy_razitko_dolejs\">Datum na přihlášce psal vždy ten, kdo přihlášku přijímal — razítko č. 7 patří panu Dolejšovi</span>. Zda datum odpovídalo skutečnosti, nemohu říci.",
+      "contradiction_keywords": [
+        "nejdříve devátého nebo desátého",
+        "razítko č. 7 patří panu Dolejšovi"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "datum_prihlasky_vs_denik",
+      "description": "Dolejš uvádí datum přihlášky šestého února; podací deník komise eviduje Novotnou pod číslem 231 s datem jedenáctého února. Čísla deníku jsou přidělována chronologicky a Vaněk nese číslo 214 z osmého února — sedmnáct položek dřív.",
+      "involves": [
+        "dolejs",
+        "records"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": "dolejs"
+    },
+    {
+      "id": "datum_navstevy_svedkyne",
+      "description": "Horáčková si Novotnou pamatuje nejdříve devátého nebo desátého února, tedy nejméně tři dny po datu, jež Dolejš uvádí na přihlášce.",
+      "involves": [
+        "horackova",
+        "dolejs"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": "dolejs"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "datum_denik_strong",
+    "pairs": [
+      {
+        "pair_id": "datum_denik_strong",
+        "a_id": "clue_dolejs_datum",
+        "b_id": "clue_podaci_denik_zaznam",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "datum_svedkyne_medium",
+        "a_id": "clue_horackova_datum_navstevy",
+        "b_id": "clue_dolejs_datum",
+        "strength": "medium"
+      }
+    ],
+    "decoys": [
+      "decoy_razitko_dolejs",
+      "clue_vanek_cislo_214",
+      "decoy_listek_suplik"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 60,
+      "speed_upgrade_sec": 20,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 50,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 35,
+          "ids": [
+            "guilty_lenient",
+            "not_guilty_with_comment"
+          ]
+        },
+        {
+          "min": 65,
+          "ids": [
+            "insufficient_reopen"
+          ]
+        },
+        {
+          "min": 85,
+          "ids": [
+            "guilty_alternative"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 40,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "guilty_alternative",
+            "insufficient_reopen"
+          ],
+          "narrative_lines": [
+            "Datum na přihlášce a pořadové číslo v deníku hovoří o dvou různých dnech — a deník se neplní zpětně.",
+            "Sedmnáct položek mezi Novotnou a Vaňkem nevzniklo samo o sobě; někdo přihlášku do rejstříku zapsal, až když Vaněk byl dávno zapsán.",
+            "Dolejšova praxe uznávání starších datací naráží na jeden prostý fakt: čísla podacího deníku jdou jen dopředu."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 18,
+          "unlock_actions": [],
+          "unlock_verdict_ids": [],
+          "narrative_lines": [
+            "Horáčková si Novotnou pamatuje až po svátku — a to je nejméně tři dny po datu na přihlášce.",
+            "Paměť úřednice není listinný doklad, ale přesnost, s níž si vybavuje týden, vytváří pochybu.",
+            "Datum šestého února na přihlášce nemusí odpovídat dni podání — ale kdo ho napsal, zůstává otázkou."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "dolejs",
+      "target_label": "František Dolejš, obžalovaný",
+      "reveals": "motivation",
+      "text": "Dolejš se odmlčí a hledí na stůl. Teprve pak řekne potichu: Novotná přišla jedenáctého. Přinesla děti s sebou — tři, malé. Říkala, že příští týden přijde exekutor z bytu na Žižkově. Datum na přihlášce jsem napsal já. Šestého jsem v úřadu nebyl, to je pravda. <span class=\"clue\" data-clue-id=\"decoy_listek_suplik\">Lístek v šuplíku je z té doby — připomínka sobě samému, abych přidělení stihl dříve, než Vaněk zjistí, co se chystá</span>. Nevzal jsem ani haléř. Jen jsem rozhodl místo komise.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 1
+        },
+        "trust": {
+          "horakova": -1
+        }
+      }
+    },
+    "records": {
+      "source": "Podací deník obecní bytové komise Praha VIII, únor 1931",
+      "reveals": "facts",
+      "text": "Podací deník uvádí záznam č. 214/1931 na jméno Bedřich Vaněk, datum přijetí 8. února 1931, příjem potvrdila vrátná Šímová razítkem č. 3. Záznam č. 231/1931 na jméno Marie Novotná nese datum <span class=\"clue\" data-clue-id=\"clue_podaci_denik_zaznam\">11. února 1931 — zápis do deníku provedl F. Dolejš vlastním rukopisem</span>. Přihláška Novotné v pořadníku žadatelů nese naopak datum 6. února a otisk razítka č. 7 přiděleného Dolejšovi. Razítko č. 7 bylo Dolejšovi vydáno jako nové dne 9. února 1931, po ztrátě předchozího — viz evidenční kniha kancelářských potřeb. Přihláška Novotné v knize přihlášek k bytům absentuje; do spisu ji předložil teprve Dolejš při výslechu.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -18,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1
+        }
+      },
+      "unlocks_contradiction": "datum_prihlasky_vs_denik"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -5,
+        "traits": {
+          "Vina": 1
+        },
+        "factions": {
+          "Lid": -2,
+          "Kapital": 2
+        }
+      },
+      "variants": {
+        "kapital_high": "Na chodbě se šeptá, že pan Vaněk je spřízněn s realitní kanceláří, která má zájem o domy v Libni. Přidělení obecního bytu by mu pomohlo s potvrzením adresy pro obchodní rejstřík. Stížnost šla k soudu překvapivě rychle — ještě dříve, než Vaněk obdržel písemné zamítnutí. Odkud věděl s takovým předstihem?",
+        "default": "Vaněk prý podal stížnost tentýž den, kdy se dozvěděl o přidělení bytu Novotné — ještě před doručením písemného rozhodnutí. Někdo v komisi ho informoval okamžitě. Horáčková nebo vrátná Šímová — těžko říci, ale bylo to rychle."
+      }
+    },
+    "confrontation": {
+      "target": "dolejs",
+      "target_label": "František Dolejš, obžalovaný",
+      "requires_contradiction": "datum_prihlasky_vs_denik",
+      "requires_courage": 55,
+      "cost": 2,
+      "prompt": "Pane Dolejši, razítko č. 7 vám bylo vydáno teprve devátého února — a na přihlášce Novotné stojí datum šestého. Razítkem, které jste tehdy ještě neměl. Datum jste napsal zpětně, to je jisté. Proč?",
+      "success": {
+        "text": "Dolejš nesklouzne do výmluv. Říká klidně, ale bez výrazu: Ano. Přihláška přišla jedenáctého. Datum šestého jsem napsal já. Novotná přinesla výpověď z bytu s termínem dvacátého března — a tři děti, z nichž nejstarší bylo deset. Vaněk čeká na druhý byt, slyšel jsem to od Šímové. Mohl jsem se mýlit. Ale nevzal jsem peníze. Jen jsem rozhodl o naléhavosti bez souhlasu komise. To je pravda.",
+        "reveals": "Dolejš přiznává zpětné dopsání data a vědomé přeskočení pořadníku. Motivem je skutečná nouze Novotné, nikoli úplatek. Vaněk měl mít v záloze jiný byt — ale to Dolejš nedokázal."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "maximum": {
+          "label": "6 měsíců vězení a okamžité odvolání z funkce",
+          "description": "Soud shledal Dolejše vinným zneužitím pravomoci a pozměněním záznamu; přidělení bytu je prohlášeno za neplatné. Čtrnáct let bezúhonné služby se uzavírá trestním rejstříkem a ztrátou místa — rodina přijde o jediný příjem v době, kdy je práce k nenalezení.",
+          "effects": {
+            "integrita": 1,
+            "moudrost": 1,
+            "vina": 8,
+            "nadeje": -5,
+            "moc": 5,
+            "lid": -6,
+            "finance": 10
+          }
+        },
+        "standard": {
+          "label": "Podmíněný trest a správní suspenze na šest měsíců",
+          "description": "Dolejš je uznán vinným, avšak trest je odložen pod podmínkou bezúhonnosti. Na půl roku je suspendován bez platu — vězení se vyhne, ale rodina bude živořit ze spoření, pokud nějaké má.",
+          "effects": {
+            "integrita": 2,
+            "moudrost": 1,
+            "vina": 4,
+            "nadeje": -1,
+            "moc": 2,
+            "lid": -2,
+            "finance": 10
+          }
+        },
+        "lenient": {
+          "label": "Uznání viny s podmíněným upuštěním od trestu pro polehčující okolnosti",
+          "description": "Soud zohlednil čtrnáct let bezúhonné služby a absence osobního prospěchu. Dolejš zůstane ve funkci pod správním dohledem, ale záznam v rejstříku ho bude provázet. Byt Novotné soud postoupí k přezkumu komise — kdo ho dostane, nevíme.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 1,
+            "moudrost": 2,
+            "vina": 2,
+            "nadeje": 2,
+            "moc": -1,
+            "lid": 3,
+            "finance": 8
+          }
+        },
+        "alternative": {
+          "label": "Alternativa: Vina Dolejše, avšak nařízen audit pořadníku bytové komise",
+          "description": "Dolejš nese odpovědnost za pozměnění záznamu, ale soud zároveň nařizuje přezkum celého systému přidělování bytů komisí Praha VIII. Otázka není jen Dolejšovo pochybení — je to i systém bez kontrolního mechanismu, který manipulaci umožnil. Novotná v bytě prozatím zůstává do rozhodnutí komise.",
+          "requires_investigation": 2,
+          "requires": {
+            "moudrost_min": 55,
+            "odvaha_min": 45
+          },
+          "effects": {
+            "integrita": 6,
+            "moudrost": 4,
+            "odvaha": 2,
+            "vina": 1,
+            "nadeje": 4,
+            "moc": -4,
+            "lid": 5,
+            "finance": 6,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zproštění pro neprokázání úmyslu způsobit újmu",
+          "description": "Dolejš datum pozměnil, avšak soud nenalezl důkaz úplatku ani prokázaného záměru poškodit Vaňka — jednal v přesvědčení o naléhavosti. Dolejš odchází volný, pořadník však zůstává zpochybněn a Novotná v nejistotě.",
+          "effects": {
+            "integrita": 2,
+            "odvaha": 3,
+            "moudrost": 1,
+            "vina": -3,
+            "moc": -3,
+            "lid": 4,
+            "finance": 0
+          }
+        },
+        "with_comment": {
+          "label": "Zproštění s komentářem k absenci dohledu v komisích",
+          "description": "Soud zprošťuje Dolejše, avšak veřejně upozorní, že postup přidělování obecních bytů postrádá ověřovací mechanismus proti zpětnému vyplňování dat. Nikdo nebude potrestán — ale úřad bude muset odpovědět. Vaněk dostane byt jako první na příštím přidělení.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 4,
+            "odvaha": 2,
+            "moudrost": 3,
+            "vina": -2,
+            "moc": -5,
+            "lid": 6,
+            "finance": 5,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "requires": {
+        "moudrost_min": 50
+      },
+      "options": {
+        "reopen": {
+          "label": "Vrátit k přešetření se zaměřením na evidenci razítek",
+          "description": "Soud neshledává dostatek podkladů k výroku a žádá hospodářskou kontrolu o posouzení, zda razítko č. 7 skutečně odpovídá době vydání. Dolejš ve funkci prozatím zůstává; přidělení bytu Novotné je dočasně pozastaveno — rodina čeká ve starém bytě.",
+          "effects": {
+            "integrita": 3,
+            "moudrost": 3,
+            "vina": 1,
+            "nadeje": 1,
+            "moc": -1,
+            "lid": 2,
+            "finance": 6,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "close": {
+          "label": "Uzavřít bez rozsudku a postoupit věc správní komisi",
+          "description": "Trestní soud věc odevzdává správní komisi k přezkumu přidělení; trestní stránka se uzavírá pro nedostatek důkazů. Dolejš zůstane ve funkci bez trestního záznamu. Vaněk podá správní opravný prostředek.",
+          "effects": {
+            "integrita": 1,
+            "moudrost": 2,
+            "vina": 2,
+            "nadeje": -1,
+            "moc": 1,
+            "lid": 1,
+            "finance": 5
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_maximum": "Dolejš si vezme kabát ze stojanu sám a bez spěchu. U dveří se otočí ke Horáčkové; ona sklopí hlavu. Výrok prohlašující přidělení za neplatné se dotkne i Novotné — ta o tom zatím neví a vaří večeři v libněvském bytě.",
+    "guilty_standard": "Suspenze projde síní jako suchý závan. Dolejš mlčí, ruce mu leží na okraji stolu příliš klidně. Horáčková si zapisuje něco do notýsku. Vaněk čeká na chodbě se složenými pažemi a nedívá se na nikoho.",
+    "guilty_lenient": "Dolejš přikývne. Záznam ho bude provázet, ale dnes jede domů. Vaněk na chodbě zakleje potichu a odejde bez ohlédnutí. Novotná o výsledku uslyší od vrátné.",
+    "guilty_alternative": "Slovo audit zaráží síň jako cizí předmět. Dolejš je odsouzen, ale tentokrát to nesedí jen na jeho záda — a to všichni cítí. Horáčková pokývne. Vaněk odchází nespokojen, ale bez argumentu.",
+    "not_guilty_formal": "Zproštění nezní jako vítězství. Dolejš si uvolní límec, ale oči má stále dole. Vaněk odejde jako první, tiše, aniž by dal najevo, co plánuje dál.",
+    "not_guilty_with_comment": "Komentář k absenci dohledu zazní v síni déle než samotný rozsudek. Horáčková zvedne ruku, jako by se chtěla přihlásit, a pak ji zase spustí. Vaněk vytáhne pero a začne psát na záložku svého deníčku.",
+    "insufficient_reopen": "Případ zůstane otevřený a nikdo neodchází spokojený. Dolejš sedí u stolu jako přibitý. Vaněk řekne tiše jen: A jak dlouho? Soud mu neodpoví.",
+    "insufficient_close": "Případ přechází ke správní komisi bez trestního výroku. Dolejš to přijme bez odporu. Vaněk to komentuje tak nahlas, že to slyší i vrátná u vchodu."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "guilty_alternative",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "Hospodářská kontrola zahájila přezkum přidělení bytů komisí Praha VIII za uplynulých dvanáct měsíců. Ve Svobodném obzoru vyšla tři řádky pod rubrikou Správa a zákon: Úřad připouští, že systém evidování žádostí nebyl dostatečně chráněn proti zpětným zápisům."
+    },
+    {
+      "trigger": "not_guilty_with_comment",
+      "delay_days": 4,
+      "type": "letter",
+      "text": "Přípis z presidia zemského úřadu: Komentář soudu k evidenci podání bytové komise byl předán příslušnému referátu. Doporučujeme, aby soud v budoucnu ponechal správní analýzu orgánům k tomu povolaneným. Razítko zemského úřadu, podpis čitelný."
+    },
+    {
+      "trigger": "insufficient_reopen",
+      "delay_days": 6,
+      "type": "fragment",
+      "text": "Hospodářská kontrola ověřila evidenční knihu kancelářských potřeb: razítko č. 7 bylo Dolejšovi vydáno dne devátého února 1931 jako náhrada za ztracené. Otisk na přihlášce Novotné s datem šestého února je technicky nemožný. Vyšetřovatel žádá Dolejšovu výpověď znovu."
+    }
+  ]
+}

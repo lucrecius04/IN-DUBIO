@@ -363,6 +363,35 @@ D13-20: rutinní 15%, morální 30%, politický 35%, osobní 20%
 Dynamické: Integrita >70 více morálních | <30 více úplatků
 LID <30 více chudých | Odvaha >70 více politických | Vina >70 echo staré chyby
 
+## POOL — TRESTNÍ NÁROČNOST VS. TÝDEN
+
+- **1. týden (přibližně D1–5, první pracovní blok aktu):** v hlavním poolu preferuj kauzy **bez** středu ve smyslu vraždy nebo únosu jako jádra obžaloby. Drž spíš majetkové, úřední a hospodářské skutky — hráč se učí tempo, pátrání a dvojkrok rozsudku.
+- **2. a 3. týden (přibližně D6–15):** smí **občas** přijít i kauzy s **těžším násilím nebo smrtí v obžalobě** (např. těžké ublížení na zdraví, nedbalostní smrt, závažné násilí vůči osobě při výkonu veřejné funkce, žhářství s vysokým rizikem) — jako **řídký** posun tónu města a úřadu, ne každodenní náplň.
+- **Jasný „záporák“ (ve 2.–3. týdnu, řídce):** smí existovat kauza, kde je obžalovaný **vyloženě negativní** a důkazy tíhnou k **vině** — střed není zproštění, ale **jak přísně potrestat** (maximum / standard / podmíněně s tvrdými podmínkami); zproštění jen jako vzácná procesní výjimka. Vyvážit jinými pool kauzami s morální nejednoznačností, aby hra nebyla jen „odsuzujeme padouchy“.
+- **Vražda a únos** jako jednoznačné jádro pool kauzy zůstávají **výjimečné**; pokud vzniknou, musí projít Fairness Gate, mít smysluplné `available_days` a nesmí rušit úvodní naučení prvního týdne.
+
+## POOL — REBUS / NEJASNÉ KAUZY (3. TÝDEN)
+
+- Cíl: **1–2** kauzy v rozmezí **cca 3. týdne** (orientačně **D11–16** podle konkrétní mapy v `Mapa_20dni.csv`), kde je výsledek **pravděpodobnostní nebo morálně nejednoznačný** — např. **tři podezřelí** (výpovědi / role), každý s částí pravdy i šumu; hráč **rozhoduje, kdo je nejspíš odpovědný**, nebo zda věc **patří jinam** (civilní řízení, disciplinárka, přerušení trestního řízení).
+- **Implementace bez nového engine:** pořád stejný JSON jako ostatní pool případy — varianty ve `verdicts` formulovat jako reálné soudní výsledky s jasným dopadem v `effects` (žádné samostatné „hlasování ze tří“ v kódu zatím nevyžadovat).
+- Rebusové kauzy **defaultně ne** do **spisu light** — plná délka je v pořádku; lze zjednodušit počet stop nebo spoléhat na **jednu silnou dvojici + rozptyl**, pokud je pátrání stále férové (viz Two-Click v tomto souboru).
+
+## POOL — NETRADIČNÍ MODELY (VÝJIMEČNĚ 1–2 V AKTU)
+
+Nápady k obohacení mixu — každá vyžaduje schválení týmu a QA (`docs/promts/CHECKLIST-QA-pool-pripad.md`):
+
+1. **Formální věc / chybějící jméno** — skutek je popsán, obžaloba cílí na **funkci** nebo proces; osoba na lavici je nosič odpovědnosti instituce; verdikt může **posunout vinu na systém** nebo nadřízeného (důsledky na Moc, Integritu).
+2. **Řetěz příkazu** — dva až tři aktéři, žádný nemá celý obraz; rozsudek volí **kde řezat** (podřízený vs. nadřízený vs. oba s odlišnou mírou viny).
+3. **Spis bez uzavřené pravdy** — jedna nebo více variant výslovně **nedostatek důkazů** / odkaz na civilní senát s ponecháním trestní nejistoty (`insufficient_evidence` použít víc narativně než jako „slabý konec“).
+4. **Tenčí trestní rámec, silný společenský škandál** — paragraf je okrajový, střed je **čest, poměry v profesi, tisk**; vhodné k `moral_dilemma` s umírněnějšími čísly u `vina` v efektech.
+5. **Kumulativní zkreslení** — tři výpovědi, z nichž každá zkreslí **jiný detail**; žádná sama nestačí, ale **správná dvojice stop** rozmetá jednu verzi příběhu (náročné na Fairness — projít checklistem).
+6. **Tvář aféry / procesní past** — společensky „jasná“ odpovědnost, ale **procesní chyba**, lhůta nebo mezera v zákonu mění, co je u soudu možné; verdikty tlačí **instituci vs. poškozeného**.
+7. **Systemický skutek** — stejná úřední nebo firemní chyba postihla **víc lidí**; obžalovaný je jeden **případ z řady** (důsledky na Lid/Moc, případně odkaz na civilní hromadnou žalobu v textu).
+8. **Hraniční kvalifikace** — totéž jednání lze číst jako **majetkový delikt, výtržnost nebo politický projev**; v JSON zvol jeden `type`, narace ať drží druhý nádech (vhodné spíš od D8+).
+9. **Jasný záporák — spor o trestu** — skutek a svědectví podporují vinu; `verdicts` staví především **stupeň trestu a dopady** (na obžalovaného, rodinu, úřad), ne symetrii „nevina vs. vina“. Vyhnout se ploché karikatuře: záporák může mít chladný motiv nebo racionalizaci čitelnou ze spisu.
+
+**Workflow s agentem:** až bude tým chtít nové pool zadání, v chatu stačí odkázat na **tento soubor** (sekce pool výše) a uvést **téma, den / slot, případně „rebus / netradiční“**; agent má navázat `docs/promts/PROMPT-autor-pripadu.md` + checklist.
+
 ## TÝDENNÍ CYKLUS
 
 Neděle:

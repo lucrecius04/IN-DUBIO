@@ -11,10 +11,9 @@
     "letter_text": "Vážený soudče,\n\ndovolte mi krátkou poznámku k řádu, který oba hájíme. Kompromis není slabost — je to jediný způsob, jak republika přežije pondělí.\n\nS úctou,\nVlček",
     "morning_fragment": "fragment_d1_morning",
     "cases": [
-      "pool_a1_lekarna",
-      "pool_a1_tiskarna",
-      "pool_a1_vyveseni",
-      "pool_a1_trafika"
+      "pool_a1_spravce",
+      "pool_a1_bytova_komise",
+      "pool_a1_revizor"
     ],
     "vlcek_letter": "vlcek_d1",
     "noon_event": null,

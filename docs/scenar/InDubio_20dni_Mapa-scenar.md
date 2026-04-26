@@ -77,6 +77,8 @@ Z `cases.mdc` (pro napojení případů na NPC / politiku):
 
 První týden je záměrně **rutinnější**; od **D5–D7** mapa přidává **Mor** a **Pol** (viz `Mapa_20dni.csv` / `Pripady.csv`). Druhá polovina aktu zvyšuje podíl náročnějších typů a **větvení** (VETVENI v poznámkách) — cílem je, aby hráč cítil **zhoršující se klima** města a úřadu, ne jen víc textu. Přesné váhy poolu se doladí v kódu a `days.json` podle hratelnosti.
 
+**Doplněk k obsahu pool kauz:** v **2. a 3. týdnu** smí občas přijít i **těžší trestní kvalifikace** (násilí, smrt v obžalobě); ve **3. týdnu** cíleně **1–2 rebusové / nejednoznačné** kauzy (např. tři podezřelí, rozhodnutí „nejspíš kdo“). Detail a **netradiční modely** jsou v `.cursor/rules/cases.mdc` (sekce *Pool — trestní náročnost…*, *Rebus…*, *Netradiční modely*).
+
 ---
 
 ## 7. Modifikátory dne (ekonomika / inkoust) — návrh bez čísel

@@ -14,6 +14,11 @@
 | 8 | pool_a1_weiss | Herr Weiss | 83/1931 | Rutinní | 2–5 | Max Schwarz, účetní | Přišel z Berlína s padělaným pasem na jiné jméno. Ale pravý doklad si zachoval — a v aktovce knihu s věnováním od táty. |
 | 9 | pool_a1_stavba | Pád ze lešení | 85/1931 | Morální dilema | 5–10 | Ing. Miroslav Kolář, stavbyvedoucí | Smrt dělníka Tučka z lešení na Vinohradech. Tlak investora na termín vs kontrolní list s vadným čepem — věděl, nebo ne? |
 | 10 | pool_a1_exekuce | Záložna | 86/1931 | Morální dilema | 7–10 | Anna Součková, rolnice | Půjčila 180 Kčs na léky pro krávy. Platila, dluh přesto narostl na 340 Kčs. Exekutor přišel bez předem oznámení. Bila ho lopatou. |
+| 11 | pool_a1_tiskarna | Noční směna | 84/1931 | Rutinní | 3–6 | Alois Mareš, účetní tiskárny | Z noční pokladny zmizelo 500 Kčs na mzdy. Majitel tlačí na exemplární trest, ale alibi i klíče v podniku mají trhliny. |
+| 12 | pool_a1_spravce | Zmizelý dopis | 87/1931 | Morální dilema | 6–10 | Jaroslav Blecha, správce domu | Správce použil 520 Kčs nájemného na opravy bez výslovného souhlasu vlastníka. Poštovní záznam naznačuje, že žádost o opravu majitel převzal. |
+| 13 | pool_a1_bytova_komise | Bytová komise | 88/1931 | Morální dilema | 5–9 | František Dolejš, úředník komise | Úředník zpětně upravil datum přihlášky a přeskočil pořadník ve prospěch vdovy s dětmi. Šlo o korupci, nebo o vědomé porušení pravidla v krajní nouzi? |
+| 14 | pool_a1_revizor | Revizor | 89/1931 | Morální dilema | 4–8 | Josef Kopecký, revizor jízdenek | Kolega oznamovatel tvrdí korupci na jiné trase, než kde měl obžalovaný službu; jde o pravdu, nebo o odvetu po personálním neúspěchu? |
+| 15 | pool_a1_druha_ruka | Druhá ruka | 90/1931 | Morální dilema | 5–10 | Václav Šrámek, notářský kancelista | Závěť a přípisek k dědictví cihelny — krátký záznam v deníku vs. svědkyně vs. jiný inkoust; kancelista tvrdí vůli zůstavitele. |
 
 ---
 
@@ -259,9 +264,33 @@ Exekutor Štěpán konfrontován s datem doručenky. Po pauze přizná: záložn
 
 ---
 
+## PŘÍPAD 11: Noční směna (Sp. zn. 84/1931)
+`pool_a1_tiskarna` | Rutinní | Dny 3–6
+
+### Obžalovaný
+**Alois Mareš**, 32 let, účetní tiskárny Grafia na Smíchově. Svobodný, v péči má nemocnou matku.
+
+### Obžaloba
+Krádež vloupáním dle §171, zpronevěra dle §183 a pozměnění účetního záznamu.
+
+### Proč je to zajímavé pro hráče
+Peníze z noční pokladny měly jít na páteční mzdy dělníků. Majitel firmy žádá rychlý exemplární trest, aby zabránil stávce. Ve spisu se ale rozchází čas schůze, záznam policie a otázka, kolik klíčů k pokladně skutečně existovalo.
+
+### Rozpory
+1. **Klíčový:** Mareš tvrdí, že schůze trvala skoro do devíti, policejní protokol uvádí ukončení po deseti minutách
+2. Majitel tvrdí, že klíč měli jen dva lidé, registr klíčů uvádí i třetí služební duplikát
+
+### Konfrontace
+Mareš připustí manipulaci se záznamem času, ale ukáže na tlak vedení tiskárny kvůli mzdám a interním dluhům podniku.
+
+### Nejsilnější rozsudek
+**Alternativní — podmíněný trest + forenzní audit účetnictví firmy** (nejen pachatel, ale i odpovědnost vedení za systém, který vytvořilo).
+
+---
+
 ## Designové poznámky
 
-### Společné rysy všech deseti případů v přehledové tabulce
+### Společné rysy všech jedenácti případů v přehledové tabulce
 - Každý má **morální stín i u rutinního verdiktu** — neexistuje čistě „správné" rozhodnutí
 - Každý odráží **svět krize 1931** — chudoba, strach, systém pod tlakem
 - Každý obsahuje **alespoň jednu postavu, která není tím čím se zdá**
@@ -279,6 +308,7 @@ Exekutor Štěpán konfrontován s datem doručenky. Po pauze přizná: záložn
 - **Případ 8** (Weiss): první signál toho, co přichází z Německa; Vlčkův dopis reaguje okamžitě
 - **Případ 9** (stavba): systém stavebnictví + investor — „kdo vlastně zabil Tučka“
 - **Případ 10** (záložna): Závadová napíše sloupek — první stopa, že sleduje Benova rozhodnutí ještě před tím, než ho kontaktuje osobně
+- **Případ 11** (tiskárna): tlak firmy na „rychlou vinu“ kvůli mzdám a možné stávce — střet interní ekonomiky podniku a trestního řízení
 
 ### Síť pojistného agenta Krejčího
 Agent Miroslav Krejčí figuruje v případě **Bartošová** (trafikant): pojistka 15 dní před smrtí manžela, provize 40 Kčs; soused a zároveň agent Slavie. Některé alternativní verdikty vedou k trestnímu oznámení na Krejčího a k přezkumu dalších smluv.
@@ -287,7 +317,7 @@ Hráč, který v případě 3 důkladně projde záznamy, vidí rizikový vzorec
 
 ### Technické parametry
 
-| Parametr | Rutinní (1–4, 7–8) | Morální dilema (5–6, 9–10) |
+| Parametr | Rutinní (1–4, 7–8, 11) | Morální dilema (5–6, 9–10) |
 |----------|-------------------|------------------------|
 | Efekty na staty | ±1 až ±8 | ±2 až ±12 |
 | Počet rozporů | 2 | 2 |
@@ -303,7 +333,9 @@ Hráč, který v případě 3 důkladně projde záznamy, vidí rizikový vzorec
 - 79/1931 — Hofrová (stará rána)
 - 81/1931 — Houška (žhářství na Smíchově; `pool_a1_zhar`)
 - 83/1931 — Schwarz (Weiss; `pool_a1_weiss`)
-- 85/1931 — Kolář (`pool_a1_stavba`, pád ze lešení); 86/1931 — Součková (`pool_a1_exekuce`, *Záložna*). Ve hře stačí spisům rozumět; `id` případu je vždy jednoznačné.
+- 84/1931 — Mareš (`pool_a1_tiskarna`, *Noční směna*)
+- 85/1931 — Kolář (`pool_a1_stavba`, pád ze lešení)
+- 86/1931 — Součková (`pool_a1_exekuce`, *Záložna*). Ve hře stačí spisům rozumět; `id` případu je vždy jednoznačné.
 - *Nové případy v budoucnu ideálně od Sp. zn. 87/1931 výš, ať se čísla v jednom aktu zbytečně nepletou.*
 
 ---

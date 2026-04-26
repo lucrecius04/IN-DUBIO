@@ -1,0 +1,388 @@
+{
+  "id": "pool_a1_spravce",
+  "title": "Zmizelý dopis",
+  "case_number": "Sp. zn. 87/1931",
+  "slot": "pool",
+  "act": 1,
+  "type": "moral_dilemma",
+  "color": "#2C4A7C",
+  "available_days": [
+    1,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "weight_conditions": {},
+  "defendant": {
+    "name": "Jaroslav Blecha",
+    "age": 49,
+    "occupation": "správce nájemního domu",
+    "detail": "Dříve tesař u Pražských staveb, od roku 1928 správce nájemního domu č.p. 214 v ulici Chelčického na Žižkově. Ženatý, manželka Alžběta trpí chronickým zánětem kloubů a v posledním roce prakticky nevychází. Starší dcera Marta pracuje jako švadlena."
+  },
+  "charge": "Zpronevěra svěřených finančních prostředků dle §183 trestního zákona č. 117/1852 v platném znění. Obžalovaný v období říjen až prosinec 1930 nepředal majiteli nemovitosti Eugenu Taussigovi nájemné v úhrnné výši 520 Kčs, jež v témže období přijal od nájemníků do vlastních rukou.",
+  "description": "Správce nájemního domu Jaroslav Blecha je obžalován ze zpronevěry 520 Kčs nájemného za čtvrtý kvartál roku 1930. Majitel domu Eugen Taussig schodek odhalil při ročním vyúčtování v lednu 1931 a neprodleně podal trestní oznámení. Blecha přijetí hotovosti od nájemníků nezapírá, tvrdí však, že celou částku v plné výši vynaložil na havarijní opravu vodoinstalace a výměnu shnilých okenních rámů, k nimž dal příkaz sám, neboť majitel na jeho opakované žádosti nereagoval. Na stole leží opis dopisu, jejž prý Blecha Taussigovi odeslal doporučeně v září 1930, a faktura žižkovského tesáře Antonína Beneše na přesně 520 Kčs. Taussig prohlašuje, že žádný dopis v průběhu roku 1930 neobdržel a k žádné opravě nedal souhlas.",
+  "testimonies": [
+    {
+      "speaker": "Eugen Taussig, 61 let, rentier, Praha-Vinohrady (poškozený)",
+      "text": "Jsem vlastníkem předmětné nemovitosti od roku 1921. Správce Blecha byl mým zaměstnancem na základě písemné smlouvy a byl povinen nájemné přijímat, řádně zaznamenávat a každé čtvrtletí mi je v plné výši předávat; k jakékoli opravě musel předem obdržet můj písemný souhlas a výslovné finanční krytí. <span class=\"clue\" data-clue-id=\"clue_taussig_zadny_dopis\">Žádnou písemnou žádost o provedení oprav ani upozornění na technické závady jsem od správce Blechů v průběhu celého roku 1930 neobdržel.</span> <span class=\"clue\" data-clue-id=\"clue_taussig_cervenec\">Dům jsem osobně navštívil v červenci 1930 a shledal jej v plně provozuschopném stavu bez zjevných závad.</span> Blecha jednal zcela bez mého vědomí a způsobil mi majetkovou újmu. <span class=\"clue\" data-clue-id=\"clue_taussig_prodej\">Přiznám, že jsem v listopadu 1930 přizval soudního odhadce — posuzoval jsem, zda a za kolik mohu nemovitost v příštích letech prodat. To s touto věcí nesouvisí.</span>"
+    },
+    {
+      "speaker": "Věra Kopecká, 54 let, nájemnice v bytě č. 3, Žižkov (svědkyně)",
+      "text": "<span class=\"clue\" data-clue-id=\"clue_kopecka_zari\">Koncem září přestala v bytě řádně téct teplá voda — potrubí u kuchyňského spoje cedilo a na přilehlé zdi se začala šířit vlhkost.</span> Pan Blecha přišel bez vyzvání ještě téhož týdne, závadu si prohlédl a slíbil zařídit nápravu. Za dva týdny dorazil tesař, potrubí opravil a bylo po potížích. <span class=\"clue\" data-clue-id=\"clue_kopecka_majitel\">Od pana Taussiga jsem za celý rok 1930 neslyšela ani slova — ani přes Blechů, ani osobně.</span> Nevím, co si mezi sebou psali."
+    },
+    {
+      "speaker": "Antonín Beneš, 38 let, tesař a instalatér, Žižkov (svědek)",
+      "text": "Pan Blecha mě přivolal začátkem října loňského roku. Práce obnášela opravu vodovodního rozvodu v přízemí a výměnu dvou dřevěných okenních rámů v prvním patře, kde dřevo vykazovalo hnilobu. <span class=\"clue\" data-clue-id=\"clue_benes_castka\">Celková cena za provedené dílo činila 520 Kčs; přijal jsem platbu v hotovosti ve dvou splátkách — 250 Kčs dne 18. října a 270 Kčs dne 3. listopadu 1930.</span> Fakturu jsem vystavil na jméno Blecha, neboť s ním jsem dohodu uzavřel. Majitele domu jsem nikdy neviděl ani neslyšel."
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "dopis_doruceni",
+      "description": "Taussig uvádí, že žádný dopis neobdržel, poštovní kniha ale eviduje převzetí zásilky č. 4471 dne 16. září 1930.",
+      "involves": [
+        "taussig",
+        "posta"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": "taussig"
+    },
+    {
+      "id": "oprava_bez_souhlasu",
+      "description": "Blecha tvrdí, že opravy byly havarijní a nutné, Taussig namítá, že bez výslovného souhlasu nesměl použít nájemné.",
+      "involves": [
+        "blecha",
+        "taussig"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": null
+    }
+  ],
+  "investigation": {
+    "interview": {
+      "target": "blecha",
+      "target_label": "Jaroslav Blecha, obžalovaný",
+      "reveals": "motivation",
+      "cost": 1,
+      "text": "Blecha vyjme z aktovky sešit provozních zápisků a předloží opis dopisu datovaného 14. září 1930, adresovaného Eugenu Taussigovi. <span class=\"clue\" data-clue-id=\"clue_dopis_zavady\">Dopis popisuje praskající potrubí u bytu č. 3 a shnilé okenní rámy u bytu č. 6 v prvním patře; Blecha v něm žádá majitele o souhlas a finanční krytí do 30. září — v opačném případě si vyhrazuje právo zadat opravu z nájemního výnosu, jejž posléze refunduje.</span> Razítko odesílatele žižkovské pošty je čitelné. Razítko příjemce chybí — jde o opis, nikoli o vrácený originál."
+    },
+    "records": {
+      "source": "Kniha doporučených zásilek, poštovní úřad Žižkov",
+      "reveals": "facts",
+      "cost": 1,
+      "text": "Poštovní úřad na Žižkově vede vázanou knihu doporučených zásilek v číslovné řadě. <span class=\"clue\" data-clue-id=\"clue_postovni_razitko\">Pod zásilkou č. 4471, odeslanou dne 14. září 1930, figuruje jako adresát »E. Taussig, Mánesova 12, Praha-Vinohrady«; ve sloupci Převzetí je uveden datum 16. září 1930 spolu s nečitelným podpisem příjemce.</span> Záznam je proveden tintou shodného odstínu jako ostatní záznamy na téže stránce a nevykazuje stopy opravy ani přepisu."
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "variants": {
+        "lid_high": "Mrázek potvrdí, že mu správce Blecha v říjnu skutečně vyměnil okenní rám. »Říkal mi, že pan majitel dal souhlas. Já se nevyptával.« Po chvíli mlčení dodá: <span class=\"clue\" data-clue-id=\"clue_blecha_dluh\">»V listopadu Blecha obcházel sousedy a ptal se o půjčku tří set korun. Prý kvůli lékaři pro ženu. Sehnal je od Kubáta z druhého patra.</span>«",
+        "kapital_high": "Mrázek připustí, že oprava proběhla, ale dodá, že Blecha mluvil o penězích i mimo správu domu. <span class=\"clue\" data-clue-id=\"clue_blecha_dluh\">»Půjčku sháněl po sousedech, aspoň tři sta korun, prý kvůli lékaři.«</span> Podle Mrázka to ukazuje, že správce byl pod tlakem dluhů.",
+        "default": "Mrázek potvrdí říjnovou výměnu okenního rámu a zároveň připomene Blechovu listopadovou žádost o půjčku. <span class=\"clue\" data-clue-id=\"clue_blecha_dluh\">»Tři sta korun kvůli lékaři pro ženu, to říkal.«</span>"
+      }
+    },
+    "confrontation": {
+      "target": "taussig",
+      "target_label": "Eugen Taussig, poškozený",
+      "requires_contradiction": "dopis_doruceni",
+      "requires_courage": 60,
+      "cost": 2,
+      "prompt": "Pane Taussigu, poštovní kniha uvádí převzetí zásilky č. 4471 dne 16. září 1930. Jak vysvětlíte, že jste ve výpovědi uvedl, že jste žádný dopis neobdržel?",
+      "success": {
+        "text": "Taussig si stránku prohlíží déle, než by přečtení čísla vyžadovalo. »Mohl jsem dopis dostat — nevzpomínám si na nic konkrétního.« Pak rychle přejde na právní rovinu: »I kdybych ho obdržel, Blecha nemohl disponovat nájemným bez výslovného písemného souhlasu. To stanoví smlouva.«",
+        "reveals": "Taussig neudrží kategorické popření doručení a přesouvá obranu na formální porušení smlouvy."
+      }
+    }
+  },
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "pair_postal",
+    "pairs": [
+      {
+        "pair_id": "pair_postal",
+        "a_id": "clue_taussig_zadny_dopis",
+        "b_id": "clue_postovni_razitko",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "pair_zavady",
+        "a_id": "clue_dopis_zavady",
+        "b_id": "clue_kopecka_zari",
+        "strength": "medium"
+      },
+      {
+        "pair_id": "pair_dluh",
+        "a_id": "clue_benes_castka",
+        "b_id": "clue_blecha_dluh",
+        "strength": "weak",
+        "soft_fail": true
+      }
+    ],
+    "decoys": [
+      "clue_taussig_cervenec",
+      "clue_kopecka_majitel",
+      "clue_taussig_prodej"
+    ],
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 25,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "guilty_alternative",
+            "not_guilty_with_report"
+          ],
+          "narrative_lines": [
+            "Zásilka č. 4471 existuje ve dvou světech najednou: v poštovní knize jako doručená a podepsaná, v Taussigově výpovědi jako nikdy nevyslaná.",
+            "Podpis na knize doporučené pošty nelze smazat tak snadno jako nevyhovující dopis z psacího stolu.",
+            "Blecha porušil zákon — to se nezměnilo. Ale zákon byl porušen i na straně druhé a druhý konec té šňůry vede na Vinohrady."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 15,
+          "unlock_actions": [],
+          "unlock_verdict_ids": [
+            "guilty_lenient"
+          ],
+          "narrative_lines": [
+            "Kopecká popsala praskající potrubí u svého bytu č. 3 ke konci září; Blechův dopis ze 14. září zmiňuje přesně byt č. 3.",
+            "Blecha dopis napsal dřív, než si nájemníci stihli stěžovat — nebo aspoň tvrdí, že napsal.",
+            "Závady v domě existovaly. Dopis existoval. Zda dopis dorazil — to je jiná otázka a jiný spis."
+          ]
+        },
+        "weak": {
+          "investigation_progress_delta": 5,
+          "narrative_lines": [
+            "Finanční potíže správce jsou na stole — ale 520 Kčs je přesně cena fakturovaných oprav, ne výše jeho rodinného dluhu.",
+            "Schodek v nájemném a půjčka od souseda se udály ve stejném měsíci, ale nesčítají se do jednoho zločinu.",
+            "Mrzutá shoda okolností — nebo záměr zařídit jednu nouzovou operaci penězi určenými k jiné? Spis na to odpověď nedává."
+          ]
+        }
+      }
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 30,
+          "ids": [
+            "pool_inv_records"
+          ]
+        },
+        {
+          "min": 50,
+          "ids": [
+            "pool_inv_informant"
+          ]
+        },
+        {
+          "min": 70,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 45,
+          "ids": [
+            "guilty_lenient"
+          ]
+        },
+        {
+          "min": 75,
+          "ids": [
+            "guilty_alternative",
+            "not_guilty_with_report"
+          ]
+        }
+      ]
+    },
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 60,
+      "speed_upgrade_sec": 25,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "maximum": {
+          "id": "guilty_maximum",
+          "label": "Odsouzení — šest měsíců nepodmíněně, náhrada škody",
+          "description": "Jménem republiky se vynáší tento rozsudek. Obžalovaný se dopustil zpronevěry ve smyslu §183 trestního zákona. Soud ukládá trest odnětí svobody v trvání šesti měsíců nepodmíněně a povinnost nahradit Eugenu Taussigovi způsobenou škodu ve výši 520 Kčs do třiceti dnů od nabytí právní moci rozsudku.",
+          "consequence": "Blecha nastoupí do vazby; správcovské místo zanikne ze dne na den. Alžběta Blechová zůstane bez příjmu a odkázána na dceru. Nájemníci z Chelčického 214 dostanou oznámení o hledání nového správce.",
+          "effects": {
+            "finance": 35,
+            "integrita": -10,
+            "nadeje": -8,
+            "vina": 7,
+            "lid": -12,
+            "kapital": 8
+          }
+        },
+        "standard": {
+          "id": "guilty_standard",
+          "label": "Odsouzení podmíněně — náhrada škody",
+          "description": "Jménem republiky se vynáší tento rozsudek. Obžalovaný je uznán vinným zpronevěrou dle §183. Soud ukládá podmíněný trest odnětí svobody v trvání tří měsíců se zkušební dobou dvou let a povinnost uhradit Eugenu Taussigovi 520 Kčs do šedesáti dnů.",
+          "consequence": "Blecha zůstane doma, ale dluh 520 Kčs se stane jeho osobní pohledávkou — bez správcovské mzdy jej bude splácet roky. Právo na místo mu rozsudek formálně nebere, ale Taussig smlouvu vypoví.",
+          "effects": {
+            "finance": 35,
+            "integrita": -4,
+            "nadeje": -4,
+            "vina": 3,
+            "lid": -7,
+            "kapital": 4
+          }
+        },
+        "lenient": {
+          "id": "guilty_lenient",
+          "label": "Mírné odsouzení — zastavení po doložení faktur",
+          "description": "Jménem republiky se vynáší tento rozsudek. S přihlédnutím k doloženým výdajům na opravu a k absenci znaku majetkového obohacení soud ukládá podmíněné zastavení trestního stíhání s povinností předat faktury za opravu jako součást ročního vyúčtování správy domu.",
+          "consequence": "Taussig podá stížnost k zemskému soudu. Blecha si správcovské místo zachová — zatím. V domě zavládne mlčenlivé napětí a nikdo nebude vědět, čí slovo platilo.",
+          "requires": {
+            "moudrost_min": 40
+          },
+          "effects": {
+            "finance": 25,
+            "integrita": 2,
+            "nadeje": 2,
+            "vina": 1,
+            "lid": -3,
+            "kapital": 1
+          }
+        },
+        "alternative": {
+          "id": "guilty_alternative",
+          "label": "Alternativa: Přerušení řízení — přezkum doručení zásilky č. 4471",
+          "description": "Jménem republiky se vynáší tento rozsudek. Soud shledává skutkový stav nedostatečně objasněným v otázce doručení dopisu ze 14. září 1930. Trestní stíhání obžalovaného se odkládá a věc se předává poštovnímu kontrolnímu orgánu k ověření záznamu č. 4471; výsledek přezkumu bude podkladem pro další postup.",
+          "consequence": "Blecha odejde ze soudní síně prozatím volný. Taussig zbledne. Poštovní záznam č. 4471 přestane být věcí správcova svědomí a stane se otázkou pro státní orgán. Kdo nakonec přijde hůř — spis to neříká.",
+          "requires": {
+            "moudrost_min": 60,
+            "odvaha_min": 50
+          },
+          "effects": {
+            "finance": 25,
+            "integrita": 10,
+            "nadeje": 7,
+            "vina": -5,
+            "lid": 10,
+            "kapital": -9,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          },
+          "hint": "Inkoust: +1 do dalšího pracovního dne."
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "basic": {
+          "id": "not_guilty_basic",
+          "label": "Zproštění — výdaje prokázány, obohacení nenastalo",
+          "description": "Jménem republiky se vynáší tento rozsudek. Soud neshledává naplnění znaku majetkového obohacení jako podmínky skutkové podstaty §183, neboť vynaložená částka odpovídá doloženým nákladům na opravu nemovitosti, přičemž správce z ní žádný osobní prospěch nevyvodil. Obžalovaný se zprošťuje.",
+          "consequence": "Blecha opustí soudní síň s fakturou v aktovce a nejistou budoucností zaměstnání. Taussig má právo podat civilní žalobu — a pravděpodobně ji podá.",
+          "effects": {
+            "finance": 25,
+            "integrita": 5,
+            "nadeje": 5,
+            "vina": -3,
+            "lid": 8,
+            "kapital": -6
+          }
+        },
+        "with_report": {
+          "id": "not_guilty_with_report",
+          "label": "Zproštění s podnětem státnímu zastupitelství",
+          "description": "Jménem republiky se vynáší tento rozsudek. Obžalovaný se zprošťuje obžaloby. Soud současně předává státnímu zastupitelství podnět k prošetření, zda výpověď Eugena Taussiga o nepřijetí dopisu ze 14. září 1930 je slučitelná s obsahem poštovní knihy doporučených zásilek č. 4471.",
+          "consequence": "Za čtyři dny vyjde v Lidových novinách krátký sloupek o pronajímateli a zapomenuté zásilce. Žádné jméno — ale Taussigovi sousedé na Vinohradech vědí dost. Blecha si správcovské místo nejspíš stejně neudrží — Taussig smlouvu vypoví. Ale odejde jinak.",
+          "requires": {
+            "moudrost_min": 55,
+            "odvaha_min": 60
+          },
+          "effects": {
+            "finance": 25,
+            "integrita": 12,
+            "nadeje": 8,
+            "vina": -6,
+            "lid": 13,
+            "kapital": -11,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          },
+          "hint": "Inkoust: +1 do dalšího pracovního dne."
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "id": "insufficient_evidence",
+      "label": "Nedostatek důkazů — vrátit k doplnění",
+      "description": "Jménem republiky se vynáší tento rozsudek. Soud shledává, že skutkový stav ve věci doručení dopisu ze 14. září 1930 nebyl v tomto řízení náležitě osvětlen. Věc se vrací k došetření, zejména k ověření záznamu žižkovského poštovního úřadu.",
+      "consequence": "Blecha je prozatím na svobodě, ale kauza visí. Taussig podá stížnost na průtahy. Poštovní úřad bude dotázán — ale na odpověď si bude třeba počkat.",
+      "requires": {
+        "moudrost_min": 45
+      },
+      "effects": {
+        "finance": 10,
+        "integrita": -3,
+        "nadeje": 1,
+        "vina": 0,
+        "lid": 2,
+        "kapital": -2
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_maximum": "Blecha nastoupil do vazby sedm dní po vynesení rozsudku. Alžběta Blechová přijala pomoc od dcery Marty a od sousedky Mrázkové. Dům v Chelčického ulici přečkal jaro bez správce; Taussig najal náhradníka za čtvrtinu původní mzdy. Nájemníci si nestěžovali — báli se, že příště za nimi nepřijde nikdo.",
+    "guilty_standard": "Blecha zůstal doma, ale dluh se nehromadil pomaleji. Taussig smlouvu vypověděl do měsíce. Nájemníci si začali stěžovat u obecního úřadu — jenže tam nikdo nevyřizoval stížnosti na byty s funkčním potrubím.",
+    "guilty_lenient": "Blecha si místo udržel do léta. Taussigova stížnost k zemskému soudu putovala přes čtyři referenty a nikdo ji nepředal dál. Dům stál. Nový správce si při nastoupení v srpnu postěžoval, že v prvním patře tahají okna — ale to byl přece jiný rám.",
+    "guilty_alternative": "Poštovní přezkum skončil po šesti týdnech zprávou: zásilka č. 4471 byla doručena a podpis příjemce odpovídá vzoru na jiných zásilkách téhož adresáta. Taussig po celou tu dobu tvrdil, že jde o záměnu. Blecha mezitím ztratil místo — Taussig smlouvu vypověděl v den, kdy úřad zahájil přezkum.",
+    "not_guilty_basic": "Taussig podal civilní žalobu o náhradu škody. Soud ji přijal k řízení. Blecha si správcovské místo stejně neudržel — Taussig přišel osobně a vypověděl smlouvu ústně. Při odchodu se neohlédl.",
+    "not_guilty_with_report": "Státní zastupitelství věc uložilo bez usnesení o zahájení šetření — nedostatek veřejného zájmu. Ale krátký novinový sloupek způsobil, že Taussig prodej domu odložil o rok. Blecha dostal nové správcovské místo na Vinohradech. Ne u Taussiga.",
+    "insufficient_evidence": "Poštovní úřad odepsal za tři týdny, že záznamy za září 1930 jsou v pořádku a k nahlížení. Nikdo si pro ně nepřišel. Případ zůstal otevřen v registru do konce roku."
+  },
+  "delayed_consequences": [
+    {
+      "trigger_verdict_ids": [
+        "not_guilty_with_report",
+        "guilty_alternative"
+      ],
+      "delay_days": 4,
+      "text": "Na stole leží Lidové noviny s podtrženým odstavcem na třetí straně: »Poštovní zásilky a zapomenuté podpisy — co se stane, když majitel neví, co přijal?« Bez jmen. Ale s datem zásilky č. 4471."
+    },
+    {
+      "trigger_verdict_ids": [
+        "guilty_maximum"
+      ],
+      "delay_days": 7,
+      "text": "Zapisovatelka Kovářová potichu upozorní, že v domě v Chelčického ulici je nový správce. Nájemníci prý vymalovat nemohli — nikdo nevěděl, na koho se obrátit."
+    }
+  ],
+  "review_card": {
+    "summary_short": "Poštovní kontrolní orgán doložil, že zásilka č. 4471 ze dne 14. září 1930 byla doručena a podpis příjemce odpovídá jiným zásilkám téhož adresáta. Taussigova výpověď o nepřijetí dopisu dostala trhlinu.",
+    "option_a_text": "Podržet původní rozsudek — procedurální překročení správce zůstává prokázané bez ohledu na otázku dopisu.",
+    "option_b_text": "Zmírnit trest — nová skutečnost mění morální obraz jednání a váhu přitěžujících okolností.",
+    "unique_effect_a": {
+      "integrita": -3,
+      "vina": 2
+    },
+    "unique_effect_b": {
+      "integrita": 5,
+      "nadeje": 3,
+      "vina": -3
+    }
+  },
+  "narrative_link": null
+}
