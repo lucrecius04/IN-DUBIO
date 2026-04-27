@@ -1,0 +1,394 @@
+{
+  "id": "pool_a1_markova_svedkyne",
+  "slot": "pool",
+  "case_track": "pillar",
+  "case_track_label": "tycove",
+  "type": "routine",
+  "color": "#8A8A7C",
+  "available_days": [
+    3
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "forced": true
+  },
+  "title": "Podezřelá svědkyně",
+  "case_number": "Sp. zn. 95/1931",
+  "defendant": {
+    "name": "Rudolf Čermák",
+    "age": 35,
+    "occupation": "skladník",
+    "detail": "zaměstnanec textilního skladu Beneš & syn v Karlíně, čtyři roky bez prohřešku, ženatý, dvě děti"
+  },
+  "charge": "Krádež dle §171 trestního zákona. Ze skladu firmy Beneš & syn zmizelo 28 metrů bavlněné látky v hodnotě 340 Kčs v době mezi 5. a 12. únorem 1931. Čermák měl jako jediný skladník přístup k zadnímu vstupu.",
+  "description": "V textilním skladu Beneš & syn v <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"karlin\" title=\"Slovník: Karlíně\">Karlíně</button> zmizely dvě role bavlněné látky. Obžaloba se opírá o inventuru a svědectví účetní firmy, Věry Markové — ženy, která si pamatuje čas příjmu dodávky na minutu, nosí domů kopie firemních dokladů a vede si vlastní paralelní evidenci. Čermák má klíč. Ale zámek zadního vchodu byl rozbitý od prosince.",
+  "testimonies": [
+    {
+      "id": "markova",
+      "speaker": "Věra Marková, účetní firmy Beneš & syn",
+      "text": "Nesrovnalost jsem objevila při měsíční inventuře 14. února. Chyběly dvě role bavlněné látky, kód B-4. <span class=\"clue\" data-clue-id=\"clue_presny_cas\">Látka byla naposledy přijata 5. února v 8:42 — dodávka z Textile Praga. Výdejka na 12. února uvádí odběr 10 metrů. Zbývat mělo 38, stav byl 10.</span> Pan Čermák je jediný, kdo má klíč k zadnímu vstupu. Já mám přístup pouze k účetním knihám.",
+      "contradiction_keywords": [
+        "8:42",
+        "únor"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "markova_kopie",
+      "speaker": "Věra Marková — k dotazu o evidenci",
+      "text": "<span class=\"clue\" data-clue-id=\"clue_markova_kopie\">Mohu doložit: příjemka č. 0041, výdejka č. 0078, inventurní list z 14. února podepsaný mnou a panem Benešem mladším. Vše mám v kopii.</span> Je to zvyk — vedu si vlastní záznamy pro případ, že by se něco v archivu ztratilo. Příchod dodávky si poznamenávám do sešitu.",
+      "contradiction_keywords": [
+        "kopie",
+        "sešit",
+        "zvyk"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "cermak",
+      "speaker": "Rudolf Čermák, obžalovaný",
+      "text": "Pane doktore, já tu látku nevzal. Čtyři roky pracuju v tom skladu a nikdy nic nechybělo. <span class=\"clue\" data-clue-id=\"clue_zamek_cermak\">Klíč mám já, ale zadní dveře jdou otevřít i bez klíče. Zámek je rozbitý od prosince. Hlásil jsem to panu Benešovi. Řekl, že to nechá opravit. Neopravil.</span> Za <span class=\"clue\" data-clue-id=\"decoy_dvadset_osm\">340 korun látky</span> bych riskoval práci a rodinu? Musel by být člověk blázen.",
+      "contradiction_keywords": [
+        "rozbitý zámek",
+        "prosinec",
+        "hlásil"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "benes_ml",
+      "speaker": "Karel Beneš ml., spolumajitel firmy",
+      "text": "Pan Čermák byl spolehlivý zaměstnanec. Ale čísla nemluví. Slečna Marková dělá inventury bezchybně — za dva roky ani jednou nesrovnalost. <span class=\"clue\" data-clue-id=\"clue_zamek_benes\">Zadní dveře — ano, zámek byl uvolněný. Ale kdo by tam lezl zvenku? Sklad je na dvoře za plotem, z ulice neviditelný. Musel by to být někdo, kdo ví, kde sklad je.</span> Já slečně Markové věřím. <span class=\"clue\" data-clue-id=\"decoy_ctnost_presnost\">Příliš přesná, říkají někteří — ale přesnost je ctnost.</span>",
+      "contradiction_keywords": [
+        "za plotem",
+        "neviditelný",
+        "přesnost"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "cas_842_bez_podkladu",
+      "description": "Marková uvádí čas příjmu 8:42 — ale tento čas není uveden v příjemce č. 0041. Kde ho vzala?",
+      "involves": [
+        "markova",
+        "records"
+      ],
+      "highlight_at_wisdom": 75,
+      "unlocks_confrontation": "markova"
+    },
+    {
+      "id": "pristup_neni_vylucny",
+      "description": "Čermák hlásil rozbitý zámek v prosinci. Beneš potvrzuje, že sklad je za plotem, ale přístup měl kdokoli ze zaměstnanců, ne jen Čermák.",
+      "involves": [
+        "cermak",
+        "benes_ml"
+      ],
+      "highlight_at_wisdom": 60,
+      "unlocks_confrontation": "markova"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "cas_bez_podkladu_strong",
+    "pairs": [
+      {
+        "pair_id": "cas_bez_podkladu_strong",
+        "a_id": "clue_presny_cas",
+        "b_id": "clue_markova_kopie",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "zamek_pristup_medium",
+        "a_id": "clue_zamek_cermak",
+        "b_id": "clue_zamek_benes",
+        "strength": "medium"
+      }
+    ],
+    "decoys": [
+      "decoy_dvadset_osm",
+      "decoy_ctnost_presnost"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 60,
+      "speed_upgrade_sec": 20,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 50,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 35,
+          "ids": [
+            "not_guilty_formal"
+          ]
+        },
+        {
+          "min": 65,
+          "ids": [
+            "not_guilty_with_comment"
+          ]
+        },
+        {
+          "min": 80,
+          "ids": [
+            "insufficient_reopen"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 45,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "not_guilty_with_comment",
+            "insufficient_reopen"
+          ],
+          "narrative_lines": [
+            "8:42 — čas, který není na příjemce. Marková ho má odjinud. Nebo ho nemá vůbec.",
+            "Kopie dokladů doma. Paralelní evidence. Vlastní sešit. To není pečlivost — to je kontrola.",
+            "Čermák má klíč. Ale klíč k rozbitému zámku je zbytečný pro každého, kdo ví, kde je sklad."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 20,
+          "unlock_verdict_ids": [
+            "not_guilty_formal"
+          ],
+          "narrative_lines": [
+            "Rozbitý zámek od prosince. Přístup nebyl výlučný.",
+            "Beneš opravil zámek až po zmizení látky — co o tom věděl?"
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "ridic_dodavky",
+      "target_label": "Řidič dodávky Textile Praga",
+      "reveals": "motivation",
+      "text": "Dodávku 5. února potvrzuju. Složil jsem to u zadních dveří — odemkl pan Čermák, spočítali jsme role, podepsal příjemku. <span class=\"clue\" data-clue-id=\"decoy_dvadset_osm\">Slečna účetní tam nebyla. Čas? Ráno, osm, půl deváté.</span> Přesněji nevím — nemám zvyk hlídat minuty.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 1
+        }
+      }
+    },
+    "records": {
+      "source": "Příjemka č. 0041, výdejka č. 0078, inventurní list Beneš & syn",
+      "reveals": "facts",
+      "text": "Příjemka č. 0041 ze dne 5. února: datum, podpis Čermáka, podpis Beneše ml. <span class=\"clue\" data-clue-id=\"clue_presny_cas\">Kolonka 'hodina příjmu': prázdná. Čas 8:42 v příjemce nefiguruje.</span> Výdejka č. 0078 ze dne 12. února: 10 metrů pro zakázku Novotný, podpis expedient Hora. Inventurní list 14. února: podpisová řada Marková — Beneš ml. Marková svůj exemplář nesložila do archivu; archivní kopie nese jen Benešův podpis.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1
+        }
+      },
+      "unlocks_contradiction": "cas_842_bez_podkladu"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Vina": 1
+        },
+        "factions": {
+          "Kapital": 1,
+          "Lid": -1
+        }
+      },
+      "variants": {
+        "lid_high": "V Beneš & syn se říká, že slečna Marková si zapisuje všechno — příchody, odchody, přestávky. Čermák jednou přišel o deset minut pozdě a ona to měla v sešitu. Ostatní zaměstnanci se tomu smějí — nebo se toho bojí.",
+        "moc_high": "Beneš ml. potřeboval rychle uzavřít případ — banka přezkoumává úvěr firmy. Pokud zmizení látky zůstane nevyřešeno, přezkum úvěru u banky odhalí víc. Čermák je pohodlný viník.",
+        "kapital_high": "Textile Praga dodává Beneš & syn za podmínek, které firma nestíhá. Čermák byl svědkem stížností na dodací lhůty — a Beneš ml. to ví. Pokud jde Čermák k soudu, nestihne podat žádnou stížnost.",
+        "default": "V <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"karlin\" title=\"Slovník: Karlíně\">Karlíně</button> ti každý řekne, že slečna Marková je přesná. Ale nikdo ti neřekne, proč. Přesní lidé mívají důvod — nebo strach."
+      }
+    },
+    "confrontation": {
+      "target": "markova",
+      "target_label": "Věra Marková, účetní",
+      "requires_contradiction": "cas_842_bez_podkladu",
+      "requires_courage": 50,
+      "cost": 2,
+      "prompt": "Slečno Marková, čas 8:42 na příjemce č. 0041 nefiguruje. Kolonka je prázdná. Odkud máte tento údaj?",
+      "success": {
+        "text": "Marková na okamžik zaváhá. Pak rovně řekne: 'Mám vlastní záznamy. Poznamenávám si příchody dodávek do svého sešitu.' Na dotaz, kde je sešit: 'Doma. Mohu ho dodat.' Na otázku, proč si kopíruje firemní dokumenty: 'Pro jistotu. Pro případ, že by se něco ztratilo.' Víko sešitu leží na stole. Zavřené.",
+        "reveals": "Marková si vede paralelní evidenci — a ten čas je buď z jiného zdroje, který neprozradí, nebo si ho zkonstruovala. Obojí je zajímavé. Ani jedno nevysvětluje, kde je látka."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "standard": {
+          "label": "Pokuta 200 Kčs a povinná náhrada škody 340 Kčs",
+          "description": "Přístup, motiv a chybějící alibi. Inventura je průkazná.",
+          "effects": {
+            "integrita": 1,
+            "vina": 4,
+            "nadeje": -2,
+            "moc": 2,
+            "lid": -3,
+            "finance": 10
+          }
+        },
+        "maximum": {
+          "label": "30 dní vězení podmíněně a náhrada škody",
+          "description": "Krádež ve výši 340 Kčs od zaměstnavatele zaslouží podmíněný trest.",
+          "requires": {
+            "odvaha_max": 35
+          },
+          "effects": {
+            "integrita": 2,
+            "vina": 5,
+            "nadeje": -3,
+            "lid": -5,
+            "moc": 3,
+            "finance": 12
+          }
+        },
+        "lenient": {
+          "label": "Symbolická pokuta 50 Kčs — důkazy nejsou přesvědčivé",
+          "description": "Vina pravděpodobná, ale důkazní situace neumožňuje přísný trest.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 1,
+            "vina": 2,
+            "moudrost": 1,
+            "finance": 8
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zproštění — výlučný přístup neprokázán",
+          "description": "Rozbitý zámek od prosince zpochybňuje výlučnost přístupu obžalovaného. Důkaz nestačí.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": -1,
+            "odvaha": 2,
+            "moudrost": 2,
+            "vina": -2,
+            "lid": 3,
+            "moc": -2,
+            "finance": 10
+          }
+        },
+        "with_comment": {
+          "label": "Alternativa: Zproštění — zpochybnění klíčového svědectví",
+          "description": "Svědkyně uvádí údaj (čas 8:42) bez opory v doložených dokumentech. Soud konstatuje nevysvětlený rozpor.",
+          "requires_investigation": 2,
+          "requires": {
+            "odvaha_min": 50
+          },
+          "effects": {
+            "integrita": 3,
+            "odvaha": 3,
+            "moudrost": 4,
+            "vina": -3,
+            "nadeje": 1,
+            "lid": 3,
+            "moc": -4,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              },
+              {
+                "key": "flag_markova_zpochybnena",
+                "value": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "reopen": {
+          "label": "Vrátit policii — prověřit zdroj časového údaje a sešit svědkyně",
+          "description": "Klíčový časový údaj nemá oporu v dokladech. Vyšetřovatel má prověřit, odkud Marková čas 8:42 má.",
+          "requires_investigation": 2,
+          "effects": {
+            "integrita": 3,
+            "moudrost": 3,
+            "vina": 1,
+            "nadeje": 1,
+            "finance": 8,
+            "flags": [
+              {
+                "key": "flag_markova_sešit_vysetreni",
+                "value": true
+              }
+            ]
+          }
+        },
+        "close": {
+          "label": "Uzavřít pro nedostatek přímých důkazů",
+          "description": "Přístup obžalovaného není výlučný. Důkaz inventurou není bez pochybnosti.",
+          "effects": {
+            "moudrost": 2,
+            "vina": 1,
+            "finance": 8
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_standard": "Čermák zaplatil. Pan Beneš ho nepropustil — nechal ho pracovat za sníženou mzdu. Zámek neopravil.",
+    "guilty_maximum": "Čermák dostal podmínku. Příští týden našel práci v Holešovicích — noční směna, méně peněz. Marková zapsala datum jeho odchodu do sešitu.",
+    "guilty_lenient": "Čermák zaplatil padesát korun. Vrátil se do skladu. Zámek opravili v březnu. Nikdo se neptal proč až teď.",
+    "not_guilty_formal": "Čermák se vrátil do skladu. Beneš konečně opravil zámek — bez komentáře. Marková si zapsala datum opravy: 8. března, 14:20.",
+    "not_guilty_with_comment": "Ben v rozsudku poznamenal, že svědkyně uvádí údaje bez dokumentárního podkladu. Marková opustila soudní síň beze slova. Na chodbě se zastavila u okna. Dlouho se dívala ven.",
+    "insufficient_reopen": "Spis se vrátil na policii. Vyšetřovatel se stavil v Beneš & syn a požádal o Markoviny záznamy. Sešit nebyl k dispozici — byl prý doma.",
+    "insufficient_close": "Případ uzavřen. Čermák zůstal ve skladu. Látka se nenašla. Marková dál vedla svoji evidenci."
+  },
+  "stamp_moment": {
+    "guilty": "Čermák se podíval na Markovou. Marková se dívala do svých poznámek. Pero připravené.",
+    "not_guilty": "Čermák vydechl. Marková zavřela sešit. Pomalu. Jako by zavírala kapitolu, která ještě neskončila.",
+    "insufficient": "Marková zůstala sedět. Zapisovala si něco do sešitu. Ben nemohl přečíst co."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "not_guilty_with_comment",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "V archivu soudu se doplnil záznam: Beneš & syn podal stížnost na průběh výslechu svědkyně. Marková stížnost nepodepsala."
+    },
+    {
+      "trigger": "insufficient_reopen",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "Vyšetřovatel z Karlína hlásí: sešit svědkyně nalezen, ale čas 8:42 v něm na 5. únor uveden není. Zaznamenaný čas: 8:55."
+    }
+  ]
+}

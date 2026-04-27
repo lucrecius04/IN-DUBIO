@@ -8,7 +8,7 @@ Jsi autor obsahu pro hru IN DUBIO (březen 1931, ČSR, úřední jazyk, soudní 
 
 ## Cíl této várky
 
-Připravujeme test prvních dvou týdnů. Držíme mix podle pravidel v `.cursor/rules/cases.mdc` (váhování typů) a podle mapy scénáře v `docs/scenar/Mapa_20dni.csv`.
+Připravujeme test prvních dvou týdnů. Držíme mix podle pravidel v `.cursor/rules/cases.mdc` (váhování typů) a podle mapy scénáře v `docs/scenar/Mapa_15dni.csv`.
 
 Pro první dva týdny (10 pracovních dnů, 20 slotů) je cílový mix:
 
@@ -39,7 +39,7 @@ Než začneš psát případ, přečti:
 
 - `docs/pool_cases_akt1_prehled.md` (co už existuje),
 - `.cursor/rules/cases.mdc` (kanon mechanik a struktury),
-- `docs/scenar/InDubio_20dni_Mapa-scenar.md` + `docs/scenar/Milniky-dynamika-akt1.md` (tempo prvních dvou týdnů).
+- `docs/scenar/Mapa_15dni.csv` + `docs/scenar/Milniky-dynamika-akt1.md` (tempo prvních dvou týdnů).
 
 ## Anti-repetice (tvrdá pravidla)
 

@@ -85,7 +85,17 @@ const State = (() => {
     _zarucTydenniRozsireni();
     _zarucEkonomiku();
     _normalizujTraitsFrakceATrust();
+    _normalizujSettings();
     _normalizujStatsDisplay();
+  }
+
+  function _normalizujSettings() {
+    if (!_stav.settings || typeof _stav.settings !== 'object') {
+      _stav.settings = { patraniNaCas: false };
+    }
+    if (typeof _stav.settings.patraniNaCas !== 'boolean') {
+      _stav.settings.patraniNaCas = false;
+    }
   }
 
   function _normalizujStatsDisplay() {
@@ -112,7 +122,7 @@ const State = (() => {
     delete _stav.finance.salary;
     if (!_stav.trust || typeof _stav.trust !== 'object') _stav.trust = {};
     const F = [
-      'dopis_operace_den8_viden', 'operace_zaplacena', 'operace_odlozena',
+      'dopis_operace_den8_viden', 'dopis_operace_den4_viden', 'operace_zaplacena', 'operace_odlozena',
       'haas_nabidka_den23_vyresena', 'uplatek_prijat', 'bankrot_varovani_zobrazeno',
       'dluh_pribeh_spusten'
     ];
@@ -275,6 +285,7 @@ const State = (() => {
       masek_document_signed:  false,
       pravda_odhalena:        false,
       dopis_operace_den8_viden: false,
+      dopis_operace_den4_viden: false,
       operace_zaplacena:      false,
       operace_odlozena:       false,
       haas_nabidka_den23_vyresena: false,
@@ -352,12 +363,19 @@ const State = (() => {
 
     // Skryté proměnné pro konce
     gameOver:    false,
-    endingType:  null,   // 'odvolani' | 'korupce' | 'atentát' | 'preziti' | 'hrdina'
+    endingType:  null,   // odvolani|korupce|atentát|preziti|hrdina|smireni|utek|rad|anna (variabilní D11+)
     /**
      * Režim zobrazení čísel u dopadů (archiv, kompaktní řádky, modál důsledků).
      * intuitive | hybrid (výchozí) | spreadsheet — přepínač v menu po dohrání.
      */
-    statsDisplayMode: 'hybrid'
+    statsDisplayMode: 'hybrid',
+    /**
+     * Nastavení hry.
+     * patraniNaCas: true = časované pátrání (timed_hunt v datech), false = výchozí systém pokusů.
+     */
+    settings: {
+      patraniNaCas: false
+    }
   };
 
   let _stav = JSON.parse(JSON.stringify(VYCHOZI_STAV));

@@ -275,7 +275,7 @@
         },
         "alternative": {
           "label": "Veřejně prospěšné práce + kontrolovaná náhrada škody",
-          "description": "Sankce bez vězení, s dohledem soudu a auditním dohledem tiskárny.",
+          "description": "Sankce bez vězení, s dohledem soudu a revizním dohledem tiskárny.",
           "requires_investigation": 2,
           "requires": {
             "moudrost_min": 55
@@ -297,7 +297,7 @@
           }
         },
         "special": {
-          "label": "Alternativa: Vina Mareše, ale nařízen forenzní audit vedení",
+          "label": "Alternativa: Vina Mareše, ale soudem nařízena revize účtů vedení",
           "description": "Mareš je potrestán, současně soud otevírá vyšetření manipulace s klíči a mzdovou knihou.",
           "requires_investigation": 3,
           "requires": {
@@ -405,7 +405,7 @@
     "guilty_standard": "Rozsudek dopadne tvrdě, ale ne definitivně. Mareš se ještě stihne otočit k Růženě Křížové; ona mu jen přiloží dlaň na prsa, krátké gesto, které znamená vydrž.",
     "guilty_lenient": "Mareš děkuje, i když ví, že jde domů s cejchem. Volf si zapisuje něco do notýsku, tentokrát bez výrazu. Na galerii je slyšet úlevný výdech dělníků.",
     "guilty_alternative": "Ben diktuje podmínky dohledu. Volf protestuje jen napůl - ví, že úplná výhra mu unikla. Mareš poprvé zvedne hlavu a dívá se soudci přímo do očí.",
-    "guilty_special": "Soud dopadne na Mareše, ale tentokrát i na stůl vedení. Slovo audit v síni zazní jako cizí kov. Volf zbledne. Křížová se usměje jen koutkem.",
+    "guilty_special": "Soud dopadne na Mareše, ale tentokrát i na stůl vedení. Slovo o revizi v síni zazní jako cizí kov. Volf zbledne. Křížová se usměje jen koutkem.",
     "not_guilty_formal": "Mareš odchází volný, ale v obličeji má stejný strach jako při příchodu. Volf ho mine na chodbě tak těsně, že se jejich kabáty dotknou. Nikdo nic neřekne.",
     "not_guilty_with_comment": "Komentář k mzdám a nočním přesčasům dopadne na síň tvrději než samotné zproštění. Volf sevře desky oběma rukama. Dělníci vzadu si mezi sebou poprvé začnou šeptat nahlas.",
     "insufficient_reopen": "Spis se vrací na hospodářskou policii. Nikdo neodchází spokojený. Mareš má pár týdnů navíc; Volf pár týdnů strachu navíc.",

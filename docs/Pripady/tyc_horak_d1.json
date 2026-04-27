@@ -1,0 +1,222 @@
+{
+  "id": "tyc_horak_d1",
+  "slot": "pool",
+  "type": "routine",
+  "color": "#B5925A",
+  "available_days": [1],
+  "act": 1,
+  "weight_conditions": { "forced": true },
+  "title": "Krádež chleba",
+  "case_number": "Sp. zn. 58/1931",
+  "defendant": {
+    "name": "Tomáš Horák",
+    "age": 38,
+    "occupation": "nádeník",
+    "detail": "bez stálého zaměstnání od října 1930, ženatý, čtyři děti (3–11 let), bydliště Žižkov, Chelčického 14"
+  },
+  "charge": "Krádež dle §171 trestního zákona: dne 3. března 1931 odcizil z pekárny Antonína Mráze na Žižkově dva bochníky chleba v hodnotě 2 Kčs 40 haléřů. Přistižen na místě činu zaměstnancem pekárny.",
+  "description": "Tomáš Horák vstoupil v pondělí ráno do pekárny Antonína Mráze na rohu Seifertovy ulice. Vzal dva bochníky z regálu u dveří a odešel bez zaplacení. Zaměstnanec Petr Vlček ho zadržel na ulici. Horák nekladl odpor, bochníky vydal a řekl: <em>'Mám doma čtyři děti a od včerejška nic.'</em> Antonín Mráz trvá na trestním oznámení. Případ je technicky jasný. Nic jiného o něm jasné není.",
+  "testimonies": [
+    {
+      "id": "vlcek_zamestnanec",
+      "speaker": "Petr Vlček, zaměstnanec pekárny",
+      "text": "Viděl jsem ho, jak vzal dva bochníky z regálu u dveří a vyšel ven bez zastavení u pultu. Šel jsem za ním. <span class=\"clue\" data-clue-id=\"clue_bez_odporu\">Neběžel. Šel normálně. Když jsem ho oslovil, otočil se a bochníky podal sám. Nemusel jsem ho držet.</span> Řekl: 'Mám doma čtyři děti a od včerejška nic.' Pak jsme šli zpátky do pekárny.",
+      "contradiction_keywords": ["neběžel", "sám podal"],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "horak",
+      "speaker": "Tomáš Horák, obžalovaný",
+      "text": "Bral jsem chléb pro děti. To je vše, co mohu říct. <span class=\"clue\" data-clue-id=\"clue_horak_prace\">Od října nemám práci. Byl jsem u čtyř závodů — ve Waltrovce, ve Škodě v Holešovicích, na žižkovských dílnách. Všude říkali, že přijmou na jaře.</span> Žena dostala v prosinci zápal plic. Je lepší, ale vydělávat nemůže. <span class=\"clue\" data-clue-id=\"decoy_horak_driv\">Nikdy jsem nic nevzal. Dvacet let pracuji — nebo pracoval jsem.</span>",
+      "contradiction_keywords": ["od října", "čtyři závody", "nikdy"],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "mraz_pekar",
+      "speaker": "Antonín Mráz, majitel pekárny",
+      "text": "Trvám na oznámení. <span class=\"clue\" data-clue-id=\"clue_mraz_dluhy\">Já taky mám dluhy. Mouka zdražila o osmnáct procent. Platím tři zaměstnance. Kdybych každému, kdo nemá, dal chléb zadarmo, za měsíc zavírám.</span> Nezlobím se na toho člověka. Ale kdybych ho pustil, přijdou další. A zákon je od toho, aby byl.",
+      "contradiction_keywords": ["mouka", "osmnáct procent", "zákon"],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "ukradl_ale_jak",
+      "description": "Horák vzal chléb, neběžel, sám ho vydal. Není to chování zloděje — je to chování člověka, který nevěděl co jiného dělat.",
+      "involves": ["vlcek_zamestnanec", "horak"],
+      "highlight_at_wisdom": 50,
+      "unlocks_confrontation": null
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "nouze_bez_skryti_strong",
+    "pairs": [
+      {
+        "pair_id": "nouze_bez_skryti_strong",
+        "a_id": "clue_bez_odporu",
+        "b_id": "clue_horak_prace",
+        "strength": "strong"
+      }
+    ],
+    "decoys": ["decoy_horak_driv", "clue_mraz_dluhy"],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 45,
+      "speed_upgrade_sec": 15,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [],
+      "verdicts": [
+        { "min": 30, "ids": ["guilty_lenient"] },
+        { "min": 55, "ids": ["not_guilty_bagatelni"] },
+        { "min": 75, "ids": ["not_guilty_krajni_nouze"] }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 40,
+          "unlock_verdict_ids": ["not_guilty_bagatelni", "not_guilty_krajni_nouze"],
+          "narrative_lines": [
+            "Neběžel. Sám vydal bochníky. Hledal pomoc, ne únik.",
+            "Od října bez práce — čtyři závody, čtyři odmítnutí. Chléb nebyl první volba.",
+            "Zákon zná krajní nouzi. Otázka je, zda to, co vidí soud, je krajní nouze."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "horak_zena",
+      "target_label": "Marie Horáková, manželka obžalovaného",
+      "reveals": "motivation",
+      "text": "Pavel — náš nejstarší — včera ráno přinesl domů kus chleba od sousedky paní Novotné. Já jsem plakala. <span class=\"clue\" data-clue-id=\"clue_horak_prace\">Tomáš odešel ráno s tím, že zkusí ještě jednou do Waltrovky. Vrátil se za hodinu. Nic neřekl. Pak šel ven znovu.</span> Nevěděla jsem, co dělá. Teď vím.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": { "Integrita": -1, "Vina": 2 },
+        "factions": { "Lid": 1 }
+      }
+    },
+    "records": {
+      "source": "Evidence nezaměstnaných, Zemský úřad Praha; výkaz rodinného příjmu",
+      "reveals": "facts",
+      "text": "Evidence nezaměstnaných: Tomáš Horák registrován od 14. října 1930. Podpora: 12 Kčs týdně — vyplacena do 28. února 1931, podpora vyčerpána po 20 týdnech dle zákonného limitu. <span class=\"clue\" data-clue-id=\"clue_horak_prace\">Od 1. března 1931 bez podpory i bez příjmu. Manželka Marie vedena jako rekonvalescent po pleuropneumonii — pracovně neschopná do konce března.</span> Rodinný příjem k 3. březnu 1931: nula.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": { "Integrita": -2, "Vina": 1 },
+        "factions": { "Moc": 1 }
+      }
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": { "Vina": 1 },
+        "factions": { "Lid": -1, "Moc": 1 }
+      },
+      "variants": {
+        "lid_high": "Na Žižkově je Horáků víc. Ne každý jde k pekaři — někteří jdou k zastavárně, jiní k lichváři. Horák šel k pekaři, protože jinam se s prázdnýma rukama nejde. Mráz to ví. Proto podal oznámení — aby nešel víc.",
+        "moc_high": "Státní zastupitelství sleduje krádeže potravin od února — od té doby, kdy se to začalo dít systematicky. Exemplární trest má zastavit ostatní. Horák není první — a nebude poslední.",
+        "kapital_high": "Mráz má úvěr u záložny Žižkov. Záložna ho tlačí. Pokud Mráz ustoupí, záložna to vnímá jako slabost. V jeho situaci si nemůže dovolit být velkorysý — ani kdyby chtěl.",
+        "default": "Dva bochníky za dvě koruny čtyřicet. To je co zákon řeší. Co zákon neřeší: čtyři děti, zápal plic, konec podpory. Ale soud není charita — a Horák to ví taky."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "standard": {
+          "label": "Pokuta 20 Kčs, náhrada škody 2 Kčs 40 haléřů",
+          "description": "Krádež je prokázána. Pokuta odpovídá hodnotě odcizeného s přihlédnutím k okolnostem. Horák musí zaplatit — z čeho, to zákon neřeší.",
+          "effects": {
+            "integrita": 2, "vina": 3, "nadeje": -2, "moc": 2, "lid": -4, "finance": 10
+          }
+        },
+        "maximum": {
+          "label": "30 dní vězení a náhrada škody",
+          "description": "Vězení má odradit ostatní. Čtyři děti zůstanou bez otce a bez příjmu na měsíc. Marie Horáková ještě není zdravá.",
+          "requires": { "odvaha_max": 25 },
+          "effects": {
+            "integrita": 3, "vina": 6, "nadeje": -4, "moc": 5, "lid": -8, "finance": 15
+          }
+        },
+        "lenient": {
+          "label": "Podmíněné upuštění od potrestání — napomenutí",
+          "description": "Zákon umožňuje podmíněné upuštění od trestu při nepatrné škodě a první krádeži. Horák dostane napomenutí a povinnost vrátit 2 Kčs 40 haléřů.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 1, "vina": 1, "nadeje": 2, "lid": 3, "moc": -2, "finance": 8
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "bagatelni": {
+          "label": "Zproštění — nepatrná škoda, žádná recidiva",
+          "description": "Škoda 2 Kčs 40 haléřů je nepatrná. Horák nekradl ze zištnosti, nevykazoval útěk ani odpor. Trestní stíhání je nepřiměřené.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": -1, "vina": -2, "nadeje": 3, "lid": 5, "moc": -3, "finance": 10
+          }
+        },
+        "krajni_nouze": {
+          "label": "Alternativa: Zproštění — krajní nouze dle §2 trestního zákona",
+          "description": "Krajní nouze vylučuje protiprávnost činu, je-li odvráceno bezprostřední nebezpečí hrozící životu nebo zdraví. Čtyři děti bez jídla od předchozího dne a vyčerpaná podpora mohou tuto podmínku naplňovat. Precedent.",
+          "requires_investigation": 2,
+          "requires": { "odvaha_min": 45 },
+          "effects": {
+            "integrita": 3, "odvaha": 5, "vina": -3, "nadeje": 4,
+            "lid": 7, "moc": -6, "finance": 10,
+            "flags": [{ "key": "bonus_inkoust_rano", "value": 1 }]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "close": {
+          "label": "Zastavení — neúčelnost trestního řízení",
+          "description": "Čin je sice prokázán, ale zájem společnosti na potrestání je zjevně nižší než náklady řízení a dopad na rodinu. Věc se zastavuje bez záznamu.",
+          "effects": {
+            "moudrost": 2, "vina": 1, "nadeje": 2, "lid": 2, "finance": 8
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_standard": "Horák zaplatil pokutu — půjčil si od souseda. Mráz dostal náhradu. Příští pondělí přišel Horák znovu do Waltrovky. Vzali ho na tři dny jako výpomoc.",
+    "guilty_maximum": "Horák odešel s policistou. Marie Horáková šla s dětmi k sestře na Vinohrady. Za měsíc se vrátili. Dveře bytu byly zamčené — pronajímatel vyměnil zámek za neplacení.",
+    "guilty_lenient": "Horák dostal napomenutí. Mráz mu podal ruku. Nevěděl proč — udělal to. Horák mu vrátil dvě koruny a čtyřicet haléřů o tři týdny později, v den, kdy ho Waltrovka přijala na stálé místo.",
+    "not_guilty_bagatelni": "Horák odešel volný. Mráz za ním šel na chodbu a dal mu bochník. Nic neřekl. Horák taky ne. Ben to viděl z okna soudní síně.",
+    "not_guilty_krajni_nouze": "Rozsudek vyšel v odpoledních novinách — dvě věty na pátá straně. Ráno přišly tři dopisy. Dva nadávaly. Jeden psal děkuji. Byl bez podpisu.",
+    "insufficient_close": "Případ uzavřen bez záznamu. Horák odešel. Mráz podal stížnost na postup soudu k zemskému úřadu. Dostane odpověď za šest týdnů."
+  },
+  "stamp_moment": {
+    "guilty": "Horák přikývl. Pak se podíval na okno — jako by hledal, kudy jde odtud domů.",
+    "not_guilty": "Horák stál. Nechápavě. Pak vydechl — pomalu, jako člověk, který zadržuje dech od rána.",
+    "insufficient": "Horák se podíval na Bena. Pak na dveře. Nebyl si jistý, jestli smí odejít."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "not_guilty_krajni_nouze",
+      "delay_days": 3,
+      "type": "fragment",
+      "text": "Vlček přinesl ranní poštu. Mezi spisy jeden list bez záhlaví: 'Krajní nouze není výmluva. Je to pozvání.' Bez podpisu. Ben nevěděl, zda je to výhrůžka nebo souhlas."
+    },
+    {
+      "trigger": "guilty_maximum",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "Svobodný obzor, čtvrtá strana: Žižkovský nádeník dostal měsíc vězení za dva bochníky. Redakce přijímá příspěvky na rodinu. Do tří dnů přišlo čtyřicet dva korun."
+    }
+  ]
+}

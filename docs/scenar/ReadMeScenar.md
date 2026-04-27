@@ -1,24 +1,26 @@
 # Scénář — vstupní brána (`docs/scenar/`)
 
-Tato složka je **jedno místo** pro denní mapu, případy ve dnech, vlákna, dopisy a balanci. Lore a postavy zůstávají ve **Story Bible** — [`../InDubio_StoryBible_v2_Cursor.txt`](../InDubio_StoryBible_v2_Cursor.txt); technické mechaniky hry v **`.cursor/rules/`** a v [`../spis-patrani-pruzkum-rozsudek.md`](../spis-patrani-pruzkum-rozsudek.md).
+Tato složka je **jedno místo** pro denní mapu, případy ve dnech, vlákna, dopisy a balanci. Lore a postavy zůstávají ve **Story Bible** (v3.0, 15 prac. dní) — [`../InDubio_StoryBible_v2_Cursor.txt`](../InDubio_StoryBible_v2_Cursor.txt); technické mechaniky hry v **`.cursor/rules/`** a v [`../spis-patrani-pruzkum-rozsudek.md`](../spis-patrani-pruzkum-rozsudek.md).
 
 ---
 
-## Kanon v kostce
+## Kanon v kostce (15 pracovních dní)
 
 | Co | Kde |
 |----|-----|
-| **Rámec 20 dní** (týdny, večery, matka, soudci) | [`InDubio_20dni_Mapa-scenar.md`](./InDubio_20dni_Mapa-scenar.md) — jen tento soubor; **nekopíruj** jeho text jinam. |
-| **Milníky, limity revizí, dynamika 2. poloviny aktu** | [`Milniky-dynamika-akt1.md`](./Milniky-dynamika-akt1.md) |
-| **Řádek za řádkem 20 herních dní** (sloty, typy, dopisy, večery v tabulce) | [`Mapa_20dni.csv`](./Mapa_20dni.csv) — sloupce *Modif_dne*, *Vecer_doplnek*, *Patrani_navrh* |
-| **Případy podle slotu** (ID, typ, Haas, odložené důsledky…) | [`Pripady.csv`](./Pripady.csv) |
+| **Denní mapa, sloty, večery, poznámky** | [`Mapa_15dni.csv`](./Mapa_15dni.csv) — **jediný** řádkový plán dní pro vývoj |
+| **Případy ve dnech (ID, beat, vrstva)** | [`Pripady_15dni.csv`](./Pripady_15dni.csv) |
+| **Vlákna / dopisy (15d)** | [`Vlakna_15dni.csv`](./Vlakna_15dni.csv), [`Dopisy_15dni.csv`](./Dopisy_15dni.csv) |
+| **Milníky, limity revizí, dynamika aktu** | [`Milniky-dynamika-akt1.md`](./Milniky-dynamika-akt1.md) + [`Balancing.csv`](./Balancing.csv) |
+| **Migrace a historie 20d → 15d** | [`MIGRACE_20-15.md`](./MIGRACE_20-15.md) |
+| **20denní soubory (archiv, ne kanon)** | [`ARCHIV_20D_README.md`](./ARCHIV_20D_README.md) — `Mapa_20dni.csv`, starý `Pripady.csv` (ne `Pripady_15dni`), atd. **nepoužívat** pro nové úpravy |
 | **Ekonomika / bilance** | [`Balancing.csv`](./Balancing.csv) — sloupec *Scenar_modif_navrh* (návrhy k pozdějšímu ladění) |
 | **Dopisy** | [`Dopisy.csv`](./Dopisy.csv) |
 | **Vlákna** | [`Vlakna.csv`](./Vlakna.csv) |
 | **Konce** | [`Konce.csv`](./Konce.csv) |
 | **Statistiky** | [`Statistiky.csv`](./Statistiky.csv) |
 
-**20 dní:** design a mapa počítají s **20 pracovními dny** kampaně v tomto smyslu (viz mapa + `cases.mdc`). Běžící kalendář ve hře je **`data/days.json`** — při vývoji se mění podle potřeby, až budete scénář plně nasazovat, sjednotíte ho s CSV.
+**Délka kampaně:** **15 pracovních dní**; kalendář a spisy v `data/days.json`. Archiv 20d viz [`ARCHIV_20D_README.md`](./ARCHIV_20D_README.md). Pravidla: `cases.mdc`.
 
 **Případy v kódu:** obsah spisů je v **`data/pool_cases_akt1.json`** (pool); `days.json` u každého dne polem `cases` určuje, **která ID** se mají dnes objevit (můžou být pool i legacy, dokud migrujete).
 
@@ -35,17 +37,17 @@ docs/
   README.md                    ← odkazuje sem (scénář) + na mechaniky
   scenar/
     ReadMeScenar.md            ← tento soubor (vstupní brána)
-    InDubio_20dni_Mapa-scenar.md   ← rámec: večery, matka, týdny, soudci
-    Mapa_20dni.csv
+    Mapa_15dni.csv
+    Pripady_15dni.csv
     Milniky-dynamika-akt1.md
-    Pripady.csv
+    ARCHIV_20D_README.md
     Balancing.csv
     Dopisy.csv
     Vlakna.csv
     Konce.csv
     Statistiky.csv
   InDubio_20dni_Mapa.xlsx      ← volitelný Excel
-  InDubio_StoryBible_v2_Cursor.txt   ← lore, Story Bible v2.1 (mimo scenar/)
+  InDubio_StoryBible_v2_Cursor.txt   ← lore, Story Bible v3.0 / 15d (mimo scenar/; název souboru historický)
   herni-smycka-a-cile.md
   spis-patrani-pruzkum-rozsudek.md
   …
@@ -60,11 +62,9 @@ data/
 
 ---
 
-## Co je `InDubio_20dni_Mapa-scenar.md`?
+## Rámec večerů a matky
 
-**Krátký naratální a strukturální rámec** (ne tabulka): proč existují večery, jak funguje emoční linka s matkou, týdenní skelet Po–Ne, připomínka soudců z `cases.mdc`, co doplnit do mapy.  
-**Není** duplikát řádků z `Mapa_20dni.csv` — doplňuje je významem.  
-**Není** Story Bible — lore tam nepatří.
+Obecné principy (ne čísla dní) jsou v [`Milniky-dynamika-akt1.md`](./Milniky-dynamika-akt1.md) a v textu scénáře v `MIGRACE_20-15.md`. Soubor `InDubio_20dni_Mapa-scenar.md` je **archivovaný** (20d) — pro sloty a kalendář vždy [`Mapa_15dni.csv`](./Mapa_15dni.csv). **Není** Story Bible.
 
 ---
 

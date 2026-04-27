@@ -1,0 +1,283 @@
+{
+  "id": "tyc_horac_d7",
+  "slot": "pool",
+  "type": "political",
+  "color": "#5A6E8A",
+  "available_days": [7],
+  "act": 1,
+  "weight_conditions": { "forced": true },
+  "title": "Svědkyně",
+  "case_number": "Sp. zn. 101/1931",
+  "defendant": {
+    "name": "Jiří Veselý",
+    "age": 34,
+    "occupation": "tiskař, člen místního výboru sociální demokracie",
+    "detail": "zaměstnanec tiskárny Orbis, Smíchov; ženatý, jedno dítě; člen redakční rady stranického tisku"
+  },
+  "charge": "Pobuřování dle §15 zákona na ochranu republiky č. 50/1923 Sb.: Jiří Veselý na stranické schůzi dne 18. února 1931 v sále hostince Na Příkopě prohlásil, že 'vláda systematicky dopravuje ozbrojené jednotky do průmyslových měst, aby rozbila stávky dříve, než začnou', a vyzval přítomné k 'odporu zákonnými i nezákonnými prostředky'. Svědkyní obžaloby je Jana Horáčková, úřednice ministerstva vnitra.",
+  "description": "Tiskař Jiří Veselý přednášel na uzavřené stranické schůzi. Schůze byla uzavřená — ale ministerstvo vnitra o ní vědělo. Jana Horáčková, úřednice oddělení politického dohledu, podala zprávu, z níž vychází obžaloba. Veselý popírá přesný obsah svých slov a popírá výzvu k nezákonným prostředkům. Horáčková trvá na svém. Otázka stojí takto: co přesně zaznělo v sále Na Příkopě osmnáctého února — a proč je jedinou svědkyní žena z ministerstva, která tam seděla jako host.",
+  "testimonies": [
+    {
+      "id": "vesely",
+      "speaker": "Jiří Veselý, obžalovaný",
+      "text": "Mluvil jsem o nasazení četnictva při stávkách v Moravské Ostravě a v Kladně. To jsou veřejné fakty — psaly o nich noviny. <span class=\"clue\" data-clue-id=\"clue_vesely_slova\">Řekl jsem: 'Vláda připravuje opatření, která mohou být použita k rozprášení legálních stávek. Je naší povinností připravit se na obranu zákonných práv.' Nezákonné prostředky? To jsem neřekl. To je lež.</span> Horáčková seděla v druhé řadě. Přivedl ji Novák — předseda místního výboru. Řekl, že je to jeho sestřenice. Nevím, co je zač.",
+      "contradiction_keywords": ["zákonných práv", "obranu", "sestřenice"],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "horac_svedkyne",
+      "speaker": "Jana Horáčková, úřednice ministerstva vnitra, svědkyně obžaloby",
+      "text": "Přítomna jsem byla jako soukromá osoba — přivedl mě přítel, člen výboru. <span class=\"clue\" data-clue-id=\"clue_horac_zprava\">Zprávu jsem podala ze své úřední povinnosti poté, co jsem zjistila, že pan Veselý vysloveně vyzval k 'odporu zákonným i nezákonným prostředky'.</span> Slova si pamatuji přesně — zapisuji si poznámky na schůzích zvykem ze zaměstnání. <span class=\"clue\" data-clue-id=\"clue_horac_poznamky\">Zápisník mám u sebe. Předám ho soudu, pokud bude požádáno.</span>",
+      "contradiction_keywords": ["zápisník", "ze své úřední povinnosti", "přesně"],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "novak_predseda",
+      "speaker": "Karel Novák, předseda místního výboru sociální demokracie",
+      "text": "Přivedl jsem ji jako hosta. Řekla, že se zajímá o politiku — a že je moje sestřenice. <span class=\"clue\" data-clue-id=\"clue_novak_neznama\">Sestřenici Janu nemám. Mám sestřenici Marii — ta žije v Plzni. Nevím, kdo mi tu ženu doporučil. Přišla sama a řekla, že je ode mě.</span> Co Veselý řekl — slyšel jsem ho mluvit o Ostravě a o právech. O nezákonných prostředcích nevím. Ale sál byl hlučný.",
+      "contradiction_keywords": ["sestřenici Janu nemám", "sama přišla", "sál byl hlučný"],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "horac_neni_sestrenice",
+      "description": "Horáčková tvrdila, že ji přivedl Novák jako příbuzný. Novák říká, že žádnou sestřenici Janu nemá a že přišla sama s tím, že je od něj. Jeden z nich lže — nebo byli oba oklamáni.",
+      "involves": ["horac_svedkyne", "novak_predseda"],
+      "highlight_at_wisdom": 65,
+      "unlocks_confrontation": "horac_svedkyne"
+    },
+    {
+      "id": "zapisnik_dokazni",
+      "description": "Horáčková říká, že si zapisuje poznámky zvykem ze zaměstnání a má zápisník. Na soukromé schůzi, kam přišla jako host. To není soukromý zvyk — to je výkon dohledu.",
+      "involves": ["horac_svedkyne", "vesely"],
+      "highlight_at_wisdom": 70,
+      "unlocks_confrontation": "horac_svedkyne"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "agent_ministerstva_strong",
+    "pairs": [
+      {
+        "pair_id": "agent_ministerstva_strong",
+        "a_id": "clue_horac_poznamky",
+        "b_id": "clue_novak_neznama",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "slova_vs_zprava_medium",
+        "a_id": "clue_vesely_slova",
+        "b_id": "clue_horac_zprava",
+        "strength": "medium"
+      }
+    ],
+    "decoys": ["decoy_svedkyni_pozvani"],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 65,
+      "speed_upgrade_sec": 22,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        { "min": 50, "ids": ["pool_inv_confrontation"] }
+      ],
+      "verdicts": [
+        { "min": 35, "ids": ["guilty_lenient"] },
+        { "min": 60, "ids": ["not_guilty_formal"] },
+        { "min": 80, "ids": ["not_guilty_with_comment", "insufficient_reopen"] }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 48,
+          "unlock_actions": ["pool_inv_confrontation"],
+          "unlock_verdict_ids": ["not_guilty_with_comment", "insufficient_reopen"],
+          "narrative_lines": [
+            "Zápisník na soukromé schůzi. Přišla od nikoho. Podala zprávu z úřední povinnosti.",
+            "Horáčková nebyla host. Byla výkon dohledu v sukni.",
+            "Novák nemá sestřenici Janu. Kdo ji tam tedy poslal — a proč zrovna toho večera?"
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 24,
+          "unlock_verdict_ids": ["not_guilty_formal", "guilty_lenient"],
+          "narrative_lines": [
+            "Veselý říká zákonná práva. Horáčková říká nezákonné prostředky. Jeden z nich si pamatuje jinak.",
+            "V hlučném sále může zaznít jedno slovo navíc — nebo jedno méně."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "vesely_kolega",
+      "target_label": "František Duda, tiskař, přítomen na schůzi",
+      "reveals": "motivation",
+      "text": "Byl jsem tam. Veselý mluvil o Ostravě — to ano. O nezákonných prostředcích? <span class=\"clue\" data-clue-id=\"clue_vesely_slova\">Říkal: 'Zákonné prostředky nestačí — ale to neznamená, že se máme vzdát.'</span> Takhle. Ne výzva. Konstatování. Ta ženská si to sedla do třetí řady a pořád něco psala. Mysleli jsme, že stenografuje pro stranu. <span class=\"clue\" data-clue-id=\"decoy_svedkyni_pozvani\">Kdesi u pultu se říkalo, že přišla na oficiální pozvání z ústředí — nikdo to neověřoval.</span> Pak jsme se dozvěděli, kdo je.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": { "Integrita": -1, "Vina": 1 },
+        "factions": { "Lid": 2, "Moc": -1 }
+      }
+    },
+    "records": {
+      "source": "Personální záznamy ministerstva vnitra; policejní hlášení o schůzi ze dne 18. 2. 1931; rejstřík stížností na politický dohled",
+      "reveals": "facts",
+      "text": "Personální záznamy MV: Jana Horáčková, úřednice oddělení politického dohledu od září 1930. <span class=\"clue\" data-clue-id=\"clue_horac_zprava\">Úřední zpráva č. 47/1931 ze dne 19. 2. 1931, podepsaná Horáčkovou: 'Přítomna na schůzi sociální demokracie jako civile — bez pověření nadřízeného.'</span> Pozn. vedoucího oddělení: 'Iniciativa vítána.' Rejstřík stížností: tři podobné případy v lednu a únoru 1931 — ve dvou zápisník jako důkaz, v jednom svědectví zrušeno pro nedůvěryhodnost svědka.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": { "Integrita": -2, "Vina": 1 },
+        "factions": { "Moc": 2, "Lid": -2 }
+      },
+      "unlocks_contradiction": "horac_neni_sestrenice"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": { "Vina": 1 },
+        "factions": { "Moc": 2, "Lid": -1 }
+      },
+      "variants": {
+        "lid_high": "Horáčková není výjimka. Ministerstvo vnitra v roce 1931 vyslalo na stranické schůze přes dvě stě úředníků jako 'soukromé osoby'. Zákon jim to nezakazuje. Zákon neříká, co je špeh a co je občan. Veselý to věděl — a přesto mluvil.",
+        "moc_high": "Vlček má informaci o tomto případu. Ne přímo — ale zákon na ochranu republiky je jeho oblíbený nástroj. Pokud soud Veselého odsoudí, bude to signál, že zápisník stačí jako důkaz. Pokud zprostí, bude to jiný signál.",
+        "kapital_high": "Tiskárna Orbis zásobuje stranický tisk — ale také vládní zakázky. Ředitel Orbisu by byl rád, kdyby se případ uzavřel tiše v obou směrech. Odsouzení i zproštění mu komplikuje zakázky.",
+        "default": "Horáčková na schůzi nebyla poprvé. Zápisník má praxí vychozený. Kdy naposledy se zápisník z politické schůze stal základem obžaloby? Záleží, kdo ho psal — a kdo to potřeboval."
+      }
+    },
+    "confrontation": {
+      "target": "horac_svedkyne",
+      "target_label": "Jana Horáčková, svědkyně obžaloby",
+      "requires_contradiction": "horac_neni_sestrenice",
+      "requires_courage": 55,
+      "cost": 2,
+      "prompt": "Slečno Horáčková, Karel Novák říká, že žádnou sestřenici Janu nemá. Přišla jste sama a řekla jste, že jste od něj. Vaše zpráva uvádí, že jste přítomna jako civile bez pověření nadřízeného — ale váš vedoucí to označil za vítanou iniciativu. Jak je to tedy: byla jste tam soukromě, nebo ve výkonu dohledu?",
+      "success": {
+        "text": "Horáčková je klidná. Příliš klidná. 'Jsem úřednice ministerstva. Bylo mou povinností podat zprávu o tom, co jsem slyšela.' Na otázku o Novákovi: 'Mohla jsem se splést v příbuzenském vztahu. Přivedl mě člověk, který se za člena výboru označil.' Zápisník leží na stole před ní. Otevřený na správné stránce. Jako by čekala na tuto otázku od začátku.",
+        "reveals": "Horáčková nepopřela, že tam byla za ministerstvo. Jen přesunula těžiště: mám zápisník, mám zprávu, zákon mi to nezakazoval. Co zákon nezakazuje a co je čestné — to jsou dvě různé otázky. Soud musí rozhodnout o té první."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "standard": {
+          "label": "Pokuta 500 Kčs za pobuřování",
+          "description": "Výzva k odporu na stranické schůzi, byť v uzavřeném prostředí, naplňuje znaky pobuřování dle §15. Horáčkové svědectví nebylo vyvráceno. Pokuta bez vězení zohledňuje první delikt a charakter sdělení.",
+          "effects": {
+            "integrita": 2, "vina": 3, "nadeje": -2, "moc": 5, "lid": -5, "finance": 12
+          }
+        },
+        "maximum": {
+          "label": "6 měsíců podmíněně a pokuta 1 000 Kčs",
+          "description": "Výzva k nezákonným prostředkům je přímé ohrožení veřejného pořádku. Podmíněný trest se záznamem omezí Veselého v politické činnosti.",
+          "requires": { "odvaha_max": 30 },
+          "effects": {
+            "integrita": 3, "vina": 5, "nadeje": -3, "moc": 8, "lid": -8, "finance": 18
+          }
+        },
+        "lenient": {
+          "label": "Napomenutí — neurčitost výroku vylučuje přesnou kvalifikaci",
+          "description": "Výrok byl pronesen v kontextu právní obhajoby odborových práv. Bez druhého svědka nelze prokázat přesné znění. Napomenutí jako výstraha.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 1, "vina": 2, "nadeje": -1, "moc": 2, "lid": -1, "finance": 8
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zproštění — jediný svědek, neurčitost výroku",
+          "description": "Obžaloba stojí výhradně na svědectví jediné osoby. Přesné znění výroku je sporné — dva přítomní uvádějí odlišné verze. Pochybnost jde v prospěch obžalovaného.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": -1, "odvaha": 3, "vina": -2, "nadeje": 2,
+            "lid": 5, "moc": -5, "finance": 10
+          }
+        },
+        "with_comment": {
+          "label": "Alternativa: Zproštění — svědectví získané politickým dohledem",
+          "description": "Soud konstatuje, že svědkyně se na schůzi dostavila jako výkon politického dohledu ministerstva vnitra za pomoci legendy o příbuzenském vztahu. Takto získané svědectví nelze jako důkaz akceptovat.",
+          "requires_investigation": 3,
+          "requires": { "odvaha_min": 60 },
+          "effects": {
+            "integrita": 5, "odvaha": 7, "vina": -1, "nadeje": 3,
+            "lid": 8, "moc": -10, "finance": 10,
+            "flags": [{ "key": "bonus_inkoust_rano", "value": 2 }, { "key": "flag_vlcek_upozorneni", "value": true }]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "reopen": {
+          "label": "Přerušit — vyžádat zápisník Horáčkové jako listinný důkaz",
+          "description": "Soud přeruší a nařídí předložení zápisníku ke grafologickému přezkoumání — zjistit, kdy byly záznamy pořízeny a zda odpovídají originálu.",
+          "requires_investigation": 2,
+          "effects": {
+            "moudrost": 4, "vina": 1, "nadeje": 1,
+            "moc": -2, "finance": 8,
+            "flags": [{ "key": "flag_horac_zapisnik_vysetreni", "value": true }]
+          }
+        },
+        "close": {
+          "label": "Zastavení — nedostatečná průkaznost jediného svědectví",
+          "description": "Jedno svědectví bez koroborujícího důkazu nestačí k odsouzení za trestný čin pobuřování. Případ se zastavuje.",
+          "effects": {
+            "moudrost": 2, "vina": 1, "moc": -2, "finance": 8
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_standard": "Veselý zaplatil pět set korun. Orbis ho nepropustil — ale přesunul ho z politického tisku na technické zakázky. Horáčková podala v březnu ještě dvě zprávy.",
+    "guilty_maximum": "Veselý dostal podmínku a záznam. Stranický výbor ho odvolal z redakční rady — ne z přesvědčení, ale ze strachu. V dílně ho přivítali potleskem. Orbis zvažoval propuštění. Neprovedl to.",
+    "guilty_lenient": "Napomenutí. Veselý odešel. V Právu lidu krátký článek: 'Soud uznal nejistotu výroku.' Horáčková podala stížnost na nedostatečný trest.",
+    "not_guilty_formal": "Veselý zproštěn. Horáčková opustila soudní síň bez výrazu. Za tři dny přišel Vlčkův dopis — nic konkrétního, jen věta: 'Případ byl sledován s pozorností.'",
+    "not_guilty_with_comment": "Ben v rozsudku napsal, že svědectví získané infiltrací uzavřené schůze pod falešnou identitou nelze použít jako důkaz. Ministerstvo vnitra podalo stížnost. Vlček dal Benovi vědět ještě tentýž den odpoledne — osobně, na chodbě.",
+    "insufficient_reopen": "Zápisník předán soudu. Grafolog zjistil, že část zápisů byla doplněna jiným inkoustem — pravděpodobně po schůzi. Horáčková to nevysvětlila. Případ pokračuje před jiným senátem.",
+    "insufficient_close": "Případ zastaven. Veselý odešel volný. Horáčková podala novou zprávu o schůzi, která se konala o týden později."
+  },
+  "stamp_moment": {
+    "guilty": "Veselý přikývl. Díval se na Horáčkovou. Horáčková se dívala na zápisník.",
+    "not_guilty": "Horáčková zavřela zápisník. Pomalu. Jako by zavírala případ, který ještě neskončil.",
+    "insufficient": "Zápisník zůstal na stole. Nikdo ho nevzal. Ben se na něj díval, jak odcházeli."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "not_guilty_with_comment",
+      "delay_days": 2,
+      "type": "letter",
+      "text": "Vlček přišel osobně. Nenechal nic písemného. Řekl jen: 'Případ Horáčková byl sledován s pozorností. Vaše odůvodnění bude předmětem konzultace s ministerstvem.' Odešel dřív, než Ben stačil odpovědět."
+    },
+    {
+      "trigger": "not_guilty_with_comment",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "Právo lidu, titulní strana: 'Soud odmítl zpravodajské svědectví ministerstva vnitra. Precedent v zákoně na ochranu republiky.' Lidové noviny, str. 3: 'Soudce překročil rámec trestního řízení.' Národní listy: bez komentáře."
+    },
+    {
+      "trigger": "guilty_standard",
+      "delay_days": 3,
+      "type": "fragment",
+      "text": "Horáčková podala v březnu ještě dvě zprávy — obě z uzavřených schůzí. Obě vedou k obžalobám. Zápisník je nyní předkládán jako standardní důkaz."
+    },
+    {
+      "trigger": "insufficient_reopen",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "Grafologický posudek: záznamy v zápisníku Horáčkové pořízeny dvěma různými pery. Část zápisů doplněna pravděpodobně den po schůzi. Veselý byl zatím propuštěn na svobodu."
+    }
+  ]
+}

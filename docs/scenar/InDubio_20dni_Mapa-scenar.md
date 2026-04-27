@@ -1,10 +1,11 @@
-# IN DUBIO — 20denní mapa scénáře (Akt 1, rámec)
+# IN DUBIO — 20denní mapa scénáře (Akt 1) — **ARCHIV**
 
-Tento soubor je **kanonický textový plán** pro rozvržení dní, večerů a emoční linky. Leží ve složce `docs/scenar/` vedle tabulkových exportů (CSV). Volitelný přehled v Excelu: `docs/InDubio_20dni_Mapa.xlsx` (listy `sheet1`–`sheet7`).
+> **Tento soubor není zdroj pravdy.** Kanon dní, slotů a poolu: [`Mapa_15dni.csv`](./Mapa_15dni.csv), `data/days.json`, [`Pripady_15dni.csv`](./Pripady_15dni.csv). Viz [`ARCHIV_20D_README.md`](./ARCHIV_20D_README.md).  
+> Text níže může sloužit jako **přehled obecných principů** (večery, tón); **čísla a řazení dní neodpovídají** běžné 15denní kampani.
 
-**Hierarchie:** při rozporu mezi **tímto MD** a **CSV v `docs/scenar/`** upřednostni nejdřív sladění CSV s tímto rámcem, pak úpravy MD. Čísla dní a obsah běžné hry se ladí v **`data/days.json`** (během vývoje se mění); rysy dne a soudci viz **`.cursor/rules/cases.mdc`**.
+Tento soubor popisoval starší **20denní** rozvrh dní, večerů a emoční linky. Leží ve složce `docs/scenar/` vedle tabulkových exportů (CSV). Volitelný přehled v Excelu: `docs/InDubio_20dni_Mapa.xlsx` (listy `sheet1`–`sheet7`).
 
-Vstupní přehled celé složky: [`ReadMeScenar.md`](./ReadMeScenar.md).
+Vstupní přehled celé složky: [`ReadMeScenar.md`](./ReadMeScenar.md) — vždycky otevírej 15denní mapu.
 
 ---
 
@@ -31,9 +32,9 @@ Vstupní přehled celé složky: [`ReadMeScenar.md`](./ReadMeScenar.md).
 
 **Forma:** 1–3 obrazovky max.; žádné dlouhé expo. Preferuj **jednu volbu** s 2–4 variantami nebo krátký dialog + jedna volba.
 
-**Od cca 10. dne (druhá polovina aktu):** večery mohou nést **druhou vrstvu** — odložený dopad včerejšího dne, ostřejší reakci NPC na verdikt, nebo krátký „dohled“ bez nové mechaniky. V `Mapa_20dni.csv` je to sloupec **Vecer_doplnek** (návrhy pro `Vlakna.csv` / `Dopisy.csv` / `evening_choice`).
+**Od cca 10. dne (druhá polovina aktu):** večery mohou nést **druhou vrstvu** — odložený dopad včerejšího dne, ostřejší reakci NPC na verdikt, nebo krátký „dohled“ bez nové mechaniky. V `Mapa_15dni.csv` je to sloupec **Vecer_doplnek** (návrhy pro `Vlakna.csv` / `Dopisy.csv` / `evening_choice`).
 
-**Propojení s tabulkami:** v `Mapa_20dni.csv` má každý pracovní den sloupce pro večer, poznámky a dále **Modif_dne**, **Vecer_doplnek**, **Patrani_navrh**; v `Balancing.csv` sloupec **Scenar_modif_navrh**. V `days.json` se obsah napojí až bude scénář nasazen do hry. Přehled milníků: [`Milniky-dynamika-akt1.md`](./Milniky-dynamika-akt1.md).
+**Propojení s tabulkami:** v `Mapa_15dni.csv` má každý pracovní den sloupce pro večer, poznámky a dále **Modif_dne**, **Vecer_doplnek**, **Patrani_navrh**; v `Balancing.csv` sloupec **Scenar_modif_navrh**. V `days.json` se obsah napojí až bude scénář nasazen do hry. Přehled milníků: [`Milniky-dynamika-akt1.md`](./Milniky-dynamika-akt1.md).
 
 ---
 
@@ -48,7 +49,7 @@ Vstupní přehled celé složky: [`ReadMeScenar.md`](./ReadMeScenar.md).
 | Rozhodnutí | 3. týden | Hráč volí, zda investuje čas / peníze / Naději; dopad na ranní texty nebo kapky. |
 | Vyústění (Akt 1) | před koncem 20 dní | Jedna silnější scéna (návštěva, dopis, hádkа), která se promítne do **stav ducha** nebo archivu fragmentů — bez nutnosti nové mechaniky. |
 
-**Kde to zapsat:** sloupec / poznámka v `Mapa_20dni.csv` a související řádky v dalších CSV (`Dopisy`, `Vlakna`…); v `days.json` později `evening_choice` / příznaky dle implementace.
+**Kde to zapsat:** sloupec / poznámka v `Mapa_15dni.csv` a související řádky v dalších CSV (`Dopisy`, `Vlakna`…); v `days.json` později `evening_choice` / příznaky dle implementace.
 
 ---
 
@@ -69,13 +70,13 @@ Z `cases.mdc` (pro napojení případů na NPC / politiku):
 2. Sloupec nebo poznámka **emoce / rodina** (matka, dopis, návštěva).  
 3. **Týdenní milníky** (konec týdne 7, 14, 20) — krátká věta „co hráč cítí jinak než včera“.  
 4. Odkaz na **konkrétní případ** ve slotu (ID z `data/pool_cases_akt1.json` / případně `pool_cases_light_akt1.json`), až je rozvržení fixní.  
-5. Sloupce **Modif_dne**, **Vecer_doplnek**, **Patrani_navrh** v `Mapa_20dni.csv` a **Scenar_modif_navrh** v `Balancing.csv` — orientační návrhy pro pozdější balance (bez závazných čísel).
+5. Sloupce **Modif_dne**, **Vecer_doplnek**, **Patrani_navrh** v `Mapa_15dni.csv` a **Scenar_modif_navrh** v `Balancing.csv` — orientační návrhy pro pozdější balance (bez závazných čísel).
 
 ---
 
 ## 6. Morální a politický tlak v čase
 
-První týden je záměrně **rutinnější**; od **D5–D7** mapa přidává **Mor** a **Pol** (viz `Mapa_20dni.csv` / `Pripady.csv`). Druhá polovina aktu zvyšuje podíl náročnějších typů a **větvení** (VETVENI v poznámkách) — cílem je, aby hráč cítil **zhoršující se klima** města a úřadu, ne jen víc textu. Přesné váhy poolu se doladí v kódu a `days.json` podle hratelnosti.
+První týden je záměrně **rutinnější**; od **D5–D7** mapa přidává **Mor** a **Pol** (viz `Mapa_15dni.csv` / `Pripady.csv`). Druhá polovina aktu zvyšuje podíl náročnějších typů a **větvení** (VETVENI v poznámkách) — cílem je, aby hráč cítil **zhoršující se klima** města a úřadu, ne jen víc textu. Přesné váhy poolu se doladí v kódu a `days.json` podle hratelnosti.
 
 **Doplněk k obsahu pool kauz:** v **2. a 3. týdnu** smí občas přijít i **těžší trestní kvalifikace** (násilí, smrt v obžalobě); ve **3. týdnu** cíleně **1–2 rebusové / nejednoznačné** kauzy (např. tři podezřelí, rozhodnutí „nejspíš kdo“). Detail a **netradiční modely** jsou v `.cursor/rules/cases.mdc` (sekce *Pool — trestní náročnost…*, *Rebus…*, *Netradiční modely*).
 

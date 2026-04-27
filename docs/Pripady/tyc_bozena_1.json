@@ -1,0 +1,373 @@
+{
+  "id": "pool_a1_bozena_slepice",
+  "slot": "pool",
+  "case_track": "pillar",
+  "case_track_label": "tycove",
+  "type": "routine",
+  "color": "#B5925A",
+  "available_days": [
+    1
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "forced": true
+  },
+  "title": "Slepice",
+  "case_number": "Sp. zn. 91/1931",
+  "defendant": {
+    "name": "Božena Kučerová",
+    "age": 56,
+    "occupation": "chalupářka",
+    "detail": "vdova, chová slepice v Úněticích, prodává vejce na havelském trhu, bezúhonná"
+  },
+  "charge": "Přestupek dle §1 vyhlášky o obecním majetku: neoprávněný zábor obecní parcely č. 47/3 (6 m²) pro zřízení drůbežího výběhu.",
+  "description": "Na návsi v <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"unetice\" title=\"Slovník: Úněticích\">Úněticích</button> severozápadně od Prahy existuje pruh obecní trávy — šest metrů čtverečních, parcela č. 47/3. Sedm let tam Božena Kučerová chová slepice za dřevěným ohradníkem. Nikdo nikdy neprotestoval. V prosinci přišel podnět — týden poté, co Šebek neúspěšně nabídl Boženě 200 korun za část její zahrady s jabloněmi po nebožtíkovi.",
+  "testimonies": [
+    {
+      "id": "sebek",
+      "speaker": "Václav Šebek, navrhovatel, obecní radní",
+      "text": "Pane doktore, obecní pozemek je obecní pozemek. Paní Kučerová si přistaví ohradu, jak se jí zlíbí — bez povolení, bez souhlasu. <span class=\"clue\" data-clue-id=\"clue_rada_jednohlasne\">Rada o tom jednala na posledním zasedání. Jednohlasně jsme doporučili podnět k soudu.</span> Dnes ohradník, zítra přistaví stodolu. Nejde o slepice. Jde o princip.",
+      "contradiction_keywords": [
+        "jednohlasně"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "kucerova",
+      "speaker": "Božena Kučerová, obžalovaná",
+      "text": "<span class=\"clue\" data-clue-id=\"decoy_sedm_let\">Sedm let tam ty slepice jsou. Sedm let!</span> Nikdo neřek ani slovo. Šebek chodil kolem každý den. <span class=\"clue\" data-clue-id=\"clue_prodej_odmitnut\">V říjnu za mnou přišel, že chce koupit ten pruh u cesty za dvě stě korun. Řekla jsem ne. V prosinci přišel ten podnět.</span> Tam předtím rostla <span class=\"clue\" data-clue-id=\"decoy_kopriva\">kopřiva a házel tam Šebek staré plechovky</span>.",
+      "contradiction_keywords": [
+        "říjen",
+        "prosinec"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "horakova_soused",
+      "speaker": "Milada Horáková, sousedka, přítomna na zasedání rady",
+      "text": "Paní Kučerová je slušná žena. Ohradník tam stojí, jak je Boženka vdova — od čtyřiadvacátého roku. <span class=\"clue\" data-clue-id=\"clue_rada_tri_ze_sedmi\">Na zasedání rady jsem byla — zastupuju za nemocného muže. Byli tam jen tři ze sedmi. Šebek, Hlouček a Šebestová. Ostatní se omluvili, byl svátek.</span> Šebestová je Šebkova sestra. Ale to asi víte.",
+      "contradiction_keywords": [
+        "tři ze sedmi",
+        "sestra"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "jednohlasnost_sporny",
+      "description": "Šebek tvrdí 'jednohlasně' — ale přítomni byli jen 3 ze 7 členů rady, z toho jeho sestra.",
+      "involves": [
+        "sebek",
+        "horakova_soused"
+      ],
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": "sebek"
+    },
+    {
+      "id": "casova_souslednost",
+      "description": "Božena odmítla prodat v říjnu. Podnět přišel v prosinci. Přímá časová souslednost naznačuje odvetu, ne ochranu obecního zájmu.",
+      "involves": [
+        "kucerova",
+        "sebek"
+      ],
+      "highlight_at_wisdom": 60,
+      "unlocks_confrontation": "sebek"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "odvetny_podnet_strong",
+    "pairs": [
+      {
+        "pair_id": "odvetny_podnet_strong",
+        "a_id": "clue_prodej_odmitnut",
+        "b_id": "clue_rada_jednohlasne",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "jednohlasnost_medium",
+        "a_id": "clue_rada_jednohlasne",
+        "b_id": "clue_rada_tri_ze_sedmi",
+        "strength": "medium"
+      }
+    ],
+    "decoys": [
+      "decoy_sedm_let",
+      "decoy_kopriva"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 55,
+      "speed_upgrade_sec": 18,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 40,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 35,
+          "ids": [
+            "not_guilty_bagatelni"
+          ]
+        },
+        {
+          "min": 60,
+          "ids": [
+            "not_guilty_zneuziti"
+          ]
+        },
+        {
+          "min": 75,
+          "ids": [
+            "insufficient_obec"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 40,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "not_guilty_zneuziti",
+            "insufficient_obec"
+          ],
+          "narrative_lines": [
+            "Říjen a prosinec: dvě čísla, která se odmítají oddělit.",
+            "Šebkova slova o principu teď zní jinak — princip, o který jde, je 200 korun za jabloně po nebožtíkovi.",
+            "Jednomyslné doporučení tří lidí, z nichž jeden je příbuzný, není hlas obce. Je to hlas rodiny."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 20,
+          "unlock_verdict_ids": [
+            "not_guilty_bagatelni"
+          ],
+          "narrative_lines": [
+            "Jednohlasnost je prázdné slovo, když za stolem sedí tři lidé ze sedmi.",
+            "Šebestová a Šebek — rodina hlasující proti sousedce."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "starosta",
+      "target_label": "Starosta Únětic",
+      "reveals": "motivation",
+      "text": "Obecní pozemek to je, ale nikdy jsme kvůli tomu nic neřešili. Máme důležitější starosti — cesta na Roztoky se rozpadá. <span class=\"clue\" data-clue-id=\"decoy_sedm_let\">Tohle přišlo od Šebka a my to museli poslat dál.</span> Podnět k soudu inicioval výhradně Šebek. Já to považuji za zbytečné.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": -1
+        }
+      }
+    },
+    "records": {
+      "source": "Katastrální mapa obce Úněticích 1924 a 1929, obecní registr zasedání rady",
+      "reveals": "facts",
+      "text": "Katastrální mapa 1924: parcela 47/3 jako obecní zeleň bez využití. Mapa 1929: tentýž pruh označen čárkovaně jako přiléhající k č. p. 12 (Kučerová). Kdo provedl změnu zákresu, z mapy neplyne. Registr zasedání obecní rady ze dne 8. prosince 1930: <span class=\"clue\" data-clue-id=\"clue_rada_tri_ze_sedmi\">přítomni Šebek, Hlouček, Šebestová. Ostatní omluveni.</span> Šebestová = rozená Šebková. Jednání vedl Šebek jako nejstarší přítomný člen.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1
+        }
+      },
+      "unlocks_contradiction": "jednohlasnost_sporny"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Vina": 1
+        },
+        "factions": {
+          "Lid": -1,
+          "Moc": 1
+        }
+      },
+      "variants": {
+        "lid_high": "V Úněticích se říká, že Šebek koupil loni traktor na dluh. Potřebuje rozšířit příjezdovou cestu ke statku. Boženina zahrada s jabloněmi je přesně v trase. Podnět u soudu je levnější než formální vyvlastnění.",
+        "moc_high": "Obecní rada Únětic má příští rok volby. Šebek potřebuje ukázat, že spravuje obec pevnou rukou. Boženin případ je pohodlná demonstrace — žádná politika, jen šest metrů trávy a slepice.",
+        "kapital_high": "Kancelář Knot & Svoboda z Dejvic zpracovávala loni dva pozemkové výkupy v Úněticích. Šebek byl u obou jako zprostředkovatel. Kdo je soukromý investor, v dostupných záznamech nefiguruje.",
+        "default": "Šebek odmítl dát Boženě zahradu. Ona odmítla dát jemu jabloně za 200 korun. Teď je u soudu — a v <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"unetice\" title=\"Slovník: Úněticích\">Úněticích</button> se říká, že jabloně mají kořeny hlubší než zákon."
+      }
+    },
+    "confrontation": {
+      "target": "sebek",
+      "target_label": "Václav Šebek, obecní radní",
+      "requires_contradiction": "casova_souslednost",
+      "requires_courage": 40,
+      "cost": 2,
+      "prompt": "Pane Šebku, Božena Kučerová odmítla prodat zahradu v říjnu. Podnět k soudu přišel v prosinci. A na zasedání rady byli tři ze sedmi, z toho vaše sestra. Jak vysvětlíte tu souslednost?",
+      "success": {
+        "text": "Šebek se napřímí. Odmlka — delší, než by měla být. Pak řekne: 'Obecní zájem nesleduje kalendář, pane doktore.' To je vše, co dostanete. Ruce má na stole. Třesou se.",
+        "reveals": "Šebek nepopřel motivaci. Nepopřel časovou souslednost. Zákon nedokáže vyvrátit to, co neřekl."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "standard": {
+          "label": "Pořádková pokuta 25 Kčs a odstranění ohradníku",
+          "description": "Ohradník na obecním pozemku bez povolení. Pokuta odpovídá závažnosti přestupku. Božena má 30 dní na odstranění.",
+          "effects": {
+            "integrita": 2,
+            "vina": 3,
+            "nadeje": -1,
+            "moc": 2,
+            "lid": -4,
+            "finance": 10
+          }
+        },
+        "maximum": {
+          "label": "Pokuta 50 Kčs, soudní výtka a přednostní dohled",
+          "description": "Přestupek trvá sedm let. Výraznější sankce jako výstraha pro budoucí případy.",
+          "requires": {
+            "odvaha_max": 38
+          },
+          "effects": {
+            "integrita": 3,
+            "vina": 4,
+            "nadeje": -2,
+            "moc": 4,
+            "lid": -6,
+            "finance": 15
+          }
+        },
+        "lenient": {
+          "label": "Pokuta 10 Kčs — symbolická sankce",
+          "description": "Žádná škoda, žádná stížnost za sedm let. Symbolická pokuta zachová zákon bez újmy na osobě.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 1,
+            "vina": 1,
+            "nadeje": 1,
+            "lid": 1,
+            "moc": -1,
+            "finance": 8
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "bagatelni": {
+          "label": "Zproštění — zanedbatelná společenská škodlivost",
+          "description": "Šest metrů trávy bez hospodářského využití. Sedm let bez stížnosti. Škodlivost přestupku je nepatrná.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": -1,
+            "odvaha": 2,
+            "vina": -2,
+            "lid": 4,
+            "moc": -3,
+            "finance": 10
+          }
+        },
+        "zneuziti": {
+          "label": "Alternativa: Zproštění — zneužití podnětu",
+          "description": "Podnět nesledoval obecní zájem, ale soukromý prospěch navrhovatele. Soud to konstatuje v odůvodnění.",
+          "requires_investigation": 2,
+          "requires": {
+            "odvaha_min": 45
+          },
+          "effects": {
+            "integrita": 4,
+            "odvaha": 4,
+            "vina": -3,
+            "nadeje": 2,
+            "lid": 6,
+            "moc": -7,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "obec": {
+          "label": "Vrátit obci k přezkumu v plném zasedání",
+          "description": "Soud není příslušný k posouzení procedury obecního zasedání. Věc k přezkumu radou v plném složení.",
+          "effects": {
+            "moudrost": 3,
+            "vina": 1,
+            "nadeje": 1,
+            "lid": 2,
+            "finance": 8
+          }
+        },
+        "close": {
+          "label": "Uzavřít pro nedostatek veřejného zájmu",
+          "description": "Přestupek existuje, ale zjevný nepoměr mezi veřejným zájmem a náklady řízení.",
+          "effects": {
+            "integrita": 1,
+            "moudrost": 2,
+            "vina": 1,
+            "finance": 8
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_standard": "Božena zaplatila. Slepice se přestěhovaly za plot. Šest metrů trávy zůstalo prázdných. Šebek podal žádost o odkup parcely 47/3 na příští zasedání rady.",
+    "guilty_maximum": "Božena vyšla ze soudní budovy a neřekla ani slovo. V Úněticích se o tom mluvilo týden. Šebek koupil parcelu 47/3 za čtyřicet korun. Jednohlasně.",
+    "guilty_lenient": "Božena zaplatila deset korun. Na odchodu se zeptala Šebka: 'Spokojený?' Šebek neodpověděl. Jabloně zůstaly.",
+    "not_guilty_bagatelni": "Božena odešla s úsměvem. Na schodech se otočila: 'Pane doktore, přinesu vám vejce.' Ben řekl, že nemusí. Věděl, že přinese.",
+    "not_guilty_zneuziti": "Ben v rozsudku konstatoval, že podnět nesledoval veřejný zájem. Šebek odešel bez pozdravu. Starosta poslal Benovi krátký dopis — bez podpisu.",
+    "insufficient_obec": "Spis se vrátil do Únětic. Obecní rada zasedala v plném počtu. Šebek se omluvil z rodinných důvodů. Podnět stáhli.",
+    "insufficient_close": "Případ uzavřen pro nepoměr zájmů. Šebek podal stížnost na postup soudu. Božena si to nechala vysvětlit třikrát, než uvěřila, že vyhrála."
+  },
+  "stamp_moment": {
+    "guilty": "Božena vstala. Narovnala šátek. Podívala se na Šebka, jako by ho viděla poprvé.",
+    "not_guilty": "Božena přikývla. Pomalu, důstojně. Jako by potvrzovala něco, co věděla celou dobu.",
+    "insufficient": "Božena se podívala na Bena. Pak na dveře. Nechápala, co se stalo — a kdo vlastně vyhrál."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "not_guilty_zneuziti",
+      "delay_days": 3,
+      "type": "fragment",
+      "text": "Na ranní poště: obálka bez odesílatele. Uvnitř výstřižek z inzerátu — prodej pozemků v okolí Únětic. Razítko realitní kanceláře Knot & Svoboda, Dejvice."
+    },
+    {
+      "trigger": "guilty_standard",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "Šebek na dalším zasedání obecní rady nechal odhlasovat odkup parcely 47/3. Cena: čtyřicet korun. Přítomni byli tři ze sedmi. Jednohlasně."
+    }
+  ]
+}

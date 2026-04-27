@@ -1,26 +1,27 @@
-# Akt 1 — milníky a dynamika (20 dní)
+# Akt 1 — milníky a dynamika (15 pracovních dní)
 
-Jednostránkový přehled pro autory, scénáristy a napojení na `data/days.json` / kód. **Čísla ekonomiky a přesné flagy** se doplní až po hratelném průchodu — zde jsou **vazby a limity**, ne finální balance.
+Jednostránkový přehled pro autory, scénáristy a napojení na `data/days.json` / kód. **Čísla ekonomiky a přesné flagy** se doladí v `Balancing.csv` — zde jsou **vazby a limity**, ne finální balance.
 
-Související: [`Mapa_20dni.csv`](./Mapa_20dni.csv) (nové sloupce *Modif_dne*, *Vecer_doplnek*, *Patrani_navrh*), [`InDubio_20dni_Mapa-scenar.md`](./InDubio_20dni_Mapa-scenar.md) (rámec), [`Balancing.csv`](./Balancing.csv) (sloupec *Scenar_modif_navrh*), [`.cursor/rules/cases.mdc`](../../.cursor/rules/cases.mdc).
+Související: [`Mapa_15dni.csv`](./Mapa_15dni.csv), [`Pripady_15dni.csv`](./Pripady_15dni.csv), [`Balancing.csv`](./Balancing.csv), [`.cursor/rules/cases.mdc`](../../.cursor/rules/cases.mdc). Finální tyčové kauzy (D8+): [`../promts/PROMPT-finalni-tycove-pripady.md`](../promts/PROMPT-finalni-tycove-pripady.md). **Archiv 20d:** [`ARCHIV_20D_README.md`](./ARCHIV_20D_README.md) — `Mapa_20dni.csv` nebrat jako kanon běžného vývoje.
 
 ---
 
 ## 1) Přehled milníků (děj + systém)
 
-| Den | Milník / zátěž | Poznámka |
+| Prac. den (15d) | Milník / zátěž | Poznámka |
 |-----|----------------|----------|
-| 5 | První výrazně **morální** den v mapě | Navazuje rutina → morálka. |
-| 6 | **Countdown** (dopis doktora / finance) | Časovaný kontext k večerům. |
-| 7 | První silnější **politický** slot | Horáčková linie. |
-| 8 | **VETVENÍ 1** (Vlček, očekávání) | Od D8 čitelnější politický tlak. |
-| 10 | **Haasova vizitka**, národnostní tón (Hranice) | Tlak instituce / města. |
-| 11 | **Vlček explicitní** | Eskalace mimo spis. |
-| 13 | **Beneš**, **VETVENÍ 2** | Osobní + veřejná vrstva. |
-| 14–15 | Mrtvý svědek, **dvojí zvrat**, ministerstvo | Špičková intenzita před závěrem. |
-| 16 | **Haas osobně**, **VETVENÍ 3** | Ekonomický a morální uzel. |
-| 18 | **Karas varuje**, **VETVENÍ 4** | Osobní cena rozhodnutí. |
-| 19–20 | Předposlední den, **finále** (1 slot D20) | Epilog. |
+| 4 | **Countdown** (dopis doktora / finance) | Termín operace, tlak z domova. |
+| 5 | První silnější **morální** pool v mapě | Přechod z rutiny. |
+| 6 | **Pospíšil 2 (strach)**, Haasova vizitka | Osobní soudce vs. Hostinec. |
+| 7 | **Horáčková**, politický pool, **VETVENÍ 1** | První silně politický den. |
+| 8 | **Božena 3**, Hranice 2, třetí spis (light) | Tlak vrcholí u tyčí. |
+| 9 | **Beneš**, **VETVENÍ 2** | Osobní pravda, účet za uhlí. |
+| 10 | Dvojí zvrat (rodý list, Anna), Marková 2 | Špice napětí 2. poloviny aktu. |
+| 11 | **Haas osobně**, Pospíšil 3, **VETVENÍ 3** | Ekonomický uzel, klíčový svědek. |
+| 12 | Zavadová, Hranice 3 (finále) | Odkrytí, metafora hranice. |
+| 13 | **Karas**, **VETVENÍ 4** | Osobní cena. |
+| 14 | Marková obžalovaná, poslední pool | Předposlední pracovní den. |
+| 15 | **Velezrada** (1 slot) | Epilog aktu. |
 
 Neděle a soboty: emoční / ekonomické **mezihry** (viz mapa-scenář §1 a §3).
 
@@ -28,14 +29,13 @@ Neděle a soboty: emoční / ekonomické **mezihry** (viz mapa-scenář §1 a §
 
 ## 2) Morální a politický podíl (tlak v čase)
 
-V **`Mapa_20dni.csv`** už typy **Mor** / **Pol** přibývají od D5–D7 a dál. Tento soubor **neřeší váhy** — jen připomíná: druhá polovina aktu má **víc politických a morálních rozhodnutí** než úvod; nové případy nesmí ustoupit jen „papírování odvolání“ (viz §4).
+V **`Mapa_15dni.csv`** typy **Mor** / **Pol** přibývají od 2. týdne. Tento soubor **neřeší váhy** — jen připomíná: druhá polovina má **víc politických a morálních rozhodnutí** než úvod; nové případy nesmí ustoupit jen „papírování odvolání“ (viz §4).
 
 ### 2b) Pool v mapě — typ slotu vs. výjimky (netradiční, rebus)
 
-- **Scénář už říká *kdy* jaký druh slotu:** ve **`Pripady.csv`** a **`Mapa_20dni.csv`** je u řádku dne sloupec **Typ** (`Rut` / `Mor` / `Pol`) a **Vrstva** (`Tyč` / `Pool` / `Var`) — to je přehled *morálka a politika v čase* oproti tyčím (Božena, Pospíšil, Hranice…).
-- **Kódové váhy herního typu případu** (kolik % rutinní / morální / politický / osobní v náhodném výběru poolu): **`.cursor/rules/cases.mdc`** → sekce *VÁHOVÁNÍ PŘÍPADŮ (20 dní)* + *Pool — trestní náročnost vs. týden* (1. týden lehčí trestní tón; 2.–3. týden smí občas těžší obžaloba; výjimečně i **jasný záporák** — spor spíš o **přísnost trestu** než o zproštění).
-- **Netradiční pool kauza (1–2 na Akt 1):** v CSV / poznámce označ např. **`Netradiční pool`** u vybraného **Pool** řádku; konkrétní modely (formální věc, řetěz příkazu, …) jsou v `cases.mdc` → *Pool — netradiční modely*.
-- **Rebus / nejednoznačná odpovědnost (cca 1–2× ve 3. týdnu, orientačně D11–16):** v poznámce např. **`Rebus pool`** (sloupec *Pozn* v `Pripady.csv` nebo poznámka u dne v mapě); pravidla a omezení JSON v `cases.mdc` → *Pool — rebus / nejasné kauzy*.
+- **Scénář už říká *kdy* jaký druh slotu:** ve **`Pripady_15dni.csv`** a **`Mapa_15dni.csv`** (sloupce *Typ S1* / *Typ S2*, *Vrstva*).
+- **Kódové váhy herního typu případu** (rutinní / morální / politický / osobní v náhodném výběru poolu): **`.cursor/rules/cases.mdc`** → *VÁHOVÁNÍ PŘÍPADŮ* + *Pool — trestní náročnost vs. týden*.
+- **Netradiční / rebus pool:** v poznámkách u dne v `Mapa_15dni` nebo v `cases.mdc` → *Pool — rebus* / *netradiční modely*.
 
 ---
 
@@ -49,7 +49,7 @@ V **`Mapa_20dni.csv`** už typy **Mor** / **Pol** přibývají od D5–D7 a dál
 
 ## 4) Revize spisu / odvolání — **limity** (aby nežrala hru)
 
-- **Tvrdý strop (návrh Akt 1):** nejvýše **2** krátké **revizní karty** (`review_card`) na **celý 20denní průchod**, nebo nejvýše **1** revize na **7 po sobě jdoucích herních dní** s případy — platí přísnější z obou, což dřív vyjde.
+- **Tvrdý strop (návrh Akt 1):** nejvýše **2** krátké **revizní karty** (`review_card`) na **celou 15denní kampaň**, nebo nejvýše **1** revize na **7 po sobě jdoucích herních dní** s případy — platí přísnější z obou, což dřív vyjde.
 - Revize **nesmí** vyplnit celý pracovní den místo nových kauz: vždy krátká karta (A/B), pak **návrat k aktuálním spisům** téhož nebo následujícího dne.
 - Časté revize **snižují důvěru instituce** a šanci na **třetí spis** (viz `cases.mdc`); to je záměr — tlak jinde než v počtu odvolání.
 
@@ -58,14 +58,14 @@ V **`Mapa_20dni.csv`** už typy **Mor** / **Pol** přibývají od D5–D7 a dál
 ## 5) Večer — **druhá vrstva** (od cca D10)
 
 - Kromě sloupce *Vecerni volba* použij *Vecer_doplnek*: odložený dopad, reakce NPC na včerejší verdikt, „druhá myšlenka“ před spaním.
-- Propoj s **`Vlakna.csv`** / **`Dopisy.csv`**; forma stále 1–3 obrazovky (viz `InDubio_20dni_Mapa-scenar.md` §2).
+- Propoj s **`Vlakna_15dni.csv`** / **`Dopisy_15dni.csv`**; forma stále 1–3 obrazovky.
 
 ---
 
 ## 6) Pátrání a průzkum — **náladové dny**
 
-- Sloupec *Patrani_navrh*: `std` = bez zvláštní úpravy; `stress` = kratší čas / vyšší stres v textu (naváže na Vina/Naděje v kódu); `klid` = rutinní den bez timed hunt nebo zdůrazněná lehkost.
-- Konkrétní dny v mapě: D12, D15, D18 mají návrh odlišení — doladit při implementaci.
+- V **`Mapa_15dni.csv`** drž tón a stres dne v *Poznamkách*; starý sloupec *Patrani_navrh* existoval jen u archivní **Mapa_20dni** — v 15d ho nekopíruj.
+- Konkrétní odlišení dle týdne a milníků doplň v `Balancing.csv` / `days.json` při implementaci.
 
 ---
 

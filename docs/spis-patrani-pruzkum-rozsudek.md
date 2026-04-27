@@ -27,7 +27,7 @@ Oddělené od průzkumu: jde o **koherenci stop** v textu, ne o „faktický vý
 - Správný pár: odměny dle dat — např. bonus informovanosti, `unlock_actions`, `unlock_verdict_ids`.  
 - **Timed hunt** (`timed_hunt`): stopy jsou plně aktivní až po **Zahájit pátrání**, běží odpočet, lze potvrdit nejlepší vazbu.  
 - **Moudrost ★★★★★** může jemně podtrhnout indície; hra **neprozrazuje** správný pár.
-- **Scénář dne:** u případů navázaných na den drž v zadání sloupec *Patrani_navrh* v [`scenar/Mapa_20dni.csv`](./scenar/Mapa_20dni.csv) (std / stress / klid) a význam v [`scenar/Milniky-dynamika-akt1.md`](./scenar/Milniky-dynamika-akt1.md) — jde o náladu a tempo textů kolem pátrání, ne o změnu engine pravidel.
+- **Scénář dne:** u případů navázaných na den drž v zadání poznámky u dne v [`scenar/Mapa_15dni.csv`](./scenar/Mapa_15dni.csv) a význam v [`scenar/Milniky-dynamika-akt1.md`](./scenar/Milniky-dynamika-akt1.md) — jde o náladu a tempo textů kolem pátrání, ne o změnu engine pravidel.
 
 **Krátký narativ po potvrzení osy:** v datech případu lze u `clue_system.rewards.on_confirm.<weak|medium|strong>` doplnit `narrative_lines` (doporučeno tři věty podle síly) nebo jedno pole `narrative` s odstavci oddělenými prázdným řádkem. Po potvrzení vazby se v modálu spisu zobrazí překryv s textem a tlačítkem **Rozumím**; teprve poté se ve spisu dokončí vizuální potvrzení páru stop.
 

@@ -2697,9 +2697,9 @@
           }
         },
         "records": {
-          "source": "Obchodní rejstřík; konto a audit Záložna smíchovská; spis pojišťovny Slavia",
+          "source": "Obchodní rejstřík; konto a účetní revize (záložna) Záložna smíchovská; spis pojišťovny Slavia",
           "reveals": "facts",
-          "text": "Kovodílna Houška: živnostenský list od 1907. Poslední audit u záložny (Záložna smíchovská) z října 1930: závod v provozním útlumu, tržby klesly o 43 % za dva roky. Zástavní právo na vybavení dílny od listopadu 1930. Pojistná smlouva u Pojišťovny Slavia: uzavřena v září 1929 — tedy osmnáct měsíců před požárem. Syn Zdeněk Houška: evidován jako pomocný dělník bez stálého místa. U záložny zjištěno: <span class=\"clue\" data-clue-id=\"clue_zdenek_vyber\">dne 13. února — den před požárem — Zdeněk Houška vybral z otcova účtu 12 Kčs. Zbývající zůstatek: 3 Kčs.</span>",
+          "text": "Kovodílna Houška: živnostenský list od 1907. Poslední revize účtů u záložny (Záložna smíchovská) z října 1930: závod v provozním útlumu, tržby klesly o 43 % za dva roky. Zástavní právo na vybavení dílny od listopadu 1930. Pojistná smlouva u Pojišťovny Slavia: uzavřena v září 1929 — tedy osmnáct měsíců před požárem. Syn Zdeněk Houška: evidován jako pomocný dělník bez stálého místa. U záložny zjištěno: <span class=\"clue\" data-clue-id=\"clue_zdenek_vyber\">dne 13. února — den před požárem — Zdeněk Houška vybral z otcova účtu 12 Kčs. Zbývající zůstatek: 3 Kčs.</span>",
           "cost": 1,
           "unlocks_contradiction": "cas_navratu"
         },
@@ -4515,7 +4515,7 @@
             },
             "alternative": {
               "label": "Veřejně prospěšné práce + kontrolovaná náhrada škody",
-              "description": "Sankce bez vězení, s dohledem soudu a auditním dohledem tiskárny.",
+              "description": "Sankce bez vězení, s dohledem soudu a revizním dohledem tiskárny.",
               "requires_investigation": 2,
               "requires": {
                 "moudrost_min": 55
@@ -4537,7 +4537,7 @@
               }
             },
             "special": {
-              "label": "Alternativa: Vina Mareše, ale nařízen forenzní audit vedení",
+              "label": "Alternativa: Vina Mareše, ale soudem nařízena revize účtů vedení",
               "description": "Mareš je potrestán, současně soud otevírá vyšetření manipulace s klíči a mzdovou knihou.",
               "requires_investigation": 3,
               "requires": {
@@ -4645,7 +4645,7 @@
         "guilty_standard": "Rozsudek dopadne tvrdě, ale ne definitivně. Mareš se ještě stihne otočit k Růženě Křížové; ona mu jen přiloží dlaň na prsa, krátké gesto, které znamená vydrž.",
         "guilty_lenient": "Mareš děkuje, i když ví, že jde domů s cejchem. Volf si zapisuje něco do notýsku, tentokrát bez výrazu. Na galerii je slyšet úlevný výdech dělníků.",
         "guilty_alternative": "Ben diktuje podmínky dohledu. Volf protestuje jen napůl - ví, že úplná výhra mu unikla. Mareš poprvé zvedne hlavu a dívá se soudci přímo do očí.",
-        "guilty_special": "Soud dopadne na Mareše, ale tentokrát i na stůl vedení. Slovo audit v síni zazní jako cizí kov. Volf zbledne. Křížová se usměje jen koutkem.",
+        "guilty_special": "Soud dopadne na Mareše, ale tentokrát i na stůl vedení. Slovo o revizi v síni zazní jako cizí kov. Volf zbledne. Křížová se usměje jen koutkem.",
         "not_guilty_formal": "Mareš odchází volný, ale v obličeji má stejný strach jako při příchodu. Volf ho mine na chodbě tak těsně, že se jejich kabáty dotknou. Nikdo nic neřekne.",
         "not_guilty_with_comment": "Komentář k mzdám a nočním přesčasům dopadne na síň tvrději než samotné zproštění. Volf sevře desky oběma rukama. Dělníci vzadu si mezi sebou poprvé začnou šeptat nahlas.",
         "insufficient_reopen": "Spis se vrací na hospodářskou policii. Nikdo neodchází spokojený. Mareš má pár týdnů navíc; Volf pár týdnů strachu navíc.",
@@ -5342,7 +5342,7 @@
               }
             },
             "alternative": {
-              "label": "Alternativa: Vina Dolejše, avšak nařízen audit pořadníku bytové komise",
+              "label": "Alternativa: Vina Dolejše, avšak soudem nařízena revize pořadníku bytové komise",
               "description": "Dolejš nese odpovědnost za pozměnění záznamu, ale soud zároveň nařizuje přezkum celého systému přidělování bytů komisí Praha VIII. Otázka není jen Dolejšovo pochybení — je to i systém bez kontrolního mechanismu, který manipulaci umožnil. Novotná v bytě prozatím zůstává do rozhodnutí komise.",
               "requires_investigation": 2,
               "requires": {
@@ -5449,7 +5449,7 @@
         "guilty_maximum": "Dolejš si vezme kabát ze stojanu sám a bez spěchu. U dveří se otočí ke Horáčkové; ona sklopí hlavu. Výrok prohlašující přidělení za neplatné se dotkne i Novotné — ta o tom zatím neví a vaří večeři v libněvském bytě.",
         "guilty_standard": "Suspenze projde síní jako suchý závan. Dolejš mlčí, ruce mu leží na okraji stolu příliš klidně. Horáčková si zapisuje něco do notýsku. Vaněk čeká na chodbě se složenými pažemi a nedívá se na nikoho.",
         "guilty_lenient": "Dolejš přikývne. Záznam ho bude provázet, ale dnes jede domů. Vaněk na chodbě zakleje potichu a odejde bez ohlédnutí. Novotná o výsledku uslyší od vrátné.",
-        "guilty_alternative": "Slovo audit zaráží síň jako cizí předmět. Dolejš je odsouzen, ale tentokrát to nesedí jen na jeho záda — a to všichni cítí. Horáčková pokývne. Vaněk odchází nespokojen, ale bez argumentu.",
+        "guilty_alternative": "Rozkaz k revizi pořadníku zaráží síň jako cizí předmět. Dolejš je odsouzen, ale tentokrát to nesedí jen na jeho záda — a to všichni cítí. Horáčková pokývne. Vaněk odchází nespokojen, ale bez argumentu.",
         "not_guilty_formal": "Zproštění nezní jako vítězství. Dolejš si uvolní límec, ale oči má stále dole. Vaněk odejde jako první, tiše, aniž by dal najevo, co plánuje dál.",
         "not_guilty_with_comment": "Komentář k absenci dohledu zazní v síni déle než samotný rozsudek. Horáčková zvedne ruku, jako by se chtěla přihlásit, a pak ji zase spustí. Vaněk vytáhne pero a začne psát na záložku svého deníčku.",
         "insufficient_reopen": "Případ zůstane otevřený a nikdo neodchází spokojený. Dolejš sedí u stolu jako přibitý. Vaněk řekne tiše jen: A jak dlouho? Soud mu neodpoví.",
@@ -6139,7 +6139,7 @@
             }
           },
           "variants": {
-            "default": "Notářský přípisek k závěti musí v ČSR splňovat stejnou formu jako původní listina — podpis zůstavitele, přítomnost notáře nebo kancelisty s plnou mocí a zpravidla dva svědci. Pokud některá z náležitostí chybí nebo je datum pozměněno, celý přípisek nemá právní účinky. Notářský deník je soukromá záležitost kanceláře — nepodléhá státnímu auditu, ale soudu musí být předložen k nahlédnutí.",
+            "default": "Notářský přípisek k závěti musí v ČSR splňovat stejnou formu jako původní listina — podpis zůstavitele, přítomnost notáře nebo kancelisty s plnou mocí a zpravidla dva svědci. Pokud některá z náležitostí chybí nebo je datum pozměněno, celý přípisek nemá právní účinky. Notářský deník je soukromá záležitost kanceláře — nepodléhá běžné státní revizi, ale soudu musí být předložen k nahlédnutí.",
             "kapital_high": "V notářském prostředí platí nepsaná zásada: co klient řekl ústně a co podepsal, jsou dvě odlišné skutečnosti. Starší kancelista, který pamatuje klienty padesát let a sám rozhodne, co chtěli říct, riskuje nejen trestní stíhání — riskuje pověst celé kanceláře. A doktor Horák je v Praze znám."
           }
         },
@@ -6357,6 +6357,3535 @@
           "delay_days": 6,
           "type": "fragment",
           "text": "Soudní znalec z Chemického ústavu Karlovy university zažádal o přístup k originálnímu přípisku. Kolářová písemně odmítla vydat deník bez soudního příkazu. Šrámek mezitím podal žádost o dovolenou."
+        }
+      ]
+    },
+    {
+      "id": "pool_a1_posledni_vule",
+      "slot": "pool",
+      "type": "moral_dilemma",
+      "color": "#2C4A7C",
+      "available_days": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "act": 1,
+      "weight_conditions": {
+        "base_weight": 0.8,
+        "moudrost_min_40": 1.1
+      },
+      "encyclopedia_links": [
+        "zavet",
+        "dedictvi",
+        "stary_vek"
+      ],
+      "title": "Poslední vůle",
+      "case_number": "Sp. zn. 88/1931",
+      "defendant": {
+        "name": "Václav Krejsa",
+        "age": 38,
+        "occupation": "dělník, v evidenci nezaměstnaných, tři děti",
+        "detail": "syn zesnulého Aloise Krejse; uplatňuje písemnou závěť, kterou otec dne 10. 1. 1931 u notáře napsal ve prospěch dědice; ústní projev tři dny před smrtí o městské škole napadá sousedka"
+      },
+      "charge": "Dědický spor: návrh na vyslovení platnosti a výkladu poslední vůle; předmět — rodinný dům U Školní 7 ve Vršovicích; sousedka tvrdí ústní doplňující vůli ve prospěch městské školy, syn setrvává u písemného prohlášení a hmotného dědění dle sepsaného textu",
+      "description": "Alois Krejsa, bývalý učitel (72), zemřel 20. 1. 1931. U notáře dne 10. 1. 1931 podepsaná závěť odkazuje dům ve Vršovicích synu Václavovi, výslovně. Tři dny před smrtí v zahradě sousedce Haně Procházkové promluvil o dárku pro školu — ať děti mají třídu. Sousedka o tom svědčí. Notář v protokole potvrzuje, k notáři doložil jen tento list. <span class=\"clue\" data-clue-id=\"clue_ustni_prochazkova\">Hana Procházková tvrdí, že před třemi dny otcem prý zněla podmínka, že půjde dům škole, ne synovi, ale ústní výrok nemá písemný protokol ani druhý svědek mimo ni.</span> <span class=\"clue\" data-clue-id=\"clue_notar_totoznost\">JUDr. Beran potvrzuje pouze tento písemný rukopis, otisky prstů na pečeti a dva svědčící podpisy, žádný doplňující spis s ústním přáním.</span> <span class=\"clue\" data-clue-id=\"clue_denik_18_1\">V deníku zemřelého: 18. 1. 1931 — ‚Václav na Vánoce nepřišel, ani na Nový rok. Třetí rok.‘ Václav odmítá, že by otce o šest let zanedbával, ale deník otec vedl ručně.</span> <span class=\"clue\" data-clue-id=\"decoy_lichotka\">Kdosi z obce poznamenal, že sousedka při vzpomínce lichotí svému sousedovi — což s listinou a deníkem přímo nesouvisí, jen s pověstí o zahradních hovorech.</span>",
+      "testimonies": [
+        {
+          "id": "prochazkova",
+          "speaker": "Hana Procházková, sousedka, 64 let",
+          "text": "Alois mi stál v zahradě, za plotem, tři dny předtím, než ho odvezli. Řekl, že dům má skončit u dětí, které nemají třídu — ať z toho je škola, ne aukce. <span class=\"clue\" data-clue-id=\"clue_ustni_prochazkova\">Nebyl u toho nikdo jiný, vlastně. Byli jsme dva, ale já vím, co jsem slyšela — podobně jako slyšet matku ve spánku.</span> A syn Václav? Ten přišel až, když hřbitov už byl po obědě.",
+          "contradiction_keywords": [
+            "dva, ale",
+            "dům má skončit",
+            "slyšet"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "vaclav",
+          "speaker": "Václav Krejsa, syn, navrhovatel",
+          "text": "Otec podepsal u notáře, co podepsat chtěl, celý život chtěl, aby rodina zůstala nade dveřmi. Měl jsem starost o děti. <span class=\"clue\" data-clue-id=\"clue_vaclav_navsteva\">Chodil jsem kolem domu, i když s ním o Vánocích mluvit neumím — s penězi bylo těžko, ale tři roky zase až tak špatné nebyly, jak si teď píšou cizí.</span> Proti škole v domě nic nemám — ale tátův rukopis a pečeť, to je zákon, kterému důvěřuju.",
+          "contradiction_keywords": [
+            "Vánocích",
+            "tři roky",
+            "důvěřuju"
+          ],
+          "hidden_at_wisdom_below": 25
+        },
+        {
+          "id": "notar_beran",
+          "speaker": "JUDr. Pavel Beran, notář, Praha-Vršovice",
+          "text": "Alois Krejsa 10. 1. 1931 předstoupil, diktoval poslední vůli, dvě plné strany, přítomen svědek správce. V celém textu je dědic Václav, prodá nemovitost po právní moci, žádná písemná odbočka ke škole, žádný doplňující rukopis, který by otevřeně měnil dědice, než mi ho podepsal. <span class=\"clue\" data-clue-id=\"clue_notar_totoznost\">Ústní cokoli mimo tento rukopis by muselo jít s dvěma nezávislými svědky, zapsat jsem ho musel, neříkal nic takového u stolu.</span> U podpisu byl klid, tvrdil, že syna má rád, ale písmo hovoří o převodu domu na dědice, což odpovídá běžné notářské praxi.",
+          "contradiction_keywords": [
+            "dědic Václav",
+            "ústní",
+            "dva"
+          ],
+          "hidden_at_wisdom_below": null
+        }
+      ],
+      "contradictions": [
+        {
+          "id": "pisemna_versus_ustni",
+          "description": "Písemná vůle dává dům synovi, jediná doložená. Ústní tvrzení sousedky bez druhého svědka: civilní soudy ústní dodatky považují za pochybné — ale pokud otec mluvil jinak, srazí písmo a svědomí o sebe navzájem.",
+          "involves": [
+            "prochazkova",
+            "notar_beran"
+          ],
+          "highlight_at_wisdom": 81,
+          "unlocks_confrontation": "prochazkova"
+        },
+        {
+          "id": "denik_versus_syn",
+          "description": "Deník 18. 1. 1931: syn tři roky nepřišel. Václav tvrdí, že otec o příbuzenském vztahu píše nepřesně, ale zápisky s datem jsou konkrétní.",
+          "involves": [
+            "vaclav"
+          ],
+          "highlight_at_wisdom": 81,
+          "unlocks_confrontation": "vaclav"
+        }
+      ],
+      "clue_system": {
+        "enabled": true,
+        "true_pair_id": "zavet_par_strong",
+        "focus_attempts": {
+          "max": 3
+        },
+        "thematic_pairs": [],
+        "pairs": [
+          {
+            "pair_id": "zavet_par_strong",
+            "a_id": "clue_notar_totoznost",
+            "b_id": "clue_ustni_prochazkova",
+            "strength": "strong"
+          },
+          {
+            "pair_id": "denik_syn_medium",
+            "a_id": "clue_denik_18_1",
+            "b_id": "clue_vaclav_navsteva",
+            "strength": "medium"
+          },
+          {
+            "pair_id": "krize_slaby",
+            "a_id": "decoy_skolni_oznam",
+            "b_id": "decoy_lichotka",
+            "strength": "weak",
+            "soft_fail": true
+          }
+        ],
+        "decoys": [
+          "decoy_skolni_oznam",
+          "decoy_lichotka"
+        ],
+        "timed_hunt": {
+          "enabled": true,
+          "duration_sec": 60,
+          "speed_upgrade_sec": 20,
+          "auto_confirm_best_on_timeout": true,
+          "timeout_downgrade": false
+        },
+        "rewards": {
+          "on_confirm": {
+            "weak": {
+              "investigation_progress_delta": 8,
+              "narrative_lines": [
+                "Dva různé názory, jedna nemovitost, jeden deník, jeden notářský stůl. Nic z toho sám o sobě nezhasne druhou stránku vůle.",
+                "Břicho sporu: co je ještě projev, když ústa řekla něco, co ruka pod pečetí nenapsala.",
+                "Civilní soudy budou chtít čas — trestní lavice tady projevuje jen, co ještě můžete s klidem odložit, ne odpustit."
+              ]
+            },
+            "medium": {
+              "investigation_progress_delta": 20,
+              "unlock_actions": [
+                "pool_inv_confrontation"
+              ],
+              "narrative_lines": [
+                "Když notářův stůl a sousedčina zahrada nesedí, musí soud sáhnout jinam než k jediné odpovědi.",
+                "Zápisek 18. 1. 1931 je krátký, ale tvr do poslední písmeno — kdo tři roky nezazvonil, tomu těžko zvoní zákon až po smrti otce.",
+                "Důkaz, že ústní záznam a pečeť jsou ve válce, je silnější, než jedna sousedčina, bez protokolovaného potvrzení."
+              ]
+            },
+            "strong": {
+              "investigation_progress_delta": 28,
+              "unlock_actions": [
+                "pool_inv_confrontation"
+              ],
+              "unlock_verdict_ids": [
+                "guilty_alternative",
+                "insufficient_return"
+              ]
+            }
+          },
+          "on_match": {
+            "investigation_progress_delta": 28,
+            "unlock_verdict_ids": [
+              "guilty_alternative",
+              "insufficient_return",
+              "not_guilty_formal"
+            ]
+          }
+        }
+      },
+      "investigation": {
+        "interview": {
+          "target": "vaclav",
+          "target_label": "Václav Krejsa, navrhovatel dědění",
+          "reveals": "motivation",
+          "text": "Václav sepne ruce. Táta psal, co chtěl, když byl srozuměný. Chci zachránit tři děcka, ne aukci. Sousedka mu na zahradě tleskala, i když s ní táta v životě o škole mluvil jen, když šly její děcka do tříd. <span class=\"clue\" data-clue-id=\"clue_vaclav_navsteva\">V lednu a v únoru u něj nikdo z rodiny fakticky nespal — já jsem byl v noci ošetřovatel, ale Vánoce, ty jsme s matkou fakt nestihli, protože dělali šichtu v továrně, ne proto, že bych tátu chtěl odepsat, já…</span> Na Nový rok taky ne — neměl dýmku tabáku, kterou jsem mu chtěl dát, tak prostě nedorazil.",
+          "cost": 1,
+          "trait_effects": {
+            "vina": 1,
+            "nadeje": -1
+          }
+        },
+        "records": {
+          "source": "Kopie závěti, výpis notářské knihy, fragment deníku Aloise Krejse",
+          "reveals": "facts",
+          "text": "Notář: jediný podepsaný rukopis z 10. 1. 1931, obě strany, opis v trestním spise. <span class=\"clue\" data-clue-id=\"clue_denik_18_1\">Aloisův rukopis z deníku 18. 1. 1931: otec zapisuje, že syn zase nebyl o Vánocích ani o Novém roce — třetí rok po sobě, podpis a datum u řádku.</span> Sousedské oznámení školy, že třídu potřebuje <span class=\"clue\" data-clue-id=\"decoy_skolni_oznam\">čtyřicet tři děti, a že shánějí třídu jinde</span> — formální plakát, bez dědických údajů a bez vztahu k závěti v trestním spise, jen obecní razítko, nic víc.",
+          "cost": 1,
+          "unlocks_contradiction": "denik_versus_syn"
+        },
+        "informant": {
+          "reveals": "context",
+          "cost": 1,
+          "variants": {
+            "lid_high": "Říct dům děckám ze školy, když dům platí církev, obec, nebo rodina, to slyšíš pořád. Sousedka mluví za mrtvého, syn mluví za písmo, co ještě z otcovy ruky zbylo — až oba skončí, zůstane půl střechy a tři roky čekání, co z toho půjde zaplatit.",
+            "moc_high": "Stát tady nebude dál tolerovat, aby občan psal, co chtěl, a soused ho pak o den později slyšel jinak, což otevírá dveře každé politické části, která bude chtít mluvit za mrtvého na úkor listiny.",
+            "default": "Ne každý, kdo neměl dům, má čím plačt — ale každý, kdo má tři děti, má, čím se zahne k soudu, i když soud sám bude ticho."
+          }
+        },
+        "confrontation": {
+          "target": "vaclav",
+          "target_label": "Václav Krejsa, syn dárce",
+          "requires_contradiction": "denik_versus_syn",
+          "requires_courage": 50,
+          "cost": 2,
+          "prompt": "Pane Krejsa, otec v deníku 18. 1. 1931 píše, že tři roky nepřišel na Vánoce — vy tvrdíte, že to nebyl záměr, že jste o něj pečoval. Co je pravda, když papír a ústa říkají víc než jeden příběh?",
+          "success": {
+            "text": "Krejsa mlčí, pak: Pravda je, že dělal šichty, že nestihl, že se styděl, že tři roky nezazvonil, ale ne, že by ho chtěl odepsat, jak si teď cizí píšou, že ho prodám — prodám ho, protože tátův rukopis říká moje jméno. To je, co písmo píše. Deník? Psal tátův rukopis, ne můj.",
+            "reveals": "Přizná, že tři roky rodinná přítomnost u svátků chybí; dosud tvrdil opak."
+          },
+          "failure": {
+            "text": "Já nejsem ten, kdo tátovi diktoval deníky. Kdybyste chtěli psát, pište si sami.",
+            "locks_testimony": "vaclav"
+          }
+        }
+      },
+      "verdicts": {
+        "guilty": {
+          "sentences": {
+            "standard": {
+              "label": "Závěť platí — dům synovi",
+              "description": "Rozsudek přijímá písemnou vůli z 10. 1. 1931, syn jako dědic, předání dle civilního řádu, ústní výrok uznán jako neprokázaný.",
+              "effects": {
+                "integrita": 3,
+                "vina": 3,
+                "nadeje": -2,
+                "lid": -3,
+                "finance": 10
+              }
+            },
+            "alternative": {
+              "label": "Rozdělit dům — přízemí škole, patro synovi",
+              "description": "Dohoda o faktickém rozdělení: přízemí pro školní provoz, patro s bytem pro dědice, oddělitelnost musí odsouhlasit stavební úřad; civilní soud sjednocuje kroky sousedů.",
+              "requires_investigation": 1,
+              "requires": {
+                "moudrost_min": 40
+              },
+              "effects": {
+                "integrita": 1,
+                "vina": 2,
+                "nadeje": -1,
+                "lid": 1,
+                "finance": 10
+              }
+            }
+          }
+        },
+        "not_guilty": {
+          "approaches": {
+            "formal": {
+              "label": "Ústní vůle — dům škole",
+              "description": "Soud přisuzuje důkazní váhu sousedčinu svědectví, ústní vůle má před písmem, které působí, jako by otec chtěl, aby písmo a ústa dělaly víc než dědický zápis — a civilní soudy mají srovnat školu, ne syna.",
+              "effects": {
+                "integrita": -2,
+                "vina": 2,
+                "nadeje": 2,
+                "lid": 3,
+                "finance": 10
+              }
+            }
+          }
+        },
+        "insufficient_evidence": {
+          "label": "Nedostatek důkazů o jediném výkladu vůle",
+          "requires": {
+            "moudrost_min": 32
+          },
+          "options": {
+            "return": {
+              "label": "Vrátit civilnímu senátu",
+              "description": "Vrácení s odložením předběžné vykonatelnosti; dům až do pravomocného výsledku, možnost nového dokazování, nic neřešeno, ale nic nezůstává potichu.",
+              "effects": {
+                "integrita": 1,
+                "vina": 2,
+                "moudrost": 2,
+                "finance": 10
+              }
+            }
+          }
+        }
+      },
+      "aftermath": {
+        "guilty_standard": "Dům ve Vršovicích prodán v březnu. Nový majitel otevřel trafiku. Škola hledá prostory.",
+        "not_guilty_formal": "Škola se nastěhovala v dubnu. Václav podal odvolání. Děti chodí do školy. Jeho děti taky.",
+        "insufficient_return": "Dům stojí prázdný. Na fasádě někdo napsal křídou: KOMU.",
+        "guilty_alternative": "V přízemí se učí. V patře Václav kouří u okna a dívá se na školní dvůr."
+      },
+      "stamp_moment": {
+        "guilty": "Václav se díval na Procházkovou. Procházková se dívala na podlahu.",
+        "not_guilty": "Procházková přikývla. Václav se posadil. Tři děti na chodbě si hrály s knoflíkem.",
+        "insufficient": "Nikdo nevstal. Nikdo nevěděl, kdo vyhrál.",
+        "alternative": "Jeden podpis, dvě ticho zůstává — razítko se dotklo papíru, všichni čekají, až sál vyprázdne."
+      },
+      "delayed_consequences": []
+    },
+    {
+      "id": "pool_a1_druzstvo",
+      "slot": "pool",
+      "type": "moral_dilemma",
+      "color": "#8A9B6E",
+      "available_days": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "act": 1,
+      "weight_conditions": {
+        "base_weight": 1,
+        "kapital_below_40": 1.3
+      },
+      "title": "Zásoby",
+      "case_number": "Sp. zn. 96/1931",
+      "defendant": {
+        "name": "Bedřich Navrátil",
+        "age": 51,
+        "occupation": "vedoucí přejímky obilí",
+        "detail": "zaměstnanec Zásobovacího a prodejního družstva LÍPA v Brandýse nad Labem, šest let bez výtky, ženatý, tři dospělé děti"
+      },
+      "charge": "Podvod dle §197 trestního zákona a §200 (porušení obchodní věrnosti): opakované falšování záznamů o jakostní třídě obilí při přejímce od členů družstva po dobu dvou let, čímž byl způsoben majetkový rozdíl vůči odběratelům v celkové výši nejméně 2 400 Kčs.",
+      "description": "Zásobovací a prodejní družstvo LÍPA zásobuje odběratele — pekaře, mlýny, hostince — obilím od svých členů. Bedřich Navrátil zodpovídal za přejímku a klasifikaci dodávek. Od roku 1929, kdy přišla špatná úroda, zapisoval obilí nižší třídy jako vyšší, čímž členové dostali plnou výkupní cenu a odběratelé platili za kvalitu, kterou nedostali. Pekař Antonín Rejzek tvrdí, že z jednoho takového nákladu vyrobil chleba, po nichž onemocnělo pět rodin z Brandýsa. Navrátil falšování přiznal, zdravotní škodu popírá. Předseda družstva LÍPA Metoděj Herejk tvrdí, že o ničem nevěděl.",
+      "testimonies": [
+        {
+          "id": "rejzek",
+          "speaker": "Antonín Rejzek, pekař, poškozený odběratel",
+          "text": "Koupil jsem od LÍPY čtyři sta kilogramů obilí jako <span class=\"clue\" data-clue-id=\"clue_rejzek_trida\">druhá třída, značení II/B, doklad vydán 16. ledna</span>. Zaplatil jsem cenu druhé třídy — šest korun a dvacet haléřů za metrák. Ve mlýně Šimek v Brandýse obilí semleli a zjistili vlhkost osmnáct procent a počínající plíseň. Norma pro třídu II/B je čtrnáct procent vlhkosti. <span class=\"clue\" data-clue-id=\"decoy_rejzek_nemocni\">Lékař potvrdil gastrointestinální obtíže u pěti pacientů z Brandýsa po konzumaci mého chleba v posledním lednovém týdnu.</span> Já jsem neznal obsah — koupil jsem kvalitu, jakou mi prodali.",
+          "contradiction_keywords": [
+            "II/B",
+            "16. ledna",
+            "šest korun"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "navratil",
+          "speaker": "Bedřich Navrátil, obžalovaný",
+          "text": "Falšoval jsem záznamy. To přiznám. Dělal jsem to od roku dvacet devět, protože Kratochvílovi, Novákům, Šimků a dalším třiceti osmi rodinám hrozilo, že za špatnou úrodu dostanou čtvrtou třídu — o třicet procent méně než potřebovali. <span class=\"clue\" data-clue-id=\"decoy_navratil_motiv\">Neobohatil jsem se ani o korunu. Rozdíl šel vždy na výkupní cenu členů, ne do mé kapsy.</span> Ten konkrétní náklad od hospodáře Horáka — <span class=\"clue\" data-clue-id=\"clue_navratil_datum\">přijat čtrnáctého ledna, barva normální, vůně přijatelná, vlhkost jsem měřil ručním sondou a zapisoval čtrnáct celá dvě.</span> Nevím, co se stalo mezi přejímkou a mlýnem. Mohlo to cestovat v mokrém voze.",
+          "contradiction_keywords": [
+            "čtrnáctého ledna",
+            "čtrnáct celá dvě",
+            "ručním sondou"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "herejk",
+          "speaker": "Metoděj Herejk, předseda družstva LÍPA",
+          "text": "Já o ničem nevěděl. Navrátil dělal přejímku samostatně. <span class=\"clue\" data-clue-id=\"clue_herejk_podpis\">Měsíční výkazy podepisuji, ano — ale jejich obsahem jsou souhrnné cifry. Nemám čas ani povinnost kontrolovat každý řádek přejímkové knihy.</span> Kdybych věděl, že Navrátil falšuje, zastavil bych to okamžitě. <span class=\"clue\" data-clue-id=\"clue_herejk_tlak\">Pamatuji si, že jsem mu na podzim devětadvacátého roku řekl: 'Víme, že rok byl špatný. Udělejte co umíte, ať nám členové neodejdou.' Ale to není pokyn k podvodu.</span>",
+          "contradiction_keywords": [
+            "udělejte co umíte",
+            "podepisuji",
+            "měsíční výkazy"
+          ],
+          "hidden_at_wisdom_below": null
+        }
+      ],
+      "contradictions": [
+        {
+          "id": "herejk_vedel",
+          "description": "Herejk dal Navrátilovi volnou ruku větou 'udělejte co umíte' a podepisoval měsíční výkazy. Nevědění je těžko obhajitelné.",
+          "involves": [
+            "herejk",
+            "records"
+          ],
+          "highlight_at_wisdom": 70,
+          "unlocks_confrontation": "herejk"
+        },
+        {
+          "id": "datum_dodavky",
+          "description": "Navrátil zapsal náklad od Horáka 14. ledna jako II/B. Rejzek přijal náklad 16. ledna s dokladem II/B. Je to tentýž náklad — a Navrátil ho viděl.",
+          "involves": [
+            "navratil",
+            "rejzek"
+          ],
+          "highlight_at_wisdom": 60,
+          "unlocks_confrontation": "navratil"
+        }
+      ],
+      "clue_system": {
+        "enabled": true,
+        "true_pair_id": "herejk_komplic_strong",
+        "pairs": [
+          {
+            "pair_id": "herejk_komplic_strong",
+            "a_id": "clue_herejk_tlak",
+            "b_id": "clue_herejk_podpis",
+            "strength": "strong"
+          },
+          {
+            "pair_id": "dodavka_stoupa_medium",
+            "a_id": "clue_navratil_datum",
+            "b_id": "clue_rejzek_trida",
+            "strength": "medium"
+          }
+        ],
+        "decoys": [
+          "decoy_rejzek_nemocni",
+          "decoy_navratil_motiv"
+        ],
+        "timed_hunt": {
+          "enabled": true,
+          "duration_sec": 65,
+          "speed_upgrade_sec": 22,
+          "auto_confirm_best_on_timeout": true,
+          "timeout_downgrade": false
+        },
+        "info_threshold_unlocks": {
+          "actions": [
+            {
+              "min": 50,
+              "ids": [
+                "pool_inv_confrontation"
+              ]
+            }
+          ],
+          "verdicts": [
+            {
+              "min": 35,
+              "ids": [
+                "guilty_lenient"
+              ]
+            },
+            {
+              "min": 60,
+              "ids": [
+                "not_guilty_formal"
+              ]
+            },
+            {
+              "min": 80,
+              "ids": [
+                "guilty_alternative",
+                "not_guilty_with_comment"
+              ]
+            }
+          ]
+        },
+        "rewards": {
+          "on_confirm": {
+            "strong": {
+              "investigation_progress_delta": 42,
+              "unlock_actions": [
+                "pool_inv_confrontation"
+              ],
+              "unlock_verdict_ids": [
+                "guilty_alternative",
+                "not_guilty_with_comment"
+              ],
+              "narrative_lines": [
+                "'Udělejte co umíte' — tři slova, která Navrátilovi stačila jako povolení.",
+                "Předseda podepisoval výkazy, kde souhrnné cifry nesedí na čtyřtřídní obilí. Neviděl, nebo nechtěl vidět.",
+                "Jedna věta z podzimu devětadvacátého roku váží víc než Herejkova nevědomost u soudu."
+              ]
+            },
+            "medium": {
+              "investigation_progress_delta": 22,
+              "unlock_verdict_ids": [
+                "guilty_lenient",
+                "not_guilty_formal"
+              ],
+              "narrative_lines": [
+                "Čtrnáctý leden, Navrátil, Horákův náklad. Šestnáctý leden, Rejzek, tentýž doklad II/B.",
+                "Propojení nestačí na záměr — ale stačí na otázku, co Navrátil věděl a kdy."
+              ]
+            }
+          }
+        }
+      },
+      "investigation": {
+        "interview": {
+          "target": "kratochvil_clen",
+          "target_label": "Antonín Kratochvíl, člen družstva LÍPA",
+          "reveals": "motivation",
+          "text": "Navrátil nás zachránil. V devětadvacátém by pět rodin — včetně mé — přišlo o pole nebo o dobytek. Každý z nás věděl, co dělá. Nikdo z nás ho neudal. Přišel ten pekař z Brandýsa a teď je z toho soud. <span class=\"clue\" data-clue-id=\"decoy_navratil_motiv\">Bedřich nikdy nevzal korunu navíc. Víte, co dostával? Šedesát korun měsíčně jako vedoucí přejímky. Za záchranu čtyřiceti rodin.</span>",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Integrita": -1,
+              "Vina": 1
+            },
+            "factions": {
+              "Lid": 1,
+              "Kapital": -1
+            }
+          }
+        },
+        "records": {
+          "source": "Laboratorní posudek mlýna Šimek v Brandýse; revizní zpráva družstva LÍPA z října 1930; přejímková kniha za leden 1931",
+          "reveals": "facts",
+          "text": "Posudek mlýna Šimek ze dne 18. února: vlhkost dodávky 18,2 %, počínající Aspergillus niger, norma II/B max. 14 %. Přejímková kniha 14. ledna: náklad Horák č. 47, zapsáno II/B, vlhkost 14,2 %. <span class=\"clue\" data-clue-id=\"clue_navratil_datum\">Ruční sonda, kterou Navrátil používal, má dle výrobce Zeiss-Leipzig odchylku ±2 %. Hodnota 14,2 % mohla být reálně 16,2 % v den přejímky.</span> Revizní zpráva z října 1930: komise upozornila, že 'evidence jakostních tříd vykazuje statisticky nepravděpodobný podíl třídy II/B' — doporučení: namátková prověrka tříd. Herejk přijal k vědomí, revizi nenařídil.",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -12,
+            "traits": {
+              "Integrita": -2,
+              "Vina": 1
+            },
+            "factions": {
+              "Kapital": 1,
+              "Moc": 1
+            }
+          },
+          "unlocks_contradiction": "herejk_vedel"
+        },
+        "informant": {
+          "reveals": "context",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Vina": 1
+            },
+            "factions": {
+              "Lid": -2,
+              "Kapital": 2
+            }
+          },
+          "variants": {
+            "lid_high": "V Brandýse se říká, že bez LÍPY by se polovina okolních hospodářů zadlužila u záložen v devětadvacátém. Navrátil je tam hrdina, ne zločinec. Rejzek stahuje pekařskou licenci — ale ne kvůli zdraví zákazníků. Nemůže splácet mlýnský úvěr a hledá viníka.",
+            "kapital_high": "Záložna Brandýs má zájem na krachu LÍPY — pokud družstvo padne, hospodáři přijdou o záruky a musí k záložně s úvěrem. Rejzekova žaloba mohla být inspirována někým, komu LÍPA překáží.",
+            "moc_high": "Zemský úřad začal v roce 1930 prověřovat hospodaření zásobovacích družstev. Pokud LÍPA padne na trestním případu, bude to signál pro revizi ostatních. Ministerstvo zemědělství sleduje Navrátilův případ pozorně.",
+            "default": "Revizní komise v říjnu varovala a Herejk nic neudělal. Navrátil falšoval se souhlasem předsedy — tichým, implicitním, ale jasným. U soudu se z toho vykroutí jeden. Který, záleží na rozsudku."
+          }
+        },
+        "confrontation": {
+          "target": "herejk",
+          "target_label": "Metoděj Herejk, předseda LÍPA",
+          "requires_contradiction": "herejk_vedel",
+          "requires_courage": 45,
+          "cost": 2,
+          "prompt": "Pane Herejku, revizní komise vás v říjnu 1930 písemně upozornila na statisticky nepravděpodobný podíl třídy II/B. Audit jste nenařídil. A v září 1929 jste Navrátilovi řekl 'udělejte co umíte, ať nám členové neodejdou.' Jak tato dvě fakta dohromady nejsou vědomím o tom, co se děje?",
+          "success": {
+            "text": "Herejk se odmlčí. Pak pomalu: 'Říkal jsem mu, aby udržel členy. Nevěděl jsem jak.' Pauza. 'Revizní zprávu jsem četl. Říkám vám, co jsem si myslel: v krizi obilí prostě víc padá do vyšší třídy, protože hospodáři si dávají záležet.' Ruce má sepjaté na stole. Říká to přesvědčivě — možná příliš přesvědčivě.",
+            "reveals": "Herejk nepopírá fakta — popírá jejich spojení. Ale dva body jsou nyní v protokolu: věděl o revizní zprávě a dal Navrátilovi volnou ruku. Soud to musí vyhodnotit."
+          }
+        }
+      },
+      "verdicts": {
+        "guilty": {
+          "sentences": {
+            "maximum": {
+              "label": "12 měsíců vězení a pokuta 2 400 Kčs",
+              "description": "Soustavný podvod po dobu dvou let s prokazatelnou zdravotní škodou. Navrátil nesl výhradní odpovědnost za přejímku a věděl, co zapisuje. Rodina přijde o jeho příjem na rok — tři dospělé děti, ale žena v domácnosti.",
+              "effects": {
+                "integrita": 3,
+                "vina": 5,
+                "nadeje": -2,
+                "moc": 4,
+                "lid": -6,
+                "kapital": 2,
+                "finance": 20
+              }
+            },
+            "standard": {
+              "label": "6 měsíců podmíněně a pokuta 1 200 Kčs",
+              "description": "Fraud je prokázán, záměr poškodit zdraví nikoliv. Podmíněný trest zohledňuje humanitární motiv a přiznání.",
+              "effects": {
+                "integrita": 1,
+                "vina": 3,
+                "nadeje": -1,
+                "moc": 1,
+                "lid": -2,
+                "finance": 12
+              }
+            },
+            "lenient": {
+              "label": "Pokuta 600 Kčs, bez vězení",
+              "description": "Navrátil nesledoval osobní prospěch. Záměr poškodit odběratele chybí. Symbolická sankce uzná porušení zákona bez odtržení od rodiny.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": -1,
+                "vina": 1,
+                "nadeje": 2,
+                "lid": 3,
+                "moc": -2,
+                "finance": 8
+              }
+            },
+            "alternative": {
+              "label": "Alternativa: Navrátil podmíněně, trestní oznámení na předsedu Herejka",
+              "description": "Soud konstatuje, že Herejk dal Navrátilovi implicitní souhlas a vědomě ignoroval revizní zprávu. Navrátil dostane podmíněný trest, Herejk bude předán k dalšímu řízení. Obě rodiny pocítí dopad — ale jinak.",
+              "requires_investigation": 3,
+              "requires": {
+                "odvaha_min": 55
+              },
+              "effects": {
+                "integrita": 6,
+                "odvaha": 4,
+                "vina": -1,
+                "nadeje": 3,
+                "lid": 5,
+                "moc": -7,
+                "kapital": -2,
+                "finance": 8,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "not_guilty": {
+          "approaches": {
+            "formal": {
+              "label": "Zproštění — záměr poškodit odběratele neprokázán",
+              "description": "Navrátil falšoval ve prospěch členů, nikoliv na škodu konkrétních odběratelů. Přímá kauzalita mezi zápisem a onemocněním zákazníků chybí — náklad mohl zkysat ve vozu nebo mlýně.",
+              "requires_investigation": 2,
+              "effects": {
+                "integrita": -2,
+                "odvaha": 2,
+                "vina": -2,
+                "lid": 4,
+                "moc": -4,
+                "finance": 10
+              }
+            },
+            "with_comment": {
+              "label": "Alternativa: Zproštění — selhání systémového dohledu",
+              "description": "Podvod umožnil vedoucí pracovník, který dal pokyn bez omezení a ignoroval varování revize. Navrátil jednal v mezích toho, co mu bylo dovoleno — a co bylo systémem tiše akceptováno.",
+              "requires_investigation": 3,
+              "requires": {
+                "odvaha_min": 60
+              },
+              "effects": {
+                "integrita": 4,
+                "odvaha": 5,
+                "vina": -1,
+                "nadeje": 2,
+                "lid": 6,
+                "moc": -8,
+                "kapital": -2,
+                "finance": 8,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 2
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "insufficient_evidence": {
+          "options": {
+            "reopen": {
+              "label": "Vrátit k prošetření — role předsedy Herejka",
+              "description": "Přejímkový řetězec a revizní zpráva naznačují vědomí vedení. Bez výslechu Herejka pod přísahou nelze vynést spravedlivý rozsudek.",
+              "effects": {
+                "moudrost": 3,
+                "vina": 1,
+                "nadeje": 1,
+                "finance": 8
+              }
+            },
+            "close": {
+              "label": "Zastavení pro nedostatek přímých důkazů o zdravotní škodě",
+              "description": "Kauzalita mezi Navrátilovou přejímkou a onemocněním v Brandýse nebyla prokázána na úrovni trestního standardu.",
+              "effects": {
+                "moudrost": 2,
+                "integrita": 1,
+                "vina": 1,
+                "finance": 8
+              }
+            }
+          }
+        }
+      },
+      "aftermath": {
+        "guilty_maximum": "Navrátila odvezli. Žena stála na chodbě a nic neřekla. V Brandýse ho nazvali zrádcem — ale to bylo v novinách. V hospodě u Kratochvílů zdvihli na jeho zdraví sklenice a v tichosti je vyprázdnili.",
+        "guilty_standard": "Navrátil platí. Podmínka visí dva roky. Herejk přijal funkci v revizní komisi. V LÍPĚ loni přijali nová pravidla přejímky — s namátkovými prověrkami. Nikdo to neoznačil jako důsledek soudu.",
+        "guilty_lenient": "Navrátil zaplatil šest set korun. Šel domů. Kratochvíl mu přinesl pytel mouky bez komentáře. Rejzek podal stížnost na výši pokuty k zemskému úřadu.",
+        "guilty_alternative": "Herejk byl předán k vyšetřování. Navrátil dostal podmínku. V LÍPĚ se konalo mimořádné zasedání — předsednictvo přijalo rezignaci. Kratochvíl byl zvolen prozatímním předsedou. Čtyřicet rodin zůstalo v družstvu.",
+        "not_guilty_formal": "Navrátil odešel volný. Rejzek podal civilní žalobu o náhradu škody. Soud bude trvat roky. Mezitím Navrátil přijal nabídku ve mlýně v Čelákovicích — jiný kraj, jiná evidence.",
+        "not_guilty_with_comment": "Ben v rozsudku konstatoval selhání dohledu a pokyn vedení. Herejk podal stížnost na překročení pravomocí soudce. Ministerstvo zemědělství nařídilo přezkum fungování zásobovacích družstev v pěti krajích.",
+        "insufficient_reopen": "Spis se vrátil. Herejk byl předvolán k výslechu. Zemský úřad mezitím zahájil revizi evidence LÍPY za roky 1929–1931.",
+        "insufficient_close": "Případ uzavřen. Rejzek odešel bez satisfakce. Navrátil se vrátil do práce — jiný sklad, jiná firma. Přejímková kniha LÍPY za leden 1931 zmizela z archivu do měsíce."
+      },
+      "stamp_moment": {
+        "guilty": "Navrátil přikývl. Pomalu. Jako člověk, který věděl, že přijde — a stejně ho to bolí.",
+        "not_guilty": "Navrátil se nedíval na soudce. Díval se na okno. Venku tekla Labe.",
+        "insufficient": "Navrátil složil ruce na stole. Počkal. Jako u přejímkového stolu — trpělivě, bez výrazu."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "guilty_alternative",
+          "delay_days": 5,
+          "type": "fragment",
+          "text": "Ve Svobodném obzoru krátká zpráva: Předseda zásobovacího družstva LÍPA rezignoval po trestním oznámení soudu. Případ otevírá otázku odpovědnosti vedení za přejímkové praktiky v dalších čtyřech zásobovacích útvarech v Čechách."
+        },
+        {
+          "trigger": "not_guilty_with_comment",
+          "delay_days": 4,
+          "type": "letter",
+          "text": "Dopis z ministerstva zemědělství, přes Vlčkovu kancelář: Soud v případu Navrátil překročil rámec trestního řízení komentářem k systémovému fungování. Ministerstvo si vyhrazuje právo reagovat. Bez podpisu."
+        },
+        {
+          "trigger": "guilty_maximum",
+          "delay_days": 6,
+          "type": "fragment",
+          "text": "Kratochvíl a třicet sedm dalších členů LÍPY podalo žádost o odložení členských příspěvků. Záložna Brandýs zatím nereaguje. V Lidových novinách sloupek: 'Kdo zachraňuje zemědělce v krizi — zákon, nebo člověk?'"
+        }
+      ]
+    },
+    {
+      "id": "pool_a1_kladivo",
+      "slot": "pool",
+      "type": "moral_dilemma",
+      "color": "#7A3A2A",
+      "available_days": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "act": 1,
+      "weight_conditions": {
+        "base_weight": 1,
+        "week_3_bonus": 1.4
+      },
+      "title": "Kladivo",
+      "case_number": "Sp. zn. 97/1931",
+      "defendant": {
+        "name": "Pavel Řehoř",
+        "age": 44,
+        "occupation": "mistr kovárny",
+        "detail": "zaměstnanec opravny zemědělských strojů Šulc & Novák v Holešovicích, osmnáct let u firmy, vdovec, syn Ladislav 17 let"
+      },
+      "charge": "Těžké ublížení na zdraví s následkem smrti dle §152 trestního zákona, alternativně vražda v afektu dle §134 — Pavel Řehoř dne 6. února 1931 v prostorách kovárny opakovaně udeřil mistrovským kladivem spolupracovníka Karla Dobiáše (39 let) do oblasti hlavy a hrudníku. Dobiáš zemřel téhož dne večer ve vinohradské nemocnici na mozkové krvácení. Řehoř čin přiznal okamžitě a nevykazoval pokus o útěk ani zametení stop.",
+      "description": "V kovárně Šulc & Novák leží na stole čin, o němž nikdo nepochybuje. Pavel Řehoř v pátek odpoledne vzal mistrovské kladivo a čtyřikrát udeřil Karla Dobiáše. Dobiáš zemřel. Řehoř přiznal vše — bez obhájce, bez výmluv, na místě. Soudní znalec určil příčinu smrti jednoznačně. Otázka nestojí na tom, kdo a jak — stojí na tom, proč, a kolik za to. Osmnáct let spolupráce, jeden den, čtyři rány. Co z toho zákon dělá a co dělá člověk z toho, co zákon neumí přečíst.",
+      "testimonies": [
+        {
+          "id": "rehor",
+          "speaker": "Pavel Řehoř, obžalovaný",
+          "text": "Bil jsem ho. Čtyřikrát. Nevím, kolikrát jsem zamáchl — čtyřikrát to viděli ostatní, já to nepamatuji přesně. <span class=\"clue\" data-clue-id=\"clue_rehor_syn\">Dobiáš mi v úterý řekl, že viděl mého syna Ladislava v Holešovicích s těmi od Národní obce fašistické. Řekl: 'Jestli něco uděláš, chlapec bude litovat.' Doslova to. V pátek přišel znovu a řekl: 'Tak co jsi rozhodl?'</span> Já jsem vzal kladivo. Neuvažoval jsem. Lituju, že je mrtvý. Nelituju, že jsem ho udeřil.",
+          "contradiction_keywords": [
+            "v úterý",
+            "v pátek",
+            "Ladislav"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "horak_svedek",
+          "speaker": "Tomáš Horák, kovář, přítomen v dílně",
+          "text": "Byl jsem pět metrů od nich. <span class=\"clue\" data-clue-id=\"clue_horak_uder\">Řehoř vzal kladivo ze stojanu — ne ze stolu, ze stojanu vedle výhně, kde leží vždy — a zamáchl čtyřikrát. Dobiáš nestihl zvednout ruku.</span> Nic jsem neslyšel, co si říkali — výheň hlučí. Řehoř pak odložil kladivo, šel k umyvadlu, umyl si ruce a čekal. Nikomu nic neřekl. Pak přišel mistr Šulc a zavolal policii.",
+          "contradiction_keywords": [
+            "ze stojanu",
+            "čtyřikrát",
+            "umyl si ruce"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "sulc_majitel",
+          "speaker": "Alois Šulc, spolumajitel opravny Šulc & Novák",
+          "text": "Dobiáš u nás pracoval čtyři roky. Byl dobrý kovář — a měl přátele mimo práci, o kterých jsem nevěděl. <span class=\"clue\" data-clue-id=\"clue_sulc_dobiase\">Loni v říjnu jsem ho upozornil, že ho viděli na schůzi, kde se mluvilo ošklivě o dělnických odborech. Řekl jsem mu: 'Karel, tady takové věci nemáme rádi.' Odpověděl: 'Jenom se dívám.'</span> Řehoř je u mě osmnáct let. Nikdy nic. Syn Ladislava nám přijde v létě na učení — byl jsem domluvený s Pavlem. <span class=\"clue\" data-clue-id=\"decoy_sulc_ladislav\">Nevím, co chlapec dělá mimo opravnu. Nezajímám se o politiku zaměstnanců.</span>",
+          "contradiction_keywords": [
+            "říjen",
+            "schůze",
+            "jenom se dívám"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "znalec",
+          "speaker": "MUDr. Václav Truhlář, soudní znalec",
+          "text": "Smrt nastala v důsledku subdurálního hematomu po opakovaném tupém traumatu hlavy. <span class=\"clue\" data-clue-id=\"clue_znalec_rany\">Čtyři zásahy: první do pravého spánku — pravděpodobně smrtelný sám o sobě. Druhý a třetí do hrudníku — záměrné zpacifikování ležícího muže. Čtvrtý opět do hlavy — po pádu oběti na podlahu.</span> Obžalovaný projevoval motorickou kontrolu — rány byly vedeny v ustáleném rytmu, ne v chaotické zuřivosti. Přítomnost afektu nelze vyloučit, lze ji ale zpochybnit.",
+          "contradiction_keywords": [
+            "první do pravého spánku",
+            "čtvrtý",
+            "motorická kontrola"
+          ],
+          "hidden_at_wisdom_below": null
+        }
+      ],
+      "contradictions": [
+        {
+          "id": "afekt_vs_kontrola",
+          "description": "Řehoř říká, že neuvažoval a nepamatuje si přesně. Znalec popisuje ustálený rytmus ran a motorickou kontrolu — druhá a třetí rána šla do hrudníku ležícího muže.",
+          "involves": [
+            "rehor",
+            "znalec"
+          ],
+          "highlight_at_wisdom": 65,
+          "unlocks_confrontation": "znalec"
+        },
+        {
+          "id": "dobiasova_hra",
+          "description": "Dobiáš hrozil v úterý a v pátek se vrátil s otázkou 'tak co jsi rozhodl'. Šulc ho loni upozornil na politické vazby. Dobiáš nebyl náhodný agresor — opakovaně a vědomě tlačil na Řehoře.",
+          "involves": [
+            "rehor",
+            "sulc_majitel"
+          ],
+          "highlight_at_wisdom": 70,
+          "unlocks_confrontation": "rehor"
+        }
+      ],
+      "clue_system": {
+        "enabled": true,
+        "true_pair_id": "afekt_nebo_ne_strong",
+        "pairs": [
+          {
+            "pair_id": "afekt_nebo_ne_strong",
+            "a_id": "clue_rehor_syn",
+            "b_id": "clue_znalec_rany",
+            "strength": "strong"
+          },
+          {
+            "pair_id": "dobiasova_metoda_medium",
+            "a_id": "clue_sulc_dobiase",
+            "b_id": "clue_rehor_syn",
+            "strength": "medium"
+          },
+          {
+            "pair_id": "dobiasova_metoda_medium",
+            "a_id": "clue_horak_uder",
+            "b_id": "clue_znalec_rany",
+            "strength": "weak"
+          }
+        ],
+        "decoys": [
+          "decoy_sulc_ladislav"
+        ],
+        "timed_hunt": {
+          "enabled": true,
+          "duration_sec": 70,
+          "speed_upgrade_sec": 22,
+          "auto_confirm_best_on_timeout": true,
+          "timeout_downgrade": false
+        },
+        "info_threshold_unlocks": {
+          "actions": [
+            {
+              "min": 45,
+              "ids": [
+                "pool_inv_confrontation"
+              ]
+            }
+          ],
+          "verdicts": [
+            {
+              "min": 35,
+              "ids": [
+                "guilty_minimum"
+              ]
+            },
+            {
+              "min": 60,
+              "ids": [
+                "guilty_alternative"
+              ]
+            },
+            {
+              "min": 80,
+              "ids": [
+                "guilty_alternative_provokace"
+              ]
+            }
+          ]
+        },
+        "rewards": {
+          "on_confirm": {
+            "strong": {
+              "investigation_progress_delta": 45,
+              "unlock_actions": [
+                "pool_inv_confrontation"
+              ],
+              "unlock_verdict_ids": [
+                "guilty_alternative",
+                "guilty_alternative_provokace"
+              ],
+              "narrative_lines": [
+                "Hrozba v úterý, otázka v pátek — a mezi tím čtyři rány v ustáleném rytmu.",
+                "Znalec neřekl, že afekt nebyl. Řekl, že motorická kontrola ho zpochybňuje.",
+                "Smrtelná rána byla první. Co přišlo po ní, bylo něco jiného."
+              ]
+            },
+            "medium": {
+              "investigation_progress_delta": 25,
+              "unlock_verdict_ids": [
+                "guilty_minimum"
+              ],
+              "narrative_lines": [
+                "Dobiáš loni na schůzi, letos hrozba synovi. Řehoř to nesl tři dny.",
+                "Ustálený rytmus ran nemusí znamenat plánování — může znamenat paniku, která má formu."
+              ]
+            },
+            "weak": {
+              "investigation_progress_delta": 10,
+              "narrative_lines": [
+                "Čtyři rány. Ze stojanu, ne ze stolu. Horák viděl vše — a řekl vše."
+              ]
+            }
+          }
+        }
+      },
+      "investigation": {
+        "interview": {
+          "target": "ladislav_rehor",
+          "target_label": "Ladislav Řehoř, syn obžalovaného, 17 let",
+          "reveals": "motivation",
+          "text": "Tatínek mi nic neřekl. Já o Dobiášovi věděl — viděl mě jednou na schůzi, kde jsem byl s kamarádem Honzou Šimkem. Šimkovi je osmnáct a chodí tam. Já jsem šel jednou, nerozuměl jsem tomu a odešel. <span class=\"clue\" data-clue-id=\"decoy_sulc_ladislav\">Dobiáš mě oslovil na ulici v pondělí. Řekl, ať tatínkovi vyřídím pozdravy a ať si dá pozor.</span> Tatínkovi jsem to neřekl, bál jsem se. Nevím, jestli on to věděl z jiné strany. Asi věděl.",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Integrita": -1,
+              "Vina": 2
+            },
+            "factions": {
+              "Lid": 1
+            }
+          }
+        },
+        "records": {
+          "source": "Policejní záznamy NOF Praha-Holešovice; soudně-lékařský posudek MUDr. Truhlář; výslech protokol Řehoř ze dne 6. února",
+          "reveals": "facts",
+          "text": "Policejní záznamy: Karel Dobiáš veden jako sympatizant Národní obce fašistické od roku 1929, bez trestního záznamu. Tři záznamy o přítomnosti na schůzích; jeden záznam o konfliktu s členem odborů ČSD v listopadu 1930 — bez obžaloby. Výslech protokol Řehoř 6. 2.: <span class=\"clue\" data-clue-id=\"clue_rehor_syn\">'Hrozil mému synovi. Dvakrát. Řekl mi to přímo do očí.'</span> Soudně-lékařský posudek: <span class=\"clue\" data-clue-id=\"clue_znalec_rany\">interval mezi prvním a čtvrtým úderem odhadnut na 8–12 sekund. Mezera mezi druhým a třetím úderem odpovídá poloze padajícího člověka.</span>",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -12,
+            "traits": {
+              "Integrita": -2,
+              "Vina": 1
+            },
+            "factions": {
+              "Moc": 1
+            }
+          },
+          "unlocks_contradiction": "afekt_vs_kontrola"
+        },
+        "informant": {
+          "reveals": "context",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Vina": 1
+            },
+            "factions": {
+              "Lid": -1,
+              "Moc": 1
+            }
+          },
+          "variants": {
+            "lid_high": "V Holešovicích se říká, že Dobiáš nebyl sám. Někteří u Šulce se báli — on vytipovával lidi s odbory a posílal zprávy dál. Řehoř byl na místní odborové listině. Hrozba synovi nebyla náhoda — byl to způsob, jak ho přimět k výstupu z odboru.",
+            "moc_high": "Státní zastupitelství chce exemplární trest. V roce 1931 se bijí lidi na schůzích a na ulici — ale u soudu to musí mít hranice. Pokud Řehoř dostane minimum, bude to vnímáno jako tiché schválení odplaty.",
+            "kapital_high": "Šulc & Novák zásobují železniční opravny státní zakázkou. Pokud se v dílně mluvilo o odbořích a politice, ministerstvo dopravy to bude sledovat. Řehořův případ je pro firmu nevítaný — Šulc by chtěl co nejrychlejší uzavření.",
+            "default": "Čtyři rány kladivem nejsou spor o zeď nebo zmeškaná zásilka. Ale Dobiáš Řehořovi tři dny hrozil přes syna. Zákon tenhle rozdíl zná — říká mu provokace. Otázka je, jak moc je provokace smrtelná."
+          }
+        },
+        "confrontation": {
+          "target": "znalec",
+          "target_label": "MUDr. Václav Truhlář, soudní znalec",
+          "requires_contradiction": "afekt_vs_kontrola",
+          "requires_courage": 40,
+          "cost": 2,
+          "prompt": "Pane doktore Truhlář, váš posudek zpochybňuje afekt motorickou kontrolou. Ale interval 8–12 sekund pro čtyři údery — není to příliš krátká doba na to, aby soud usuzoval na rozvahu? Lze vyloučit, že motorická kontrola je reflexní, ne záměrná?",
+          "success": {
+            "text": "Truhlář si upraví brýle. 'Nelze vyloučit. Školený kovář s kladivem — svalová paměť je reálný faktor.' Odmlka. 'Co nemohu odborně podepsat je, že afekt trval po celou dobu incidentu. Rána do hrudníku ležícího muže předpokládá vědomé zaměření. Ale jak říkám — nelze vyloučit.' Velmi pečlivý muž. Velmi pečlivá slova.",
+            "reveals": "Znalec ustoupil z absolutního zpochybnění afektu. Soud může argumentovat pro zmírňující okolnost — ale musí tak rozhodnout sám. Znalec mu cestu neuzavřel, jen ji nezpevnil."
+          }
+        }
+      },
+      "verdicts": {
+        "guilty": {
+          "sentences": {
+            "maximum": {
+              "label": "8 let těžkého žaláře — vražda s rozmyslem",
+              "description": "Čtyři rány v ustáleném rytmu včetně úderu do hrudníku ležícího muže vylučují čistý afekt. Řehoř vědomě pokračoval po smrtelném prvním zásahu. Syn Ladislav zůstane bez otce do dvaceti pěti let — a stihne ho to přesně v době, kdy bude sám vstupovat do života.",
+              "effects": {
+                "integrita": 4,
+                "vina": 6,
+                "nadeje": -3,
+                "moc": 6,
+                "lid": -7,
+                "finance": 20
+              }
+            },
+            "standard": {
+              "label": "5 let vězení — těžké ublížení na zdraví s následkem smrti",
+              "description": "Čin je prokázán a smrt zaviněna. Opakované a přímé hrozby oběti vůči synovi jsou okolností, nikoli omluvou. Pět let zohledňuje délku beztrestnosti bez popírání závažnosti činu.",
+              "effects": {
+                "integrita": 2,
+                "vina": 4,
+                "nadeje": -2,
+                "moc": 3,
+                "lid": -3,
+                "finance": 15
+              }
+            },
+            "minimum": {
+              "label": "3 roky — afekt v mezích zákona, mimořádná provokace",
+              "description": "Řehoř čelil třítýdennímu soustavnému zastrašování včetně přímé hrozby nezletilému synovi. Zákon uznává mimořádnou provokaci jako zmírňující okolnost. Tři roky jsou minimum pro čin s následkem smrti — ale odpovídají míře, v níž oběť přispěla k situaci.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 1,
+                "vina": 3,
+                "nadeje": 0,
+                "odvaha": 2,
+                "lid": 1,
+                "moc": -1,
+                "finance": 12
+              }
+            },
+            "alternative": {
+              "label": "Alternativa: 3 roky s přihlédnutím k provokaci a bez ztráty občanských práv",
+              "description": "Soud konstatuje provokaci jako prokázanou mimořádnou okolnost a zachovává Řehořovi občanská práva — syn může nastoupit učení u Šulce a otec se k němu po odpykání vrátit. Nejnižší přípustný trest, který zákon při tomto skutku dovoluje.",
+              "requires_investigation": 3,
+              "requires": {
+                "odvaha_min": 50
+              },
+              "effects": {
+                "integrita": 2,
+                "odvaha": 5,
+                "vina": 2,
+                "nadeje": 1,
+                "lid": 4,
+                "moc": -4,
+                "finance": 10,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "alternative_provokace": {
+              "label": "Alternativa: 2 roky podmíněně — vražda v afektu za mimořádné provokace",
+              "description": "Obhajitelné pouze pokud soud uzná plný afekt. Znalec ho nevyloučil. Soustavná hrozba synovi po dobu týdne jako spouštěč — podmíněný trest v krajní hranici zákona. Řehoř jde domů. Ladislav dostane otce. Dobiášova žena dostane nic.",
+              "requires_investigation": 3,
+              "requires": {
+                "odvaha_min": 65,
+                "moudrost_min": 60
+              },
+              "effects": {
+                "integrita": -1,
+                "odvaha": 6,
+                "vina": 4,
+                "nadeje": 2,
+                "lid": 6,
+                "moc": -8,
+                "finance": 8,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 2
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "not_guilty": {
+          "approaches": {
+            "afekt_pure": {
+              "label": "Zproštění — plný afekt vylučující příčetnost",
+              "description": "Pouze pokud soud uzná, že soustavná hrozba synovi po dobu týdne vedla ke stavu plné afektivní nepříčetnosti v době činu. Znalec to nevyloučil. Řehoř jde domů — ale precedent říká, že hrozba odemyká beztrestnost.",
+              "requires_investigation": 3,
+              "requires": {
+                "odvaha_min": 75
+              },
+              "effects": {
+                "integrita": -4,
+                "odvaha": 4,
+                "vina": 8,
+                "nadeje": -1,
+                "lid": 3,
+                "moc": -10,
+                "finance": 8
+              }
+            }
+          }
+        },
+        "insufficient_evidence": {
+          "options": {
+            "reopen": {
+              "label": "Vrátit znalci — doplnit posudek o afekt",
+              "description": "Znalec zpochybnil afekt, ale pod přímým dotazem ustoupil. Soud potřebuje jednoznačnější stanovisko před rozsudkem.",
+              "effects": {
+                "moudrost": 3,
+                "vina": 1,
+                "finance": 8
+              }
+            },
+            "close": {
+              "label": "Zastavit trestní stíhání pro nejasný psychický stav v okamžiku činu",
+              "description": "Důkazy o plné či neplné příčetnosti a o míře provokace neumožňují bezpečně rozhodnout. Stíhání se neprodlužuje; civilní strany si nároky uplatní jinde.",
+              "effects": {
+                "moudrost": 2,
+                "integrita": 1,
+                "vina": 1,
+                "finance": 8
+              }
+            }
+          }
+        }
+      },
+      "aftermath": {
+        "guilty_maximum": "Osm let. Řehoř přikývl. Ladislav přijel druhý den k Šulcovi a oznámil, že nenastoupí do učení. Šulc to pochopil.",
+        "guilty_standard": "Pět let. Řehoř odešel bez výrazu. Ladislav nastoupil k Šulcovi v září. Dobiášova žena Věra podala civilní žalobu o náhradu. Soud o ní bude rozhodovat jinak — a jiný soudce.",
+        "guilty_minimum": "Tři roky. Ve vězeňské chodbě se Řehoř otočil a podíval se na syna. Ladislav stál u zdi a díval se do podlahy. Šulc podal ruku oběma.",
+        "guilty_alternative": "Tři roky, občanská práva zachována. Ladislav nastoupil v červnu. Dobiášova žena Věra se neobjevila. Státní zastupitelství podalo odvolání.",
+        "guilty_alternative_provokace": "Podmínka. Řehoř šel domů týž den. Noviny napsaly o rozsudku různě — jedno slovo se opakovalo ve všech verzích: precedent. Ben to věděl, když podepisoval.",
+        "not_guilty_afekt_pure": "Řehoř byl propuštěn. Ve dvou novinách vyšel komentář. V jednom: 'Soud uznal, že hrozba synovi ospravedlňuje smrt.' Ve druhém: 'Konečně soudce, který pochopil.' Oba měli pravdu a oba se mýlili.",
+        "insufficient_reopen": "Spis se vrátil Truhlářovi. Doplněný posudek přišel za tři týdny: 'Afekt v plném rozsahu nelze prokázat ani vyloučit.' Soud zasedal znovu — s jiným soudcem.",
+        "insufficient_close": "Řehoř obdržel písemné vyrozumění. Stíhání zastaveno. Dobiášova žena podala civilní žalobu — otec jejího dítěte chyběl u soudu, ale v novinách zůstala otázka, kdo nese cenu smrti."
+      },
+      "stamp_moment": {
+        "guilty": "Řehoř vstal. Podíval se na Ladislava. Ladislav se díval na podlahu. Mezi nimi byl vzduch, který nešel přeložit.",
+        "not_guilty": "Řehoř se nepohnul. Pak se pomalu otočil k synovi. Ladislav stál u zdi a třásl se.",
+        "insufficient": "Řehoř složil ruce. Čekal. Jako u výhně — trpělivě, beze spěchu."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "guilty_alternative_provokace",
+          "delay_days": 4,
+          "type": "letter",
+          "text": "Přes Vlčkovu sekretariát: Státní zastupitelství Praha podalo odvolání proti rozsudku ve věci Řehoř, sp. zn. 97/1931. Odvolání argumentuje nedostatečnou závažností trestu při prokázané trestné činnosti s následkem smrti. Odvolání se netýká vás osobně — odvolací soud bude případ přezkoumávat."
+        },
+        {
+          "trigger": "guilty_maximum",
+          "delay_days": 5,
+          "type": "fragment",
+          "text": "Ladislav Řehoř se neobjevil u Šulce & Novák. Šulc se zeptal souseda. Chlapec odjel k tetě do Brna. Ve Svobodném obzoru krátká zpráva o rozsudku — bez hodnocení, jen fakta. Čtyři rány. Osm let."
+        },
+        {
+          "trigger": "guilty_minimum",
+          "delay_days": 6,
+          "type": "fragment",
+          "text": "Ministerstvo spravedlnosti zažádalo Zemský soud o zaslání odůvodnění rozsudku. Standardní procedura. Nebo ne."
+        }
+      ]
+    },
+    {
+      "id": "tyc_horak_d1",
+      "slot": "pool",
+      "type": "routine",
+      "color": "#B5925A",
+      "available_days": [
+        1
+      ],
+      "act": 1,
+      "weight_conditions": {
+        "forced": true
+      },
+      "title": "Krádež chleba",
+      "case_number": "Sp. zn. 58/1931",
+      "defendant": {
+        "name": "Tomáš Horák",
+        "age": 38,
+        "occupation": "nádeník",
+        "detail": "bez stálého zaměstnání od října 1930, ženatý, čtyři děti (3–11 let), bydliště Žižkov, Chelčického 14"
+      },
+      "charge": "Krádež dle §171 trestního zákona: dne 3. března 1931 odcizil z pekárny Antonína Mráze na Žižkově dva bochníky chleba v hodnotě 2 Kčs 40 haléřů. Přistižen na místě činu zaměstnancem pekárny.",
+      "description": "Tomáš Horák vstoupil v pondělí ráno do pekárny Antonína Mráze na rohu Seifertovy ulice. Vzal dva bochníky z regálu u dveří a odešel bez zaplacení. Zaměstnanec Petr Vlček ho zadržel na ulici. Horák nekladl odpor, bochníky vydal a řekl: <em>'Mám doma čtyři děti a od včerejška nic.'</em> Antonín Mráz trvá na trestním oznámení. Případ je technicky jasný. Nic jiného o něm jasné není.",
+      "testimonies": [
+        {
+          "id": "vlcek_zamestnanec",
+          "speaker": "Petr Vlček, zaměstnanec pekárny",
+          "text": "Viděl jsem ho, jak vzal dva bochníky z regálu u dveří a vyšel ven bez zastavení u pultu. Šel jsem za ním. <span class=\"clue\" data-clue-id=\"clue_bez_odporu\">Neběžel. Šel normálně. Když jsem ho oslovil, otočil se a bochníky podal sám. Nemusel jsem ho držet.</span> Řekl: 'Mám doma čtyři děti a od včerejška nic.' Pak jsme šli zpátky do pekárny.",
+          "contradiction_keywords": [
+            "neběžel",
+            "sám podal"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "horak",
+          "speaker": "Tomáš Horák, obžalovaný",
+          "text": "Bral jsem chléb pro děti. To je vše, co mohu říct. <span class=\"clue\" data-clue-id=\"clue_horak_prace\">Od října nemám práci. Byl jsem u čtyř závodů — ve Waltrovce, ve Škodě v Holešovicích, na žižkovských dílnách. Všude říkali, že přijmou na jaře.</span> Žena dostala v prosinci zápal plic. Je lepší, ale vydělávat nemůže. <span class=\"clue\" data-clue-id=\"decoy_horak_driv\">Nikdy jsem nic nevzal. Dvacet let pracuji — nebo pracoval jsem.</span>",
+          "contradiction_keywords": [
+            "od října",
+            "čtyři závody",
+            "nikdy"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "mraz_pekar",
+          "speaker": "Antonín Mráz, majitel pekárny",
+          "text": "Trvám na oznámení. <span class=\"clue\" data-clue-id=\"clue_mraz_dluhy\">Já taky mám dluhy. Mouka zdražila o osmnáct procent. Platím tři zaměstnance. Kdybych každému, kdo nemá, dal chléb zadarmo, za měsíc zavírám.</span> Nezlobím se na toho člověka. Ale kdybych ho pustil, přijdou další. A zákon je od toho, aby byl.",
+          "contradiction_keywords": [
+            "mouka",
+            "osmnáct procent",
+            "zákon"
+          ],
+          "hidden_at_wisdom_below": null
+        }
+      ],
+      "contradictions": [
+        {
+          "id": "ukradl_ale_jak",
+          "description": "Horák vzal chléb, neběžel, sám ho vydal. Není to chování zloděje — je to chování člověka, který nevěděl co jiného dělat.",
+          "involves": [
+            "vlcek_zamestnanec",
+            "horak"
+          ],
+          "highlight_at_wisdom": 50,
+          "unlocks_confrontation": null
+        }
+      ],
+      "clue_system": {
+        "enabled": true,
+        "true_pair_id": "nouze_bez_skryti_strong",
+        "pairs": [
+          {
+            "pair_id": "nouze_bez_skryti_strong",
+            "a_id": "clue_bez_odporu",
+            "b_id": "clue_horak_prace",
+            "strength": "strong"
+          }
+        ],
+        "decoys": [
+          "decoy_horak_driv",
+          "clue_mraz_dluhy"
+        ],
+        "timed_hunt": {
+          "enabled": true,
+          "duration_sec": 45,
+          "speed_upgrade_sec": 15,
+          "auto_confirm_best_on_timeout": true,
+          "timeout_downgrade": false
+        },
+        "info_threshold_unlocks": {
+          "actions": [],
+          "verdicts": [
+            {
+              "min": 30,
+              "ids": [
+                "guilty_lenient"
+              ]
+            },
+            {
+              "min": 55,
+              "ids": [
+                "not_guilty_bagatelni"
+              ]
+            },
+            {
+              "min": 75,
+              "ids": [
+                "not_guilty_krajni_nouze"
+              ]
+            }
+          ]
+        },
+        "rewards": {
+          "on_confirm": {
+            "strong": {
+              "investigation_progress_delta": 40,
+              "unlock_verdict_ids": [
+                "not_guilty_bagatelni",
+                "not_guilty_krajni_nouze"
+              ],
+              "narrative_lines": [
+                "Neběžel. Sám vydal bochníky. Hledal pomoc, ne únik.",
+                "Od října bez práce — čtyři závody, čtyři odmítnutí. Chléb nebyl první volba.",
+                "Zákon zná krajní nouzi. Otázka je, zda to, co vidí soud, je krajní nouze."
+              ]
+            }
+          }
+        }
+      },
+      "investigation": {
+        "interview": {
+          "target": "horak_zena",
+          "target_label": "Marie Horáková, manželka obžalovaného",
+          "reveals": "motivation",
+          "text": "Pavel — náš nejstarší — včera ráno přinesl domů kus chleba od sousedky paní Novotné. Já jsem plakala. <span class=\"clue\" data-clue-id=\"clue_horak_prace\">Tomáš odešel ráno s tím, že zkusí ještě jednou do Waltrovky. Vrátil se za hodinu. Nic neřekl. Pak šel ven znovu.</span> Nevěděla jsem, co dělá. Teď vím.",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Integrita": -1,
+              "Vina": 2
+            },
+            "factions": {
+              "Lid": 1
+            }
+          }
+        },
+        "records": {
+          "source": "Evidence nezaměstnaných, Zemský úřad Praha; výkaz rodinného příjmu",
+          "reveals": "facts",
+          "text": "Evidence nezaměstnaných: Tomáš Horák registrován od 14. října 1930. Podpora: 12 Kčs týdně — vyplacena do 28. února 1931, podpora vyčerpána po 20 týdnech dle zákonného limitu. <span class=\"clue\" data-clue-id=\"clue_horak_prace\">Od 1. března 1931 bez podpory i bez příjmu. Manželka Marie vedena jako rekonvalescent po pleuropneumonii — pracovně neschopná do konce března.</span> Rodinný příjem k 3. březnu 1931: nula.",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -12,
+            "traits": {
+              "Integrita": -2,
+              "Vina": 1
+            },
+            "factions": {
+              "Moc": 1
+            }
+          }
+        },
+        "informant": {
+          "reveals": "context",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Vina": 1
+            },
+            "factions": {
+              "Lid": -1,
+              "Moc": 1
+            }
+          },
+          "variants": {
+            "lid_high": "Na Žižkově je Horáků víc. Ne každý jde k pekaři — někteří jdou k zastavárně, jiní k lichváři. Horák šel k pekaři, protože jinam se s prázdnýma rukama nejde. Mráz to ví. Proto podal oznámení — aby nešel víc.",
+            "moc_high": "Státní zastupitelství sleduje krádeže potravin od února — od té doby, kdy se to začalo dít systematicky. Exemplární trest má zastavit ostatní. Horák není první — a nebude poslední.",
+            "kapital_high": "Mráz má úvěr u záložny Žižkov. Záložna ho tlačí. Pokud Mráz ustoupí, záložna to vnímá jako slabost. V jeho situaci si nemůže dovolit být velkorysý — ani kdyby chtěl.",
+            "default": "Dva bochníky za dvě koruny čtyřicet. To je co zákon řeší. Co zákon neřeší: čtyři děti, zápal plic, konec podpory. Ale soud není charita — a Horák to ví taky."
+          }
+        }
+      },
+      "verdicts": {
+        "guilty": {
+          "sentences": {
+            "standard": {
+              "label": "Pokuta 20 Kčs, náhrada škody 2 Kčs 40 haléřů",
+              "description": "Krádež je prokázána. Pokuta odpovídá hodnotě odcizeného s přihlédnutím k okolnostem. Horák musí zaplatit — z čeho, to zákon neřeší.",
+              "effects": {
+                "integrita": 2,
+                "vina": 3,
+                "nadeje": -2,
+                "moc": 2,
+                "lid": -4,
+                "finance": 10
+              }
+            },
+            "maximum": {
+              "label": "30 dní vězení a náhrada škody",
+              "description": "Vězení má odradit ostatní. Čtyři děti zůstanou bez otce a bez příjmu na měsíc. Marie Horáková ještě není zdravá.",
+              "requires": {
+                "odvaha_max": 25
+              },
+              "effects": {
+                "integrita": 3,
+                "vina": 6,
+                "nadeje": -4,
+                "moc": 5,
+                "lid": -8,
+                "finance": 15
+              }
+            },
+            "lenient": {
+              "label": "Podmíněné upuštění od potrestání — napomenutí",
+              "description": "Zákon umožňuje podmíněné upuštění od trestu při nepatrné škodě a první krádeži. Horák dostane napomenutí a povinnost vrátit 2 Kčs 40 haléřů.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 1,
+                "vina": 1,
+                "nadeje": 2,
+                "lid": 3,
+                "moc": -2,
+                "finance": 8
+              }
+            }
+          }
+        },
+        "not_guilty": {
+          "approaches": {
+            "bagatelni": {
+              "label": "Zproštění — nepatrná škoda, žádná recidiva",
+              "description": "Škoda 2 Kčs 40 haléřů je nepatrná. Horák nekradl ze zištnosti, nevykazoval útěk ani odpor. Trestní stíhání je nepřiměřené.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": -1,
+                "vina": -2,
+                "nadeje": 3,
+                "lid": 5,
+                "moc": -3,
+                "finance": 10
+              }
+            },
+            "krajni_nouze": {
+              "label": "Alternativa: Zproštění — krajní nouze dle §2 trestního zákona",
+              "description": "Krajní nouze vylučuje protiprávnost činu, je-li odvráceno bezprostřední nebezpečí hrozící životu nebo zdraví. Čtyři děti bez jídla od předchozího dne a vyčerpaná podpora mohou tuto podmínku naplňovat. Precedent.",
+              "requires_investigation": 2,
+              "requires": {
+                "odvaha_min": 45
+              },
+              "effects": {
+                "integrita": 3,
+                "odvaha": 5,
+                "vina": -3,
+                "nadeje": 4,
+                "lid": 7,
+                "moc": -6,
+                "finance": 10,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "insufficient_evidence": {
+          "options": {
+            "close": {
+              "label": "Zastavení — neúčelnost trestního řízení",
+              "description": "Čin je sice prokázán, ale zájem společnosti na potrestání je zjevně nižší než náklady řízení a dopad na rodinu. Věc se zastavuje bez záznamu.",
+              "effects": {
+                "moudrost": 2,
+                "vina": 1,
+                "nadeje": 2,
+                "lid": 2,
+                "finance": 8
+              }
+            }
+          }
+        }
+      },
+      "aftermath": {
+        "guilty_standard": "Horák zaplatil pokutu — půjčil si od souseda. Mráz dostal náhradu. Příští pondělí přišel Horák znovu do Waltrovky. Vzali ho na tři dny jako výpomoc.",
+        "guilty_maximum": "Horák odešel s policistou. Marie Horáková šla s dětmi k sestře na Vinohrady. Za měsíc se vrátili. Dveře bytu byly zamčené — pronajímatel vyměnil zámek za neplacení.",
+        "guilty_lenient": "Horák dostal napomenutí. Mráz mu podal ruku. Nevěděl proč — udělal to. Horák mu vrátil dvě koruny a čtyřicet haléřů o tři týdny později, v den, kdy ho Waltrovka přijala na stálé místo.",
+        "not_guilty_bagatelni": "Horák odešel volný. Mráz za ním šel na chodbu a dal mu bochník. Nic neřekl. Horák taky ne. Ben to viděl z okna soudní síně.",
+        "not_guilty_krajni_nouze": "Rozsudek vyšel v odpoledních novinách — dvě věty na pátá straně. Ráno přišly tři dopisy. Dva nadávaly. Jeden psal děkuji. Byl bez podpisu.",
+        "insufficient_close": "Případ uzavřen bez záznamu. Horák odešel. Mráz podal stížnost na postup soudu k zemskému úřadu. Dostane odpověď za šest týdnů."
+      },
+      "stamp_moment": {
+        "guilty": "Horák přikývl. Pak se podíval na okno — jako by hledal, kudy jde odtud domů.",
+        "not_guilty": "Horák stál. Nechápavě. Pak vydechl — pomalu, jako člověk, který zadržuje dech od rána.",
+        "insufficient": "Horák se podíval na Bena. Pak na dveře. Nebyl si jistý, jestli smí odejít."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "not_guilty_krajni_nouze",
+          "delay_days": 3,
+          "type": "fragment",
+          "text": "Vlček přinesl ranní poštu. Mezi spisy jeden list bez záhlaví: 'Krajní nouze není výmluva. Je to pozvání.' Bez podpisu. Ben nevěděl, zda je to výhrůžka nebo souhlas."
+        },
+        {
+          "trigger": "guilty_maximum",
+          "delay_days": 4,
+          "type": "fragment",
+          "text": "Svobodný obzor, čtvrtá strana: Žižkovský nádeník dostal měsíc vězení za dva bochníky. Redakce přijímá příspěvky na rodinu. Do tří dnů přišlo čtyřicet dva korun."
+        }
+      ]
+    },
+    {
+      "id": "tyc_horac_d7",
+      "slot": "pool",
+      "type": "political",
+      "color": "#5A6E8A",
+      "available_days": [
+        7
+      ],
+      "act": 1,
+      "weight_conditions": {
+        "forced": true
+      },
+      "title": "Svědkyně",
+      "case_number": "Sp. zn. 101/1931",
+      "defendant": {
+        "name": "Jiří Veselý",
+        "age": 34,
+        "occupation": "tiskař, člen místního výboru sociální demokracie",
+        "detail": "zaměstnanec tiskárny Orbis, Smíchov; ženatý, jedno dítě; člen redakční rady stranického tisku"
+      },
+      "charge": "Pobuřování dle §15 zákona na ochranu republiky č. 50/1923 Sb.: Jiří Veselý na stranické schůzi dne 18. února 1931 v sále hostince Na Příkopě prohlásil, že 'vláda systematicky dopravuje ozbrojené jednotky do průmyslových měst, aby rozbila stávky dříve, než začnou', a vyzval přítomné k 'odporu zákonnými i nezákonnými prostředky'. Svědkyní obžaloby je Jana Horáčková, úřednice ministerstva vnitra.",
+      "description": "Tiskař Jiří Veselý přednášel na uzavřené stranické schůzi. Schůze byla uzavřená — ale ministerstvo vnitra o ní vědělo. Jana Horáčková, úřednice oddělení politického dohledu, podala zprávu, z níž vychází obžaloba. Veselý popírá přesný obsah svých slov a popírá výzvu k nezákonným prostředkům. Horáčková trvá na svém. Otázka stojí takto: co přesně zaznělo v sále Na Příkopě osmnáctého února — a proč je jedinou svědkyní žena z ministerstva, která tam seděla jako host.",
+      "testimonies": [
+        {
+          "id": "vesely",
+          "speaker": "Jiří Veselý, obžalovaný",
+          "text": "Mluvil jsem o nasazení četnictva při stávkách v Moravské Ostravě a v Kladně. To jsou veřejné fakty — psaly o nich noviny. <span class=\"clue\" data-clue-id=\"clue_vesely_slova\">Řekl jsem: 'Vláda připravuje opatření, která mohou být použita k rozprášení legálních stávek. Je naší povinností připravit se na obranu zákonných práv.' Nezákonné prostředky? To jsem neřekl. To je lež.</span> Horáčková seděla v druhé řadě. Přivedl ji Novák — předseda místního výboru. Řekl, že je to jeho sestřenice. Nevím, co je zač.",
+          "contradiction_keywords": [
+            "zákonných práv",
+            "obranu",
+            "sestřenice"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "horac_svedkyne",
+          "speaker": "Jana Horáčková, úřednice ministerstva vnitra, svědkyně obžaloby",
+          "text": "Přítomna jsem byla jako soukromá osoba — přivedl mě přítel, člen výboru. <span class=\"clue\" data-clue-id=\"clue_horac_zprava\">Zprávu jsem podala ze své úřední povinnosti poté, co jsem zjistila, že pan Veselý vysloveně vyzval k 'odporu zákonným i nezákonným prostředky'.</span> Slova si pamatuji přesně — zapisuji si poznámky na schůzích zvykem ze zaměstnání. <span class=\"clue\" data-clue-id=\"clue_horac_poznamky\">Zápisník mám u sebe. Předám ho soudu, pokud bude požádáno.</span>",
+          "contradiction_keywords": [
+            "zápisník",
+            "ze své úřední povinnosti",
+            "přesně"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "novak_predseda",
+          "speaker": "Karel Novák, předseda místního výboru sociální demokracie",
+          "text": "Přivedl jsem ji jako hosta. Řekla, že se zajímá o politiku — a že je moje sestřenice. <span class=\"clue\" data-clue-id=\"clue_novak_neznama\">Sestřenici Janu nemám. Mám sestřenici Marii — ta žije v Plzni. Nevím, kdo mi tu ženu doporučil. Přišla sama a řekla, že je ode mě.</span> Co Veselý řekl — slyšel jsem ho mluvit o Ostravě a o právech. O nezákonných prostředcích nevím. Ale sál byl hlučný.",
+          "contradiction_keywords": [
+            "sestřenici Janu nemám",
+            "sama přišla",
+            "sál byl hlučný"
+          ],
+          "hidden_at_wisdom_below": null
+        }
+      ],
+      "contradictions": [
+        {
+          "id": "horac_neni_sestrenice",
+          "description": "Horáčková tvrdila, že ji přivedl Novák jako příbuzný. Novák říká, že žádnou sestřenici Janu nemá a že přišla sama s tím, že je od něj. Jeden z nich lže — nebo byli oba oklamáni.",
+          "involves": [
+            "horac_svedkyne",
+            "novak_predseda"
+          ],
+          "highlight_at_wisdom": 65,
+          "unlocks_confrontation": "horac_svedkyne"
+        },
+        {
+          "id": "zapisnik_dokazni",
+          "description": "Horáčková říká, že si zapisuje poznámky zvykem ze zaměstnání a má zápisník. Na soukromé schůzi, kam přišla jako host. To není soukromý zvyk — to je výkon dohledu.",
+          "involves": [
+            "horac_svedkyne",
+            "vesely"
+          ],
+          "highlight_at_wisdom": 70,
+          "unlocks_confrontation": "horac_svedkyne"
+        }
+      ],
+      "clue_system": {
+        "enabled": true,
+        "true_pair_id": "agent_ministerstva_strong",
+        "pairs": [
+          {
+            "pair_id": "agent_ministerstva_strong",
+            "a_id": "clue_horac_poznamky",
+            "b_id": "clue_novak_neznama",
+            "strength": "strong"
+          },
+          {
+            "pair_id": "slova_vs_zprava_medium",
+            "a_id": "clue_vesely_slova",
+            "b_id": "clue_horac_zprava",
+            "strength": "medium"
+          }
+        ],
+        "decoys": [
+          "decoy_svedkyni_pozvani"
+        ],
+        "timed_hunt": {
+          "enabled": true,
+          "duration_sec": 65,
+          "speed_upgrade_sec": 22,
+          "auto_confirm_best_on_timeout": true,
+          "timeout_downgrade": false
+        },
+        "info_threshold_unlocks": {
+          "actions": [
+            {
+              "min": 50,
+              "ids": [
+                "pool_inv_confrontation"
+              ]
+            }
+          ],
+          "verdicts": [
+            {
+              "min": 35,
+              "ids": [
+                "guilty_lenient"
+              ]
+            },
+            {
+              "min": 60,
+              "ids": [
+                "not_guilty_formal"
+              ]
+            },
+            {
+              "min": 80,
+              "ids": [
+                "not_guilty_with_comment",
+                "insufficient_reopen"
+              ]
+            }
+          ]
+        },
+        "rewards": {
+          "on_confirm": {
+            "strong": {
+              "investigation_progress_delta": 48,
+              "unlock_actions": [
+                "pool_inv_confrontation"
+              ],
+              "unlock_verdict_ids": [
+                "not_guilty_with_comment",
+                "insufficient_reopen"
+              ],
+              "narrative_lines": [
+                "Zápisník na soukromé schůzi. Přišla od nikoho. Podala zprávu z úřední povinnosti.",
+                "Horáčková nebyla host. Byla výkon dohledu v sukni.",
+                "Novák nemá sestřenici Janu. Kdo ji tam tedy poslal — a proč zrovna toho večera?"
+              ]
+            },
+            "medium": {
+              "investigation_progress_delta": 24,
+              "unlock_verdict_ids": [
+                "not_guilty_formal",
+                "guilty_lenient"
+              ],
+              "narrative_lines": [
+                "Veselý říká zákonná práva. Horáčková říká nezákonné prostředky. Jeden z nich si pamatuje jinak.",
+                "V hlučném sále může zaznít jedno slovo navíc — nebo jedno méně."
+              ]
+            }
+          }
+        }
+      },
+      "investigation": {
+        "interview": {
+          "target": "vesely_kolega",
+          "target_label": "František Duda, tiskař, přítomen na schůzi",
+          "reveals": "motivation",
+          "text": "Byl jsem tam. Veselý mluvil o Ostravě — to ano. O nezákonných prostředcích? <span class=\"clue\" data-clue-id=\"clue_vesely_slova\">Říkal: 'Zákonné prostředky nestačí — ale to neznamená, že se máme vzdát.'</span> Takhle. Ne výzva. Konstatování. Ta ženská si to sedla do třetí řady a pořád něco psala. Mysleli jsme, že stenografuje pro stranu. <span class=\"clue\" data-clue-id=\"decoy_svedkyni_pozvani\">Kdesi u pultu se říkalo, že přišla na oficiální pozvání z ústředí — nikdo to neověřoval.</span> Pak jsme se dozvěděli, kdo je.",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Integrita": -1,
+              "Vina": 1
+            },
+            "factions": {
+              "Lid": 2,
+              "Moc": -1
+            }
+          }
+        },
+        "records": {
+          "source": "Personální záznamy ministerstva vnitra; policejní hlášení o schůzi ze dne 18. 2. 1931; rejstřík stížností na politický dohled",
+          "reveals": "facts",
+          "text": "Personální záznamy MV: Jana Horáčková, úřednice oddělení politického dohledu od září 1930. <span class=\"clue\" data-clue-id=\"clue_horac_zprava\">Úřední zpráva č. 47/1931 ze dne 19. 2. 1931, podepsaná Horáčkovou: 'Přítomna na schůzi sociální demokracie jako civile — bez pověření nadřízeného.'</span> Pozn. vedoucího oddělení: 'Iniciativa vítána.' Rejstřík stížností: tři podobné případy v lednu a únoru 1931 — ve dvou zápisník jako důkaz, v jednom svědectví zrušeno pro nedůvěryhodnost svědka.",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -12,
+            "traits": {
+              "Integrita": -2,
+              "Vina": 1
+            },
+            "factions": {
+              "Moc": 2,
+              "Lid": -2
+            }
+          },
+          "unlocks_contradiction": "horac_neni_sestrenice"
+        },
+        "informant": {
+          "reveals": "context",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Vina": 1
+            },
+            "factions": {
+              "Moc": 2,
+              "Lid": -1
+            }
+          },
+          "variants": {
+            "lid_high": "Horáčková není výjimka. Ministerstvo vnitra v roce 1931 vyslalo na stranické schůze přes dvě stě úředníků jako 'soukromé osoby'. Zákon jim to nezakazuje. Zákon neříká, co je špeh a co je občan. Veselý to věděl — a přesto mluvil.",
+            "moc_high": "Vlček má informaci o tomto případu. Ne přímo — ale zákon na ochranu republiky je jeho oblíbený nástroj. Pokud soud Veselého odsoudí, bude to signál, že zápisník stačí jako důkaz. Pokud zprostí, bude to jiný signál.",
+            "kapital_high": "Tiskárna Orbis zásobuje stranický tisk — ale také vládní zakázky. Ředitel Orbisu by byl rád, kdyby se případ uzavřel tiše v obou směrech. Odsouzení i zproštění mu komplikuje zakázky.",
+            "default": "Horáčková na schůzi nebyla poprvé. Zápisník má praxí vychozený. Kdy naposledy se zápisník z politické schůze stal základem obžaloby? Záleží, kdo ho psal — a kdo to potřeboval."
+          }
+        },
+        "confrontation": {
+          "target": "horac_svedkyne",
+          "target_label": "Jana Horáčková, svědkyně obžaloby",
+          "requires_contradiction": "horac_neni_sestrenice",
+          "requires_courage": 55,
+          "cost": 2,
+          "prompt": "Slečno Horáčková, Karel Novák říká, že žádnou sestřenici Janu nemá. Přišla jste sama a řekla jste, že jste od něj. Vaše zpráva uvádí, že jste přítomna jako civile bez pověření nadřízeného — ale váš vedoucí to označil za vítanou iniciativu. Jak je to tedy: byla jste tam soukromě, nebo ve výkonu dohledu?",
+          "success": {
+            "text": "Horáčková je klidná. Příliš klidná. 'Jsem úřednice ministerstva. Bylo mou povinností podat zprávu o tom, co jsem slyšela.' Na otázku o Novákovi: 'Mohla jsem se splést v příbuzenském vztahu. Přivedl mě člověk, který se za člena výboru označil.' Zápisník leží na stole před ní. Otevřený na správné stránce. Jako by čekala na tuto otázku od začátku.",
+            "reveals": "Horáčková nepopřela, že tam byla za ministerstvo. Jen přesunula těžiště: mám zápisník, mám zprávu, zákon mi to nezakazoval. Co zákon nezakazuje a co je čestné — to jsou dvě různé otázky. Soud musí rozhodnout o té první."
+          }
+        }
+      },
+      "verdicts": {
+        "guilty": {
+          "sentences": {
+            "standard": {
+              "label": "Pokuta 500 Kčs za pobuřování",
+              "description": "Výzva k odporu na stranické schůzi, byť v uzavřeném prostředí, naplňuje znaky pobuřování dle §15. Horáčkové svědectví nebylo vyvráceno. Pokuta bez vězení zohledňuje první delikt a charakter sdělení.",
+              "effects": {
+                "integrita": 2,
+                "vina": 3,
+                "nadeje": -2,
+                "moc": 5,
+                "lid": -5,
+                "finance": 12
+              }
+            },
+            "maximum": {
+              "label": "6 měsíců podmíněně a pokuta 1 000 Kčs",
+              "description": "Výzva k nezákonným prostředkům je přímé ohrožení veřejného pořádku. Podmíněný trest se záznamem omezí Veselého v politické činnosti.",
+              "requires": {
+                "odvaha_max": 30
+              },
+              "effects": {
+                "integrita": 3,
+                "vina": 5,
+                "nadeje": -3,
+                "moc": 8,
+                "lid": -8,
+                "finance": 18
+              }
+            },
+            "lenient": {
+              "label": "Napomenutí — neurčitost výroku vylučuje přesnou kvalifikaci",
+              "description": "Výrok byl pronesen v kontextu právní obhajoby odborových práv. Bez druhého svědka nelze prokázat přesné znění. Napomenutí jako výstraha.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 1,
+                "vina": 2,
+                "nadeje": -1,
+                "moc": 2,
+                "lid": -1,
+                "finance": 8
+              }
+            }
+          }
+        },
+        "not_guilty": {
+          "approaches": {
+            "formal": {
+              "label": "Zproštění — jediný svědek, neurčitost výroku",
+              "description": "Obžaloba stojí výhradně na svědectví jediné osoby. Přesné znění výroku je sporné — dva přítomní uvádějí odlišné verze. Pochybnost jde v prospěch obžalovaného.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": -1,
+                "odvaha": 3,
+                "vina": -2,
+                "nadeje": 2,
+                "lid": 5,
+                "moc": -5,
+                "finance": 10
+              }
+            },
+            "with_comment": {
+              "label": "Alternativa: Zproštění — svědectví získané politickým dohledem",
+              "description": "Soud konstatuje, že svědkyně se na schůzi dostavila jako výkon politického dohledu ministerstva vnitra za pomoci legendy o příbuzenském vztahu. Takto získané svědectví nelze jako důkaz akceptovat.",
+              "requires_investigation": 3,
+              "requires": {
+                "odvaha_min": 60
+              },
+              "effects": {
+                "integrita": 5,
+                "odvaha": 7,
+                "vina": -1,
+                "nadeje": 3,
+                "lid": 8,
+                "moc": -10,
+                "finance": 10,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 2
+                  },
+                  {
+                    "key": "flag_vlcek_upozorneni",
+                    "value": true
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "insufficient_evidence": {
+          "options": {
+            "reopen": {
+              "label": "Přerušit — vyžádat zápisník Horáčkové jako listinný důkaz",
+              "description": "Soud přeruší a nařídí předložení zápisníku ke grafologickému přezkoumání — zjistit, kdy byly záznamy pořízeny a zda odpovídají originálu.",
+              "requires_investigation": 2,
+              "effects": {
+                "moudrost": 4,
+                "vina": 1,
+                "nadeje": 1,
+                "moc": -2,
+                "finance": 8,
+                "flags": [
+                  {
+                    "key": "flag_horac_zapisnik_vysetreni",
+                    "value": true
+                  }
+                ]
+              }
+            },
+            "close": {
+              "label": "Zastavení — nedostatečná průkaznost jediného svědectví",
+              "description": "Jedno svědectví bez koroborujícího důkazu nestačí k odsouzení za trestný čin pobuřování. Případ se zastavuje.",
+              "effects": {
+                "moudrost": 2,
+                "vina": 1,
+                "moc": -2,
+                "finance": 8
+              }
+            }
+          }
+        }
+      },
+      "aftermath": {
+        "guilty_standard": "Veselý zaplatil pět set korun. Orbis ho nepropustil — ale přesunul ho z politického tisku na technické zakázky. Horáčková podala v březnu ještě dvě zprávy.",
+        "guilty_maximum": "Veselý dostal podmínku a záznam. Stranický výbor ho odvolal z redakční rady — ne z přesvědčení, ale ze strachu. V dílně ho přivítali potleskem. Orbis zvažoval propuštění. Neprovedl to.",
+        "guilty_lenient": "Napomenutí. Veselý odešel. V Právu lidu krátký článek: 'Soud uznal nejistotu výroku.' Horáčková podala stížnost na nedostatečný trest.",
+        "not_guilty_formal": "Veselý zproštěn. Horáčková opustila soudní síň bez výrazu. Za tři dny přišel Vlčkův dopis — nic konkrétního, jen věta: 'Případ byl sledován s pozorností.'",
+        "not_guilty_with_comment": "Ben v rozsudku napsal, že svědectví získané infiltrací uzavřené schůze pod falešnou identitou nelze použít jako důkaz. Ministerstvo vnitra podalo stížnost. Vlček dal Benovi vědět ještě tentýž den odpoledne — osobně, na chodbě.",
+        "insufficient_reopen": "Zápisník předán soudu. Grafolog zjistil, že část zápisů byla doplněna jiným inkoustem — pravděpodobně po schůzi. Horáčková to nevysvětlila. Případ pokračuje před jiným senátem.",
+        "insufficient_close": "Případ zastaven. Veselý odešel volný. Horáčková podala novou zprávu o schůzi, která se konala o týden později."
+      },
+      "stamp_moment": {
+        "guilty": "Veselý přikývl. Díval se na Horáčkovou. Horáčková se dívala na zápisník.",
+        "not_guilty": "Horáčková zavřela zápisník. Pomalu. Jako by zavírala případ, který ještě neskončil.",
+        "insufficient": "Zápisník zůstal na stole. Nikdo ho nevzal. Ben se na něj díval, jak odcházeli."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "not_guilty_with_comment",
+          "delay_days": 2,
+          "type": "letter",
+          "text": "Vlček přišel osobně. Nenechal nic písemného. Řekl jen: 'Případ Horáčková byl sledován s pozorností. Vaše odůvodnění bude předmětem konzultace s ministerstvem.' Odešel dřív, než Ben stačil odpovědět."
+        },
+        {
+          "trigger": "not_guilty_with_comment",
+          "delay_days": 4,
+          "type": "fragment",
+          "text": "Právo lidu, titulní strana: 'Soud odmítl zpravodajské svědectví ministerstva vnitra. Precedent v zákoně na ochranu republiky.' Lidové noviny, str. 3: 'Soudce překročil rámec trestního řízení.' Národní listy: bez komentáře."
+        },
+        {
+          "trigger": "guilty_standard",
+          "delay_days": 3,
+          "type": "fragment",
+          "text": "Horáčková podala v březnu ještě dvě zprávy — obě z uzavřených schůzí. Obě vedou k obžalobám. Zápisník je nyní předkládán jako standardní důkaz."
+        },
+        {
+          "trigger": "insufficient_reopen",
+          "delay_days": 5,
+          "type": "fragment",
+          "text": "Grafologický posudek: záznamy v zápisníku Horáčkové pořízeny dvěma různými pery. Část zápisů doplněna pravděpodobně den po schůzi. Veselý byl zatím propuštěn na svobodu."
+        }
+      ]
+    },
+    {
+      "id": "pool_a1_posta",
+      "title": "Pošta",
+      "case_number": "Sp. zn. 99/1931",
+      "slot": "pool",
+      "act": 1,
+      "type": "moral_dilemma",
+      "color": "#2C4A7C",
+      "available_days": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "weight_conditions": {
+        "base_weight": 1
+      },
+      "defendant": {
+        "name": "Ladislav Cílek",
+        "age": 41,
+        "occupation": "tříděč a obsluha telegrafní místnosti, Ústřední pošta, Praha",
+        "detail": "20 let u pošty, ženatý, tři děti, bydliště Karlín, bez kázeňského záznamu; od roku 1928 na Florenci u telegrafu a třídění depeší s finanční náplní"
+      },
+      "charge": "Porušení poštovního tajemství, neoprávněné narušení zabezpečení zásilky a zneužití postavení veřejného podniku dle zák. č. 1/1924 Sb. o provozu pošty a telegrafu ve spojení s ustanoveními trestního zákona o zneužití služby.",
+      "description": "Ladislava Cílka nahlásil tříděcí kolega František Dvořák. Podle Dvořáka Cílek narušil tři telegrafní zásilky určené soukromé kanceláři v ulici Na Příkopě, které nesměl číst, a tím umožnil, aby se na podvodném výběru vkladů srazilo přes čtyřicet drobných vkladatelů. Cílek písemně přiznává narušení, ale trvá na tom, že v obsahu depeší viděl úmyslné maření pravidel a že podnět předal přímo k poštovní prokuratuře — policejní protokol o zahájení prošetření fiktivní záložny existuje. Morální jádro neleží jen u toho, zda obálku otevřel — ale zda soud odsouhlasí, že tajemství pošty lze v příčinné linii považovat za cenu záchrany, která jinak čekat nemohla — a proč o tom bylo třeba mluvit dva dny poté, co Dvořák neuspěl s převedením na místo v Písku.",
+      "testimonies": [
+        {
+          "id": "cilek",
+          "speaker": "Ladislav Cílek, obžalovaný",
+          "text": "Ano, porušil jsem. Tři oficiální depeše šly v balíčku, který měl být doručen na adresu, kterou jsme sami evidovali jako fiktivní schránku — třídil jsem je o deset minut déle, než smím, a přečetl jsem tři řádky o místech výběru. <span class=\"clue\" data-clue-id=\"clue_cilek_depele\">Dne 23. 2. 1931, noční směna, pod č. zás. T-14 až T-16, text depeše: 'Doručit hotové z Paláce Lucerna do Kladna do otevřeného okna' — a částka, kterou jsme týden poté našli v seznamu u policejního plánování.</span> Bez toho, že bych je zadržel a ohlásil, by se třináct tisíc korun rozplynulo stejně jako týden předtím. <span class=\"clue\" data-clue-id=\"clue_cilek_postou\">Druhý den jsem odeslal písemný záznam přímo státní prokurátorce u pošty — ne šéfovi, který mi už dvakrát vytýkal, že popletu čísla.</span> To není hrdinství, pane soudu, je to tísňová volba, kterou zákon sám o sobě nenazývá takhle. <span class=\"clue\" data-clue-id=\"decoy_cilek_praxe\">Dvanáct let třídím tisíce zásilek bez jediné reklamace, dokud mne pán Dvořák neshodil na směny, o které nikdo neusiluje.</span>",
+          "contradiction_keywords": [
+            "depeše",
+            "T-14",
+            "prokurátorce",
+            "Dvořák"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "dvorak",
+          "speaker": "František Dvořák, tříděč, oznamovatel",
+          "text": "Nejsem soud, ale slyšet, jak kolega čte, co není pro něj, je důvod. Otevřeně říkám: než jsem to nahlásil, čekal jsem, co udělá sám ústav — nic. <span class=\"clue\" data-clue-id=\"clue_dvorak_termin\">Trestní podání jsem podal 26. 2. 1931 k večeru, tedy dva dny poté, co u komise pro místní přesuny padlo definitivní odmítnutí mého požadavku o převedení na pobočku v Písku.</span> To spolu nesouvisí, pane doktore — přesouval jsem schránky ve stejné noci, ve které Cílek třídil, a chtěl jsem, aby o tom věděl nadřízený. <span class=\"clue\" data-clue-id=\"clue_dvorak_pet\">Podpis mého hlášení sice jde krátce poté, co nabylo právní moci zápis o komisi, ale fakt, že Cílek hrál s obsahem zásilky, kterou nesl poštovní tisk, je očividný.</span> <span class=\"clue\" data-clue-id=\"decoy_dvorak_vule\">Sám považuji tajemství korespondence za svaté — proto jsem chtěl, aby s tím býval konfrontován někdo, kdo písemnosti číst nesmí.</span>",
+          "contradiction_keywords": [
+            "26. 2",
+            "Písek",
+            "komise",
+            "T-14"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "bartakova",
+          "speaker": "Anežka Bartáková, mzdová účetní, poštovní provoz Florenc (svědkyně mimo půdorys činu)",
+          "text": "Spory mezi tříděči jsou tady každý týden — špatná světlice, popletená čísla, přesuny mezi pobočkami. Cílek je svědomitý, ale tvrdohlavý, Dvořák mluvil o odchodu už od ledna, protože chtěl být blíž u rodině na jihu. <span class=\"clue\" data-clue-id=\"clue_bartakova_komise\">Zápis o zamítnutí přestupu Dvořáka nabylo právní moci 24. 2. 1931 v 15.30, podepsaná tříčlenná komise — ve složení byl i Cílek, který hlasoval s většinou pro odmítnutí, formální důvod: místní pobočka v Písku není otevřena dříve než v červnu.</span> Tím končím, pane doktore; co se stalo 23. v noci, neviděla jsem, pracovala jsem s převody na Moravu.",
+          "contradiction_keywords": [
+            "24. 2",
+            "Cílek",
+            "komise",
+            "červnu"
+          ],
+          "hidden_at_wisdom_below": null
+        }
+      ],
+      "contradictions": [
+        {
+          "id": "dvorak_nacasovani",
+          "description": "Dvořák nahlásil Cílka 26. 2. — přesně dva dny poté, co bylo zamítnutí přestupu, včetně Cílkova hlasu, potvrzeno. O náhodě, ne o odvetě, jde spor.",
+          "involves": [
+            "dvorak",
+            "bartakova",
+            "cilek"
+          ],
+          "highlight_at_wisdom": 65,
+          "unlocks_confrontation": "dvorak"
+        },
+        {
+          "id": "dve_depele_nebo_tri",
+          "description": "Cílek písemně píše o třech depeších, Dvořák u výslechu původně uvedl čtyři, v pozdějším dopise dvě. Počet narušených zásil je samostatná pochyba.",
+          "involves": [
+            "cilek",
+            "dvorak"
+          ],
+          "highlight_at_wisdom": 80,
+          "unlocks_confrontation": null
+        }
+      ],
+      "clue_system": {
+        "enabled": true,
+        "true_pair_id": "par_podvod_policejne",
+        "pairs": [
+          {
+            "pair_id": "par_podvod_policejne",
+            "a_id": "clue_cilek_depele",
+            "b_id": "clue_policie_zapis",
+            "strength": "strong"
+          },
+          {
+            "pair_id": "par_prestup_komise",
+            "a_id": "clue_dvorak_termin",
+            "b_id": "clue_bartakova_komise",
+            "strength": "medium"
+          },
+          {
+            "pair_id": "par_postou_prokuratora",
+            "a_id": "clue_cilek_postou",
+            "b_id": "clue_razitko_odeslany",
+            "strength": "weak",
+            "soft_fail": true
+          }
+        ],
+        "decoys": [
+          "decoy_cilek_praxe",
+          "decoy_dvorak_vule",
+          "clue_dvorak_pet"
+        ],
+        "timed_hunt": {
+          "enabled": true,
+          "duration_sec": 62,
+          "speed_upgrade_sec": 20,
+          "auto_confirm_best_on_timeout": true,
+          "timeout_downgrade": false
+        },
+        "info_threshold_unlocks": {
+          "actions": [
+            {
+              "min": 32,
+              "ids": [
+                "pool_inv_interview"
+              ]
+            },
+            {
+              "min": 40,
+              "ids": [
+                "pool_inv_records"
+              ]
+            },
+            {
+              "min": 52,
+              "ids": [
+                "pool_inv_informant"
+              ]
+            },
+            {
+              "min": 60,
+              "ids": [
+                "pool_inv_confrontation"
+              ]
+            }
+          ],
+          "verdicts": [
+            {
+              "min": 40,
+              "ids": [
+                "guilty_lenient",
+                "not_guilty_with_comment"
+              ]
+            },
+            {
+              "min": 60,
+              "ids": [
+                "guilty_alternative",
+                "insufficient_reopen"
+              ]
+            },
+            {
+              "min": 80,
+              "ids": [
+                "not_guilty_system"
+              ]
+            }
+          ]
+        },
+        "rewards": {
+          "on_confirm": {
+            "strong": {
+              "investigation_progress_delta": 42,
+              "unlock_actions": [
+                "pool_inv_confrontation"
+              ],
+              "unlock_verdict_ids": [
+                "guilty_alternative",
+                "insufficient_reopen"
+              ],
+              "narrative_lines": [
+                "Policejní protokol o fiktivním výběru a depeších T-14 až T-16 tvoří jeden řetěz: číslo, které Cílek píše, a číslo, které nese úřední stůl, je totéž.",
+                "Cílkův písemný zásah není tichá omluva, ale šifrované oznámení, které šlo cestou, kterou má šetřit tajemství, ne nosit ho domů.",
+                "Dvořákovu motivaci tři dny po komisi musí soud slyšet, i když sám písemný podnět mluví o tajemství, ne o Písku."
+              ]
+            },
+            "medium": {
+              "investigation_progress_delta": 22,
+              "unlock_verdict_ids": [
+                "guilty_lenient"
+              ],
+              "narrative_lines": [
+                "Datum komise 24. 2. a Dvořákova žaloba 26. 2. tvoří interval, ve kterém se těžko hledá odstup od osobního odmítnutí, které tím tíží výpověď.",
+                "Cílek sám hlasoval proti Dvořákovu Písku — třeno mezi tříděči je staré o celé čtvrti déle, než trvala tato noc.",
+                "Hranice tajemství pošty nezná výjimku, ale záznamy personální komise o takové třenici ano."
+              ]
+            }
+          }
+        }
+      },
+      "investigation": {
+        "interview": {
+          "target": "cilek",
+          "target_label": "Ladislav Cílek, obžalovaný",
+          "reveals": "motivation",
+          "text": "Cílek vytáhne sešit, kde pečetí jednotlivé bloky. Na okraji má opsáno 'T-14, T-15, T-16' vlastním perem s kancelářským razítkem, které přetisk z číselníku stroje nepřilepí zpět. Řekne tiše: 'Dvořák ví, co znamenají T-14 až T-16. Nešlo mi o to ho shodit — šlo o to, že když prokurátorka dostane podnět takhle, stát pošle policii dřív, než stihne pobočka vybrat hotovost, kterou by jinak srovnala s chodníkem.'",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Integrita": -1,
+              "Vina": 2
+            }
+          }
+        },
+        "records": {
+          "source": "Kopie Policejního presidia Praha, oddělení obecné kriminality, spis 1931-312/B; a deník odeslání Ústřední pošty Florenc, únor 1931",
+          "reveals": "facts",
+          "text": "Přípis z 25. 2. 1931: v návaznosti na podnět státní prokuratury u pošty z 24. 2. 1931 zahájeno prošetřování fiktivní pobočky. <span class=\"clue\" data-clue-id=\"clue_policie_zapis\">Jako podklad je uvedeno 'text tří denních depeší z 23. 2. s čísly T-14, T-15, T-16' a číslo třídícího: Cílek, směna 22.00 až 6.00, Florenc, úsek telegrafu.</span> Denní kniha odeslání, lístek z 24. 2. 7.15: <span class=\"clue\" data-clue-id=\"clue_razitko_odeslany\">zásilka 4717 pro 'St. prokurátorku, pošta' — písmeno třídice Cílek, razítko odeslání a otisk, že písmeno nebylo dodatečně přepsáno; podpis důvěrníka skladu, že obálka nesla úřední tři čísla, která odpovídají telegrafu.</span>",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -14,
+            "traits": {
+              "Integrita": -2,
+              "Vina": 1
+            },
+            "factions": {
+              "Moc": 1
+            }
+          }
+        },
+        "informant": {
+          "reveals": "context",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -5,
+            "traits": {
+              "Vina": 1
+            }
+          },
+          "variants": {
+            "lid_high": "Telegraf, který třídil Cílek, zásobuje banky, které samy žádají o exemplární trest každého, kdo sáhne mimo svůj formát. Drobné vklady, o které přišli lidé u fiktivní pobočky, nestojí v sále — stojí u okýnka, odkud píšou, že tři sta korun slevy týdně tvoří ticho, ve kterém se nečte, komu třídí kdo.",
+            "moc_high": "Když soud píše, že pošta tajemství chránila tím, že je porušila, ministerstvo poslouchá: úředník musí, ne může. Trestním zákonem se netrestá ten, kdo třídil deset tisíc zásilek, ale ten, kdo třídil tři, které třídírna nesmí číst, i kdyby týž den na stole ležel policejní spis o týchž číslech.",
+            "kapital_high": "Dvořákovu žádost o místo v Písku provází i otcův dům u dráhy: chce být blíž k lidem, které živí drobná půda, ne k třídírně, kde musí poslouchat stroj, který píská dřív, než on stihne rozeznat, zda jde o podvod, nebo o zmeškanou zásilku mimo zdi pošty.",
+            "default": "Na Florenci se ví, že třídírna telegrafu je místo, kde písmo tluče o cizí peníze dřív, než o cizí jména. Cílek na komisi hlasoval proti Dvořákovu převedení na pobočku v Písku; Dvořák podal trestní oznámení dva dny poté, co padlo odmítnutí; přesné datum má v knize personální referentka. O náhodě v tom, zda šlo o tři depeše nebo o čtyři, se v jídelně nehádají — hádají se o směny."
+          }
+        },
+        "confrontation": {
+          "target": "dvorak",
+          "target_label": "František Dvořák, oznamovatel",
+          "requires_contradiction": "dvorak_nacasovani",
+          "requires_courage": 52,
+          "cost": 2,
+          "prompt": "Pane Dvořáku, 24. února 1931 dospěla personální komise k odmítnutí vašeho převedení na pobočku v Písku, v komisi hlasoval i obžalovaný Cílek. Vaše trestní oznámení bylo sepsáno 26. února, dva dny poté. Jak tento posun odpoutáváte od svého nesouhlasu s místem na Florenci?",
+          "success": {
+            "text": "Dvořák sáhne po obalu s razítkem, jako by hledal podpis, který tam není. 'Chtěl jsem, aby slyšeli, že tajemství, které chráním i já, není ticho pro podvod, který ten člověk třídí záměrně, protože třídí, co sám cítí, ne co mu předpisy vezmou v ústa.' Nechá tam větu bez data. 'Načasování? Možná jsem čekal, jestli sám půjde. Nepošel.'",
+            "reveals": "Dvořák nepřesouvá příčinu — přiznává souvislost s komisí, ale tím spíš zdůrazňuje morální motiv; pro soud zůstává, zda tím padá důvěryhodnost výpovědi o třech otevřených zásilkách, ne o jedné."
+          }
+        }
+      },
+      "verdicts": {
+        "guilty": {
+          "sentences": {
+            "maximum": {
+              "label": "Propustit ze státní služby a zákaz výkonu třídící funkce tři roky",
+              "description": "Cílkovo porušení poštovního tajemství je soud považuje za účelově plošné a srozuměné. Propustit po dvaceti letech, bez nároku na odbytné, je těžký, ale srozumitelný důsledek; rodina třídíče přijde o jedinou pravidelnou domácnost s tarifem.",
+              "effects": {
+                "integrita": 0,
+                "vina": 9,
+                "nadeje": -4,
+                "moc": 4,
+                "lid": -5,
+                "finance": 20
+              }
+            },
+            "standard": {
+              "label": "Odnětí platu na šest měsíců a mírnější ponechání s dohledem u pošty",
+              "description": "Sankce zásahu do tajemství bez přímé výhody pro pachatele; důkaz, že soud třístupňovou telegrafnici považuje za chráněné vědění i při pohnutkách stran třesoucí se pobočkou a podvodu.",
+              "effects": {
+                "integrita": 1,
+                "vina": 5,
+                "nadeje": -2,
+                "moc": 1,
+                "lid": -2,
+                "finance": 12
+              }
+            },
+            "lenient": {
+              "label": "Pokuta 25 Kčs, veřejné důtka, dočasné snížení třídícího platu o deset procent",
+              "description": "Důtka, kterou pošta zapíše do mzdového lístku tak, že ji vidí třídírna, ale děti doma o ní neslyší, pokud třídíč o ní nemluví.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": -1,
+                "vina": 2,
+                "nadeje": 0,
+                "moc": -1,
+                "lid": 1,
+                "finance": 5
+              }
+            },
+            "alternative": {
+              "label": "Alternativa: Podmíněné upuštění a návrh, aby ministerstvo přezkoumalo, zda podnět, který vedl k podvodu, nešel odděleně ohlásit bez čtení třídírny",
+              "description": "Cílek píše podmínky sám, ale soud připisuje, že srozumění s tím, že týž podnět šel z úřední cesty písmem, vyžaduje, aby sami navrhli, jak jinak než třídírnou smět číst, co třídírně nikdo nerozsekl. Riziko: ministerstvo hovoří k telegrafu jazykem, který třídíčům hrozí, že tajnůstkářství zvítězí nad tím, co třídíte.",
+              "requires_investigation": 2,
+              "requires": {
+                "moudrost_min": 52
+              },
+              "effects": {
+                "integrita": 5,
+                "moudrost": 2,
+                "vina": 1,
+                "nadeje": 4,
+                "moc": -2,
+                "lid": 4,
+                "finance": 0,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "not_guilty": {
+          "approaches": {
+            "formal": {
+              "label": "Zproštění: zásilky byly třídírnou zastaveny jako evidentně podezřelé dle vnitřního opatření, nejde o tiché otevření cizí obálky mimo třídírnu",
+              "description": "Převedení třídírny a policejního spisu 312/B považuje soud za jednání v moci ústavu, které nepostihuje třídíč osobně, pokud třídíč jednal s prokurátorkou, ne sám, a pokud tři lístky utvořily jednolitý sled spolu s oznámením, které třídíč nemohl skrýt, ani otevřít dvakrát, než ho oddělí úředník.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 2,
+                "odvaha": 1,
+                "moudrost": 1,
+                "vina": -3,
+                "moc": -1,
+                "lid": 0,
+                "finance": 0
+              }
+            },
+            "with_comment": {
+              "label": "Zproštění s komentářem, že tajemství pošty a policejní účinnost tvořily dočasné napětí, které nelze třídit bez konfliktu, ale který musí řešit zákon, ne třídíč",
+              "description": "Soud konstatuje, že Dvořákovu výpověď zatěžuje časování, ale to samo neodvíjí, že tři lístky existovaly, byly opsány a tvořily ohlášený hřbet zásilky, kterou pošta sama zaevidovala, ne třídíč v tichosti.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 3,
+                "odvaha": 2,
+                "vina": -2,
+                "moc": -1,
+                "lid": 1,
+                "finance": 0
+              }
+            },
+            "system": {
+              "label": "Alternativa: Zproštění a podnět, aby ministerstvo pošty vyčlenilo třídírnu, která čte podezřelou finanční depeš, bokem od jmen soukromých vkladů",
+              "description": "Soud navrhuje oddělení technického třídění od třídění, které má těžší razítko, aby se podobný případ netřídil tím, kdo třídí, ale tím, kdo je k tomu úředním slovem odtížen — riziko, že třídíčům tím přibyde písemností, o které pošta tajit nechce, ale tři procenta z pošty na to tlačí.",
+              "requires_investigation": 2,
+              "requires": {
+                "moudrost_min": 60,
+                "odvaha_min": 48
+              },
+              "effects": {
+                "integrita": 6,
+                "moudrost": 3,
+                "vina": -1,
+                "nadeje": 1,
+                "moc": -1,
+                "lid": 0,
+                "finance": 0,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 2
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "insufficient_evidence": {
+          "requires": {
+            "moudrost_min": 48
+          },
+          "options": {
+            "reopen": {
+              "label": "Přerušit: vyžádat srovnání třídícího pásu z 23. 2. s tím, co třídírna archivovala 24. 2.",
+              "description": "Kdo přesně, kdy, za kolik, než se zásilka 4717 pohnula — třídí se i po jednom lístku, a ten lístek se musí třídit, ne třídíč.",
+              "effects": {
+                "integrita": 2,
+                "moudrost": 2,
+                "vina": 0,
+                "nadeje": 0,
+                "moc": 0,
+                "lid": 0,
+                "finance": 0,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "close": {
+              "label": "Zamítnout pro nejasnost jedině s tím, že spis zůstane otevřen pro interní šetření pošty",
+              "description": "Soud končí bez jednoznačné míry viny; třídírna zůstává místem, kde se ticho korespondence musí poslouchat rukama, které ji dělí na pásy, ne na pocity.",
+              "effects": {
+                "integrita": 0,
+                "moudrost": 0,
+                "vina": 1,
+                "moc": 0,
+                "lid": 0,
+                "finance": 0
+              }
+            }
+          }
+        }
+      },
+      "aftermath": {
+        "guilty_maximum": "Cílek sbalí třídící brašnu. Dvořák odchází dřív, než zazní závěrečná věta; dveře s nápisem Třídírna pro něj znamenají ještě o jeden den víc než včera, pro Cílka o žádný. Venku projede tramvaj, která veze dva lidi, kteří k sobě nemluví — oba dnes třídili totéž číslo, každý jinak.",
+        "guilty_standard": "Rozsudek přečte zapisovatel tónem, v němž se ztratí, zda se trest týká tří písmen nebo tří let. Cílek přikývne, jako by podepisoval další pás. Na Florenci téhož dne třídí, jako by soud vůbec nezasedl.",
+        "guilty_lenient": "Cílek potřese rukou manželce, která přišla až do chodby; dceři nechá v kapse drobné, ne dopis, který by otevíral. Dvořák hledí do dlažby, ne do něj.",
+        "guilty_alternative": "Rozsudek přinese Cílkovi sice trest, ale i větu, že ministerstvo pošty do šesti týdnů odpoví, proč písmeno 4717 putovalo oficiální cestou, zatímco třídírna tvrdí, že listiny číst nesmí. Cílek ji přečte, jako by to byl další denní úředník — bez radosti, s úlevou, že ten příběh ještě neskončil u jedné třídírny.",
+        "not_guilty_formal": "Cílek odchází; Dvořák hledá v kapse cigaretu, kterou nesmí v budově zapálit, a místo toho sáhne na knihu podání, kterou si nesl jen tak. Venku se ozve tramvaj — stejná linka, kterou oba jezdí domů, oba dnes mlčky a každý s jiným důkazem, že pošta znamená něco jiného, než co si myslí oba.",
+        "not_guilty_with_comment": "Komentář o načasování Dvořákova trestního zůstane v protokolu dlouhý natolik, že se z něj novinářům vytne jen věta o „stínu osobní revně“. Cílek ji neslyší; slyší hluk Florenc, kde se třásou rolety. Dvořák odchází s čímkosi, co vypadá skoro jako pýcha a skoro jako stud.",
+        "not_guilty_system": "Cílek dostane do ruky úřední záznam, že odbor pro provoz třídíren navrhne, aby se finanční depeše oddělily do zvláštní dráhy — bez toho, aby je otevíral tříděcí, který nese běžnou korespondenci. Cílek tuší, že s tím se bude u okének pracovat déle než s rozsudkem, který dnes nepadl.",
+        "insufficient_reopen": "Cílek čeká u chodby, Dvořák s knihou podpaží, oba s vědomím, že třídící pás z 23. února a archiv 24. února otevře stejnou otázku znovu — a tentokrát bez soudcova kladení otázek, jen s úředníkem, který čte čísla hlasitěji než soudy.",
+        "insufficient_close": "Nikdo neodchází s čistým vysvětlením, kdo otevřel tři zásilky, kdy přesně a s jakým razítkem. Na Florenci téhož večera třídí zásilky, jako by soud o nich nikdy nemluvil — ticho korespondence, kterou pošta chránila, zůstává v třídírně, ne v rozsudku."
+      },
+      "stamp_moment": {
+        "guilty": "Cílek pomalu skládá pera. Zvuk kovu o ocel zní o chvíli déle, než trvá samotný úder razítka v protokolu.",
+        "not_guilty": "Cílek pohlédne na Dvořáka, pak k oknu. Mezi nimi ticho, v němž je slyšet, jak daleko leží Florenc od všeho, co by se dalo třídit znovu — bez trestu, ale ne bez následku.",
+        "insufficient": "Cílek stojí; Dvořák hledá v knize stránku, kterou v ní včera neměl. Pohne se, až když zapisovatelka zavře desku spisu — jako by tím soud řekl, že ještě neskončil, jen přestal kladení otázek slyšet."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "guilty_alternative",
+          "delay_days": 4,
+          "type": "fragment",
+          "text": "V kronice uvnitř *Svobodného obzoru* tři věty: pošta slíbila, že odpoví, proč zásilka 4717 byla odeslána k státní prokurátorce dřív, než se třídírně vysvětlí nová vnitřní směrnice. Redakce třetí větu škrtne — o trestu třídíče dnes hovořit nebude."
+        }
+      ]
+    },
+    {
+      "id": "pool_a1_lekar",
+      "title": "Lékař",
+      "case_number": "Sp. zn. 100/1931",
+      "slot": "pool",
+      "act": 1,
+      "type": "moral_dilemma",
+      "color": "#2C4A7C",
+      "available_days": [
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "weight_conditions": {
+        "base_weight": 1
+      },
+      "defendant": {
+        "name": "MUDr. Emanuel Soukup",
+        "age": 52,
+        "occupation": "obvodní lékař",
+        "detail": "praxe u obvodu Vinohrady od roku 1921, ženatý, bezdětný, dříve ústavní lékař u nemocnice na Františku, čistý disciplinární záznam dle spisu okresního zdravotního úřadu"
+      },
+      "charge": "Usmrcení z trestného úmyslu dle ustanovení o vraždě v trestním zákoníku, ve znění platném v roce 1931. Obžaloba tvrdí, že dne 4. března 1931 v bytě pacienta Jana Bendy, Náměstí Míru 9, podal obžalovaný injekci s obsahem morfia v dávce, která nebyla nezbytná k utlumení bolesti, a tím učinil záměrný útok na život, nikoli léčebný zákrok. Syn poškozeného podal trestní oznámení s listinou, v níž má být vyjádřen souhlas zůstavitele s urychlením skonu.",
+      "description": "Jan Benda, 72 let, bývalý krejčí, zemřel 4. března 1931 na následky pokročilého onkologického onemocnění v domácí péči. MUDr. Soukup ošetřoval doma tři týdny; dne 4. března podal injekci a otec synu Vladimírovi Bendovi zemřel do pěti hodin. Syn v trestním uvedl, že otec chtěl „jen klid“ a že s podáním, které lékař ukazuje v rodinné bibli, nesouhlasí — otec prý nebyl s to listinu podepsat stejným rukopisem v den, v němž ji lékař datuje. Soukup popírá úmysl usmrtit: trvá na opakované žádosti o ukončení bezvýchodného stavu, zaznamenané 3. března večer, a na tom, že dávka odpovídala bolesti, nikoli záměru. Spor není, kdo stiskl píst — ale zda soud považuje tento čin za vraždu, za omyl, nebo za mezeru v zákoně, kterou soud může pojmenovat, ne uzavřít.",
+      "testimonies": [
+        {
+          "id": "soukup",
+          "speaker": "MUDr. Emanuel Soukup, obžalovaný",
+          "text": "Benda trpěl bolestí, kterou analgetika v tabletách neztlumila. Dne 3. března večer, kdy u něj byla dcera, požádal, abych zaznamenal, že kdyby mu ještě jedna injekce měla znamenat konec, ne oživení, přijme to. <span class=\"clue\" data-clue-id=\"clue_bib_listina\">Podepsal čáru do rodinné Bible pod kapitolou o milosrdenství, podpis i datum 3. 3. 1931 v 19.40 jsem stvrdil jako svědek.</span> Dne 4. března v 8.15 jsem podal injekci; v domácí kartě je týž den uvedena jediná parenterální dávka, žádná druhá injekce, nic, co by se v opisu dalo skrýt. <span class=\"clue\" data-clue-id=\"decoy_soukup_ucil\">Fakulta mne učila, že bolest má hranice — a že lékař, který hranici přesune o hodinu, ještě není vrah.</span>",
+          "contradiction_keywords": [
+            "Bible",
+            "3. 3",
+            "morfium",
+            "8.15"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "vladimir",
+          "speaker": "Vladimír Benda, 36 let, syn, účetní u soukromé firmy",
+          "text": "Otec chtěl, aby netrpěl, ne aby zmizel za den. Když mi druhý den lékař ukázal linku v bibli, nepoznal jsem tátovo písmo v celé stopce — a otec 3. večer, když jsem přišel já, <span class=\"clue\" data-clue-id=\"clue_vladimir_vecer\">měl oči zavřené, odpověděl jednoslabičně, podpis by musel být naopak o den dřív, kdy k němu nikdo z rodiny nebyl celou hodinu, než přišla sestra.</span> Trestní oznámení jsem podal 10. 3. — ne dřív, <span class=\"clue\" data-clue-id=\"clue_vladimir_notar\">až notář 9. 3. přečetl otcovu závěť: byt a šicí stroj pro mě, menší podíl pro sestru, žádná zmínka o dluhu vůči lékaři.</span> <span class=\"clue\" data-clue-id=\"decoy_vladimir_laska\">Měl jsem ho rád. Jen nechci, aby soud plivl na jeho jméno — ani aby lékař vyšel bez odpovědi.</span>",
+          "contradiction_keywords": [
+            "Bible",
+            "10. 3",
+            "notář",
+            "závet"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "anezka",
+          "speaker": "Anežka Bendová, 39 let, dcera, svědkyně",
+          "text": "Byla jsem u otce 4. března od šesti ráno. Otec mumlal, oči měl v polospánku, v ruce by nedržel pero — <span class=\"clue\" data-clue-id=\"clue_anezka_rano\">dala jsem mu vodu, stiskl mi prsty, víc ne, že by psal, pane doktore, víc ne, že by podepisoval biblii, v kterou věřil, ale kterou 3. večer s lékařem otevíral, když jsem šla pro mast.</span> Pan doktor říká, že podpis 3. večer otec zvládl — můžu jen říct, <span class=\"clue\" data-clue-id=\"clue_anezka_vecere\">3. v sedm večer otec spal, až v osm, když jsem se vrátila, byl vzhůru, ale řeč mu šla těžce.</span> S bratrem o dědění se nebudu hádat, ale nechci, aby se tátovo utrpení stalo omluvou pro někoho, kdo rozhodl o hodině za něj.",
+          "contradiction_keywords": [
+            "4. března",
+            "pero",
+            "3. večer",
+            "Bible"
+          ],
+          "hidden_at_wisdom_below": null
+        }
+      ],
+      "contradictions": [
+        {
+          "id": "listina_vs_schopnost",
+          "description": "Listina v bibli má datum 3. 3. večer, Soukup ji stvrzuje. Anežka tvrdí, že 4. ráno otec neměl schopnost držet pero; Vladimír popisuje 3. večer otcovo stavění, které nesedí k Soukupovu svědectví, že týž večer podepsal.",
+          "involves": [
+            "soukup",
+            "anezka",
+            "vladimir"
+          ],
+          "highlight_at_wisdom": 78,
+          "unlocks_confrontation": "vladimir"
+        },
+        {
+          "id": "dennik_spolubydlici",
+          "description": "Karta říká jedinou injekci, syn říká 'urychlení' — sám ale oznámení opírá o morální odpor, ne o druhou píchnutí, kterou by soused nebo sestra slyšela.",
+          "involves": [
+            "soukup",
+            "vladimir"
+          ],
+          "highlight_at_wisdom": 70,
+          "unlocks_confrontation": null
+        }
+      ],
+      "clue_system": {
+        "enabled": true,
+        "true_pair_id": "par_biblie_kartoteka",
+        "pairs": [
+          {
+            "pair_id": "par_biblie_kartoteka",
+            "a_id": "clue_bib_listina",
+            "b_id": "clue_karta_morf",
+            "strength": "strong"
+          },
+          {
+            "pair_id": "par_vecer_vs_anezka",
+            "a_id": "clue_vladimir_vecer",
+            "b_id": "clue_anezka_vecere",
+            "strength": "medium"
+          }
+        ],
+        "decoys": [
+          "decoy_soukup_ucil",
+          "decoy_vladimir_laska"
+        ],
+        "timed_hunt": {
+          "enabled": true,
+          "duration_sec": 65,
+          "speed_upgrade_sec": 20,
+          "auto_confirm_best_on_timeout": true,
+          "timeout_downgrade": false
+        },
+        "info_threshold_unlocks": {
+          "actions": [
+            {
+              "min": 35,
+              "ids": [
+                "pool_inv_interview"
+              ]
+            },
+            {
+              "min": 48,
+              "ids": [
+                "pool_inv_records"
+              ]
+            },
+            {
+              "min": 58,
+              "ids": [
+                "pool_inv_informant"
+              ]
+            },
+            {
+              "min": 70,
+              "ids": [
+                "pool_inv_confrontation"
+              ]
+            }
+          ],
+          "verdicts": [
+            {
+              "min": 40,
+              "ids": [
+                "guilty_lenient",
+                "insufficient_reopen"
+              ]
+            },
+            {
+              "min": 55,
+              "ids": [
+                "not_guilty_with_comment",
+                "not_guilty_formal"
+              ]
+            },
+            {
+              "min": 75,
+              "ids": [
+                "guilty_alternative",
+                "not_guilty_system"
+              ]
+            }
+          ]
+        },
+        "rewards": {
+          "on_confirm": {
+            "strong": {
+              "investigation_progress_delta": 40,
+              "unlock_verdict_ids": [
+                "insufficient_reopen",
+                "not_guilty_with_comment"
+              ],
+              "narrative_lines": [
+                "Biblický řádek a jediná dávka v kartě tvoří jednu osovou linii: podpis 3. večer, injekce 4. ráno, žádný skrytý píst.",
+                "Anežčino svědectví 4. ráno popisuje tělo, které nese otázku, zda 3. večer týž člověk píše stejnou rukou, kterou 4. držet neumí.",
+                "Kdo má pravdu o hodině — soud, ne sál; ale spis sám tři verze téhož dne píská."
+              ]
+            },
+            "medium": {
+              "investigation_progress_delta": 20,
+              "unlock_verdict_ids": [
+                "guilty_lenient",
+                "not_guilty_formal"
+              ],
+              "narrative_lines": [
+                "Vladimírovo 3. večer a Anežčino 3. večer se netlučou slovy, ale tím, kdo byl u postele v které půlhodině — a s kým tedy mluvil lékař.",
+                "Syn a dcera chtějí čest otce, ale otec mezi nimi může mluvit jen jednou rukou — a ta je teď tichá."
+              ]
+            }
+          }
+        }
+      },
+      "investigation": {
+        "interview": {
+          "target": "sousedka",
+          "target_label": "Božena Dvořáčková, sousedka z téhož patra",
+          "reveals": "context",
+          "text": "V noci ze 3. na 4. slyšela, jak se otec s někým hádal, ale neví, zda to byl doktor, nebo dcera. <span class=\"clue\" data-clue-id=\"clue_soused_4_3\">4. března v osm ráno zaslechla jednu větu z chodby: 'Dnes už jen jednu' — hlas, který přiřadila k doktorovi, nikoli k rodině, ale ze dveří nebyla, jen slyšet.</span> To je vše, pane doktore; nebyla jsem u toho, abych soudila morfium, nebo modlitbu.",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -5,
+            "traits": {
+              "Vina": 1,
+              "Integrita": -1
+            }
+          }
+        },
+        "records": {
+          "source": "Opis domácí karty a poznámka okresního zdravotního dozoru, duben 1931, anonymizovaný výpis pro soud",
+          "reveals": "facts",
+          "text": "Karta: Jan Benda, 72, domácí ošetřování od 12. 2. 1931. 3. 3. večer záznam 'příbuzní přítomni, hladina bolesti neudržitelná, navrhována další parenterální léčba' — <span class=\"clue\" data-clue-id=\"clue_karta_podepsat\">poznámka lékaře: 'pacient srozumen s písemným záznamem, svědkem podepsal v knize na přání rodiny'.</span> 4. 3. od 5.00 'sopor, krevní tlak 85/50, 8.15 subkutánní injekce' — totožné s výpovědí. <span class=\"clue\" data-clue-id=\"clue_karta_morf\">Dávka: jedna injekce, žádný opakovaný vstup, čas klinické smrti 12.50, příčina koresponduje s dosavadním nálezem.</span>",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -12,
+            "traits": {
+              "Integrita": -2,
+              "Vina": 1
+            },
+            "factions": {
+              "Moc": 1
+            }
+          }
+        },
+        "informant": {
+          "reveals": "context",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -5,
+            "traits": {
+              "Vina": 1
+            }
+          },
+          "variants": {
+            "lid_high": "V domě vědí, že Benda platil Soukupovi hotově, ale ne exorbitantně — lékař chodil, protože mu důvěřoval, ne proto, že by dluh přešel na dědictví. Spor o písmo v bibli se nese mezi sourozenci hlasitěji než po chodbě o smrti, která stejně přišla do týdne.",
+            "moc_high": "Zdravotní dozor píše do okresu, že domácí smrti se teď hlásí víc — krize, rakovina, nedostatek lůžek. Kdo z lékařů půjde na smrt doma, je politicky citlivé; kdo půjde na odsouzení lékaře, je to ještě citlivější, protože zákon o životě na konci života nečte, jen o trestu na konci důkazu.",
+            "default": "Sousedé si šeptají, že Benda chtěl, aby děti neviděly poslední den tak dlouho, že by si ho pamatovaly jen v bolesti. Soukup je u nich „ten, co přišel včas“; u syna je „ten, co přišel až moc včas pro jednoho a pozdě pro druhého“ — a to není důkaz, jen ticho ve zdi."
+          }
+        },
+        "confrontation": {
+          "target": "vladimir",
+          "target_label": "Vladimír Benda, syn",
+          "requires_contradiction": "listina_vs_schopnost",
+          "requires_courage": 55,
+          "cost": 2,
+          "prompt": "Pane Bendo, trestní jste podal 10. března, tedy až den po notářském čtení závěti 9. března. V čem přesně spočívá vazba mezi otcovým listem a vaším přesvědčením, že list v bibli není jeho — a proč s ním nejdete k graphologovi, ale k trestnímu proti lékaři?",
+          "success": {
+            "text": "Benda sáhne do kapsy, vytáhne kapesník, ne odpověď. „Závěť je věc rodiny, smrt ve spisu je věc státu — a ten spis, pane doktore, musí říct, jestli tátu podepsal ještě člověk, nebo už jen tělo, kterému nikdo nerozumí.“ Němý souhlas u sestry; Soukup mlčí, ale neodvrátí pohled.",
+            "reveals": "Syn přiznává, že pořadí dědictví a trestního stíhání se protnulo — ne nutně v manipulaci, ale v rozhodnutí, kdy bolest rodiny přerostla v požadavek na cizí vinu s časem, který soud musí sám posoudit."
+          }
+        }
+      },
+      "verdicts": {
+        "guilty": {
+          "sentences": {
+            "maximum": {
+              "label": "Dvanáct let těžkého žaláře a trvalý zákaz výkonu lékařství",
+              "description": "Soud považuje injekci za prokázaný útok na život, byť v domácím prostředí. Trest srovnatelný s vraždou v afektu, nikoli s omyly paliativní péče.",
+              "requires": {
+                "odvaha_max": 30
+              },
+              "effects": {
+                "integrita": 0,
+                "vina": 10,
+                "nadeje": -5,
+                "moc": 5,
+                "lid": -4,
+                "finance": 20
+              }
+            },
+            "standard": {
+              "label": "Šest let žaláře a zákaz obvodu na dobu pěti let",
+              "description": "Soud uzná úmysl, ale zohlední stav pacienta a písemný záznam; stále však vězení, které znamená konec praxe v Praze pro ženu a děti učitele, pokud jde o majetek domácnosti.",
+              "effects": {
+                "integrita": 0,
+                "vina": 7,
+                "nadeje": -3,
+                "moc": 2,
+                "lid": -2,
+                "finance": 12
+              }
+            },
+            "lenient": {
+              "label": "Podmínka tři roky a veřejné úklidové práce v délce šedesáti dní",
+              "description": "Mírnější rámec: soud vidí bolest pacienta, ale trvá na cejchu, že dávka překročila, co by soud považoval za nutné utlumení.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": -1,
+                "vina": 3,
+                "nadeje": 0,
+                "moc": 0,
+                "lid": 1,
+                "finance": 5
+              }
+            },
+            "alternative": {
+              "label": "Alternativa: Trest, ale s příkazem krajskému zdravotnímu odboru zpracovat směrnici o domácí paliativě",
+              "description": "Soud odsoudí, ale v odůvodnění uvede, že zákon neumí jmenovat rozdíl mezi utlumením a skonem — a proto má úřad navrhnout, jak se to má číst dál, ne aby každý soud dělal z lékaře kazatele i kata.",
+              "requires_investigation": 2,
+              "requires": {
+                "moudrost_min": 55
+              },
+              "effects": {
+                "integrita": 4,
+                "moudrost": 3,
+                "vina": 2,
+                "nadeje": 1,
+                "moc": -1,
+                "lid": 2,
+                "finance": 0,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "not_guilty": {
+          "approaches": {
+            "formal": {
+              "label": "Zproštění: neprokázán trestní úmysl, jediná injekce a list korespondují s lékařským záznamem",
+              "description": "Důkazy vylučují vražedný úmysl v tom smyslu, v jakém trestní zákon píše o vraždě; zůstává morální třen, ale ne odsouzení.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 2,
+                "odvaha": 1,
+                "moudrost": 1,
+                "vina": -3,
+                "moc": -1,
+                "lid": 0,
+                "finance": 0
+              }
+            },
+            "with_comment": {
+              "label": "Zproštění s komentářem, že zákon nerozlišuje souhlas s koncem života a lékařský zákrok, který ho přinese — a že mezera není omluva, ale fakt, který musí napsat zákonodárce, ne soudce",
+              "description": "Soud konstatuje, že písemný záznam v knize a dávka v den smrti netvoří u soudu jednoznačné číslo trestu, protože ustanovení o usmrcení v milosti ještě není tím, čím bude za dvacet let nazýváno.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 4,
+                "odvaha": 2,
+                "moudrost": 2,
+                "vina": -1,
+                "moc": -2,
+                "lid": 1,
+                "finance": 0,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "system": {
+              "label": "Alternativa: Zproštění a formální podnět k ministerstvu, aby otevřilo otázku domácí smrti v písemné oběžníku pro okresy",
+              "description": "Krok, který na Soukupa svítí dál než soud, ale který mu může přinést písmena z ministerstva, v nichž lékaři hledají, kde mají hranice — a kde má hranice stát, který hranice sám nenastavil.",
+              "requires_investigation": 2,
+              "requires": {
+                "moudrost_min": 60,
+                "odvaha_min": 50
+              },
+              "effects": {
+                "integrita": 6,
+                "moudrost": 3,
+                "vina": -1,
+                "nadeje": 0,
+                "moc": 0,
+                "lid": 0,
+                "finance": 0,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 2
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "insufficient_evidence": {
+          "requires": {
+            "moudrost_min": 45
+          },
+          "options": {
+            "reopen": {
+              "label": "Přerušit: vyžádat graphologický posudek podpisu 3. 3. a porovnání s rodinnými listy",
+              "description": "Spis se otevíře znovu na písmu, ne na pístu; do té doby zůstává otázka úmyslu v mezeře mezi bibli a kartou o jedné injekci.",
+              "effects": {
+                "integrita": 1,
+                "moudrost": 2,
+                "vina": 1,
+                "finance": 0,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "close": {
+              "label": "Ukončit: bez závěru, kterému by rodina, lékař i soud sami uvěřili ve stejné větu",
+              "description": "Soud ponechá vinu a čest v rovnováze, která dál tíží sousedství, ale ne sítí trestního, kterou by tento den přetáhl přes bolest, kterou zákon nikdy celou nepojme.",
+              "effects": {
+                "integrita": 0,
+                "moudrost": 0,
+                "vina": 2,
+                "finance": 0
+              }
+            }
+          }
+        }
+      },
+      "aftermath": {
+        "guilty_maximum": "Soukup svlékne plášť tak pomalu, jako by svlékal všechna léta obvodu. Na chodbě stojí Anežka a Vladimír odděleně; mezi nimi ticho, v němž slyšet dech, který už otec nikdy nevrátí.",
+        "guilty_standard": "Rozsudek se čte, zapisovatelka nezvedá oči. Soukup přikývne, jako by rozpoznal diagnózu, ne trest, kterému sám pískne jiné číslo, než které píská soud.",
+        "guilty_lenient": "Podmínka dopadne tiše. Soukup sáhne na rukáv — ještě smí, ale s cejchem, který pacienti uvidí dřív, než sůl na očích.",
+        "guilty_alternative": "Rozsudek přidá odstavec, v němž okres dostane lhůtu na písemnou směrnici pro domácí neodkladnou péči. Soukup si ho přečte až v chodbě: v sále slyšel věty, které v ordinaci nikomu nepředčítá.",
+        "not_guilty_formal": "Soukup vychází, podá ruku Vladimírovi; ten ji na okamžik stiskne a pustí. Anežka poděkuje tónem, v němž zní víc bolesti než úlevy — a to je odpověď, kterou trestní protokol nezapiše.",
+        "not_guilty_with_comment": "Komentář o mezeře v zákonu zůstane v odůvodnění, ale v domě se o něm mluví hlasitěji: sousedé čtou jinou větu, než kterou slyšeli u Bendových dveří, když otec ještě dýchal.",
+        "not_guilty_system": "Obálka z ministerstva přijde s otázkou, zda se domácí smrt může hlásit jinak, než se dnes píše v knize, kterou rodina otevírá sama. Soukup ji odloží k deníku — o pacientu jedna věta, kratší než kapitola v bibli.",
+        "insufficient_reopen": "Spis se vrací s razítkem, že písmo bude srovnávat cizí stůl, ne soud. Soukup mezitím chodí k jiným postelím; u Bendových dveří už nezazvoní, ale zdi si ještě pamatují hlas o tichu.",
+        "insufficient_close": "Rodina, lékař a soud odcházejí, každý s jinou nevyřčenou větou. V bytě zůstane prázdné křeslo, v němž se nečte, kdo měl poslední slovo — ani kdo poslední píchnutí."
+      },
+      "stamp_moment": {
+        "guilty": "Soukup sroluje rukávy, jako by ještě chtěl mýt ruce, ale voda v síni není. Zůstane stát, dokud nezazní konec protokolu.",
+        "not_guilty": "Soukup pohlédne ke dveřím, kterými odcházeli Bendovi, když otec ještě žil. Zůstává otevřená otázka, ne průvan.",
+        "insufficient": "Soukup se dotkne hřbetu spisu, jako by hledal stránku, kterou by mohl otočit bez toho, aby sám musel napsat další."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "not_guilty_with_comment",
+          "delay_days": 5,
+          "type": "fragment",
+          "text": "V tisku odborových lékařů se objeví úryvek o soudcích, kteří v odůvodnění pojmenovali mezeru mezi bolestí a trestem; redakce přidá větu, že zákon musí psát parlament, ne obvod."
+        }
+      ]
+    },
+    {
+      "id": "tyc_pospisil_2",
+      "case_track": "pillar",
+      "case_track_label": "tycove",
+      "slot": "pool",
+      "type": "routine",
+      "color": "#7A9BAD",
+      "available_days": [
+        6
+      ],
+      "act": 1,
+      "weight_conditions": {
+        "forced": true
+      },
+      "title": "Hospodský a tichá hrozba",
+      "case_number": "Sp. zn. 98/1931",
+      "defendant": {
+        "name": "Emil Pospíšil",
+        "age": 48,
+        "occupation": "hostinský",
+        "detail": "provozuje U Zlatého sudu na Žižkově — tatáž osoba jako Sp. zn. 62/1931; tentokrát čelí stížnosti za incident ze 7. března 1931"
+      },
+      "charge": "Porušení povinností provozovatele hostince dle §22 živnostenského řádu: Emil Pospíšil dne 7. března 1931 neprodleně nevykázal z prostor hospody osobu vyvolávající pohoršení, čímž umožnil fyzický střet, při němž hostinský Jan Červenka (52 let) utrpěl zranění způsobující pracovní neschopnost. Navrhovatelem je Červenkova manželka Alžběta.",
+      "description": "V sobotu 7. března se v U Zlatého sudu strhla hádka. Dva muži u vedlejšího stolu. Jan Červenka — host, jehož Pospíšil zná léta — dostal úder pěstí do tváře a spadl ze židle. Útočník odešel. Červenka strávil čtyři dny v nemocnici se zlomeným lícním obloukem. Kdo byl útočník, nikdo z přítomných svědků nedokázal říci jméno. Nebo nechtěl. Alžběta Červenková obviňuje Pospíšila, že útočníka znal, celou věc viděl — a nezasáhl. Pospíšil říká, že šlo o nenadálý střet, který nemohl předvídat. Ben si všímá jedné věci: Pospíšil sedí u stolu a třese se. Tohle není obvyklá nervozita z výslechu.",
+      "testimonies": [
+        {
+          "id": "pospisil",
+          "speaker": "Emil Pospíšil, obžalovaný",
+          "text": "Pan Červenka seděl u okna. Dva muži přišli kolem osmé. Neznám je — tedy, jednoho jsem jednou viděl. Objednali pivo. Pak začali mluvit hlasitě, pak přišla rána. Bylo to rychlé. <span class=\"clue\" data-clue-id=\"clue_pospisil_znal\">Kdybych věděl, že se něco stane, šel bych mezi ně dřív. Ale nebylo to... nebylo to vidět předem.</span> Červenku znám přes deset let. Nechci mu nic špatného.",
+          "contradiction_keywords": [
+            "jednoho jsem jednou viděl",
+            "nebylo to vidět"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "cervenka_alzbeta",
+          "speaker": "Alžběta Červenková, manželka poškozeného, navrhovatelka",
+          "text": "Manžel mi řekl, co se stalo. Říkal, že Pospíšil toho muže znal. Stál za pultem, díval se na ně, a nezavolal nikam. <span class=\"clue\" data-clue-id=\"clue_cervenka_znal\">Muž, který Jana udeřil, přišel k pultu před tím — asi půl hodiny před ránou — a říkal Pospíšilovi něco potichu. Pospíšil přikývl.</span> Jan to viděl. Teď leží doma a nemůže otevřít čelist.",
+          "contradiction_keywords": [
+            "půl hodiny",
+            "potichu",
+            "přikývl"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "barta_svedly",
+          "speaker": "František Bárta, host, přítomen při incidentu",
+          "text": "Byl jsem u vedlejšího stolu. Slyšel jsem ránu — a bylo po všem. Ten muž odešel bez hledání zpátky. <span class=\"clue\" data-clue-id=\"clue_barta_vychod\">Vyšel zadním vchodem. Ne předními dveřmi — zadními, přes dvůr. Přesně věděl, kudy jít.</span> Nikdo za ním nešel. Pospíšil stál za pultem a nedíval se za ním. Pak volal sanitku pro Červenku.",
+          "contradiction_keywords": [
+            "zadním vchodem",
+            "přesně věděl"
+          ],
+          "hidden_at_wisdom_below": null
+        }
+      ],
+      "contradictions": [
+        {
+          "id": "znal_pred_incident",
+          "description": "Pospíšil říká, že útočníka jednou viděl. Červenková říká, že útočník přišel k pultu půl hodiny před ránou a potichu mluvil s Pospíšilem. Bárta potvrzuje, že útočník věděl o zadním vchodu.",
+          "involves": [
+            "pospisil",
+            "cervenka_alzbeta",
+            "barta_svedly"
+          ],
+          "highlight_at_wisdom": 65,
+          "unlocks_confrontation": "pospisil"
+        },
+        {
+          "id": "zadni_vychod",
+          "description": "Útočník šel zadním vchodem přes dvůr — cestu, kterou nezná náhodný host. Znal ji buď z dřívějších návštěv, nebo mu ji někdo ukázal.",
+          "involves": [
+            "barta_svedly",
+            "pospisil"
+          ],
+          "highlight_at_wisdom": 70,
+          "unlocks_confrontation": "pospisil"
+        }
+      ],
+      "clue_system": {
+        "enabled": true,
+        "true_pair_id": "znal_utocnika_strong",
+        "pairs": [
+          {
+            "pair_id": "znal_utocnika_strong",
+            "a_id": "clue_cervenka_znal",
+            "b_id": "clue_barta_vychod",
+            "strength": "strong"
+          },
+          {
+            "pair_id": "nezasahl_medium",
+            "a_id": "clue_pospisil_znal",
+            "b_id": "clue_cervenka_znal",
+            "strength": "medium"
+          }
+        ],
+        "decoys": [
+          "decoy_rychle_stret"
+        ],
+        "timed_hunt": {
+          "enabled": true,
+          "duration_sec": 55,
+          "speed_upgrade_sec": 18,
+          "auto_confirm_best_on_timeout": true,
+          "timeout_downgrade": false
+        },
+        "info_threshold_unlocks": {
+          "actions": [
+            {
+              "min": 50,
+              "ids": [
+                "pool_inv_confrontation"
+              ]
+            }
+          ],
+          "verdicts": [
+            {
+              "min": 35,
+              "ids": [
+                "guilty_lenient"
+              ]
+            },
+            {
+              "min": 65,
+              "ids": [
+                "not_guilty_formal"
+              ]
+            },
+            {
+              "min": 80,
+              "ids": [
+                "guilty_alternative",
+                "not_guilty_with_comment"
+              ]
+            }
+          ]
+        },
+        "rewards": {
+          "on_confirm": {
+            "strong": {
+              "investigation_progress_delta": 42,
+              "unlock_actions": [
+                "pool_inv_confrontation"
+              ],
+              "unlock_verdict_ids": [
+                "not_guilty_with_comment",
+                "guilty_alternative"
+              ],
+              "narrative_lines": [
+                "Půl hodiny před ránou. Potichu. Přikývl. To není náhodný host.",
+                "Zadní vchod přes dvůr — cestu, která se na menu nepíše.",
+                "Pospíšil se třese. Ne kvůli Červenkovi — kvůli tomu, co neřekl."
+              ]
+            },
+            "medium": {
+              "investigation_progress_delta": 20,
+              "unlock_verdict_ids": [
+                "guilty_lenient",
+                "not_guilty_formal"
+              ],
+              "narrative_lines": [
+                "Jednoho jsem jednou viděl — ale nezakázal mu vstup, nevykázal ho.",
+                "Každý hostinský ví, kdy se schyluje ke střetu. Pospíšil byl za pultem a viděl."
+              ]
+            }
+          }
+        }
+      },
+      "investigation": {
+        "interview": {
+          "target": "cervenka_jan",
+          "target_label": "Jan Červenka, poškozený",
+          "reveals": "motivation",
+          "text": "Pospíšil toho člověka znal. Viděl jsem, jak k němu přišel k pultu — šeptal mu něco. Emil přikývl a šel ke dveřím, jako by chtěl otevřít vzduch. Pak se vrátil. <span class=\"clue\" data-clue-id=\"clue_cervenka_znal\">Asi půl hodiny nato jsem dostal ránu.</span> Emil mi volal sanitku. Nezlobím se na něj — nebo nevím, jestli se mám. Bojím se, kdo byl ten člověk. A proč zrovna já.",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Integrita": -1,
+              "Vina": 1
+            },
+            "factions": {
+              "Lid": 1
+            }
+          }
+        },
+        "records": {
+          "source": "Policejní protokol ze 7. března; záznamy o incidentech U Zlatého sudu; nemocniční karta Červenka",
+          "reveals": "facts",
+          "text": "Policejní protokol: incident hlášen Pospíšilem v 20:47, záchranná služba přijela 21:04. Útočník neidentifikován — popis: muž, asi 40 let, tmavý kabát, nezjištěno jméno. <span class=\"clue\" data-clue-id=\"clue_barta_vychod\">Protokol uvádí, že zadní vchod byl v době incidentu nezamčen — Pospíšil ho odemyká v 18:00 pro zásobování.</span> Záznamy U Zlatého sudu: žádný předchozí incident za čtyři roky. Nemocniční karta Červenka: zlomenina jochového oblouku, čtyři dny hospitalizace, pracovní neschopnost 6 týdnů.",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -12,
+            "traits": {
+              "Integrita": -2,
+              "Vina": 1
+            },
+            "factions": {
+              "Moc": 1
+            }
+          },
+          "unlocks_contradiction": "zadni_vychod"
+        },
+        "informant": {
+          "reveals": "context",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Vina": 1
+            },
+            "factions": {
+              "Lid": -1,
+              "Moc": 2
+            }
+          },
+          "variants": {
+            "lid_high": "Na Žižkově se říká, že Pospíšil dostal návštěvu den před incidentem. Muž, který nepil — jen si sedl do rohu a díval se. Pak odešel. Druhý den přišel znovu s kamarádem. Pospíšil to prý věděl a modlil se, ať se nic nestane. Nestalo se — Červenkovi to řekněte.",
+            "moc_high": "Žižkovská policie zná muže v tmavém kabátě. Neuvedou to v protokolu — nemají na něj nic. Ale vědí, pro koho pracuje. A vědí, že Pospíšil by mohl říct u soudu věci, které slyšel za pultem za deset let. Červenka byl varování.",
+            "kapital_high": "Červenka pracuje jako účetní pro menší záložnu na Žižkově. Záložna má výpadek v evidenci — peníze, které zmizely v říjnu. Červenka věděl o výpadku. Možná to s incidentem nesouvisí. Možná ano.",
+            "default": "Pospíšil se třese. Ne kvůli pokutě. Kvůli tomu, co ví — a co nesmí říct. Ben to vidí. Spis to nevidí."
+          }
+        },
+        "confrontation": {
+          "target": "pospisil",
+          "target_label": "Emil Pospíšil, obžalovaný",
+          "requires_contradiction": "znal_pred_incident",
+          "requires_courage": 55,
+          "cost": 2,
+          "prompt": "Pane Pospíšile, Červenka říká, že útočník přišel k pultu půl hodiny před incidentem a potichu s vámi mluvil. Bárta říká, že odešel zadním vchodem — cestou, kterou nezná náhodný host. Kdo to byl a co vám řekl?",
+          "success": {
+            "text": "Pospíšil se dívá na stůl. Dlouho. Pak zvedne hlavu a podívá se na Bena — ne na zapisovatelku, ne na stranu. Na Bena. 'Pane doktore, mám dceru Martu. Dvacet dva let. Pracuje v Holešovicích.' Odmlčí se. 'Jméno toho muže nevím. Opravdu nevím.' Pak sklopí zrak. Ben ví, že to není celá pravda. A ví, že víc nedostane.",
+            "reveals": "Pospíšil odmítl jméno sdělit — ale způsobem, který sdělil víc než jméno. Dostal hrozbu. Přes dceru. Zákon to nevyřeší — ale Ben to ví. A Pospíšil ví, že Ben to ví."
+          }
+        }
+      },
+      "verdicts": {
+        "guilty": {
+          "sentences": {
+            "standard": {
+              "label": "Pokuta 300 Kčs za porušení povinností provozovatele",
+              "description": "Pospíšil nezasáhl včas. Zákon povinnost zasáhnout stanoví. Pokuta bez ztráty licence — hospoda zůstane otevřená.",
+              "effects": {
+                "integrita": 1,
+                "vina": 2,
+                "nadeje": -1,
+                "moc": 2,
+                "lid": -3,
+                "finance": 12
+              }
+            },
+            "maximum": {
+              "label": "Pokuta 800 Kčs a podmíněné pozastavení živnostenského listu",
+              "description": "Pospíšil znal útočníka a nezabránil incidentu. Podmíněné pozastavení — při recidivě zavírá.",
+              "requires": {
+                "odvaha_max": 28
+              },
+              "effects": {
+                "integrita": 2,
+                "vina": 4,
+                "nadeje": -2,
+                "moc": 4,
+                "lid": -6,
+                "finance": 16
+              }
+            },
+            "lenient": {
+              "label": "Napomenutí — incident nepředvídatelný",
+              "description": "Střet byl rychlý, Pospíšil volal pomoc. Napomenutí jako výstraha bez finanční sankce.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": 1,
+                "vina": 1,
+                "nadeje": 1,
+                "lid": 2,
+                "moc": -1,
+                "finance": 8
+              }
+            },
+            "alternative": {
+              "label": "Alternativa: Zastavení — navrhovatelka nemá aktivní legitimaci",
+              "description": "Poškozeným je manžel, nikoli manželka. Alžběta Červenková podat stížnost za manžela nemůže — zákon ji k tomu neopravňuje. Případ se zastavuje pro procesní vadu.",
+              "requires_investigation": 2,
+              "requires": {
+                "moudrost_min": 55
+              },
+              "effects": {
+                "integrita": 2,
+                "moudrost": 4,
+                "vina": 1,
+                "nadeje": 2,
+                "lid": 3,
+                "moc": -3,
+                "finance": 8,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "not_guilty": {
+          "approaches": {
+            "formal": {
+              "label": "Zproštění — náhlý střet, povinnost zasáhnout nenastala",
+              "description": "Incident trval sekundy. Zákon ukládá povinnost zasáhnout při trvajícím pohoršení — ne předcházet nepředvídatelné ráně.",
+              "requires_investigation": 1,
+              "effects": {
+                "integrita": -1,
+                "odvaha": 2,
+                "vina": -1,
+                "lid": 4,
+                "moc": -3,
+                "finance": 10
+              }
+            },
+            "with_comment": {
+              "label": "Alternativa: Zproštění — navrhovatelka jednala v omylu o příčině",
+              "description": "Červenka byl napaden z důvodů, které nesouvisejí s provozem hospody. Pospíšil byl v situaci, kde zasáhnout nemohl bez ohrožení vlastní osoby. Soud konstatuje, že žaloba míří na nesprávný subjekt.",
+              "requires_investigation": 3,
+              "requires": {
+                "odvaha_min": 55
+              },
+              "effects": {
+                "integrita": 3,
+                "odvaha": 4,
+                "vina": -1,
+                "nadeje": 2,
+                "lid": 5,
+                "moc": -6,
+                "finance": 10,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  },
+                  {
+                    "key": "flag_pospisil_dluzi",
+                    "value": true
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "insufficient_evidence": {
+          "options": {
+            "reopen": {
+              "label": "Přerušit — doplnit výslech poškozeného Jana Červenky",
+              "description": "Stížnost podala manželka. Poškozený Jan Červenka nebyl předvolán. Bez jeho výpovědi nelze posoudit, zda Pospíšil věděl o hrozbě předem.",
+              "effects": {
+                "moudrost": 3,
+                "vina": 1,
+                "finance": 8,
+                "flags": [
+                  {
+                    "key": "flag_pospisil_cervenka_vyslechnut",
+                    "value": true
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "aftermath": {
+        "guilty_standard": "Pospíšil zaplatil. Vrátil se do hospody. Bárta přišel ten večer a sedl si na své místo. Nic neřekl. Pospíšil mu přinesl pivo — na dům.",
+        "guilty_maximum": "Podmíněné pozastavení. Pospíšil provozoval dál — ale každý incident teď hrozí zavřením. Dělníci z Waltrovky o tom věděli a chodili dřív, aby byly do desíti.",
+        "guilty_lenient": "Napomenutí. Alžběta Červenková odešla nespokojena. Jan Červenka přišel za tři týdny do hospody sám — bez komentáře sedl ke svému stolu.",
+        "guilty_alternative": "Případ zastaven pro procesní vadu. Alžběta Červenková podala novou stížnost — tentokrát jménem manžela. Soud ji přijal. Případ pokračuje v jiném řízení.",
+        "not_guilty_formal": "Pospíšil zproštěn. Alžběta Červenková podala odvolání. Jan Červenka odvolání nepodepsal.",
+        "not_guilty_with_comment": "Ben v rozsudku napsal, že žaloba míří na nesprávný subjekt. Pospíšil odešel bez výrazu. Na chodbě počkal, až odejdou ostatní — pak si sedl na lavici a držel hlavu v rukách."
+      },
+      "stamp_moment": {
+        "guilty": "Pospíšil vstal. Podíval se na dveře — ne na Bena, ne na Červenkovou. Na dveře. Jako by čekal, kdo vstoupí.",
+        "not_guilty": "Pospíšil nevydechl. Vstal, poděkoval a odešel — rychle, jako člověk, který potřebuje být někde jinde.",
+        "insufficient": "Pospíšil zůstal sedět, i když ostatní vstávali. Zapisovatelka se na něj podívala. Vstal teprve pak."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "not_guilty_with_comment",
+          "delay_days": 5,
+          "type": "fragment",
+          "text": "Pospíšil přišel na soud sám. Odešel sám. Cestou domů ho někdo oslovil na rohu Seifertovy ulice — muž, kterého Ben nikdy neviděl. Pospíšil se zastavil. Mluvili dvě minuty. Pak Pospíšil šel dál. Nevzal si jídelní kabel. Dělníci z Waltrovky seděli do desíti a čekali."
+        },
+        {
+          "trigger": "guilty_standard",
+          "delay_days": 4,
+          "type": "fragment",
+          "text": "Jan Červenka se vrátil do práce po šesti týdnech. Záložna mu oznámila, že jeho pozice byla obsazena. Dostal výpověď s dvoutýdenní výplatou. Alžběta Červenková podala stížnost k obchodnímu soudu."
+        }
+      ]
+    },
+    {
+      "id": "pool_a1_draha",
+      "slot": "pool",
+      "type": "routine",
+      "color": "#5A4A3A",
+      "available_days": [
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "act": 1,
+      "weight_conditions": {
+        "base_weight": 1,
+        "week_2_bonus": 1.2
+      },
+      "title": "Přestavená výhybka",
+      "case_number": "Sp. zn. 102/1931",
+      "defendant": {
+        "name": "František Douda",
+        "age": 44,
+        "occupation": "výhybkář, Státní dráhy ČSR, úsek Praha-Smíchov",
+        "detail": "zaměstnanec drah devatenáct let, vdovec, dvě dcery (14 a 17 let); ve službě bez disciplinárního záznamu"
+      },
+      "charge": "Ohrožení obecné bezpečnosti dle §87 trestního zákona a sabotáž přepravního provozu dle §5 zákona na ochranu republiky č. 50/1923 Sb.: František Douda dne 15. ledna 1931 ve 14:22 vědomě a záměrně přestavil výhybku V-7 na úseku Nusle–Smíchov do polohy odklonu, čímž způsobil odklonění osobního vlaku č. 214 na vedlejší kolej. Vlak zastavil bez srážky. Zpoždění 3 hodiny 20 minut. 187 cestujících, žádné zranění. Douda čin přiznal okamžitě.",
+      "description": "František Douda přestavil výhybku. Přiznal to ihned, na místě, policistovi, který přijel jako první. Nezkoušel utéct ani nic zakrýt. Vlak č. 214 zastavil bez úhony — strojvedoucí zareagoval a zabrzdil. Douda byl odklizen od výhybky a odveden. Druhý den ráno dráhy opravily kolejnicový svár na úseku K-7, který Douda devět měsíců hlásil jako nebezpečný. Tři pracovníci inspekce potvrdili, že svár byl skutečně vadný. Soud musí rozhodnout, co Douda je: sabotér, nebo člověk, který nevěděl jak jinak.",
+      "testimonies": [
+        {
+          "id": "douda",
+          "speaker": "František Douda, obžalovaný",
+          "text": "Přestavil jsem výhybku. To nepopírám. Hlásil jsem svár K-7 od dubna loňského roku. Třikrát písemně, dvakrát ústně na poradě. <span class=\"clue\" data-clue-id=\"clue_douda_hlasenky\">Mám kopie všech pěti hlášení. Podal jsem je inspektoru Hruškovi. Poslední hlášení datováno 8. prosince 1930 — šest týdnů před incidentem.</span> Chtěl jsem způsobit zpoždění — ne nehodu. Věděl jsem, kde vlak zastaví, věděl jsem, že strojvedoucí zabrzdí. Ale záruka to nebyla. Vím.",
+          "contradiction_keywords": [
+            "pět hlášení",
+            "8. prosince",
+            "záruka to nebyla"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "hruska_inspektor",
+          "speaker": "Inspektor Bedřich Hruška, provozní oddělení Státních drah",
+          "text": "Hlášení Doudy jsem dostával. První dvě jsem postoupil technickému oddělení. <span class=\"clue\" data-clue-id=\"clue_hruska_postoupil\">Třetí a čtvrté jsem... zdržel. Měli jsme v lednu plánovanou generální revizi celého úseku. Moje rozhodnutí bylo počkat a opravit vše najednou.</span> Svár K-7 byl na seznamu revize. Byl. Douda o tom nevěděl, protože mu to nikdo neřekl. Uznávám, že to byl můj opomenu.",
+          "contradiction_keywords": [
+            "zdržel",
+            "generální revize",
+            "neuvedl ho"
+          ],
+          "hidden_at_wisdom_below": null
+        },
+        {
+          "id": "strojvedouci",
+          "speaker": "Ladislav Mrázek, strojvedoucí vlaku č. 214",
+          "text": "Viděl jsem výhybku v poslední moment. Zabrzdil jsem nouzově. Vlak zastavil třicet metrů za výhybkou. <span class=\"clue\" data-clue-id=\"clue_mrazek_vzdalenost\">Kdybych reagoval o dvě sekundy pozdějc, nebo kdybychom jeli o deset kilometrů za hodinu rychleji — nevím, co by se stalo.</span> Douda stál u výhybky a čekal. Nedával najevo žádnou agresi. Stál tam jako člověk, který udělal, co chtěl udělat, a čeká na důsledky.",
+          "contradiction_keywords": [
+            "dvě sekundy",
+            "deset kilometrů",
+            "čekal"
+          ],
+          "hidden_at_wisdom_below": null
+        }
+      ],
+      "contradictions": [
+        {
+          "id": "hruska_vedel",
+          "description": "Hruška přiznal, že třetí a čtvrté hlášení záměrně zdržel — rozhodl čekat na generální revizi a Doudovi to neřekl. Douda devět měsíců nevěděl, že jeho hlášení leží v šuplíku a čeká na plánovaný termín.",
+          "involves": [
+            "douda",
+            "hruska_inspektor"
+          ],
+          "highlight_at_wisdom": 65,
+          "unlocks_confrontation": "hruska_inspektor"
+        },
+        {
+          "id": "zaruka_nebyla",
+          "description": "Douda sám přiznal: 'Záruka to nebyla.' Mrázek potvrdil, že dvě sekundy nebo vyšší rychlost mohly změnit výsledek. Douda riskoval životy 187 lidí — i kdyby to nebylo jeho záměrem.",
+          "involves": [
+            "douda",
+            "strojvedouci"
+          ],
+          "highlight_at_wisdom": 70,
+          "unlocks_confrontation": "douda"
+        }
+      ],
+      "clue_system": {
+        "enabled": true,
+        "true_pair_id": "hruska_sabotoval_system_strong",
+        "pairs": [
+          {
+            "pair_id": "hruska_sabotoval_system_strong",
+            "a_id": "clue_douda_hlasenky",
+            "b_id": "clue_hruska_postoupil",
+            "strength": "strong"
+          },
+          {
+            "pair_id": "riziko_nezpochybnitelne_medium",
+            "a_id": "clue_mrazek_vzdalenost",
+            "b_id": "clue_douda_hlasenky",
+            "strength": "medium"
+          }
+        ],
+        "decoys": [
+          "decoy_187_cestujicich"
+        ],
+        "timed_hunt": {
+          "enabled": true,
+          "duration_sec": 60,
+          "speed_upgrade_sec": 20,
+          "auto_confirm_best_on_timeout": true,
+          "timeout_downgrade": false
+        },
+        "info_threshold_unlocks": {
+          "actions": [
+            {
+              "min": 45,
+              "ids": [
+                "pool_inv_confrontation"
+              ]
+            }
+          ],
+          "verdicts": [
+            {
+              "min": 35,
+              "ids": [
+                "guilty_minimum"
+              ]
+            },
+            {
+              "min": 60,
+              "ids": [
+                "guilty_alternative"
+              ]
+            },
+            {
+              "min": 80,
+              "ids": [
+                "not_guilty_formal"
+              ]
+            }
+          ]
+        },
+        "rewards": {
+          "on_confirm": {
+            "strong": {
+              "investigation_progress_delta": 44,
+              "unlock_actions": [
+                "pool_inv_confrontation"
+              ],
+              "unlock_verdict_ids": [
+                "guilty_alternative",
+                "not_guilty_formal"
+              ],
+              "narrative_lines": [
+                "Pět hlášení. Hruška zdržel třetí a čtvrté — a Doudovi to neřekl.",
+                "Devět měsíců čekal Douda na odpověď, která ležela v šuplíku a čekala na revizi.",
+                "Hruška udělal správné rozhodnutí špatným způsobem. Douda udělal špatné rozhodnutí ze správného důvodu."
+              ]
+            },
+            "medium": {
+              "investigation_progress_delta": 22,
+              "unlock_verdict_ids": [
+                "guilty_minimum"
+              ],
+              "narrative_lines": [
+                "Dvě sekundy. Deset kilometrů za hodinu. Douda věděl, že záruka to není.",
+                "187 lidí nevědělo, že jejich vlak je součástí Doudovy kalkulace."
+              ]
+            }
+          }
+        }
+      },
+      "investigation": {
+        "interview": {
+          "target": "technik_svar",
+          "target_label": "Ing. Miroslav Zajíček, technická inspekce Státních drah",
+          "reveals": "motivation",
+          "text": "Svár K-7 jsme zkontrolovali šestnáctého ledna — den po incidentu. Korozní popraskání hloubky čtyři milimetry, délka trhliny čtrnáct centimetrů. <span class=\"clue\" data-clue-id=\"clue_douda_hlasenky\">Při zatížení expresním vlakem kategorie D — to je těžší než vlak č. 214 — pravděpodobnost selhání sváru odhaduji na čtyřicet až šedesát procent.</span> Osobní vlak č. 214 ho s osmdesátiprocentní pravděpodobností přejel bezpečně. Expres z Vídně, který jezdí v 15:40, by byl jiná věc. Douda to mohl vědět.",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Integrita": -1,
+              "Vina": 1
+            },
+            "factions": {
+              "Moc": 1
+            }
+          }
+        },
+        "records": {
+          "source": "Úřední hlášení Doudy č. 1–5; interní protokoly provozního oddělení; revizní plán úseku Nusle–Smíchov",
+          "reveals": "facts",
+          "text": "Hlášení č. 1 (duben 1930): postoupeno technickému oddělení — potvrzení příjmu. Hlášení č. 2 (červen 1930): postoupeno — potvrzení příjmu. <span class=\"clue\" data-clue-id=\"clue_hruska_postoupil\">Hlášení č. 3 (září 1930) a č. 4 (listopad 1930): v šanonu inspektora Hrušky, razítko 'zařazeno do revizního plánu Q1/1931' — bez informování Doudy.</span> Hlášení č. 5 (prosinec 1930): totéž. Revizní plán Q1/1931: svár K-7 uveden na straně 14, plánovaná oprava únor 1931. Oprava provedena 16. ledna — den po incidentu.",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -12,
+            "traits": {
+              "Integrita": -2,
+              "Vina": 1
+            },
+            "factions": {
+              "Moc": 2
+            }
+          },
+          "unlocks_contradiction": "hruska_vedel"
+        },
+        "informant": {
+          "reveals": "context",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Vina": 1
+            },
+            "factions": {
+              "Lid": -1,
+              "Moc": 2
+            }
+          },
+          "variants": {
+            "lid_high": "Na dráhách jsou Doudové desítky. Hlásí, čekají, hlásí znovu — a nic. Systém funguje tak, že výhybkář hlásí inspektorovi, inspektor rozhodne, výhybkář čeká. Douda devět měsíců čekal. Pak přestal čekat.",
+            "moc_high": "Státní dráhy chtějí případ uzavřít tiše a rychle. Pokud soud ukáže, že Hruška zdržoval hlášení, přijde revize celého provozního oddělení. Inspektor Hruška přišel na soud s advokátem státních drah.",
+            "kapital_high": "Vlak č. 214 byl tři hodiny zpožděn. Osm zásilek pro obchodní firmy nedorazilo včas — dvě z nich mají smluvní pokuty za zpoždění. Firma Haas und Söhne z Holešovic podala civilní žalobu na náhradu škody. Douda o firmě Haas nic nevěděl.",
+            "default": "Douda stál u výhybky a čekal. Nepokusil se schovat, nepokusil se vysvětlit. Řekl jen: 'Hlásil jsem to pětkrát.' Policista to zapsal. Pak přijel inspektor Hruška a policista to přeškrtl."
+          }
+        },
+        "confrontation": {
+          "target": "hruska_inspektor",
+          "target_label": "Inspektor Bedřich Hruška, Státní dráhy",
+          "requires_contradiction": "hruska_vedel",
+          "requires_courage": 50,
+          "cost": 2,
+          "prompt": "Pane inspektore, třetí a čtvrté hlášení jste záměrně zdržel a zařadil do revizního plánu na únor 1931 — bez toho, abyste o tom informoval Doudu. Douda devět měsíců nevěděl, proč nedostává odpověď. Nelze říci, že bez tohoto opomenutí by k incidentu nedošlo?",
+          "success": {
+            "text": "Hruška se odmlčí déle, než je pohodlné. Pak řekne: 'Mé rozhodnutí bylo provozně správné. Generální revize je efektivnější než záplatování po jednom. Kdybych Doudovi odpovídal na každé hlášení zvlášť, nestíhal bych řídit úsek.' Odmlka. 'Měl jsem ho informovat. To uznávám. Nebylo to správné.' Říká to potichu. Advokát státních drah za ním vypadá nespokojeně.",
+            "reveals": "Hruška přiznal procesní selhání — ale ne odpovědnost za incident. Soud nyní ví, že Douda devět měsíců čekal na odpověď, která ležela v šuplíku. Zda to mění povahu Doudova činu, musí rozhodnout soud."
+          }
+        }
+      },
+      "verdicts": {
+        "guilty": {
+          "sentences": {
+            "maximum": {
+              "label": "3 roky vězení a trvalé zbavení způsobilosti pracovat u drah",
+              "description": "Douda vědomě ohrozil 187 osob. Přiznal, že záruka bezpečného zastavení neexistovala. Tři roky odpovídají závažnosti — bez ohledu na to, co předcházelo. Dcery zůstanou bez otce, práce bez vyhlídky.",
+              "effects": {
+                "integrita": 3,
+                "vina": 5,
+                "nadeje": -3,
+                "moc": 6,
+                "lid": -6,
+                "finance": 18
+              }
+            },
+            "standard": {
+              "label": "18 měsíců podmíněně a propuštění ze státní služby",
+              "description": "Sabotáž provozu bez zranění. Podmíněný trest zohledňuje provokaci ze strany systému — ale Douda propuštění ze drah. Devatenáct let bez záznamu, pak konec.",
+              "effects": {
+                "integrita": 2,
+                "vina": 3,
+                "nadeje": -1,
+                "moc": 4,
+                "lid": -3,
+                "finance": 14
+              }
+            },
+            "minimum": {
+              "label": "Pokuta 1 000 Kčs — ohrožení bez následků, polehčující systémové selhání",
+              "description": "Douda jednal po vyčerpání řádných cest. Systém selhal devět měsíců. Žádné zranění. Pokuta bez vězení ani propuštění — Douda může zůstat na dráze.",
+              "requires_investigation": 2,
+              "effects": {
+                "integrita": 1,
+                "vina": 2,
+                "nadeje": 2,
+                "lid": 4,
+                "moc": -3,
+                "finance": 10
+              }
+            },
+            "alternative": {
+              "label": "Alternativa: Symbolická pokuta 100 Kčs a doporučení trestního šetření inspektora Hrušky",
+              "description": "Soud konstatuje, že Hruška záměrně zadržoval hlášení bez informování podřízeného. Bez tohoto selhání by Douda pravděpodobně čekal na únorovou revizi. Douda dostane symbolickou pokutu — Hruška bude předán k šetření.",
+              "requires_investigation": 3,
+              "requires": {
+                "odvaha_min": 60
+              },
+              "effects": {
+                "integrita": 5,
+                "odvaha": 5,
+                "vina": 2,
+                "nadeje": 3,
+                "lid": 6,
+                "moc": -8,
+                "finance": 8,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 2
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "not_guilty": {
+          "approaches": {
+            "formal": {
+              "label": "Alternativa: Zproštění — systémové selhání jako vyšší moc",
+              "description": "Douda vyčerpal všechny dostupné řádné prostředky. Hruška zdržoval hlášení bez informování. V situaci, kdy systém nefunguje a hrozba je reálná, nelze od zaměstnance požadovat nečinnost. Zproštění — bez precedentu pro budoucí sabotáže.",
+              "requires_investigation": 3,
+              "requires": {
+                "odvaha_min": 70,
+                "moudrost_min": 65
+              },
+              "effects": {
+                "integrita": 4,
+                "odvaha": 7,
+                "vina": 3,
+                "nadeje": 3,
+                "lid": 7,
+                "moc": -10,
+                "finance": 8,
+                "flags": [
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 2
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "insufficient_evidence": {
+          "options": {
+            "reopen": {
+              "label": "Přerušit — prošetření odpovědnosti inspektora Hrušky",
+              "description": "Bez jasného obrazu Hruškova zavinění nelze spravedlivě posoudit míru Doudovy odpovědnosti. Soud přerušuje a předává podnět k šetření Hrušky.",
+              "effects": {
+                "moudrost": 4,
+                "vina": 1,
+                "nadeje": 1,
+                "finance": 8,
+                "flags": [
+                  {
+                    "key": "flag_hruska_setreni",
+                    "value": true
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "aftermath": {
+        "guilty_maximum": "Douda odešel s policistou. Dcery ho navštěvovaly každou neděli. Hruška dostal pokárání od vedení drah — písemné, do spisu. Svár K-7 byl opraven šestnáctého ledna. Expres z Vídně jezdí od té doby bez komplikací.",
+        "guilty_standard": "Douda propuštěn. Našel práci u soukromé dopravní firmy v Holešovicích — nižší plat, žádná státní penze. Hruška zůstal na místě. V únoru proběhla generální revize úseku — bez závad.",
+        "guilty_minimum": "Douda zaplatil tisíc korun. Vrátil se k výhybce. Kolegové mu podali ruku — tiše, jeden po druhém. Hruška s ním poprvé za devět měsíců promluvil přímo.",
+        "guilty_alternative": "Symbolická pokuta. Hruška byl předvolán k disciplinárnímu šetření. Státní dráhy podaly stížnost na rozsudek — a zároveň nařídily interní revizi systému hlášení závad. Douda dostal o měsíc senare písemné potvrzení, že jeho hlášení z dubna 1930 byla 'zpracována v souladu s pravidly'.",
+        "not_guilty_formal": "Douda zproštěn. Státní dráhy se odvolaly. Hruška podal okamžitou výpověď — aniž by ho o to kdokoli žádal. Douda se vrátil k výhybce. Nikdo mu nic neřekl. On taky ne."
+      },
+      "stamp_moment": {
+        "guilty": "Douda vstal. Rovně, klidně. Jako výhybkář, který ví, že vlak přijde — a stojí tam stejně.",
+        "not_guilty": "Douda se díval na Hrušku. Hruška se díval na advokáta. Advokát se díval do spisu.",
+        "insufficient": "Douda si opravil čepici. Rutinně, jako před směnou. Pak čekal na pokyn, kdy smí odejít."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "guilty_alternative",
+          "delay_days": 5,
+          "type": "fragment",
+          "text": "Státní dráhy vydaly interní oběžník č. 14/1931: výhybkáři jsou nově povinni dostávat písemné potvrzení do 14 dnů od hlášení závady. Hruška oběžník obdržel jako jeden z prvních. Podepsal ho a vrátil."
+        },
+        {
+          "trigger": "not_guilty_formal",
+          "delay_days": 4,
+          "type": "fragment",
+          "text": "Právo lidu, str. 2: 'Soud zprostil železničního sabotéra — systém selhal.' Národní politika: 'Nebezpečný precedent.' Douda si výstřižky nepřečetl. Měl ranní směnu."
+        },
+        {
+          "trigger": "guilty_maximum",
+          "delay_days": 6,
+          "type": "fragment",
+          "text": "Svár K-7 opraven šestnáctého ledna 1931 — den po incidentu. V revizním záznamu poznámka: 'Dle hlášení č. 1–5, výhybkář Douda, duben 1930 – prosinec 1930.' Záznamy jsou nyní součástí Doudova trestního spisu jako důkaz jeho vědomosti o závadě."
         }
       ]
     }

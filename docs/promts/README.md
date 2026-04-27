@@ -1,6 +1,8 @@
 # Prompty pro autory (IN DUBIO)
 
-**Lore a 20denní rámec:** `docs/InDubio_StoryBible_v2_Cursor.txt` (v2.1). **Současnost děje hry** = březen 1931; spisy smějí v důkazech pracovat s dřívější minulostí. Reálie a ceny: [`../world-reference.md`](../world-reference.md). **Dynamika dne / milníky / limity revizí:** [`../scenar/Milniky-dynamika-akt1.md`](../scenar/Milniky-dynamika-akt1.md) + řádek dne v [`../scenar/Mapa_20dni.csv`](../scenar/Mapa_20dni.csv).
+**Lore a 15denní kampaň:** `docs/InDubio_StoryBible_v2_Cursor.txt` (v3.0). **Současnost děje hry** = březen 1931; spisy smějí v důkazech pracovat s dřívější minulostí. Reálie a ceny: [`../world-reference.md`](../world-reference.md). Tón výpovědí a úřední řeči u soudu: [`../analyza_soudni_reci_1925-1935.md`](../analyza_soudni_reci_1925-1935.md). **Dynamika dne / milníky / limity revizí:** [`../scenar/Milniky-dynamika-akt1.md`](../scenar/Milniky-dynamika-akt1.md) + řádek dne v [`../scenar/Mapa_15dni.csv`](../scenar/Mapa_15dni.csv).
+
+**Finální tyčové případy** (Beneš, zvraty D10, Haas, Závadová, Karas, Velezrada, finále vláken) — až až: [`PROMPT-finalni-tycove-pripady.md`](./PROMPT-finalni-tycove-pripady.md) (přísnější zadání než u rutinního poolu).
 
 ## Workflow
 

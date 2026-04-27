@@ -7,28 +7,30 @@ Následující text zkopíruj celý, nahraď zástupné značky **XXX** a příp
 ## Kontext, který model potřebuje mimo tento text
 
 - Tento soubor dává **pravidla, strukturu, tón a očekávání výstupu**. Není v něm **svět, postavy ani ceny** — to přilož zvlášť.  
-- **Doporučené přílohy** (nepovinně všechny, podle týmu): [`../world-reference.md`](../world-reference.md) (ceny, reálie 1931), [`../../data/knihovna.json`](../../data/knihovna.json) (hesla u odkazů), [`../../data/characters.json`](../../data/characters.json) (konkrétní NPC), řádek z [`../scenar/Mapa_20dni.csv`](../scenar/Mapa_20dni.csv) (včetně sloupců *Modif_dne*, *Vecer_doplnek*, *Patrani_navrh*) + [`../scenar/Pripady.csv`](../scenar/Pripady.csv) pro daný den, přehled [`../scenar/Milniky-dynamika-akt1.md`](../scenar/Milniky-dynamika-akt1.md), vzorový JSON [`../Pripady/pool_a1_tiskarna-vzor_Nocni-smena.json`](../Pripady/pool_a1_tiskarna-vzor_Nocni-smena.json).  
+- **Doporučené přílohy** (nepovinně všechny, podle týmu): [`../world-reference.md`](../world-reference.md) (ceny, reálie 1931), [`../analyza_soudni_reci_1925-1935.md`](../analyza_soudni_reci_1925-1935.md) (tón soudní řeči, obraty, čemu se vyhnout), [`../../data/knihovna.json`](../../data/knihovna.json) (hesla u odkazů), [`../../data/characters.json`](../../data/characters.json) (konkrétní NPC), řádek z [`../scenar/Mapa_15dni.csv`](../scenar/Mapa_15dni.csv) (datum, sloty, *Poznamky*) + [`../scenar/Pripady_15dni.csv`](../scenar/Pripady_15dni.csv) pro daný den, přehled [`../scenar/Milniky-dynamika-akt1.md`](../scenar/Milniky-dynamika-akt1.md), vzorový JSON [`../Pripady/pool_a1_tiskarna-vzor_Nocni-smena.json`](../Pripady/pool_a1_tiskarna-vzor_Nocni-smena.json).  
 - **Povinná minimální příloha při generování:** vždy přilož alespoň jeden typizovaný vzorový případ (`pool_a1_tiskarna-vzor_Nocni-smena.json` nebo jiný schválený vzor z `docs/Pripady/`), aby autor držel kompatibilní strukturu JSON.
-- **Story Bible (kanon lore):** soubor `docs/InDubio_StoryBible_v2_Cursor.txt` (v2.1). Přilož ho k zadání, pokud generuješ děj navázaný na postavy nebo metapříběh; u čistě „poolových“ kauz může stačit `world-reference.md` + tým. Pravidla mechanik spisu: **`.cursor/rules/cases.mdc`**.
+- **Story Bible (kanon lore):** soubor `docs/InDubio_StoryBible_v2_Cursor.txt` (v3.0, 15 prac. dní). Přilož ho k zadání, pokud generuješ děj navázaný na postavy nebo metapříběh; u čistě „poolových“ kauz může stačit `world-reference.md` + tým. Pravidla mechanik spisu: **`.cursor/rules/cases.mdc`**.
 
 ## Před startem generování (rychlá kontrola připravenosti)
 
 Než model začne psát JSON, ověř 4 body:
 
-1. **Mapa dne sedí na typ případu:** vybraný den v `Mapa_20dni.csv` odpovídá zamýšlenému typu (`routine` / `moral_dilemma` / případně později `political` / `personal`), a nepopírá milníky z `Milniky-dynamika-akt1.md`.
+1. **Mapa dne sedí na typ případu:** vybraný den v `Mapa_15dni.csv` odpovídá zamýšlenému typu (`routine` / `moral_dilemma` / případně později `political` / `personal`), a nepopírá milníky z `Milniky-dynamika-akt1.md`.
 2. **Nejedeš duplicitu hotových kauz:** zkontroluj `docs/pool_cases_akt1_prehled.md` a vyhni se stejnému jádru (např. pojistka těsně před smrtí, exekutor s doručenkou, žhářství + syn na dvoře, padělané doklady na hranici).
 3. **Mechanika je v kanonu:** two-click, soft-fail pravidlo a odemykání variant odpovídají `.cursor/rules/cases.mdc`.
 4. **Příběh má vlastní stopu:** nový případ musí mít vlastní profesní prostředí, jiný typ důkazu a jinou osu morálního tření než poslední 2–3 hotové případy.
-5. **Týden a tón trestu:** ověř v **`.cursor/rules/cases.mdc`** sekce *Pool — trestní náročnost vs. týden*, *Pool — rebus / nejasné kauzy (3. týden)* a případně *Pool — netradiční modely* — `available_days` a závažnost obžaloby mají sedět na zamýšlený herní týden (1. týden lehčí; 2.–3. týden smí občas přijít těžší násilí / smrt v obžalobě; rebus 1–2× ve 3. týdnu).
+5. **Týden a tón trestu:** ověř v **`.cursor/rules/cases.mdc`** sekce *Pool — trestní náročnost vs. týden*, *Pool — rebus / nejasné kauzy (3. týden)* a případně *Pool — netradiční modely* — `available_days` a závažnost obžaloby mají sedět na zamýšlený herní týden (1. týden lehčí; 2.–3. týden smí občas přijít těžší násilí / smrt v obžalobě; rebus 1–2× ve 3. týdnu).  
+   V 15denní kampani ber týdenní rámec explicitně: **1. týden = dny 1–5, 2. týden = dny 6–10, 3. týden = dny 11–15**.
 
 ## Nové pool kauzy — spolupráce s agentem
 
 Když budete chtít **vygenerovat nebo rozplánovat nové případy**, napište v chatu stručně např.: *„Potřebujeme pool prompt podle `cases.mdc` — [téma / den / slot / rebus ano-ne]“*. Agent má v pravidlech rámec **týdnů, trestní náročnosti, rebusů a netradičních modelů** a naváže tento prompt + `CHECKLIST-QA-pool-pripad.md`.
 
-## Třetí spis a spis light (plánovaný obsah Aktu 1)
+## Třetí spis a spis light (aktuální obsah Aktu 1)
 
-- **Třetí spis** na stole až od **15. herního dne** (začátek 3. týdne). Kanonický popis: `.cursor/rules/cases.mdc` (sekce *Třetí spis na stole*, *Spis light*); v Knihovně jde o text v záložce **Pravidla** (bloky stejného jména), ne o slovníková hesla.
-- Když tým zadává **třetí / dodatečnou kauzu**, piš ji do **`data/pool_cases_light_akt1.json`** (pole `pool_cases_light_akt1`), **ne** do hlavního `data/pool_cases_akt1.json`, pokud výslovně nejde o plný případ.
+- **Třetí spis** na stole od **2. týdne kalendáře** (podmíněně; přesné chování řídí `days.json` + `cases_light` a implementace v `cases.js`/`engine.js`). Kanonický popis: `.cursor/rules/cases.mdc` (sekce *Třetí spis na stole*, *Spis light*); v Knihovně jde o text v záložce **Pravidla** (bloky stejného jména), ne o slovníková hesla.
+- **Spis light = primárně zkrácená varianta** stejného druhu kauzy jako v hlavním poolu (`pool_a1_*`): kratší texty, 1–2 svědci, užší verdikty, bez vlečení pilířových postav z metapříběhu. Technicky může být v `pool_cases_akt1.json` s `case_profile: "light"` + odkaz v `days.json`, nebo ve sdíleném `pool_cases_light_akt1.json` — viz `cases.mdc`.
+- Když tým zadává **třetí / dodatečnou kauzu**, ukládej ji dle pravidel výše; nasazení do runtime vždy slaď s `days.json` (`cases_light`) a loaderem.
 - V kořeni objektu případu vždy **`"case_profile": "light"`** a `id` s doporučeným prefixem **`pool_light_a1_`** (nesmí kolidovat s `pool_a1_*`).
 - **Spis light:** kratší `description` (2–3 věty), **1–2** výpovědi, průzkum zjednodušit (často výslech + záznamy; konfrontace jen výjimečně), užší strom **`verdicts`** než u plné kauzy; `clue_system` volitelné, s méně falešnými stopami pokud zapnuto.
 - Děj **nezávislý na hlavním příběhu** hry — žádné povinné plotové postavy z Bible jako nosič kauzy; atmosféra města a úřadu.
@@ -36,7 +38,7 @@ Když budete chtít **vygenerovat nebo rozplánovat nové případy**, napište 
 
 ---
 
-Jsi **autor obsahu** pro soudní hru IN DUBIO (Československo, první republika, **březen 1931** = současnost děje hry). Důkazy, výpovědi, motivace a náhledy do kauzy smějí a mají pracovat s **minulostí** (kdekoli v 1. republice či dřív — roky, staré smlouvy, bývalé úřady) podle stavu spisu. Formální tón: **soudní protokol, úřední čeština**, nikoliv hovorová. Hráč není odměňován za to, že „odhalí všechna tajemství“ hned — tajemství sedí v **rozporech** mezi texty (srov. níže). Neprozrazuj v úvodu výsledek, nejmenuj otevřeně, kdo lže — hráč to dává dohromady z důkazů.
+Jsi **autor obsahu** pro soudní hru IN DUBIO (Československo, první republika, **březen 1931** = současnost děje hry). Důkazy, výpovědi, motivace a náhledy do kauzy smějí a mají pracovat s **minulostí** (kdekoli v 1. republice či dřív — roky, staré smlouvy, bývalé úřady) podle stavu spisu. Formální tón: **soudní protokol, úřední čeština**, nikoliv hovorová — drž se konkrétního rámce v [`../analyza_soudni_reci_1925-1935.md`](../analyza_soudni_reci_1925-1935.md) (jako příloha k zadání). Hráč není odměňován za to, že „odhalí všechna tajemství“ hned — tajemství sedí v **rozporech** mezi texty (srov. níže). Neprozrazuj v úvodu výsledek, nejmenuj otevřeně, kdo lže — hráč to dává dohromady z důkazů.
 
 **Tvůrčí cíl:** kauza má působit jako **zkrácená soudní novela** — ne jako pouhý seznam faktů. Každá důležitá postava potřebuje **čitelnou motivaci** (i když tají nebo lže); důkazní a emoční kroky mají tvořit **logickou síť** a **zapletku** mezi vrstvami spisu. Kreativita slouží srozumitelnosti, morálnímu tření a napětí; v mezích úředního tónu a pravidel níže, ne dekoru bez obsahu.
 
@@ -68,6 +70,11 @@ Vytvoř **jeden** plný herní **objekt případu** (jedna položka v poli pool 
 - `type`: `XXX_typ` — v poolu se běžně používá `routine` nebo `moral_dilemma` (jiné hodnoty jen pokud v `data/pool_cases_akt1.json` už existují a `data-loader` je zná).  
 - `color` / stínění: `XXX_color` (hex, např. rutinní `#C4A35A` — ověř u stejného typu v poolu).  
 - `available_days` / `act` / `weight_conditions`: dle `XXX_metadata_dni` (pole čísel dní, číslo aktu, váhy). Chybí-li v zadání, doplň **rozumně** a konzistentně s dějem (žádné komentáře uvnitř JSON — neplatí `//` ani `/* */`).
+- `available_days` v 15denní kampani musí obsahovat pouze pracovní dny **1–15**. Dny 16+ v této verzi neexistují.
+- `weight_conditions` nastav podle typu zadání:
+  - **pool případ:** váhy dle dne/stavu hry (typicky bez `forced`, nebo `forced: false`),
+  - **tyčový/pillar případ:** typicky `forced: true` + přesně daný den/slot dle scénáře.
+- Pokud jde o tyčový případ, zachovej i interní označení tracku (`case_track: "pillar"`, případně `case_track_label: "tycove"`), pokud je tým v datech používá.
 - Pokud je případ na hraně mezi `routine` a `moral_dilemma`, preferuj `moral_dilemma` tehdy, když jsou právně obhajitelné minimálně dvě protichůdné větve bez jednoho „správného“ výsledku.
 
 ## Obžaloba a fakt
@@ -85,7 +92,9 @@ Vytvoř **jeden** plný herní **objekt případu** (jedna položka v poli pool 
 
 ## Pátrání (Two-Click) — volitelné, ale u pool případu typicky
 
-- V mapě párů `clue_system`: `true_pair_id`, `pairs` (a_id, b_id, strength: weak|medium|strong), `decoys` (cizí stopy), případně `timed_hunt` a `rewards.on_confirm` vč. **volitelných** `narrative_lines` (3 krátké věty podle síly). U `timed_hunt` nech **`timeout_downgrade`: `false`** (méně trestá hráče při uplynutí času), pokud tým výslovně nechce přísnější režim.  
+- V mapě párů `clue_system`: `true_pair_id`, `pairs` (a_id, b_id, strength: weak|medium|strong), `decoys` (cizí stopy), případně `timed_hunt` a `rewards.on_confirm` vč. **volitelných** `narrative_lines` (3 krátké věty podle síly).  
+- Jedna stopa (`data-clue-id`) může být záměrně součástí **více párů** s různou silou (`weak`/`medium`/`strong`). Je to validní designový nástroj; při kolizi vyhodnocení preferuj nejsilnější platný pár.
+- Pokud je `timed_hunt` zapnutý, nech `timeout_downgrade: false` a drž férovou hustotu stop; bez timed režimu musí párování fungovat stejně čitelně.
 - Pokud zadání **nechce** two-click, můžete `clue_system.enabled: false` — v tom případě odůvodni v písemném bríf, ne v JSON.  
 - Technicky drž strukturu blíž příkladu v repu, např. kauza *pool_a1_tiskarna* (Noční směna) pro orchestraci — **nekopíruj její děj ani verdikty**, jen stavebnice polí.
 
@@ -125,6 +134,8 @@ Pokud tým chce další případy příběhovější, ale stále poolové:
 
 - Noviny, dopisy, vlákno: **jen pokud** tým zadal `XXX_vedlejsi_arty` — jinak může být `narrative_link: null` / bez pole.  
 - `bribe_amount` / `recurring` atd. jen dle bríf, ne vždy.
+- `review_card` můžeš v datech vyplnit (pro budoucí použití / archivaci návrhu), ale v aktuální hře se zatím **runtime nepoužívá**; nespoléhej na něj jako na aktivní mechaniku.
+- Volitelné pole pro atmosféru po potvrzení: `stamp_moment` = `{ "guilty": "...", "not_guilty": "...", "insufficient": "..." }` (1–2 věty na větev, bez hodnocení hráče).
 
 ## Jazyk a faktory
 

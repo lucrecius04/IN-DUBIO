@@ -5,7 +5,7 @@ alwaysApply: true
 
 # IN DUBIO — noir soudní hra
 
-Hráč = soudce **Benedikt Vraný** (Ben). Středoevropský stát, nástup 30. let, meziválečná krize a politický tlak. Ústřední otázka a dramatický oblouk jsou v **`.cursor/rules/story.mdc`** (20 dní, osm konců, noviny, vlákna).
+Hráč = soudce **Benedikt Vraný** (Ben). Středoevropský stát, nástup 30. let, meziválečná krize a politický tlak. Ústřední otázka a dramatický oblouk jsou v **`.cursor/rules/story.mdc`** (15 pracovních dní kampaně, osm konců, noviny, vlákna).
 
 ## Kde je pravda o obsahu a mechanikách
 
@@ -17,6 +17,7 @@ Hráč = soudce **Benedikt Vraný** (Ben). Středoevropský stát, nástup 30. l
 | Rysy 0–100, frakce Moc / Kapital / Lid, důvěra NPC | **`traits-factions.mdc`** |
 | Krizové stavy (Finance=0, Integrita<10, Odvaha<10) | **`economy.mdc`** + **`cases.mdc`** |
 | Encyklopedie (herní wikipedie, prokliky v textech) | **`cases.mdc`** (pravidla) + `data/encyclopedia.json` (data) |
+| Tón soudní řeči, výpovědí, úřední češtiny (obraty, vyhnout se) | `docs/analyza_soudni_reci_1925-1935.md` (doplněk k `world-reference.md` a kuchařce v `pool_cases_akt1_prehled.md`) |
 
 Při konfliktu mechanik mezi soubory má přednost **`cases.mdc`** (UI toku případu, průzkum, rozsudek, odemykání možností).
 

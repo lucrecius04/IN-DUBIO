@@ -213,7 +213,7 @@ const DataLoader = (() => {
     return {
       ...raw,
       _fromPool: true,
-      type: 'rutinni',
+      type: (raw && raw.type) || 'rutinni',
       day: Number.isFinite(Number(raw.day)) ? Number(raw.day) : 1,
       situation: raw.description || '',
       testimony,

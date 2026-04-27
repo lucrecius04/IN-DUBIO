@@ -1,0 +1,20 @@
+Den;Datum;Tyd;Slot 1 (hlavni);Typ S1;Vrstva S1;Slot 2 (vedlejsi);Typ S2;Vrstva S2;Slot 3 (light);Dopis/Udalost;Ranni fragment;Vecerni volba;Noviny;Poznamky
+1;2.3.;Po;Bozena 1 (slepice);Rut;Tyc;Kradez chleba (Horak);Rut;Tyc;--;Vlckuv uvitaci dopis;Mlha. Fronta u pekarny.;Psat Martinovi / Spisy;OBR: Krize pokracuje;Tutorial. Haas zminen v zaznamech Horaka.
+2;3.3.;Ut;Pool: rutinni;Rut;Pool;Pool: rutinni;Rut;Pool;--;Martin: studium. Pekar +3 Kc/den.;Pekar zvysil ceny.;Prochazka / Hospoda;TEXT: Nezam 15%;Echo: doporucit pool s Haas stopou (lekarna/Weiss).
+3;4.3.;St;Pospisil 1 (hospoda);Rut;Tyc;Markova 1 (svedkyne);Rut;Tyc;--;--;Svejda: Dnes je klid.;Kava s Karasem;TEXT: Vlada slibila pomoc;Karas se vyptava. Podpis (hacek). Zavedeni vztahu.
+4;5.3.;Ct;Bozena 2 (absurdita);Rut;Tyc;Hranice 1 (34 cm);Rut;Tyc;--;DOPIS DOKTORA (400 Kc deadline D12). Vlcek: pochvala.;Deti hraji fotbal.;Spisy / Prochazka;TEXT: Exekuce rolniku;COUNTDOWN start. 8 dni na 400 Kc. Prvni tlak.
+5;6.3.;Pa;Pool: moralni;Mor;Pool;Pool: rutinni;Rut;Pool;--;--;Sobotni trh. Mene stanku.;--;TEXT: Fronta u uradu;Prvni moralni dilema. Echo: doporucit Nemocenska/Stavba.
+SO;7.3.;--;-- SOBOTA --;--;--;--;--;--;--;Sobotni shrnuti + bonusy;--;--;--;Dva bonusy: Peclivy / Nezavisly.
+NE;8.3.;--;-- NEDELE --;--;--;--;--;--;--;Nedelni volba (Matka/Prochazka/Spisy);--;--;--;Prvni nedele. Zavedeni matky.
+6;9.3.;Po;Pool: moralni;Mor;Pool;Pospisil 2 (strach);Rut;Tyc;--;HAASOVA VIZITKA (bez textu). Martin: o spravedlnosti.;Plakat: POCHOD HLADU;Psat Martinovi;OBR: Deprese sili;Haas vi. Fin<80: vizitka sviti. Pospisil se boji.
+7;10.3.;Ut;Horackova svedkyne;Pol;Tyc;Pool: politicky/moralni;Pol;Pool;--;Vlcek: Rad bych upozornil na pripad...;Svejda: Ceka tu nekdo.;Hospoda;TEXT: Nemecke spolky;VETVENI 1. Vlcek naznaci verdikt.
+8;11.3.;St;Bozena 3 (korupce+tragedie);Mor;Tyc;Hranice 2 (Nemec);Pol;Tyc;Pool light (podminene);Vlcek: Ocekavam... (natlak);Policejni auto.;Prochazka;TEXT: Pochod hladu;Bozena finale. Hranice: narodnostni. TRETI SPIS poprve.
+9;12.3.;Ct;BENES PRIJDE;Osob;Tyc;Pool: moralni;Mor;Pool;Pool light;Benesuv listek predem. Ucet za uhli -15 Kc.;Karas na chodbe. Nepozdravi.;Psat Martinovi (zvl);TEXT: Creditanstalt;VETVENI 2. Benesova pravda. Vina+3.
+10;13.3.;Pa;ZVRATY: rodny list + Anna/Haas;Osob;Tyc;Markova 2 (zachrankyne);Mor;Tyc;Pool light;DVA ZVRATY. Martin: pripad z novin.;Kabinet zamknuty zvenku.;--;OBR: Politicke napeti;Alexander Wolf + Anna Vrana Podoli Haas. Ironicky twist.
+SO;14.3.;--;-- SOBOTA --;--;--;--;--;--;--;Sobotni shrnuti;--;--;--;Bonus: Peclivy / Nezavisly.
+NE;15.3.;--;-- NEDELE --;--;--;--;--;--;--;KLICOVA NEDELE. Karas: Vzpominas na Viden? Odejdi.;--;--;--;Matka = posledni sance. Hrac vi o Haasovi. KONTROLA KONCU: Korupce / Utek.
+11;16.3.;Po;HAAS OSOBNE (300 Kc);Osob;Tyc;Pospisil 3 (klicovy svedek);Pol;Tyc;Pool light;Haasova obalka na stole. Vlcek: hrozba.;Ruce se tresou.;Psat Martinovi;TEXT: Tise pred bouri;VETVENI 3. Deadline operace D12. Konec KORUPCE mozny.
+12;17.3.;Ut;Zavadova: Vime vse + podvrh;Osob;Tyc;Hranice 3 (finale);Pol;Tyc;Pool light;Zavadova odhali podvrh;Nikdo na chodbe. Ticho.;Prochazka;TEXT: Rikaji o nem veci;Bratr. Podvrh. 34cm=metafora. Konec SMIRENI mozny.
+13;18.3.;St;KARAS - osobni scena;Osob;Tyc;Bozena alt / Pool;Pol;Pool;Pool light;--;Svejda mlci.;-- (Karasova scena vecer);OBR: Skandal?;VETVENI 4. Konec UTEK / ATENTAT mozny.
+14;19.3.;Ct;Markova OBZALOVANA;Mor;Tyc;Pool: posledni;Mor/Pol;Pool;Pool light;Martin: Prijedu o vikendu.;Posledni rano. Svetlo jine.;-- (automaticky vecer);TEXT: Posledni den?;Konec RAD / ANNA mozny.
+15;20.3.;Pa;VELEZRADA (finalni pripad);Pol;Tyc;-- (jen 1 pripad);--;--;--;--;Soudni sin. Naposledy.;--;OBR: Finale;EPILOG. Konec HRDINA / PREZITI.

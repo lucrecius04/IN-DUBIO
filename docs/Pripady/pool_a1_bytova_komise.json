@@ -280,7 +280,7 @@
           }
         },
         "alternative": {
-          "label": "Alternativa: Vina Dolejše, avšak nařízen audit pořadníku bytové komise",
+          "label": "Alternativa: Vina Dolejše, avšak soudem nařízena revize pořadníku bytové komise",
           "description": "Dolejš nese odpovědnost za pozměnění záznamu, ale soud zároveň nařizuje přezkum celého systému přidělování bytů komisí Praha VIII. Otázka není jen Dolejšovo pochybení — je to i systém bez kontrolního mechanismu, který manipulaci umožnil. Novotná v bytě prozatím zůstává do rozhodnutí komise.",
           "requires_investigation": 2,
           "requires": {
@@ -387,7 +387,7 @@
     "guilty_maximum": "Dolejš si vezme kabát ze stojanu sám a bez spěchu. U dveří se otočí ke Horáčkové; ona sklopí hlavu. Výrok prohlašující přidělení za neplatné se dotkne i Novotné — ta o tom zatím neví a vaří večeři v libněvském bytě.",
     "guilty_standard": "Suspenze projde síní jako suchý závan. Dolejš mlčí, ruce mu leží na okraji stolu příliš klidně. Horáčková si zapisuje něco do notýsku. Vaněk čeká na chodbě se složenými pažemi a nedívá se na nikoho.",
     "guilty_lenient": "Dolejš přikývne. Záznam ho bude provázet, ale dnes jede domů. Vaněk na chodbě zakleje potichu a odejde bez ohlédnutí. Novotná o výsledku uslyší od vrátné.",
-    "guilty_alternative": "Slovo audit zaráží síň jako cizí předmět. Dolejš je odsouzen, ale tentokrát to nesedí jen na jeho záda — a to všichni cítí. Horáčková pokývne. Vaněk odchází nespokojen, ale bez argumentu.",
+    "guilty_alternative": "Rozkaz k revizi pořadníku zaráží síň jako cizí předmět. Dolejš je odsouzen, ale tentokrát to nesedí jen na jeho záda — a to všichni cítí. Horáčková pokývne. Vaněk odchází nespokojen, ale bez argumentu.",
     "not_guilty_formal": "Zproštění nezní jako vítězství. Dolejš si uvolní límec, ale oči má stále dole. Vaněk odejde jako první, tiše, aniž by dal najevo, co plánuje dál.",
     "not_guilty_with_comment": "Komentář k absenci dohledu zazní v síni déle než samotný rozsudek. Horáčková zvedne ruku, jako by se chtěla přihlásit, a pak ji zase spustí. Vaněk vytáhne pero a začne psát na záložku svého deníčku.",
     "insufficient_reopen": "Případ zůstane otevřený a nikdo neodchází spokojený. Dolejš sedí u stolu jako přibitý. Vaněk řekne tiše jen: A jak dlouho? Soud mu neodpoví.",

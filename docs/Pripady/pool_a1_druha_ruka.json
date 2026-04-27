@@ -220,7 +220,7 @@
         }
       },
       "variants": {
-        "default": "Notářský přípisek k závěti musí v ČSR splňovat stejnou formu jako původní listina — podpis zůstavitele, přítomnost notáře nebo kancelisty s plnou mocí a zpravidla dva svědci. Pokud některá z náležitostí chybí nebo je datum pozměněno, celý přípisek nemá právní účinky. Notářský deník je soukromá záležitost kanceláře — nepodléhá státnímu auditu, ale soudu musí být předložen k nahlédnutí.",
+        "default": "Notářský přípisek k závěti musí v ČSR splňovat stejnou formu jako původní listina — podpis zůstavitele, přítomnost notáře nebo kancelisty s plnou mocí a zpravidla dva svědci. Pokud některá z náležitostí chybí nebo je datum pozměněno, celý přípisek nemá právní účinky. Notářský deník je soukromá záležitost kanceláře — nepodléhá běžné státní revizi, ale soudu musí být předložen k nahlédnutí.",
         "kapital_high": "V notářském prostředí platí nepsaná zásada: co klient řekl ústně a co podepsal, jsou dvě odlišné skutečnosti. Starší kancelista, který pamatuje klienty padesát let a sám rozhodne, co chtěli říct, riskuje nejen trestní stíhání — riskuje pověst celé kanceláře. A doktor Horák je v Praze znám."
       }
     },

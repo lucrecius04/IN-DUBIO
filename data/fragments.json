@@ -12,6 +12,18 @@
     "text": "Sedíš ve velké prázdné síni.\n\nZa skleněnou stěnou stojí muž. Nevíš jak se jmenuje. Ale víš, kdo to je.\n\nDívá se na tebe. Nic neříká.\n\nProbudíš se v pět ráno. Okno je zamlžené. Venku prší."
   },
   {
+    "id": "fragment_d5_tichy_rano",
+    "type": "clipping",
+    "title": "Ranní ticho — 7. března 1931",
+    "text": "Slunce. Poprvé tento měsíc. Na chodbě voní káva — někdo ji uvařil v kanceláři naproti. Otevřel jsi okno. Vzduch byl jiný."
+  },
+  {
+    "id": "fragment_d5_tichy_noc",
+    "type": "dream",
+    "title": "Noc beze snu",
+    "text": "Usnul jsi brzy. Poprvé za týden se ti nic nezdálo."
+  },
+  {
     "id": "fragment_d3_noviny",
     "type": "clipping",
     "title": "Ranní list — 3. března 1931",
@@ -82,6 +94,18 @@
     "type": "dream",
     "title": "Sen — dvanáctá noc",
     "text": "Stojíš před prázdnou klecí.\n\nKlíč máš v ruce. Ale nevíš, jestli klec zamknouti nebo odemknout.\n\nZa mřížemi není nic. Nebo snad je — jen to nevidíš.\n\nProboudíš se s pocitem, že jsi zapomněl udělat něco důležitého. Nevíš co."
+  },
+  {
+    "id": "fragment_d11_morning_base",
+    "type": "clipping",
+    "title": "Ranní stůl",
+    "text": "Na stole leží pořad jednání. Jména, která znáš z obálky — a jedno, které znáš z chodby."
+  },
+  {
+    "id": "fragment_d12_echo_base",
+    "type": "clipping",
+    "title": "Ranní ticho",
+    "text": "Kancelář se probouzí pomalu. Rádio v sousední místnosti chytá první věty dne."
   },
   {
     "id": "fragment_d15_night",

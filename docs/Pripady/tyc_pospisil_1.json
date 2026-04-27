@@ -1,0 +1,381 @@
+{
+  "id": "pool_a1_pospisil_vycep",
+  "slot": "pool",
+  "case_track": "pillar",
+  "case_track_label": "tycove",
+  "type": "routine",
+  "color": "#7A9BAD",
+  "available_days": [
+    3
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "forced": true
+  },
+  "title": "Výčepní právo",
+  "case_number": "Sp. zn. 94/1931",
+  "defendant": {
+    "name": "Emil Pospíšil",
+    "age": 48,
+    "occupation": "hostinský",
+    "detail": "provozuje hospodu U Zlatého sudu na Žižkově, vdovec — žena zemřela 1927 na tuberkulózu, dcera Marta 22 let"
+  },
+  "charge": "Přestupek dle §8 živnostenského řádu a městské vyhlášky o výčepních hodinách: provozování výčepu po 22:00. Kontrola dne 22. února 1931 ve 23:15 zastihla v lokálu šest hostů a čepované pivo.",
+  "description": "Hospoda <em>U Zlatého sudu</em> na <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"zizkov\" title=\"Slovník: Žižkově\">Žižkově</button> slouží dělníkům z noční směny, kteří končí práci ve 22:00. Než dojdou k Pospíšilovi, je půl jedenácté. Hostinský po desáté neúčtuje — dává pivo na dům. Podnět k soudu nepodala policie z vlastní iniciativy, ale soused Alois Fišer, majitel konkurenční hospody U Kaštanu.",
+  "testimonies": [
+    {
+      "id": "vondra",
+      "speaker": "Strážmistr Jaroslav Vondra, kontrola",
+      "text": "Přišli jsme v jedenáct patnáct. Dveře otevřené, světlo. Šest lidí uvnitř. Na stole plné sklenice. Pan Pospíšil stál za výčepem. Řekl jsem: 'Pane hostinský, je po desáté.' Odpověděl: '<span class=\"clue\" data-clue-id=\"decoy_vim_pospisil\">Vím.</span>' <span class=\"clue\" data-clue-id=\"clue_dvere_otevrene\">Dveře byly otevřené. Nezamčené, nezavěšené. Jako by ani neschovával, že má otevřeno.</span> Žádný odpor, žádné výmluvy.",
+      "contradiction_keywords": [
+        "otevřené dveře",
+        "vím"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "pospisil",
+      "speaker": "Emil Pospíšil, obžalovaný",
+      "text": "Pane doktore, já to nezpochybňuju. Měl jsem otevřeno po desáté. Jenže ti lidi — to nejsou flámové. <span class=\"clue\" data-clue-id=\"clue_delnici_nocni\">Tři z nich jdou z noční směny ve Waltrovce. Končí v deset. Než dojdou ke mně, je půl jedenácté. Kam mají jít? Domů do studeného bytu?</span> Já je tam nepozvu. Přijdou sami. A já jim po desáté neúčtuju — dám jim jedno na dům. To je přestupek?",
+      "contradiction_keywords": [
+        "Waltrovka",
+        "noční směna",
+        "neúčtuju"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "barta",
+      "speaker": "František Bárta, host, přítomen při kontrole",
+      "text": "Já chodím k Pospíšilovi patnáct let. Žena mi umřela loni. Dcera se vdala a odjela do Brna. Kam mám jít? <span class=\"clue\" data-clue-id=\"decoy_ticho_tma\">Domů je ticho a tma.</span> <span class=\"clue\" data-clue-id=\"clue_pivo_na_dum\">Emil nám neúčtuje. Po desáté neúčtuje. Řekne: 'Tohle je na dům.' Jako by to byla jeho kuchyně a my sousedi.</span> Já vím, že je to proti předpisu. Ale předpis neví, jaké je to sedět doma sám.",
+      "contradiction_keywords": [
+        "neúčtuje",
+        "na dům"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "fiser",
+      "speaker": "Alois Fišer, majitel hospody U Kaštanu, navrhovatel podnětu",
+      "text": "Já zavírám v deset. Jako každý. Mám taky hosty, kteří by rádi zůstali. Ale zákon je zákon. <span class=\"clue\" data-clue-id=\"clue_fiser_stiznost\">Já ten podnět podal, ano. Protože Pospíšil mi bere hosty. Když on má otevřeno do jedenácti, proč by chodili ke mně?</span> Není to osobní. Je to obchodní. A spravedlivé.",
+      "contradiction_keywords": [
+        "bere hosty",
+        "obchodní"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "neuceluje_ale_bere_hosty",
+      "description": "Pospíšil po desáté neúčtuje — ale Fišer tvrdí, že mu Pospíšil 'bere hosty'. Pokud Pospíšil na nočních hostech nevydělává, Fišerův obchodní argument se hroutí.",
+      "involves": [
+        "pospisil",
+        "fiser"
+      ],
+      "highlight_at_wisdom": 60,
+      "unlocks_confrontation": "fiser"
+    },
+    {
+      "id": "fyzicka_nemoznost_pred_22",
+      "description": "Dělníci z Waltrovky končí v 22:00 a potřebují 25 minut chůze. Přijít k Pospíšilovi před výčepní hodinou fyzicky nemohou.",
+      "involves": [
+        "pospisil",
+        "records"
+      ],
+      "highlight_at_wisdom": 70,
+      "unlocks_confrontation": "fiser"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "konkurencni_motiv_strong",
+    "pairs": [
+      {
+        "pair_id": "konkurencni_motiv_strong",
+        "a_id": "clue_fiser_stiznost",
+        "b_id": "clue_fiser_tri_podnety",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "konkurencni_zajem_medium",
+        "a_id": "clue_pivo_na_dum",
+        "b_id": "clue_fiser_stiznost",
+        "strength": "medium"
+      }
+    ],
+    "decoys": [
+      "decoy_vim_pospisil",
+      "decoy_ticho_tma"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 55,
+      "speed_upgrade_sec": 18,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 45,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 35,
+          "ids": [
+            "not_guilty_formal"
+          ]
+        },
+        {
+          "min": 65,
+          "ids": [
+            "not_guilty_with_comment"
+          ]
+        },
+        {
+          "min": 80,
+          "ids": [
+            "guilty_lenient"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 42,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "not_guilty_with_comment"
+          ],
+          "narrative_lines": [
+            "Fišer přiznal obchodní motiv a záznamy ukazují třetí podnět od stejného člověka za dvanáct měsíců.",
+            "Nejde o jednorázovou obranu zákona, ale o opakovaný postup proti konkrétnímu konkurentovi.",
+            "Silný pár ukazuje vzorec: právní nástroj používaný jako tržní páka."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 22,
+          "unlock_verdict_ids": [
+            "not_guilty_formal"
+          ],
+          "narrative_lines": [
+            "Fišer chce spravedlnost. Ale spravedlnost, která ho obchodně zvýhodní.",
+            "Neúčtování po desáté není podnikání. Je to pohostinnost. Zákon tyto věci nerozlišuje — ale soud může."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "pospisil",
+      "target_label": "Emil Pospíšil, hostinský",
+      "reveals": "motivation",
+      "text": "Žena mi umřela v sedmadvacátém. Tuberkulóza. Tři roky jsem zavíral v deset — přesně. Pak jednou přišel Bárta. Stál venku na schodech v kabátě a nevěděl, co dál. <span class=\"clue\" data-clue-id=\"decoy_vim_pospisil\">Pustil jsem ho dovnitř. Nepůjčil mu pivo, dal mu. Na dům. Od té doby to tak je.</span> Já vím, že je to přestupek. Ale jsou přestupky, pro které jsem rád, že je dělám.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 1
+        },
+        "factions": {
+          "Lid": 1
+        }
+      }
+    },
+    "records": {
+      "source": "Závodní záznamy Waltrovky, policejní protokol o kontrole, živnostenský list",
+      "reveals": "facts",
+      "text": "Závodní záznamy <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"waltrovka\" title=\"Slovník: Waltrovka\">Waltrovky</button>: noční směna ukončena v 22:00. Výstup dělníků Bárta, Kolman, Šefl dne 22. února: <span class=\"clue\" data-clue-id=\"clue_delnici_nocni\">22:08, doloženo vrátnicí. Pěší vzdálenost na Žižkov: přibližně 25 minut.</span> Policejní protokol: lokál kontrolován ve 23:15, šest hostů, čepované pivo. <span class=\"clue\" data-clue-id=\"clue_fiser_tri_podnety\">Fišerův podnět: třetí za posledních dvanáct měsíců, vždy podán v zimě.</span>",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Kapital": 1
+        }
+      },
+      "unlocks_contradiction": "fyzicka_nemoznost_pred_22"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Vina": 1
+        },
+        "factions": {
+          "Lid": -1,
+          "Kapital": 2
+        }
+      },
+      "variants": {
+        "lid_high": "Na Žižkově je Pospíšil víc než hostinský — je to místo, kam lidé jdou, když nemají nikoho. Fišer to ví. Proto podává podnět v zimě, když je to nejtěžší. Kdyby Pospíšila zavřeli, šli by lidé k Fišerovi. Nebo nikam.",
+        "moc_high": "Výčepní hodiny v Praze se v roce 1929 zpřísnily po sérii nočních incidentů na Žižkově. Policie je ráda, že je Pospíšil plní — aspoň otevřené dveře jsou pod kontrolou. Uzavřít U Zlatého sudu by znamenalo více lidí na ulici, ne méně.",
+        "kapital_high": "Fišer loni renovoval U Kaštanu za dluh. Potřebuje hosty. Pospíšil mu nevzal hosty — dal jim místo, kam Fišer nedokáže přijít. To není obchodní konkurence, to je jiný druh pohostinnosti.",
+        "default": "Strážmistr Vondra to ví. Na <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"zizkov\" title=\"Slovník: Žižkově\">Žižkově</button> je nás víc, kteří bychom tam chodili. Ale ve službě nemůžeme. Fišer to využil — podnět je levný, kontrola povinná."
+      }
+    },
+    "confrontation": {
+      "target": "fiser",
+      "target_label": "Alois Fišer, navrhovatel podnětu",
+      "requires_contradiction": "neuceluje_ale_bere_hosty",
+      "requires_courage": 40,
+      "cost": 2,
+      "prompt": "Pane Fišer, Pospíšil po desáté neúčtuje. Hosté, na které si stěžujete, jsou dělníci z Waltrovky, kteří fyzicky nemohou přijít dřív. Jak vám Pospíšil 'bere hosty', když na nich nevydělává?",
+      "success": {
+        "text": "Fišer mlčí. Pak řekne: 'Podnět jsem podal v dobré víře.' Ben čeká. Fišer dodá: 'Zákon neřeší, proč někdo porušuje pravidla. Řeší, zda je porušuje.' Technicky má pravdu. Ale ruce má zkřížené na hrudi.",
+        "reveals": "Fišer nemá morální argumentaci — má právní. Zákon mu hraje do karet bez ohledu na skutečný dopad."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "standard": {
+          "label": "Pokuta 30 Kčs za porušení výčepní hodiny",
+          "description": "Přestupek je prokázán. Zákon nerozlišuje motivaci.",
+          "effects": {
+            "integrita": 2,
+            "vina": 2,
+            "lid": -3,
+            "moc": 2,
+            "finance": 10
+          }
+        },
+        "maximum": {
+          "label": "Pokuta 80 Kčs a podmíněné odejmutí koncese",
+          "description": "Opakované porušení. Výstraha pro případ recidivy.",
+          "requires": {
+            "odvaha_max": 30
+          },
+          "effects": {
+            "integrita": 3,
+            "vina": 4,
+            "nadeje": -2,
+            "lid": -6,
+            "moc": 4,
+            "finance": 15
+          }
+        },
+        "lenient": {
+          "label": "Pokuta 10 Kčs — symbolická sankce",
+          "description": "Uznání viny s ohledem na humanitární povahu jednání a absenci zisku po 22:00.",
+          "requires_investigation": 2,
+          "effects": {
+            "integrita": 1,
+            "vina": 1,
+            "nadeje": 2,
+            "lid": 2,
+            "moc": -1,
+            "finance": 8
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zproštění — po 22:00 soukromý prostor, nikoli podnikání",
+          "description": "Pospíšil po výčepní hodině neúčtoval a hostil hosty jako soukromá osoba. Živnostenský zákon postihuje provoz, ne pohostinnost.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": -1,
+            "odvaha": 2,
+            "vina": -2,
+            "lid": 5,
+            "moc": -3,
+            "finance": 10
+          }
+        },
+        "with_comment": {
+          "label": "Alternativa: Zproštění — podnět motivován konkurencí",
+          "description": "Soud konstatuje, že opakované podněty od téhož navrhovatele sledují obchodní cíl, nikoli veřejný zájem.",
+          "requires_investigation": 2,
+          "requires": {
+            "odvaha_min": 45
+          },
+          "effects": {
+            "integrita": 2,
+            "odvaha": 4,
+            "vina": -3,
+            "nadeje": 2,
+            "lid": 6,
+            "moc": -5,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "reopen": {
+          "label": "Vrátit k přezkumu — prověřit povahu provozu po 22:00",
+          "description": "Soud žádá upřesnění, zda Pospíšilovo jednání po výčepní hodině naplňuje znaky živnostenského provozu.",
+          "effects": {
+            "moudrost": 3,
+            "vina": 1,
+            "finance": 8
+          }
+        },
+        "close": {
+          "label": "Zastavení — nepatrná společenská škodlivost",
+          "description": "Jednání formálně naplňuje přestupek, ale škoda je nepatrná a sankce by byla nepřiměřená.",
+          "effects": {
+            "moudrost": 2,
+            "integrita": 1,
+            "vina": 1,
+            "finance": 8
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_standard": "Pospíšil zaplatil. Příští sobotu zavřel v deset. Bárta stál před zamčenými dveřmi. Chvíli tam stál. Pak šel domů.",
+    "guilty_maximum": "Pospíšil zavřel v deset. Každý den. Dělníci z Waltrovky chodili domů rovnou. Fišer zvýšil ceny piva o dvacet haléřů.",
+    "guilty_lenient": "Pospíšil zaplatil deset korun. Vondra ho potkal druhý den na ulici a udělal, že ho nevidí. Dělníci z Waltrovky přinesli příští týden láhev sami.",
+    "not_guilty_formal": "Pospíšil dál měl otevřeno. Fišer podal odvolání. Dělníci z Waltrovky chodili dál. Někdy přinesli láhev sami.",
+    "not_guilty_with_comment": "Ben v rozsudku zmínil opakované podněty od konkurence. Fišer se odvolal. Strážmistr Vondra se zastavil U Zlatého sudu — tentokrát ne ve službě.",
+    "insufficient_reopen": "Spis se vrátil policii. Vondra ho přiřadil k odloženým. Fišer podal nový podnět v březnu.",
+    "insufficient_close": "Řízení zastaveno pro nepatrnou škodlivost. Pospíšil si to nechal vysvětlit třikrát. Pak uvařil čaj a otevřel."
+  },
+  "stamp_moment": {
+    "guilty": "Pospíšil přikývl. Bez výrazu. Zvyk člověka, který uklízí po hostech, i když odejdou.",
+    "not_guilty": "Pospíšil vydechl. Dlouze. Pak řekl Bártovi: 'Dneska máme hovězí.' Jako by se nic nestalo.",
+    "insufficient": "Pospíšil se podíval na hodiny na zdi. Bylo poledne. Do desáté bylo daleko."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "not_guilty_with_comment",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "Fišer podal odvolání. Na Žižkově se o tom mluvilo. U Zlatého sudu byl ten večer plnější než jindy — Pospíšil nevěděl proč, ale dělníci přišli dřív."
+    },
+    {
+      "trigger": "guilty_maximum",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "Bárta přestal chodit. Pospíšil ho potkal na ulici — vypadal starší. Řekl jen: 'Chodím spát dřív.' Pospíšil věděl, že to není pravda."
+    }
+  ]
+}

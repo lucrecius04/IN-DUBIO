@@ -1,0 +1,381 @@
+{
+  "id": "pool_a1_hranice_zed",
+  "slot": "pool",
+  "case_track": "pillar",
+  "case_track_label": "tycove",
+  "type": "routine",
+  "color": "#9E9A8A",
+  "available_days": [
+    4
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "forced": true
+  },
+  "title": "Třicet čtyři centimetrů",
+  "case_number": "Sp. zn. 93/1931",
+  "defendant": {
+    "name": "Wilhelm Grünbaum",
+    "age": 67,
+    "occupation": "penzionovaný učitel",
+    "detail": "bývalý učitel německé obecné školy, pražský Němec, pěstuje růže, vdovec — žena byla Češka, zemřela 1925"
+  },
+  "charge": "Neoprávněný zásah do vlastnického práva dle §§ 354–365 občanského zákoníku. Josef Kříž tvrdí, že Grünbaum při opravě zahradní zdi v létě 1930 posunul osu zdi o 34 centimetrů na jeho pozemek.",
+  "description": "V <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"bubenec\" title=\"Slovník: Bubenči\">Bubenči</button> sousedí dva domy. Jeden patří Josefu Křížovi, penzionovanému poštovnímu úředníkovi. Druhý Wilhelmu Grünbaumovi, penzionovanému učiteli. Oba domy postavil v roce 1911 tentýž stavitel. Zeď mezi nimi stojí dvacet let. Loni Grünbaum opravil spodní řadu cihel, které mrazem praskly. Kříž naměřil posun 34 centimetrů. Grünbaum říká: zeď stojí, kde stála. Zeď mlčí. Mezi sousedy je ticho.",
+  "testimonies": [
+    {
+      "id": "kriz",
+      "speaker": "Josef Kříž, navrhovatel, penzionovaný poštovní úředník",
+      "text": "Pane doktore, já to naměřil. Třicet čtyři centimetrů. Mám doma metr, mám olovnici, mám oči. <span class=\"clue\" data-clue-id=\"clue_meril_od_rohu\">Měřil jsem od rohu svého domu k ose zdi. V roce 1925 to bylo 4 metry 82 centimetrů. Loni v říjnu — po jeho opravě — 4 metry 48 centimetrů. Rozdíl: 34 centimetrů.</span> Nejde o centimetry. Jde o princip. Kde je hranice?",
+      "contradiction_keywords": [
+        "od rohu",
+        "4 metry 82",
+        "34 centimetrů"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "grunbaum",
+      "speaker": "Wilhelm Grünbaum, odpůrce",
+      "text": "Pane doktore, ta zeď stojí od roku jedenáct. Dvacet let. Já ji loni opravil, protože se sypala — spodní řada cihel praskla mrazem. Vytáhl jsem staré cihly, dal nové. Na stejném místě. <span class=\"clue\" data-clue-id=\"clue_stavitel_1911\">Oba domy stavěl Josef Brožek, stavitel z Dejvic. V roce 1911. Jedna zakázka, jedna zeď, jeden plán.</span> Pan Kříž měří od rohu domu — a domy jsou staré. Rohy se pohybují. <span class=\"clue\" data-clue-id=\"decoy_ruze_klid\">Zeď ne. Já pěstuji růže. Růže potřebují klid.</span>",
+      "contradiction_keywords": [
+        "Brožek",
+        "jeden plán",
+        "rohy se pohybují"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "hora_znalec",
+      "speaker": "Ing. Pavel Hora, soudní geometr",
+      "text": "Provedl jsem zaměření dne 3. března 1931. Katastrální mapa z roku 1912 uvádí hranici v ose zdi. Současný stav odpovídá mapě s odchylkou. <span class=\"clue\" data-clue-id=\"clue_odchylka_mapy\">Odchylka je 22 centimetrů, nikoli 34, jak tvrdí navrhovatel. Katastrální mapa ale má přesnost ±15 centimetrů — skutečná odchylka může být 7 až 37 centimetrů. Neprůkazné.</span>",
+      "contradiction_keywords": [
+        "22 centimetrů",
+        "±15",
+        "neprůkazné"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "krizova_m",
+      "speaker": "Marie Křížová, manželka navrhovatele",
+      "text": "Já do toho nechci mluvit. Ale Josef měří tu zeď každý víkend od října. S metrem. A zapisuje to do sešitu. <span class=\"clue\" data-clue-id=\"clue_sesit_kriz\">Jednou jsem mu řekla: 'Nech to být, Josefe.' Odpověděl: 'Když se posune zeď, posune se všechno.'</span> Pan Grünbaum je slušný soused. Nosil mi kdysi květiny na svátek. Teď se nepozdravíme.",
+      "contradiction_keywords": [
+        "sešit",
+        "posune se všechno",
+        "nepozdravíme"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "meri_od_pohybliveho_bodu",
+      "description": "Kříž měří od rohu vlastního domu — ale starý dům se mohl za dvacet let nepatrně posadit. Znalec naměřil 22 cm od katastrální hranice. Kříž naměřil 34 cm od rohu. Ani jeden bod není spolehlivý.",
+      "involves": [
+        "kriz",
+        "hora_znalec"
+      ],
+      "highlight_at_wisdom": 65,
+      "unlocks_confrontation": "hora_znalec"
+    },
+    {
+      "id": "omitka_vs_zed",
+      "description": "Brožkův syn potvrzuje původní plán: zeď přesně uprostřed. Nová omítka při opravě mohla opticky rozšířit zeď o centimetry bez pohybu základu.",
+      "involves": [
+        "grunbaum",
+        "records"
+      ],
+      "highlight_at_wisdom": 75,
+      "unlocks_confrontation": "hora_znalec"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "stavitel_mapa_strong",
+    "pairs": [
+      {
+        "pair_id": "stavitel_mapa_strong",
+        "a_id": "clue_stavitel_1911",
+        "b_id": "clue_odchylka_mapy",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "mereni_od_rohu_medium",
+        "a_id": "clue_meril_od_rohu",
+        "b_id": "clue_odchylka_mapy",
+        "strength": "medium"
+      }
+    ],
+    "decoys": [
+      "decoy_ruze_klid",
+      "clue_sesit_kriz"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 60,
+      "speed_upgrade_sec": 20,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 45,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 35,
+          "ids": [
+            "not_guilty_formal"
+          ]
+        },
+        {
+          "min": 65,
+          "ids": [
+            "not_guilty_with_comment"
+          ]
+        },
+        {
+          "min": 80,
+          "ids": [
+            "insufficient_reopen"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 40,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "not_guilty_with_comment",
+            "insufficient_reopen"
+          ],
+          "narrative_lines": [
+            "Brožek postavil jednu zeď pro dva domy v roce 1911. Zeď drží — základ drží. Nová omítka se ale nehlídá.",
+            "Znalec naměřil 22 cm v rámci přesnosti ±15. To je 7 až 37 centimetrů. 34 centimetrů Kříže leží v tomhle rozsahu — i mimo něj.",
+            "Zeď se možná neposunula. Posunul se Kříž. Nebo vztah."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 22,
+          "unlock_verdict_ids": [
+            "not_guilty_formal"
+          ],
+          "narrative_lines": [
+            "Kříž měří od rohu domu, který stojí dvacet let. Domy se posadí. Rohy se posunou. Metr to neví.",
+            "22 centimetrů versus 34 — v mapě s tolerancí ±15 to je tatáž zeď."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "brozek_syn",
+      "target_label": "Pavel Brožek, syn původního stavitele",
+      "reveals": "motivation",
+      "text": "Otcovy plány mám ve sklepě. Dva domy, jedna zeď, jedna zakázka z roku 1911. <span class=\"clue\" data-clue-id=\"clue_stavitel_1911\">Zeď byla přesně uprostřed — dvanáct centimetrů na každou stranu. Základ je v zemi. Základ se nehýbe.</span> Ale omítka — ta se dá nahodit o centimetr sem, centimetr tam. To byste nepoznal.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 1
+        }
+      }
+    },
+    "records": {
+      "source": "Stavební povolení 1930, katastrální mapa 1912, záznamy sousedky Svobodové",
+      "reveals": "facts",
+      "text": "Stavební povolení červen 1930: 'oprava zahradní zdi — drobná údržba'. Bez předchozího zaměření, bez inspekce po opravě. Katastrální mapa 1912: hranice v ose zdi, přesnost ±15 cm. <span class=\"clue\" data-clue-id=\"clue_odchylka_mapy\">Znalecký posudek Hora: odchylka 22 cm od mapy, v rámci její přesnosti — výsledek 7 až 37 cm. Neprůkazné.</span> Záznam sousedky Svobodové: Kříž a Grünbaum hráli šachy do loňského podzimu.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1
+        }
+      },
+      "unlocks_contradiction": "meri_od_pohybliveho_bodu"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Vina": 1
+        },
+        "factions": {
+          "Lid": -1
+        }
+      },
+      "variants": {
+        "lid_high": "Paní Svobodová z naproti říká, že Kříž a Grünbaum byli přátelé třicet let. Chodil ke Grünbaumovi na šachy. Paní Grünbaumová vařila český guláš, i když byla Němka. Skončilo to loni na podzim — právě tehdy, kdy Grünbaum opravoval zeď.",
+        "moc_high": "V Bubenči se říká, že Kříž je pedant — pruhovaná košile, kapesní hodinky, noviny přesně přeložené. Takový člověk neměří zeď z hněvu. Měří ji, protože zed je věc, která se změřit dá. Na rozdíl od toho, co se opravdu stalo.",
+        "kapital_high": "Grünbaumův syn žije v Berlíně — stal se německým státním úředníkem. Kříž to ví. V březnu 1931 to slovo 'Němec' znamená jinak než v roce 1911, kdy stavěl Brožek jednu zeď pro oba. Zeď se možná neposunula. Změnila se doba.",
+        "default": "Šachy přestaly. Zeď zůstala. V <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"bubenec\" title=\"Slovník: Bubenči\">Bubenči</button> se říká, že sousedé, kteří se přestanou zdravit, si vždy najdou zeď."
+      }
+    },
+    "confrontation": {
+      "target": "hora_znalec",
+      "target_label": "Ing. Pavel Hora, soudní geometr",
+      "requires_contradiction": "meri_od_pohybliveho_bodu",
+      "requires_courage": 40,
+      "cost": 2,
+      "prompt": "Pane inženýre, Kříž měří od rohu domu, který stojí dvacet let. Mohlo se jeho měřítko posunout? A je 22 centimetrů odchylky od mapy s přesností ±15 statisticky jiné než nula?",
+      "success": {
+        "text": "Hora se odmlčí. Pak pečlivě: 'Teoreticky — roh starého domu se může v průběhu dvaceti let posadit o jednotky centimetrů. Ano.' Na statistický dotaz: '22 centimetrů od střední hodnoty mapy s odchylkou ±15... to je méně než dvě sigma. Statisticky nelze vyloučit, že zeď stojí na místě.' Odmlka. 'To ale nevylučuje ani opak.'",
+        "reveals": "Znalec potvrdil, že Křížovo měření od rohu je nespolehlivé a odchylka je statisticky v šumu mapy. Posun zdi ani jeho absence nejsou průkazné."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "standard": {
+          "label": "Grünbaum posune zeď zpět na náklady vlastní",
+          "description": "Posun o dostupných 22 centimetrů — víc základ neumožňuje. Kříž naměřil 34, dostane 22.",
+          "effects": {
+            "integrita": 1,
+            "vina": 2,
+            "lid": -2,
+            "moc": 2,
+            "finance": 10
+          }
+        },
+        "maximum": {
+          "label": "Posun zdi a náhrada 50 Kčs za užívání pozemku",
+          "description": "Zeď se posunula a Grünbaum užíval cizí pozemek. Náhrada je symbolická, ale spravedlivá.",
+          "requires": {
+            "odvaha_max": 32
+          },
+          "effects": {
+            "integrita": 2,
+            "vina": 3,
+            "nadeje": -1,
+            "lid": -4,
+            "moc": 3,
+            "finance": 12
+          }
+        },
+        "lenient": {
+          "label": "Doporučení k dobrovolnému novému zaměření na náklady obou",
+          "description": "Soud neukládá posun, ale doporučuje geodetické zaměření jako základ smíru.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 1,
+            "moudrost": 2,
+            "vina": 1,
+            "nadeje": 1,
+            "finance": 8
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zamítnutí — odchylka v rámci přesnosti mapy, neprůkazné",
+          "description": "Znalecký posudek neprokázal posun nad rámec mapové tolerance. Žaloba se zamítá.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": -1,
+            "moudrost": 3,
+            "lid": 2,
+            "moc": -1,
+            "finance": 10
+          }
+        },
+        "with_comment": {
+          "label": "Alternativa: Zamítnutí s doporučením smíru",
+          "description": "Spor nepřiměřený věci. Soud doporučuje, aby sousedé společně nechali provést nové zaměření a uzavřeli smír.",
+          "requires_investigation": 2,
+          "requires": {
+            "moudrost_min": 50
+          },
+          "effects": {
+            "integrita": 2,
+            "odvaha": 2,
+            "moudrost": 4,
+            "vina": -1,
+            "nadeje": 2,
+            "lid": 3,
+            "moc": -3,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "reopen": {
+          "label": "Přerušit — přesné geodetické zaměření jako podmínka pokračování",
+          "description": "Soud přeruší řízení a nařídí přesné zaměření. Do té doby nelze rozhodnout.",
+          "effects": {
+            "moudrost": 4,
+            "vina": 1,
+            "nadeje": 1,
+            "finance": 8
+          }
+        },
+        "close": {
+          "label": "Uzavřít pro nedostatek průkazného důkazu",
+          "description": "Ani jedna strana neprokázala svůj stav přes pochybnost. Věc se uzavírá.",
+          "effects": {
+            "moudrost": 2,
+            "integrita": 1,
+            "vina": 1,
+            "finance": 8
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_standard": "Grünbaum najal zedníka. Zeď se posunula o 22 centimetrů — základ víc nedovolil. Kříž naměřil: 'Ještě 12.' Žalobu stáhl. Nepozdravili se.",
+    "guilty_maximum": "Grünbaum zaplatil. Na zahradě přestal pěstovat růže u zdi. Kříž tam zasadil rybíz. Nikdo z nich neměl radost.",
+    "guilty_lenient": "Obě strany souhlasily s novým zaměřením — na náklady obou. Geodet přišel v dubnu. Výsledek: odchylka 19 centimetrů. Kdo měl pravdu, neřekl.",
+    "not_guilty_formal": "Kříž podal odvolání. Grünbaum zalil růže. Zeď stála, kde stála. Šachy se nehráli.",
+    "not_guilty_with_comment": "Ben v rozsudku napsal, že spor sousedské povahy nemá být řešen soudem. Doporučil smír. Kříž se zamračil. Grünbaum řekl: 'Děkuji, pane doktore.' Česky. Bez přízvuku.",
+    "insufficient_reopen": "Geodet objednal na duben. Zeď zatím stojí. Kříž měří každou sobotu. Grünbaum každou sobotu zalévá růže. Dělí je 34 centimetrů. Nebo 22. Nebo 7. Záleží, odkud měříte.",
+    "insufficient_close": "Případ uzavřen. Oba odešli bez slov. Zeď stojí. Šachy nezačnou."
+  },
+  "stamp_moment": {
+    "guilty": "Grünbaum vstal. Pomalu, jako starý muž, který ví, že prohrál víc než 34 centimetrů.",
+    "not_guilty": "Kříž složil metr. Zasunul ho do kapsy. Grünbaum se na něj podíval — ale Kříž se díval jinam.",
+    "insufficient": "Oba zůstali sedět. Mezi nimi stůl. Asi metr dvacet. To alespoň bylo jisté."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "not_guilty_with_comment",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "Grünbaum zaslal Křížovi dopis — rukopisný, česky. Navrhuje společné zaměření a šachy o Velikonocích. Kříž mu neodpověděl. Dopis leží na stole."
+    },
+    {
+      "trigger": "guilty_standard",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "Zeď v Bubenči posunuta o 22 centimetrů. Kříž změřil znovu: 12 centimetrů zbývá. Podal stížnost na nedostatečné plnění rozsudku."
+    }
+  ]
+}

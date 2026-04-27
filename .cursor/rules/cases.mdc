@@ -28,7 +28,7 @@ MORÁLNÍ DILEMA: barva #2C4A7C | 2-3 skryté rozpory | efekty ±8-15, vždy Vin
 POLITICKÝ: barva #8B1A1A | 1-2 skryté rozpory + varování | efekty Integrita/MOC ±10-20
 OSOBNÍ: barva #5C2D6E | echo Benovy minulosti | efekty Vina ±5-10, Vztahy ±
 
-## DENNÍ STRUKTURA — 20 DNÍ
+## DENNÍ STRUKTURA — 15 PRACOVNÍCH DNÍ
 
 **Cíl:** 2 případy denně (slot 1 + slot 2). Kapky sdílené mezi všemi spisy, které jsou daný den na stole (viz níže u třetího spisu).
 **Test:** `data/days.json` může dočasně odkazovat na **3** ID — třetí slot viz sekce **Třetí spis** (od 3. týdne, podmíněně); před releasem držet konzistenci s implementací v `cases.js` / `engine.js`.
@@ -36,11 +36,11 @@ OSOBNÍ: barva #5C2D6E | echo Benovy minulosti | efekty Vina ±5-10, Vztahy ±
 Pracovní dny: ranní fragment → případy dne → večerní volba.
 Sobota: bonusy + shrnutí. Neděle: volba volného dne. Žádné případy.
 
-**Scénář 20 dní (večery, emoční linka / matka, týdenní rytmus):** vstupní brána je `docs/scenar/ReadMeScenar.md`; rámec (význam večerů, matky, týdnů) je v `docs/scenar/InDubio_20dni_Mapa-scenar.md`; řádky dní v CSV ve stejné složce. **Dynamika pozdější části aktu** (morální/politický tlak, návrhy modifikátorů dne, druhá vrstva večerů, limity revizí, náladové pátrání): `docs/scenar/Milniky-dynamika-akt1.md` + sloupce v `Mapa_20dni.csv` a `Balancing.csv`. Volitelný Excel: `docs/InDubio_20dni_Mapa.xlsx`.
+**Scénář 15 pracovních dní (kalendář ~19 dní s víkendy; večery, emoční linka / matka, týdenní rytmus):** vstupní brána je `docs/scenar/ReadMeScenar.md`. Řádky dní a sloty: **`docs/scenar/Mapa_15dni.csv`**, případy: **`Pripady_15dni.csv`**, stav hry: **`data/days.json`**. `InDubio_20dni_Mapa-scenar.md` a `Mapa_20dni.csv` jsou **archiv** (viz `docs/scenar/ARCHIV_20D_README.md`). **Dynamika:** `docs/scenar/Milniky-dynamika-akt1.md` + `Balancing.csv`. Historie migrace: `MIGRACE_20-15.md`.
 
-## TŘETÍ SPIS NA STOLE (OD 3. TÝDNE)
+## TŘETÍ SPIS NA STOLE (OD CCA 2. TÝDNE KALENDÁŘE)
 
-**Časová brána:** od **15. herního dne** (začátek 3. týdne při běžném kalendáři 20 pracovních dní v měsíci). První dva týdny vždy jen **dva** spisy — hráč se naučí tempo, průzkum, pátrání a dvojkrok rozsudku bez dalšího šumu.
+**Časová brána (15denní kampaň):** třetí slot / **light režim** z **existujícího** `pool_cases_akt1.json` (viz `days.json` → `cases` + `cases_light`), obvykle od **herního dne, který odpovídá 2. týdnu** v `Mapa_15dni.csv` (kontrola v kódu / datech, ne v tomto souboru datově vázaně). Úvodní týden drž spíš **dva** plné spisy — hráč se učí tempo a dvojkrok rozsudku.
 
 **Co se mění:** od splnění podmínky může být na stole **třetí** spis (třetí složka). Hráč si **sám zvolí**, zda ten den uzavře **dva** nebo **tři** případy; po **dvou vynesených rozsudcích** musí být možné **ukončit den** i s třetím spisem nedotčeným (třetí je bonusová zátěž, ne povinná třetí instance stejné délky — ideálně **spis light**, viz vlastní sekce).
 
@@ -52,9 +52,9 @@ Sobota: bonusy + shrnutí. Neděle: volba volného dne. Žádné případy.
 2. **Sekundární — rysy postavy:** např. **Moudrost** jako práh „už není nováček“ (rozumně nízký práh — ne exkluzivní grind).
 3. **Terciární — frakce (Moc / Lid / Kapital):** **nejsou totéž** co instituce. Frakce spíš **modifikují tvar** třetího spisu (politický nádech, citlivost, kdo tlačí agendou), **ne** primární vypínač „mám / nemám třetí slot“. Váha frakcí v odemykání musí být **menší** než u důvěry instituce a rysů.
 
-**Limit výskytu:** za jednu kampaň (jeden průchod hrou) se třetí spis může objevit **nejvýše 10×** (počítají se dny, kdy je třetí slot aktivní / kdy je třetí případ nabídnut — přesná implementace v `State` + `cases.js`). Cílová velikost poolu pro třetí větev: **cca 15** kauz v `data/pool_cases_light_akt1.json`, aby zůstal rozptyl i po opakováních.
+**Limit výskytu:** třetí (light) případ je v datech dne explicitně (`cases` 3. ID + `cases_light`); samostatný soubor `pool_cases_light_akt1.json` **není nutný** — light je příznak u položky z `pool_cases_akt1.json`.
 
-**Data:** třetí ID v `days.json` buď jen od D15+, nebo placeholder a engine třetí přídá dynamicky po vyhodnocení podmínek — držet jednu strategii v kódu a tady ji zrcadlit.
+**Data:** třetí ID v `days.json` + `cases_light: [false, false, true]`; engine zobrazí zkrácený režim (viz `MIGRACE_20-15.md`).
 
 **Dopady vráceného spisu (revize / odvolání)** — navrhovaný rámec pro obsah i mechaniku (čísla ladit později):
 
@@ -66,7 +66,9 @@ Sobota: bonusy + shrnutí. Neděle: volba volného dne. Žádné případy.
 
 Samostatný pool: **`data/pool_cases_light_akt1.json`** (stejný technický tvar jako položky v `pool_cases_akt1.json`, načítá `DataLoader` přes `normalizujPoolPripad`). V JSON doporučeno pole **`"case_profile": "light"`** pro dokumentaci a budoucí UI filtry.
 
-**Účel:** kratší, samostatné kauzy **mimo hlavní dějové vlákno** (žádné povinné plotové postavy z Story Bible jako nosič případu). Doplňková agenda soudu — rutinní nebo lehce morální tření bez epické zátěže.
+**Účel:** kratší, samostatné kauzy **mimo hlavní dějové vlákno** (žádné povinné plotové postavy z Story Bible jako **nositel** třetího spisu — atmosféra a typ úřadu stačí). Doplňková agenda soudu.
+
+**Kanon (obsah):** třetí spis je **zkrácená varianta z hlavního poolu** — stejná stavebnice polí a typicky **stejné téma / profesní dómén** jako u plné `pool_a1_*` kauzy, ale s kratším `description`, méně svědků, užším průzkumem a **`case_profile": "light"`** (případně `id` s prefixem `pool_light_a1_*`). Výjimka: úplně nová mini-kauza ve stejné „hloubce“ jako zkratka, stále bez vlečení pilířových postav. Samostatný soubor `pool_cases_light_akt1.json` je **volitelný**; často se light položka **dokumentačně** vejde do stejného `pool_cases_akt1.json` a v `days.json` se na ni odkáže 3. `id` + `cases_light: true` u toho indexu.
 
 **Doporučené limity obsahu (autor):**
 
@@ -353,12 +355,12 @@ Spis zmizí. Nahradí ho:
 Tón se mění podle verdiktu, Viny, Naděje.
 Mechanické dopady skryté. Odložené důsledky za X dní.
 
-## VÁHOVÁNÍ PŘÍPADŮ (20 dní)
+## VÁHOVÁNÍ PŘÍPADŮ (15 pracovních dní)
 
 D1-3: rutinní 100%
-D4-7: rutinní 60%, morální 40%
-D8-12: rutinní 30%, morální 35%, politický 25%, osobní 10%
-D13-20: rutinní 15%, morální 30%, politický 35%, osobní 20%
+D4-5: rutinní 60%, morální 40%
+D6-8: rutinní 30%, morální 35%, politický 25%, osobní 10%
+D9-15: rutinní 15%, morální 30%, politický 35%, osobní 20%
 
 Dynamické: Integrita >70 více morálních | <30 více úplatků
 LID <30 více chudých | Odvaha >70 více politických | Vina >70 echo staré chyby
@@ -372,7 +374,7 @@ LID <30 více chudých | Odvaha >70 více politických | Vina >70 echo staré ch
 
 ## POOL — REBUS / NEJASNÉ KAUZY (3. TÝDEN)
 
-- Cíl: **1–2** kauzy v rozmezí **cca 3. týdne** (orientačně **D11–16** podle konkrétní mapy v `Mapa_20dni.csv`), kde je výsledek **pravděpodobnostní nebo morálně nejednoznačný** — např. **tři podezřelí** (výpovědi / role), každý s částí pravdy i šumu; hráč **rozhoduje, kdo je nejspíš odpovědný**, nebo zda věc **patří jinam** (civilní řízení, disciplinárka, přerušení trestního řízení).
+- Cíl: **1–2** kauzy v rozmezí **3. týdne** (orientačně dle `Mapa_15dni.csv` / pracovní dny 9–15), kde je výsledek **pravděpodobnostní nebo morálně nejednoznačný** — např. **tři podezřelí** (výpovědi / role), každý s částí pravdy i šumu; hráč **rozhoduje, kdo je nejspíš odpovědný**, nebo zda věc **patří jinam** (civilní řízení, disciplinárka, přerušení trestního řízení).
 - **Implementace bez nového engine:** pořád stejný JSON jako ostatní pool případy — varianty ve `verdicts` formulovat jako reálné soudní výsledky s jasným dopadem v `effects` (žádné samostatné „hlasování ze tří“ v kódu zatím nevyžadovat).
 - Rebusové kauzy **defaultně ne** do **spisu light** — plná délka je v pořádku; lze zjednodušit počet stop nebo spoléhat na **jednu silnou dvojici + rozptyl**, pokud je pátrání stále férové (viz Two-Click v tomto souboru).
 
@@ -477,7 +479,7 @@ Kořen: `{ "version": 1, "pool_cases_light_akt1": [ … ] }`.
 - Stejná stavebnice polí jako u `pool_cases_akt1.json` (`normalizujPoolPripad` v `js/data-loader.js`).
 - Každá položka má mít **`"case_profile": "light"`** a unikátní `id` (doporučený prefix `pool_light_a1_`).
 - Cíl **~15** položek v souboru; v kampani se třetí spis nabízí **max. 10×** (viz sekce Třetí spis).
-- Obsah: **nezávislé** kauzy, bez vázání na hlavní příběhové vlákno hry.
+- Obsah: **nezávislé** na denní dějové ose (Beneš, Haas, …) — viz výše: preferuj **zkrácený výřez** z existujících plných pool kauz, ne druhou epickou linku.
 
 ## JSON — `data/pool_cases_akt1.json` (zdroj) → runtime (`normalizujPoolPripad` v `js/data-loader.js`)
 
@@ -577,7 +579,7 @@ Použij tento postup pro každý nový případ:
 
 0. **Kam soubor patří**
    - **Plný pool** (`data/pool_cases_akt1.json`): standardní dvojice spisů dne, plná šíře průzkumu a verdiktů dle typu.
-   - **Spis light** (`data/pool_cases_light_akt1.json`): jen pro **třetí / zkrácenou** kauzu — vždy `"case_profile": "light"`, doporučený prefix `id` jako `pool_light_a1_*`, kratší texty a užší strom podle sekce *Spis light*; děj **nezávislý** na hlavním příběhu. Pravidla **třetího spisu** (od D15, důvěra instituce, max 10× v kampani) drž v narativním zdůvodnění, ne v hackování struktury JSON.
+   - **Třetí / light kauza:** režim `_lightMode` v `cases.js` / `days.json` (`cases_light`) — stále jde o záznam z **`data/pool_cases_akt1.json`**, nikoli o povinný samostatný light soubor. Děj může být doplňkový; pravidla třetího spisu drž v textu a v mapě dne.
 
 1. **Jádro případu**
    - definuj obžalobu, minimálně jeden skrytý rozpor, hlavní morální napětí.
@@ -621,8 +623,8 @@ Použij tento postup pro každý nový případ:
    - konzistence `unlock_*` ID vůči reálným `hidden_info` a `verdicts`.
 
 10. **Scénář a dynamika dne**
-   - u případu vázaného na konkrétní den zkontrolovat `docs/scenar/Mapa_20dni.csv` (sloupce *Modif_dne*, *Vecer_doplnek*, *Patrani_navrh*) a přehled `docs/scenar/Milniky-dynamika-akt1.md` (milníky, limity revizí),
-   - `review_card` / revize spisu držet řídké — viz limity v `Milniky-dynamika-akt1.md` §4 a `InDubio_20dni_Mapa-scenar.md` §8.
+   - u případu vázaného na den zkontrolovat **`Mapa_15dni.csv`** (poznámky, tón dne) a `Milniky-dynamika-akt1.md` (milníky, limity revizí),
+   - `review_card` / revize spisu držet řídké — viz limity v `Milniky-dynamika-akt1.md` §4.
 
 ### Legacy případy (`cases-akt*.json`)
 

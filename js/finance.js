@@ -5,11 +5,12 @@
 const Finance = (() => {
 
   const OPERACE_CIL_KC = 400;
-  const OPERACE_DEADLINE_DEN = 23;
+  /** Kalendář 15denní kampaně: deadline operace = D12 (pracovní) = den 16 (pondělí 3. týdne). */
+  const OPERACE_DEADLINE_DEN = 16;
   const DENNI_VYDAJE_KC = 55;
   const VYPLATA_KC = 80;
-  /** Neděle v herním kalendáři: den 7, 14, 21, 28 (den 1 = první neděle). */
-  const VYPLATA_DNY = [7, 14, 21, 28];
+  /** Neděle v herním kalendáři: první a druhá neděle (den 1 = pondělí). */
+  const VYPLATA_DNY = [7, 14];
 
   function getZustatek() {
     return State.get('finance.balance');

@@ -14,24 +14,30 @@ const Cases = (() => {
    * (UI „načítání“). První tři prvky vstupu bereme podle indexu — nesvařovat
    * přes filter(Boolean), jinak se z [idA, null, idC] stane [idA, idC] a sloty se zhorší.
    */
-  function nastavPripadyDne(ids) {
+  function nastavPripadyDne(ids, casesLight) {
     const raw = Array.isArray(ids) ? ids : [];
+    const light = Array.isArray(casesLight) ? casesLight : [];
     const tri = [0, 1, 2].map(i => {
       const x = raw[i];
       if (x == null || String(x).trim() === '') return null;
       return String(x).trim();
     });
-    _pripady = tri.map(mid => {
+    _pripady = tri.map((mid, i) => {
       if (mid == null) return null;
       const c = DataLoader.ziskejPripad(mid);
       if (!c) console.warn('[Cases] nenašel případ pro id:', mid);
-      return c || null;
+      if (!c) return null;
+      if (light[i]) {
+        return { ...c, _lightMode: true };
+      }
+      return c;
     });
   }
 
   function _aktZDne(den) {
-    if (den <= 10) return 1;
-    if (den <= 20) return 2;
+    const d = Number(den);
+    if (!Number.isFinite(d)) return 1;
+    if (d <= 19) return 1;
     return 3;
   }
 
@@ -59,7 +65,7 @@ const Cases = (() => {
   function _pripadPatriDoAktu(c, akt) {
     const d = Number(c.day);
     if (!Number.isFinite(d)) return false;
-    if (akt === 1) return d >= 1 && d <= 10;
+    if (akt === 1) return d >= 1 && d <= 19;
     if (akt === 2) return d >= 11 && d <= 20;
     return d >= 21 && d <= 30;
   }
@@ -89,6 +95,7 @@ const Cases = (() => {
     if (!c) return 'rutinni';
     const t = String(c.type || '').toLowerCase();
     if (t === 'routine') return 'rutinni';
+    if (t === 'moral_dilemma' || t === 'moraldilemma') return 'moralni';
     if (_TYP_LEGACY_NA_RUTINNI.has(t)) return 'rutinni';
     if (t === 'vlakno') {
       const id = String(c.id || '').toLowerCase();
@@ -305,7 +312,8 @@ const Cases = (() => {
     }
     const idsZDne = denData && Array.isArray(denData.cases) ? denData.cases : null;
     if (idsZDne && idsZDne.length > 0) {
-      nastavPripadyDne(idsZDne);
+      const light = denData && Array.isArray(denData.cases_light) ? denData.cases_light : [];
+      nastavPripadyDne(idsZDne, light);
       console.log('[Cases] nastavPripadyProDen z days.json.cases', {
         den: d,
         slotId: _pripady.map(p => (p && p.id) || null)
@@ -318,7 +326,7 @@ const Cases = (() => {
     console.log('[Cases] nastavPripadyProDen', {
       den: d,
       akt: _aktZDne(d),
-      zdrojSoubor: d <= 10 ? 'cases-akt1.json' : d <= 20 ? 'cases-akt2.json' : 'cases-akt3.json',
+      zdrojSoubor: d <= 19 ? 'cases-akt1.json (fallback)' : 'cases-akt2+',
       pripaduNaDen: naDen.length,
       slotId: tri.map(p => (p && p.id) || null)
     });
@@ -326,6 +334,24 @@ const Cases = (() => {
 
   function getPripady() {
     return _pripady;
+  }
+
+  /**
+   * Třetí spis (light): bez průzkumu, první svědectví, dva základní rozsudky.
+   */
+  function _pripravPripadLightRezim(p) {
+    if (!p || !p._lightMode) return p;
+    const v = Array.isArray(p.verdicts) ? p.verdicts.slice() : [];
+    const guilty = v.find(x => /guilty/i.test(String(x.id || '')));
+    const notg = v.find(x => /not_guilty/i.test(String(x.id || '')));
+    const testim = Array.isArray(p.testimony) && p.testimony[0] ? [p.testimony[0]] : p.testimony;
+    const verdicts = [guilty, notg].filter(Boolean);
+    return {
+      ...p,
+      hidden_info: [],
+      testimony: testim,
+      verdicts: verdicts.length > 0 ? verdicts : v
+    };
   }
 
   function otevriPripad(index) {
@@ -357,8 +383,9 @@ const Cases = (() => {
       }
 
       const otevriNorm = () => {
-        console.log('[Cases] otevírám modál případu:', pripad.id, '(title, situation, svědectví, rozsudky z JSON)');
-        UI.zobrazPripad(pripad, (p, r) => zpracujRozsudek(p, r));
+        const pZobraz = _pripravPripadLightRezim(pripad);
+        console.log('[Cases] otevírám modál případu:', pripad.id, pripad._lightMode ? '(light)' : '', '(title, situation, svědectví, rozsudky z JSON)');
+        UI.zobrazPripad(pZobraz, (p, r) => zpracujRozsudek(pripad, r));
       };
 
       const denN = Number(State.get('currentDay'));
@@ -831,9 +858,25 @@ const Cases = (() => {
     const spisTypU = typProZobrazeni(pripad);
     const inkMsgU = spisTypU !== 'rutinni' ? ' +1 sdílená akce průzkumu.' : '';
     UI.zobrazStavovouZpravu(`Úplatek: ${castka} Kčs${inkMsgU}`);
-    setTimeout(() => Engine.zkontrolujKonecDne(), 500);
+    setTimeout(() => Engine.zkontrolujKonecDne(true), 500);
 
     if (_onRozsudekCallback) _onRozsudekCallback(pripad, rozsudek);
+  }
+
+  /**
+   * Skupina pro echo v ranních/novinových textech (flags.verdict_<caseId>).
+   * @returns {'guilty'|'not_guilty'|'insufficient'|'alternative'|null}
+   */
+  function _verdiktIdDoSkupinyProEcho(verdictId) {
+    const v = String(verdictId || '').toLowerCase();
+    if (!v || v === 'uplatek') return null;
+    if (v.indexOf('insufficient') !== -1) return 'insufficient';
+    if (v === 'guilty_alternative' || (v.indexOf('guilty') !== -1 && v.indexOf('alternative') !== -1)) {
+      return 'alternative';
+    }
+    if (v.indexOf('not_guilty') !== -1) return 'not_guilty';
+    if (v.indexOf('guilty') !== -1) return 'guilty';
+    return null;
   }
 
   function zpracujRozsudek(pripad, rozsudek, opts) {
@@ -893,6 +936,12 @@ const Cases = (() => {
     _bonusInkoustZaNarocnySpis(pripad);
     State.pridejPouzityPripad(pripad.id);
 
+    const echoSkup = _verdiktIdDoSkupinyProEcho(rozsudek.id);
+    if (echoSkup) {
+      const cid = String(pripad.id || '').trim();
+      if (cid) State.set('flags.verdict_' + cid, echoSkup);
+    }
+
     // Zkontroluj opakující se vlákna
     if (pripad.recurring === true && pripad.thread) {
       _zpracujOpakovani(pripad, rozsudek);
@@ -949,8 +998,8 @@ const Cases = (() => {
     const inkMsgR = spisTypR !== 'rutinni' ? ' +1 sdílená akce průzkumu.' : '';
     UI.zobrazStavovouZpravu(`Rozsudek: ${rozsudek.text}${inkMsgR}`);
 
-    // Zkontroluj konec dne
-    setTimeout(() => Engine.zkontrolujKonecDne(), 500);
+    // Zkontroluj konec dne (true = dovolit variabilní MIGRACE_20-15)
+    setTimeout(() => Engine.zkontrolujKonecDne(true), 500);
 
     if (_onRozsudekCallback) _onRozsudekCallback(pripad, rozsudek);
   }
@@ -1019,18 +1068,37 @@ const Cases = (() => {
     return pripad.clue_system;
   }
 
-  function _clueParDleIds(pripad, aId, bId) {
+  function _clueStrengthToRank(strength) {
+    const s = String(strength || '').trim();
+    if (s === 'strong') return 3;
+    if (s === 'medium') return 2;
+    if (s === 'weak') return 1;
+    return 0;
+  }
+
+  /** Pár dle ID stop — při více shodách (sdílené stopy) vybere nejsilnější pár. */
+  function _clueParDleIdsNejsilnejsi(pripad, aId, bId) {
     const cs = _clueSystem(pripad);
     const a = String(aId || '').trim();
     const b = String(bId || '').trim();
     if (!cs || !a || !b || !Array.isArray(cs.pairs)) return null;
+    let best = null;
+    let bestRank = -1;
     for (const p of cs.pairs) {
       if (!p || typeof p !== 'object') continue;
       const pa = String(p.a_id || '').trim();
       const pb = String(p.b_id || '').trim();
-      if ((a === pa && b === pb) || (a === pb && b === pa)) return p;
+      if (!((a === pa && b === pb) || (a === pb && b === pa))) continue;
+      const pairId = String(p.pair_id || '').trim();
+      const sRaw = String(p.strength || '').trim();
+      const strength = sRaw || (String(cs.true_pair_id || '').trim() === pairId ? 'strong' : 'medium');
+      const r = _clueStrengthToRank(strength);
+      if (r > bestRank) {
+        bestRank = r;
+        best = p;
+      }
     }
-    return null;
+    return best;
   }
 
   /** Max. pokusů na spojení stop; 0 = bez limitu soustředění. */
@@ -1351,7 +1419,7 @@ const Cases = (() => {
     if (thematic) {
       return { ok: true, softFail: true, softMessage: thematic };
     }
-    const p = _clueParDleIds(pripad, a, b);
+    const p = _clueParDleIdsNejsilnejsi(pripad, a, b);
     if (!p) return { ok: false, reason: 'mismatch' };
     const pairId = String(p.pair_id || '').trim();
     if (!pairId) return { ok: false, reason: 'mismatch' };
@@ -1567,6 +1635,8 @@ const Cases = (() => {
   }
 
   function _naplanovatReviziPoRozsudku(pripad, rozsudek, meta) {
+    // Revize v 15denní verzi vypnuto (MIGRACE_20-15); data review_card se ignorují
+    return;
     if (!pripad || !rozsudek || !meta || !meta.procesniKvalita) return;
     if (String(rozsudek.id || '') === 'uplatek') return;
     if (typeof State === 'undefined' || !State.pridejReviziPripadu) return;

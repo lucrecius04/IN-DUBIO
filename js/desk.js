@@ -320,11 +320,14 @@ const Desk = (() => {
       (np && np.headline) || (denDat && denDat.newspaper_headline) || '—';
     const nazev =
       (np && np.name) || (denDat && denDat.newspaper_name) || 'Denní tisk';
-    const telo =
+    let telo =
       (np && np.body) ||
       (denDat && denDat.newspaper_body) ||
       (denDat && denDat.newspaper_article) ||
       headline;
+    if (denDat && denDat.newspaper_conditional_lines && typeof Narrative !== 'undefined' && Narrative.vyhodnotPodmineneRadky) {
+      telo = (telo || '') + Narrative.vyhodnotPodmineneRadky(denDat.newspaper_conditional_lines);
+    }
     return { nazev, headline, telo };
   }
 

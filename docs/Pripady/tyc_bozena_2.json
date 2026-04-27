@@ -1,0 +1,389 @@
+{
+  "id": "pool_a1_bozena_cest",
+  "slot": "pool",
+  "case_track": "pillar",
+  "case_track_label": "tycove",
+  "type": "routine",
+  "color": "#B5925A",
+  "available_days": [
+    4
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "forced": true
+  },
+  "title": "Čest obecního radního",
+  "case_number": "Sp. zn. 92/1931",
+  "defendant": {
+    "name": "Božena Kučerová",
+    "age": 56,
+    "occupation": "chalupářka",
+    "detail": "tatáž jako Sp. zn. 59/1931 — vdova z Únětic, případ slepic"
+  },
+  "charge": "Urážka na cti dle §488 trestního zákona. Božena Kučerová dne 15. února 1931 na návsi v Úněticích před čtyřmi osobami nazvala Václava Šebka 'starým kozlem' a dodala, že 'krade lidem zahrádky'.",
+  "description": "Týden poté, co Šebek prohrál (nebo vyhrál) případ se slepicemi, přichází k soudu znovu. Tentokrát jako navrhovatel žaloby na urážku cti — s advokátem <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"knot_svoboda\" title=\"Slovník: Knot & Svoboda\">JUDr. Milanem Knotem</button> z realitní kanceláře Knot & Svoboda. Božena mu říkala kozel. Šebek žádá veřejnou omluvu a 150 Kčs. Ten den ráno Ben dostal dopis od doktora — operace matky stojí 400 Kčs.",
+  "testimonies": [
+    {
+      "id": "sebek",
+      "speaker": "Václav Šebek, navrhovatel, obecní radní",
+      "text": "Pane doktore, obecní pozemek je obecní pozemek. Paní Kučerová si přistaví ohradu, jak se jí zlíbí — bez povolení, bez souhlasu. <span class=\"clue\" data-clue-id=\"clue_tridsat_let\">Já jsem třicet let radní. Třicet let sloužím obci. Za třicet let nikdy žádná stížnost.</span> Navíc to řekla u kašny, <span class=\"clue\" data-clue-id=\"decoy_deti_navsi\">kde bylo plno lidí. Ženy z vesnice. Děti.</span> Já požaduji satisfakci.",
+      "contradiction_keywords": [
+        "třicet let",
+        "satisfakce"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "kucerova",
+      "speaker": "Božena Kučerová, obžalovaná",
+      "text": "<span class=\"clue\" data-clue-id=\"decoy_kozel_slovo\">Kozel je kozel</span>, pane doktore. Já nelžu. Šebek mi chce vzít zahradu, teď mě táhne k soudu za každé slovo. <span class=\"clue\" data-clue-id=\"clue_kolik_stoji\">Víte, kolik stojí jeho advokát? Sto padesát korun. Za slovo kozel. A víte, kolik stojí pytel zrní? Taky kolem sta.</span> To bych radši nakrmila slepice. Jestli je urážka říct pravdu, tak mě zavřete.",
+      "contradiction_keywords": [
+        "sto padesát",
+        "advokát"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "simova",
+      "speaker": "Anna Šímová, sousedka, přítomna na návsi",
+      "text": "Paní Kučerová je taková — mluví z břicha. Ale pan Šebek si za to trošku může. <span class=\"clue\" data-clue-id=\"clue_provokace_plot\">Provokoval ji — stál u jejího plotu a hlasitě říkal Hloučkovi, že 'tahle ohrada se brzy uklidí'. To bylo ten den ráno, před tím, než mu Boženka řekla kozla.</span> Kozlem ho nazvala odpoledne. Ráno ji provokoval. To k sobě patří, ne?",
+      "contradiction_keywords": [
+        "ráno",
+        "provokoval",
+        "ohrada"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "knot",
+      "speaker": "JUDr. Milan Knot, advokát navrhovatele",
+      "text": "Zastupuji pana Šebka ve věci ochrany osobnosti. Fakta jsou jasná: veřejný výrok, přítomnost svědků, identifikace osoby. Zákon je jednoznačný. <span class=\"clue\" data-clue-id=\"clue_knot_kancelar\">Naše kancelář Knot & Svoboda zastupuje klienty v Úněticích a okolí. Pan Šebek se na nás obrátil v únoru. Standardní mandát.</span> Výše odškodnění — 150 korun — odpovídá praxi u obdobných případů.",
+      "contradiction_keywords": [
+        "Úněticích",
+        "standardní mandát"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "provokace_pred_urazkout",
+      "description": "Šebek tvrdí, že byl napaden bezdůvodně. Šímová říká, že ráno stál u Boženina plotu a hlasitě naznačoval, že ohrada 'se brzy uklidí'.",
+      "involves": [
+        "sebek",
+        "simova"
+      ],
+      "highlight_at_wisdom": 60,
+      "unlocks_confrontation": "sebek"
+    },
+    {
+      "id": "realitni_advokat_na_urazku",
+      "description": "Šebek si na urážku na cti najal realitní advokátní kancelář. Knot & Svoboda se specializuje na pozemkové transakce, ne osobnostní práva.",
+      "involves": [
+        "knot",
+        "records"
+      ],
+      "highlight_at_wisdom": 75,
+      "unlocks_confrontation": "knot"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "stiznosti_vs_cest_strong",
+    "pairs": [
+      {
+        "pair_id": "stiznosti_vs_cest_strong",
+        "a_id": "clue_tridsat_let",
+        "b_id": "clue_stiznosti_zaznam",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "provokace_medium",
+        "a_id": "clue_provokace_plot",
+        "b_id": "clue_kolik_stoji",
+        "strength": "medium"
+      }
+    ],
+    "decoys": [
+      "decoy_kozel_slovo",
+      "decoy_deti_navsi",
+      "decoy_starosta_odmitl"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 55,
+      "speed_upgrade_sec": 18,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 50,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 35,
+          "ids": [
+            "not_guilty_formal"
+          ]
+        },
+        {
+          "min": 65,
+          "ids": [
+            "not_guilty_with_comment"
+          ]
+        },
+        {
+          "min": 80,
+          "ids": [
+            "guilty_alternative"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 45,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "not_guilty_with_comment"
+          ],
+          "narrative_lines": [
+            "Třicet let bez stížnosti — a přesto tři podněty proti jedné sousedce během čtyř měsíců.",
+            "Městský registr ukazuje sled: říjen, prosinec, únor. Vždy tentýž navrhovatel, vždy tatáž adresa.",
+            "Žaloba na čest tak vypadá méně jako obrana pověsti a víc jako pokračování majetkového tlaku."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 22,
+          "unlock_verdict_ids": [
+            "not_guilty_formal"
+          ],
+          "narrative_lines": [
+            "Ráno provokoval u plotu. Odpoledne dostal kozla. Příčina a následek.",
+            "Disproporcionalita žaloby mluví za Boženu víc než jakékoli svědectví."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "starosta",
+      "target_label": "Starosta Únětic",
+      "reveals": "motivation",
+      "text": "Pan Šebek mě žádal, abych ten podnět podepsal jako obec. Odmítl jsem — je to soukromý spor. <span class=\"clue\" data-clue-id=\"decoy_starosta_odmitl\">Tak si vzal advokáta sám. Upřímně? Mám dojem, že jde pořád o ten pozemek.</span> Šebek jedná bez opory obce. Já ho nepodporuji.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": -1
+        }
+      }
+    },
+    "records": {
+      "source": "Obchodní rejstřík, kancelář Knot & Svoboda; záznamy Katastrálního úřadu Praha-západ",
+      "reveals": "facts",
+      "text": "Kancelář Knot & Svoboda zapsána jako 'právní služby pro realitní trh', sídlo Dejvice, Praha. <span class=\"clue\" data-clue-id=\"clue_knot_kancelar\">V loňském roce zastupovala dva případy výkupu pozemků v Úněticích — oba pro 'soukromého investora', jméno v dostupných záznamech nefiguruje.</span> <span class=\"clue\" data-clue-id=\"clue_stiznosti_zaznam\">Registr podání obce Únětice: říjen 1930 — podnět Šebka ve věci ohrady; prosinec 1930 — podnět Šebka na zábor parcely; únor 1931 — žaloba na urážku cti proti Boženě Kučerové.</span> Šebek podepsal zprostředkovatelské smlouvy u obou transakcí.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Kapital": 1,
+          "Moc": 1
+        }
+      },
+      "unlocks_contradiction": "realitni_advokat_na_urazku"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Vina": 1
+        },
+        "factions": {
+          "Lid": -1,
+          "Kapital": 2
+        }
+      },
+      "variants": {
+        "lid_high": "V Úněticích se ví, že Šebek potřebuje přístupovou cestu pro nový silniční projekt — státní zakázka, peníze z Prahy. Boženin pozemek je jediná překážka. Kozel byl jen záminka, jak ji přivést k soudu a zahájit tlak.",
+        "moc_high": "Knot & Svoboda má kontakty na Zemském úřadě. Pokud Šebek vyhraje případ čest, oslabí Boženinu pozici při budoucím řízení o pozemek. Je to právnická hra — a Božena hraje bez karet.",
+        "kapital_high": "Soukromý investor za Knot & Svoboda — pravděpodobně stavební firma z Holešovic. Kupuje pozemky podél plánované silnice. Šebek je zprostředkovatel. Cena za Boženinu zahradu bude vyšší než 200 korun — ale jen pokud se vzdá.",
+        "default": "Šebek si najal realitního advokáta na slovo 'kozel'. To není pýcha. To je strategie. Kdekdo v <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"unetice\" title=\"Slovník: Úněticích\">Úněticích</button> to vidí — jen to nikdo neřekne nahlas."
+      }
+    },
+    "confrontation": {
+      "target": "knot",
+      "target_label": "JUDr. Milan Knot, advokát",
+      "requires_contradiction": "realitni_advokat_na_urazku",
+      "requires_courage": 50,
+      "cost": 2,
+      "prompt": "Pane doktore Knot, vaše kancelář se specializuje na pozemkové transakce. Proč zastupujete pana Šebka v případu urážky na cti — a proč jste při pozemkových výkupech v Úněticích pracoval pro téhož klienta?",
+      "success": {
+        "text": "Knot se neusmívá. Krátce řekne: 'Naše kancelář poskytuje obecné právní služby.' Na přímý dotaz, zda kancelář v Úněticích řeší výkupy pozemků, přidá: 'To s tímto případem nesouvisí.' Šebek se dívá do okna.",
+        "reveals": "Knot ani Šebek nepopřeli pozemkový zájem. Ani ho nepotvrdili. Mlčení je průhledné — ale mlčení u soudu nestačí."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "standard": {
+          "label": "Veřejná omluva v přítomnosti navrhovatele",
+          "description": "Výrok byl veřejný a urážlivý. Omluva odpovídající formě provinění.",
+          "effects": {
+            "integrita": 1,
+            "vina": 3,
+            "nadeje": -1,
+            "moc": 2,
+            "lid": -4,
+            "finance": 10
+          }
+        },
+        "maximum": {
+          "label": "Veřejná omluva a náhrada 150 Kčs",
+          "description": "Plné zadostiučinění — omluva i finanční satisfakce.",
+          "requires": {
+            "odvaha_max": 32
+          },
+          "effects": {
+            "integrita": 2,
+            "vina": 4,
+            "nadeje": -2,
+            "moc": 4,
+            "lid": -6,
+            "finance": 12
+          }
+        },
+        "alternative": {
+          "label": "Alternativa: Omluva s doporučením mediace pro majetkový spor",
+          "description": "Soud konstatuje, že urážka proběhla v kontextu opakovaného majetkového sporu, a doporučuje mediaci.",
+          "requires_investigation": 2,
+          "requires": {
+            "moudrost_min": 50
+          },
+          "effects": {
+            "integrita": 3,
+            "moudrost": 3,
+            "vina": 2,
+            "nadeje": 1,
+            "lid": -1,
+            "moc": -2,
+            "finance": 10
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zproštění — bagatelní výrok bez úmyslu poškodit",
+          "description": "Hovorové označení na veřejném prostranství postrádá právně relevantní úmysl difamace.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": -1,
+            "odvaha": 2,
+            "vina": -2,
+            "lid": 4,
+            "moc": -3,
+            "finance": 10
+          }
+        },
+        "with_comment": {
+          "label": "Alternativa: Zproštění — výrok vyprovokován navrhovatelem",
+          "description": "Šebek ráno demonstrativně stál u Boženina plotu s komentáři o 'uklidnění ohrady'. Žaloba sleduje jiný cíl než ochranu cti.",
+          "requires_investigation": 2,
+          "requires": {
+            "odvaha_min": 50
+          },
+          "effects": {
+            "integrita": 4,
+            "odvaha": 4,
+            "vina": -3,
+            "nadeje": 2,
+            "lid": 6,
+            "moc": -7,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "reopen": {
+          "label": "Zamítnutí žaloby — nedostatečný průkaz újmy",
+          "description": "Navrhovatel neprokázal konkrétní újmu na pověsti. Hovorový výrok sám o sobě nestačí.",
+          "effects": {
+            "moudrost": 2,
+            "vina": 1,
+            "nadeje": 1,
+            "finance": 8
+          }
+        },
+        "close": {
+          "label": "Zastavení řízení — nepoměr výroku a nároků",
+          "description": "Zjevný nepoměr mezi závažností výroku a výší požadované náhrady svědčí o jiném než právním motivu.",
+          "effects": {
+            "moudrost": 3,
+            "integrita": 1,
+            "vina": 1,
+            "finance": 8
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_standard": "Božena se omluvila. Na návsi. Před stejnými lidmi. Šebek přikývl. Za dva dny přišel dopis od Knot & Svoboda s nabídkou odkupu zahrady. Cena: 180 korun.",
+    "guilty_maximum": "Božena zaplatila. Prodala tři slepice. Šebek koupil parcelu 47/3 za čtyřicet korun. Knot & Svoboda odeslala fakturu.",
+    "guilty_alternative": "Omluva padla. Mediace naplánována. Knot & Svoboda požádala o odložení — klient cestuje.",
+    "not_guilty_formal": "Šebek odešel se svým advokátem. Na chodbě bylo slyšet: 'To je neuvěřitelné.' Knot odpověděl: 'Máme jiné možnosti.' Božena čekala na autobus. Byla spokojená.",
+    "not_guilty_with_comment": "Ben v rozsudku napsal, že žaloba sleduje jiný cíl než ochranu cti. Šebek se odvolal. Knot & Svoboda zaslala kopii rozsudku k archivaci. Komu, napsáno nebylo.",
+    "insufficient_reopen": "Žaloba zamítnuta. Šebek podal stížnost na postup soudu. Knot si poznamenal číslo parcely.",
+    "insufficient_close": "Řízení zastaveno. Šebek si zavolal Knota do kanceláře. Božena šla domů a nakrmila slepice."
+  },
+  "stamp_moment": {
+    "guilty": "Božena vstala. Podívala se na Bena — ne vztekle, ne smutně. Zklamaně. Jako by čekala víc.",
+    "not_guilty": "Božena se pousmála. Krátce. Pak se otočila k Šebkovi: 'Na shledanou, pane radní.' Šebek se nedíval.",
+    "insufficient": "Božena seděla. Šebek seděl. Zapisovatelka zavřela spis. Nikdo se nepohnul."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "not_guilty_with_comment",
+      "delay_days": 3,
+      "type": "letter",
+      "text": "Krátká poznámka v interní poště ministerstva, přeposlána přes Vlčka: Komentáře soudu k motivaci žalobce přesahují rámec výroku. Příště zůstaňte u skutku."
+    },
+    {
+      "trigger": "guilty_maximum",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "Knot & Svoboda zaslala Boženě nový návrh smlouvy. Jabloně za 220 korun. Přiložena kopie rozsudku."
+    }
+  ]
+}

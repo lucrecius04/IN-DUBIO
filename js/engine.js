@@ -20,17 +20,9 @@ const Engine = (() => {
     const pc = Math.max(1, Number(st.pripady_celkem) || 0);
     const psp = Number(st.pripady_s_prurzkumem) || 0;
     const earned = [];
+    // 15denní verze: jen „Pečlivý“ a „Nezávislý“ (MIGRACE_20-15)
     if (psp / pc >= 0.75) earned.push('A');
     if (st.uplatek_prijat !== true) earned.push('B');
-    if ((Number(st.pripady_celkem) || 0) >= 1 && (Number(st.pripady_odlozeny) || 0) === 0) earned.push('C');
-    const vs = Array.isArray(st.verdikty_smer) ? st.verdikty_smer : [];
-    const tough = vs.filter(x => x && x.tough).length;
-    const fair = vs.filter(x => x && x.fair).length;
-    const allSurvey = vs.length >= 5 && vs.every(x => x && x.pruzkum);
-    if (tough >= 5) earned.push('D_stat');
-    else if (fair >= 5) earned.push('D_lid');
-    else if (allSurvey) earned.push('D_mul');
-    if ((Number(st.tezke_rozsudky) || 0) >= 3) earned.push('E');
     return earned;
   }
 
@@ -197,8 +189,8 @@ const Engine = (() => {
       den = 1;
     }
 
-    // Konec hry po 30 dnech
-    if (den > 30) {
+    // Konec hry: 15 pracovních dní + 2 víkendy = 19 kalendářních dní (currentDay 1…19)
+    if (den > 19) {
       spustKonec('preziti');
       return;
     }
@@ -262,7 +254,7 @@ const Engine = (() => {
       State.set('flags.dluh_pribeh_spusten', true);
       await _cekejNaFragment('fragment_ekonomika_dluh_krize');
     }
-    if (den === 23 && !State.get('flags.haas_nabidka_den23_vyresena')) {
+    if (den === 15 && !State.get('flags.haas_nabidka_den23_vyresena')) {
       await _cekejNaDen23Modal();
     }
     Finance.zkontrolujCilOperace();
@@ -273,18 +265,35 @@ const Engine = (() => {
     if (den === 1 && _SKIP_D1_INTRO_MODALS) {
       morningId = null;
     }
-    if (den === 8 && State.get('flags.dopis_operace_den8_viden')) {
+    if (den === 4 && State.get('flags.dopis_operace_den4_viden')) {
       morningId = null;
     }
     if (morningId) {
-      await _cekejNaFragment(morningId);
-      if (den === 8) {
-        State.set('flags.dopis_operace_den8_viden', true);
+      const addEcho = typeof Narrative !== 'undefined' && Narrative.vyhodnotPodmineneRadky
+        ? Narrative.vyhodnotPodmineneRadky(_denData && _denData.morning_conditional_lines)
+        : '';
+      if (addEcho && typeof DataLoader !== 'undefined' && DataLoader.ziskejFragment) {
+        const baseF = DataLoader.ziskejFragment(morningId);
+        if (baseF) {
+          State.oznacFragment(morningId);
+          await _cekejNaFragment(null, {
+            ...baseF,
+            text: (baseF.text || '') + addEcho
+          });
+        } else {
+          await _cekejNaFragment(morningId);
+        }
+      } else {
+        await _cekejNaFragment(morningId);
+      }
+      if (den === 4) {
+        State.set('flags.dopis_operace_den4_viden', true);
         State.uloz();
       }
     }
 
-    await _zpracujRevizeDne(den);
+    // Revize spisů — v 15denní verzi vypnuto (MIGRACE_20-15)
+    // await _zpracujRevizeDne(den);
 
     // Dialogy postav pro tento den
     await _zpracujDialogyDne(den);
@@ -313,7 +322,7 @@ const Engine = (() => {
 
     // Skrýt tlačítko do vyřešení případů; po F5 / resume znovu sladit s uloženým casesResolvedToday
     UI.zobrazBtnDalsiDen(false);
-    zkontrolujKonecDne();
+    zkontrolujKonecDne(false);
   }
 
   /**
@@ -324,8 +333,13 @@ const Engine = (() => {
    * sloučení části uložení s výchozím stavem při `State.nacti()`.
    */
   function syncFromSavedState() {
+    if (State.get('gameOver')) {
+      Desk.aktualizujVse();
+      Music.aktualizujStopu();
+      return;
+    }
     const den = State.get('currentDay');
-    if (den > 30) {
+    if (den > 19) {
       Desk.aktualizujVse();
       Music.aktualizujStopu();
       return;
@@ -349,15 +363,110 @@ const Engine = (() => {
 
     Desk.aktualizujVse();
     Music.aktualizujStopu();
-    zkontrolujKonecDne();
+    // false: při loadu / resume nespouštět variabilní konec (konec jen po posledním rozsudku dne v relaci)
+    zkontrolujKonecDne(false);
   }
 
-  function zkontrolujKonecDne() {
+  function _tTrait(nazev) {
+    return Number(State.get('traits.' + nazev)) || 0;
+  }
+
+  /**
+   * Variabilní konce (MIGRACE_20-15) — po uzavření posledního spisu dne, den ≥ 11.
+   * Podmínky mapují stav hry (rys, důvěra, finance, flagy) na design v docs/scenar/Konce.csv.
+   * Výchozí „přežití“ až poslední kalendářní den (19), ať běh nemusí skončit hned 15. dnem.
+   * @returns {string|null} typ pro spustKonec, nebo null
+   */
+  function _vyhodnotVariabilniKonec() {
+    if (State.get('gameOver')) return null;
+    const den = Number(State.get('currentDay'));
+    if (!Number.isFinite(den) || den < 11) return null;
+
+    const st = State.get() || {};
+    const integ = _tTrait('Integrita');
+    const odv = _tTrait('Odvaha');
+    const moudr = _tTrait('Moudrost');
+    const vina = _tTrait('Vina');
+    const t = st.trust || {};
+    const tv = Number(t.vlcek) || 0;
+    const tz = Number(t.zavadova) || 0;
+    const tk = Number(t.karas) || 0;
+    const f = st.factions || {};
+    const moc = Number(f.Moc);
+    const bal = Number((st.finance && st.finance.balance) || 0) || 0;
+    const fl = st.flags || {};
+    const uplatek = fl.uplatek_prijat === true;
+    const operPl = fl.operace_zaplacena === true;
+    const operOd = fl.operace_odlozena === true;
+
+    const KONCE = [
+      {
+        type: 'korupce',
+        minDay: 11,
+        check: () => integ <= 20 && tv >= 2 && uplatek
+      },
+      {
+        type: 'smireni',
+        minDay: 12,
+        check: () => integ >= 60 && vina <= 20 && (operPl || fl.benes_identified === true)
+      },
+      {
+        type: 'utek',
+        minDay: 13,
+        check: () => tk >= 1 && bal > 300 && !operOd
+      },
+      {
+        type: 'atentát',
+        minDay: 13,
+        check: () =>
+          integ >= 60 &&
+          odv >= 80 &&
+          Number.isFinite(moc) &&
+          moc <= 20 &&
+          tv <= 0 &&
+          !uplatek
+      },
+      {
+        type: 'rad',
+        minDay: 14,
+        check: () => tv <= 0 && tz >= 3 && fl.masek_document_signed === true
+      },
+      {
+        type: 'anna',
+        minDay: 14,
+        check: () => vina <= 20 && bal < 100 && moudr >= 75 && !uplatek && !operPl
+      },
+      {
+        type: 'hrdina',
+        minDay: 15,
+        check: () => integ >= 80 && odv >= 80
+      },
+      {
+        type: 'preziti',
+        minDay: 19,
+        check: () => true
+      }
+    ];
+
+    for (const k of KONCE) {
+      if (den >= k.minDay && k.check()) return k.type;
+    }
+    return null;
+  }
+
+  /**
+   * @param {boolean} [allowVariabilni=false] true jen po rozsudku/úplatku (aktivní relace) — umožní
+   *   MIGRACE_20-15 variabilní konce. false při spuštění dne a syncFromSavedState, aby F5/načtení
+   *   neeskalovalo okamžitý game over.
+   */
+  function zkontrolujKonecDne(allowVariabilni) {
+    if (State.get('gameOver')) return;
+    const variabilniOk = allowVariabilni === true;
     const vyresene = State.get('casesResolvedToday');
     const pripadyNactene = Cases.getPripady();
     const vsechnyIds = pripadyNactene.map(p => p && p.id).filter(Boolean);
 
-    // Žádné případy → umožni přejít hned
+    // Žádné případy dnes → bez kontroly variabilních konců (prázdný den / neděle bez spisů)
     if (vsechnyIds.length === 0) {
       State.set('phase', 'evening');
       Desk.aktualizujVse();
@@ -365,14 +474,39 @@ const Engine = (() => {
       return;
     }
 
-    // Všechny případy vyřešeny → zobraz tlačítko Další den
+    // Všechny případy vyřešeny
     const vsechnyVyreseny = vsechnyIds.every(id => vyresene.includes(id));
-    if (vsechnyVyreseny) {
+    if (!vsechnyVyreseny) {
+      return;
+    }
+
+    if (!variabilniOk) {
+      const fazePred = State.get('phase');
       State.set('phase', 'evening');
       Desk.aktualizujVse();
-      UI.zobrazStavovouZpravu('Dnešní případy jsou uzavřeny.');
+      if (fazePred !== 'evening') {
+        UI.zobrazStavovouZpravu('Dnešní případy jsou uzavřeny.');
+      }
       setTimeout(() => UI.zobrazBtnDalsiDen(true), 800);
+      return;
     }
+
+    const konecTyp = _vyhodnotVariabilniKonec();
+    if (konecTyp) {
+      State.set('phase', 'evening');
+      Desk.aktualizujVse();
+      setTimeout(() => {
+        if (!State.get('gameOver')) {
+          spustKonec(konecTyp);
+        }
+      }, 600);
+      return;
+    }
+
+    State.set('phase', 'evening');
+    Desk.aktualizujVse();
+    UI.zobrazStavovouZpravu('Dnešní případy jsou uzavřeny.');
+    setTimeout(() => UI.zobrazBtnDalsiDen(true), 800);
   }
 
   async function _dalsiDen() {
@@ -518,6 +652,7 @@ const Engine = (() => {
   // --- KONEC HRY ---
 
   function spustKonec(typ) {
+    if (State.get('gameOver')) return;
     State.set('gameOver', true);
     State.set('endingType', typ);
     State.set('flags.stats_display_unlocked', true);
@@ -583,9 +718,13 @@ const Engine = (() => {
     const endingTexty = {
       odvolani: 'Dr. Benedikt Vraný byl odvolán z funkce. Kariéra skončila. Přestěhoval se na venkov.',
       korupce:  'Dr. Benedikt Vraný se stal součástí systému. Přesně tak, jak se bál.',
-      atentát:  'Dr. Benedikt Vraný zemřel 28. března 1931. Příčina nebyla nikdy plně objasněna.',
-      preziti:  'Dr. Benedikt Vraný přežil třicet dní. Věděl, co za to zaplatil.',
-      hrdina:   'Dr. Benedikt Vraný přežil. A věděl — napravit minulost správnými rozhodnutími nejde. Ale žít s ní — to ano.'
+      'atentát':  'Dr. Benedikt Vraný zemřel 28. března 1931. Příčina nebyla nikdy plně objasněna.',
+      preziti:  'Dr. Benedikt Vraný došel na konec roku s rozpačitým úlevou — úřad přežil, tělo taky. Co dál, to už nepsali noviny.',
+      hrdina:   'Dr. Benedikt Vraný přežil. A věděl — napravit minulost správnými rozhodnutími nejde. Ale žít s ní — to ano.',
+      smireni:  'Dr. Benedikt Vraný si odnesl ticho, ve kterém se dá dýchat. Nebyl čistý — ale nebyl rozbitý.',
+      utek:     'Dr. Benedikt Vraný nechal žaluzie stažené. Venku hluk; uvnitř jenom účty, které sedí.',
+      rad:      'Dr. Benedikt Vraný si myslel, že slyší smích dozadu. Možná to byl jen větřík v šachtě.',
+      anna:     'Dr. Benedikt Vraný večer zhasínal knihu dřív než poslední větu. A přesto usnul lehčeji než včera.'
     };
     return endingTexty[typ] || 'Dr. Benedikt Vraný. 1931.';
   }

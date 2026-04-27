@@ -25,9 +25,9 @@ Hráč je soudce Benedikt Vraný. Hra probíhá po **dnech** řízených `data/d
 - Vyprší případné **ráno bonusy** (např. káva → +1 kapka).
 - Po uplynutí platnosti se vymaže `flags.records_free_until_day`.
 - Načtou se data dne, nastaví se **případy dne** (`Cases.nastavPripadyProDen`), aktualizují se **složky** na stole.
-- **Ekonomika ráno:** lékařský buff, Karasův dluh, **nedělní výplata** (+80 Kčs na vybraných dnech), varování při bankrotu, dluh > 100, speciální **den 23** (modal krize).
+- **Ekonomika ráno:** lékařský buff, Karasův dluh, **nedělní výplata** (+80 Kčs v **1. a 2. neděli** = dny 7 a 14), varování při bankrotu, dluh > 100, speciální **den 15** (modal krize / Haas — dříve den 23 u 20d scénáře).
 - **Ranní fragment** podle `days.json` (u testovacího režimu může být den 1 zjednodušen).
-- **Revize spisů** naplánované na tento den (`State.vyzvedniRevizeProDen`) — krátká volba A/B v modálu. **Frekvenci a limity** drží scénář (`docs/scenar/Milniky-dynamika-akt1.md` §4, `InDubio_20dni_Mapa-scenar.md` §8): revize nesmí zahltit 3.–4. týden tak, že by ustoupily **nové** případy; při implementaci ověř strop (např. max počet revizí na průchod / na 7 dní).
+- **Revize spisů** — ve **15denní** verzi **vypnuty** (`MIGRACE_20-15.md`); data `review_card` v JSON se nečtou.
 - **Dialogy postav** jako dopisy/fragmenty (den 1 může být v testu přeskočen).
 - **Nedělní volba** (`nedelni_volba` v datech dne), pokud je v `days.json`.
 
@@ -45,7 +45,7 @@ Hráč je soudce Benedikt Vraný. Hra probíhá po **dnech** řízených `data/d
 
 1. **Večerní volba** (`evening_choice` v `days.json`), pokud existuje.
 2. **Večerní** a případně **noční fragment**.
-3. **Sobota večer** (`den % 7 === 6`): modal **shrnutí týdne**, vyhodnocení tichých bonusů (pečlivost, nezávislost, odvaha, směr verdiktů, těžké rozsudky), aplikace efektů a související fragmenty.
+3. **Sobota večer** (`den % 7 === 6`): modal **shrnutí týdne**, vyhodnocení tichých bonusů (v 15d jen **pečlivost** a **nezávislost** dle `MIGRACE_20-15.md`), aplikace efektů a související fragmenty.
 4. Vizuální **přechod dne**, `State.dalsiDen()`, uložení, znovu `spustDen()`.
 
 ---
@@ -59,7 +59,7 @@ Hráč je soudce Benedikt Vraný. Hra probíhá po **dnech** řízených `data/d
 
 ### Hard stop v kalendáři
 
-- Pokud `currentDay > 30`, engine zavolá **`Engine.spustKonec('preziti')`** — hra přepne do epilogu (technicky typ konce `preziti`).
+- Pokud `currentDay > 19` (15 pracovních dní + 2 víkendy), engine zavolá **`Engine.spustKonec('preziti')`** — epilog. (Starší 20d build používal jiný strop — viz `MIGRACE_20-15.md`.)
 
 ### Předčasné konce z rozhodnutí a stavu
 
@@ -94,6 +94,6 @@ Konce nastaví `gameOver`, `endingType`, uloží stav a zobrazí **UI epilog** (
 3. Před potvrzením vidět **předběžný dopad** (finance číslem v Kčs, ostatní osy bez čísel; frakce jedním řádkem), pak vynést **rozsudek** — nenávratně.  
 4. Po vynesení dohledat přesná čísla v **readonly detailu spisu** i v šuplíku **Rozsudky** (rozbalení řádku; volitelně **filtr podle typu případu**), včetně agregovaného součtu využití neoficiálních zdrojů.  
 5. Až je den uzavřený → **Další den** → večerní volba a noční texty → další kalendářní den.  
-6. Hra končí po **30 dnech** (výchozí `preziti` epilog) nebo dříve při splnění podmínek speciálního konce.
+6. Hra končí po **19. kalendářním dni** (15 pracovních dnů) výchozím `preziti` epilogem, nebo dříve při splnění podmínek speciálního konce (větev variabilních konců od 11. pracovního dne — v implementaci dle `MIGRACE_20-15.md` / Fáze 3).
 
 Pro detail **jednoho spisu** (průzkum, pátrání, rozsudek, neoficiální zdroj) viz `spis-patrani-pruzkum-rozsudek.md`.

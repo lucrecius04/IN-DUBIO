@@ -45,6 +45,26 @@ const Narrative = (() => {
     }
   }
 
+  /**
+   * Echo minulých verdiktů (PROMPT_echo_verdiktu) — první splněná podmínka; přidá se mezeru a text.
+   * @param {Array<{ condition: { flag: string, value: string }, text: string }>} [conditionalLines]
+   * @returns {string} suffix (prázdný nebo s úvodní mezerou)
+   */
+  function vyhodnotPodmineneRadky(conditionalLines) {
+    if (!conditionalLines || !conditionalLines.length) return '';
+    const fl = State.get('flags') || {};
+    for (const line of conditionalLines) {
+      const cond = line && line.condition;
+      if (!cond || cond.flag == null) continue;
+      if (fl[cond.flag] === cond.value) {
+        const t = (line.text != null ? String(line.text) : '').trim();
+        if (!t) return '';
+        return ' ' + t;
+      }
+    }
+    return '';
+  }
+
   // Novinový výstřižek na stole — aktualizuj denně
   function aktualizujNoviny(denDat) {
     const datum = _formatujDatum(State.get('currentDay'));
@@ -70,6 +90,7 @@ const Narrative = (() => {
     zpracujRanni,
     zpracujNocni,
     aktualizujNoviny,
+    vyhodnotPodmineneRadky,
     getTYP_PANEL,
     getTYP_NADPIS
   };

@@ -1,5 +1,5 @@
 ---
-description: Ekonomika IN DUBIO — 20denní verze
+description: Ekonomika IN DUBIO — 15denní kampaň
 globs: js/finance.js, js/engine.js
 alwaysApply: false
 ---
@@ -18,12 +18,12 @@ Denní výdaje: -55 Kčs (nájem + jídlo + lékař)
 - Morální případ: +25 Kčs typově · politický: +35 Kčs · osobní: +30 Kčs (vždy navíc k výše uvedenému) + 1 sdílená akce průzkumu (inkoust)
 
 ### Týdenní plat
-+80 Kčs každou neděli (5 výplat celkem: dny 5, 10, 15, 20 — sobota/neděle cykly)
++80 Kčs každou neděli (5 výplat v 15denní kampani: dny 5, 10, 15 — sobota/neděle cykly; viz `Mapa_15dni.csv`)
 
 ### Ekonomická matematika (hráč to nevidí, ale my to potřebujeme)
 Denní bilance: 2 případy — čistě rutinní dávají orientačně +20 Kčs/den z výplat; barevná složka přidá typový příplatek (25–35 Kčs) a +1 inkoust. Minus 55 Kčs výdajů.
 Za 5 pracovních dní: orientačně −175 Kčs výdaje + příjmy z případů (silně závislé na typu) +80 Kčs plat — u rutiny sotva přežití, u mixu s barevnými spisy výrazně lepší.
-Za 20 dní bez bonusů a úplatků: u čistě rutinní linky stále cca 140 Kčs na konci — NESTAČÍ na operaci; typové příplatky situaci mění.
+Za 15 pracovních dní bez bonusů a úplatků: u čistě rutinní linky stále nestačíš na operaci z platu; typové příplatky a rozsudky situaci mění.
 
 To je záměr. Bez Haase nebo bonusů hráč NEMŮŽE zaplatit operaci čistě. Musí být pečlivý, nebo přijmout kompromis.
 

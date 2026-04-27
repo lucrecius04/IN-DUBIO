@@ -217,9 +217,9 @@
       }
     },
     "records": {
-      "source": "Obchodní rejstřík; konto a audit Záložna smíchovská; spis pojišťovny Slavia",
+      "source": "Obchodní rejstřík; konto a účetní revize (záložna) Záložna smíchovská; spis pojišťovny Slavia",
       "reveals": "facts",
-      "text": "Kovodílna Houška: živnostenský list od 1907. Poslední audit u záložny (Záložna smíchovská) z října 1930: závod v provozním útlumu, tržby klesly o 43 % za dva roky. Zástavní právo na vybavení dílny od listopadu 1930. Pojistná smlouva u Pojišťovny Slavia: uzavřena v září 1929 — tedy osmnáct měsíců před požárem. Syn Zdeněk Houška: evidován jako pomocný dělník bez stálého místa. U záložny zjištěno: <span class=\"clue\" data-clue-id=\"clue_zdenek_vyber\">dne 13. února — den před požárem — Zdeněk Houška vybral z otcova účtu 12 Kčs. Zbývající zůstatek: 3 Kčs.</span>",
+      "text": "Kovodílna Houška: živnostenský list od 1907. Poslední revize účtů u záložny (Záložna smíchovská) z října 1930: závod v provozním útlumu, tržby klesly o 43 % za dva roky. Zástavní právo na vybavení dílny od listopadu 1930. Pojistná smlouva u Pojišťovny Slavia: uzavřena v září 1929 — tedy osmnáct měsíců před požárem. Syn Zdeněk Houška: evidován jako pomocný dělník bez stálého místa. U záložny zjištěno: <span class=\"clue\" data-clue-id=\"clue_zdenek_vyber\">dne 13. února — den před požárem — Zdeněk Houška vybral z otcova účtu 12 Kčs. Zbývající zůstatek: 3 Kčs.</span>",
       "cost": 1,
       "unlocks_contradiction": "cas_navratu"
     },

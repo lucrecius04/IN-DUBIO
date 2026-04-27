@@ -1,0 +1,308 @@
+{
+  "id": "pool_a1_kladivo",
+  "slot": "pool",
+  "type": "moral_dilemma",
+  "color": "#7A3A2A",
+  "available_days": [9, 10, 11, 12, 13, 14],
+  "act": 1,
+  "weight_conditions": {
+    "base_weight": 1,
+    "week_3_bonus": 1.4
+  },
+  "title": "Kladivo",
+  "case_number": "Sp. zn. 97/1931",
+  "defendant": {
+    "name": "Pavel Řehoř",
+    "age": 44,
+    "occupation": "mistr kovárny",
+    "detail": "zaměstnanec opravny zemědělských strojů Šulc & Novák v Holešovicích, osmnáct let u firmy, vdovec, syn Ladislav 17 let"
+  },
+  "charge": "Těžké ublížení na zdraví s následkem smrti dle §152 trestního zákona, alternativně vražda v afektu dle §134 — Pavel Řehoř dne 6. února 1931 v prostorách kovárny opakovaně udeřil mistrovským kladivem spolupracovníka Karla Dobiáše (39 let) do oblasti hlavy a hrudníku. Dobiáš zemřel téhož dne večer ve vinohradské nemocnici na mozkové krvácení. Řehoř čin přiznal okamžitě a nevykazoval pokus o útěk ani zametení stop.",
+  "description": "V kovárně Šulc & Novák leží na stole čin, o němž nikdo nepochybuje. Pavel Řehoř v pátek odpoledne vzal mistrovské kladivo a čtyřikrát udeřil Karla Dobiáše. Dobiáš zemřel. Řehoř přiznal vše — bez obhájce, bez výmluv, na místě. Soudní znalec určil příčinu smrti jednoznačně. Otázka nestojí na tom, kdo a jak — stojí na tom, proč, a kolik za to. Osmnáct let spolupráce, jeden den, čtyři rány. Co z toho zákon dělá a co dělá člověk z toho, co zákon neumí přečíst.",
+  "testimonies": [
+    {
+      "id": "rehor",
+      "speaker": "Pavel Řehoř, obžalovaný",
+      "text": "Bil jsem ho. Čtyřikrát. Nevím, kolikrát jsem zamáchl — čtyřikrát to viděli ostatní, já to nepamatuji přesně. <span class=\"clue\" data-clue-id=\"clue_rehor_syn\">Dobiáš mi v úterý řekl, že viděl mého syna Ladislava v Holešovicích s těmi od Národní obce fašistické. Řekl: 'Jestli něco uděláš, chlapec bude litovat.' Doslova to. V pátek přišel znovu a řekl: 'Tak co jsi rozhodl?'</span> Já jsem vzal kladivo. Neuvažoval jsem. Lituju, že je mrtvý. Nelituju, že jsem ho udeřil.",
+      "contradiction_keywords": ["v úterý", "v pátek", "Ladislav"],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "horak_svedek",
+      "speaker": "Tomáš Horák, kovář, přítomen v dílně",
+      "text": "Byl jsem pět metrů od nich. <span class=\"clue\" data-clue-id=\"clue_horak_uder\">Řehoř vzal kladivo ze stojanu — ne ze stolu, ze stojanu vedle výhně, kde leží vždy — a zamáchl čtyřikrát. Dobiáš nestihl zvednout ruku.</span> Nic jsem neslyšel, co si říkali — výheň hlučí. Řehoř pak odložil kladivo, šel k umyvadlu, umyl si ruce a čekal. Nikomu nic neřekl. Pak přišel mistr Šulc a zavolal policii.",
+      "contradiction_keywords": ["ze stojanu", "čtyřikrát", "umyl si ruce"],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "sulc_majitel",
+      "speaker": "Alois Šulc, spolumajitel opravny Šulc & Novák",
+      "text": "Dobiáš u nás pracoval čtyři roky. Byl dobrý kovář — a měl přátele mimo práci, o kterých jsem nevěděl. <span class=\"clue\" data-clue-id=\"clue_sulc_dobiase\">Loni v říjnu jsem ho upozornil, že ho viděli na schůzi, kde se mluvilo ošklivě o dělnických odborech. Řekl jsem mu: 'Karel, tady takové věci nemáme rádi.' Odpověděl: 'Jenom se dívám.'</span> Řehoř je u mě osmnáct let. Nikdy nic. Syn Ladislava nám přijde v létě na učení — byl jsem domluvený s Pavlem. <span class=\"clue\" data-clue-id=\"decoy_sulc_ladislav\">Nevím, co chlapec dělá mimo opravnu. Nezajímám se o politiku zaměstnanců.</span>",
+      "contradiction_keywords": ["říjen", "schůze", "jenom se dívám"],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "znalec",
+      "speaker": "MUDr. Václav Truhlář, soudní znalec",
+      "text": "Smrt nastala v důsledku subdurálního hematomu po opakovaném tupém traumatu hlavy. <span class=\"clue\" data-clue-id=\"clue_znalec_rany\">Čtyři zásahy: první do pravého spánku — pravděpodobně smrtelný sám o sobě. Druhý a třetí do hrudníku — záměrné zpacifikování ležícího muže. Čtvrtý opět do hlavy — po pádu oběti na podlahu.</span> Obžalovaný projevoval motorickou kontrolu — rány byly vedeny v ustáleném rytmu, ne v chaotické zuřivosti. Přítomnost afektu nelze vyloučit, lze ji ale zpochybnit.",
+      "contradiction_keywords": ["první do pravého spánku", "čtvrtý", "motorická kontrola"],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "afekt_vs_kontrola",
+      "description": "Řehoř říká, že neuvažoval a nepamatuje si přesně. Znalec popisuje ustálený rytmus ran a motorickou kontrolu — druhá a třetí rána šla do hrudníku ležícího muže.",
+      "involves": ["rehor", "znalec"],
+      "highlight_at_wisdom": 65,
+      "unlocks_confrontation": "znalec"
+    },
+    {
+      "id": "dobiasova_hra",
+      "description": "Dobiáš hrozil v úterý a v pátek se vrátil s otázkou 'tak co jsi rozhodl'. Šulc ho loni upozornil na politické vazby. Dobiáš nebyl náhodný agresor — opakovaně a vědomě tlačil na Řehoře.",
+      "involves": ["rehor", "sulc_majitel"],
+      "highlight_at_wisdom": 70,
+      "unlocks_confrontation": "rehor"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "afekt_nebo_ne_strong",
+    "pairs": [
+      {
+        "pair_id": "afekt_nebo_ne_strong",
+        "a_id": "clue_rehor_syn",
+        "b_id": "clue_znalec_rany",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "dobiasova_metoda_medium",
+        "a_id": "clue_sulc_dobiase",
+        "b_id": "clue_rehor_syn",
+        "strength": "medium"
+      },
+      {
+        "pair_id": "dobiasova_metoda_medium",
+        "a_id": "clue_horak_uder",
+        "b_id": "clue_znalec_rany",
+        "strength": "weak"
+      }
+    ],
+    "decoys": ["decoy_sulc_ladislav"],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 70,
+      "speed_upgrade_sec": 22,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        { "min": 45, "ids": ["pool_inv_confrontation"] }
+      ],
+      "verdicts": [
+        { "min": 35, "ids": ["guilty_minimum"] },
+        { "min": 60, "ids": ["guilty_alternative"] },
+        { "min": 80, "ids": ["guilty_alternative_provokace"] }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 45,
+          "unlock_actions": ["pool_inv_confrontation"],
+          "unlock_verdict_ids": ["guilty_alternative", "guilty_alternative_provokace"],
+          "narrative_lines": [
+            "Hrozba v úterý, otázka v pátek — a mezi tím čtyři rány v ustáleném rytmu.",
+            "Znalec neřekl, že afekt nebyl. Řekl, že motorická kontrola ho zpochybňuje.",
+            "Smrtelná rána byla první. Co přišlo po ní, bylo něco jiného."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 25,
+          "unlock_verdict_ids": ["guilty_minimum"],
+          "narrative_lines": [
+            "Dobiáš loni na schůzi, letos hrozba synovi. Řehoř to nesl tři dny.",
+            "Ustálený rytmus ran nemusí znamenat plánování — může znamenat paniku, která má formu."
+          ]
+        },
+        "weak": {
+          "investigation_progress_delta": 10,
+          "narrative_lines": [
+            "Čtyři rány. Ze stojanu, ne ze stolu. Horák viděl vše — a řekl vše."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "ladislav_rehor",
+      "target_label": "Ladislav Řehoř, syn obžalovaného, 17 let",
+      "reveals": "motivation",
+      "text": "Tatínek mi nic neřekl. Já o Dobiášovi věděl — viděl mě jednou na schůzi, kde jsem byl s kamarádem Honzou Šimkem. Šimkovi je osmnáct a chodí tam. Já jsem šel jednou, nerozuměl jsem tomu a odešel. <span class=\"clue\" data-clue-id=\"decoy_sulc_ladislav\">Dobiáš mě oslovil na ulici v pondělí. Řekl, ať tatínkovi vyřídím pozdravy a ať si dá pozor.</span> Tatínkovi jsem to neřekl, bál jsem se. Nevím, jestli on to věděl z jiné strany. Asi věděl.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": { "Integrita": -1, "Vina": 2 },
+        "factions": { "Lid": 1 }
+      }
+    },
+    "records": {
+      "source": "Policejní záznamy NOF Praha-Holešovice; soudně-lékařský posudek MUDr. Truhlář; výslech protokol Řehoř ze dne 6. února",
+      "reveals": "facts",
+      "text": "Policejní záznamy: Karel Dobiáš veden jako sympatizant Národní obce fašistické od roku 1929, bez trestního záznamu. Tři záznamy o přítomnosti na schůzích; jeden záznam o konfliktu s členem odborů ČSD v listopadu 1930 — bez obžaloby. Výslech protokol Řehoř 6. 2.: <span class=\"clue\" data-clue-id=\"clue_rehor_syn\">'Hrozil mému synovi. Dvakrát. Řekl mi to přímo do očí.'</span> Soudně-lékařský posudek: <span class=\"clue\" data-clue-id=\"clue_znalec_rany\">interval mezi prvním a čtvrtým úderem odhadnut na 8–12 sekund. Mezera mezi druhým a třetím úderem odpovídá poloze padajícího člověka.</span>",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": { "Integrita": -2, "Vina": 1 },
+        "factions": { "Moc": 1 }
+      },
+      "unlocks_contradiction": "afekt_vs_kontrola"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": { "Vina": 1 },
+        "factions": { "Lid": -1, "Moc": 1 }
+      },
+      "variants": {
+        "lid_high": "V Holešovicích se říká, že Dobiáš nebyl sám. Někteří u Šulce se báli — on vytipovával lidi s odbory a posílal zprávy dál. Řehoř byl na místní odborové listině. Hrozba synovi nebyla náhoda — byl to způsob, jak ho přimět k výstupu z odboru.",
+        "moc_high": "Státní zastupitelství chce exemplární trest. V roce 1931 se bijí lidi na schůzích a na ulici — ale u soudu to musí mít hranice. Pokud Řehoř dostane minimum, bude to vnímáno jako tiché schválení odplaty.",
+        "kapital_high": "Šulc & Novák zásobují železniční opravny státní zakázkou. Pokud se v dílně mluvilo o odbořích a politice, ministerstvo dopravy to bude sledovat. Řehořův případ je pro firmu nevítaný — Šulc by chtěl co nejrychlejší uzavření.",
+        "default": "Čtyři rány kladivem nejsou spor o zeď nebo zmeškaná zásilka. Ale Dobiáš Řehořovi tři dny hrozil přes syna. Zákon tenhle rozdíl zná — říká mu provokace. Otázka je, jak moc je provokace smrtelná."
+      }
+    },
+    "confrontation": {
+      "target": "znalec",
+      "target_label": "MUDr. Václav Truhlář, soudní znalec",
+      "requires_contradiction": "afekt_vs_kontrola",
+      "requires_courage": 40,
+      "cost": 2,
+      "prompt": "Pane doktore Truhlář, váš posudek zpochybňuje afekt motorickou kontrolou. Ale interval 8–12 sekund pro čtyři údery — není to příliš krátká doba na to, aby soud usuzoval na rozvahu? Lze vyloučit, že motorická kontrola je reflexní, ne záměrná?",
+      "success": {
+        "text": "Truhlář si upraví brýle. 'Nelze vyloučit. Školený kovář s kladivem — svalová paměť je reálný faktor.' Odmlka. 'Co nemohu odborně podepsat je, že afekt trval po celou dobu incidentu. Rána do hrudníku ležícího muže předpokládá vědomé zaměření. Ale jak říkám — nelze vyloučit.' Velmi pečlivý muž. Velmi pečlivá slova.",
+        "reveals": "Znalec ustoupil z absolutního zpochybnění afektu. Soud může argumentovat pro zmírňující okolnost — ale musí tak rozhodnout sám. Znalec mu cestu neuzavřel, jen ji nezpevnil."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "maximum": {
+          "label": "8 let těžkého žaláře — vražda s rozmyslem",
+          "description": "Čtyři rány v ustáleném rytmu včetně úderu do hrudníku ležícího muže vylučují čistý afekt. Řehoř vědomě pokračoval po smrtelném prvním zásahu. Syn Ladislav zůstane bez otce do dvaceti pěti let — a stihne ho to přesně v době, kdy bude sám vstupovat do života.",
+          "effects": {
+            "integrita": 4, "vina": 6, "nadeje": -3, "moc": 6, "lid": -7, "finance": 20
+          }
+        },
+        "standard": {
+          "label": "5 let vězení — těžké ublížení na zdraví s následkem smrti",
+          "description": "Čin je prokázán a smrt zaviněna. Opakované a přímé hrozby oběti vůči synovi jsou okolností, nikoli omluvou. Pět let zohledňuje délku beztrestnosti bez popírání závažnosti činu.",
+          "effects": {
+            "integrita": 2, "vina": 4, "nadeje": -2, "moc": 3, "lid": -3, "finance": 15
+          }
+        },
+        "minimum": {
+          "label": "3 roky — afekt v mezích zákona, mimořádná provokace",
+          "description": "Řehoř čelil třítýdennímu soustavnému zastrašování včetně přímé hrozby nezletilému synovi. Zákon uznává mimořádnou provokaci jako zmírňující okolnost. Tři roky jsou minimum pro čin s následkem smrti — ale odpovídají míře, v níž oběť přispěla k situaci.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 1, "vina": 3, "nadeje": 0, "odvaha": 2, "lid": 1, "moc": -1, "finance": 12
+          }
+        },
+        "alternative": {
+          "label": "Alternativa: 3 roky s přihlédnutím k provokaci a bez ztráty občanských práv",
+          "description": "Soud konstatuje provokaci jako prokázanou mimořádnou okolnost a zachovává Řehořovi občanská práva — syn může nastoupit učení u Šulce a otec se k němu po odpykání vrátit. Nejnižší přípustný trest, který zákon při tomto skutku dovoluje.",
+          "requires_investigation": 3,
+          "requires": { "odvaha_min": 50 },
+          "effects": {
+            "integrita": 2, "odvaha": 5, "vina": 2, "nadeje": 1,
+            "lid": 4, "moc": -4, "finance": 10,
+            "flags": [{ "key": "bonus_inkoust_rano", "value": 1 }]
+          }
+        },
+        "alternative_provokace": {
+          "label": "Alternativa: 2 roky podmíněně — vražda v afektu za mimořádné provokace",
+          "description": "Obhajitelné pouze pokud soud uzná plný afekt. Znalec ho nevyloučil. Soustavná hrozba synovi po dobu týdne jako spouštěč — podmíněný trest v krajní hranici zákona. Řehoř jde domů. Ladislav dostane otce. Dobiášova žena dostane nic.",
+          "requires_investigation": 3,
+          "requires": { "odvaha_min": 65, "moudrost_min": 60 },
+          "effects": {
+            "integrita": -1, "odvaha": 6, "vina": 4, "nadeje": 2,
+            "lid": 6, "moc": -8, "finance": 8,
+            "flags": [{ "key": "bonus_inkoust_rano", "value": 2 }]
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "afekt_pure": {
+          "label": "Zproštění — plný afekt vylučující příčetnost",
+          "description": "Pouze pokud soud uzná, že soustavná hrozba synovi po dobu týdne vedla ke stavu plné afektivní nepříčetnosti v době činu. Znalec to nevyloučil. Řehoř jde domů — ale precedent říká, že hrozba odemyká beztrestnost.",
+          "requires_investigation": 3,
+          "requires": { "odvaha_min": 75 },
+          "effects": {
+            "integrita": -4, "odvaha": 4, "vina": 8, "nadeje": -1,
+            "lid": 3, "moc": -10, "finance": 8
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "reopen": {
+          "label": "Vrátit znalci — doplnit posudek o afekt",
+          "description": "Znalec zpochybnil afekt, ale pod přímým dotazem ustoupil. Soud potřebuje jednoznačnější stanovisko před rozsudkem.",
+          "effects": {
+            "moudrost": 3, "vina": 1, "finance": 8
+          }
+        },
+        "close": {
+          "label": "Zastavit trestní stíhání pro nejasný psychický stav v okamžiku činu",
+          "description": "Důkazy o plné či neplné příčetnosti a o míře provokace neumožňují bezpečně rozhodnout. Stíhání se neprodlužuje; civilní strany si nároky uplatní jinde.",
+          "effects": {
+            "moudrost": 2, "integrita": 1, "vina": 1, "finance": 8
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_maximum": "Osm let. Řehoř přikývl. Ladislav přijel druhý den k Šulcovi a oznámil, že nenastoupí do učení. Šulc to pochopil.",
+    "guilty_standard": "Pět let. Řehoř odešel bez výrazu. Ladislav nastoupil k Šulcovi v září. Dobiášova žena Věra podala civilní žalobu o náhradu. Soud o ní bude rozhodovat jinak — a jiný soudce.",
+    "guilty_minimum": "Tři roky. Ve vězeňské chodbě se Řehoř otočil a podíval se na syna. Ladislav stál u zdi a díval se do podlahy. Šulc podal ruku oběma.",
+    "guilty_alternative": "Tři roky, občanská práva zachována. Ladislav nastoupil v červnu. Dobiášova žena Věra se neobjevila. Státní zastupitelství podalo odvolání.",
+    "guilty_alternative_provokace": "Podmínka. Řehoř šel domů týž den. Noviny napsaly o rozsudku různě — jedno slovo se opakovalo ve všech verzích: precedent. Ben to věděl, když podepisoval.",
+    "not_guilty_afekt_pure": "Řehoř byl propuštěn. Ve dvou novinách vyšel komentář. V jednom: 'Soud uznal, že hrozba synovi ospravedlňuje smrt.' Ve druhém: 'Konečně soudce, který pochopil.' Oba měli pravdu a oba se mýlili.",
+    "insufficient_reopen": "Spis se vrátil Truhlářovi. Doplněný posudek přišel za tři týdny: 'Afekt v plném rozsahu nelze prokázat ani vyloučit.' Soud zasedal znovu — s jiným soudcem.",
+    "insufficient_close": "Řehoř obdržel písemné vyrozumění. Stíhání zastaveno. Dobiášova žena podala civilní žalobu — otec jejího dítěte chyběl u soudu, ale v novinách zůstala otázka, kdo nese cenu smrti."
+  },
+  "stamp_moment": {
+    "guilty": "Řehoř vstal. Podíval se na Ladislava. Ladislav se díval na podlahu. Mezi nimi byl vzduch, který nešel přeložit.",
+    "not_guilty": "Řehoř se nepohnul. Pak se pomalu otočil k synovi. Ladislav stál u zdi a třásl se.",
+    "insufficient": "Řehoř složil ruce. Čekal. Jako u výhně — trpělivě, beze spěchu."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "guilty_alternative_provokace",
+      "delay_days": 4,
+      "type": "letter",
+      "text": "Přes Vlčkovu sekretariát: Státní zastupitelství Praha podalo odvolání proti rozsudku ve věci Řehoř, sp. zn. 97/1931. Odvolání argumentuje nedostatečnou závažností trestu při prokázané trestné činnosti s následkem smrti. Odvolání se netýká vás osobně — odvolací soud bude případ přezkoumávat."
+    },
+    {
+      "trigger": "guilty_maximum",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "Ladislav Řehoř se neobjevil u Šulce & Novák. Šulc se zeptal souseda. Chlapec odjel k tetě do Brna. Ve Svobodném obzoru krátká zpráva o rozsudku — bez hodnocení, jen fakta. Čtyři rány. Osm let."
+    },
+    {
+      "trigger": "guilty_minimum",
+      "delay_days": 6,
+      "type": "fragment",
+      "text": "Ministerstvo spravedlnosti zažádalo Zemský soud o zaslání odůvodnění rozsudku. Standardní procedura. Nebo ne."
+    }
+  ]
+}

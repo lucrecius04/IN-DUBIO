@@ -17,7 +17,7 @@ Jsi **editor / rozšiřovatel** obsahu pro soudní hru IN DUBIO (Československo
 1. **Celý JSON objekt** daného případu (jedna položka z poolu).  
 2. Volitelně: krátké **lore upozornění** (`docs/InDubio_StoryBible_v2_Cursor.txt`, `world-reference.md`) — jen pokud tým doplňuje jména nebo místa.  
 3. Seznam **co upřesnit** z níže (zaškrtni, co má AI udělat).  
-4. U případu vázaného na **konkrétní den** zkontroluj [`../scenar/Mapa_20dni.csv`](../scenar/Mapa_20dni.csv) a [`../scenar/Milniky-dynamika-akt1.md`](../scenar/Milniky-dynamika-akt1.md), aby tón a intenzita (Mor/Pol, *Patrani_navrh*) seděly k plánované dynamice 2. poloviny aktu — bez měnění čísel v efektech, pokud tým neřekne jinak.
+4. U případu vázaného na **konkrétní den** zkontroluj [`../scenar/Mapa_15dni.csv`](../scenar/Mapa_15dni.csv) a [`../scenar/Milniky-dynamika-akt1.md`](../scenar/Milniky-dynamika-akt1.md), aby tón a intenzita (Mor/Pol, tón dle poznámek u dne v mapě) seděly k plánované dynamice 2. poloviny aktu — bez měnění čísel v efektech, pokud tým neřekne jinak.
 
 ## Co doplnit / zkontrolovat (mechanika a kvalita)
 

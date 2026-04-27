@@ -1,0 +1,287 @@
+{
+  "id": "pool_a1_druzstvo",
+  "slot": "pool",
+  "type": "moral_dilemma",
+  "color": "#8A9B6E",
+  "available_days": [7, 8, 9, 10, 11],
+  "act": 1,
+  "weight_conditions": {
+    "base_weight": 1,
+    "kapital_below_40": 1.3
+  },
+  "title": "Zásoby",
+  "case_number": "Sp. zn. 96/1931",
+  "defendant": {
+    "name": "Bedřich Navrátil",
+    "age": 51,
+    "occupation": "vedoucí přejímky obilí",
+    "detail": "zaměstnanec Zásobovacího a prodejního družstva LÍPA v Brandýse nad Labem, šest let bez výtky, ženatý, tři dospělé děti"
+  },
+  "charge": "Podvod dle §197 trestního zákona a §200 (porušení obchodní věrnosti): opakované falšování záznamů o jakostní třídě obilí při přejímce od členů družstva po dobu dvou let, čímž byl způsoben majetkový rozdíl vůči odběratelům v celkové výši nejméně 2 400 Kčs.",
+  "description": "Zásobovací a prodejní družstvo LÍPA zásobuje odběratele — pekaře, mlýny, hostince — obilím od svých členů. Bedřich Navrátil zodpovídal za přejímku a klasifikaci dodávek. Od roku 1929, kdy přišla špatná úroda, zapisoval obilí nižší třídy jako vyšší, čímž členové dostali plnou výkupní cenu a odběratelé platili za kvalitu, kterou nedostali. Pekař Antonín Rejzek tvrdí, že z jednoho takového nákladu vyrobil chleba, po nichž onemocnělo pět rodin z Brandýsa. Navrátil falšování přiznal, zdravotní škodu popírá. Předseda družstva LÍPA Metoděj Herejk tvrdí, že o ničem nevěděl.",
+  "testimonies": [
+    {
+      "id": "rejzek",
+      "speaker": "Antonín Rejzek, pekař, poškozený odběratel",
+      "text": "Koupil jsem od LÍPY čtyři sta kilogramů obilí jako <span class=\"clue\" data-clue-id=\"clue_rejzek_trida\">druhá třída, značení II/B, doklad vydán 16. ledna</span>. Zaplatil jsem cenu druhé třídy — šest korun a dvacet haléřů za metrák. Ve mlýně Šimek v Brandýse obilí semleli a zjistili vlhkost osmnáct procent a počínající plíseň. Norma pro třídu II/B je čtrnáct procent vlhkosti. <span class=\"clue\" data-clue-id=\"decoy_rejzek_nemocni\">Lékař potvrdil gastrointestinální obtíže u pěti pacientů z Brandýsa po konzumaci mého chleba v posledním lednovém týdnu.</span> Já jsem neznal obsah — koupil jsem kvalitu, jakou mi prodali.",
+      "contradiction_keywords": ["II/B", "16. ledna", "šest korun"],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "navratil",
+      "speaker": "Bedřich Navrátil, obžalovaný",
+      "text": "Falšoval jsem záznamy. To přiznám. Dělal jsem to od roku dvacet devět, protože Kratochvílovi, Novákům, Šimků a dalším třiceti osmi rodinám hrozilo, že za špatnou úrodu dostanou čtvrtou třídu — o třicet procent méně než potřebovali. <span class=\"clue\" data-clue-id=\"decoy_navratil_motiv\">Neobohatil jsem se ani o korunu. Rozdíl šel vždy na výkupní cenu členů, ne do mé kapsy.</span> Ten konkrétní náklad od hospodáře Horáka — <span class=\"clue\" data-clue-id=\"clue_navratil_datum\">přijat čtrnáctého ledna, barva normální, vůně přijatelná, vlhkost jsem měřil ručním sondou a zapisoval čtrnáct celá dvě.</span> Nevím, co se stalo mezi přejímkou a mlýnem. Mohlo to cestovat v mokrém voze.",
+      "contradiction_keywords": ["čtrnáctého ledna", "čtrnáct celá dvě", "ručním sondou"],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "herejk",
+      "speaker": "Metoděj Herejk, předseda družstva LÍPA",
+      "text": "Já o ničem nevěděl. Navrátil dělal přejímku samostatně. <span class=\"clue\" data-clue-id=\"clue_herejk_podpis\">Měsíční výkazy podepisuji, ano — ale jejich obsahem jsou souhrnné cifry. Nemám čas ani povinnost kontrolovat každý řádek přejímkové knihy.</span> Kdybych věděl, že Navrátil falšuje, zastavil bych to okamžitě. <span class=\"clue\" data-clue-id=\"clue_herejk_tlak\">Pamatuji si, že jsem mu na podzim devětadvacátého roku řekl: 'Víme, že rok byl špatný. Udělejte co umíte, ať nám členové neodejdou.' Ale to není pokyn k podvodu.</span>",
+      "contradiction_keywords": ["udělejte co umíte", "podepisuji", "měsíční výkazy"],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "herejk_vedel",
+      "description": "Herejk dal Navrátilovi volnou ruku větou 'udělejte co umíte' a podepisoval měsíční výkazy. Nevědění je těžko obhajitelné.",
+      "involves": ["herejk", "records"],
+      "highlight_at_wisdom": 70,
+      "unlocks_confrontation": "herejk"
+    },
+    {
+      "id": "datum_dodavky",
+      "description": "Navrátil zapsal náklad od Horáka 14. ledna jako II/B. Rejzek přijal náklad 16. ledna s dokladem II/B. Je to tentýž náklad — a Navrátil ho viděl.",
+      "involves": ["navratil", "rejzek"],
+      "highlight_at_wisdom": 60,
+      "unlocks_confrontation": "navratil"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "herejk_komplic_strong",
+    "pairs": [
+      {
+        "pair_id": "herejk_komplic_strong",
+        "a_id": "clue_herejk_tlak",
+        "b_id": "clue_herejk_podpis",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "dodavka_stoupa_medium",
+        "a_id": "clue_navratil_datum",
+        "b_id": "clue_rejzek_trida",
+        "strength": "medium"
+      }
+    ],
+    "decoys": ["decoy_rejzek_nemocni", "decoy_navratil_motiv"],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 65,
+      "speed_upgrade_sec": 22,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        { "min": 50, "ids": ["pool_inv_confrontation"] }
+      ],
+      "verdicts": [
+        { "min": 35, "ids": ["guilty_lenient"] },
+        { "min": 60, "ids": ["not_guilty_formal"] },
+        { "min": 80, "ids": ["guilty_alternative", "not_guilty_with_comment"] }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 42,
+          "unlock_actions": ["pool_inv_confrontation"],
+          "unlock_verdict_ids": ["guilty_alternative", "not_guilty_with_comment"],
+          "narrative_lines": [
+            "'Udělejte co umíte' — tři slova, která Navrátilovi stačila jako povolení.",
+            "Předseda podepisoval výkazy, kde souhrnné cifry nesedí na čtyřtřídní obilí. Neviděl, nebo nechtěl vidět.",
+            "Jedna věta z podzimu devětadvacátého roku váží víc než Herejkova nevědomost u soudu."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 22,
+          "unlock_verdict_ids": ["guilty_lenient", "not_guilty_formal"],
+          "narrative_lines": [
+            "Čtrnáctý leden, Navrátil, Horákův náklad. Šestnáctý leden, Rejzek, tentýž doklad II/B.",
+            "Propojení nestačí na záměr — ale stačí na otázku, co Navrátil věděl a kdy."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "kratochvil_clen",
+      "target_label": "Antonín Kratochvíl, člen družstva LÍPA",
+      "reveals": "motivation",
+      "text": "Navrátil nás zachránil. V devětadvacátém by pět rodin — včetně mé — přišlo o pole nebo o dobytek. Každý z nás věděl, co dělá. Nikdo z nás ho neudal. Přišel ten pekař z Brandýsa a teď je z toho soud. <span class=\"clue\" data-clue-id=\"decoy_navratil_motiv\">Bedřich nikdy nevzal korunu navíc. Víte, co dostával? Šedesát korun měsíčně jako vedoucí přejímky. Za záchranu čtyřiceti rodin.</span>",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": { "Integrita": -1, "Vina": 1 },
+        "factions": { "Lid": 1, "Kapital": -1 }
+      }
+    },
+    "records": {
+      "source": "Laboratorní posudek mlýna Šimek v Brandýse; revizní zpráva družstva LÍPA z října 1930; přejímková kniha za leden 1931",
+      "reveals": "facts",
+      "text": "Posudek mlýna Šimek ze dne 18. února: vlhkost dodávky 18,2 %, počínající Aspergillus niger, norma II/B max. 14 %. Přejímková kniha 14. ledna: náklad Horák č. 47, zapsáno II/B, vlhkost 14,2 %. <span class=\"clue\" data-clue-id=\"clue_navratil_datum\">Ruční sonda, kterou Navrátil používal, má dle výrobce Zeiss-Leipzig odchylku ±2 %. Hodnota 14,2 % mohla být reálně 16,2 % v den přejímky.</span> Revizní zpráva z října 1930: komise upozornila, že 'evidence jakostních tříd vykazuje statisticky nepravděpodobný podíl třídy II/B' — doporučení: namátková prověrka tříd. Herejk přijal k vědomí, revizi nenařídil.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": { "Integrita": -2, "Vina": 1 },
+        "factions": { "Kapital": 1, "Moc": 1 }
+      },
+      "unlocks_contradiction": "herejk_vedel"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": { "Vina": 1 },
+        "factions": { "Lid": -2, "Kapital": 2 }
+      },
+      "variants": {
+        "lid_high": "V Brandýse se říká, že bez LÍPY by se polovina okolních hospodářů zadlužila u záložen v devětadvacátém. Navrátil je tam hrdina, ne zločinec. Rejzek stahuje pekařskou licenci — ale ne kvůli zdraví zákazníků. Nemůže splácet mlýnský úvěr a hledá viníka.",
+        "kapital_high": "Záložna Brandýs má zájem na krachu LÍPY — pokud družstvo padne, hospodáři přijdou o záruky a musí k záložně s úvěrem. Rejzekova žaloba mohla být inspirována někým, komu LÍPA překáží.",
+        "moc_high": "Zemský úřad začal v roce 1930 prověřovat hospodaření zásobovacích družstev. Pokud LÍPA padne na trestním případu, bude to signál pro revizi ostatních. Ministerstvo zemědělství sleduje Navrátilův případ pozorně.",
+        "default": "Revizní komise v říjnu varovala a Herejk nic neudělal. Navrátil falšoval se souhlasem předsedy — tichým, implicitním, ale jasným. U soudu se z toho vykroutí jeden. Který, záleží na rozsudku."
+      }
+    },
+    "confrontation": {
+      "target": "herejk",
+      "target_label": "Metoděj Herejk, předseda LÍPA",
+      "requires_contradiction": "herejk_vedel",
+      "requires_courage": 45,
+      "cost": 2,
+      "prompt": "Pane Herejku, revizní komise vás v říjnu 1930 písemně upozornila na statisticky nepravděpodobný podíl třídy II/B. Audit jste nenařídil. A v září 1929 jste Navrátilovi řekl 'udělejte co umíte, ať nám členové neodejdou.' Jak tato dvě fakta dohromady nejsou vědomím o tom, co se děje?",
+      "success": {
+        "text": "Herejk se odmlčí. Pak pomalu: 'Říkal jsem mu, aby udržel členy. Nevěděl jsem jak.' Pauza. 'Revizní zprávu jsem četl. Říkám vám, co jsem si myslel: v krizi obilí prostě víc padá do vyšší třídy, protože hospodáři si dávají záležet.' Ruce má sepjaté na stole. Říká to přesvědčivě — možná příliš přesvědčivě.",
+        "reveals": "Herejk nepopírá fakta — popírá jejich spojení. Ale dva body jsou nyní v protokolu: věděl o revizní zprávě a dal Navrátilovi volnou ruku. Soud to musí vyhodnotit."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "maximum": {
+          "label": "12 měsíců vězení a pokuta 2 400 Kčs",
+          "description": "Soustavný podvod po dobu dvou let s prokazatelnou zdravotní škodou. Navrátil nesl výhradní odpovědnost za přejímku a věděl, co zapisuje. Rodina přijde o jeho příjem na rok — tři dospělé děti, ale žena v domácnosti.",
+          "effects": {
+            "integrita": 3, "vina": 5, "nadeje": -2, "moc": 4, "lid": -6, "kapital": 2, "finance": 20
+          }
+        },
+        "standard": {
+          "label": "6 měsíců podmíněně a pokuta 1 200 Kčs",
+          "description": "Fraud je prokázán, záměr poškodit zdraví nikoliv. Podmíněný trest zohledňuje humanitární motiv a přiznání.",
+          "effects": {
+            "integrita": 1, "vina": 3, "nadeje": -1, "moc": 1, "lid": -2, "finance": 12
+          }
+        },
+        "lenient": {
+          "label": "Pokuta 600 Kčs, bez vězení",
+          "description": "Navrátil nesledoval osobní prospěch. Záměr poškodit odběratele chybí. Symbolická sankce uzná porušení zákona bez odtržení od rodiny.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": -1, "vina": 1, "nadeje": 2, "lid": 3, "moc": -2, "finance": 8
+          }
+        },
+        "alternative": {
+          "label": "Alternativa: Navrátil podmíněně, trestní oznámení na předsedu Herejka",
+          "description": "Soud konstatuje, že Herejk dal Navrátilovi implicitní souhlas a vědomě ignoroval revizní zprávu. Navrátil dostane podmíněný trest, Herejk bude předán k dalšímu řízení. Obě rodiny pocítí dopad — ale jinak.",
+          "requires_investigation": 3,
+          "requires": { "odvaha_min": 55 },
+          "effects": {
+            "integrita": 6, "odvaha": 4, "vina": -1, "nadeje": 3,
+            "lid": 5, "moc": -7, "kapital": -2, "finance": 8,
+            "flags": [{ "key": "bonus_inkoust_rano", "value": 1 }]
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zproštění — záměr poškodit odběratele neprokázán",
+          "description": "Navrátil falšoval ve prospěch členů, nikoliv na škodu konkrétních odběratelů. Přímá kauzalita mezi zápisem a onemocněním zákazníků chybí — náklad mohl zkysat ve vozu nebo mlýně.",
+          "requires_investigation": 2,
+          "effects": {
+            "integrita": -2, "odvaha": 2, "vina": -2, "lid": 4, "moc": -4, "finance": 10
+          }
+        },
+        "with_comment": {
+          "label": "Alternativa: Zproštění — selhání systémového dohledu",
+          "description": "Podvod umožnil vedoucí pracovník, který dal pokyn bez omezení a ignoroval varování revize. Navrátil jednal v mezích toho, co mu bylo dovoleno — a co bylo systémem tiše akceptováno.",
+          "requires_investigation": 3,
+          "requires": { "odvaha_min": 60 },
+          "effects": {
+            "integrita": 4, "odvaha": 5, "vina": -1, "nadeje": 2,
+            "lid": 6, "moc": -8, "kapital": -2, "finance": 8,
+            "flags": [{ "key": "bonus_inkoust_rano", "value": 2 }]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "reopen": {
+          "label": "Vrátit k prošetření — role předsedy Herejka",
+          "description": "Přejímkový řetězec a revizní zpráva naznačují vědomí vedení. Bez výslechu Herejka pod přísahou nelze vynést spravedlivý rozsudek.",
+          "effects": {
+            "moudrost": 3, "vina": 1, "nadeje": 1, "finance": 8
+          }
+        },
+        "close": {
+          "label": "Zastavení pro nedostatek přímých důkazů o zdravotní škodě",
+          "description": "Kauzalita mezi Navrátilovou přejímkou a onemocněním v Brandýse nebyla prokázána na úrovni trestního standardu.",
+          "effects": {
+            "moudrost": 2, "integrita": 1, "vina": 1, "finance": 8
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_maximum": "Navrátila odvezli. Žena stála na chodbě a nic neřekla. V Brandýse ho nazvali zrádcem — ale to bylo v novinách. V hospodě u Kratochvílů zdvihli na jeho zdraví sklenice a v tichosti je vyprázdnili.",
+    "guilty_standard": "Navrátil platí. Podmínka visí dva roky. Herejk přijal funkci v revizní komisi. V LÍPĚ loni přijali nová pravidla přejímky — s namátkovými prověrkami. Nikdo to neoznačil jako důsledek soudu.",
+    "guilty_lenient": "Navrátil zaplatil šest set korun. Šel domů. Kratochvíl mu přinesl pytel mouky bez komentáře. Rejzek podal stížnost na výši pokuty k zemskému úřadu.",
+    "guilty_alternative": "Herejk byl předán k vyšetřování. Navrátil dostal podmínku. V LÍPĚ se konalo mimořádné zasedání — předsednictvo přijalo rezignaci. Kratochvíl byl zvolen prozatímním předsedou. Čtyřicet rodin zůstalo v družstvu.",
+    "not_guilty_formal": "Navrátil odešel volný. Rejzek podal civilní žalobu o náhradu škody. Soud bude trvat roky. Mezitím Navrátil přijal nabídku ve mlýně v Čelákovicích — jiný kraj, jiná evidence.",
+    "not_guilty_with_comment": "Ben v rozsudku konstatoval selhání dohledu a pokyn vedení. Herejk podal stížnost na překročení pravomocí soudce. Ministerstvo zemědělství nařídilo přezkum fungování zásobovacích družstev v pěti krajích.",
+    "insufficient_reopen": "Spis se vrátil. Herejk byl předvolán k výslechu. Zemský úřad mezitím zahájil revizi evidence LÍPY za roky 1929–1931.",
+    "insufficient_close": "Případ uzavřen. Rejzek odešel bez satisfakce. Navrátil se vrátil do práce — jiný sklad, jiná firma. Přejímková kniha LÍPY za leden 1931 zmizela z archivu do měsíce."
+  },
+  "stamp_moment": {
+    "guilty": "Navrátil přikývl. Pomalu. Jako člověk, který věděl, že přijde — a stejně ho to bolí.",
+    "not_guilty": "Navrátil se nedíval na soudce. Díval se na okno. Venku tekla Labe.",
+    "insufficient": "Navrátil složil ruce na stole. Počkal. Jako u přejímkového stolu — trpělivě, bez výrazu."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "guilty_alternative",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "Ve Svobodném obzoru krátká zpráva: Předseda zásobovacího družstva LÍPA rezignoval po trestním oznámení soudu. Případ otevírá otázku odpovědnosti vedení za přejímkové praktiky v dalších čtyřech zásobovacích útvarech v Čechách."
+    },
+    {
+      "trigger": "not_guilty_with_comment",
+      "delay_days": 4,
+      "type": "letter",
+      "text": "Dopis z ministerstva zemědělství, přes Vlčkovu kancelář: Soud v případu Navrátil překročil rámec trestního řízení komentářem k systémovému fungování. Ministerstvo si vyhrazuje právo reagovat. Bez podpisu."
+    },
+    {
+      "trigger": "guilty_maximum",
+      "delay_days": 6,
+      "type": "fragment",
+      "text": "Kratochvíl a třicet sedm dalších členů LÍPY podalo žádost o odložení členských příspěvků. Záložna Brandýs zatím nereaguje. V Lidových novinách sloupek: 'Kdo zachraňuje zemědělce v krizi — zákon, nebo člověk?'"
+    }
+  ]
+}

@@ -19,6 +19,19 @@
 | 13 | pool_a1_bytova_komise | Bytová komise | 88/1931 | Morální dilema | 5–9 | František Dolejš, úředník komise | Úředník zpětně upravil datum přihlášky a přeskočil pořadník ve prospěch vdovy s dětmi. Šlo o korupci, nebo o vědomé porušení pravidla v krajní nouzi? |
 | 14 | pool_a1_revizor | Revizor | 89/1931 | Morální dilema | 4–8 | Josef Kopecký, revizor jízdenek | Kolega oznamovatel tvrdí korupci na jiné trase, než kde měl obžalovaný službu; jde o pravdu, nebo o odvetu po personálním neúspěchu? |
 | 15 | pool_a1_druha_ruka | Druhá ruka | 90/1931 | Morální dilema | 5–10 | Václav Šrámek, notářský kancelista | Závěť a přípisek k dědictví cihelny — krátký záznam v deníku vs. svědkyně vs. jiný inkoust; kancelista tvrdí vůli zůstavitele. |
+| 16 | pool_a1_bozena_slepice | Slepice | 91/1931 | Rutinní | 1 | Božena Kučerová, chalupářka | Spor o 6 m² obecní parcely po odmítnutí prodeje zahrady. Jde o právo obce, nebo osobní odvetu radního? |
+| 17 | pool_a1_bozena_cest | Čest obecního radního | 92/1931 | Rutinní | 4 | Božena Kučerová, chalupářka | Žaloba na urážku cti navazuje na majetkový spor. Ochrana pověsti, nebo pokračování tlaku na pozemek? |
+| 18 | pool_a1_hranice_zed | Třicet čtyři centimetrů | 93/1931 | Rutinní | 4 | Wilhelm Grünbaum, penzionovaný učitel | Hraniční spor o 34 cm zdi: měření od rohu domu vs katastrální tolerance. Kde končí jistota a začíná domněnka? |
+| 19 | pool_a1_pospisil_vycep | Výčepní právo | 94/1931 | Rutinní | 3 | Emil Pospíšil, hostinský | Otevřeno po 22:00 pro dělníky z noční směny. Přestupek bez zisku, nebo cílená konkurenční žaloba? |
+| 20 | pool_a1_markova_svedkyne | Podezřelá svědkyně | 95/1931 | Rutinní | 3 | Rudolf Čermák, skladník | Krádež látky stojí na výpovědi účetní s paralelní evidencí. Je klíčová svědkyně oporou, nebo zdrojem pochybností? |
+| 21 | pool_a1_druzstvo | Zásoby | 96/1931 | Morální dilema | 7–11 | Bedřich Navrátil, přejímka obilí | Falšování tříd obilí v družstvu LÍPA — v krizi ve prospěch členů, vůči odběratelům. Předseda Herejk: věděl, nebo „udělejte, co umíte“? |
+| 22 | pool_a1_kladivo | Kladivo | 97/1931 | Morální dilema | 9–14 | Pavel Řehoř, mistr kovárny | Čtyři rány kladivem, smrt kolegy. Přiznání hned na místě; spór o afekt vs. záměr a o hrozbu vůči synovi. |
+| 23 | tyc_horak_d1 | Krádež chleba | 58/1931 | Rutinní (tyčový) | 1 | Tomáš Horák, nádeník | Dva bochníky z pekárny, Vlček zadržel; neběžel, sám vydal. Krajní nouze vs. bagatel / pokuta. |
+| 24 | tyc_horac_d7 | Svědkyně | 101/1931 | Politický (tyčový) | 7 | Jiří Veselý, tiskař | Pobuřování: Horáčková z MV vs. svědci; zápisník, legenda o „sestřenici“, Vlček a politický tlak. |
+| 25 | pool_a1_posta | Pošta | 99/1931 | Morální dilema | 6–9 | Ladislav Cílek, tříděč telegrafu | Porušení tajemství zásilek vs. podvod, který odhalil; Dvořák, komise, policejní spis. |
+| 26 | pool_a1_lekar | Lékař | 100/1931 | Morální dilema | 10–14 | MUDr. Emanuel Soukup, obvodní lékař | Údajné záměrné urychlení smrti; Bible, domácí karta, rodina, zda vražda nebo mezera v zákonu. |
+| 27 | tyc_pospisil_2 | Hospodský a tichá hrozba | 98/1931 | Rutinní (tyč Pospíšil) | 6 | Emil Pospíšil, hostinský | Stížnost za zranění hosta; Pospíšil znal kontext a třese se — důkazy k pultu a zadnímu vchodu. Beat 2 vlákna Pospíšil. |
+| 28 | pool_a1_draha | Přestavená výhybka | 102/1931 | Rutinní | 8–12 | František Douda, výhybkář | Přiznané přestavení výhybky po zadržovaných hlášeních o sváru; systém vs. individuální odpovědnost. |
 
 ---
 
@@ -284,13 +297,103 @@ Peníze z noční pokladny měly jít na páteční mzdy dělníků. Majitel fir
 Mareš připustí manipulaci se záznamem času, ale ukáže na tlak vedení tiskárny kvůli mzdám a interním dluhům podniku.
 
 ### Nejsilnější rozsudek
-**Alternativní — podmíněný trest + forenzní audit účetnictví firmy** (nejen pachatel, ale i odpovědnost vedení za systém, který vytvořilo).
+**Alternativní — podmíněný trest + soudem nařízená revize účtů firmy** (nejen pachatel, ale i odpovědnost vedení za systém, který vytvořilo).
+
+---
+
+## PŘÍPAD 21: Zásoby (Sp. zn. 96/1931)
+`pool_a1_druzstvo` | Morální dilema | Dny 7–11
+
+### Obžalovaný
+**Bedřich Navrátil**, 51 let, vedoucí přejímky obilí u Zásobovacího a prodejního družstva LÍPA (Brandýs).
+
+### Jádro
+Při špatné úrodi se zapisovalo obilí do vyšších jakostních tříd, než odpovídalo skutečnosti — členové družstva dostali lepší cenu, odběratelé (pekař Rejzek aj.) hradili kvalitu, kterou neměli. Zdravotní souvislost s chlebem je sporná; předseda Herejk podepisoval měsíční souhrny a v září 1929 Navrátila navedl, „ať členové neodejdou“.
+
+### Clue osa
+Silná vazba: tichý pokyn + podpis na výkazech. Střední: stejná třída II/B u Horákova nákladu (14. 1.) a u Rejzka (doklad 16. 1.).
+
+### Konfrontace (Herejk)
+Až po odemčení rozporu `herejk_vedel` — revizní zpráva z října 1930, audit nenařízen.
+
+---
+
+## PŘÍPAD 22: Kladivo (Sp. zn. 97/1931)
+`pool_a1_kladivo` | Morální dilema | Dny 9–14
+
+### Obžalovaný
+**Pavel Řehoř**, 44 let, mistr kovárny u Šulc & Novák (Holešovice), vdovec, syn 17 let.
+
+### Jádro
+Opakované údery kladivem, smrt kolegy Dobiáše. Řehoř přiznává čin; znalec popisuje rány a zpochybňuje čistý afekt. Motiv: Dobiáš hrozil přes syna, svaz fašistických sympatií v záznamech.
+
+### Clue osa
+Silná: hrozba vůči synu + popis ran a rytmu. Střední: Dobiášova minulost + hrozba. Slabé: průběh úderů (svědek Horák) + znalec.
+
+### Konfrontace (znalec)
+Rozpor `afekt_vs_kontrola` — zda lze afekt a „motorickou kontrolu“ oddělit.
+
+---
+
+## PŘÍPAD 23: Krádež chleba (Sp. zn. 58/1931)
+`tyc_horak_d1` | Rutinní (tyčový) | Den 1
+
+### Obžalovaný
+**Tomáš Horák**, 38 let, nádeník. Bez stálé práce od října 1930, čtyři děti, Žižkov.
+
+### Jádro
+Technicky prokázaná krádež dvou bochníků; Vlček (zaměstnanec pekárny) popisuje chování, které nepůsobí jako útěk. Průzkum doplňuje podporu, vyčerpání limitu, zdravotní stav manželky. Silný pár: neodpor + evidence nezaměstnanosti. Konfrontace v rozporech je vypnutá (`unlocks_confrontation: null`); důraz na Two-Click a krajní nouzi jako vrchol informace.
+
+### Vazby
+**Petr Vlček** — první styk s postavou, která se v příběhu objeví i v dopisech a odložených důsledcích. Po zproštění krajní nouze anonymní vzkaz o „pozvání“.
+
+---
+
+## PŘÍPAD 24: Svědkyně (Sp. zn. 101/1931)
+`tyc_horac_d7` | Politický (tyčový) | Den 7
+
+### Obžalovaný
+**Jiří Veselý**, 34 let, tiskař Orbis, člen sociální demokracie.
+
+### Jádro
+Zákon na ochranu republiky: co přesně zaznělo v hostinci, a zda je svědkyně z ministerstva vnitra důvěryhodným „hostem“. Silný pár: zápisník + Novákova neznámá identita; střední: slova Veselého vs. zpráva. Konfrontace Horáčkové po rozporu o příbuznosti. Větev `not_guilty_with_comment` a `insufficient_reopen` váže **Vlčkovo** upozornění a `flag_vlcek_upozorneni`.
+
+### Vazby
+Návrat k politickému rámci Aktu 1; předmostí k reakcím tisku a k ministerstvu po odvážném odůvodnění.
+
+---
+
+## PŘÍPAD 25: Pošta (Sp. zn. 99/1931)
+`pool_a1_posta` | Morální dilema | Dny 6–9
+
+### Obžalovaný
+**Ladislav Cílek**, 41 let, tříděč telegrafní místnosti, Ústřední pošta (Florenc). Kolega **František Dvořák** podal trestní oznámení; silný pár: obsah depeší T-14 až T-16 a policejní spis; střední: časování po zamítnutí přestupu v komisi (včetně hlasu Cílka). Důkazy z třídírny vs. *Zmizelý dopis* (doporučená zásilka) — tady jde o vědomé čtení hrozícího podvodu.
+
+### Jádro
+Zákon o poštovním tajemství vs. výsledek, který bez načtení depeší a oznámení státní prokuraturovi nebyl dosažitelný.
+
+### Konfrontace
+Dvořák (časování, motiv).
+
+---
+
+## PŘÍPAD 26: Lékař (Sp. zn. 100/1931)
+`pool_a1_lekar` | Morální dilema | Dny 10–14
+
+### Obžalovaný
+**MUDr. Emanuel Soukup**, 52 let, obvodní lékař (Vinohrady). **Jan Benda**, 72 let, mrtvý; syn **Vladimír** a dcera **Anežka**; rozpor: podpis v rodinné bibli 3. 3. a jediná injekce 4. 3. oproti tomu, zda otec mohl psát a zda dávka urychlení znamenala vražedný úmysl, nebo paliativum bez tabulky v trestním zákoně.
+
+### Jádro
+Bez nehody a afektu: čistě věc „zda“; hráč rozhoduje o kvalifikaci, ne o identitě, kdo píchnutí vykonal.
+
+### Konfrontace
+Vladimír (závěť, pořadí trestního a notářského čtení).
 
 ---
 
 ## Designové poznámky
 
-### Společné rysy všech jedenácti případů v přehledové tabulce
+### Společné rysy případů v přehledové tabulce
 - Každý má **morální stín i u rutinního verdiktu** — neexistuje čistě „správné" rozhodnutí
 - Každý odráží **svět krize 1931** — chudoba, strach, systém pod tlakem
 - Každý obsahuje **alespoň jednu postavu, která není tím čím se zdá**
@@ -309,6 +412,10 @@ Mareš připustí manipulaci se záznamem času, ale ukáže na tlak vedení tis
 - **Případ 9** (stavba): systém stavebnictví + investor — „kdo vlastně zabil Tučka“
 - **Případ 10** (záložna): Závadová napíše sloupek — první stopa, že sleduje Benova rozhodnutí ještě před tím, než ho kontaktuje osobně
 - **Případ 11** (tiskárna): tlak firmy na „rychlou vinu“ kvůli mzdám a možné stávce — střet interní ekonomiky podniku a trestního řízení
+- **Případ 23** (chléb, tyčový): **Vlček** jako svědek v trestní věci; krajní nouze a odložený fragment k politice represe chudých
+- **Případ 24** (svědkyně, tyčový): **MV + zápisník** jako model politického důkazu; reakce **Vlčka** a tisku na „překročení rámce“
+- **Případ 25** (pošta): **tajemství korespondence a telegraf**; paralela k *Revizorovi* (časování oznámení) a k *Správci* (jiná role pošty než doručení doporučené zásilky)
+- **Případ 26** (lékař): konec života a domácí smrt; echo k *Kladivu* jen v tíze rozhodnutí, nikoli v afektu — hra o **zda** ve smyslu zákona
 
 ### Síť pojistného agenta Krejčího
 Agent Miroslav Krejčí figuruje v případě **Bartošová** (trafikant): pojistka 15 dní před smrtí manžela, provize 40 Kčs; soused a zároveň agent Slavie. Některé alternativní verdikty vedou k trestnímu oznámení na Krejčího a k přezkumu dalších smluv.
@@ -336,13 +443,28 @@ Hráč, který v případě 3 důkladně projde záznamy, vidí rizikový vzorec
 - 84/1931 — Mareš (`pool_a1_tiskarna`, *Noční směna*)
 - 85/1931 — Kolář (`pool_a1_stavba`, pád ze lešení)
 - 86/1931 — Součková (`pool_a1_exekuce`, *Záložna*). Ve hře stačí spisům rozumět; `id` případu je vždy jednoznačné.
-- *Nové případy v budoucnu ideálně od Sp. zn. 87/1931 výš, ať se čísla v jednom aktu zbytečně nepletou.*
+- 91/1931 — Kučerová (`pool_a1_bozena_slepice`, *Slepice*)
+- 92/1931 — Kučerová (`pool_a1_bozena_cest`, *Čest obecního radního*)
+- 93/1931 — Grünbaum (`pool_a1_hranice_zed`, *Třicet čtyři centimetrů*)
+- 94/1931 — Pospíšil (`pool_a1_pospisil_vycep`, *Výčepní právo*)
+- 95/1931 — Čermák (`pool_a1_markova_svedkyne`, *Podezřelá svědkyně*)
+- 96/1931 — Navrátil (`pool_a1_druzstvo`, *Zásoby*)
+- 97/1931 — Řehoř (`pool_a1_kladivo`, *Kladivo*)
+- 58/1931 — Horák (`tyc_horak_d1`, *Krádež chleba*; tyčový den 1)
+- 101/1931 — Veselý (`tyc_horac_d7`, *Svědkyně*; tyčový den 7)
+- 99/1931 — Cílek (`pool_a1_posta`, *Pošta*)
+- 100/1931 — Soukup (`pool_a1_lekar`, *Lékař*)
+- *Nové běžné pool případy v budoucnu ideálně od Sp. zn. 87/1931 výš, ať se čísla v jednom aktu nepletou. Tyčové (`tyc_*`) mají pevné číslo v návrhu autora — nemísit s tímto pravidlem.*
 
 ---
 
 ## Kuchařka autora případu (praktický postup)
 
 Tento postup je praktický onboarding pro psaní dalších pool případů, aby nic nechybělo.
+
+### 0) Tón soudní řeči (1925–1935)
+- Před psaním výpovědí, obžaloby a úředních pasáží si přečti stručnou analýzu: [`analyza_soudni_reci_1925-1935.md`](./analyza_soudni_reci_1925-1935.md) (oslovení soudu, typické obraty, čemu se vyhnout, rozdíl okres / kraj / senát).
+- Cíl: **úřední, ne filmový** tón; emoce spíš v `aftermath` než v monolozích soudce. Autoři i agenti se jí mají řídit stejně jako u `world-reference.md` a `cases.mdc`.
 
 ### 1) Jádro případu
 - Definuj obžalobu (právní rámec), morální napětí (co je „spravedlivé"), a minimálně 1 hlavní rozpor.
@@ -393,6 +515,7 @@ Tento postup je praktický onboarding pro psaní dalších pool případů, aby 
 
 ### 8) Finální kontrola před zařazením
 - JSON validní.
+- Tón textů sedí s [`analyza_soudni_reci_1925-1935.md`](./analyza_soudni_reci_1925-1935.md) (neanachronismy z bodu 3 analýzy, pokud to není záměr).
 - Žádné duplicity `data-clue-id`.
 - `pairs` a `decoys` odkazují na existující clue ID v textech.
 - Odemykací ID (`unlock_actions`, `unlock_verdict_ids`, `info_threshold_unlocks`) jsou existující.

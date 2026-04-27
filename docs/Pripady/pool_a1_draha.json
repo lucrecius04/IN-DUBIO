@@ -1,0 +1,270 @@
+{
+  "id": "pool_a1_draha",
+  "slot": "pool",
+  "type": "routine",
+  "color": "#5A4A3A",
+  "available_days": [8, 9, 10, 11, 12],
+  "act": 1,
+  "weight_conditions": {
+    "base_weight": 1,
+    "week_2_bonus": 1.2
+  },
+  "title": "Přestavená výhybka",
+  "case_number": "Sp. zn. 102/1931",
+  "defendant": {
+    "name": "František Douda",
+    "age": 44,
+    "occupation": "výhybkář, Státní dráhy ČSR, úsek Praha-Smíchov",
+    "detail": "zaměstnanec drah devatenáct let, vdovec, dvě dcery (14 a 17 let); ve službě bez disciplinárního záznamu"
+  },
+  "charge": "Ohrožení obecné bezpečnosti dle §87 trestního zákona a sabotáž přepravního provozu dle §5 zákona na ochranu republiky č. 50/1923 Sb.: František Douda dne 15. ledna 1931 ve 14:22 vědomě a záměrně přestavil výhybku V-7 na úseku Nusle–Smíchov do polohy odklonu, čímž způsobil odklonění osobního vlaku č. 214 na vedlejší kolej. Vlak zastavil bez srážky. Zpoždění 3 hodiny 20 minut. 187 cestujících, žádné zranění. Douda čin přiznal okamžitě.",
+  "description": "František Douda přestavil výhybku. Přiznal to ihned, na místě, policistovi, který přijel jako první. Nezkoušel utéct ani nic zakrýt. Vlak č. 214 zastavil bez úhony — strojvedoucí zareagoval a zabrzdil. Douda byl odklizen od výhybky a odveden. Druhý den ráno dráhy opravily kolejnicový svár na úseku K-7, který Douda devět měsíců hlásil jako nebezpečný. Tři pracovníci inspekce potvrdili, že svár byl skutečně vadný. Soud musí rozhodnout, co Douda je: sabotér, nebo člověk, který nevěděl jak jinak.",
+  "testimonies": [
+    {
+      "id": "douda",
+      "speaker": "František Douda, obžalovaný",
+      "text": "Přestavil jsem výhybku. To nepopírám. Hlásil jsem svár K-7 od dubna loňského roku. Třikrát písemně, dvakrát ústně na poradě. <span class=\"clue\" data-clue-id=\"clue_douda_hlasenky\">Mám kopie všech pěti hlášení. Podal jsem je inspektoru Hruškovi. Poslední hlášení datováno 8. prosince 1930 — šest týdnů před incidentem.</span> Chtěl jsem způsobit zpoždění — ne nehodu. Věděl jsem, kde vlak zastaví, věděl jsem, že strojvedoucí zabrzdí. Ale záruka to nebyla. Vím.",
+      "contradiction_keywords": ["pět hlášení", "8. prosince", "záruka to nebyla"],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "hruska_inspektor",
+      "speaker": "Inspektor Bedřich Hruška, provozní oddělení Státních drah",
+      "text": "Hlášení Doudy jsem dostával. První dvě jsem postoupil technickému oddělení. <span class=\"clue\" data-clue-id=\"clue_hruska_postoupil\">Třetí a čtvrté jsem... zdržel. Měli jsme v lednu plánovanou generální revizi celého úseku. Moje rozhodnutí bylo počkat a opravit vše najednou.</span> Svár K-7 byl na seznamu revize. Byl. Douda o tom nevěděl, protože mu to nikdo neřekl. Uznávám, že to byl můj opomenu.",
+      "contradiction_keywords": ["zdržel", "generální revize", "neuvedl ho"],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "strojvedouci",
+      "speaker": "Ladislav Mrázek, strojvedoucí vlaku č. 214",
+      "text": "Viděl jsem výhybku v poslední moment. Zabrzdil jsem nouzově. Vlak zastavil třicet metrů za výhybkou. <span class=\"clue\" data-clue-id=\"clue_mrazek_vzdalenost\">Kdybych reagoval o dvě sekundy pozdějc, nebo kdybychom jeli o deset kilometrů za hodinu rychleji — nevím, co by se stalo.</span> Douda stál u výhybky a čekal. Nedával najevo žádnou agresi. Stál tam jako člověk, který udělal, co chtěl udělat, a čeká na důsledky.",
+      "contradiction_keywords": ["dvě sekundy", "deset kilometrů", "čekal"],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "hruska_vedel",
+      "description": "Hruška přiznal, že třetí a čtvrté hlášení záměrně zdržel — rozhodl čekat na generální revizi a Doudovi to neřekl. Douda devět měsíců nevěděl, že jeho hlášení leží v šuplíku a čeká na plánovaný termín.",
+      "involves": ["douda", "hruska_inspektor"],
+      "highlight_at_wisdom": 65,
+      "unlocks_confrontation": "hruska_inspektor"
+    },
+    {
+      "id": "zaruka_nebyla",
+      "description": "Douda sám přiznal: 'Záruka to nebyla.' Mrázek potvrdil, že dvě sekundy nebo vyšší rychlost mohly změnit výsledek. Douda riskoval životy 187 lidí — i kdyby to nebylo jeho záměrem.",
+      "involves": ["douda", "strojvedouci"],
+      "highlight_at_wisdom": 70,
+      "unlocks_confrontation": "douda"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "hruska_sabotoval_system_strong",
+    "pairs": [
+      {
+        "pair_id": "hruska_sabotoval_system_strong",
+        "a_id": "clue_douda_hlasenky",
+        "b_id": "clue_hruska_postoupil",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "riziko_nezpochybnitelne_medium",
+        "a_id": "clue_mrazek_vzdalenost",
+        "b_id": "clue_douda_hlasenky",
+        "strength": "medium"
+      }
+    ],
+    "decoys": ["decoy_187_cestujicich"],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 60,
+      "speed_upgrade_sec": 20,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        { "min": 45, "ids": ["pool_inv_confrontation"] }
+      ],
+      "verdicts": [
+        { "min": 35, "ids": ["guilty_minimum"] },
+        { "min": 60, "ids": ["guilty_alternative"] },
+        { "min": 80, "ids": ["not_guilty_formal"] }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 44,
+          "unlock_actions": ["pool_inv_confrontation"],
+          "unlock_verdict_ids": ["guilty_alternative", "not_guilty_formal"],
+          "narrative_lines": [
+            "Pět hlášení. Hruška zdržel třetí a čtvrté — a Doudovi to neřekl.",
+            "Devět měsíců čekal Douda na odpověď, která ležela v šuplíku a čekala na revizi.",
+            "Hruška udělal správné rozhodnutí špatným způsobem. Douda udělal špatné rozhodnutí ze správného důvodu."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 22,
+          "unlock_verdict_ids": ["guilty_minimum"],
+          "narrative_lines": [
+            "Dvě sekundy. Deset kilometrů za hodinu. Douda věděl, že záruka to není.",
+            "187 lidí nevědělo, že jejich vlak je součástí Doudovy kalkulace."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "technik_svar",
+      "target_label": "Ing. Miroslav Zajíček, technická inspekce Státních drah",
+      "reveals": "motivation",
+      "text": "Svár K-7 jsme zkontrolovali šestnáctého ledna — den po incidentu. Korozní popraskání hloubky čtyři milimetry, délka trhliny čtrnáct centimetrů. <span class=\"clue\" data-clue-id=\"clue_douda_hlasenky\">Při zatížení expresním vlakem kategorie D — to je těžší než vlak č. 214 — pravděpodobnost selhání sváru odhaduji na čtyřicet až šedesát procent.</span> Osobní vlak č. 214 ho s osmdesátiprocentní pravděpodobností přejel bezpečně. Expres z Vídně, který jezdí v 15:40, by byl jiná věc. Douda to mohl vědět.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": { "Integrita": -1, "Vina": 1 },
+        "factions": { "Moc": 1 }
+      }
+    },
+    "records": {
+      "source": "Úřední hlášení Doudy č. 1–5; interní protokoly provozního oddělení; revizní plán úseku Nusle–Smíchov",
+      "reveals": "facts",
+      "text": "Hlášení č. 1 (duben 1930): postoupeno technickému oddělení — potvrzení příjmu. Hlášení č. 2 (červen 1930): postoupeno — potvrzení příjmu. <span class=\"clue\" data-clue-id=\"clue_hruska_postoupil\">Hlášení č. 3 (září 1930) a č. 4 (listopad 1930): v šanonu inspektora Hrušky, razítko 'zařazeno do revizního plánu Q1/1931' — bez informování Doudy.</span> Hlášení č. 5 (prosinec 1930): totéž. Revizní plán Q1/1931: svár K-7 uveden na straně 14, plánovaná oprava únor 1931. Oprava provedena 16. ledna — den po incidentu.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": { "Integrita": -2, "Vina": 1 },
+        "factions": { "Moc": 2 }
+      },
+      "unlocks_contradiction": "hruska_vedel"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": { "Vina": 1 },
+        "factions": { "Lid": -1, "Moc": 2 }
+      },
+      "variants": {
+        "lid_high": "Na dráhách jsou Doudové desítky. Hlásí, čekají, hlásí znovu — a nic. Systém funguje tak, že výhybkář hlásí inspektorovi, inspektor rozhodne, výhybkář čeká. Douda devět měsíců čekal. Pak přestal čekat.",
+        "moc_high": "Státní dráhy chtějí případ uzavřít tiše a rychle. Pokud soud ukáže, že Hruška zdržoval hlášení, přijde revize celého provozního oddělení. Inspektor Hruška přišel na soud s advokátem státních drah.",
+        "kapital_high": "Vlak č. 214 byl tři hodiny zpožděn. Osm zásilek pro obchodní firmy nedorazilo včas — dvě z nich mají smluvní pokuty za zpoždění. Firma Haas und Söhne z Holešovic podala civilní žalobu na náhradu škody. Douda o firmě Haas nic nevěděl.",
+        "default": "Douda stál u výhybky a čekal. Nepokusil se schovat, nepokusil se vysvětlit. Řekl jen: 'Hlásil jsem to pětkrát.' Policista to zapsal. Pak přijel inspektor Hruška a policista to přeškrtl."
+      }
+    },
+    "confrontation": {
+      "target": "hruska_inspektor",
+      "target_label": "Inspektor Bedřich Hruška, Státní dráhy",
+      "requires_contradiction": "hruska_vedel",
+      "requires_courage": 50,
+      "cost": 2,
+      "prompt": "Pane inspektore, třetí a čtvrté hlášení jste záměrně zdržel a zařadil do revizního plánu na únor 1931 — bez toho, abyste o tom informoval Doudu. Douda devět měsíců nevěděl, proč nedostává odpověď. Nelze říci, že bez tohoto opomenutí by k incidentu nedošlo?",
+      "success": {
+        "text": "Hruška se odmlčí déle, než je pohodlné. Pak řekne: 'Mé rozhodnutí bylo provozně správné. Generální revize je efektivnější než záplatování po jednom. Kdybych Doudovi odpovídal na každé hlášení zvlášť, nestíhal bych řídit úsek.' Odmlka. 'Měl jsem ho informovat. To uznávám. Nebylo to správné.' Říká to potichu. Advokát státních drah za ním vypadá nespokojeně.",
+        "reveals": "Hruška přiznal procesní selhání — ale ne odpovědnost za incident. Soud nyní ví, že Douda devět měsíců čekal na odpověď, která ležela v šuplíku. Zda to mění povahu Doudova činu, musí rozhodnout soud."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "maximum": {
+          "label": "3 roky vězení a trvalé zbavení způsobilosti pracovat u drah",
+          "description": "Douda vědomě ohrozil 187 osob. Přiznal, že záruka bezpečného zastavení neexistovala. Tři roky odpovídají závažnosti — bez ohledu na to, co předcházelo. Dcery zůstanou bez otce, práce bez vyhlídky.",
+          "effects": {
+            "integrita": 3, "vina": 5, "nadeje": -3, "moc": 6, "lid": -6, "finance": 18
+          }
+        },
+        "standard": {
+          "label": "18 měsíců podmíněně a propuštění ze státní služby",
+          "description": "Sabotáž provozu bez zranění. Podmíněný trest zohledňuje provokaci ze strany systému — ale Douda propuštění ze drah. Devatenáct let bez záznamu, pak konec.",
+          "effects": {
+            "integrita": 2, "vina": 3, "nadeje": -1, "moc": 4, "lid": -3, "finance": 14
+          }
+        },
+        "minimum": {
+          "label": "Pokuta 1 000 Kčs — ohrožení bez následků, polehčující systémové selhání",
+          "description": "Douda jednal po vyčerpání řádných cest. Systém selhal devět měsíců. Žádné zranění. Pokuta bez vězení ani propuštění — Douda může zůstat na dráze.",
+          "requires_investigation": 2,
+          "effects": {
+            "integrita": 1, "vina": 2, "nadeje": 2, "lid": 4, "moc": -3, "finance": 10
+          }
+        },
+        "alternative": {
+          "label": "Alternativa: Symbolická pokuta 100 Kčs a doporučení trestního šetření inspektora Hrušky",
+          "description": "Soud konstatuje, že Hruška záměrně zadržoval hlášení bez informování podřízeného. Bez tohoto selhání by Douda pravděpodobně čekal na únorovou revizi. Douda dostane symbolickou pokutu — Hruška bude předán k šetření.",
+          "requires_investigation": 3,
+          "requires": { "odvaha_min": 60 },
+          "effects": {
+            "integrita": 5, "odvaha": 5, "vina": 2, "nadeje": 3,
+            "lid": 6, "moc": -8, "finance": 8,
+            "flags": [{ "key": "bonus_inkoust_rano", "value": 2 }]
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Alternativa: Zproštění — systémové selhání jako vyšší moc",
+          "description": "Douda vyčerpal všechny dostupné řádné prostředky. Hruška zdržoval hlášení bez informování. V situaci, kdy systém nefunguje a hrozba je reálná, nelze od zaměstnance požadovat nečinnost. Zproštění — bez precedentu pro budoucí sabotáže.",
+          "requires_investigation": 3,
+          "requires": { "odvaha_min": 70, "moudrost_min": 65 },
+          "effects": {
+            "integrita": 4, "odvaha": 7, "vina": 3, "nadeje": 3,
+            "lid": 7, "moc": -10, "finance": 8,
+            "flags": [{ "key": "bonus_inkoust_rano", "value": 2 }]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "reopen": {
+          "label": "Přerušit — prošetření odpovědnosti inspektora Hrušky",
+          "description": "Bez jasného obrazu Hruškova zavinění nelze spravedlivě posoudit míru Doudovy odpovědnosti. Soud přerušuje a předává podnět k šetření Hrušky.",
+          "effects": {
+            "moudrost": 4, "vina": 1, "nadeje": 1, "finance": 8,
+            "flags": [{ "key": "flag_hruska_setreni", "value": true }]
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_maximum": "Douda odešel s policistou. Dcery ho navštěvovaly každou neděli. Hruška dostal pokárání od vedení drah — písemné, do spisu. Svár K-7 byl opraven šestnáctého ledna. Expres z Vídně jezdí od té doby bez komplikací.",
+    "guilty_standard": "Douda propuštěn. Našel práci u soukromé dopravní firmy v Holešovicích — nižší plat, žádná státní penze. Hruška zůstal na místě. V únoru proběhla generální revize úseku — bez závad.",
+    "guilty_minimum": "Douda zaplatil tisíc korun. Vrátil se k výhybce. Kolegové mu podali ruku — tiše, jeden po druhém. Hruška s ním poprvé za devět měsíců promluvil přímo.",
+    "guilty_alternative": "Symbolická pokuta. Hruška byl předvolán k disciplinárnímu šetření. Státní dráhy podaly stížnost na rozsudek — a zároveň nařídily interní revizi systému hlášení závad. Douda dostal o měsíc senare písemné potvrzení, že jeho hlášení z dubna 1930 byla 'zpracována v souladu s pravidly'.",
+    "not_guilty_formal": "Douda zproštěn. Státní dráhy se odvolaly. Hruška podal okamžitou výpověď — aniž by ho o to kdokoli žádal. Douda se vrátil k výhybce. Nikdo mu nic neřekl. On taky ne."
+  },
+  "stamp_moment": {
+    "guilty": "Douda vstal. Rovně, klidně. Jako výhybkář, který ví, že vlak přijde — a stojí tam stejně.",
+    "not_guilty": "Douda se díval na Hrušku. Hruška se díval na advokáta. Advokát se díval do spisu.",
+    "insufficient": "Douda si opravil čepici. Rutinně, jako před směnou. Pak čekal na pokyn, kdy smí odejít."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "guilty_alternative",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "Státní dráhy vydaly interní oběžník č. 14/1931: výhybkáři jsou nově povinni dostávat písemné potvrzení do 14 dnů od hlášení závady. Hruška oběžník obdržel jako jeden z prvních. Podepsal ho a vrátil."
+    },
+    {
+      "trigger": "not_guilty_formal",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "Právo lidu, str. 2: 'Soud zprostil železničního sabotéra — systém selhal.' Národní politika: 'Nebezpečný precedent.' Douda si výstřižky nepřečetl. Měl ranní směnu."
+    },
+    {
+      "trigger": "guilty_maximum",
+      "delay_days": 6,
+      "type": "fragment",
+      "text": "Svár K-7 opraven šestnáctého ledna 1931 — den po incidentu. V revizním záznamu poznámka: 'Dle hlášení č. 1–5, výhybkář Douda, duben 1930 – prosinec 1930.' Záznamy jsou nyní součástí Doudova trestního spisu jako důkaz jeho vědomosti o závadě."
+    }
+  ]
+}
