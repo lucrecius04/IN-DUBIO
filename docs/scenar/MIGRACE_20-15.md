@@ -256,12 +256,17 @@ Poznámka: `available_days` v JSON případů přepočítat na nový rozsah (max
 
 ### 3.3 Harmonogram vláken (tyčové případy)
 
+**Aktuální runtime** (`data/days.json` + [`Pripady_15dni.csv`](./Pripady_15dni.csv)):
+
 ```
 Božena:   D1 (slot 1), D4 (slot 1), D8 (slot 1)     — 3 beaty
-Pospíšil: D3 (slot 2→1), D6 (slot 2), D11 (slot 2)  — 3 beaty
-Hranice:  D4 (slot 2), D8 (slot 2), D12 (slot 2)     — 3 beaty
-Marková:  D3 (slot 2), D10 (slot 2), D14 (slot 1)    — 3 beaty
+Osobní trilogie: D10 slot 2 tyc_zvraty_d10, D11 slot 2 tyc_haas_d11, D12 slot 2 tyc_zavadova_d12
+Marková:  D3 (slot 2), D14 (slot 1) tyc_markova_3   — beaty 1 a 3 v kampani; beat 2 (tyc_markova_2) zatím není ve days.json
+Pospíšil: D3 (slot 1), D6 (slot 2)                  — beaty 1–2; beat 3 (tyc_pospisil_3) zatím není ve days.json
+Hranice:  D4 (slot 2), D8 (slot 2)                  — beaty 1–2; beat 3 (tyc_hranice_3) zatím není ve days.json
 ```
+
+*JSON případy `tyc_markova_2`, `tyc_pospisil_3`, `tyc_hranice_3` zůstávají v `pool_cases_akt1.json` — doplnit do kalendáře až bude rozhodnuto, kam je zařadit.*
 
 ### 3.4 `pool_cases_akt1.json` — úpravy
 - Pole `available_days`: přepočítat rozsahy na 1–15 (ne 1–20)

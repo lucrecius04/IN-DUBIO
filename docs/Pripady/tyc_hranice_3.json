@@ -1,0 +1,399 @@
+{
+  "id": "tyc_hranice_3",
+  "slot": "pool",
+  "case_track": "pillar",
+  "case_track_label": "tycove",
+  "type": "political",
+  "color": "#9E9A8A",
+  "available_days": [
+    12
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "forced": true
+  },
+  "title": "Metr a muž",
+  "case_number": "Sp. zn. 119/1931",
+  "defendant": {
+    "name": "Wilhelm Grünbaum",
+    "age": 67,
+    "occupation": "penzionovaný učitel",
+    "detail": "tatáž osoba jako Sp. zn. Hranice 1 a Hranice 2. Po mrtvici v lednu 1931 částečně ochrnutý, nemluví plynně. Zastupuje ho syn Ernst Grünbaum (42), přijel z Berlína."
+  },
+  "charge": "Pokračující spor dle Sp. zn. 66/1931 — odvolání Josefa Kříže proti výsledku prvního projednání. Kříž trvá na posunutí zdi zpět o 34 centimetrů nebo na finanční náhradě 180 Kčs za neoprávněné užívání pozemku.",
+  "description": "Tři měsíce po prvním rozsudku. Zeď stojí, kde stála. Josef Kříž podal odvolání a přišel. Wilhelm Grünbaum přijít nemůže — v lednu ho ranila mrtvice. Mluví obtížně, pohybuje se s holí. Zastupuje ho syn Ernst, který přijel z Berlína. Na začátku jednání se stane něco, co se u soudu nestává: Kříž se podívá na Ernsta Grünbauma — ne na spis, ne na soudce — a řekne: 'Jak se daří panu Grünbaumovi?' Ernst odpoví: 'Otec vás každý den jmenuje. Víc říct nemůže.' Pak projednávání začne. Ale něco se už změnilo — a Ben to vidí.",
+  "testimonies": [
+    {
+      "id": "ernst_grunbaum",
+      "speaker": "Ernst Grünbaum, syn Wilhelma, zástupce",
+      "text": "Přijel jsem v lednu, když dostal otec mrtvici. Bydlím <span class=\"clue\" data-clue-id=\"decoy_berlinska_adresa\">v Berlíně</span> — ale teď jsem tady. Otec se zlepšuje pomalu. Mluví jméno, slova. Celé věty zatím ne. <span class=\"clue\" data-clue-id=\"clue_ernst_otec_jmeno\">Jedno jméno říká pravidelně. Kříž. Říká: Kříž. A pak říká: zeď. A pak se odmlčí.</span> Nevím, jestli to znamená vztek nebo něco jiného. Otec byl vždy přesnější, než já dokážu číst. Pokud jde o zeď — zeď stojí, kde stála. Já ji neopravoval a opravovat nebudu.",
+      "contradiction_keywords": [
+        "Kříž",
+        "zeď",
+        "přesnější"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "kriz_navrhovatel",
+      "speaker": "Josef Kříž, navrhovatel odvolání",
+      "text": "Já měřím tu zeď každý víkend. Od října. Sedmnáct měření. Vždy stejný výsledek — zeď je posunutá o víc než tři centimetry od místa, kde stávala. <span class=\"clue\" data-clue-id=\"clue_kriz_meridlo\">Mám zápisník. Každé měření zapsané. Datum, čas, výsledek. Sedmnáct měření za šest měsíců.</span> Já nemohu přestat, dokud to není vyřešeno. Tak jsem nastaven. Vím, že to působí... malicherně. Ale princip je princip.",
+      "contradiction_keywords": [
+        "sedmnáct měření",
+        "zápisník",
+        "malicherně"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "znalec_hora",
+      "speaker": "Ing. Pavel Hora, soudní geometr — nový posudek dle usnesení soudu",
+      "text": "Provedl jsem nové zaměření 3. března 1931, za přítomnosti obou stran. Použil jsem přístroj s přesností ±3 centimetry. <span class=\"clue\" data-clue-id=\"clue_hora_mereni\">Výsledek: osa zdi leží 19 centimetrů od katastrální hranice — na straně Grünbaumova pozemku. Jinými slovy: zeď je 19 centimetrů na Grünbaumově straně od linie, kde by měla stát.</span> Kříž měřil od rohu svého domu — to je nespolehlivý referenční bod. Od katastrální hranice: odchylka 19 cm, nikoli 34.",
+      "contradiction_keywords": [
+        "19 centimetrů",
+        "od rohu",
+        "±3 centimetry"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "krizova_marie",
+      "speaker": "Marie Křížová, manželka navrhovatele",
+      "text": "Já jsem ho prosila, ať to nechá být. Říkala jsem mu: Wilhelm je nemocný, co ještě chceš dokázat? <span class=\"clue\" data-clue-id=\"clue_krizova_prosba\">Řekl mi minulý týden — poprvé za půl roku — řekl: 'Možná by bylo dost, kdyby přiznal, že jsem měl pravdu.' Ne aby posouval zeď. Jen aby přiznal, že jsem měl pravdu.</span> Dvacet let šachy. Teď tohle.",
+      "contradiction_keywords": [
+        "přiznal",
+        "pravdu",
+        "dvacet let šachy"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "34_nebo_19",
+      "description": "Kříž naměřil 34 cm od rohu domu. Hora naměřil 19 cm od katastrální hranice. Rozdíl vzniká odlišnými referenčními body — roh starého domu vs. katastrální linie. Žádné z čísel není 'správné'. Obě jsou přesná — a obě vedou k jiné zdi.",
+      "involves": [
+        "kriz_navrhovatel",
+        "znalec_hora"
+      ],
+      "highlight_at_wisdom": 65,
+      "unlocks_confrontation": "kriz_navrhovatel"
+    },
+    {
+      "id": "princip_nebo_uznani",
+      "description": "Kříž říká 'princip je princip'. Marie říká, že mu minulý týden řekl: 'Stačilo by, kdyby přiznal, že jsem měl pravdu.' To není spor o zeď — to je spor o to, kdo má pravdu. A Grünbaum nemůže mluvit.",
+      "involves": [
+        "kriz_navrhovatel",
+        "krizova_marie"
+      ],
+      "highlight_at_wisdom": 70,
+      "unlocks_confrontation": "kriz_navrhovatel"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "uznani_ne_zed_strong",
+    "pairs": [
+      {
+        "pair_id": "uznani_ne_zed_strong",
+        "a_id": "clue_kriz_meridlo",
+        "b_id": "clue_krizova_prosba",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "otec_jmeno_hora_medium",
+        "a_id": "clue_ernst_otec_jmeno",
+        "b_id": "clue_hora_mereni",
+        "strength": "medium"
+      }
+    ],
+    "decoys": [
+      "decoy_berlinska_adresa"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 65,
+      "speed_upgrade_sec": 22,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 45,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 30,
+          "ids": [
+            "guilty_posun"
+          ]
+        },
+        {
+          "min": 55,
+          "ids": [
+            "not_guilty_zamitnut"
+          ]
+        },
+        {
+          "min": 75,
+          "ids": [
+            "not_guilty_smir",
+            "insufficient_stazeni"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 46,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "not_guilty_smir",
+            "insufficient_stazeni"
+          ],
+          "narrative_lines": [
+            "Sedmnáct měření. Zápisník. Datum, čas, výsledek. To není spor o zeď — to je rituál.",
+            "Stačilo by, kdyby přiznal, že jsem měl pravdu. Zeď může stát, kde stojí — jen ať Grünbaum přizná.",
+            "Grünbaum říká Kříž. A pak říká zeď. A pak se odmlčí. Přesněji, než by mohl říct celou větu."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 22,
+          "unlock_verdict_ids": [
+            "not_guilty_zamitnut",
+            "guilty_posun"
+          ],
+          "narrative_lines": [
+            "19 centimetrů od katastrální hranice — ne 34 od rohu. Jiný referenční bod, jiná zeď.",
+            "Přesnost ±3 cm. Odchylka 19 cm. Zeď je na Grünbaumově straně — ale o kolik přesně, to záleží kde začínáš měřit."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "ernst_soukrome",
+      "target_label": "Ernst Grünbaum — před jednáním, chodba",
+      "reveals": "motivation",
+      "text": "Přišel sám. Bez otce. Svejda ho zavedl ke dveřím, Ben ho zavolal dovnitř. Ernst stál u okna a díval se ven. Pak řekl: 'Otec byl před mrtvicí jiný. Přestal hrát šachy — ale šel ke zdi každý den. Díval se přes ni. Já nevím, co viděl.' Pauza. <span class=\"clue\" data-clue-id=\"clue_ernst_otec_jmeno\">Pak řekl: 'Pokud pan Kříž chce omluvu — otec by ji dal. Kdyby mohl mluvit. Ale nemůže.' Podíval se na Bena. 'Takže ji dám já. Jestli to stačí.'</span>",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 2
+        },
+        "factions": {
+          "Lid": 2
+        }
+      }
+    },
+    "records": {
+      "source": "Nový geodetický posudek Hora, 3. března 1931; původní katastrální mapa 1912; Křížův zápisník měření",
+      "reveals": "facts",
+      "text": "Geodetický posudek Hora: zeď posunuta o 19 cm od katastrální hranice, v rámci přesnosti původní mapy (±15 cm). <span class=\"clue\" data-clue-id=\"clue_hora_mereni\">Závěr Hora: 'Zeď pravděpodobně stojí blíže původní poloze než jakémukoli alternativnímu umístění. Posun v absolutním smyslu existuje, ale leží na hranici průkaznosti.'</span> Křížův zápisník: 17 záznamů, vždy v sobotu mezi 9:00 a 10:00, vždy výsledek 19 cm od rohu (±1 cm). Konzistentní — protože roh domu se nehýbe. Zeď se nehýbala od října.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1
+        }
+      },
+      "unlocks_contradiction": "34_nebo_19"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Vina": 1
+        },
+        "factions": {
+          "Lid": -1
+        }
+      },
+      "variants": {
+        "lid_high": "V Bubenči se říká, že Kříž byl u Grünbaumů v lednu — kdy přišla mrtvice. Přišel podívat se na zeď a zastihl Ernsta, jak volá lékaře. Pomohl. Nikdo o tom nevypráví, protože Kříž o tom nemluví. Ale sousedka Svobodová to viděla z okna.",
+        "moc_high": "Ernst Grünbaum pracuje v Berlíně na ministerstvu dopravy. V březnu 1931 to ještě není automaticky nebezpečné — ale v Praze to začínají lidé sledovat. Kříž to ví. Ernst to ví. Oba o tom mlčí.",
+        "kapital_high": "Dům Grünbaumových v Bubenči má hodnotu kolem 80 000 Kčs. Pokud Wilhelm zemře bez přímé závěti — Ernst, jako syn a dědic, dům zdědí. Dům v Bubenči s německým vlastníkem v roce 1931. Kříž o tom možná přemýšlí. Nebo ne.",
+        "default": "Zeď mezi dvěma domy. Dvacet let šachy. Jeden rok soudů. Jeden se nemůže hýbat, druhý nemůže přestat. Ben stojí mezi nimi a má pero v ruce."
+      }
+    },
+    "confrontation": {
+      "target": "kriz_navrhovatel",
+      "target_label": "Josef Kříž, navrhovatel",
+      "requires_contradiction": "princip_nebo_uznani",
+      "requires_courage": 55,
+      "cost": 2,
+      "prompt": "Pane Kříži, vaše žena říká, že jste minulý týden řekl: stačilo by, kdyby Grünbaum přiznal, že jste měl pravdu. Zeď stojí — posudek říká 19 centimetrů, ne 34. Ernst Grünbaum je ochoten se omluvit za otce. Je to dost?",
+      "success": {
+        "text": "Kříž mlčí. Dlouho. V soudní síni je ticho, jaké tam nebývá. Pak se obrátí k Ernstovi — poprvé od začátku jednání. Ernst se dívá zpátky. Kříž řekne: 'Chtěl bych slyšet, co otec říká. Co říká, když říká moje jméno.' Ernst odpoví: 'Nevím. Ale říká ho tiše.' Kříž přikývne. Jednou. Pak se podívá na Bena a řekne: 'Co teď?'",
+        "reveals": "Kříž nechce zeď. Nikdy nechtěl zeď — chtěl vědět, jestli mu Grünbaum rozumí. A Grünbaum možná rozumí — a nemůže říct jak. Ben musí rozhodnout, co se zbytkem."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "posun": {
+          "label": "Zeď posunout o 19 centimetrů na náklady odpůrce",
+          "description": "Posudek prokázal odchylku 19 cm od katastrální linie — v rámci průkaznosti. Zeď se posune. Ernst Grünbaum najme zedníka. Kříž dostane 19 centimetrů a výsledek, který nikdy přesně nechtěl.",
+          "effects": {
+            "integrita": 1,
+            "vina": 2,
+            "nadeje": -2,
+            "moc": 1,
+            "lid": -3,
+            "finance": 10
+          }
+        },
+        "nahrada": {
+          "label": "Náhrada 120 Kčs za neoprávněné užívání pozemku",
+          "description": "Bez posunu zdi — finanční kompenzace za dobu, kdy zeď stála jinde. Kříž dostane peníze. Grünbaum zaplatí. Zeď zůstane.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 1,
+            "vina": 3,
+            "nadeje": -1,
+            "lid": -2,
+            "moc": 2,
+            "finance": 12
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "zamitnut": {
+          "label": "Odvolání zamítnout — odchylka v rámci průkaznosti",
+          "description": "19 centimetrů leží na hranici průkaznosti geodetického posudku (±15 cm). Zeď stojí, kde stála. Kříž odchází bez výsledku — a možná s tím, že zeď nebyla nikdy o zdi.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 2,
+            "moudrost": 2,
+            "vina": -1,
+            "lid": 3,
+            "moc": -2,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "flag_hranice_kriz_zamitnut",
+                "value": true
+              }
+            ]
+          }
+        },
+        "smir": {
+          "label": "Alternativa: Soud navrhne smír — Grünbaum přizná pochybení, Kříž stáhne",
+          "description": "Ernst Grünbaum se omluvil za otce. Kříž žádal uznání — ne zeď. Soud navrhne smír: omluva na protokol, Kříž stáhne odvolání, náklady řízení se rozdělí rovným dílem. Zeď stojí. Šachy se možná vrátí.",
+          "requires_investigation": 3,
+          "requires": {
+            "moudrost_min": 55
+          },
+          "effects": {
+            "integrita": 4,
+            "moudrost": 5,
+            "vina": -2,
+            "nadeje": 4,
+            "lid": 6,
+            "moc": -3,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "flag_hranice_smir",
+                "value": true
+              },
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "stazeni": {
+          "label": "Přerušit — umožnit Křížovi stáhnout odvolání",
+          "description": "Kříž po konfrontaci řekl: 'Co teď?' Soud přeruší a dá mu sedm dní na rozhodnutí, zda odvolání stáhne. Nikdo ho k ničemu nenutí. Výsledek je otevřený — jako zeď.",
+          "requires_investigation": 2,
+          "effects": {
+            "moudrost": 5,
+            "nadeje": 3,
+            "vina": -1,
+            "finance": 8,
+            "flags": [
+              {
+                "key": "flag_hranice_preruseno",
+                "value": true
+              }
+            ]
+          }
+        },
+        "dalsi_posudek": {
+          "label": "Přerušit — nový posudek s pevným referenčním bodem",
+          "description": "Hora i Kříž měřili od různých bodů. Soud nařídí posudek s jediným kanonickým referenčním bodem — třeba rohový kámen z roku 1911. Pokud existuje.",
+          "effects": {
+            "moudrost": 3,
+            "vina": 1,
+            "finance": 8
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "posun": "Ernst najal zedníka. Zeď se posunula o sedmnáct centimetrů — víc základ nedovolil. Kříž naměřil: chybí ještě dva. Odvolání nestáhl. Pak přišlo léto a přestal měřit. Nikdo neví proč.",
+    "nahrada": "Ernst zaplatil. Kříž peníze vzal a složil je do šuplíku. Marie je o měsíc později dala na opravu střechy. Kříž o tom nevěděl. Nebo věděl.",
+    "zamitnut": "Odvolání zamítnuto. Kříž vyšel na chodbu a zastavil se. Ernst byl ještě uvnitř — podepisoval protokol. Kříž počkal. Když Ernst vyšel, Kříž řekl: 'Jak se daří otci?' Ernst řekl: 'Lépe.' Kříž přikývl. Šli každý jinam.",
+    "smir": "Omluva na protokol. Kříž stáhl odvolání. Šli ven spolu — Kříž a Ernst — a na chodbě se zastavili. Ernst řekl: 'Přijďte ho navštívit. Rozezná vás.' Kříž řekl: 'Přijdu.' Zeď stojí, kde stála. V sobotu ráno Kříž nešel měřit.",
+    "stazeni": "Sedm dní uplynulo. Kříž odvolání stáhl — bez vysvětlení, bez komentáře. Zaslal dopis soudu. Jeden řádek. Ben ho četl dvakrát. Pak si ho uložil ke spisu Hranice. Grünbaum říká Kříž. A Kříž přestal měřit.",
+    "dalsi_posudek": "Rohový kámen z roku 1911 nalezen — pod vrstvou malty. Nový posudek: odchylka 21 centimetrů. Stále v rámci průkaznosti. Soud případ zastavil pro nedostatek průkazného důkazu. Zeď stojí. Kříž zápisník zavřel."
+  },
+  "stamp_moment": {
+    "guilty": "Kříž vstal. Podíval se na zápisník v ruce. Pak ho složil a zasunul do kapsy. Sedmnáct měření. Výsledek.",
+    "not_guilty": "Ernst Grünbaum se uklonil. Lehce, zdvořile. Jako jeho otec, říká si Ben. Pak si vzal aktovku a odešel.",
+    "insufficient": "Ticho. Kříž a Ernst seděli naproti sobě a žádný z nich se nepohnul. Zeď venku stála a nikdo se na ni nedíval."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "smir",
+      "delay_days": 3,
+      "type": "fragment",
+      "text": "Kříž přišel k Grünbaumovým v sobotu ráno. Ernst ho zavedl do obývacího pokoje. Wilhelm seděl u okna. Podíval se na Kříže. Dlouho. Pak řekl: 'Josef.' Jen to. Kříž přikývl. Seděli hodinu. Nemluvili."
+    },
+    {
+      "trigger": "zamitnut",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "Wilhelm Grünbaum zemřel 14. dubna. Zápal plic. Ernst zůstal v Praze do konce května. Pak dům prodal — české rodině, říkají sousedé. Kříž na pohřeb nešel. Nebo šel — záleží koho se ptáte."
+    },
+    {
+      "trigger": "posun",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "Ernst napsal Křížovi dopis z Berlína. Krátký — dvě věty. 'Otec zemřel v dubnu. Zeď stojí.' Kříž dopis dostal, přečetl a položil na stůl vedle zápisníku. Zápisník měl osmnáct záznamů. Devatenáctý nenastal."
+    },
+    {
+      "trigger": "stazeni",
+      "delay_days": 6,
+      "type": "fragment",
+      "text": "V červnu přišel Křížovi dopis z Berlína. Ernst psal, že otec se trochu zlepšil — mluví celé věty, pomalu. Jedno ze slov je Kříž. Druhé je šachy. Ernst psal: 'Kdybyste chtěl přijít.' Nevíme, jestli Kříž přišel."
+    }
+  ]
+}

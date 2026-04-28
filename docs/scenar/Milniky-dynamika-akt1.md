@@ -16,9 +16,9 @@ Související: [`Mapa_15dni.csv`](./Mapa_15dni.csv), [`Pripady_15dni.csv`](./Pri
 | 7 | **Horáčková**, politický pool, **VETVENÍ 1** | První silně politický den. |
 | 8 | **Božena 3**, Hranice 2, třetí spis (light) | Tlak vrcholí u tyčí. |
 | 9 | **Beneš**, **VETVENÍ 2** | Osobní pravda, účet za uhlí. |
-| 10 | Dvojí zvrat (rodý list, Anna), Marková 2 | Špice napětí 2. poloviny aktu. |
-| 11 | **Haas osobně**, Pospíšil 3, **VETVENÍ 3** | Ekonomický uzel, klíčový svědek. |
-| 12 | Zavadová, Hranice 3 (finále) | Odkrytí, metafora hranice. |
+| 10 | **Zvraty** (`tyc_zvraty_d10`, slot 2), rutinní pool (slot 1), light (slot 3) | Rodný list / Anna / Haas — osobní tyč místo klasického spisu. |
+| 11 | **Haas osobně** (`tyc_haas_d11`, slot 2), rutinní pool (slot 1), light (slot 3) | **VETVENÍ 3**, obálka 300 Kčs; echo `flag_pospisil_dluzi` zůstává v ranním fragmentu. |
+| 12 | **Závadová** (`tyc_zavadova_d12`, slot 2), morální pool (slot 1), light (slot 3) | Podvrh, Řád; uzavření osobní trilogie D10–D12. |
 | 13 | **Karas**, **VETVENÍ 4** | Osobní cena. |
 | 14 | Marková obžalovaná, poslední pool | Předposlední pracovní den. |
 | 15 | **Velezrada** (1 slot) | Epilog aktu. |
@@ -43,7 +43,7 @@ V **`Mapa_15dni.csv`** typy **Mor** / **Pol** přibývají od 2. týdne. Tento s
 
 - **Cíl:** občas změnit **rozpočet dne** (± kapka, zvláštní výdaj, bonus z úřadu) s **narativním důvodem** v ranním fragmentu / dopise.
 - **Kde plánovat:** sloupce *Modif_dne* a *Scenar_modif_navrh* v CSV; detaily v `Balancing.csv` až po číslech.
-- **Od D10 orientačně:** dny s větším tlakem úřadu (D10, D11, D15–D16) jsou v mapě označeny krátkou značkou — engine později přiřadí konkrétní efekt.
+- **Od D10 orientačně:** dny s větším tlakem úřadu (D10, D11, D14–D15) jsou v mapě označeny krátkou značkou — engine později přiřadí konkrétní efekt.
 
 ---
 

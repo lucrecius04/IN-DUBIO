@@ -1,0 +1,469 @@
+{
+  "id": "tyc_bozena_3",
+  "slot": "pool",
+  "type": "political",
+  "color": "#8A5A3A",
+  "available_days": [
+    8
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "forced": true
+  },
+  "title": "Stavební zájem",
+  "case_number": "Sp. zn. 108/1931",
+  "defendant": {
+    "name": "Božena Kučerová",
+    "age": 56,
+    "occupation": "chalupářka",
+    "detail": "tatáž osoba jako Sp. zn. Božena 1 (slepice) a Božena 2 (kozel). Tentokrát nečelí přestupku. Čelí vyvlastnění."
+  },
+  "charge": "Řízení o námitkách proti vyvlastnění dle §§ 365–370 občanského zákoníku ve spojení s §4 zákona č. 126/1927 Sb. o stavbě silnic: Stavební společnost PRAGA ROADS a.s. podala žádost o vyvlastnění pozemku č. p. 12 (Kučerová, Úněticích) jako nezbytnou součást trasy silnice II. třídy Praha–Únětice–Horoměřice. Božena Kučerová námitky podala — tvrdí, že trasa byla uměle vedena přes její pozemek, ačkoli existuje alternativní trasa přes obecní louku.",
+  "description": "Dvě věci se staly ve stejný týden. Václav Šebek prodal svůj statek firmě PRAGA ROADS za cenu, o níž se v Úněticích nemluví. A Boženě přišlo oznámení, že její zahrada s jabloněmi — ta, kvůli níž čelila dvěma soudům — má být vyvlastněna ve veřejném zájmu. Trasa silnice Praha–Horoměřice vede přes čtyři pozemky. Tři jsou obecní nebo opuštěné. Jeden je Boženin. Projektant tvrdí, že alternativa přes obecní louku by prodloužila trasu o 340 metrů a zvýšila náklady. Božena tvrdí, že louka je rovná a prázdná a 340 metrů nikomu neuškodí. JUDr. Knot zastupuje PRAGA ROADS.",
+  "testimonies": [
+    {
+      "id": "kucerova",
+      "speaker": "Božena Kučerová, navrhovatelka námitek",
+      "text": "Pane doktore, já neříkám, že silnice nemá být. Silnice ať je. Ale proč přes moji zahradu, když je vedle louka? <span class=\"clue\" data-clue-id=\"clue_louka_alternativa\">Ta louka — parcela č. 48/1, obecní — leží rovně, bez překážek.</span> <span class=\"clue\" data-clue-id=\"decoy_340_metru\">340 metrů navíc.</span> Šebek mě táhl k soudu za šest metrů trávy. Teď prodal svůj statek té firmě a najednou silnice jde přes moje jabloně. Náhoda to není, pane doktore.",
+      "contradiction_keywords": [
+        "louka",
+        "340 metrů",
+        "Šebek prodal"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "projektant",
+      "speaker": "Ing. Bedřich Slavík, projektant trasy, PRAGA ROADS",
+      "text": "Trasa byla navržena na základě geotechnického průzkumu v září 1930. <span class=\"clue\" data-clue-id=\"clue_pruzkum_datum\">Průzkum provedla firma Geodesia Praha dne 14.–16. září 1930.</span> Parcela 48/1 — obecní louka — vykazuje podmáčenou spodní vrstvu v hloubce 1,2 metru, nevhodnou pro silniční těleso bez odvodňovacího systému. Cena alternativní trasy by vzrostla o 38 000 Kčs. Pozemek Kučerové je suchý, rovný a nejkratší. To je technický důvod, ne osobní.",
+      "contradiction_keywords": [
+        "září 1930",
+        "podmáčená",
+        "38 000"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "knot",
+      "speaker": "JUDr. Milan Knot, zástupce PRAGA ROADS",
+      "text": "Vyvlastnění splňuje všechny zákonné podmínky: veřejný zájem prokázán, náhrada nabídnuta ve výši 2 200 Kčs. Paní Kučerová má nárok na náhradu — nikoli na výběr trasy. <span class=\"clue\" data-clue-id=\"clue_knot_nahrady\">Náhrada 2 200 Kčs odpovídá katastrální hodnotě pozemku dle ocenění z října 1930.</span> Ocenění provedla firma Geodesia Praha.",
+      "contradiction_keywords": [
+        "Geodesia Praha",
+        "říjen 1930",
+        "2 200"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "starosta_unetice",
+      "speaker": "Starosta Únětic Karel Brožek",
+      "text": "Obec dostala žádost o souhlas s trasou přes obecní louku v srpnu. <span class=\"clue\" data-clue-id=\"clue_obecni_souhlas\">Odmítli jsme — nechtěli jsme přijít o louku, kde se koná pouť. Ale to bylo v srpnu, před průzkumem. Pak průzkum říkal, že louka je podmáčená — tak jsme přestali protestovat.</span> Šebkův prodej? To jsem nevěděl předem. Dozvěděl jsem se z novin jako ostatní.",
+      "contradiction_keywords": [
+        "srpen",
+        "před průzkumem",
+        "přestali protestovat"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "geodesia_dvojrole",
+      "description": "Firma Geodesia Praha provedla průzkum trasy (září 1930) A ocenění Boženina pozemku (říjen 1930) — obě pro PRAGA ROADS. Jeden dodavatel, dvě zprávy, oba výhodné pro zadavatele.",
+      "involves": [
+        "projektant",
+        "knot"
+      ],
+      "highlight_at_wisdom": 65,
+      "unlocks_confrontation": "projektant"
+    },
+    {
+      "id": "souhlas_pred_pruzkumem",
+      "description": "Obec odmítla louku v srpnu — průzkum proběhl až v září. Pořadí je obrácené: nejdřív odmítnutí, pak důvod pro odmítnutí. Průzkum mohl být objednán jako odůvodnění rozhodnutí, které již bylo přijato.",
+      "involves": [
+        "starosta_unetice",
+        "projektant"
+      ],
+      "highlight_at_wisdom": 70,
+      "unlocks_confrontation": "projektant"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "geodesia_konflikt_strong",
+    "pairs": [
+      {
+        "pair_id": "geodesia_konflikt_strong",
+        "a_id": "clue_pruzkum_datum",
+        "b_id": "clue_knot_nahrady",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "obec_odmitla_pred_pruzkumem_medium",
+        "a_id": "clue_obecni_souhlas",
+        "b_id": "clue_pruzkum_datum",
+        "strength": "medium"
+      },
+      {
+        "pair_id": "sebek_trasa_weak",
+        "a_id": "clue_louka_alternativa",
+        "b_id": "clue_obecni_souhlas",
+        "strength": "weak"
+      }
+    ],
+    "decoys": [
+      "decoy_340_metru"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 65,
+      "speed_upgrade_sec": 22,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 45,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 30,
+          "ids": [
+            "guilty_standardni_nahrada"
+          ]
+        },
+        {
+          "min": 55,
+          "ids": [
+            "not_guilty_pozastavit"
+          ]
+        },
+        {
+          "min": 80,
+          "ids": [
+            "not_guilty_zamitout_trasu",
+            "guilty_alternative"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 46,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "not_guilty_zamitout_trasu",
+            "guilty_alternative"
+          ],
+          "narrative_lines": [
+            "Geodesia Praha: průzkum trasy v září, ocenění pozemku v říjnu — obojí pro PRAGA ROADS.",
+            "Jeden dodavatel. Dva výstupy. Oba výhodné pro zadavatele. To není náhoda — to je systém.",
+            "Šebek prodal v červenci. Trasa šla přes Kučerovou v srpnu. Průzkum přišel v září. Pořadí mluví samo."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 24,
+          "unlock_verdict_ids": [
+            "not_guilty_pozastavit"
+          ],
+          "narrative_lines": [
+            "Obec odmítla v srpnu — průzkum proběhl až v září. Důvod přišel po rozhodnutí.",
+            "Podmáčená louka jako argument existuje od chvíle, kdy ho bylo potřeba."
+          ]
+        },
+        "weak": {
+          "investigation_progress_delta": 10,
+          "narrative_lines": [
+            "340 metrů navíc. 38 000 Kčs navíc. Jabloně po nebožtíkovi pryč. Takhle vypadá veřejný zájem."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "geodesia_vedouci",
+      "target_label": "Ing. František Pospíšil, jednatel Geodesia Praha",
+      "reveals": "motivation",
+      "text": "Průzkum v září, ocenění v říjnu — ano, obojí pro PRAGA ROADS. To je standardní praxe, pane doktore. Zákazník je zákazník. <span class=\"clue\" data-clue-id=\"clue_pruzkum_datum\">Průzkum louky byl objednán 2. září — dva týdny poté, co obec odmítla souhlas. Výsledky jsme předali 19. září.</span> Zda průzkum odpovídá realitě? Odpovídá. Podmáčená vrstva tam je. Zda je to důvod pro jinou trasu nebo pro odvodňovací systém — to je otázka pro projektanta, ne pro nás.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 1
+        },
+        "factions": {
+          "Kapital": 1,
+          "Moc": -1
+        }
+      }
+    },
+    "records": {
+      "source": "Obchodní rejstřík PRAGA ROADS a.s.; katastrální záznamy Úněticích; smlouva Šebek–PRAGA ROADS",
+      "reveals": "facts",
+      "text": "Obchodní rejstřík: PRAGA ROADS a.s. zapsána únor 1930. Jednatel: Karel Maňák. Akcionáři: čtyři fyzické osoby — jména dostupná v rejstříku. <span class=\"clue\" data-clue-id=\"clue_knot_nahrady\">Mezi akcionáři: JUDr. Milan Knot (8% podíl). Knot zastupuje PRAGA ROADS u soudu.</span> Smlouva Šebek–PRAGA ROADS ze dne 14. července 1930: prodej pozemků za 42 000 Kčs. Smlouva obsahuje vedlejší ujednání: Šebek získá servisní přístup k nové silnici bez poplatku. Katastr: parcela 48/1 (obecní louka) — bez záznamu o podmáčení v historických mapách.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Kapital": 2,
+          "Moc": -2
+        }
+      },
+      "unlocks_contradiction": "geodesia_dvojrole"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": -1,
+          "Kapital": 2
+        }
+      },
+      "variants": {
+        "lid_high": "V Úněticích se říká, že Šebek věděl o silnici dřív, než ji veřejně oznámili. Koupil dvě sousední parcely na jaře za tržní cenu — a v létě je prodal PRAGA ROADS za trojnásobek. Bez přístupu k informacím to nejde. Bez kontaktů to nejde. Bez Knota to nejde.",
+        "moc_high": "Silnice Praha–Horoměřice je součást většího plánu rozvoje severozápadního předměstí. Ministerstvo dopravy ho schválilo v lednu 1931 — ale jednání probíhala od podzimu 1929. Kdo věděl o plánu dřív, mohl nakupovat pozemky s předstihem. PRAGA ROADS věděla.",
+        "kapital_high": "Knot je akcionářem PRAGA ROADS a zároveň jejich advokátem. V normálních podmínkách je to střet zájmů — ale zákon to výslovně nezakazuje. Knot to ví. Využívá to. A funguje mu to.",
+        "default": "Šebek celý rok táhl Kučerovou k soudu — a pak prodal svůj pozemek firmě, která chce vyvlastnit její. Knot je v obou. Geodesia dělá průzkum pro toho, kdo ji platí. Ben to vidí. Zákon to možná nevidí."
+      }
+    },
+    "confrontation": {
+      "target": "projektant",
+      "target_label": "Ing. Bedřich Slavík, projektant",
+      "requires_contradiction": "souhlas_pred_pruzkumem",
+      "requires_courage": 50,
+      "cost": 2,
+      "prompt": "Pane inženýre, obec odmítla souhlas s trasou přes louku 12. srpna. Průzkum louky byl objednán 2. září — tedy tři týdny po odmítnutí. Jak může být průzkum technickým důvodem pro trasu, která byla navržena dřív, než průzkum existoval?",
+      "success": {
+        "text": "Slavík si upraví plány na stole. Dlouhá pauza. 'Trasa byla navržena v červenci — předběžně, bez průzkumu. Průzkum měl návrh potvrdit nebo vyvrátit.' Odmlčí se. 'Podmáčení potvrdil. Průzkum tedy naplnil svůj účel.' Ben čeká. Slavík dodá: 'Zda by jiný průzkum, objednaný jiným zákazníkem, dospěl ke stejnému závěru — to nemohu říct.' Knot za ním vypadá, jako by chtěl říct něco. Neřekne.",
+        "reveals": "Trasa existovala dřív než průzkum. Průzkum byl objednán poté, co obec odmítla — jako odůvodnění hotového rozhodnutí. Slavík to nepopřel. Potvrdil to jinak."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "standardni_nahrada": {
+          "label": "Námitky zamítnout — vyvlastnění potvrzeno, náhrada 2 200 Kčs",
+          "description": "Zákonné podmínky vyvlastnění jsou splněny. Technický průzkum existuje. Náhrada je ve výši katastrální hodnoty. Jabloně po nebožtíkovi budou vykáceny do jara.",
+          "effects": {
+            "integrita": 1,
+            "vina": 4,
+            "nadeje": -3,
+            "moc": 5,
+            "lid": -6,
+            "kapital": 3,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "flag_vlcek_d8_splnil",
+                "value": true
+              }
+            ]
+          }
+        },
+        "vyssi_nahrada": {
+          "label": "Námitky částečně přijmout — vyvlastnění potvrzeno, náhrada zvýšena na 4 000 Kčs",
+          "description": "Soud potvrzuje vyvlastnění ale konstatuje, že ocenění provedla firma závislá na stavebníkovi. Spravedlivá náhrada je vyšší. Božena přijde o zahradu — ale dostane víc než katastr.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 2,
+            "vina": 3,
+            "nadeje": -1,
+            "moc": 2,
+            "lid": -2,
+            "kapital": -1,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "flag_vlcek_d8_splnil",
+                "value": false
+              }
+            ]
+          }
+        },
+        "alternative": {
+          "label": "Alternativa: Vyvlastnění podmíněno nezávislým novým průzkumem",
+          "description": "Soud potvrzuje zákonný zájem na silnici, ale zpochybňuje průzkum provedený dodavatelem závislým na stavebníkovi. Vyvlastnění odloženo do výsledku nezávislého geodetického posudku. Jabloně stojí dál — prozatím.",
+          "requires_investigation": 3,
+          "requires": {
+            "moudrost_min": 55
+          },
+          "effects": {
+            "integrita": 4,
+            "moudrost": 4,
+            "vina": 1,
+            "nadeje": 2,
+            "moc": -4,
+            "lid": 4,
+            "kapital": -2,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "flag_vlcek_d8_splnil",
+                "value": false
+              },
+              {
+                "key": "flag_bozena_praga_odlozeno",
+                "value": true
+              },
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "pozastavit": {
+          "label": "Námitky přijmout — řízení pozastavit pro procesní vadu",
+          "description": "Průzkum byl objednán po odmítnutí obce, nikoli před návrhem trasy. Trasa existovala před svým odůvodněním. Procesní vada — řízení se vrací k přepracování podkladů.",
+          "requires_investigation": 2,
+          "effects": {
+            "integrita": 3,
+            "odvaha": 3,
+            "vina": -1,
+            "nadeje": 2,
+            "moc": -5,
+            "lid": 5,
+            "kapital": -2,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "flag_vlcek_d8_splnil",
+                "value": false
+              },
+              {
+                "key": "flag_bozena_praga_odlozeno",
+                "value": true
+              }
+            ]
+          }
+        },
+        "zamitout_trasu": {
+          "label": "Alternativa: Námitky přijmout — vyvlastnění zamítnout, střet zájmů advokáta",
+          "description": "JUDr. Knot je akcionářem PRAGA ROADS a současně jejich advokátem v tomto řízení. Soud zamítá vyvlastnění pro střet zájmů zástupce a pochybnou nezávislost průzkumu. Jabloně zůstanou. Knot podá odvolání téhož dne.",
+          "requires_investigation": 3,
+          "requires": {
+            "odvaha_min": 65
+          },
+          "effects": {
+            "integrita": 6,
+            "odvaha": 7,
+            "vina": -2,
+            "nadeje": 3,
+            "moc": -8,
+            "lid": 8,
+            "kapital": -4,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "flag_vlcek_d8_splnil",
+                "value": false
+              },
+              {
+                "key": "flag_bozena_praga_zamitnuto",
+                "value": true
+              },
+              {
+                "key": "flag_vlcek_upozorneni",
+                "value": true
+              },
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "nezavisly_pruzkum": {
+          "label": "Přerušit — nařídit nezávislý geodetický průzkum parcely 48/1",
+          "description": "Soud přeruší řízení a nařídí průzkum louky provedený znalcem jmenovaným soudem — ne Geodesia Praha. Výsledek průzkumu rozhodne.",
+          "effects": {
+            "moudrost": 4,
+            "vina": 1,
+            "nadeje": 2,
+            "moc": -2,
+            "finance": 8,
+            "flags": [
+              {
+                "key": "flag_vlcek_d8_splnil",
+                "value": false
+              },
+              {
+                "key": "flag_bozena_praga_odlozeno",
+                "value": true
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "standardni_nahrada": "Vyvlastnění potvrzeno. Božena dostala 2 200 Kčs — méně než za jabloně prosila. Šebek dostal servisní přístup k nové silnici. Knot dostal honorář. Silnice se začala stavět v dubnu. Jabloně byly vykáceny 3. března — den, kdy Ben vynášel jiný rozsudek.",
+    "vyssi_nahrada": "Vyvlastnění potvrzeno, náhrada navýšena. Knot podal odvolání proti výši náhrady. PRAGA ROADS zaplatila nakonec 3 800 Kčs — po smíru. Božena vzala peníze a přestěhovala se k dceři. Jabloně šly dolů v dubnu.",
+    "alternative": "Vyvlastnění odloženo. Nezávislý průzkum objednán soudem. PRAGA ROADS přesunula část stavby na jiný úsek. Geodesia Praha dostala od zadavatele výpověď zakázky. Jabloně stojí — zatím.",
+    "pozastavit": "Řízení vráceno k přepracování. PRAGA ROADS najala nového projektanta. Nový návrh trasy — tentokrát přes obecní louku s odvodňovacím systémem — přišel v květnu. Božena dostala nové oznámení. Tentokrát o jiném pozemku.",
+    "zamitout_trasu": "Vyvlastnění zamítnuto. Knot podal odvolání do čtyřiadvaceti hodin. Ben dostal od Vlčka dopis téhož odpoledne — ne o případu. O délce pracovní doby soudců. Tón byl jiný než dřív. Božena přinesla Benovi vejce.",
+    "nezavisly_pruzkum": "Průzkum nařízen. Geodesia Praha ze zakázky vypadla. Jmenovaný soudní znalec zjistil podmáčení v hloubce 1,8 metru — hlubší, než Slavík uváděl, ale stále problematické. Odvodňovací systém by stál 22 000 Kčs. PRAGA ROADS zaplatila."
+  },
+  "stamp_moment": {
+    "guilty": "Knot si složil papíry. Elegantně, bez spěchu. Jako člověk, který věděl, jak to dopadne, ještě než přišel.",
+    "not_guilty": "Božena seděla a nechápala. Pak se podívala na okno. Venku byl jasan. Poprvé za dlouho.",
+    "insufficient": "Slavík si sroloval mapy. Složil je pomalu, jako by mu záleželo na přesném pořadí. Knot ho sledoval."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "zamitout_trasu",
+      "delay_days": 1,
+      "type": "letter",
+      "text": "Vlčkův dopis přišel odpoledne. Nepsalo se v něm o případu Kučerové. Psalo se o tom, že soudci jsou povinni volit nejjasnější výklad zákona a vyhýbat se komentářům přesahujícím rámec projednávané věci. Poslední věta: 'Věřím, že toto doporučení pochopíte ve správném kontextu.' Ben ho přečetl dvakrát."
+    },
+    {
+      "trigger": "zamitout_trasu",
+      "delay_days": 3,
+      "type": "fragment",
+      "text": "V novinách krátká zpráva: PRAGA ROADS podala odvolání ve věci vyvlastnění v Úněticích. Odvolací soud přijme věc k projednání. Jméno soudce prvního stupně v článku není."
+    },
+    {
+      "trigger": "standardni_nahrada",
+      "delay_days": 2,
+      "type": "fragment",
+      "text": "Knot & Svoboda zapsala novou zakázku — výkup parcel podél plánované silnice Praha–Kladno. Stejná firma PRAGA ROADS. Stejný projektant Slavík. Stejná Geodesia Praha."
+    },
+    {
+      "trigger": "alternative",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "Soudní znalec Hora — ten z úněticko-žižkovské hranice — byl jmenován pro průzkum parcely 48/1. Napsal Benovi krátkou poznámku: 'Zajímavé zadání, pane doktore. Přijdu připraven.'"
+    }
+  ],
+  "case_track": "pillar",
+  "case_track_label": "tycove"
+}

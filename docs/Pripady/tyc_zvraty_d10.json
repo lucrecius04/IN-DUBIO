@@ -1,0 +1,271 @@
+{
+  "id": "tyc_zvraty_d10",
+  "slot": "pool",
+  "case_track": "pillar",
+  "case_track_label": "tycove",
+  "type": "osobni",
+  "color": "#4A3A5A",
+  "available_days": [
+    10
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "forced": true
+  },
+  "title": "Složka",
+  "case_number": "Sp. zn. interní — bez čísla",
+  "defendant": {
+    "name": "—",
+    "age": 0,
+    "occupation": "—",
+    "detail": "Tento případ nemá obžalovaného. Je to dokument nalezený na Benově stole."
+  },
+  "charge": "Bez obžaloby. Ben nalezl složku, která tam nebyla, když odcházel domů.",
+  "description": "Ráno přišel Svejda jako obvykle — s poštou, s kávou, s prázdným výrazem. Pak se zastavil u dveří a řekl: 'Pane doktore, ta složka na stole — to jste přinesl vy?' Ben se podíval. Na stole ležela hnědá papírová složka s tkaničkou, bez adresy, bez jména. Svejda ji tam nedal. Ben ji tam nedal. Někdo ji tam dal přes noc.",
+  "testimonies": [
+    {
+      "id": "obsah_slozky",
+      "speaker": "Obsah složky — soupis dokumentů",
+      "text": "Tři listy. První: rodný list Anny Vránové, narozené 12. března 1891 v Holešovicích. Otec: Josef Vrana, matka: Hedvika Vránová, rozená Haasová. <span class=\"clue\" data-clue-id=\"clue_anna_haas_rodina\">Slovo Haasová — Anna je neteří nebo sestřenicí Emila Haase. Příbuznost doložená v rodném listu.</span> Druhý list: výpis z obchodního rejstříku — Wolfova poradenská firma, zapsaná dubna 1929. Mezi zakladateli: Emil Haas jako tichý společník. Třetí list: rukou psaná poznámka. Bez podpisu. Text: <em>'Dokument ze září osmadvacátého existuje ve dvou verzích. Druhá verze je u ministra. Použijte rodný list, pokud chcete vědět proč.'</em>",
+      "contradiction_keywords": [
+        "Haasová",
+        "tichý společník",
+        "druhá verze"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "svejda_vypoved",
+      "speaker": "Svejda, soudní úředník",
+      "text": "Budova se zavírá v šest. Klíče mám já, vrátný Procházka a pan předseda senátu. <span class=\"clue\" data-clue-id=\"clue_kdo_mel_pristup\">Procházka říká, že nikoho neviděl. Já jsem odcházel v půl sedmé — kancelář byla prázdná, stůl čistý. Ráno jsem přišel v osm a složka tam byla.</span> To je vše, co vím. Kdo tam byl mezi půl sedmou a osmi — nevím.",
+      "contradiction_keywords": [
+        "půl sedmé",
+        "osm",
+        "nevím"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "anna_je_haasova",
+      "description": "Anna Wolfová, manželka obžalovaného z Velezrady, je příbuzná Emila Haase — neteř nebo sestřenice. Haas je tichým společníkem ve Wolfově poradenské firmě. Wolf, Haas, Anna — tři jména, jeden kruh.",
+      "involves": [
+        "obsah_slozky"
+      ],
+      "highlight_at_wisdom": 60,
+      "unlocks_confrontation": null
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "haas_anna_wolf_strong",
+    "pairs": [
+      {
+        "pair_id": "haas_anna_wolf_strong",
+        "a_id": "clue_anna_haas_rodina",
+        "b_id": "clue_kdo_mel_pristup",
+        "strength": "strong"
+      }
+    ],
+    "decoys": [
+      "decoy_poznamka_bez_podpisu"
+    ],
+    "timed_hunt": {
+      "enabled": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [],
+      "verdicts": [
+        {
+          "min": 40,
+          "ids": [
+            "pouzit_dokument"
+          ]
+        },
+        {
+          "min": 70,
+          "ids": [
+            "odevzdat_statnimu"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 50,
+          "unlock_verdict_ids": [
+            "pouzit_dokument",
+            "odevzdat_statnimu"
+          ],
+          "narrative_lines": [
+            "Anna Vránová-Wolfová, rozená Haasová. Wolf, Haas, Anna — kruh, který se teď uzavřel.",
+            "Haas jako tichý společník ve Wolfově firmě. To vysvětluje transakce z Velezrady jinak.",
+            "Někdo to ví. A někdo chce, aby to věděl Ben."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "vratny_prochazka",
+      "target_label": "Procházka, vrátný",
+      "reveals": "motivation",
+      "text": "Procházka stojí u vchodu a přesunuje váhu z nohy na nohu. <span class=\"clue\" data-clue-id=\"decoy_poznamka_bez_podpisu\">Říká: 'Viděl jsem jednoho člověka. Chodí sem někdy — starší pán, civilu, šedý kabát. Říkám mu pane, on přikývne a jde dál. Nikdy ho nezastavuji, protože vypadá jako někdo, koho zastavovat nemám.'</span> Popis sedí na Beneše. Nebo na tucet jiných lidí.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": -1
+        }
+      }
+    },
+    "records": {
+      "source": "Obchodní rejstřík — Wolfova poradenská firma; matrika narozených Holešovice 1891",
+      "reveals": "facts",
+      "text": "Matrika: Anna Vránová, otec Josef, matka Hedvika Vránová rozená Haasová. Emil Haas — syn Hedvičina bratra. Anna a Emil jsou bratranci. Obchodní rejstřík Wolfovy firmy: <span class=\"clue\" data-clue-id=\"clue_anna_haas_rodina\">zakladatelé Wolf Alexander a Haas Emil jako tichý společník s podílem 30%. Firma zapsána dubna 1929 — osm měsíců po Wolfově propuštění z ministerstva.</span> Haasův podíl byl převeden na Annu v lednu 1931 — dva týdny před zahájením vyšetřování Wolfa.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Kapital": 2,
+          "Moc": -1
+        }
+      },
+      "unlocks_contradiction": "anna_je_haasova"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Vina": 2
+        },
+        "factions": {
+          "Moc": -1,
+          "Kapital": 1
+        }
+      },
+      "variants": {
+        "moc_high": "Složka se na Benově stole neobjevila náhodou. Někdo věděl, že Ben dostane Wolfův případ — a věděl to dřív, než byl případ přiřazen. To znamená, že rozvrh případů pro pátek 20. března byl znám přinejmenším den předem. Kdo ho znal: předseda senátu, kancelář Vlčka, státní zastupitelství.",
+        "kapital_high": "Wolfova firma existovala osm měsíců — od propuštění do zahájení vyšetřování. Haasův podíl přešel na Annu dva týdny před zatčením. Ten přesun naznačuje, že Haas věděl, co přijde. A věděl to dřív, než to věděl Wolf.",
+        "default": "Poznámka říká: použijte rodný list, pokud chcete vědět proč. Ben drží rodný list v ruce. Proč — to závisí na tom, co s ním udělá."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "pouzit_dokument": {
+          "label": "Ponechat složku a použít informace",
+          "description": "Ben si složku nechá. Rodný list a výpis z rejstříku použije jako kontext při čtení Wolfova případu — nebo při rozhodnutí, komu věřit. Informace mění, co Ben vidí. Odkud složka přišla, zůstane otevřenou otázkou.",
+          "effects": {
+            "moudrost": 4,
+            "vina": 3,
+            "integrita": -1,
+            "nadeje": 2,
+            "flags": [
+              {
+                "key": "flag_rodny_list_pouzit",
+                "value": true
+              },
+              {
+                "key": "benes_identified",
+                "value": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "odevzdat_statnimu": {
+          "label": "Odevzdat státnímu zástupci jako anonymní podnět",
+          "description": "Ben dokumenty odevzdá bez komentáře. Zbavuje se odpovědnosti — ale i informace. Dvořák si složku vezme, přikývne a Ben neví, co s ní udělá.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 3,
+            "vina": -1,
+            "moudrost": 2,
+            "flags": [
+              {
+                "key": "flag_rodny_list_odevzdan",
+                "value": true
+              }
+            ]
+          }
+        },
+        "znicit": {
+          "label": "Zničit složku — nikdy ji Ben neviděl",
+          "description": "Spálit, skartovat, vyhodit. Složka zmizí. Informace zmizí. Kdo ji poslal — nevěděl by Ben, jestli uspěl nebo ne.",
+          "effects": {
+            "integrita": 1,
+            "vina": 2,
+            "nadeje": -1,
+            "flags": [
+              {
+                "key": "flag_rodny_list_znicen",
+                "value": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "odlozit": {
+          "label": "Odložit — nechat složku ležet a vrátit se k ní",
+          "description": "Ben složku uzavře a dá do šuplíku. Nepřečetl ji celou. Nebo přečetl — ale nechce se rozhodnout dnes.",
+          "effects": {
+            "moudrost": 2,
+            "vina": 1,
+            "flags": [
+              {
+                "key": "flag_rodny_list_odlozen",
+                "value": true
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_pouzit_dokument": "Složka leží v zásuvce. Ben ví, co v ní je — a ví, že to ví. Anna Wolfová přestala být jen manželkou obžalovaného. Je to Haasova bratrankyně, spoluzakladatelka firmy, která existovala osm měsíců a pak zmizela do jejích rukou. Ben si to nese ke Wolfovu případu.",
+    "not_guilty_odevzdat_statnimu": "Dvořák přijal složku beze slova. Přečetl první list, přikývl a řekl: 'Děkuji.' Ben čekal, co řekne dál. Dvořák neřekl nic dál.",
+    "not_guilty_znicit": "Složka zmizela. Ben seděl u stolu a přemýšlel, jestli to byl dobrý nápad. Odpověď nepřišla. Svejda přinesl kávu a nezeptal se na nic.",
+    "insufficient_odlozit": "Složka leží v šuplíku pod starými spisy. Ben o ní nemluvil se Svejdou. Svejda se nezeptal. V pátek složka pořád leží na místě — Ben ji před odchodem domů přesunul pod jiný svazek, aby nebyla vidět, kdyby někdo otevřel šuplík."
+  },
+  "stamp_moment": {
+    "guilty": "Ben zavřel složku. Ruce nechal chvíli ležet na hnědém papíru. Pak otevřel šuplík.",
+    "not_guilty": "Složka zmizela — do Dvořákovy aktovky nebo do ohně. Ben se díval na prázdné místo na stole.",
+    "insufficient": "Složka je v šuplíku. Ben ví, kde je. To je pro tuto chvíli dost."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "guilty_pouzit_dokument",
+      "delay_days": 1,
+      "type": "fragment",
+      "text": "Ráno D11: V zásuvce pod nálezy leží složka. Ben ví, čí podpis je na dokumentu ze září osmadvacátého — a ví, proč Wolf prodal Haasův podíl na Annu dva týdny před zatčením."
+    },
+    {
+      "trigger": "not_guilty_odevzdat_statnimu",
+      "delay_days": 2,
+      "type": "fragment",
+      "text": "Dvořák zmínil při jednání jeden nový detail — příbuznost Anny Wolfové s Haasem. Připojil to k obžalobě jako upřesňující poznámku. Ben si všiml, odkud to vzal."
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1714"/>
+      <stop offset="100%" stop-color="#0f0d0b"/>
+    </linearGradient>
+    <linearGradient id="coat" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2b2a29"/>
+      <stop offset="100%" stop-color="#191817"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#9e8773"/>
+      <stop offset="100%" stop-color="#7f6a58"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.08"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+
+  <rect width="600" height="800" fill="url(#bg)"/>
+  <ellipse cx="300" cy="770" rx="220" ry="120" fill="#0b0a09"/>
+
+  <path d="M150 760 C170 620 220 540 300 540 C380 540 430 620 450 760 Z" fill="url(#coat)"/>
+  <path d="M230 760 L300 600 L370 760 Z" fill="#2f2d2b"/>
+  <path d="M282 760 L300 640 L318 760 Z" fill="#5f584f"/>
+
+  <ellipse cx="300" cy="390" rx="120" ry="145" fill="url(#skin)"/>
+  <path d="M190 390 C195 310 235 255 300 250 C365 255 405 310 410 390 C390 355 355 338 300 338 C245 338 210 355 190 390 Z" fill="#4f4a45"/>
+  <path d="M215 415 C230 370 260 350 300 350 C340 350 370 370 385 415 C355 398 332 392 300 392 C268 392 245 398 215 415 Z" fill="#8d7866" opacity="0.45"/>
+
+  <ellipse cx="252" cy="410" rx="20" ry="10" fill="#2b231d"/>
+  <ellipse cx="348" cy="410" rx="20" ry="10" fill="#2b231d"/>
+  <circle cx="252" cy="412" r="4" fill="#120f0d"/>
+  <circle cx="348" cy="412" r="4" fill="#120f0d"/>
+  <path d="M270 458 C285 470 315 470 330 458" stroke="#5f4e41" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M296 428 C292 452 289 460 284 466" stroke="#6f5b4b" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <path d="M196 360 C210 300 245 260 300 255 C355 260 390 300 404 360" stroke="#6b665f" stroke-width="16" fill="none" opacity="0.55" stroke-linecap="round"/>
+  <path d="M204 350 C218 300 250 266 300 262 C350 266 382 300 396 350" stroke="#8a857e" stroke-width="8" fill="none" opacity="0.5" stroke-linecap="round"/>
+
+  <rect width="600" height="800" filter="url(#grain)" opacity="0.5"/>
+</svg>

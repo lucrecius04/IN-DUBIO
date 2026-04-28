@@ -1,0 +1,290 @@
+{
+  "id": "tyc_haas_d11",
+  "slot": "pool",
+  "case_track": "pillar",
+  "case_track_label": "tycove",
+  "type": "osobni",
+  "color": "#3A4A3A",
+  "available_days": [
+    11
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "forced": true
+  },
+  "title": "Obálka",
+  "case_number": "Sp. zn. interní — bez čísla",
+  "defendant": {
+    "name": "—",
+    "age": 0,
+    "occupation": "—",
+    "detail": "Tento případ nemá obžalovaného. Je to návštěva Emila Haase."
+  },
+  "charge": "Bez obžaloby. Emil Haas přišel osobně.",
+  "description": "Svejda tentokrát klepal třikrát a čekal. Pak otevřel dveře a řekl jen: 'Je tu někdo.' Ben se podíval. Ve dveřích stál muž, kterého znal jen ze jméne a z vizitky, která přišla v únoru — výrobce strojů z Holešovic, který má bratra nebo bratrance v Drážďanech nebo v Berlíně a jehož jméno se v posledních týdnech objevovalo na místech, kde být nemělo. Emil Haas byl asi šedesát let starý, tmavý oblek, střižený přesně. Přišel bez obhájce, bez sekretáře, bez svědka. Sám.",
+  "testimonies": [
+    {
+      "id": "haas_uvod",
+      "speaker": "Emil Haas",
+      "text": "'Pane doktore, nepřišel jsem jako účastník řízení. Přišel jsem jako soukromá osoba.' Posadil se — bez vyzvání, klidně, jako člověk, který je zvyklý sedat v místnostech jiných lidí. <span class=\"clue\" data-clue-id=\"clue_haas_soukrome\">Položil na stůl obálku. Silnější, než by čekal Ben. 'Tři sta korun. Žádné podmínky, žádný závazek. Říkáme tomu gesto dobré vůle — vy si to nazvěte jak chcete.'</span> Čekal.",
+      "contradiction_keywords": [
+        "žádné podmínky",
+        "gesto dobré vůle",
+        "soukromá osoba"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "haas_vysvetleni",
+      "speaker": "Emil Haas",
+      "text": "'Vím o vaší matce. Operace stojí čtyři sta korun — tři sta vás přibližuje. Zbytek si seženete.' Pauza. 'Nebo ne. To je na vás.' <span class=\"clue\" data-clue-id=\"clue_haas_vi_o_matce\">Vstal. 'Já neprosím o nic konkrétního. Prosím jen o to, abyste si vzpomněl, že jsem tu byl — až přijde případ, kde bude záležet, jak se díváte na důkazy.'</span> Přejel pohledem po stole — po spisech, po inkoustové skvrně, po fotografii, na které Ben neměl fotografii. Ale Haas se díval, jako by tam nějaká byla.",
+      "contradiction_keywords": [
+        "čtyři sta korun",
+        "tři sta",
+        "jak se díváte na důkazy"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "bez_podminek_ale_s_odkazem",
+      "description": "Haas řekl žádné podmínky — a pak řekl: vzpomněl si, až přijde případ, kde bude záležet, jak se díváte na důkazy. To je podmínka. Jen nepojmenovaná.",
+      "involves": [
+        "haas_uvod",
+        "haas_vysvetleni"
+      ],
+      "highlight_at_wisdom": 55,
+      "unlocks_confrontation": null
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "gesto_s_podminkou_strong",
+    "pairs": [
+      {
+        "pair_id": "gesto_s_podminkou_strong",
+        "a_id": "clue_haas_soukrome",
+        "b_id": "clue_haas_vi_o_matce",
+        "strength": "strong"
+      }
+    ],
+    "decoys": [
+      "decoy_obalka_tlusta"
+    ],
+    "timed_hunt": {
+      "enabled": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [],
+      "verdicts": [
+        {
+          "min": 40,
+          "ids": [
+            "vzit_obalku"
+          ]
+        },
+        {
+          "min": 70,
+          "ids": [
+            "odmitnut_s_komentarem"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 50,
+          "unlock_verdict_ids": [
+            "vzit_obalku",
+            "odmitnut_s_komentarem"
+          ],
+          "narrative_lines": [
+            "Žádné podmínky — a pak: vzpomněl si, až přijde případ.",
+            "Haas ví o matce. Ví o čtyřech stech korunách. To nejsou věci, které se ví náhodou.",
+            "Gesto dobré vůle, které přichází přesně ve chvíli, kdy Ben nemá peníze na operaci."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "svejda_po_navsteve",
+      "target_label": "Svejda — po Haasově odchodu",
+      "reveals": "motivation",
+      "text": "Svejda stál za dveřmi celou dobu. Ne jako špeh — jen jako člověk, který neví, zda se má vrátit s kávou nebo ne. Ben se ho zeptal: poznal jsi ho? <span class=\"clue\" data-clue-id=\"decoy_obalka_tlusta\">Svejda řekl: 'Je to Haas. Z Holešovic. Byl tady jednou dřív — loni na jaře, přinesl zásilku pro předsedu senátu. Zásilka byla velká obálka. Jako tato.'</span> Ben se na něj podíval. Svejda přikývl a odešel.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": -1
+        }
+      }
+    },
+    "records": {
+      "source": "Finanční záznamy, operace matky; vizitka Haas und Söhne z února 1931",
+      "reveals": "facts",
+      "text": "Vizitka z února: Emil Haas, Haas und Söhne, Holešovice. <span class=\"clue\" data-clue-id=\"clue_haas_vi_o_matce\">Bankovní záznam: stav Benova účtu k 11. březnu — 87 Kčs. Operace matky: 400 Kčs, deadline 12. března. Rozdíl: 313 Kčs.</span> Haas přinesl tři sta. Jako by věděl přesně, kolik chybí — ne přesně kolik je potřeba, ale kolik chybí.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 2
+        },
+        "factions": {
+          "Kapital": 2
+        }
+      },
+      "unlocks_contradiction": "bez_podmínek_ale_s_odkazem"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Vina": 2
+        },
+        "factions": {
+          "Kapital": 2,
+          "Moc": -1
+        }
+      },
+      "variants": {
+        "kapital_high": "Haas dělá tohle pravidelně — ne vždy soudcům, někdy úředníkům, někdy revizorům. Vždy přesně tolik, kolik chybí, nikdy víc. Člověk, který přijme, není zkorumpovaný — jen je v situaci, kdy nemůže odmítnout. A Haas to ví dopředu.",
+        "moc_high": "Haas und Söhne má zakázky od státní správy. Kdo rozhoduje o zakázkách, se s Haasem zná. Tato návštěva je pravděpodobně vědomá — někdo Haase poslal, nebo Haas věděl, že nikdo ho nezastaví.",
+        "default": "Tři sta korun. Žádné podmínky. Vzpomněl si, až bude záležet, jak se díváte na důkazy. Ben drží obálku v ruce nebo ne. Oboje je rozhodnutí."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "vzit_obalku": {
+          "label": "Vzít obálku",
+          "description": "Tři sta korun. Ben ji vezme. Deadline je zítra. Matka dostane operaci. Haas odejde a Ben bude vědět, co udělal — a bude to vědět každý den, než přijde Wolfův případ.",
+          "effects": {
+            "integrita": -8,
+            "vina": 6,
+            "nadeje": 2,
+            "moc": -3,
+            "kapital": 2,
+            "finance": 300,
+            "flags": [
+              {
+                "key": "haas_envelope_opened",
+                "value": true
+              },
+              {
+                "key": "uplatek_prijat",
+                "value": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "odmitnut_slusne": {
+          "label": "Odmítnout — vrátit obálku",
+          "description": "Ben obálku vezme do ruky a pak ji položí zpátky. 'Nemohu.' Haas přikývne. Odejde. Tři sta korun zůstane na stole — nebo ne, Haas si je vezme. Deadline je zítra a Ben má osmdesát sedm korun.",
+          "effects": {
+            "integrita": 5,
+            "odvaha": 5,
+            "vina": -1,
+            "nadeje": -2,
+            "moc": 2,
+            "kapital": -2,
+            "flags": [
+              {
+                "key": "flag_haas_odmitnut_d11",
+                "value": true
+              }
+            ]
+          }
+        },
+        "odmitnut_s_komentarem": {
+          "label": "Alternativa: Odmítnout a říct proč",
+          "description": "Ben vrátí obálku a řekne: 'Vím, co děláte. A vím, proč přicházíte teď.' Haas se na něj podívá — dlouho, bez výrazu. Pak obálku vezme a odejde. Nic dalšího.",
+          "requires_investigation": 2,
+          "requires": {
+            "odvaha_min": 60
+          },
+          "effects": {
+            "integrita": 7,
+            "odvaha": 7,
+            "vina": -2,
+            "nadeje": -1,
+            "moc": 3,
+            "kapital": -3,
+            "flags": [
+              {
+                "key": "flag_haas_odmitnut_d11",
+                "value": true
+              },
+              {
+                "key": "flag_vlcek_upozorneni",
+                "value": true
+              },
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "pozadit_cas": {
+          "label": "Požádat o čas — nechat obálku na stole do zítřka",
+          "description": "Ben řekne: potřebuji noc. Haas přikývne a odejde — bez obálky, která zůstane na stole. Ráno Ben rozhodne.",
+          "effects": {
+            "moudrost": 2,
+            "vina": 2,
+            "flags": [
+              {
+                "key": "flag_haas_ceka",
+                "value": true
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_vzit_obalku": "Haas odešel. Tři sta korun leží v zásuvce. Ben zavolal lékaři a domluvil operaci na čtvrtek. Matka řekla: jak jsi to sehnal? Ben řekl: ušetřil jsem. Matka přikývla. Neuvěřila mu.",
+    "not_guilty_odmitnut_slušne": "Ben stál u okna a díval se za Haasem na ulici. Haas zastavil vůz — velký, tmavý — a odjel. Ben se otočil k telefonu. Deadline byl zítra a on měl osmdesát sedm korun.",
+    "not_guilty_odmitnut_s_komentarem": "Haas se zastavil u dveří a podíval se zpátky. Jeden pohled — beze slova. Pak odešel. Svejda přišel s kávou a nezeptal se na nic. Ben seděl a myslel na to, jak Haas věděl o čtyřech stech korunách.",
+    "insufficient_pozadit_cas": "Obálka leží na rohu stolu. Svejda kolem ní chodí a nedívá se na ni — nebo se dívá. Ben neví. Ráno přijde a rozhodne."
+  },
+  "stamp_moment": {
+    "guilty": "Ben zavřel šuplík. Tři sta korun je uvnitř. Haas je pryč. Deadline je zítra.",
+    "not_guilty": "Obálka zmizela v Haasově kapse. Ben stál u okna. Venku byl normální čtvrtek — pro všechny ostatní.",
+    "insufficient": "Obálka leží na stole. Svejda ji obchází. Ben ví, že ráno bude muset rozhodnout."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "guilty_vzit_obalku",
+      "delay_days": 1,
+      "type": "fragment",
+      "text": "Matka má operaci domluvenu na čtvrtek. Ben to ví. Ví taky, odkud peníze jsou. Wolfův případ přijde v pátek."
+    },
+    {
+      "trigger": "not_guilty_odmitnut_s_komentarem",
+      "delay_days": 2,
+      "type": "fragment",
+      "text": "Vlčkův dopis přišel odpoledne. Krátký — dvě věty. 'Slyšel jsem o včerejší návštěvě. Doufám, že rozhovor proběhl v souladu s pravidly.' Ben si přečetl větu dvakrát."
+    }
+  ]
+}

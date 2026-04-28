@@ -13,25 +13,25 @@ pool;6;1;Pool: moralni;Mor;Pool;Doporuc: pool_a1_stara_rana / pool_a1_exekuce
 d06s2_posp2;6;2;tyc_pospisil_2 Pospisil 2 (strach);Rut;Tyc;Beat 2/3. ID tyc_pospisil_2, Sp. zn. 98/1931. Pospisil se boji.
 d07s1_pol1;7;1;Horackova svedkyne;Pol;Tyc;VETVENI 1
 pool;7;2;Pool: politicky/moralni;Pol;Pool;Doporuc: pool_a1_vyveseni (ochrana rep.)
-d08s1_boz3;8;1;Bozena 3 (korupce+tragedie);Mor;Tyc;Beat 3/3 FINALE. Slouceno korupce+tragedie.
-d08s2_hran2;8;2;Hranice 2 (Nemec);Pol;Tyc;Beat 2/3. Narodnostni rozmer.
+d08s1_boz3;8;1;Bozena 3 (korupce+tragedie);Mor;Tyc;Beat 3/3 FINALE. ID tyc_bozena_3, Sp. zn. 108/1931.
+d08s2_hran2;8;2;Hranice 2 (Nemec);Pol;Tyc;Beat 2/3. ID tyc_hranice_2, Sp. zn. 109/1931. Narodnostni rozmer.
 pool_light;8;3;Pool light (podminene);Rut;Pool;Prvni treti spis. Light rezim.
 d09s1_benes;9;1;BENES PRIJDE;Osob;Tyc;VETVENI 2. Benesova pravda.
 pool;9;2;Pool: moralni;Mor;Pool;Doporuc: pool_a1_spravce / pool_a1_bytova_komise
 pool_light;9;3;Pool light;Rut;Pool;Light rezim.
-d10s1_zvrat;10;1;ZVRATY: rodny list + Anna/Haas;Osob;Tyc;DVA ZVRATY.
-d10s2_mark2;10;2;Markova 2 (zachrankyne);Mor;Tyc;Beat 2/3.
+d10s1_pool_tiskarna;10;1;Pool: rutinni (tiskarna);Rut;Pool;Runtime: pool_a1_tiskarna.
+d10s2_zvrat;10;2;ZVRATY: rodny list + Anna/Haas;Osob;Tyc;DVA ZVRATY. ID tyc_zvraty_d10, Sp. zn. interni — bez cisla.
 pool_light;10;3;Pool light;Rut;Pool;Light rezim.
-d11s1_haas;11;1;HAAS OSOBNE (300 Kc);Osob;Tyc;VETVENI 3. Obalka.
-d11s2_posp3;11;2;Pospisil 3 (klicovy svedek);Pol;Tyc;Beat 3/3 FINALE.
+d11s1_pool_weiss;11;1;Pool: rutinni (weiss);Rut;Pool;Runtime: pool_a1_weiss.
+d11s2_haas;11;2;HAAS OSOBNE (300 Kc);Osob;Tyc;VETVENI 3. Obalka. ID tyc_haas_d11, Sp. zn. interni — bez cisla.
 pool_light;11;3;Pool light;Rut;Pool;Light rezim.
-d12s1_zavad;12;1;Zavadova: Vime vse + podvrh;Osob;Tyc;Bratr. Podvrh.
-d12s2_hran3;12;2;Hranice 3 (finale);Pol;Tyc;Beat 3/3 FINALE. 34cm = metafora.
+d12s1_pool_stara_rana;12;1;Pool: moralni (stara rana);Mor;Pool;Runtime: pool_a1_stara_rana.
+d12s2_zavad;12;2;Zavadova: Vime vse + podvrh;Osob;Tyc;Bratr. Podvrh. ID tyc_zavadova_d12, Sp. zn. interni — bez cisla.
 pool_light;12;3;Pool light;Rut;Pool;Light rezim.
 d13s1_karas;13;1;KARAS - osobni scena;Osob;Tyc;VETVENI 4.
 pool;13;2;Pool: politicky;Pol;Pool;Doporuc: zbyvajici pool
 pool_light;13;3;Pool light;Rut;Pool;Light rezim.
-d14s1_mark3;14;1;Markova OBZALOVANA;Mor;Tyc;Beat 3/3 FINALE.
+d14s1_mark3;14;1;Markova OBZALOVANA;Mor;Tyc;Beat 3/3 FINALE. ID tyc_markova_3, Sp. zn. 118/1931.
 pool;14;2;Pool: posledni;Mor/Pol;Pool;Doporuc: zbyvajici pool
 pool_light;14;3;Pool light;Rut;Pool;Light rezim.
-d15s1_velez;15;1;VELEZRADA (finalni pripad);Pol;Tyc;EPILOG. Jen 1 pripad.
+d15s1_velez;15;1;VELEZRADA (finalni pripad);Pol;Tyc;EPILOG. Jen 1 pripad. ID tyc_velezrada_d15, Sp. zn. 124/1931.

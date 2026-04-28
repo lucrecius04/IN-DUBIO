@@ -84,6 +84,7 @@ const State = (() => {
     _zarucRozhodovaciStyl();
     _zarucTydenniRozsireni();
     _zarucEkonomiku();
+    _zarucUzloveFlagy();
     _normalizujTraitsFrakceATrust();
     _normalizujSettings();
     _normalizujStatsDisplay();
@@ -108,6 +109,20 @@ const State = (() => {
     } else if (_stav.gameOver === true) {
       _stav.flags.stats_display_unlocked = true;
     }
+  }
+
+  function _zarucUzloveFlagy() {
+    const defaults = {
+      vlcek_vztah: 'neutral',
+      haas_kontakt: 'odmitnut',
+      benes_pravda: 'nezna',
+      osobni_cena: 'nerozhodl'
+    };
+    if (!_stav.uzlove || typeof _stav.uzlove !== 'object') {
+      _stav.uzlove = { ...defaults };
+      return;
+    }
+    _stav.uzlove = Object.assign({}, defaults, _stav.uzlove);
   }
 
   function _zarucEkonomiku() {
@@ -302,6 +317,14 @@ const State = (() => {
       records_free_until_day: null,
       /** Po dohrání běhu: nabídka režimu zobrazení statistik v menu. */
       stats_display_unlocked: false
+    },
+
+    // Uzlové flagy — přepočítávány denně, nikdy ručně.
+    uzlove: {
+      vlcek_vztah: 'neutral',    // 'neutral' | 'kompromitovan' | 'vzdor'
+      haas_kontakt: 'odmitnut',  // 'odmitnut' | 'otevren' | 'zavazany'
+      benes_pravda: 'nezna',     // 'nezna' | 'prijal' | 'odmitl'
+      osobni_cena: 'nerozhodl'   // 'nerozhodl' | 'zaplatil' | 'haasem' | 'odmitl'
     },
 
     archive: {
@@ -1064,6 +1087,55 @@ const State = (() => {
     return true;
   }
 
+  function vypoctiUzloveFlagy() {
+    const f = _stav.flags || {};
+    const t = _stav.traits || {};
+    const tr = _stav.trust || {};
+    const den = Number(_stav.currentDay);
+    const u = _stav.uzlove || (_stav.uzlove = {});
+
+    // vlcek_vztah
+    // Skutečný název v kódu: flag_vlcek_upozorneni (ne dokumentové vlcek_splnil_d7/d8).
+    const vlcekKompromis = f.uplatek_prijat === true
+      || (f.flag_vlcek_upozorneni === true && Number(t.Integrita) <= 35);
+    // Skutečný název v kódu: trust.vlcek (0..3), ne samostatný flag vlcek_odmitl_d11.
+    const vlcekVzdor = f.uplatek_prijat !== true
+      && (Number.isFinite(Number(tr.vlcek)) ? Number(tr.vlcek) <= 0 : false)
+      && Number(t.Odvaha) >= 65;
+    u.vlcek_vztah = vlcekKompromis ? 'kompromitovan' : (vlcekVzdor ? 'vzdor' : 'neutral');
+
+    // haas_kontakt
+    // Skutečné názvy: uplatek_prijat, benes_identified, haas_envelope_opened, flag_rodny_list_pouzit.
+    const haasZavazany = f.uplatek_prijat === true;
+    const haasOtevren = !haasZavazany && (
+      f.benes_identified === true
+      || f.haas_envelope_opened === true
+      || f.flag_rodny_list_pouzit === true
+    );
+    u.haas_kontakt = haasZavazany ? 'zavazany' : (haasOtevren ? 'otevren' : 'odmitnut');
+
+    // benes_pravda
+    // v1 bez adventure scén: mapujeme přes benes_identified.
+    if (u.benes_pravda === 'nezna' && f.benes_identified === true) {
+      u.benes_pravda = 'prijal';
+    } else if (!['nezna', 'prijal', 'odmitl'].includes(String(u.benes_pravda))) {
+      u.benes_pravda = 'nezna';
+    }
+
+    // osobni_cena
+    if (f.operace_zaplacena === true && f.uplatek_prijat === true) {
+      u.osobni_cena = 'haasem';
+    } else if (f.operace_zaplacena === true) {
+      u.osobni_cena = 'zaplatil';
+    } else if (f.operace_odlozena === true) {
+      u.osobni_cena = 'odmitl';
+    } else if (Number.isFinite(den) && den >= 12) {
+      u.osobni_cena = 'nerozhodl';
+    }
+
+    uloz();
+  }
+
   return {
     get,
     set,
@@ -1098,6 +1170,7 @@ const State = (() => {
     pridejReviziPripadu,
     vyzvedniRevizeProDen,
     zalogujReviziPripadu,
+    vypoctiUzloveFlagy,
     inicializujClueFocusPokudTreba,
     jeClueFocusZamceno,
     ziskejClueFocusZbyva,

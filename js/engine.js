@@ -229,12 +229,6 @@ const Engine = (() => {
     // Načti denní data
     _denData = DataLoader.ziskejDen(den);
 
-    // Případy dne hned po days — před Desk/Narrative, aby výjimka v UI nenechala _pripady prázdné
-    Cases.nastavPripadyProDen(den, _denData);
-    const pripady = Cases.getPripady();
-    UI.aktualizujSlozky(pripady, State.get('casesResolvedToday'));
-    Desk.nastavAktivniSpis(null);
-
     // Aktualizuj vizuál stolu
     State.set('phase', 'morning');
     Desk.aktualizujVse();
@@ -272,25 +266,118 @@ const Engine = (() => {
       const addEcho = typeof Narrative !== 'undefined' && Narrative.vyhodnotPodmineneRadky
         ? Narrative.vyhodnotPodmineneRadky(_denData && _denData.morning_conditional_lines)
         : '';
+      const addAdventure = String(State.get('flags.morning_fragment_append_next') || '').trim();
       if (addEcho && typeof DataLoader !== 'undefined' && DataLoader.ziskejFragment) {
         const baseF = DataLoader.ziskejFragment(morningId);
         if (baseF) {
+          const casti = [(baseF.text || '').trim(), addEcho.trim(), addAdventure].filter(Boolean);
           State.oznacFragment(morningId);
           await _cekejNaFragment(null, {
             ...baseF,
-            text: (baseF.text || '') + addEcho
+            text: casti.join('\n\n')
           });
+          if (addAdventure) State.set('flags.morning_fragment_append_next', null);
         } else {
           await _cekejNaFragment(morningId);
         }
       } else {
-        await _cekejNaFragment(morningId);
+        if (addAdventure && typeof DataLoader !== 'undefined' && DataLoader.ziskejFragment) {
+          const baseF = DataLoader.ziskejFragment(morningId);
+          if (baseF) {
+            const casti = [(baseF.text || '').trim(), addAdventure].filter(Boolean);
+            State.oznacFragment(morningId);
+            await _cekejNaFragment(null, {
+              ...baseF,
+              text: casti.join('\n\n')
+            });
+            State.set('flags.morning_fragment_append_next', null);
+          } else {
+            await _cekejNaFragment(morningId);
+          }
+        } else {
+          await _cekejNaFragment(morningId);
+        }
       }
       if (den === 4) {
         State.set('flags.dopis_operace_den4_viden', true);
         State.uloz();
       }
     }
+
+    // Adventure scéna: po ranním fragmentu, před načtením případů.
+    const adventureScena = _denData && _denData.adventure_scene;
+    const adventureDoneKey = adventureScena && adventureScena.id
+      ? ('flags.adventure_done_' + adventureScena.id)
+      : null;
+    const maSpustitAdventure =
+      adventureScena &&
+      adventureScena.trigger === 'morning_after_fragment' &&
+      adventureDoneKey &&
+      State.get(adventureDoneKey) !== true;
+
+    if (maSpustitAdventure && UI && typeof UI.zobrazAdventureScenu === 'function') {
+      UI.zobrazAdventureScenu(adventureScena, function(vysledek) {
+        const out = vysledek && typeof vysledek === 'object' ? vysledek : {};
+
+        if (out.sets_flag) {
+          State.set('flags.' + out.sets_flag, true);
+        }
+        if (out.sets_flag_extra) {
+          State.set('flags.' + out.sets_flag_extra, true);
+        }
+
+        if (out.sets_uzlovy && State.get('uzlove')) {
+          const uz = State.get('uzlove');
+          Object.assign(uz, out.sets_uzlovy);
+          State.set('uzlove', uz);
+        }
+
+        if (out.effects && typeof out.effects === 'object') {
+          for (const [klic, deltaRaw] of Object.entries(out.effects)) {
+            const delta = Number(deltaRaw);
+            if (!Number.isFinite(delta) || delta === 0) continue;
+            if (['Integrita', 'Odvaha', 'Moudrost', 'Vina', 'Nadeje'].includes(klic)) {
+              State.upravRys(klic, delta);
+              continue;
+            }
+            if (['Moc', 'Kapital', 'Lid', 'Stat', 'Obchodnici'].includes(klic)) {
+              const frakce = klic === 'Stat' ? 'Moc' : (klic === 'Obchodnici' ? 'Kapital' : klic);
+              State.upravFrakci(frakce, delta);
+              continue;
+            }
+            if (['vlcek', 'zavadova', 'karas'].includes(klic)) {
+              State.upravDuveru(klic, delta);
+              continue;
+            }
+            if (klic === 'Finance') {
+              State.upravFinance(delta);
+            }
+          }
+        }
+
+        if (out.morning_fragment_append) {
+          State.set('flags.morning_fragment_append_next', out.morning_fragment_append);
+        }
+
+        State.set(adventureDoneKey, true);
+        if (typeof State.vypoctiUzloveFlagy === 'function') {
+          State.vypoctiUzloveFlagy();
+        }
+        State.uloz();
+        _pokracujSpustDen(_denData, den);
+      });
+      return;
+    }
+
+    await _pokracujSpustDen(_denData, den);
+  }
+
+  async function _pokracujSpustDen(denData, den) {
+    // Případy dne načítáme až po ranním fragmentu / adventure scéně.
+    Cases.nastavPripadyProDen(den, denData);
+    const pripady = Cases.getPripady();
+    UI.aktualizujSlozky(pripady, State.get('casesResolvedToday'));
+    Desk.nastavAktivniSpis(null);
 
     // Revize spisů — v 15denní verzi vypnuto (MIGRACE_20-15)
     // await _zpracujRevizeDne(den);
@@ -299,9 +386,9 @@ const Engine = (() => {
     await _zpracujDialogyDne(den);
 
     // Nedělní volba (bez případů — samostatný krok před pokračováním dne)
-    if (_denData?.nedelni_volba) {
+    if (denData?.nedelni_volba) {
       await new Promise(resolve => {
-        UI.zobrazNedelniVolbu(_denData, () => {
+        UI.zobrazNedelniVolbu(denData, () => {
           Desk.aktualizujVse();
           State.uloz();
           resolve();
@@ -313,7 +400,7 @@ const Engine = (() => {
     Desk.aktualizujVse();
 
     // Vlčkův dopis
-    if (_denData?.vlcek_letter) {
+    if (denData?.vlcek_letter) {
       Desk.zobrazVlcekDopis(true);
       Desk.zobrazSuplikIndikator(true);
     } else {
@@ -377,7 +464,7 @@ const Engine = (() => {
    * Výchozí „přežití“ až poslední kalendářní den (19), ať běh nemusí skončit hned 15. dnem.
    * @returns {string|null} typ pro spustKonec, nebo null
    */
-  function _vyhodnotVariabilniKonec() {
+  function _vyhodnotVariabilniKonecLegacy() {
     if (State.get('gameOver')) return null;
     const den = Number(State.get('currentDay'));
     if (!Number.isFinite(den) || den < 11) return null;
@@ -454,6 +541,101 @@ const Engine = (() => {
     return null;
   }
 
+  function _vyhodnotVariabilniKonec() {
+    if (State.get('gameOver')) return null;
+    const st = State.get() || {};
+    const den = Number(st.currentDay);
+    if (!Number.isFinite(den) || den < 11) return null;
+
+    const u = st.uzlove;
+    if (!u || typeof u !== 'object') {
+      return _vyhodnotVariabilniKonecLegacy();
+    }
+
+    const t = st.traits || {};
+    const tr = st.trust || {};
+    const bal = Number((st.finance && st.finance.balance) || 0) || 0;
+    const f = st.flags || {};
+    const factions = st.factions || {};
+    // Skutečný název v kódu: factions.Moc (dokument mluví obecně o "frakce/Moc").
+    const mocHodnota = Number.isFinite(Number(factions.Moc)) ? Number(factions.Moc) : 50;
+
+    // 2. KORUPCE (nejdříve D11)
+    if (den >= 11
+      && u.vlcek_vztah === 'kompromitovan'
+      && u.haas_kontakt === 'zavazany'
+      && Number(t.Integrita) <= 20) {
+      return 'korupce';
+    }
+
+    // 5. SMÍŘENÍ (nejdříve D12)
+    if (den >= 12
+      && u.benes_pravda === 'prijal'
+      && u.haas_kontakt !== 'zavazany'
+      && Number(t.Integrita) >= 60
+      && Number(t.Vina) <= 20) {
+      return 'smireni';
+    }
+
+    // 4. ÚTĚK (nejdříve D13)
+    if (den >= 13
+      && u.haas_kontakt !== 'zavazany'
+      && u.osobni_cena === 'zaplatil'
+      // Skutečný název v kódu: trust.karas (ne flag karas_nabidl_odchod).
+      && (tr.karas !== undefined ? Number(tr.karas) >= 2 : false)
+      && bal > 300) {
+      return 'utek';
+    }
+
+    // 6. ATENTÁT (nejdříve D13)
+    if (den >= 13
+      && u.vlcek_vztah === 'vzdor'
+      && u.haas_kontakt === 'odmitnut'
+      && u.benes_pravda === 'prijal'
+      && Number(t.Odvaha) >= 80
+      && mocHodnota <= 20) {
+      return 'atentát';
+    }
+
+    // 7. ŘÁD (nejdříve D14)
+    if (den >= 14
+      && u.vlcek_vztah !== 'vzdor'
+      && u.haas_kontakt === 'zavazany'
+      && u.benes_pravda !== 'prijal'
+      && (f.masek_document_signed === true
+          || (tr.zavadova !== undefined ? Number(tr.zavadova) >= 3 : false))) {
+      return 'rad';
+    }
+
+    // 8. ANNA (nejdříve D14)
+    // Skutečný kontrakt pruzkumProcent zatím není; v1 proxy přes Moudrost.
+    const pruzkumSplnen = Number(t.Moudrost) >= 60;
+    if (den >= 14
+      && u.benes_pravda === 'prijal'
+      && u.haas_kontakt === 'odmitnut'
+      && u.osobni_cena === 'nerozhodl'
+      && bal < 100
+      && pruzkumSplnen) {
+      return 'anna';
+    }
+
+    // 3. HRDINA (nejdříve D15)
+    if (den >= 15
+      && u.vlcek_vztah === 'vzdor'
+      && u.haas_kontakt === 'odmitnut'
+      && Number(t.Integrita) >= 80
+      && Number(t.Odvaha) >= 80) {
+      return 'hrdina';
+    }
+
+    // 1. PŘEŽITÍ (výchozí D15)
+    if (den >= 15) {
+      return 'preziti';
+    }
+
+    return null;
+  }
+
   /**
    * @param {boolean} [allowVariabilni=false] true jen po rozsudku/úplatku (aktivní relace) — umožní
    *   MIGRACE_20-15 variabilní konce. false při spuštění dne a syncFromSavedState, aby F5/načtení
@@ -491,6 +673,9 @@ const Engine = (() => {
       return;
     }
 
+    if (variabilniOk && typeof State.vypoctiUzloveFlagy === 'function') {
+      State.vypoctiUzloveFlagy();
+    }
     const konecTyp = _vyhodnotVariabilniKonec();
     if (konecTyp) {
       State.set('phase', 'evening');

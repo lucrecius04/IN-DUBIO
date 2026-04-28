@@ -136,15 +136,24 @@
     "morning_fragment": "fragment_d6_morning",
     "morning_conditional_lines": [
       {
-        "condition": { "flag": "verdict_pool_a1_lekarna", "value": "alternative" },
+        "condition": {
+          "flag": "verdict_pool_a1_lekarna",
+          "value": "alternative"
+        },
         "text": "Na Národní lékárna stále otevřená. V okně nový nápis: Dozorčí režim. Pod ním stojí fronta."
       },
       {
-        "condition": { "flag": "verdict_pool_a1_lekarna", "value": "guilty" },
+        "condition": {
+          "flag": "verdict_pool_a1_lekarna",
+          "value": "guilty"
+        },
         "text": "Lékárna na Národní zavřená. Cedule K PRONÁJMU. Někdo pod ni napsal tužkou číslo."
       },
       {
-        "condition": { "flag": "verdict_pool_a1_lekarna", "value": "not_guilty" },
+        "condition": {
+          "flag": "verdict_pool_a1_lekarna",
+          "value": "not_guilty"
+        },
         "text": "U lékárny na Národní postává inspektor. Malina za pultem předstírá, že ho nevidí."
       }
     ],
@@ -157,11 +166,17 @@
     "cases": [],
     "newspaper_conditional_lines": [
       {
-        "condition": { "flag": "verdict_pool_a1_weiss", "value": "alternative" },
+        "condition": {
+          "flag": "verdict_pool_a1_weiss",
+          "value": "alternative"
+        },
         "text": "Krátká zpráva na třetí straně: Berlínský občan požádal o azyl v ČSR. Ministerstvo bez komentáře."
       },
       {
-        "condition": { "flag": "verdict_pool_a1_weiss", "value": "guilty" },
+        "condition": {
+          "flag": "verdict_pool_a1_weiss",
+          "value": "guilty"
+        },
         "text": "Pod čarou: Cizinec s padělanými doklady odsouzen. Deportace do Německa v řízení."
       }
     ],
@@ -210,23 +225,29 @@
     "morning_fragment": "fragment_d8_morning",
     "morning_conditional_lines": [
       {
-        "condition": { "flag": "verdict_pool_a1_nemocenska", "value": "alternative" },
+        "condition": {
+          "flag": "verdict_pool_a1_nemocenska",
+          "value": "alternative"
+        },
         "text": "Svejda při kávě: 'Slyšel jsem, že inspekce prověřuje závodního lékaře ve Smíchově. Váš případ, ne?'"
       },
       {
-        "condition": { "flag": "verdict_pool_a1_nemocenska", "value": "guilty" },
+        "condition": {
+          "flag": "verdict_pool_a1_nemocenska",
+          "value": "guilty"
+        },
         "text": "Svejda při kávě: 'Ten tkadlec ze Smíchova. Vrátil se do práce. Kašle, ale je tam.'"
       }
     ],
     "cases": [
-      "tyc_pospisil_2",
-      "pool_a1_spravce",
-      "pool_a1_bytova_komise"
+      "tyc_bozena_3",
+      "tyc_hranice_2",
+      "pool_a1_spravce"
     ],
     "cases_light": [
       false,
       false,
-      false
+      true
     ],
     "vlcek_letter": "vlcek_d6",
     "evening_choice": {
@@ -257,13 +278,145 @@
       "pool_a1_druha_ruka"
     ],
     "morning_fragment": "fragment_d10_morning",
+    "adventure_scene": {
+      "id": "adventure_benes_d9",
+      "portrait": "benes",
+      "portrait_label": "Viktor Beneš",
+      "portrait_description": "Šedesátník, sivé vlasy, nenápadný oblek. Člověk, který si na nenápadnost dal záležet.",
+      "trigger": "morning_after_fragment",
+      "blocks_cases_until_complete": false,
+      "screens": [
+        {
+          "id": "s1",
+          "speaker": "narrator",
+          "text": "Svejda zaklepal dvakrát — o jednu ránu víc než obvykle. Otevřel dveře jen na škvíru a prostrčil dovnitř hlavu s výrazem člověka, který neví, jestli udělal dobře. 'Přišel někdo. Říká, že se jmenuje Beneš. Viktor Beneš. Čekal venku od osmi.'",
+          "choices": null,
+          "next": "s2"
+        },
+        {
+          "id": "s2",
+          "speaker": "narrator",
+          "text": "Muž, který vstoupil, byl přesně takový, jakého by si člověk představoval pod slovem nenápadný — kdyby o tom někdy přemýšlel. Sivé vlasy, tmavý oblek bez jediného detailu, který by upoutal pozornost. Podal ruku, sedl si bez vyzvání a položil na stůl obálku. Tenkou. Bez adresy.",
+          "choices": null,
+          "next": "s3"
+        },
+        {
+          "id": "s3",
+          "speaker": "Beneš",
+          "text": "'Nemám mnoho času a vy taky ne, takže to řeknu rovnou. Vím o Wolfovi. Vím o Haasovi. A vím, kdo podepsal dokument v září osmadvacátého — dokument, který by měl být ve státním archivu, ale není. Je tady.' Poklepal na obálku. 'Rozhodněte se, jestli to chcete vědět. Potom to nejde vzít zpátky.'",
+          "choices": null,
+          "next": "s4"
+        },
+        {
+          "id": "s4",
+          "speaker": "narrator",
+          "text": "Ben se podíval na obálku. Byl to tenký papír — možná jedna strana, možná dvě. V jeho práci přišel k závěru, že nejnebezpečnější věci mívají vždy nejméně stránek. Beneš čekal. Nesledoval Benovu tvář — díval se na okno, jako by mu výsledek byl jedno. Ale nebyl.",
+          "choices": [
+            {
+              "label": "Věřím vám. Chci to vědět.",
+              "sets_flag": "benes_pravda_prijata",
+              "sets_uzlovy": {
+                "benes_pravda": "prijal"
+              },
+              "effects": {
+                "Vina": 3,
+                "Integrita": 2
+              },
+              "next": "s5a"
+            },
+            {
+              "label": "Nevěřím. A nechci, abyste sem chodil.",
+              "sets_flag": "benes_pravda_odmitnuta",
+              "sets_uzlovy": {
+                "benes_pravda": "odmitl"
+              },
+              "effects": {
+                "Moc": 2
+              },
+              "next": "s5b"
+            },
+            {
+              "label": "Vezmu to. Ale nic vám neslibuji.",
+              "sets_flag": "benes_pravda_prijata",
+              "sets_flag_extra": "benes_pravda_s_vyhodou",
+              "sets_uzlovy": {
+                "benes_pravda": "prijal"
+              },
+              "effects": {
+                "Vina": 2,
+                "Moudrost": 2
+              },
+              "next": "s5c"
+            }
+          ]
+        },
+        {
+          "id": "s5a",
+          "speaker": "narrator",
+          "text": "Beneš přikývl — jednou, krátce, jako člověk, který čekal přesně tuto odpověď a byl rád, že ji dostal. Posunul obálku přes stůl. Ben ji vzal a otevřel. Uvnitř byl jeden list, hustě popsaný, s podpisem ve spodním rohu. Podpis, který Ben znal — ale ne odsud. Ne z tohoto kontextu.",
+          "choices": null,
+          "next": "s6a"
+        },
+        {
+          "id": "s6a",
+          "speaker": "Beneš",
+          "text": "'Přijdou se vás na ni ptát. Možná dřív, než čekáte — a možná jinak, než si představujete. Až přijdou, budete vědět, o čem mluví. To je vše, co jsem chtěl.' Vstal, zapnul knoflík u saka a zamířil ke dveřím. Zastavil se jen na okamžik. 'Pečlivě se rozmyslete, komu o tom říkáte. Já vám to neřeknu dvakrát.' Pak odešel.",
+          "choices": null,
+          "next": "s7a"
+        },
+        {
+          "id": "s7a",
+          "speaker": "narrator",
+          "text": "Na stole ležela obálka a v ní jeden list papíru, který Ben přečetl ještě dvakrát. Pak třikrát. Pak ho složil a uložil do spodní zásuvky, pod svazek starých nálezů. Svejda zaklepal a přinesl kávu. Ben mu poděkoval a koukal za okno. Venku šlo kolem pár lidí a nic z toho nevěděli.",
+          "choices": null,
+          "next": null,
+          "morning_fragment_append": "V zásuvce pod starými nálezy leží obálka. Ben na ni celý den nemyslel — nebo si to alespoň říkal."
+        },
+        {
+          "id": "s5b",
+          "speaker": "Beneš",
+          "text": "Beneš se nezarazil. Vzal obálku zpátky — pomalu, bez spěchu — a zasunul ji do kapsy u saka. 'Rozumím.' Vstal. Nezlobil se, nebo to aspoň nedával najevo. 'Možná budete litovat. Možná ne. Každopádně — přijdou se vás ptát i tak. Jen nebudete vědět proč.'",
+          "choices": null,
+          "next": "s6b"
+        },
+        {
+          "id": "s6b",
+          "speaker": "narrator",
+          "text": "Odešel tak tiše, jak přišel. Svejda pak zaklepal a zeptal se, jestli je vše v pořádku. Ben řekl, že ano. Celý den pak seděl u spisů a občas se podíval na dveře — ne proto, že by čekal někoho dalšího, ale proto, že si nebyl jistý, jestli ta schůzka vůbec proběhla.",
+          "choices": null,
+          "next": null,
+          "morning_fragment_append": "Ben má pocit, že měl udělat něco jinak. Přesně neví ohodnotit co."
+        },
+        {
+          "id": "s5c",
+          "speaker": "Beneš",
+          "text": "Beneš se pousmál — poprvé za celou dobu, a bylo to nečekané, protože úsměv mu seděl přirozeně. 'To je jediná poctivá odpověď, jakou jsem mohl čekat od soudce.' Posunul obálku přes stůl. 'Berte si čas. Ale ne příliš.'",
+          "choices": null,
+          "next": "s6c"
+        },
+        {
+          "id": "s6c",
+          "speaker": "narrator",
+          "text": "Obálka zůstala na stole. Ben ji neotevřel hned — nejdřív dopil kávu, kterou mu přinesl Svejda, a chvíli seděl a pozoroval, jak se přes sklo pohybují stíny stromů. Pak obálku vzal. Přečetl list jednou, pomalu. Pak ji zavřel a uložil do kabátu, k srdci. Beneš byl pryč a v kanceláři bylo ticho.",
+          "choices": null,
+          "next": null,
+          "morning_fragment_append": "V kapse u kabátu je obálka. Ben ještě neví, co s ní udělá. Ale ví, co v ní je."
+        }
+      ]
+    },
     "morning_conditional_lines": [
       {
-        "condition": { "flag": "verdict_pool_a1_stara_rana", "value": "alternative" },
+        "condition": {
+          "flag": "verdict_pool_a1_stara_rana",
+          "value": "alternative"
+        },
         "text": "Na chodbě mladá dívka. Ptala se vrátného, kde jsou sociální služby. Ben ji poznal — Jitka Hofrová."
       },
       {
-        "condition": { "flag": "verdict_pool_a1_stara_rana", "value": "guilty" },
+        "condition": {
+          "flag": "verdict_pool_a1_stara_rana",
+          "value": "guilty"
+        },
         "text": "Na chodbě ticho. Ben si vzpomněl na Hofrovou. Nevzpomněl si proč."
       }
     ],
@@ -292,17 +445,23 @@
     "newspaper_headline": "Zástupci bank jednají. Creditánstalt ve vzduchu.",
     "newspaper_conditional_lines": [
       {
-        "condition": { "flag": "verdict_pool_a1_vytrznost", "value": "alternative" },
+        "condition": {
+          "flag": "verdict_pool_a1_vytrznost",
+          "value": "alternative"
+        },
         "text": "Sloupek: Akademický národní spolek pod dohledem policie. Zdroj z vedení spolku popřel souvislost."
       },
       {
-        "condition": { "flag": "verdict_pool_a1_vytrznost", "value": "not_guilty" },
+        "condition": {
+          "flag": "verdict_pool_a1_vytrznost",
+          "value": "not_guilty"
+        },
         "text": "Na Vodičkově nová výloha. Sklo lesklé. Meisel napsal stížnost na policii — marně."
       }
     ],
     "cases": [
       "pool_a1_tiskarna",
-      "pool_a1_draha",
+      "tyc_zvraty_d10",
       "pool_a1_nemocenska"
     ],
     "cases_light": [
@@ -336,13 +495,16 @@
     "morning_fragment": "fragment_d11_morning_base",
     "morning_conditional_lines": [
       {
-        "condition": { "flag": "flag_pospisil_dluzi", "value": true },
+        "condition": {
+          "flag": "flag_pospisil_dluzi",
+          "value": true
+        },
         "text": "U hostinského Pospíšila víš, co dluží — ne v korunách. Dnes se u soudu bude mluvit o věcech, které protokol nepojmenuje celý."
       }
     ],
     "cases": [
       "pool_a1_weiss",
-      "pool_a1_vytrznost",
+      "tyc_haas_d11",
       "pool_a1_exekuce"
     ],
     "cases_light": [
@@ -376,17 +538,23 @@
     "morning_fragment": "fragment_d12_echo_base",
     "morning_conditional_lines": [
       {
-        "condition": { "flag": "verdict_pool_a1_exekuce", "value": "alternative" },
+        "condition": {
+          "flag": "verdict_pool_a1_exekuce",
+          "value": "alternative"
+        },
         "text": "Ve Svobodném obzoru krátký sloupek. Bez podpisu. O exekucích na venkově. Ben věděl, kdo ho napsal."
       },
       {
-        "condition": { "flag": "verdict_pool_a1_exekuce", "value": "guilty" },
+        "condition": {
+          "flag": "verdict_pool_a1_exekuce",
+          "value": "guilty"
+        },
         "text": "Součková zaplatila pokutu. Syn Josef prodal hodinky. Hospodářství stálo dál. Lopata taky."
       }
     ],
     "cases": [
       "pool_a1_stara_rana",
-      "pool_a1_zhar",
+      "tyc_zavadova_d12",
       "pool_a1_trafika"
     ],
     "cases_light": [
@@ -422,6 +590,159 @@
       "pool_a1_revizor"
     ],
     "morning_fragment": "fragment_d12_morning",
+    "adventure_scene": {
+      "id": "adventure_karas_d13",
+      "portrait": "assets/portraits/karas.png",
+      "portrait_label": "Pavel Karas",
+      "portrait_description": "Padesátník, unavená tvář, pečlivý oblek. Člověk, který si na únavu zvykl tak dávno, že ji přestal schovávat.",
+      "trigger": "morning_after_fragment",
+      "blocks_cases_until_complete": false,
+      "screens": [
+        {
+          "id": "s1",
+          "speaker": "narrator",
+          "text": "Karas přišel bez dopisu, bez telefonátu, bez předchozího upozornění. Prostě seděl na chodbě, když Ben přišel ráno do budovy — seděl rovně na dřevěné lavici, s kabátem na kolenou, a vypadal jako člověk, který tam seděl hodně dlouho a hodlá sedět ještě déle. Svejda ho znal a pustil ho dál.",
+          "choices": null,
+          "next": "s2"
+        },
+        {
+          "id": "s2",
+          "speaker": "narrator",
+          "text": "Zavřeli dveře kanceláře. Karas si sedl, ale kabát si nedal pryč — jako by si nebyl jistý, jak dlouho zůstane. Než začal mluvit, podíval se na okno, na stůl, na Benovy ruce. Pak se podíval Benovi do očí a řekl to bez úvodu, bez omluvy, bez zjemňování.",
+          "choices": null,
+          "next": "s3"
+        },
+        {
+          "id": "s3",
+          "speaker": "Karas",
+          "text": "'Potřebuji, abyste odešel. Z funkce. Teď — ne za měsíc, ne po dalším případu. Teď.' Pauza. Nečekal na reakci, jen pokračoval. 'Vím, jak to zní. A vím, co si myslíte. Ale není to o vás. Je to o tom, co se chystá — a o tom, že lidé, kteří vás sledují, začínají přicházet na jméno. Na vaše jméno.'",
+          "choices": null,
+          "next": "s4"
+        },
+        {
+          "id": "s4",
+          "speaker": "Karas",
+          "text": "'Mám kamaráda v ministerstvu. Ne přítele — kamaráda. Říkal mi věci, které by neměl říkat. Jedno z těch jmen byl Benedikt Vraný.' Přejel rukou přes kabát, zbytečný pohyb, který ho prozradil. 'Pokud odejdete teď, odejdete jako člověk, který odešel. Pokud počkáte — přijdou pro vás jinak.'",
+          "choices": null,
+          "next": "s5"
+        },
+        {
+          "id": "s5",
+          "speaker": "narrator",
+          "text": "Ben poslouchal a díval se na Karase. Znal ho sedm let — od těch šachů v hospodě, od těch podpisů s háčkem, od té tiché rady tehdy u Pospíšila. Karas ho nikdy neprosil. Teď prosil — nebo se o to alespoň pokoušel, svým způsobem, se svou pýchou, která ho nepustila celou cestu dolů.",
+          "choices": [
+            {
+              "label": "Odejdu. Co potřebujete, abych udělal?",
+              "sets_flag": "karas_poslechl_odejit",
+              "sets_uzlovy": {
+                "osobni_cena": "zaplatil"
+              },
+              "effects": {
+                "Odvaha": -5,
+                "Vina": 3
+              },
+              "next": "s6a"
+            },
+            {
+              "label": "Nepůjdu. Ať si přijdou.",
+              "sets_flag": "karas_odmitl_odejit",
+              "effects": {
+                "Odvaha": 5,
+                "Integrita": 3,
+                "Vina": 2
+              },
+              "next": "s6b"
+            },
+            {
+              "label": "Řekněte mi víc. Kdo to je — ten kamarád z ministerstva?",
+              "sets_flag": "karas_chce_info",
+              "effects": {
+                "Moudrost": 3,
+                "Vina": 1
+              },
+              "next": "s6c"
+            }
+          ]
+        },
+        {
+          "id": "s6a",
+          "speaker": "Karas",
+          "text": "Karas vydechl pomalu — ne úlevou, spíš jako člověk, který se přestal bát, že mu řeknou ne. 'Žádost o uvolnění ze zdravotních důvodů. Napíšu vám doporučení k lékaři, lékař potvrdí. Bude to vypadat čistě.' Vstal. 'Mám ještě jednu věc.' Sáhl do kapsy a položil na stůl obálku. Tlustší, než Benešova. 'Na cestu. Bez podmínek. Nechci ji zpátky.'",
+          "choices": null,
+          "next": "s7a"
+        },
+        {
+          "id": "s7a",
+          "speaker": "narrator",
+          "text": "Ben se podíval na obálku a pak na Karase. Karas se díval na dveře, jako by byl připravený jít. Nechtěl čekat na poděkování — nebo se bál, že přijde. Ben obálku vzal. Nebo ji nechal ležet. Záleží na tom, jestli mu ministerstvo přijde nejdřív, nebo Karasův přítel.",
+          "choices": [
+            {
+              "label": "Vzít obálku.",
+              "sets_flag": "karas_nabidl_odchod",
+              "sets_uzlovy": {
+                "osobni_cena": "zaplatil"
+              },
+              "effects": {
+                "Vina": 2
+              },
+              "next": "s8a_vzal"
+            },
+            {
+              "label": "Nechat obálku ležet.",
+              "sets_flag": "karas_nabidl_odchod",
+              "effects": {},
+              "next": "s8a_nechal"
+            }
+          ]
+        },
+        {
+          "id": "s8a_vzal",
+          "speaker": "narrator",
+          "text": "Karas odešel. Na stole byla prázdná místa — šálku od kávy, inkoustová skvrna, místo kde stávalo pero. A teď ještě obálka méně. Ben se podíval z okna. Venku byl normální čtvrtek — lidé šli do práce, tramvaj zastavila, prodavač novin přičítal svazeček. Nic z toho nevědělo.",
+          "choices": null,
+          "next": null,
+          "morning_fragment_append": "V kapse je obálka od Karase. Odchod je teď otázka rozhodnutí, ne peněz."
+        },
+        {
+          "id": "s8a_nechal",
+          "speaker": "narrator",
+          "text": "Karas se podíval na obálku. Pak na Bena. Pak vzal obálku zpátky, bez komentáře, a dal ji do kapsy kabátu. U dveří se zastavil a řekl ještě jednu věc — tiše, skoro pro sebe. 'Dávejte pozor na Zavadovou.' Pak odešel.",
+          "choices": null,
+          "next": null,
+          "morning_fragment_append": "Karas přišel a odešel. Obálku si vzal zpátky. Varování zůstalo."
+        },
+        {
+          "id": "s6b",
+          "speaker": "narrator",
+          "text": "Karas se na něj díval chvíli — a v té chvíli bylo vidět, že odpověď nečekal, nebo ji čekal a bál se jí. Pak přikývl, jednou, pomalu, jako člověk, který respektuje rozhodnutí, se kterým nesouhlasí.",
+          "choices": null,
+          "next": "s7b"
+        },
+        {
+          "id": "s7b",
+          "speaker": "Karas",
+          "text": "'Dobře. To jsem věděl, že řeknete.' Vstal a zapnul kabát. 'Jedno jenom — až přijdou, a přijdou, neřekněte jim, že jsem tu byl. Ne kvůli mně. Kvůli lidem, se kterými mluvím, a kteří vám pomáhají, i když to nevíte.' U dveří se zastavil. 'Byl jste dobrý soudce, Vraný. Snad to stačí.'",
+          "choices": null,
+          "next": null,
+          "morning_fragment_append": "Karas řekl: byl jste dobrý soudce. Minulý čas."
+        },
+        {
+          "id": "s6c",
+          "speaker": "Karas",
+          "text": "Karas chvíli váhal — bylo vidět, že otázka ho zaskočila ne proto, že by na ni neměl odpověď, ale proto, že ji neočekával. 'Jmenuje se Hora.' Pauza. 'Ne ten geodet — jiný Hora. Z tiskového odboru. Byl u toho, když psali memorandum o soudcích, kteří — komplikují práci ministerstva.' Jiný výraz na chvíli přešel přes tvář. 'Vaše jméno tam bylo dvakrát.'",
+          "choices": null,
+          "next": "s7c"
+        },
+        {
+          "id": "s7c",
+          "speaker": "narrator",
+          "text": "Ben si zapamatoval jméno. Hora — ne geodet. Karas se zvedl a sáhl do kapsy, ale pak se zastavil, jako by si to rozmyslel. 'Řekl jsem vám dost. Co s tím uděláte — to je vaše věc. Ale odejděte, dokud ještě odejít můžete.' Podal ruku — rychle, pevně, jednou — a pak byl pryč dřív, než Ben stihl cokoli říct.",
+          "choices": null,
+          "next": null,
+          "morning_fragment_append": "Hora z tiskového odboru. Memorandum. Jméno Benedikt Vraný, dvakrát. Ben to zapsal na útržek papíru a schoval pod spis."
+        }
+      ]
+    },
     "evening_choice": {
       "text": "Den se chýlí. Ruka drží pero pevněji, než by chtěla.",
       "options": [
@@ -448,15 +769,25 @@
     "morning_fragment": "fragment_d14_nedele_rano",
     "morning_conditional_lines": [
       {
-        "condition": { "flag": "verdict_pool_a1_trafika", "value": "not_guilty" },
+        "condition": {
+          "flag": "verdict_pool_a1_trafika",
+          "value": "not_guilty"
+        },
         "text": "Na Žižkově nová trafika. Dvě děti sedí za pultem a kreslí. Bartošová počítá drobné."
       },
       {
-        "condition": { "flag": "verdict_pool_a1_trafika", "value": "guilty" },
+        "condition": {
+          "flag": "verdict_pool_a1_trafika",
+          "value": "guilty"
+        },
         "text": "Na Žižkově prázdný krám. Výloha zaprášená. Někdo tam nechal dětskou kresbu."
       }
     ],
-    "cases": [],
+    "cases": [
+      "tyc_markova_3",
+      "pool_a1_spravce",
+      "pool_a1_tiskarna"
+    ],
     "evening_choice": null,
     "nedelni_volba": {
       "text": "Jak strávíš neděli, Jakube?",
@@ -495,15 +826,22 @@
         }
       ]
     },
-    "evening_fragment": "fragment_d14_nedele_vecer"
+    "evening_fragment": "fragment_d14_nedele_vecer",
+    "cases_light": [
+      false,
+      false,
+      true
+    ]
   },
   {
     "day": 15,
     "newspaper_headline": "Třetí týden. Před bouří je nejvíc ticha.",
-    "cases": [
-      "pool_a1_spravce",
-      "pool_a1_tiskarna",
-      "pool_a1_nemocenska"
+    "cases": ["tyc_velezrada_d15"],
+    "morning_conditional_lines": [
+      {
+        "condition": { "flag": "benes_pravda_prijata", "value": true },
+        "text": "V zásuvce pod nálezy leží obálka. Ben ví, čí podpis je na tom dokumentu."
+      }
     ],
     "cases_light": [
       false,

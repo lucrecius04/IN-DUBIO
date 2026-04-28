@@ -613,6 +613,17 @@ const UI = (() => {
     return plain.slice(0, max - 1).trimEnd() + '…';
   }
 
+  function _wfSestavObvineniText(pripad) {
+    const defRaw = _wfZahlaviPlainText(pripad?.defendant?.name || '');
+    const chargeRaw = _wfZahlaviPlainText(pripad?.charge || '');
+    const def = (defRaw && defRaw !== '—') ? defRaw : '';
+    const charge = (chargeRaw && chargeRaw !== '—') ? chargeRaw : '';
+    if (def && charge) return `${def}, ${charge}`;
+    if (charge) return charge;
+    if (def) return def;
+    return '—';
+  }
+
   function _wfAktualizujHeaderAkciPripadu() {
     const el = document.getElementById('case-wf-header-akce');
     if (!el) return;
@@ -3749,8 +3760,7 @@ const UI = (() => {
 
     document.getElementById('pripad-kategorie-text').textContent = _stitulekTypuPripadu(pripad);
     document.getElementById('pripad-nazev-text').textContent = pripad.title;
-    document.getElementById('pripad-obvineni-text').textContent =
-      `${pripad.defendant?.name || '—'}, ${pripad.charge || '—'}`;
+    document.getElementById('pripad-obvineni-text').textContent = _wfSestavObvineniText(pripad);
     const leadHdr = document.getElementById('pripad-zahlavi-lead');
     if (leadHdr) leadHdr.textContent = _wfZahlaviKratkyPopis(pripad);
     document.getElementById('case-wf-clue-hud-slot')?.classList.remove('skryto');
@@ -3875,8 +3885,7 @@ const UI = (() => {
 
     document.getElementById('pripad-kategorie-text').textContent = _stitulekTypuPripadu(pripad);
     document.getElementById('pripad-nazev-text').textContent = pripad.title;
-    document.getElementById('pripad-obvineni-text').textContent =
-      `${pripad.defendant?.name || '—'}, ${pripad.charge || '—'}`;
+    document.getElementById('pripad-obvineni-text').textContent = _wfSestavObvineniText(pripad);
     const leadHdrR = document.getElementById('pripad-zahlavi-lead');
     if (leadHdrR) leadHdrR.textContent = _wfZahlaviKratkyPopis(pripad);
     document.getElementById('case-wf-clue-hud-slot')?.classList.add('skryto');
@@ -4667,6 +4676,106 @@ const UI = (() => {
     });
 
     _otevriModal('modal-fragment');
+  }
+
+  function zobrazAdventureScenu(scena, callback) {
+    const screens = Array.isArray(scena && scena.screens) ? scena.screens : [];
+    if (!screens.length) {
+      if (callback) callback({});
+      return;
+    }
+
+    const screenMap = {};
+    for (const s of screens) {
+      if (!s || !s.id) continue;
+      screenMap[s.id] = s;
+    }
+
+    const portraitEl = document.getElementById('adventure-portrait');
+    const speakerEl = document.getElementById('adventure-speaker');
+    const textEl = document.getElementById('adventure-text');
+    const choicesEl = document.getElementById('adventure-choices');
+    if (!portraitEl || !speakerEl || !textEl || !choicesEl) {
+      if (callback) callback({});
+      return;
+    }
+
+    const fallbackPortrait = 'src/photo.png';
+    const portraitBase = String((scena && scena.portrait) || '').trim();
+    const portraitLabel = String((scena && scena.portrait_label) || '').trim();
+    let posledniVolba = {};
+    let zavreno = false;
+
+    function zavritASkoncit() {
+      if (zavreno) return;
+      zavreno = true;
+      _zavriModal('modal-adventure');
+      if (callback) callback(posledniVolba || {});
+    }
+
+    function zobrazScreen(screenId) {
+      const s = screenMap[screenId];
+      if (!s) {
+        zavritASkoncit();
+        return;
+      }
+
+      portraitEl.alt = portraitLabel || 'Portrét';
+      portraitEl.onerror = () => {
+        portraitEl.onerror = null;
+        portraitEl.src = fallbackPortrait;
+      };
+      const maPriponuNeboCestu = /[/.\\]/.test(portraitBase);
+      portraitEl.src = portraitBase
+        ? (maPriponuNeboCestu ? portraitBase : ('assets/portraits/' + portraitBase + '.png'))
+        : fallbackPortrait;
+
+      const speaker = String(s.speaker || '').trim();
+      speakerEl.textContent = speaker && speaker !== 'narrator' ? speaker : '';
+      textEl.innerHTML = String(s.text || '').replace(/\n/g, '<br>');
+      choicesEl.innerHTML = '';
+
+      const volby = Array.isArray(s.choices) ? s.choices : [];
+      if (volby.length) {
+        for (const choice of volby) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'adventure-choice-btn';
+          btn.textContent = String(choice && choice.label ? choice.label : 'Pokračovat');
+          btn.onclick = function() {
+            posledniVolba = {
+              sets_flag: choice && choice.sets_flag ? choice.sets_flag : null,
+              sets_flag_extra: choice && choice.sets_flag_extra ? choice.sets_flag_extra : null,
+              sets_uzlovy: choice && choice.sets_uzlovy ? choice.sets_uzlovy : null,
+              effects: choice && choice.effects ? choice.effects : null,
+              morning_fragment_append: null
+            };
+            zobrazScreen(choice && choice.next ? choice.next : null);
+          };
+          choicesEl.appendChild(btn);
+        }
+      } else {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'adventure-continue-btn';
+        btn.textContent = 'Pokračovat';
+        btn.onclick = function() {
+          if (s.morning_fragment_append) {
+            posledniVolba.morning_fragment_append = s.morning_fragment_append;
+          }
+          if (s.next) {
+            zobrazScreen(s.next);
+          } else {
+            zavritASkoncit();
+          }
+        };
+        choicesEl.appendChild(btn);
+      }
+
+      _otevriModal('modal-adventure');
+    }
+
+    zobrazScreen(screens[0].id);
   }
 
   // --- ARCHIV (ŠUPLÍK) ---
@@ -5902,6 +6011,7 @@ const UI = (() => {
     zobrazModalDen23Krize,
     zobrazTydenniShrnuti,
     zobrazFragment,
+    zobrazAdventureScenu,
     zobrazArchiv,
     syncPostavyDuvera,
     zobrazStavovouZpravu,

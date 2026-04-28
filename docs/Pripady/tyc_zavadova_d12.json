@@ -1,0 +1,352 @@
+{
+  "id": "tyc_zavadova_d12",
+  "slot": "pool",
+  "case_track": "pillar",
+  "case_track_label": "tycove",
+  "type": "osobni",
+  "color": "#5A4A2A",
+  "available_days": [
+    12
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "forced": true
+  },
+  "title": "Víme vše",
+  "case_number": "Sp. zn. interní — bez čísla",
+  "defendant": {
+    "name": "—",
+    "age": 0,
+    "occupation": "—",
+    "detail": "Tento případ nemá obžalovaného. Je to návštěva Mileny Zavadové."
+  },
+  "charge": "Bez obžaloby. Milena Zavadová přišla se sdělením.",
+  "description": "Milena Zavadová přišla ve středu dopoledne, bez ohlášení, s kufříkem z hnědé kůže, který vypadal, jako by ho nosila všude a vždy. Seděla přímo, mluvila jasně a věci říkala v takovém pořadí, že Ben neměl chvíli na to, aby se zeptal na předchozí, než přišla další. Pracuje pro Řád — tak to řekla, bez vysvětlení, co Řád je, jako by to bylo samozřejmé. Možná proto, že pro ni bylo.",
+  "testimonies": [
+    {
+      "id": "zavadova_vi",
+      "speaker": "Milena Zavadová",
+      "text": "'Víme o vaší matce. Víme o Haasově návštěvě — jestli přijal nebo odmítl, víme taky. Víme o složce, která se objevila na vašem stole.' Přestala a nechala ta slova sedět. <span class=\"clue\" data-clue-id=\"clue_zavadova_vi_vse\">Pak otevřela kufřík a položila na stůl jeden list papíru. 'Toto je zpráva z ministerstva dopravy ze čtrnáctého března 1931 — včera. Jmenuje se v ní Benedikt Vraný jako soudce, jehož rozhodnutí jsou v posledních třech měsících sledována.'</span> Ben se podíval na list. Razítko bylo reálné.",
+      "contradiction_keywords": [
+        "sledována",
+        "čtrnáctého března",
+        "zpráva"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "zavadova_nabidka",
+      "speaker": "Milena Zavadová",
+      "text": "'Nejsme nepřátelé, pane doktore. Jsme lidé, kteří vědí, jak věci fungují — a kteří mají zájem na tom, aby fungovaly určitým způsobem.' <span class=\"clue\" data-clue-id=\"clue_zavadova_rad\">Sáhla do kufříku a přidala druhý list. 'Pokud podepíšete toto prohlášení — nic velkého, jen že souhlasíte s tím, být v kontaktu s naší právní sekcí — zaručíme vám, že zpráva z ministerstva zmizí z archivu.</span> Beze stopy. A vy budete pokračovat v práci.'",
+      "contradiction_keywords": [
+        "právní sekce",
+        "zpráva zmizí",
+        "podepíšete"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "zavadova_podvrh",
+      "speaker": "Milena Zavadová — k přímé otázce",
+      "text": "Ben se zeptal: jak víte o Haasově návštěvě? Zavadová na okamžik zaváhala — poprvé za celou dobu. <span class=\"clue\" data-clue-id=\"clue_zavadova_podvrh\">Pak řekla: 'Haas je náš kontakt. Nebo byl — záleží na tom, co jste mu řekl.' Pauza. 'Zpráva z ministerstva, kterou jsem vám přinesla — není originál. Je to přesná kopie. Originál existuje nebo neexistuje, to závisí na tom, co teď uděláte.'</span> Řekla to klidně, jako by oznámila čas odjezdu vlaku.",
+      "contradiction_keywords": [
+        "přesná kopie",
+        "Haas je náš kontakt",
+        "existuje nebo neexistuje"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "zprava_je_padelek",
+      "description": "Zavadová přinesla zprávu z ministerstva jako hrozbu — ale pak přiznala, že jde o kopii, ne originál. Originál existuje nebo ne, záleží na Benově rozhodnutí. Hrozba, která může být smyšlená, je pořád hrozba — jen jiného druhu.",
+      "involves": [
+        "zavadova_ví",
+        "zavadova_podvrh"
+      ],
+      "highlight_at_wisdom": 65,
+      "unlocks_confrontation": "zavadova_vi"
+    },
+    {
+      "id": "haas_rad_spojeni",
+      "description": "Haas byl Řádův kontakt — nebo je, záleží na výsledku jeho návštěvy D11. Zavadová to řekla bez přemýšlení, jako by to byl fakt. Složka na D10, Haas na D11, Zavadová na D12 — to není náhoda. Je to sekvence.",
+      "involves": [
+        "zavadova_nabidka",
+        "zavadova_podvrh"
+      ],
+      "highlight_at_wisdom": 75,
+      "unlocks_confrontation": "zavadova_vi"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "padelek_sekvence_strong",
+    "pairs": [
+      {
+        "pair_id": "padelek_sekvence_strong",
+        "a_id": "clue_zavadova_podvrh",
+        "b_id": "clue_zavadova_vi_vse",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "rad_haas_spojeni_medium",
+        "a_id": "clue_zavadova_rad",
+        "b_id": "clue_zavadova_podvrh",
+        "strength": "medium"
+      }
+    ],
+    "decoys": [
+      "decoy_kufrik_hnedobily"
+    ],
+    "timed_hunt": {
+      "enabled": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [],
+      "verdicts": [
+        {
+          "min": 35,
+          "ids": [
+            "podepsat"
+          ]
+        },
+        {
+          "min": 65,
+          "ids": [
+            "odmitnut_formal"
+          ]
+        },
+        {
+          "min": 80,
+          "ids": [
+            "odmitnut_s_konfrontaci"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 52,
+          "unlock_verdict_ids": [
+            "odmitnut_formal",
+            "odmitnut_s_konfrontaci"
+          ],
+          "narrative_lines": [
+            "Kopie, ne originál. Hrozba, která může být smyšlená — ale také nemusí.",
+            "Haas byl jejich kontakt. Složka, Haas, Zavadová — tři dny, jedna sekvence.",
+            "Podvrh jako nástroj. Zavadová to řekla klidně, jako by to bylo normální. Možná pro ni bylo."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 24,
+          "unlock_verdict_ids": [
+            "podepsat",
+            "odmitnut_formal"
+          ],
+          "narrative_lines": [
+            "Prohlášení o kontaktu s právní sekcí. Malý papír, velké důsledky.",
+            "Zpráva z ministerstva — reálné razítko. Obsah může být vymyšlený."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "zavadova_kdo",
+      "target_label": "Kdo je Milena Zavadová — záznamy",
+      "reveals": "motivation",
+      "text": "Jméno Milena Zavadová se v dostupných rejstřících neobjevuje. Adresa, která je na vizitce — ulice v Dejvicích — vede k podnájmu registrovanému na jiné jméno. <span class=\"clue\" data-clue-id=\"decoy_kufrik_hnedobily\">Kufřík byl hnědý, kování zlaté, monogram MZ — to potvrzuje Svejda, který ji viděl odcházet.</span> Ben ví méně o Zavadové po návštěvě, než věděl před ní.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": -1
+        }
+      }
+    },
+    "records": {
+      "source": "Zpráva ministerstva dopravy — ověření autenticity razítka; seznam právních sekcí Řádu",
+      "reveals": "facts",
+      "text": "Razítko na zprávě: ministerstvo dopravy, oddělení správy, číslo série odpovídá dokumentům z února 1931. <span class=\"clue\" data-clue-id=\"clue_zavadova_podvrh\">Avšak: sériové číslo razítka patří dávce, která byla vydána 18. února — a Hora z tiskového odboru potvrdil Karasovi, že tato čísla byla přidělena jiným dokumentům. Razítko je pravé, ale číslo série na tomto dokumentu neodpovídá originálu z archivu.</span> Zpráva je padělek — přesný, ale padělek.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1
+        }
+      },
+      "unlocks_contradiction": "zprava_je_padélek"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Vina": 2
+        },
+        "factions": {
+          "Moc": 1,
+          "Kapital": 1
+        }
+      },
+      "variants": {
+        "moc_high": "Řád existuje — nebo existovalo něco podobného — jako síť právníků a úředníků, kteří si navzájem pomáhají. Není to ilegální, dokud nepřekračuje určitou linii. Prohlášení, které Zavadová přinesla, je vstup. Výstup z toho neexistuje.",
+        "kapital_high": "Zavadová není jméno, které by Haas znal — nebo tvrdí, že nezná. Ale Haas je jejich kontakt. Buď Haas lže, nebo Zavadová lže o tom, čí kontakt Haas je. Jedno z toho musí být pravda.",
+        "default": "Tři dny v řadě: složka, Haas, Zavadová. Ben nebyl vybrán náhodou — byl vybrán proto, že má Wolfův případ. A Wolfův případ je pátek."
+      }
+    },
+    "confrontation": {
+      "target": "zavadova_vi",
+      "target_label": "Milena Zavadová",
+      "requires_contradiction": "zprava_je_padelek",
+      "requires_courage": 65,
+      "cost": 2,
+      "prompt": "Sériové číslo razítka na zprávě neodpovídá originálu z archivu. Zpráva je padělek — přesný, ale padělek. A vy to věděla, když jste ji přinesla.",
+      "success": {
+        "text": "Zavadová se neusmívá. Nedívá se jinam. Podívá se na Bena a řekne: 'Ano. Věděla.' Nic víc. Žádná omluva, žádné vysvětlení. Pak přidá jednu větu: 'Originál existuje taky. Záleží na nás, které z toho se objeví v archivu.' Ben čeká. Zavadová čeká taky. Místnost je velmi tichá.",
+        "reveals": "Zavadová přiznala podvrh bez zaváhání — protože hrozba není v dokumentu, ale v možnosti, že originál existuje a bude použit. Ben to teď ví. Zavadová ví, že Ben to ví. Oba sedí v téže místnosti."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "podepsat": {
+          "label": "Podepsat prohlášení",
+          "description": "Malý papír, velká cena. Ben podepíše. Zavadová si vezme prohlášení, poděkuje a odejde. Zpráva zmizí z archivu — nebo nezmizí, závisí na tom, co Zavadová skutečně může udělat. Ben to nikdy s jistotou neví.",
+          "effects": {
+            "integrita": -10,
+            "vina": 7,
+            "nadeje": 1,
+            "moc": -2,
+            "kapital": 2,
+            "flags": [
+              {
+                "key": "zavadova_kontakt",
+                "value": 1
+              },
+              {
+                "key": "masek_document_signed",
+                "value": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "odmitnut_formal": {
+          "label": "Odmítnout — vrátit prohlášení",
+          "description": "Ben posune papír zpátky přes stůl. Zavadová ho vezme. Odejde. Zpráva z ministerstva — padělaná nebo ne — zůstane tam, kde je. Ben neví kde.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 4,
+            "odvaha": 4,
+            "vina": -1,
+            "nadeje": -1,
+            "moc": 2,
+            "kapital": -2,
+            "flags": [
+              {
+                "key": "flag_zavadova_odmitnuta",
+                "value": true
+              }
+            ]
+          }
+        },
+        "odmitnut_s_konfrontaci": {
+          "label": "Alternativa: Odmítnout a konfrontovat s padělkem",
+          "description": "Ben odmítne a řekne, co ví o sériovém čísle. Zavadová odejde. Zavadová ví, že Ben ví o padělku — a Ben ví, že Zavadová ví. To je jiná situace než pouhé odmítnutí.",
+          "requires_investigation": 3,
+          "requires": {
+            "odvaha_min": 65
+          },
+          "effects": {
+            "integrita": 7,
+            "odvaha": 8,
+            "vina": -2,
+            "nadeje": -1,
+            "moc": 3,
+            "kapital": -3,
+            "flags": [
+              {
+                "key": "flag_zavadova_odmitnuta",
+                "value": true
+              },
+              {
+                "key": "flag_zavadova_padelek_odhalen",
+                "value": true
+              },
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "cas_na_rozmysleni": {
+          "label": "Požádat o čas na rozmyšlenou",
+          "description": "Ben řekne: dejte mi den. Zavadová přikývne a nechá prohlášení na stole. Odejde bez kufříku — kufřík zanechá jako záruku, že se vrátí.",
+          "effects": {
+            "moudrost": 3,
+            "vina": 2,
+            "flags": [
+              {
+                "key": "flag_zavadova_ceka",
+                "value": true
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_podepsat": "Zavadová vzala prohlášení, složila ho a uložila do kufříku. Podala ruku — pevně, jako obchodní partner. Řekla: 'Budeme v kontaktu.' Ben nevěděl, co to přesně znamená. Dozvěděl se postupně.",
+    "not_guilty_odmitnut_formal": "Zavadová odešla bez komentáře. Svejda se zeptal, jestli chce Ben kávu. Ben řekl ano. Svejda přinesl kávu a nezeptal se, kdo ta žena byla. Ben byl za to vděčný.",
+    "not_guilty_odmitnut_s_konfrontaci": "Zavadová vzala kufřík a šla. U dveří se zastavila — jen na vteřinu, jako by chtěla říct ještě něco. Pak odešla. Ben seděl v prázdné kanceláři a slyšel, jak její kroky zmizí na chodbě. Pak byl klid.",
+    "insufficient_cas_na_rozmysleni": "Kufřík stál v rohu kanceláře celý zbytek dne. Svejda ho obcházel. Prohlášení leželo na stole. Ben pracoval na jiných spisech a dával pozor, aby se na prohlášení nedíval."
+  },
+  "stamp_moment": {
+    "guilty": "Zavadová zavřela kufřík. Cvaknutí zámku bylo velmi hlasité v tiché místnosti.",
+    "not_guilty": "Zavadová odešla. Kufřík s sebou. Prohlášení s sebou. Ben seděl sám — a poprvé za tři dny byl v kanceláři skutečně sám.",
+    "insufficient": "Kufřík stojí v rohu. Prohlášení leží na stole. Ben ví, že ráno bude jiný den — ale kufřík tam bude pořád."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "guilty_podepsat",
+      "delay_days": 2,
+      "type": "fragment",
+      "text": "Přišel dopis bez odesílatele. Uvnitř jeden list — seznam jmen, u každého krátká poznámka. Benovo jméno bylo třetí. Poznámka u něj: 'V kontaktu od 12. března.' Ben list přečetl a spálil. Nebo ne."
+    },
+    {
+      "trigger": "not_guilty_odmitnut_s_konfrontaci",
+      "delay_days": 1,
+      "type": "fragment",
+      "text": "Karas zavolal ráno — neobvyklé, Karas nevolá. Řekl jen: 'Slyšel jsem o včerejšku. Uděláte správnou věc.' Zavěsil dřív, než Ben stihl odpovědět."
+    },
+    {
+      "trigger": "guilty_podepsat",
+      "delay_days": 3,
+      "type": "fragment",
+      "text": "Vlček přišel osobně. Nemluvil dlouho. Řekl: 'Doufám, že vaše nové kontakty chápou, jak tady věci fungují.' Odešel. Ben nerozuměl, odkud Vlček ví. Pak pochopil, že Vlček ví vždy."
+    }
+  ]
+}

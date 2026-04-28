@@ -1,0 +1,144 @@
+{
+  "day": 13,
+  "adventure_scene": {
+    "id": "adventure_karas_d13",
+    "portrait": "assets/portraits/karas.png",
+    "portrait_label": "Pavel Karas",
+    "portrait_description": "Padesátník, unavená tvář, pečlivý oblek. Člověk, který si na únavu zvykl tak dávno, že ji přestal schovávat.",
+    "trigger": "morning_after_fragment",
+    "blocks_cases_until_complete": false,
+
+    "screens": [
+      {
+        "id": "s1",
+        "speaker": "narrator",
+        "text": "Karas přišel bez dopisu, bez telefonátu, bez předchozího upozornění. Prostě seděl na chodbě, když Ben přišel ráno do budovy — seděl rovně na dřevěné lavici, s kabátem na kolenou, a vypadal jako člověk, který tam seděl hodně dlouho a hodlá sedět ještě déle. Svejda ho znal a pustil ho dál.",
+        "choices": null,
+        "next": "s2"
+      },
+      {
+        "id": "s2",
+        "speaker": "narrator",
+        "text": "Zavřeli dveře kanceláře. Karas si sedl, ale kabát si nedal pryč — jako by si nebyl jistý, jak dlouho zůstane. Než začal mluvit, podíval se na okno, na stůl, na Benovy ruce. Pak se podíval Benovi do očí a řekl to bez úvodu, bez omluvy, bez zjemňování.",
+        "choices": null,
+        "next": "s3"
+      },
+      {
+        "id": "s3",
+        "speaker": "Karas",
+        "text": "'Potřebuji, abyste odešel. Z funkce. Teď — ne za měsíc, ne po dalším případu. Teď.' Pauza. Nečekal na reakci, jen pokračoval. 'Vím, jak to zní. A vím, co si myslíte. Ale není to o vás. Je to o tom, co se chystá — a o tom, že lidé, kteří vás sledují, začínají přicházet na jméno. Na vaše jméno.'",
+        "choices": null,
+        "next": "s4"
+      },
+      {
+        "id": "s4",
+        "speaker": "Karas",
+        "text": "'Mám kamaráda v ministerstvu. Ne přítele — kamaráda. Říkal mi věci, které by neměl říkat. Jedno z těch jmen byl Benedikt Vraný.' Přejel rukou přes kabát, zbytečný pohyb, který ho prozradil. 'Pokud odejdete teď, odejdete jako člověk, který odešel. Pokud počkáte — přijdou pro vás jinak.'",
+        "choices": null,
+        "next": "s5"
+      },
+      {
+        "id": "s5",
+        "speaker": "narrator",
+        "text": "Ben poslouchal a díval se na Karase. Znal ho sedm let — od těch šachů v hospodě, od těch podpisů s háčkem, od té tiché rady tehdy u Pospíšila. Karas ho nikdy neprosil. Teď prosil — nebo se o to alespoň pokoušel, svým způsobem, se svou pýchou, která ho nepustila celou cestu dolů.",
+        "choices": [
+          {
+            "label": "Odejdu. Co potřebujete, abych udělal?",
+            "sets_flag": "karas_poslechl_odejit",
+            "sets_uzlovy": { "osobni_cena": "zaplatil" },
+            "effects": { "Odvaha": -5, "Vina": 3 },
+            "next": "s6a"
+          },
+          {
+            "label": "Nepůjdu. Ať si přijdou.",
+            "sets_flag": "karas_odmitl_odejit",
+            "effects": { "Odvaha": 5, "Integrita": 3, "Vina": 2 },
+            "next": "s6b"
+          },
+          {
+            "label": "Řekněte mi víc. Kdo to je — ten kamarád z ministerstva?",
+            "sets_flag": "karas_chce_info",
+            "effects": { "Moudrost": 3, "Vina": 1 },
+            "next": "s6c"
+          }
+        ]
+      },
+
+      {
+        "id": "s6a",
+        "speaker": "Karas",
+        "text": "Karas vydechl pomalu — ne úlevou, spíš jako člověk, který se přestal bát, že mu řeknou ne. 'Žádost o uvolnění ze zdravotních důvodů. Napíšu vám doporučení k lékaři, lékař potvrdí. Bude to vypadat čistě.' Vstal. 'Mám ještě jednu věc.' Sáhl do kapsy a položil na stůl obálku. Tlustší, než Benešova. 'Na cestu. Bez podmínek. Nechci ji zpátky.'",
+        "choices": null,
+        "next": "s7a"
+      },
+      {
+        "id": "s7a",
+        "speaker": "narrator",
+        "text": "Ben se podíval na obálku a pak na Karase. Karas se díval na dveře, jako by byl připravený jít. Nechtěl čekat na poděkování — nebo se bál, že přijde. Ben obálku vzal. Nebo ji nechal ležet. Záleží na tom, jestli mu ministerstvo přijde nejdřív, nebo Karasův přítel.",
+        "choices": [
+          {
+            "label": "Vzít obálku.",
+            "sets_flag": "karas_nabidl_odchod",
+            "sets_uzlovy": { "osobni_cena": "zaplatil" },
+            "effects": { "Vina": 2 },
+            "next": "s8a_vzal"
+          },
+          {
+            "label": "Nechat obálku ležet.",
+            "sets_flag": "karas_nabidl_odchod",
+            "effects": {},
+            "next": "s8a_nechal"
+          }
+        ]
+      },
+      {
+        "id": "s8a_vzal",
+        "speaker": "narrator",
+        "text": "Karas odešel. Na stole byla prázdná místa — šálku od kávy, inkoustová skvrna, místo kde stávalo pero. A teď ještě obálka méně. Ben se podíval z okna. Venku byl normální čtvrtek — lidé šli do práce, tramvaj zastavila, prodavač novin přičítal svazeček. Nic z toho nevědělo.",
+        "choices": null,
+        "next": null,
+        "morning_fragment_append": "V kapse je obálka od Karase. Odchod je teď otázka rozhodnutí, ne peněz."
+      },
+      {
+        "id": "s8a_nechal",
+        "speaker": "narrator",
+        "text": "Karas se podíval na obálku. Pak na Bena. Pak vzal obálku zpátky, bez komentáře, a dal ji do kapsy kabátu. U dveří se zastavil a řekl ještě jednu věc — tiše, skoro pro sebe. 'Dávejte pozor na Zavadovou.' Pak odešel.",
+        "choices": null,
+        "next": null,
+        "morning_fragment_append": "Karas přišel a odešel. Obálku si vzal zpátky. Varování zůstalo."
+      },
+
+      {
+        "id": "s6b",
+        "speaker": "narrator",
+        "text": "Karas se na něj díval chvíli — a v té chvíli bylo vidět, že odpověď nečekal, nebo ji čekal a bál se jí. Pak přikývl, jednou, pomalu, jako člověk, který respektuje rozhodnutí, se kterým nesouhlasí.",
+        "choices": null,
+        "next": "s7b"
+      },
+      {
+        "id": "s7b",
+        "speaker": "Karas",
+        "text": "'Dobře. To jsem věděl, že řeknete.' Vstal a zapnul kabát. 'Jedno jenom — až přijdou, a přijdou, neřekněte jim, že jsem tu byl. Ne kvůli mně. Kvůli lidem, se kterými mluvím, a kteří vám pomáhají, i když to nevíte.' U dveří se zastavil. 'Byl jste dobrý soudce, Vraný. Snad to stačí.'",
+        "choices": null,
+        "next": null,
+        "morning_fragment_append": "Karas řekl: byl jste dobrý soudce. Minulý čas."
+      },
+
+      {
+        "id": "s6c",
+        "speaker": "Karas",
+        "text": "Karas chvíli váhal — bylo vidět, že otázka ho zaskočila ne proto, že by na ni neměl odpověď, ale proto, že ji neočekával. 'Jmenuje se Hora.' Pauza. 'Ne ten geodet — jiný Hora. Z tiskového odboru. Byl u toho, když psali memorandum o soudcích, kteří — komplikují práci ministerstva.' Jiný výraz na chvíli přešel přes tvář. 'Vaše jméno tam bylo dvakrát.'",
+        "choices": null,
+        "next": "s7c"
+      },
+      {
+        "id": "s7c",
+        "speaker": "narrator",
+        "text": "Ben si zapamatoval jméno. Hora — ne geodet. Karas se zvedl a sáhl do kapsy, ale pak se zastavil, jako by si to rozmyslel. 'Řekl jsem vám dost. Co s tím uděláte — to je vaše věc. Ale odejděte, dokud ještě odejít můžete.' Podal ruku — rychle, pevně, jednou — a pak byl pryč dřív, než Ben stihl cokoli říct.",
+        "choices": null,
+        "next": null,
+        "morning_fragment_append": "Hora z tiskového odboru. Memorandum. Jméno Benedikt Vraný, dvakrát. Ben to zapsal na útržek papíru a schoval pod spis."
+      }
+    ]
+  }
+}

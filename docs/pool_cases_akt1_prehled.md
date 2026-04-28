@@ -32,6 +32,16 @@
 | 26 | pool_a1_lekar | Lékař | 100/1931 | Morální dilema | 10–14 | MUDr. Emanuel Soukup, obvodní lékař | Údajné záměrné urychlení smrti; Bible, domácí karta, rodina, zda vražda nebo mezera v zákonu. |
 | 27 | tyc_pospisil_2 | Hospodský a tichá hrozba | 98/1931 | Rutinní (tyč Pospíšil) | 6 | Emil Pospíšil, hostinský | Stížnost za zranění hosta; Pospíšil znal kontext a třese se — důkazy k pultu a zadnímu vchodu. Beat 2 vlákna Pospíšil. |
 | 28 | pool_a1_draha | Přestavená výhybka | 102/1931 | Rutinní | 8–12 | František Douda, výhybkář | Přiznané přestavení výhybky po zadržovaných hlášeních o sváru; systém vs. individuální odpovědnost. |
+| 29 | tyc_bozena_3 | Božena 3 — PRAGA (inkoust) | 108/1931 | Morální dilema (tyč Božena) | 8 | Božena Kučerová, chalupářka | Stav doručení a inkoust propojí spor o pozemek s tlakem PRAGA ROADS; lokální pře se mění na systémovou stopu. |
+| 30 | tyc_hranice_2 | Hranice 2 — Německý dopis | 109/1931 | Politický (tyč Hranice) | 8 | Wilhelm Grünbaum, penzionovaný učitel | Kříž podal podnět bez obsahu dopisu, Marek popře sledování; jde o státní zájem, nebo sousedskou mstu v národnostním napětí. |
+| 31 | tyc_pospisil_3 | Pospíšil 3 — Co slyšel hostinský | 114/1931 | Politický (tyč Pospíšil) | — | Jaroslav Maňák, obchodní zástupce PRAGA ROADS | Beat 3 vlákna; v aktuálním `days.json` **není zařazen** (pouze data v poolu). |
+| 32 | tyc_markova_2 | Marková 2 — Záchrankyně | 112/1931 | Morální dilema (tyč Marková) | — | Josef Vávra, expedient | Beat 2 vlákna; v aktuálním `days.json` **není zařazen** (pouze data v poolu). |
+| 33 | tyc_markova_3 | Marková 3 — Sešit jako důkaz | 118/1931 | Morální dilema (tyč Marková) | 14 | Věra Marková, účetní | Sešit obrátí roli svědkyně v obžalovanou i zpět; spor o přepis záznamů odhalí linii Beneš st./ml. a cenu přesnosti. |
+| 34 | tyc_hranice_3 | Hranice 3 — Metr a muž | 119/1931 | Politický (tyč Hranice) | — | Wilhelm Grünbaum, penzionovaný učitel | Beat 3 vlákna; v aktuálním `days.json` **není zařazen** (pouze data v poolu). |
+| 35 | tyc_zvraty_d10 | Zvraty — složka | interní | Osobní (tyčový) | 10 | — (interní spis bez obžalovaného) | Rodný list Anny a vazba Haas–Wolf otevírá osobní osu před velezradou; volba práce s dokumentem mění uzlové podmínky. |
+| 36 | tyc_haas_d11 | Obálka | interní | Osobní (tyčový) | 11 | — (interní spis bez obžalovaného) | Haas nabídne 300 Kč „bez podmínek“; přijetí/odmítnutí fixuje směr vztahu k moci a cenu matčiny operace. |
+| 37 | tyc_zavadova_d12 | Víme vše | interní | Osobní (tyčový) | 12 | — (interní spis bez obžalovaného) | Zavadová testuje nátlak podvrhem a sítí kontaktů; podpis či konfrontace určuje další tlak na Bena před finále. |
+| 38 | tyc_velezrada_d15 | Velezrada | 124/1931 | Politický (tyčový) | 15 | Alexander Wolf, průmyslový poradce | Finální střet: velezrada, sporný podpis ze září 1928 a princip in dubio pro reo; verdikt uzavírá soudní linii před epilogem podle uzlových flagů. |
 
 ---
 
@@ -416,6 +426,9 @@ Vladimír (závěť, pořadí trestního a notářského čtení).
 - **Případ 24** (svědkyně, tyčový): **MV + zápisník** jako model politického důkazu; reakce **Vlčka** a tisku na „překročení rámce“
 - **Případ 25** (pošta): **tajemství korespondence a telegraf**; paralela k *Revizorovi* (časování oznámení) a k *Správci* (jiná role pošty než doručení doporučené zásilky)
 - **Případ 26** (lékař): konec života a domácí smrt; echo k *Kladivu* jen v tíze rozhodnutí, nikoli v afektu — hra o **zda** ve smyslu zákona
+- **Případ 35** (zvraty, tyčový): interní složka propojí Wolfa, Annu a Haase ještě před soudním finále; poprvé vstupuje `flag_rodny_list_pouzit`
+- **Případ 36** (obálka, tyčový): Haasův „dar“ převádí ekonomickou tíseň do explicitní morální volby a přepisuje osu `haas_kontakt`
+- **Případ 37** (víme vše, tyčový): Zavadová uzavírá sekvenci D10–D12, kde nejde o vinu obžalovaného, ale o Benovu odolnost vůči síti vlivu
 
 ### Síť pojistného agenta Krejčího
 Agent Miroslav Krejčí figuruje v případě **Bartošová** (trafikant): pojistka 15 dní před smrtí manžela, provize 40 Kčs; soused a zároveň agent Slavie. Některé alternativní verdikty vedou k trestnímu oznámení na Krejčího a k přezkumu dalších smluv.
@@ -454,6 +467,9 @@ Hráč, který v případě 3 důkladně projde záznamy, vidí rizikový vzorec
 - 101/1931 — Veselý (`tyc_horac_d7`, *Svědkyně*; tyčový den 7)
 - 99/1931 — Cílek (`pool_a1_posta`, *Pošta*)
 - 100/1931 — Soukup (`pool_a1_lekar`, *Lékař*)
+- interní (bez čísla) — `tyc_zvraty_d10` (*Zvraty — složka*)
+- interní (bez čísla) — `tyc_haas_d11` (*Obálka*)
+- interní (bez čísla) — `tyc_zavadova_d12` (*Víme vše*)
 - *Nové běžné pool případy v budoucnu ideálně od Sp. zn. 87/1931 výš, ať se čísla v jednom aktu nepletou. Tyčové (`tyc_*`) mají pevné číslo v návrhu autora — nemísit s tímto pravidlem.*
 
 ---

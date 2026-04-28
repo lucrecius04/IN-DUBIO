@@ -1,0 +1,372 @@
+{
+  "id": "tyc_hranice_2",
+  "slot": "pool",
+  "case_track": "pillar",
+  "case_track_label": "tycove",
+  "type": "political",
+  "color": "#7A6A5A",
+  "available_days": [
+    8
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "forced": true
+  },
+  "title": "Německý dopis",
+  "case_number": "Sp. zn. 109/1931",
+  "defendant": {
+    "name": "Wilhelm Grünbaum",
+    "age": 67,
+    "occupation": "penzionovaný učitel",
+    "detail": "tatáž osoba jako Sp. zn. Hranice 1 (34 cm). Tentokrát nečelí sporu o zeď — čelí udání pro korespondenci se synem v Berlíně."
+  },
+  "charge": "Šíření protistátní propagandy dle §14 zákona na ochranu republiky č. 50/1923 Sb.: Wilhelm Grünbaum dne 18. února 1931 zaslal svému synovi Ernstu Grünbaumovi (Berlín, Německo) dopis, v němž požádal o zprostředkování žádosti k berlínskému Úřadu pro ochranu Němců v zahraničí o potvrzení vlastnictví nemovitosti v Bubenči. Podnět podal Josef Kříž, soused Grünbaumův.",
+  "description": "Zeď mezi Grünbaumem a Křížem stojí, kde stála — nebo skoro. Ale v únoru přišel z Berlína dopis. Ernstův. S hlavičkou, která Kříže znepokojila. Šel na policii. Wilhelm Grünbaum napsal synovi o potvrzení vlastnictví domu — kvůli německé dědické daní, říká. Kříž říká, že šlo o kontakt s nacistickou organizací. Zákon na ochranu republiky zná slovo protistátní. Nezná slovo sousedská zloba.",
+  "testimonies": [
+    {
+      "id": "grunbaum",
+      "speaker": "Wilhelm Grünbaum, obžalovaný",
+      "text": "Syn žije v Berlíně od roku 1924. Je německý státní úředník — na ministerstvu dopravy. Napsal jsem mu, protože zemřela moje sestra v Drážďanech a její advokát potřeboval potvrzení, že dům v Bubenči není zatížen německým dluhem. <span class=\"clue\" data-clue-id=\"clue_grunbaum_dedictvi\">Úřad, na který se Ernst obrátil, se jmenuje Amt für Auslandsdeutsche — Úřad pro záležitosti Němců v zahraničí, ne žádná stranická organizace.</span> Pane doktore, já jsem tady šedesát sedm let. Platím daně. Učil jsem české děti německy a německé děti česky. To je vše.",
+      "contradiction_keywords": [
+        "Amt für Auslandsdeutsche",
+        "sestra",
+        "ministerstvo dopravy"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "kriz",
+      "speaker": "Josef Kříž, navrhovatel podnětu",
+      "text": "Viděl jsem obálku, když ji pošťák nesl. Německá hlavička, berlínská adresa. <span class=\"clue\" data-clue-id=\"clue_kriz_obalka\">Nevím, co v ní bylo — ale vím, co ta organizace je. Četl jsem o ní v novinách. Říkají, že pomáhá sudetským Němcům domáhat se práv v Československu.</span> Pan Grünbaum je slušný člověk. Ale s kým se stýká, za to zodpovídá.",
+      "contradiction_keywords": [
+        "nevím co v ní bylo",
+        "noviny",
+        "sudetským Němcům"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "ernst_dopis",
+      "speaker": "Ernst Grünbaum — výňatek z dopisu ze dne 12. března 1931 (předložen soudu)",
+      "text": "„Otče, požádal jsem Úřad o potvrzení. Sdělili mi, že potvrzení pro zahraniční dědické řízení vydávají standardně všem žadatelům bez ohledu na státní příslušnost. <span class=\"clue\" data-clue-id=\"clue_ernst_potvrzeni\">Přikládám jejich odpověď. Jak vidíš, jde o administrativní akt, nikoli o politické prohlášení.</span> Přijedu na Vánoce — pokud to okolnosti dovolí. Ernst.",
+      "contradiction_keywords": [
+        "administrativní akt",
+        "Vánoce",
+        "standardně všem"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "komisar_bezpecnost",
+      "speaker": "Vrchní komisař Alois Marek, Policejní ředitelství Praha — oddělení politické bezpečnosti",
+      "text": "Amt für Auslandsdeutsche je legálně registrovaná organizace v Německu. <span class=\"clue\" data-clue-id=\"clue_marek_organizace\">V Československu nemá pobočku, není na seznamu organizací sledovaných oddělením politické bezpečnosti.</span> Kontakt s touto organizací sám o sobě nesplňuje znaky trestného činu dle §14. Podnět Kříže jsme přijali k zaznamenání — nikoli k trestnímu řízení z vlastní iniciativy.",
+      "contradiction_keywords": [
+        "legálně registrovaná",
+        "není na seznamu",
+        "z vlastní iniciativy"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "kriz_nevede_co",
+      "description": "Kříž přiznal, že neví, co bylo v obálce. Podal podnět na základě novinového článku o organizaci, která — jak potvrdil komisař Marek — není na seznamu sledovaných. Podnět stojí na domněnce, ne na faktu.",
+      "involves": [
+        "kriz",
+        "komisar_bezpecnost"
+      ],
+      "highlight_at_wisdom": 60,
+      "unlocks_confrontation": "kriz"
+    },
+    {
+      "id": "amt_neni_politicky",
+      "description": "Kříž tvrdí, že organizace pomáhá sudetským Němcům domáhat se práv — ale komisař Marek potvrdil, že jde o administrativní úřad pro dědické a majetkové záležitosti, nikoli o politickou organizaci.",
+      "involves": [
+        "kriz",
+        "komisar_bezpecnost"
+      ],
+      "highlight_at_wisdom": 70,
+      "unlocks_confrontation": "kriz"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "podnět_bez_faktu_strong",
+    "pairs": [
+      {
+        "pair_id": "podnět_bez_faktu_strong",
+        "a_id": "clue_kriz_obalka",
+        "b_id": "clue_marek_organizace",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "administrativni_akt_medium",
+        "a_id": "clue_ernst_potvrzeni",
+        "b_id": "clue_grunbaum_dedictvi",
+        "strength": "medium"
+      }
+    ],
+    "decoys": [
+      "decoy_valka_nemecko"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 60,
+      "speed_upgrade_sec": 20,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 45,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 35,
+          "ids": [
+            "guilty_napomenuti"
+          ]
+        },
+        {
+          "min": 60,
+          "ids": [
+            "not_guilty_formal"
+          ]
+        },
+        {
+          "min": 80,
+          "ids": [
+            "not_guilty_with_comment"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 44,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "not_guilty_with_comment"
+          ],
+          "narrative_lines": [
+            "Kříž přiznal: nevím, co bylo v obálce. Podal podnět na základě novinového článku.",
+            "Komisař Marek: organizace není sledovaná. Podnět přijat k zaznamenání — ne k řízení.",
+            "Obálka s německou hlavičkou jako důkaz. Důkaz čeho — Kříž neví. A přesto podal podnět."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 22,
+          "unlock_verdict_ids": [
+            "not_guilty_formal"
+          ],
+          "narrative_lines": [
+            "Ernst: administrativní akt, nikoli politické prohlášení. Přiložil odpověď úřadu.",
+            "Grünbaum psal kvůli dědictví po sestře — a to ještě policie nezpochybňuje."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "amt_odpoved",
+      "target_label": "Přeložená odpověď Amt für Auslandsdeutsche (předložena soudu)",
+      "reveals": "motivation",
+      "text": "Úřad pro záležitosti Němců v zahraničí, Berlín, 5. března 1931. Věc: Potvrzení majetkového stavu. Vážený pane Grünbaum, <span class=\"clue\" data-clue-id=\"clue_ernst_potvrzeni\">na základě vaší žádosti potvrzujeme, že nemovitost v Praze-Bubenči zapsaná na jméno Wilhelm Grünbaum (nar. 1864) není evidována v německých rejstřících jako zatížená německými pohledávkami. Toto potvrzení vydáváme výhradně pro účely zahraničního dědického řízení.</span> S úctou, Úřad.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1,
+          "Lid": -1
+        }
+      }
+    },
+    "records": {
+      "source": "Registr spolků a organizací, Ministerstvo vnitra ČSR; policejní spis Grünbaum; katastr Bubenče",
+      "reveals": "facts",
+      "text": "Amt für Auslandsdeutsche: zapsán v Německu 1921, účel — administrativní pomoc německým občanům v majetkových záležitostech v zahraničí. <span class=\"clue\" data-clue-id=\"clue_marek_organizace\">Ministerstvo vnitra ČSR: organizace v ČSR neregistrována, na seznamu sledovaných organizací nefiguruje od roku 1923.</span> Policejní spis Grünbaum: žádný předchozí záznam. Katastr Bubenče: nemovitost Bubenč č. p. 47 zapsána Wilhelm Grünbaum od roku 1911.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 2,
+          "Lid": -1
+        }
+      },
+      "unlocks_contradiction": "amt_neni_politicky"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1,
+          "Lid": -1
+        }
+      },
+      "variants": {
+        "lid_high": "V Bubenči se říká, že Kříž a Grünbaum přestali mluvit kvůli zdi. To je pravda. Ale Kříž je pedant — a pedant, který prohraje u soudu, hledá jiný nástroj. Zákon na ochranu republiky je nástroj, který nezná sousedský spor. Zná jen slovo Německo.",
+        "moc_high": "Policejní ředitelství dostává od září 1930 víc podnětů na kontakty s německými organizacemi. Většina jsou sousedské spory nebo osobní záštipnosti — ale komisaři je musí přijímat. Grünbaumův případ je desátý tento měsíc. Devět z deseti skončí zastavením.",
+        "kapital_high": "Ernstova pozice v Berlíně — státní úředník — v roce 1931 neznamená automaticky nacismus. Ministerstvo dopravy zaměstnává tisíce úředníků různých přesvědčení. Ale v Praze slovo Berlín 1931 přestalo být zeměpisné označení.",
+        "default": "Kříž nevěděl, co bylo v obálce. Přesto šel na policii. 34 centimetrů zeď ho dostalo k soudu dvakrát — a prohrál. Teď má jiný paragraf. Grünbaum má šedesát sedm let a nikam nejde."
+      }
+    },
+    "confrontation": {
+      "target": "kriz",
+      "target_label": "Josef Kříž, navrhovatel",
+      "requires_contradiction": "kriz_nevede_co",
+      "requires_courage": 50,
+      "cost": 2,
+      "prompt": "Pane Kříži, vy jste přiznal, že nevíte, co bylo v obálce. Komisař Marek potvrdil, že organizace, na níž se odvoláváte, není sledovaná a kontakt s ní sám o sobě trestný čin není. Na čem tedy váš podnět stojí?",
+      "success": {
+        "text": "Kříž mlčí. Pak: 'Stojí na tom, že Wilhelm Grünbaum má kontakty v Berlíně.' Pauza. 'V roce 1931.' Jako by to samo o sobě stačilo. Ben čeká. Kříž přidá: 'Možná se mýlím. Ale pokud se nemýlím, byl bych rád, aby to někdo prověřil.' Nedívá se na Grünbauma. Dívá se na okno.",
+        "reveals": "Kříž nemá důkaz. Má podezření a rok 1931. Zákon na ochranu republiky tohle nezná jako trestný čin — ale jako atmosféru ho zná velmi dobře."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "napomenuti": {
+          "label": "Napomenutí — kontakt s cizí organizací bez náležité opatrnosti",
+          "description": "Zákon formálně naplněn nebyl, ale kontakt s německou organizací bez informování státních úřadů lze označit za neprozíravost. Napomenutí bez záznamu.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": -1,
+            "vina": 3,
+            "nadeje": -1,
+            "moc": 2,
+            "lid": -3,
+            "finance": 10
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zastavit — znaky trestného činu nenaplněny",
+          "description": "Kontakt s administrativní organizací za účelem dědického řízení nesplňuje podmínky §14. Organizace není sledovaná. Podnět nemá právní základ.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 2,
+            "odvaha": 2,
+            "vina": -1,
+            "moc": -3,
+            "lid": 4,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "flag_hranice_grunbaum_zprosten",
+                "value": true
+              }
+            ]
+          }
+        },
+        "with_comment": {
+          "label": "Alternativa: Zastavit — podnět podán bez faktického podkladu, konstatovat zneužití",
+          "description": "Kříž přiznal, že nezná obsah korespondence. Soud zastavuje a konstatuje, že podnět byl podán bez věcného podkladu a v kontextu sousedského sporu. Grünbaum je zprostřen — a Kříž dostane poznámku do protokolu.",
+          "requires_investigation": 3,
+          "requires": {
+            "odvaha_min": 55
+          },
+          "effects": {
+            "integrita": 5,
+            "odvaha": 5,
+            "vina": -2,
+            "nadeje": 2,
+            "moc": -6,
+            "lid": 6,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "flag_hranice_grunbaum_zprosten",
+                "value": true
+              },
+              {
+                "key": "flag_kriz_protokol",
+                "value": true
+              },
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "prerusit": {
+          "label": "Přerušit — vyžádat překlad celé korespondence",
+          "description": "Soud přeruší do předložení plného překladu dopisů Grünbaum–Ernst. Grünbaum souhlasí. Kříž souhlasí. Nikdo nevíří, co překlad ukáže.",
+          "effects": {
+            "moudrost": 3,
+            "vina": 1,
+            "finance": 8,
+            "flags": [
+              {
+                "key": "flag_hranice_grunbaum_preruseno",
+                "value": true
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "napomenuti": "Grünbaum dostal napomenutí. Ernstovi o tom nenapsal — nebo napsal, nevíme. Kříž šel domů. Na zahradě zalil růže. Grünbaumovy rostou u zdi. Zeď stojí, kde stála.",
+    "formal": "Řízení zastaveno. Grünbaum vyšel na chodbu a zastavil se. Venku svítilo slunce. Pak se otočil a šel domů. Kříž čekal na autobus na druhé straně ulice. Nepodívali se na sebe.",
+    "with_comment": "Řízení zastaveno, Kříž v protokolu. Ben v odůvodnění napsal, že sousedský spor nelze řešit zákonem na ochranu republiky. Komisař Marek si odůvodnění zkopíroval pro vlastní archiv. Bez komentáře.",
+    "prerusit": "Překlad přišel za tři týdny. Dvaadvacet stran. Dědické záležitosti, zdraví, počasí v Berlíně. Jeden odstavec o synově nové práci. Žádná politika. Soud případ zastavil. Nikdo se neomluvil."
+  },
+  "stamp_moment": {
+    "guilty": "Grünbaum vstal. Pomalu. Jako člověk, který se omlouvá za to, že je.",
+    "not_guilty": "Grünbaum se podíval na Kříže. Kříž se díval na stůl. Mezi nimi bylo dvacet let a 34 centimetrů.",
+    "insufficient": "Grünbaum složil dopis Ernstův zpátky do obálky. Opatrně. Jako by se dal použít znovu."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "with_comment",
+      "delay_days": 3,
+      "type": "fragment",
+      "text": "V Národních listech krátká zpráva: Soud v Bubenči zamítl podnět na německého důchodce — konstatoval zneužití zákona na ochranu republiky. Komisař Marek si výstřižek přiložil ke spisu. Bez komentáře."
+    },
+    {
+      "trigger": "formal",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "Grünbaum napsal synovi Ernstovi. Krátký dopis — česky, ne německy. Ernst odpověděl: přijede na Vánoce. Kříž potkal Grünbauma u kašny. Pozdravil ho. Grünbaum pozdravil zpátky. Bylo to poprvé od října."
+    },
+    {
+      "trigger": "napomenuti",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "Ernst Grünbaum napsal otci, že přijet nemůže — situace v Berlíně se komplikuje. Grünbaum dopis přečetl, složil a schoval do šuplíku vedle Ernstovy fotografie."
+    }
+  ]
+}

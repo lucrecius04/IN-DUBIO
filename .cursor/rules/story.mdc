@@ -67,7 +67,7 @@ Nikdy víc než větu. Jsou nábytek, který dýchá.
 Vlček ← financuje ← Haas → platí → Řád. Vlček → platí → Karas → informuje → Vlček.
 Řád (Závadová) → sleduje Vlčka i Bena (od 1928). Haas → Horák, Benešova továrna, Annina léčba.
 VŠE VEDE K HAASOVI. Mechanismus odhalení: hráč skládá sám z průzkumu.
-Kostra stop dle `Mapa_15dni`: **D1** záznamy (Haas u Horáka), průběžně poolech **D2–5**; **D6** Haasova vizitka; **D7** Horáčková a klient; **D8** tlak; **D9** Beneš a továrna; **D10** zrcadlení (Anna / Haas, Wolf ve spise); **D11** Haas osobně; dál **D12** Závadová, **D13** Karas, epilog u **D14–15** (vč. Markové a velezrady).
+Kostra stop dle `Mapa_15dni`: **D1** záznamy (Haas u Horáka), průběžně poolech **D2–5**; **D6** Haasova vizitka; **D7** Horáčková a klient; **D8** tlak; **D9** Beneš a továrna; **D10–D12** osobní trilogie ve druhém slotu (`tyc_zvraty_d10`, `tyc_haas_d11`, `tyc_zavadova_d12`) — zrcadlení Anny / Haase / Wolfa a nátlak Řádu; **D13** Karas; epilog u **D14–15** (Marková 3, velezrada).
 
 ## DENNÍ RYTMUS
 RÁNO: fragment 2-3 věty (svět mimo soud, Švejda, počasí, fronty). Foreshadowing.
@@ -87,8 +87,8 @@ POOL (~12): vyplňují zbylé sloty. Váhované. Replayabilita.
 Celkem ~52 unikátních textů, hráč vidí ~38. Při druhém průchodu ~12 jiných.
 
 ## TŘI ZVRATY (doplněk k denní kostře v `Mapa_15dni`)
-ZVRAT 1 **(D10)** — dva hity v jednom dni (slot Zvraty): mimo jiné **Haas a Anna** — „náklady uhrazeny firmou V. Haas" + spojitost s identitou ve spise (Wolf), viz `Pripady_15dni` řádek `d10s1_zvrat`.
-ZVRAT 2 **(D12)** — Závadová, podvrh, rodný list jako zbraň: použít falešný důkaz proti skutečnému zločinu? (`d12s1_zavad`)
+ZVRAT 1 **(D10)** — osobní tyč ve druhém slotu (`tyc_zvraty_d10`): **Haas a Anna**, rodný list, vazba na spis (Wolf); viz `Pripady_15dni` řádek `d10s2_zvrat` + `days.json` den 10.
+ZVRAT 2 **(D12)** — Závadová ve druhém slotu (`tyc_zavadova_d12`), podvrh, tlak Řádu; viz `Pripady_15dni` řádek `d12s2_zavad`.
 ZVRAT 3 **(D15)** — finální případ (velezrada / epilog): poslední obžalovaný, cynická hra frakcí, uzavření dechu aktu 1 dle scénáře.
 
 ## DRAMATICKÝ OBLOUK — 15 PRACOVNÍCH DNŮ
@@ -96,8 +96,8 @@ Benův oblouk: „Dělám svou práci" → „Stojím pevně" → „Rozbil jsem
 
 **Akt 1 (D1–5):** falešná normalita, tutorial; háček **D3** (Karas, káva, kázeň spisu), **D4** dopis od doktora (400 Kč, odpočet k termínu v mapě), první morální tlaky (pool D5).  
 **Akt 2 (D6–8):** praskliny. **D6** Haasova vizitka, Pospíšil se bojí. **D7** Horáčková (VETVENÍ 1). **D8** Vlček: očekávání (natlak), Božena finále, třetí spis, Hranice — národnostní.  
-**Akt 3 (D9–11):** **D9** Beneš (VETVENÍ 2). **D10** zrcadlení a dva zvraty (Volf / Anna / spis, Marková). **D11** Haas 300 Kč, Pospíšil 3, Vlčkova hrozba (VETVENÍ 3), deadline ošetření dle `economy` + mapa.  
-**Akt 4 (D12–15):** **D12** Závadová + podvrh, Hranice finále. **D13** Karas (VETVENÍ 4). **D14** Marková obžalovaná, konec vybraných konců (Řád / Anna). **D15** Velezrada, jeden slot — epilog, **HRDINA** / **PŘEŽITÍ** apod. dle mechanik.
+**Akt 3 (D9–11):** **D9** Beneš (VETVENÍ 2). **D10** zvraty — osobní spis `tyc_zvraty_d10` (Anna / Haas / Wolf), vedle rutinního poolu. **D11** Haas 300 Kč — `tyc_haas_d11` (VETVENÍ 3), vedle poolu; ranní echo k Pospíšilovi může zůstat z `flag_pospisil_dluzi`.  
+**Akt 4 (D12–15):** **D12** Závadová — `tyc_zavadova_d12` (podvrh, druhý slot), vedle morálního poolu. **D13** Karas (VETVENÍ 4). **D14** Marková obžalovaná (`tyc_markova_3`), konec vybraných konců (Řád / Anna). **D15** Velezrada, jeden slot — epilog, **HRDINA** / **PŘEŽITÍ** apod. dle mechanik. *(Finále vláken Pospíšil 3 / Hranice 3 / Marková 2 je v datech poolu, ale nemusí být v aktuálním `days.json` — ověř mapu.)*
 
 (Stará sekce „20 dní" v bibles — přemapovat na tento rozklad; 20d CSV v repu je archiv.)
 

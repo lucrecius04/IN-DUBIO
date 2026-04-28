@@ -95,6 +95,7 @@ const Cases = (() => {
     if (!c) return 'rutinni';
     const t = String(c.type || '').toLowerCase();
     if (t === 'routine') return 'rutinni';
+    if (t === 'personal') return 'osobni';
     if (t === 'moral_dilemma' || t === 'moraldilemma') return 'moralni';
     if (_TYP_LEGACY_NA_RUTINNI.has(t)) return 'rutinni';
     if (t === 'vlakno') {

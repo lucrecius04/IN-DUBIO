@@ -10,7 +10,7 @@ Tento dokument je **zadání pro autora / generátor**, až tým začne psát **
 
 ## Proč je tento prompt jiný než pool
 
-- Tyčové finále **vázané na scénář** (Božena 3, Hranice 2–3, Beneš, zvraty D10, Haas, Závadová, Karas, Marková 3, Velezrada) musí **sedět na den, slot, VETVENÍ** a na **odemykání konců** (`.cursor/rules/story.mdc`, osm konců).
+- Tyčové finále **vázané na scénář** musí **sedět na den, slot, VETVENÍ** a na **odemykání konců** (`.cursor/rules/story.mdc`, osm konců). Kanon dní: **Božena 3**, **Hranice 2**, **Beneš (D9)**, **osobní trilogie D10–D12** (`tyc_zvraty_d10`, `tyc_haas_d11`, `tyc_zavadova_d12`), **Karas (D13)**, **Marková 3 (D14)**, **Velezrada (D15)**. Finále dalších vláken (**Hranice 3**, **Pospíšil 3**, případně **Marková 2**) ověř v [`../scenar/Pripady_15dni.csv`](../scenar/Pripady_15dni.csv) a `data/days.json` — nemusí být v aktuálním kalendáři.
 - **Spisová zn.** nesmí kolidovat s jinou kauzou v `data/pool_cases_akt1.json` / přehledem.
 - Texty musí **neprozrazovat** předčasně to, co má přijít o den později; křížové odkazy jen tam, kde to mapa a Bible dovolují.
 - Mechanika zůstává **stejná JSON stavebnice** jako u poolu (`cases.mdc`, `normalizujPoolPripad`), ale **ambice narrativní** je vyšší — stále soudní protokol, ne cutscéna místo spisu (kromě schválených výjimek týmu).

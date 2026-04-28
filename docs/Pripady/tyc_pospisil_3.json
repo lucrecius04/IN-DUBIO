@@ -1,0 +1,424 @@
+{
+  "id": "tyc_pospisil_3",
+  "slot": "pool",
+  "case_track": "pillar",
+  "case_track_label": "tycove",
+  "type": "political",
+  "color": "#7A9BAD",
+  "available_days": [
+    11
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "forced": true
+  },
+  "title": "Co slyšel hostinský",
+  "case_number": "Sp. zn. 114/1931",
+  "defendant": {
+    "name": "Ondřej Maňák",
+    "age": 47,
+    "occupation": "obchodní zástupce",
+    "detail": "zástupce firmy PRAGA ROADS a.s. pro pozemkové transakce — Žižkov a okolí; ženatý, tři děti"
+  },
+  "charge": "Vydírání dle §98 trestního zákona: Ondřej Maňák dne 14. února 1931 v hostinci U Zlatého sudu na Žižkově pohrozil Janu Červenkovi (účetní záložny Žižkov) fyzickým násilím vůči členům jeho rodiny, pokud Červenka nepředá Maňákovi doklady o bankovních transakcích záložny Žižkov za říjen–prosinec 1930. Svědkem vyhrůžky byl hostinský Emil Pospíšil.",
+  "description": "Ondřej Maňák seděl u Zlatého sudu s Červenkou a mluvil potichu. Pospíšil stál za pultem a neslyšel slova — slyšel tón. Zná ho. Pak Červenka vstal a šel domů, a v sobotu mu někdo rozbil čelist. Teď je Maňák obžalovaný z vydírání. Červenka svědčit odmítl. Pospíšil je jediný svědek. A Pospíšil ví, co se stane s lidmi, kteří mluví — protože mu to řekli osobně, v sobotu 7. března, přes dceru Martu. Ben u případu Pospíšil 2 rozhodl, jak rozhodl. Teď Pospíšil sedí naproti a čeká, co Ben udělá.",
+  "testimonies": [
+    {
+      "id": "pospisil_svedek",
+      "speaker": "Emil Pospíšil, svědek",
+      "text": "Byl jsem za pultem. Slyšel jsem, že mluví potichu — to je jiné než normální hovor. Červenka seděl přísně. Pak Maňák vstal, dal mu ruku na rameno — dlouhou chvíli — a odešel. <span class=\"clue\" data-clue-id=\"clue_pospisil_ruka\">Červenka pak seděl a nedotknul se piva. Čtvrt hodiny. Pak zaplatil a šel.</span> <span class=\"clue\" data-clue-id=\"decoy_cervenka_doma\">Šel domů — to mi pak říkal sousedovi.</span> Co přesně říkali — to jsem neslyšel. Za pultem je hluk.",
+      "contradiction_keywords": [
+        "nedotknul se piva",
+        "čtvrt hodiny",
+        "neslyšel"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "pospisil_konfrontace",
+      "speaker": "Emil Pospíšil — k přímé otázce státního zástupce",
+      "text": "Pane doktore, jeden rok předtím mi Maňák seděl u baru a mluvil o tom, jak probíhají výkupy pozemků. Říkal konkrétní věci. Jak se pracuje s dlužníky, jak se dá přimět člověk prodat, když nechce. <span class=\"clue\" data-clue-id=\"clue_pospisil_rok_drive\">Říkal to vesele, jako by to bylo normální. V únoru přišel znovu — s Červenkou. Tón byl jiný. Ne veselý.</span> Víc říct nemohu.",
+      "contradiction_keywords": [
+        "rok předtím",
+        "vesele",
+        "tón byl jiný"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "manak_obzalovany",
+      "speaker": "Ondřej Maňák, obžalovaný",
+      "text": "Červenka je starý přítel. Setkali jsme se, mluvili jsme o obchodě. Žádné hrozby nepadly. <span class=\"clue\" data-clue-id=\"clue_manak_pritel\">Červenka a já se známe od roku 1926 — tehdy jsem mu pomohl s refinancováním záložního dluhu. Jsme v dobrém vztahu.</span> Pospíšil stál za pultem a slyšel hluk výhně. To je vše, co může dosvědčit.",
+      "contradiction_keywords": [
+        "1926",
+        "refinancování",
+        "hluk výhně"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "cervenka_odmita",
+      "speaker": "Jan Červenka, poškozený — k výslechu",
+      "text": "Odmítám svědčit. Využívám práva odmítnout výpověď dle §97 trestního řádu — hrozí mi újma na zdraví nebo na zdraví mé rodiny. <span class=\"clue\" data-clue-id=\"clue_cervenka_uvod\">Toto prohlášení jsem sepsal sám, bez nátlaku, dne 18. března 1931.</span> Víc neřeknu.",
+      "contradiction_keywords": [
+        "§97",
+        "sám bez nátlaku",
+        "18. března"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "starý_pritel_novy_tón",
+      "description": "Maňák říká, že Červenka je starý přítel — od roku 1926. Pospíšil říká, že tón v únoru byl jiný než v předchozím roce. Přátelé mluví jiným tónem, když jeden z nich přestane být hostem a stane se nástrojem.",
+      "involves": [
+        "manak_obzalovany",
+        "pospisil_konfrontace"
+      ],
+      "highlight_at_wisdom": 60,
+      "unlocks_confrontation": "manak_obzalovany"
+    },
+    {
+      "id": "cervenka_datum_prohlaseni",
+      "description": "Červenka říká, že prohlášení o odmítnutí svědčit sepsal sám, bez nátlaku, 18. března. Ale Červenkovi byla zlomena čelist 7. března — a prohlášení přišlo jedenáct dní po tom. Sám, bez nátlaku — po jedenácti dnech od útoku.",
+      "involves": [
+        "cervenka_odmita",
+        "pospisil_svedek"
+      ],
+      "highlight_at_wisdom": 70,
+      "unlocks_confrontation": "manak_obzalovany"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "ton_a_datum_strong",
+    "pairs": [
+      {
+        "pair_id": "ton_a_datum_strong",
+        "a_id": "clue_pospisil_rok_drive",
+        "b_id": "clue_cervenka_uvod",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "pivo_a_pritel_medium",
+        "a_id": "clue_pospisil_ruka",
+        "b_id": "clue_manak_pritel",
+        "strength": "medium"
+      }
+    ],
+    "decoys": [
+      "decoy_cervenka_doma"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 65,
+      "speed_upgrade_sec": 22,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 50,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 35,
+          "ids": [
+            "guilty_standard"
+          ]
+        },
+        {
+          "min": 65,
+          "ids": [
+            "guilty_alternative"
+          ]
+        },
+        {
+          "min": 80,
+          "ids": [
+            "not_guilty_with_comment"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 46,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "guilty_alternative",
+            "not_guilty_with_comment"
+          ],
+          "narrative_lines": [
+            "Tón v únoru byl jiný než rok předtím. Maňák byl veselý — pak přestal být veselý.",
+            "Prohlášení o odmítnutí svědčit: 18. března. Útok na Červenku: 7. března. Jedenáct dní.",
+            "Sám, bez nátlaku — po jedenácti dnech od zlomené čelisti."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 24,
+          "unlock_verdict_ids": [
+            "guilty_standard"
+          ],
+          "narrative_lines": [
+            "Červenka se nedotkl piva čtvrt hodiny. Starý přítel, který přestal být hostem.",
+            "Maňák položil ruku na rameno a stál. Dlouhou chvíli."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "pospisil_soukrome",
+      "target_label": "Emil Pospíšil — soukromě, mimo protokol",
+      "reveals": "motivation",
+      "text": "Přišel dobrovolně, před jednáním. Svejda ho zavedl do vedlejší místnosti. Pospíšil seděl a díval se na ruce. <span class=\"clue\" data-clue-id=\"clue_pospisil_rok_drive\">Řekl: 'Víte, co Maňák dělá pro PRAGA ROADS? Jezdí za lidmi, kteří mají pozemky u plánovaných silnic. Mluví s nimi. Někteří prodají rádi. Někteří ne. Ti, co neprodají — přijde za nimi znovu. S někým.'</span> Pak vstal a odešel. Nic dalšího neřekl. U výslechu řekl méně.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 2
+        },
+        "factions": {
+          "Lid": 2,
+          "Moc": -1
+        }
+      }
+    },
+    "records": {
+      "source": "Obchodní záznamy PRAGA ROADS; záložna Žižkov — výkaz transakcí říjen–prosinec 1930; lékařská zpráva Červenka",
+      "reveals": "facts",
+      "text": "Obchodní záznamy PRAGA ROADS: Ondřej Maňák — provizní smlouva za zprostředkování pozemkových transakcí od března 1930. <span class=\"clue\" data-clue-id=\"clue_manak_pritel\">Záložna Žižkov: výkaz transakcí říjen–prosinec 1930 — obsahuje šest plateb entitám spřízněným s PRAGA ROADS. Celková suma 84 000 Kčs. Červenka byl hlavní účetní záložny.</span> Lékařská zpráva Červenka ze 7. března: zlomenina jochového oblouku, pracovní neschopnost 6 týdnů.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": -1,
+          "Kapital": 2
+        }
+      },
+      "unlocks_contradiction": "cervenka_datum_prohlaseni"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1,
+          "Lid": -2
+        }
+      },
+      "variants": {
+        "lid_high": "Na Žižkově Maňáka znají. Chodí do hospod, mluví s lidmi, je příjemný. Pak přijde druhý den a ptá se na podpis. Někdo podepíše, někdo ne. Ti, co nepodepíší, pak mají problémy — různého druhu. Nikdy přesně stejné. Nikdy dokazatelné.",
+        "moc_high": "PRAGA ROADS má zakázky od Ministerstva dopravy. Záložna Žižkov spravuje účty tří obecních spolků. Pokud Červenka předal výkazy Maňákovi, šlo o bankovní tajemství. Ale Červenka svědčit odmítl — a bez něj to zákon nemůže dokázat.",
+        "kapital_high": "JUDr. Knot zastupuje Maňáka i PRAGA ROADS. Knot byl v záznamu i u Kučerové. U Pospíšila 2 byl muž v tmavém kabátě. Kabát a Knot — to jsou různí lidé. Nebo ne. Záznamy to neříkají.",
+        "default": "Pospíšil ví víc, než říká. To Ben vidí. Ale Pospíšil ví taky, co se stalo Červenkovi — a Červenka měl jen záznamy. Pospíšil má dceru Martu."
+      }
+    },
+    "confrontation": {
+      "target": "manak_obzalovany",
+      "target_label": "Ondřej Maňák, obžalovaný",
+      "requires_contradiction": "cervenka_datum_prohlaseni",
+      "requires_courage": 60,
+      "cost": 2,
+      "prompt": "Pane Maňák, Červenka odmítl svědčit 18. března — jedenáct dní po útoku, při němž utrpěl zlomeninu čelisti. Toto prohlášení podal sám, bez nátlaku — jak tvrdí. Byl ten útok varovný vzkaz, nebo náhoda?",
+      "success": {
+        "text": "Maňák se usměje. Pomalu, kontrolovaně. 'Pane doktore, útok na Červenku byl tragická náhoda. Policie případ šetří. Zatím bez výsledku.' Odmlka. 'Červenka podal prohlášení svobodně — tak to stojí v dokumentu.' Ještě jedna odmlka. 'Já jsem za to nestál.' Říká to klidně. Skoro mile. Ben čeká na další větu. Nepřijde.",
+        "reveals": "Maňák nepopřel. Nepotvrdil. Odpověděl tak, aby každé slovo bylo pravdivé — a aby neprozradilo nic. To je člověk, který tenhle rozhovor hrál mockrát."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "standard": {
+          "label": "6 měsíců podmíněně za vydírání",
+          "description": "Pospíšilovo svědectví, prohlášení Červenky s pochybným datem a záznamy záložny tvoří nepřímý důkaz. Podmíněný trest — Maňák jde domů, ale má záznam. Červenka dostane nové prohlášení k podpisu.",
+          "effects": {
+            "integrita": 2,
+            "vina": 3,
+            "nadeje": -1,
+            "moc": 4,
+            "lid": -4,
+            "kapital": 2,
+            "finance": 14
+          }
+        },
+        "maximum": {
+          "label": "2 roky vězení — vydírání s fyzickým násilím",
+          "description": "Útok na Červenku jako přímý důsledek vydírání. Kauzalita není prokázána na jistotu — ale indicií je dost. Maňák jde do vězení. Červenka bude v bezpečí — nebo bude v jiném nebezpečí.",
+          "requires": {
+            "odvaha_min": 65
+          },
+          "effects": {
+            "integrita": 3,
+            "odvaha": 5,
+            "vina": 4,
+            "nadeje": -2,
+            "moc": 6,
+            "lid": -6,
+            "kapital": -3,
+            "finance": 18
+          }
+        },
+        "alternative": {
+          "label": "Alternativa: Podmíněný trest + doporučení šetření PRAGA ROADS",
+          "description": "Soud konstatuje, že záznamy záložny naznačují systémový vzorec přesahující tento případ. Trest pro Maňáka, doporučení pro státní zastupitelství k prošetření transakcí PRAGA ROADS.",
+          "requires_investigation": 3,
+          "requires": {
+            "odvaha_min": 70
+          },
+          "effects": {
+            "integrita": 6,
+            "odvaha": 7,
+            "vina": 3,
+            "nadeje": 2,
+            "moc": -5,
+            "lid": 7,
+            "kapital": -5,
+            "finance": 12,
+            "flags": [
+              {
+                "key": "flag_praga_roads_setreni",
+                "value": true
+              },
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "nedostatek_dukazu": {
+          "label": "Zproštění — přímý důkaz vydírání chybí",
+          "description": "Červenka odmítl svědčit. Pospíšil neslyšel slova. Nepřímé indicie nestačí. Maňák odchází. Pospíšil ví, proč. Ben ví, proč.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": -2,
+            "vina": 3,
+            "nadeje": -3,
+            "moc": -2,
+            "lid": -5,
+            "kapital": 4,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "flag_manak_zprosten",
+                "value": true
+              }
+            ]
+          }
+        },
+        "with_comment": {
+          "label": "Alternativa: Zproštění — ale soud konstatuje zastrašení svědka",
+          "description": "Přímý důkaz vydírání chybí, ale Červenkovo prohlášení nese znaky zastrašení. Soud to konstatuje v odůvodnění — bez právních důsledků pro Maňáka, s veřejným záznamem.",
+          "requires_investigation": 3,
+          "requires": {
+            "odvaha_min": 60
+          },
+          "effects": {
+            "integrita": 3,
+            "odvaha": 4,
+            "vina": 2,
+            "nadeje": -1,
+            "moc": -3,
+            "lid": 2,
+            "kapital": 1,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "flag_manak_zprosten",
+                "value": true
+              },
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "prerusit": {
+          "label": "Přerušit — předvolat Červenku k novému výslechu za asistence soudu",
+          "description": "Odmítnutí svědčit lze přezkoumat. Soud přeruší a Červenku předvolá k výslechu pod soudní ochranou. Červenka přijde nebo nepřijde.",
+          "effects": {
+            "moudrost": 4,
+            "vina": 1,
+            "finance": 8,
+            "flags": [
+              {
+                "key": "flag_cervenka_predvolan",
+                "value": true
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "standard": "Maňák dostal podmínku. Odešel s Knotem. Na chodbě mluvili potichu. Pospíšil čekal na lavici — dívali se na něj. Pak odešli. Pospíšil šel domů. Dělníci z Waltrovky přišli večer jako vždy.",
+    "maximum": "Maňák odešel s policistou. Knot podal odvolání do čtyřiadvaceti hodin. Červenka se vrátil do záložny po šesti týdnech. Na svém stole našel nový výkaz. Nevyplněný.",
+    "alternative": "Podmíněný trest. Doporučení šetření PRAGA ROADS. Knot si ho přečetl na chodbě a řekl Maňákovi jednu větu. Nevíme jakou. Maňák pak šel sám.",
+    "nedostatek_dukazu": "Maňák zproštěn. Pospíšil vstal a odešel bez pohledu na Bena. Šel rovnou domů, zamknul a zavolal dceři Martě. Řekl jí, ať dá pozor. Neřekl proč.",
+    "with_comment": "Zproštěn s poznámkou. Knot si přečetl odůvodnění a zasmál se — krátce, kontrolovaně. Pak šel za Maňákem. Ben to viděl z okna.",
+    "prerusit": "Červenka byl předvolán. Přišel. Sedl si. Státní zástupce se ho zeptal jednou otázkou. Červenka odpověděl: 'Odmítám.' Soud to zaznamenal. Maňák seděl a díval se na stůl."
+  },
+  "stamp_moment": {
+    "guilty": "Maňák vstal. Podíval se na Pospíšila. Pospíšil se díval na ruce.",
+    "not_guilty": "Pospíšil seděl a nereagoval na rozsudek. Jako by věděl, co přijde, ještě než Ben začal mluvit.",
+    "insufficient": "Červenka seděl v zadní řadě celé jednání. Vstal jako první a odešel jako první. Nikdo ho nezastavil."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "alternative",
+      "delay_days": 3,
+      "type": "fragment",
+      "text": "PRAGA ROADS dostala předvolání k podání informací o transakcích záložna Žižkov. Knot za firmu odmítl — odvolává se na obchodní tajemství. Státní zastupitelství podá žalobu na vydání dokladů."
+    },
+    {
+      "trigger": "nedostatek_dukazu",
+      "delay_days": 2,
+      "type": "fragment",
+      "text": "Pospíšilovi přišel dopis. Bez odesílatele. Uvnitř jeden papír — výstřižek z novin o rozsudku. Bez komentáře. Pospíšil ho přečetl a spálil v kamnech. Pak otevřel hospodu."
+    },
+    {
+      "trigger": "maximum",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "Knot podal odvolání. Pospíšil dostal navštívenku — tentokrát bez jména. Jen adresa v Holešovicích a čas: pátek 17:00. Pospíšil nešel. Pátek přišel a odešel beze změny."
+    },
+    {
+      "trigger": "standard",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "Červenka se vrátil do práce. Záložna mu přidělila novou pozici — bez přístupu k výkazům transakcí. Účetní bez výkazů. Červenka to přijal. Nic neřekl."
+    }
+  ]
+}

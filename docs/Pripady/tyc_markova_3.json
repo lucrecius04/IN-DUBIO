@@ -1,0 +1,393 @@
+{
+  "id": "tyc_markova_3",
+  "slot": "pool",
+  "case_track": "pillar",
+  "case_track_label": "tycove",
+  "type": "moral_dilemma",
+  "color": "#5A5A4A",
+  "available_days": [
+    14
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "forced": true
+  },
+  "title": "Sešit jako důkaz",
+  "case_number": "Sp. zn. 118/1931",
+  "defendant": {
+    "name": "Věra Marková",
+    "age": 34,
+    "occupation": "účetní",
+    "detail": "zaměstnankyně firmy Beneš & syn, Karlín — tatáž osoba jako Sp. zn. Marková 1 (svědkyně) a Marková 2 (záchrankyně). Tentokrát sedí na druhé straně stolu."
+  },
+  "charge": "Padělání obchodních dokladů dle §201 trestního zákona a porušení obchodní věrnosti dle §200: Věra Marková v době od ledna do března 1931 systematicky pozměňovala záznamy v účetní knize firmy Beneš & syn — konkrétně výkazy příjmů za zakázky pro odběratele Fojtík a Mrázek — tak, aby zakryly platby přijaté mimo řádnou evidenci firmy. Celková výše manipulovaných záznamů: 6 800 Kčs.",
+  "description": "Věra Marková, která dvakrát zachránila jiné lidi přesností svých záznamů, teď čelí obžalobě z padělání záznamů. Přesně ona. Přesnost jako zbraň i jako štít — a teď jako důkaz viny. Beneš ml. předložil účetní knihy a vlastní revizní zprávu. Marková přiznala, že záznamy opravovala — ale říká, že opravovala chyby, které tam neudělala ona. Sešit — ten záhadný sešit z D3 a D10 — je nyní v rukou soudu. A v sešitu je víc, než všichni čekali.",
+  "testimonies": [
+    {
+      "id": "markova_obzalovana",
+      "speaker": "Věra Marková, obžalovaná",
+      "text": "Záznamy jsem opravovala. To přiznám. Ale neopravovala jsem je, aby skryly příjmy — opravovala jsem je, protože příjmy tam nebyly správně zapsány. <span class=\"clue\" data-clue-id=\"clue_markova_puvodni\">Původní záznamy pro Fojtíka a Mrázka psal pan Beneš ml. sám — v lednu, když jsem byla čtyři dny nemocná. Pak mi předal knihy. Čísla nesedela. Ptala jsem se. Řekl: přepsat to takhle. Přepsala jsem.</span> V sešitu mám původní čísla — ta, které jsem před přepsáním opsala.",
+      "contradiction_keywords": [
+        "Beneš ml. psal sám",
+        "nemocná",
+        "přepsat to takhle"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "benes_ml_obvinalej",
+      "speaker": "Karel Beneš ml., spolumajitel firmy Beneš & syn",
+      "text": "Marková má v náplni práce veškerou účetní agendu. V lednu jsem byl v Brně — to dosvědčí hotel. <span class=\"clue\" data-clue-id=\"clue_benes_bmo\">V Brně jsem byl od 12. do 18. ledna. Záznamy pro Fojtíka jsou datovány 14. a 15. ledna.</span> Já v Praze nebyl. Záznamy psal někdo v Praze. Kdo jiný než Marková?",
+      "contradiction_keywords": [
+        "12. do 18. ledna",
+        "14. a 15. ledna",
+        "kdo jiný"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "revisor_doklad",
+      "speaker": "Ing. Miroslav Šimánek, revizor, Obchodní komora Praha",
+      "text": "Záznamy pro <span class=\"clue\" data-clue-id=\"decoy_fojtik_zakaznik\">Fojtíka a Mrázka</span> v únoru 1931. Záznamy pro Fojtík a Mrázek nevykazují shodu s platebními doklady. <span class=\"clue\" data-clue-id=\"clue_revisor_prepis\">U čtyř záznamů jsou patrné stopy přepisu — jiný inkoust, mírně odlišný sklon písma. Přepis provedla jedna ruka. Zda je to ruka Markové — grafolog by musel potvrdit.</span> Numericky: záznamy skrývají příjem 6 800 Kčs, který v bance nesedí.",
+      "contradiction_keywords": [
+        "jiný inkoust",
+        "grafolog",
+        "6 800"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "sesit_obsah",
+      "speaker": "Obsah sešitu Věry Markové — předložen soudu, výňatek",
+      "text": "Strana 47, datum 14. 1. 1931: <em>'Fojtík — příjem dle faktury č. 14/31: 1 200 Kčs. Do knihy Beneš ml. zapsáno 340 Kčs. Rozdíl 860 Kčs. Původní záznamy předány mně 18. 1.'</em> Strana 48, datum 15. 1.: <em>'Mrázek — příjem dle faktury č. 15/31: 2 600 Kčs. Do knihy zapsáno 900 Kčs. Rozdíl 1 700 Kčs.'</em> <span class=\"clue\" data-clue-id=\"clue_sesit_datum\">Záznamy v sešitu datovány 18. ledna — den, kdy se Marková vrátila z nemoci. Beneš ml. tvrdí, že byl v Brně do 18. ledna.</span>",
+      "contradiction_keywords": [
+        "18. 1.",
+        "předány mně 18. 1.",
+        "do 18. ledna"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "benes_v_brne_ale_zapisy_14",
+      "description": "Beneš tvrdí, že byl v Brně od 12. do 18. ledna — ale záznamy pro Fojtíka a Mrázka jsou datovány 14. a 15. ledna. Pokud Marková záznamy nepsala (byla nemocná), kdo je psal? Beneš byl podle svých slov v Brně.",
+      "involves": [
+        "benes_ml_obvinalej",
+        "markova_obzalovana"
+      ],
+      "highlight_at_wisdom": 70,
+      "unlocks_confrontation": "benes_ml_obvinalej"
+    },
+    {
+      "id": "sesit_zachranil_nebo_obvinil",
+      "description": "Sešit Markové dokumentuje původní čísla a datum 18. ledna — den jejího návratu z nemoci. Sešit tak potvrzuje její verzi: záznamy byly hotové před jejím příchodem. Ale revizor říká, že přepis provedla jedna ruka. Čí ruka — to sešit neříká.",
+      "involves": [
+        "sesit_obsah",
+        "revisor_doklad"
+      ],
+      "highlight_at_wisdom": 75,
+      "unlocks_confrontation": "benes_ml_obvinalej"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "benes_brno_14_strong",
+    "pairs": [
+      {
+        "pair_id": "benes_brno_14_strong",
+        "a_id": "clue_benes_bmo",
+        "b_id": "clue_markova_puvodni",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "sesit_datum_medium",
+        "a_id": "clue_sesit_datum",
+        "b_id": "clue_revisor_prepis",
+        "strength": "medium"
+      }
+    ],
+    "decoys": [
+      "decoy_fojtik_zakaznik"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 65,
+      "speed_upgrade_sec": 22,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 50,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 35,
+          "ids": [
+            "guilty_mirny"
+          ]
+        },
+        {
+          "min": 65,
+          "ids": [
+            "not_guilty_formal"
+          ]
+        },
+        {
+          "min": 80,
+          "ids": [
+            "not_guilty_with_comment",
+            "insufficient_grafolog"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 48,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "not_guilty_with_comment"
+          ],
+          "narrative_lines": [
+            "Beneš v Brně od 12. do 18. ledna. Záznamy datovány 14. a 15. Marková nemocná. Někdo psal — a nebyla to ona.",
+            "Sešit dokumentuje 18. ledna — den návratu. Záznamy byly hotové. Marková je jen přepsala, protože jí to řekli.",
+            "Přepsala chyby, které udělal někdo jiný. Přesnost jako past. Sešit jako záchrana — nebo jako důkaz."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 24,
+          "unlock_verdict_ids": [
+            "not_guilty_formal",
+            "guilty_mirny"
+          ],
+          "narrative_lines": [
+            "Jiný inkoust, jiný sklon — grafolog by rozlišil. Revizor neměl grafologický posudek.",
+            "Sešit datován 18. ledna. Záznamy datovány 14.–15. Rozdíl tří dnů v němocné ruce."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "grafolog",
+      "target_label": "Ing. Václav Pokorný, grafolog, soudní znalec",
+      "reveals": "motivation",
+      "text": "Prostudoval jsem čtyři záznamy označené jako pozměněné. <span class=\"clue\" data-clue-id=\"clue_revisor_prepis\">Přepis byl proveden dvěma různými rukama. První záznamy — to jsou původní záznamy s nižšími čísly — napsal člověk s charakteristickým pravotočivým sklonem. Přepis — tedy vyšší čísla — provedla ruka s levotočivým sklonem.</span> Marková píše levotočivě. Kdo napsal původní záznamy — na to bych potřeboval srovnávací vzorky od Beneše ml.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1
+        }
+      }
+    },
+    "records": {
+      "source": "Hotelový výkaz Grandhotel Slavia, Brno; platební doklady Fojtík a Mrázek; nemocniční záznam Marková",
+      "reveals": "facts",
+      "text": "Grandhotel Slavia, Brno: Beneš Karel, příjezd 12. 1. 1931, odjezd 18. 1. 1931. Recepční záznam potvrzuje pobyt. <span class=\"clue\" data-clue-id=\"clue_benes_bmo\">Platební doklady Fojtík (č. 14/31, datum 14. 1.) a Mrázek (č. 15/31, datum 15. 1.): oba podepsány Beneš — ale podpis je iniciálový, bez ověření. Iniciála B. může být Karel Beneš ml. nebo Rudolf Beneš st.</span> Nemocniční záznam Marková: pracovní neschopnost 12.–17. 1. 1931 — zápal průdušek.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Kapital": 2,
+          "Moc": -1
+        }
+      },
+      "unlocks_contradiction": "benes_v_brne_ale_zapisy_14"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Vina": 1
+        },
+        "factions": {
+          "Kapital": 2,
+          "Lid": -1
+        }
+      },
+      "variants": {
+        "lid_high": "Marková tři roky drží Beneš & syn pohromadě. Zákazníci přicházejí včas, faktury sedí, záznamy jsou čisté. Beneš ml. to ví — a ví, že bez ní by firma nevypadala takhle dobře. Teď ji obvinili, protože někdo udělal chybu a potřeboval viníka.",
+        "kapital_high": "Fojtík a Mrázek jsou odběratelé, kteří platili hotově — bez výkazu DPH, bez faktury přes banku. V roce 1931 to ještě není nelegální, ale je to praktické pro oba. Beneš st. to dovoloval. Beneš ml. to přepsal tak, aby v bance sedělo. Marková to opravila tak, aby sedělo všude. Výsledek: 6 800 Kčs mimo evidenci — a jedině Marková s perem v ruce.",
+        "moc_high": "Obchodní komora prověřuje Beneš & syn kvůli jiné věci — podezření na šedou ekonomiku v textilním sektoru. Markovina obžaloba je buď náhoda, nebo způsob, jak odvést pozornost od Benešů k zaměstnanci.",
+        "default": "Marková měla sešit. Sešit ji zachránil v D10 — a teď ji přivedl sem. Zapisovala pravdu. Teď pravda sedí na lavici obžalovaných a čeká, co soud udělá s přesností."
+      }
+    },
+    "confrontation": {
+      "target": "benes_ml_obvinalej",
+      "target_label": "Karel Beneš ml., spolumajitel",
+      "requires_contradiction": "benes_v_brne_ale_zapisy_14",
+      "requires_courage": 60,
+      "cost": 2,
+      "prompt": "Pane Beneši, byl jste v Brně od 12. do 18. ledna. Záznamy pro Fojtíka a Mrázka jsou datovány 14. a 15. ledna — tedy v době vašeho pobytu v Brně. Marková byla nemocná. Grafolog potvrdil, že původní záznamy s nižšími čísly psal někdo s pravotočivým sklonem — ne Marková. Kdo je psal?",
+      "success": {
+        "text": "Beneš ml. se neodmlčí. Jako by čekal. 'Otec. Rudolf Beneš starší. Byl v Praze, já byl v Brně. On podepisoval jako Beneš — to je zvyk z doby, kdy firma patřila jen jemu.' Pauza. 'Otec má jiný sklon písma než já.' Druhá pauza — delší. 'Marková záznamy opravovala, protože ji otec požádal. Otec je nemocen od února. Nemůže svědčit.' Říká to klidně. Velmi klidně. Jako by to byl konec — ale Ben ví, že to je začátek.",
+        "reveals": "Rudolf Beneš st. psal záznamy, Beneš ml. je nevěděl — nebo věděl. Marková přepisovala na pokyn Beneše st. Beneš ml. žaluje Markovou, protože otec nemůže svědčit. Sešit dokumentuje pravdu. Pravda je komplikovaná."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "mirny": {
+          "label": "Pokuta 500 Kčs — pozměnění dokladů bez osobního obohacení",
+          "description": "Marková záznamy pozměnila — grafologický posudek to potvrzuje pro přepis. Motiv osobního zisku chybí. Pokuta bez vězení, bez ztráty zaměstnání — Beneš ml. ji ale propustí stejně.",
+          "effects": {
+            "integrita": 1,
+            "vina": 3,
+            "nadeje": -2,
+            "moc": 2,
+            "lid": -3,
+            "finance": 10
+          }
+        },
+        "maximum": {
+          "label": "18 měsíců podmíněně — padělání dokladů",
+          "description": "Přepis dokladů je prokázán. Rozsah 6 800 Kčs je značný. Podmínka — Marková jde domů, ale má záznam a přijde o práci. Sešit zůstane u soudu jako důkazní materiál.",
+          "requires": {
+            "odvaha_max": 28
+          },
+          "effects": {
+            "integrita": 2,
+            "vina": 5,
+            "nadeje": -4,
+            "moc": 4,
+            "lid": -6,
+            "finance": 14
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zproštění — přepis na pokyn nadřízeného, záměr padělání neprokázán",
+          "description": "Marková přepisovala záznamy na pokyn spolumajitele firmy. Osobní záměr padělat chybí. Sešit dokumentuje původní čísla — projev vůle záchovat pravdu, nikoli ji skrýt. Pokud soud v D3 zpochybnil Markovino svědectví (viz Sp. zn. Marková 1), toto zproštění jej přehodnocuje — bylo správné ji pochybovat? Nebo právě sešit dokazuje, že ne?",
+          "requires_investigation": 2,
+          "effects": {
+            "integrita": 3,
+            "odvaha": 3,
+            "vina": -2,
+            "nadeje": 2,
+            "lid": 5,
+            "moc": -4,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "flag_markova_zprostena",
+                "value": true
+              }
+            ]
+          }
+        },
+        "with_comment": {
+          "label": "Alternativa: Zproštění Markové + podnět k šetření Beneše st.",
+          "description": "Marková zproštěna. Soud konstatuje, že záznamy psal Rudolf Beneš st. a Marková přepisovala na jeho pokyn. Podnět k šetření Beneše st. za manipulaci s doklady — ač jeho zdravotní stav řízení komplikuje.",
+          "requires_investigation": 3,
+          "requires": {
+            "odvaha_min": 65
+          },
+          "effects": {
+            "integrita": 6,
+            "odvaha": 7,
+            "moudrost": 4,
+            "vina": -2,
+            "nadeje": 3,
+            "lid": 7,
+            "moc": -6,
+            "kapital": -3,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "flag_markova_zprostena",
+                "value": true
+              },
+              {
+                "key": "flag_benes_st_setreni",
+                "value": true
+              },
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "grafolog": {
+          "label": "Přerušit — grafologický posudek srovnávacích vzorků Beneše st.",
+          "description": "Soud přeruší do doložení grafologického posudku, který porovná sklon písma původních záznamů s Benešem st. Ten nemůže svědčit — ale vzorky jeho písma existují.",
+          "requires_investigation": 2,
+          "effects": {
+            "moudrost": 4,
+            "vina": 1,
+            "nadeje": 2,
+            "finance": 8,
+            "flags": [
+              {
+                "key": "flag_markova_preruseno",
+                "value": true
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "mirny": "Marková zaplatila pět set korun — úspory z půl roku. Beneš ml. ji propustil o tři dny později. Nového zaměstnání se dočkala za šest týdnů — v menší firmě, za méně peněz. Sešit vzala s sebou.",
+    "maximum": "Podmínka. Marková šla domů. Sešit zůstal u soudu — jako důkazní materiál, uzamčený. Bez sešitu vypadala jako jiný člověk. Menší.",
+    "formal": "Marková zproštěna. Beneš ml. ji nepropustil — nemohl si dovolit ztratit další zaměstnance a průtahy. Přišla druhý den ráno, sedla si na své místo a otevřela knihy. Nikdo ji nepozdravil. Ona taky ne.",
+    "with_comment": "Marková zproštěna, šetření Beneše st. zahájeno. Rudolf Beneš st. byl v nemocnici v Krči — kardiologické problémy. Beneš ml. přišel za Benem na chodbu. Neřekl nic — jen se podíval. Ben vydržel pohled.",
+    "grafolog": "Grafologický posudek přišel za čtrnáct dní. Původní záznamy psal Rudolf Beneš st. — shoda 91 procent. Marková byla zproštěna. Soud nařídil prošetření Beneše st. Byl propuštěn z nemocnice týden poté."
+  },
+  "stamp_moment": {
+    "guilty": "Marková vstala. Rovně. Jako vždy. Pero v ruce — neuvědomovala si to.",
+    "not_guilty": "Marková sáhla do tašky po sešitu. Pak se zastavila. Zavřela tašku. Poprvé za roky si ho nevzala hned.",
+    "insufficient": "Sešit ležel na stole před soudcem. Marková se na něj dívala. Ben taky."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "with_comment",
+      "delay_days": 3,
+      "type": "fragment",
+      "text": "Rudolf Beneš st. přijal návštěvu z nemocnice — syna Karla. Šedesát minut. Sestra zaznamenala zvýšený tep. Karel Beneš ml. odešel bez rozloučení. Beneš st. požádal o papír a pero."
+    },
+    {
+      "trigger": "formal",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "Marková přišla ráno na pracoviště. Na jejím stole ležely nové knihy — prázdné, nepopsané. U nich lístek od Beneše ml.: 'Od zítřka vedete evidenci jinak. Bez vlastních poznámek.' Marková lístek přečetla. Vzala pero. Zapsala datum. Čas. A pak pokračovala."
+    },
+    {
+      "trigger": "maximum",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "Sešit zůstal uzamčen v archívu soudu. Za šest měsíců ho nikdo nevyzvedl. Marková na nové práci si koupila nový. Menší, tmavší."
+    }
+  ]
+}

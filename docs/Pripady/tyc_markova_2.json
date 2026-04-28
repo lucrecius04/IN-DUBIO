@@ -1,0 +1,360 @@
+{
+  "id": "tyc_markova_2",
+  "slot": "pool",
+  "case_track": "pillar",
+  "case_track_label": "tycove",
+  "type": "moral_dilemma",
+  "color": "#8A8A7C",
+  "available_days": [
+    10
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "forced": true
+  },
+  "title": "Záchrankyně",
+  "case_number": "Sp. zn. 112/1931",
+  "defendant": {
+    "name": "Josef Vávra",
+    "age": 29,
+    "occupation": "expedient",
+    "detail": "zaměstnanec textilní firmy Hartmann & Ries, Vinohrady; svobodný, bydlí s matkou; ve firmě čtyři roky"
+  },
+  "charge": "Zpronevěra dle §182 trestního zákona: Josef Vávra dne 27. února 1931 odcizil ze skladu firmy Hartmann & Ries 14 metrů hedvábné látky v hodnotě 520 Kčs. Přistižen při odchodu z budovy s balíkem pod kabátem. Firma trvá na plném trestním stíhání.",
+  "description": "Josef Vávra vyšel z budovy Hartmann & Ries se zabaleným balíkem pod kabátem. Vrátný ho zastavil. V balíku bylo 14 metrů hedvábí. Vávra říká, že balík mu dal vedoucí skladu Krejsa a řekl mu, ať ho donese zákazníkovi. Krejsa říká, že nic takového neřekl. Jeden z nich lže — a druhý půjde do vězení. Svědkyní přišla Věra Marková. Nepracuje v Hartmann & Ries. Pracuje v Beneš & syn. Ale má sešit.",
+  "testimonies": [
+    {
+      "id": "vavra",
+      "speaker": "Josef Vávra, obžalovaný",
+      "text": "Krejsa mi dal ten balík ve dvě čtvrt na tři. Řekl: <span class=\"clue\" data-clue-id=\"decoy_masek_zakaznik\">zákazník Mašek z Vinohrad čeká, dones mu to</span>. <span class=\"clue\" data-clue-id=\"clue_vavra_cas\">Bylo přesně čtrnáct patnáct — vím to, protože jsem se díval na hodiny ve skladu, chtěl jsem jít na oběd a bylo pozdě.</span> Krejsa stál u regálu s hedvábím. Balík byl už zabalený. Přijal jsem ho a šel.",
+      "contradiction_keywords": [
+        "čtrnáct patnáct",
+        "hodiny ve skladu",
+        "zabalený"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "krejsa_vedouci",
+      "speaker": "Antonín Krejsa, vedoucí skladu Hartmann & Ries",
+      "text": "Já Vávrovi nic nedal. <span class=\"clue\" data-clue-id=\"clue_krejsa_kde_byl\">Ve čtrnáct patnáct jsem byl na poradě v ředitelně — to potvrdí ředitel Hartmann. Porada trvala od půl druhé do tří.</span> Ve skladu jsem nebyl. Vávra si tu historku vymyslel. Viděl jsem ho odcházet z budovy — ale nedával jsem mu nic.",
+      "contradiction_keywords": [
+        "porada v ředitelně",
+        "od půl druhé do tří",
+        "viděl jsem ho"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "markova_svedek",
+      "speaker": "Věra Marková, svědkyně obhajoby",
+      "text": "Pane doktore, přišla jsem, protože mám záznam. <span class=\"clue\" data-clue-id=\"clue_markova_zaznam\">Dne 27. února jsem byla u Hartmann & Ries jako zákaznice — vybírala jsem látku pro firmu Beneš & syn. Přišla jsem ve čtrnáct deset. Ve čtrnáct dvanáct jsem viděla pana Krejsu vycházet ze skladu do dvorku s cigaretou. Ve čtrnáct sedmnáct se vrátil. Mám to zapsáno v sešitu — čas příchodu, čas odchodu Krejsy, čas odchodu ze skladu.</span> Jestli byl Krejsa na poradě od půl druhé, nemohl být ve dvorku v čtrnáct dvanáct.",
+      "contradiction_keywords": [
+        "čtrnáct dvanáct",
+        "dvorek",
+        "sešit"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "hartmann_reditele",
+      "speaker": "Ing. Rudolf Hartmann, ředitel firmy",
+      "text": "Porada začala ve třináct třicet. <span class=\"clue\" data-clue-id=\"clue_hartmann_porada\">Krejsa dorazil ve třináct třicet pět — trochu pozdě. Odešel ve čtrnáct nula pět — říkal, že musí zkontrolovat zásilku. Vrátil se ve čtrnáct dvacet. Porada skončila ve čtrnáct padesát.</span> Takže od třináct třicet pět do čtrnáct pět byl Krejsa u porady. Co dělal mezi čtrnáct pět a čtrnáct dvacet — to nevím.",
+      "contradiction_keywords": [
+        "čtrnáct nula pět",
+        "zkontrolovat zásilku",
+        "čtrnáct dvacet"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "krejsa_nebyl_na_porade",
+      "description": "Krejsa tvrdí, že byl na poradě od půl druhé do tří. Hartmann říká, že Krejsa odešel v 14:05 a vrátil se v 14:20. Marková ho viděla ve dvorku v 14:12. Časová osa sedí — Krejsa lhal o tom, kde byl.",
+      "involves": [
+        "krejsa_vedouci",
+        "hartmann_reditele",
+        "markova_svedek"
+      ],
+      "highlight_at_wisdom": 65,
+      "unlocks_confrontation": "krejsa_vedouci"
+    },
+    {
+      "id": "balicek_zabaleny",
+      "description": "Vávra říká, že balík byl při předání od Krejsy už zabalený. Krejsa nebyl ve skladu — byl ve dvorku. Zabalený balík předaný člověkem, který u balení nebyl, naznačuje, že balík připravil někdo jiný.",
+      "involves": [
+        "vavra",
+        "krejsa_vedouci"
+      ],
+      "highlight_at_wisdom": 70,
+      "unlocks_confrontation": "krejsa_vedouci"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "krejsa_ve_dvorku_strong",
+    "pairs": [
+      {
+        "pair_id": "krejsa_ve_dvorku_strong",
+        "a_id": "clue_markova_zaznam",
+        "b_id": "clue_hartmann_porada",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "cas_sedi_medium",
+        "a_id": "clue_vavra_cas",
+        "b_id": "clue_krejsa_kde_byl",
+        "strength": "medium"
+      }
+    ],
+    "decoys": [
+      "decoy_masek_zakaznik"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 60,
+      "speed_upgrade_sec": 20,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 50,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 35,
+          "ids": [
+            "guilty_mirny"
+          ]
+        },
+        {
+          "min": 65,
+          "ids": [
+            "not_guilty_formal"
+          ]
+        },
+        {
+          "min": 80,
+          "ids": [
+            "not_guilty_with_comment"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 46,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "not_guilty_with_comment"
+          ],
+          "narrative_lines": [
+            "Krejsa ve dvorku v 14:12. Hartmann ho pustil z porady v 14:05. Vrátil se v 14:20.",
+            "Marková to zapsala minutu po minutě. Ani nevěděla, proč to bude jednou potřeba.",
+            "Balík byl zabalený. Krejsa byl ve dvorku. Vávra šel na oběd — a dostal cizí problém."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 24,
+          "unlock_verdict_ids": [
+            "not_guilty_formal",
+            "guilty_mirny"
+          ],
+          "narrative_lines": [
+            "Vávra viděl hodiny v 14:15. Krejsa tvrdí porada od 13:30 do 15:00.",
+            "Hartmann říká: odešel v 14:05, vrátil se v 14:20. To je 15 minut. Kde byl?"
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "markova_soukrome",
+      "target_label": "Věra Marková — před jednáním",
+      "reveals": "motivation",
+      "text": "Svejda ji zavedl dovnitř. Seděla rovně, sešit na kolenou. Ben se zeptal, proč si zapisuje příchody a odchody v cizí firmě. <span class=\"clue\" data-clue-id=\"clue_markova_zaznam\">Odpověděla klidně: 'Zapisuji si všechno, pane doktore. Odkdy, dokdy, kdo, kde. Je to zvyk. Někdy se to hodí.' Pauza. 'Dnes se to hodí.'</span> Nezdálo se, že to říká skromně. Zdálo se, že to říká přesně.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 1
+        },
+        "factions": {
+          "Lid": 1
+        }
+      }
+    },
+    "records": {
+      "source": "Evidenční listy porady Hartmann & Ries; sešit Věry Markové (předložen soudu); záznamy vrátného",
+      "reveals": "facts",
+      "text": "Evidenční list porady: přítomni — Hartmann, Krejsa (příchod 13:35), účetní Horáček, obchodní zástupce Prošek. Krejsa dočasně opustil místnost mezi 14:05 a 14:20 — poznámka Hartmannova rukou: 'za zásilkou'. <span class=\"clue\" data-clue-id=\"clue_hartmann_porada\">Sešit Markové: příchod Marková 14:10, Krejsa dvorek 14:12–14:17, odchod Marková 14:35.</span> Vrátný: Vávra odcházel v 14:19 s balíkem. Zákazník Mašek — žádná objednávka hedvábí v obchodní knize za únor 1931.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1
+        }
+      },
+      "unlocks_contradiction": "krejsa_nebyl_na_porade"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Vina": 1
+        },
+        "factions": {
+          "Lid": -1,
+          "Kapital": 2
+        }
+      },
+      "variants": {
+        "lid_high": "Vávra je mladý, spolehlivý, nemá záznam. Krejsa je vedoucí skladu třináct let — ví, jak firma funguje, ví, co se kontroluje a co ne. Hedvábí se ztrácí pomalu, po malých množstvích. Jednou šel jeden expedient za daleko, dostal balík a vyšel ven. Krejsa nečekal, že Vávra bude zastaven.",
+        "kapital_high": "Hartmann & Ries zásobuje hedvábím několik krejčovských dílen na Vinohradech. Jedna z nich — krejčí Šimek — platí vždy hotově, bez faktury. Krejsa Šimka zná osobně. To by bylo potřeba prověřit, ale Hartmann o to stát nebude.",
+        "moc_high": "Firma Hartmann & Ries trvá na plném stíhání — aby zastrašila ostatní zaměstnance. Jeden odsouzený expedient je lacina pojistka. Krejsa je pro firmu cenný. Vávra ne.",
+        "default": "Marková přišla s sešitem a hodiny sedí. Vávra jí vůbec nezná — ona nezná jeho. Přišla, protože zapsala pravdu. Tak jednoduché to je. A tak podivné."
+      }
+    },
+    "confrontation": {
+      "target": "krejsa_vedouci",
+      "target_label": "Antonín Krejsa, vedoucí skladu",
+      "requires_contradiction": "krejsa_nebyl_na_porade",
+      "requires_courage": 50,
+      "cost": 2,
+      "prompt": "Pane Krejso, ředitel Hartmann potvrdil, že jste opustil poradu v 14:05 a vrátil se v 14:20 — s vysvětlením 'za zásilkou'. Svědkyně vás viděla ve dvorku v 14:12. Vávra dostal zabalený balík v 14:15. Co jste dělal mezi 14:05 a 14:20?",
+      "success": {
+        "text": "Krejsa se dívá na stůl. Dlouho. Pak zdvihne hlavu — ne na Bena, na Vávru. Podívá se na něj poprvé od začátku jednání. Pak řekne: 'Šel jsem za zásilkou. Zásilka nebyla připravena správně. Přebalil jsem ji.' Pauza. 'Vávra šel kolem. Požádal jsem ho, ať ji donese zákazníkovi.' Další pauza. 'Zákazník nebyl. Udělal jsem chybu.' Neříká co za chybu. Ben ví, že víc nedostane — ale co dostal, stačí.",
+        "reveals": "Krejsa přiznal, že balík sám přebaloval a Vávrovi ho předal. Nepřiznal, proč zákazník Mašek neexistuje. Ale výpověď je teď jiná než na začátku — a to se nedá vzít zpět."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "mirny": {
+          "label": "Symbolická pokuta 50 Kčs — neoprávněné přenesení cizí věci",
+          "description": "Vávra vědomě nepátral po původu balíku — měl se zeptat. Symbolická sankce uznává chybu bez odsouzení za zpronevěru. Krejsovo chování zůstane bez právního závěru.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": -1,
+            "vina": 2,
+            "lid": -2,
+            "finance": 8
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zproštění — záměr zpronevěry neprokázán",
+          "description": "Vávra přenášel zásilku na základě pokynu vedoucího. Záměr obohatit se chybí. Krejsova výpověď o místě pobytu byla nepravdivá. Vávra je zproštěn.",
+          "requires_investigation": 1,
+          "effects": {
+            "integrita": 2,
+            "odvaha": 2,
+            "vina": -2,
+            "nadeje": 2,
+            "lid": 4,
+            "moc": -2,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "flag_markova_zachranila",
+                "value": true
+              }
+            ]
+          }
+        },
+        "with_comment": {
+          "label": "Alternativa: Zproštění Vávry + podnět k šetření Krejsy",
+          "description": "Vávra zproštěn. Soud konstatuje, že Krejsova výpověď obsahovala prokazatelnou nepravdu o místě pobytu a že zásilka byla připravena Krejsou bez dokladu. Podnět k šetření za možnou zpronevěru z minulých zásilek.",
+          "requires_investigation": 3,
+          "requires": {
+            "odvaha_min": 55
+          },
+          "effects": {
+            "integrita": 5,
+            "odvaha": 5,
+            "vina": -2,
+            "nadeje": 2,
+            "lid": 6,
+            "moc": -4,
+            "kapital": -2,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "flag_markova_zachranila",
+                "value": true
+              },
+              {
+                "key": "flag_krejsa_setreni",
+                "value": true
+              },
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "prerusit": {
+          "label": "Přerušit — předvolat zákazníka Mašek",
+          "description": "Zákazník Mašek v obchodní knize nefiguruje. Soud přeruší a nařídí prověření existence objednávky. Vávra zůstává dočasně ve vazbě.",
+          "effects": {
+            "moudrost": 3,
+            "vina": 1,
+            "finance": 8
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "mirny": "Vávra zaplatil padesát korun. Hartmann ho propustil druhý den — bez udání důvodu. Krejsa zůstal ve skladu. Marková si zapsala výsledek do sešitu: datum, výsledek, dvě věty. Pak sešit zavřela.",
+    "formal": "Vávra zproštěn. Na chodbě se otočil a díval se na Markovou — jako by ji chtěl něco říct. Neřekl. Marková přikývla. Šla pryč. Sešit nesl pod paží jako vždy.",
+    "with_comment": "Vávra zproštěn. Krejsa dostal předvolání k výslechu za tři týdny. Hartmann zavolal svého advokáta ještě ten den. Marková se cestou domů zastavila v cukrárně. Poprvé za dlouho si dala dort. Sama.",
+    "prerusit": "Mašek byl nalezen — obchodní zástupce ze Smíchova. Říká, že žádné hedvábí neobjednal. Vávra byl propuštěn z vazby po čtyřech dnech. Krejsa mezitím ohlásil nemoc a nenastoupil do práce."
+  },
+  "stamp_moment": {
+    "guilty": "Vávra vstal. Díval se na Markovou — cizí ženu, která přišla s sešitem a možná mu zachránila míň, než čekal.",
+    "not_guilty": "Krejsa se zvedl jako první. Neohlédl se. Vávra stál a netušil, jak se jmenuje žena, která ho zachránila.",
+    "insufficient": "Marková si něco zapsala do sešitu. Ben se díval — ale byl daleko."
+  },
+  "delayed_consequences": [
+    {
+      "trigger": "with_comment",
+      "delay_days": 4,
+      "type": "fragment",
+      "text": "Krejsa nastoupil zpátky po třech dnech nemoci. V zásobovací knize Hartmann & Ries za leden a únor chybí tři záznamy. Účetní Horáček to nahlásil Hartmannovi. Hartmann odpověděl: prověříme interně."
+    },
+    {
+      "trigger": "formal",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "Vávra nastoupil do nové práce — expedient v záložně na Smíchově. Nástupní mzda o dvacet korun nižší. Napsal Markové do Beneš & syn krátký dopis s poděkováním. Marková odpověděla jednou větou: 'Zapisuji si jen fakta.'"
+    }
+  ]
+}

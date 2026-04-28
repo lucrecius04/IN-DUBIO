@@ -1,0 +1,438 @@
+{
+  "id": "tyc_velezrada_d15",
+  "slot": "pool",
+  "case_track": "pillar",
+  "case_track_label": "tycove",
+  "type": "political",
+  "color": "#3A3A4A",
+  "available_days": [
+    15
+  ],
+  "act": 1,
+  "weight_conditions": {
+    "forced": true
+  },
+  "title": "Velezrada",
+  "case_number": "Sp. zn. 124/1931",
+  "defendant": {
+    "name": "Alexander Wolf",
+    "age": 52,
+    "occupation": "průmyslový poradce, správce trustu",
+    "detail": "bývalý vedoucí oddělení průmyslových licencí na Ministerstvu obchodu, propuštěn 1928. Žije v Praze, příjmy z poradenské činnosti pro zahraniční firmy. Ženatý — manželka Anna, rozená Vránová."
+  },
+  "charge": "Velezrada dle §1 a §2 zákona na ochranu republiky č. 50/1923 Sb.: Alexander Wolf v době od září 1928 do ledna 1931 vědomě a opakovaně předával důvěrné informace o průmyslové kapacitě a obranných zakázkách Československa zástupcům německého kapitálu — konkrétně firmě Haas und Söhne Holešovice a jejím zahraničním pobočkám. Za tento přenos byl odměněn celkovou částkou nejméně 84 000 Kčs. Trestní sazba: 5–15 let těžkého žaláře, při přitěžujících okolnostech doživotí.",
+  "description": "Alexander Wolf sedí u stolu a je klidný způsobem, který Ben za čtrnáct let u soudu viděl jen zřídka — klidný ne ze zatvrdlosti, ale ze smíření. Jako by výsledek dnešního dne pro něj nebyl otázkou. Státní zástupce Dvořák předložil dvě stě stránek dokumentace: přesuny financí, šifrované dopisy, schůzky v hotelích. A jeden dokument z roku 1928 — podepsaný Wolfem, adresovaný Haasovi — který popisuje rozmístění zbrojní výroby v severních Čechách. Obhájce Wolf říká, že dokument je padělán. Že nikdy neexistoval v originále. Že Wolfova propast začala přesně tím, že v září osmadvacátého odmítl tento dokument podepsat — a někdo ho podepsal za něj.",
+  "testimonies": [
+    {
+      "id": "wolf",
+      "speaker": "Alexander Wolf, obžalovaný",
+      "text": "Pane doktore, já ten dokument nepodepsal. Vím, jak to zní — každý to říká. Ale je mezi mnou a těmi ostatními jeden rozdíl: <span class=\"clue\" data-clue-id=\"clue_wolf_odmitl\">v září osmadvacátého jsem byl na ministerstvu požádán, abych dokument připravil a podepsal. Odmítl jsem. Řekl jsem, co si myslím — že to, co se po mně chce, je na hraně zákona a za ní. O tři dny později jsem dostal výpověď.</span> Podpis na tom dokumentu — rukopis zkoumejte, pane doktore. Zkoumejte ho pečlivě.",
+      "contradiction_keywords": [
+        "odmítl jsem",
+        "výpověď",
+        "rukopis"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "dvorak_statni_zastupce",
+      "speaker": "JUDr. Antonín Dvořák, státní zástupce",
+      "text": "Obhajoba trvá na padělaném podpisu. Je to klasická strategie — zpochybnit jeden dokument a doufat, že s ním padne celá obžaloba. Ale obžaloba nestojí na jednom dokumentu. <span class=\"clue\" data-clue-id=\"clue_dvorak_evidence\">Stojí na záznamu čtyřiadvaceti transakcí mezi Wolfovými soukromými účty a účty firmy Haas und Söhne v letech 1929 až 1931. Na zápisech ze čtyř schůzek v <span class=\"clue\" data-clue-id=\"decoy_hotel_zlata_husa\">hotelu Zlatá Husa</span>, potvrzených dvěma svědky. A na výpovědi samotného Emila Haase, který přiznal obchodní styk s Wolfem — i když ne v rozsahu obžaloby.</span> Dokument je jeden z třiadvaceti důkazů.",
+      "contradiction_keywords": [
+        "čtyřiadvacet transakcí",
+        "čtyři schůzky",
+        "Haas přiznal"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "grafolog_expert",
+      "speaker": "Prof. Jaroslav Číž, grafolog, Filozofická fakulta UK",
+      "text": "Zkoumal jsem podpis na dokumentu ze září 1928. <span class=\"clue\" data-clue-id=\"clue_podpis_sporny\">Výsledek není jednoznačný. Rukopis vykazuje charakteristiky Wolfova písma ve třech ze čtyř analyzovaných parametrů. Čtvrtý parametr — tlak pera — nesedí. Může to být věk dokumentu, může to být záměrné napodobení, může to být způsob, jakým Wolf ten den psal.</span> Nemohu s jistotou říct, že podpis je pravý. Nemohu říct, že je padělaný. Mohu říct, že je sporný.",
+      "contradiction_keywords": [
+        "sporný",
+        "tři ze čtyř",
+        "tlak pera"
+      ],
+      "hidden_at_wisdom_below": null
+    },
+    {
+      "id": "anna_wolf",
+      "speaker": "Anna Wolfová, manželka obžalovaného",
+      "text": "Já svého muže znám třiadvacet let. Vím, co udělal a co neudělal. <span class=\"clue\" data-clue-id=\"clue_anna_september\">V září osmadvacátého přišel domů pozdě — bylo to osmnáctého nebo devatenáctého. Byl rozrušený. Řekl mi: odmítl jsem něco, co se ode mě chtělo. Řekl mi, že to bude mít důsledky. O tři dny nato ho propustili.</span> Nikdy mi neřekl co přesně odmítl. Ale vím, jak vypadal. Vypadal jako člověk, který udělal správnou věc — a věděl, že za to zaplatí.",
+      "contradiction_keywords": [
+        "osmnáctého nebo devatenáctého",
+        "odmítl",
+        "správnou věc"
+      ],
+      "hidden_at_wisdom_below": null
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "odmitl_pred_propustenim",
+      "description": "Wolf říká, že odmítl podepsat a byl propuštěn tři dny nato. Anna potvrzuje datum — osmnáctého nebo devatenáctého září 1928, Wolf přišel rozrušený. Pokud byl dokument datován do září 1928 a Wolf byl propuštěn za tři dny po odmítnutí, kdo ho podepsal?",
+      "involves": [
+        "wolf",
+        "anna_wolf"
+      ],
+      "highlight_at_wisdom": 65,
+      "unlocks_confrontation": "dvorak_statni_zastupce"
+    },
+    {
+      "id": "podpis_vs_transakce",
+      "description": "Grafolog řekl sporný — ne padělok, ne pravý. Ale transakce mezi Wolfem a Haasem jsou doložené. Wolf mohl odmítnout podepsat dokument a přesto spolupracovat s Haasem jinak. Nebo transakce mají jiné vysvětlení. Obě věci mohou být pravda.",
+      "involves": [
+        "grafolog_expert",
+        "dvorak_statni_zastupce"
+      ],
+      "highlight_at_wisdom": 75,
+      "unlocks_confrontation": "dvorak_statni_zastupce"
+    }
+  ],
+  "clue_system": {
+    "enabled": true,
+    "true_pair_id": "odmitl_pak_propusten_strong",
+    "pairs": [
+      {
+        "pair_id": "odmitl_pak_propusten_strong",
+        "a_id": "clue_wolf_odmitl",
+        "b_id": "clue_anna_september",
+        "strength": "strong"
+      },
+      {
+        "pair_id": "podpis_vs_penize_medium",
+        "a_id": "clue_podpis_sporny",
+        "b_id": "clue_dvorak_evidence",
+        "strength": "medium"
+      }
+    ],
+    "decoys": [
+      "decoy_hotel_zlata_husa"
+    ],
+    "timed_hunt": {
+      "enabled": true,
+      "duration_sec": 75,
+      "speed_upgrade_sec": 25,
+      "auto_confirm_best_on_timeout": true,
+      "timeout_downgrade": false
+    },
+    "info_threshold_unlocks": {
+      "actions": [
+        {
+          "min": 45,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
+      ],
+      "verdicts": [
+        {
+          "min": 35,
+          "ids": [
+            "guilty_standard"
+          ]
+        },
+        {
+          "min": 60,
+          "ids": [
+            "not_guilty_formal"
+          ]
+        },
+        {
+          "min": 80,
+          "ids": [
+            "not_guilty_with_comment",
+            "guilty_alternative"
+          ]
+        }
+      ]
+    },
+    "rewards": {
+      "on_confirm": {
+        "strong": {
+          "investigation_progress_delta": 50,
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "not_guilty_with_comment",
+            "guilty_alternative"
+          ],
+          "narrative_lines": [
+            "Osmnáctého nebo devatenáctého září 1928. Wolf odmítl. Tři dny nato byl propuštěn.",
+            "Pokud dokument nese datum září 1928 a Wolf byl propuštěn tři dny po odmítnutí — kdo ho podepsal za něj?",
+            "Anna říká: vypadal jako člověk, který udělal správnou věc a věděl, že za to zaplatí. Tři roky nato sedí u soudu."
+          ]
+        },
+        "medium": {
+          "investigation_progress_delta": 25,
+          "unlock_verdict_ids": [
+            "guilty_standard",
+            "not_guilty_formal"
+          ],
+          "narrative_lines": [
+            "Sporný podpis — tři ze čtyř parametrů sedí. Čtvrtý ne. Grafolog říká: nemůžu říct ani jedno.",
+            "Transakce jsou doložené. Wolf mohl odmítnout podepsat a přesto spolupracovat — nebo transakce mají jiné vysvětlení."
+          ]
+        }
+      }
+    }
+  },
+  "investigation": {
+    "interview": {
+      "target": "benes_dokument",
+      "target_label": "Archivní záznam — dokument ze září 1928",
+      "reveals": "motivation",
+      "text": "Dokument existuje ve dvou verzích v soudním spisu. Verze A — ta, na níž stojí obžaloba — nese datum 22. září 1928 a Wolfův podpis. Verze B — doložená obhajobou — je interní memorandum ministerstva z téhož dne, v němž se uvádí, že Wolf odmítl materiál připravit a byl zbaven funkce. <span class=\"clue\" data-clue-id=\"clue_wolf_odmitl\">Obě verze nemohou být pravdivé zároveň. Buď Wolf dokument podepsal — nebo ho podepsal někdo jiný poté, co Wolf odmítl.</span> Verze B nese v záhlaví razítko: Ministerstvo obchodu, odd. průmyslových licencí. Podpis: nečitelný.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 2
+        },
+        "factions": {
+          "Moc": -1,
+          "Kapital": 1
+        }
+      }
+    },
+    "records": {
+      "source": "Finanční záznamy Wolfových účtů 1928–1931; výpis z rejstříku Haas und Söhne; personální spis Ministerstva obchodu",
+      "reveals": "facts",
+      "text": "Záznamy Wolfových účtů: čtyřiadvacet transakcí od dubna 1929 do ledna 1931, příjemce v každé z nich firma Haas und Söhne nebo její dceřiná společnost. <span class=\"clue\" data-clue-id=\"clue_dvorak_evidence\">Celková suma 84 000 Kčs. Wolf jako protiváhu deklaruje poradenské smlouvy — tři dokumenty, všechny datované po jeho propuštění z ministerstva.</span> Personální spis: Wolf propuštěn 21. září 1928, důvod: 'nesoulad s pracovními požadavky oddělení'. Datum propuštění je tři dny po Wolfově odmítnutí dle výpovědi Anny — a jeden den před datem na sporném dokumentu.",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1,
+          "Kapital": 2
+        }
+      },
+      "unlocks_contradiction": "odmitl_pred_propustenim"
+    },
+    "informant": {
+      "reveals": "context",
+      "cost": 1,
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Vina": 2
+        },
+        "factions": {
+          "Moc": 2,
+          "Lid": -2
+        }
+      },
+      "variants": {
+        "moc_high": "Ministerstvo potřebuje případ uzavřít. Wolf ví příliš — ne o průmyslových tajemstvích, ale o tom, kdo v září osmadvacátého stál za jeho propuštěním. Odsouzení Wolfa je způsob, jak ho umlčet způsobem, který vypadá zákonně.",
+        "kapital_high": "Haas und Söhne přiznal obchodní styk s Wolfem — ale Haas přiznal jen to, co se nedalo popřít. Poradenské smlouvy jsou legální. Otázka je, za co Wolf poradil: za průmyslové strategie nebo za státní tajemství. Odpověď závisí na tom, co bylo v těch smlouvách — a smlouvy jsou jedinou věcí, které státní zástupce nepředložil.",
+        "default": "Pokud Ben přijal Benešův dokument v D9: Z obálky, kterou Ben stále má nebo měl, plyne, že sporný dokument ze září 1928 byl podepsán jiným člověkem — někým z ministerstva, jehož jméno Ben zná. Wolf byl nastražen. Transakce s Haasem jsou reálné — ale šlo o legální poradenství, ne o státní tajemství. Obžaloba stojí na padělaném klíčovém důkazu.\n\nWolf byl propuštěn den před datem na dokumentu, který ho obviňuje. Buď grafolog lže, nebo dokument lže, nebo Wolf lže. Jeden z nich lže — a Ben nemá dost informací, aby věděl který."
+      }
+    },
+    "confrontation": {
+      "target": "dvorak_statni_zastupce",
+      "target_label": "JUDr. Antonín Dvořák, státní zástupce",
+      "requires_contradiction": "odmitl_pred_propustenim",
+      "requires_courage": 70,
+      "cost": 2,
+      "prompt": "Pane doktore Dvořáku, Wolf byl propuštěn 21. září 1928. Sporný dokument nese datum 22. září 1928 — den po propuštění. Jak mohl Wolf podepsat dokument na ministerstvu den poté, co byl propuštěn a přestal mít přístup?",
+      "success": {
+        "text": "Dvořák se nezarazí — jako by čekal právě tuto otázku a byl na ni připravený. 'Přístup do budovy nezaniká okamžitě. Procesně trvá vypořádání agendy tři až pět pracovních dní. Wolf mohl být v budově i 22. září.' Pauza. 'Nebo byl dokument podepsán jinde — mimo ministerstvo. Zákon nevyžaduje, aby byl podpis umístěn fyzicky na pracovišti.' Říká to hladce. Příliš hladce. Ben si všímá, že Dvořák neřekl: Wolf tam byl. Řekl: mohl být.",
+        "reveals": "Dvořák nepopřel problém s datem. Obešel ho dvěma hypotetickými možnostmi, ani jedna z nichž není doložena. Soud to musí vyhodnotit: jestli 'mohl být' stačí na odsouzení za velezradu."
+      }
+    }
+  },
+  "verdicts": {
+    "guilty": {
+      "sentences": {
+        "standard": {
+          "label": "8 let těžkého žaláře za velezradu",
+          "description": "Transakce s Haasem jsou doložené a ve výši odpovídající odměně za předání citlivých informací. Sporný podpis nepopírá ostatní důkazy. Wolf jde na osm let. Anna zůstane sama v domě v Bubenči.",
+          "effects": {
+            "integrita": 2,
+            "vina": 5,
+            "nadeje": -3,
+            "moc": 7,
+            "lid": -5,
+            "kapital": 2,
+            "finance": 20,
+            "flags": [
+              {
+                "key": "flag_wolf_odsouzen",
+                "value": true
+              }
+            ]
+          }
+        },
+        "maximum": {
+          "label": "15 let těžkého žaláře — přitěžující okolnosti",
+          "description": "Plný rozsah obžaloby přijat. Wolf dostane patnáct let — to je jeho zbytek života, prakticky. Anna Wolfová se otočila a odešla ze sálu ještě před vyhlášením.",
+          "requires": {
+            "odvaha_max": 25
+          },
+          "effects": {
+            "integrita": 3,
+            "vina": 7,
+            "nadeje": -5,
+            "moc": 10,
+            "lid": -8,
+            "kapital": 3,
+            "finance": 25,
+            "flags": [
+              {
+                "key": "flag_wolf_odsouzen",
+                "value": true
+              }
+            ]
+          }
+        },
+        "alternative": {
+          "label": "Alternativa: Odsouzení za poradenství v rozporu se zákonem — 2 roky podmíněně",
+          "description": "Velezrada neprokázána pro spornost klíčového dokumentu. Ale transakce s Haasem existovaly — bez jasné legální opory. Podmíněný trest za překročení poradenských hranic. Wolf odejde domů — ale s cejchem, který ho bude následovat.",
+          "requires_investigation": 3,
+          "requires": {
+            "moudrost_min": 60
+          },
+          "effects": {
+            "integrita": 4,
+            "odvaha": 4,
+            "vina": 3,
+            "nadeje": 1,
+            "moc": -4,
+            "lid": 3,
+            "kapital": -1,
+            "finance": 12,
+            "flags": [
+              {
+                "key": "flag_wolf_podminka",
+                "value": true
+              },
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "not_guilty": {
+      "approaches": {
+        "formal": {
+          "label": "Zproštění — klíčový dokument sporný, pochybnost v prospěch obžalovaného",
+          "description": "Velezrada dle §1 a §2 zákona na ochranu republiky neprokázána — klíčový dokument je sporný a datum podpisu nesedí s datem propuštění obžalovaného. Transakce s firmou Haas und Söhne samy o sobě nenaplňují skutkovou podstatu §50/1923 bez prokázaného předání státního tajemství. Případné jiné delikty nejsou předmětem této obžaloby. In dubio pro reo.",
+          "requires_investigation": 2,
+          "effects": {
+            "integrita": 3,
+            "odvaha": 4,
+            "vina": -2,
+            "nadeje": 3,
+            "moc": -6,
+            "lid": 5,
+            "kapital": -2,
+            "finance": 12,
+            "flags": [
+              {
+                "key": "flag_wolf_zprosten",
+                "value": true
+              }
+            ]
+          }
+        },
+        "with_comment": {
+          "label": "Alternativa: Zproštění — padělání klíčového důkazu, podnět k šetření",
+          "description": "Soud konstatuje, že dokument ze září 1928 nese datum po Wolfově propuštění a nese znaky padělku. Wolf je zproštěn. Soud dává podnět k šetření původu dokumentu — což znamená, že někdo jiný bude muset odpovídat. Kdo, to závisí na tom, co Ben ví.",
+          "requires_investigation": 3,
+          "requires": {
+            "odvaha_min": 70
+          },
+          "effects": {
+            "integrita": 7,
+            "odvaha": 8,
+            "vina": -3,
+            "nadeje": 4,
+            "moc": -10,
+            "lid": 8,
+            "kapital": -4,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "flag_wolf_zprosten",
+                "value": true
+              },
+              {
+                "key": "flag_padel_setreni",
+                "value": true
+              },
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "insufficient_evidence": {
+      "options": {
+        "prerusit": {
+          "label": "Vrátit k doplnění — grafologický posudek a ověření poradenských smluv",
+          "description": "Případ se vrátí. Wolf zůstane ve vazbě. Bude to trvat měsíce — a mezitím se může stát mnoho věcí.",
+          "effects": {
+            "moudrost": 4,
+            "vina": 2,
+            "nadeje": -1,
+            "finance": 8,
+            "flags": [
+              {
+                "key": "flag_wolf_vracen",
+                "value": true
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "aftermath": {
+    "guilty_standard": "Wolf byl odveden. Anna stála na chodbě a nedívala se za ním — dívala se na zeď naproti. Ben odcházel kolem a zastavil se. Nevěděl co říct. Ona taky ne. Zeď byla zeď.",
+    "guilty_maximum": "Patnáct let. Wolf přikývl — jednou, pomalu, jako člověk, který se připravoval na horší. Anna nebyla v soudní síni. Odešla při prvním čtení obžaloby a nešla zpátky.",
+    "guilty_alternative": "Podmínka. Wolf odešel s Annou — ruka v ruce, poprvé co Ben viděl něco takového u soudu. Dvořák podal odvolání do druhého dne. Ministerstvo vydalo prohlášení: případ bude přezkoumán.",
+    "not_guilty_formal": "Wolf zproštěn. Dvořák složil spisy a beze slova odešel. Wolf se otočil k Benovi a udělal jednu jedinou věc — přikývl. Ne jako poděkování, spíš jako potvrzení, že Ben pochopil co v té místnosti bylo na stole. Anna čekala na chodbě a Ben ji minul bez pohledu, protože by nevydržel.",
+    "not_guilty_with_comment": "Soud dal podnět k šetření padělku. Dvořák zbledl — poprvé za celé řízení. Wolf odešel. Ben seděl sám v prázdné soudní síni a díval se na stůl před sebou. Pak vstal, vzal kabát a šel. Venku byl pátek.",
+    "insufficient_prerusit": "Případ vrácen. Wolf zůstal ve vazbě. Ben podepisoval usnesení a věděl, co to znamená — přidat měsíce ke dni, kdy Wolf čeká na výsledek, který Ben mohl dát dnes."
+  },
+  "stamp_moment": {
+    "guilty": "Wolf se podíval na Bena — ne s nenávistí, ne se zlostí. S výrazem člověka, který pochopil, jak to celé dopadne, a chtěl jen vědět, jestli soudce taky pochopil.",
+    "not_guilty": "Anna vstoupila do soudní síně v momentě, kdy byl rozsudek přečten. Stála u dveří a nedýchala. Ben si to všiml, ale nedíval se na ni. Díval se na Wolfa.",
+    "insufficient": "Wolf si složil ruce na stůl. Čekal. Umí čekat — naučil se to za tři roky vyšetřování. Ben odcházel a Wolf stále seděl, klidný, jako na začátku."
+  },
+  "triggers_epilogue": true,
+  "epilogue_note": "Po potvrzení rozsudku engine zavolá Engine.zkontrolujKonecDne() s allowVariabilni=true. Uzlové flagy (vlcek_vztah, haas_kontakt, benes_pravda, osobni_cena) rozhodnou o epilogu. Verdikt tohoto případu ovlivňuje narativní tón epilogu, nikoli jeho typ — typ určují uzlové flagy.",
+  "delayed_consequences": [
+    {
+      "trigger": "not_guilty_with_comment",
+      "delay_days": 0,
+      "type": "epilogue_fragment",
+      "text": "Šetření padělku bylo zahájeno. Jméno, které se v průběhu šetření objeví, závisí na tom, co Ben ví — a komu o tom řekl."
+    },
+    {
+      "trigger": "guilty_standard",
+      "delay_days": 0,
+      "type": "epilogue_fragment",
+      "text": "Wolf byl odveden. Kdo podepsal dokument v září osmadvacátého, zůstane bez odpovědi."
+    },
+    {
+      "trigger": "not_guilty_formal",
+      "delay_days": 0,
+      "type": "epilogue_fragment",
+      "text": "Wolf je volný. Dokument zůstane ve spisu bez vysvětlení. Případ bude odložen — na neurčito, jak to chodí s případy, o jejichž uzavření nikdo nestojí."
+    }
+  ]
+}

@@ -24,6 +24,8 @@ Tato složka je **jedno místo** pro denní mapu, případy ve dnech, vlákna, d
 
 **Případy v kódu:** obsah spisů je v **`data/pool_cases_akt1.json`** (pool); `days.json` u každého dne polem `cases` určuje, **která ID** se mají dnes objevit (můžou být pool i legacy, dokud migrujete).
 
+**D10–D12 (osobní tyče):** ve hře je druhý slot **`tyc_zvraty_d10`**, **`tyc_haas_d11`**, **`tyc_zavadova_d12`**; první slot jsou fixní pool ID (viz `days.json`). Starší plán s Markovou 2 / Pospíšilem 3 / Hranicí 3 v těchto dnech už neplatí — přehled v [`Pripady_15dni.csv`](./Pripady_15dni.csv) musí kopírovat `days.json`.
+
 **Excel:** `docs/InDubio_20dni_Mapa.xlsx` je volitelný autorův přehled; pravda pro AI a git je **CSV v této složce** + MD rámec výše.
 
 **Formát CSV:** oddělovač **`;`**, soubory ukládejte jako **UTF-8**, aby držela čeština.

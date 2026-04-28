@@ -1,0 +1,119 @@
+{
+  "day": 9,
+  "adventure_scene": {
+    "id": "adventure_benes_d9",
+    "portrait": "benes",
+    "portrait_label": "Viktor Beneš",
+    "portrait_description": "Šedesátník, sivé vlasy, nenápadný oblek. Člověk, který si na nenápadnost dal záležet.",
+    "trigger": "morning_after_fragment",
+    "blocks_cases_until_complete": false,
+
+    "screens": [
+      {
+        "id": "s1",
+        "speaker": "narrator",
+        "text": "Svejda zaklepal dvakrát — o jednu ránu víc než obvykle. Otevřel dveře jen na škvíru a prostrčil dovnitř hlavu s výrazem člověka, který neví, jestli udělal dobře. 'Přišel někdo. Říká, že se jmenuje Beneš. Viktor Beneš. Čekal venku od osmi.'",
+        "choices": null,
+        "next": "s2"
+      },
+      {
+        "id": "s2",
+        "speaker": "narrator",
+        "text": "Muž, který vstoupil, byl přesně takový, jakého by si člověk představoval pod slovem nenápadný — kdyby o tom někdy přemýšlel. Sivé vlasy, tmavý oblek bez jediného detailu, který by upoutal pozornost. Podal ruku, sedl si bez vyzvání a položil na stůl obálku. Tenkou. Bez adresy.",
+        "choices": null,
+        "next": "s3"
+      },
+      {
+        "id": "s3",
+        "speaker": "Beneš",
+        "text": "'Nemám mnoho času a vy taky ne, takže to řeknu rovnou. Vím o Wolfovi. Vím o Haasovi. A vím, kdo podepsal dokument v září osmadvacátého — dokument, který by měl být ve státním archivu, ale není. Je tady.' Poklepal na obálku. 'Rozhodněte se, jestli to chcete vědět. Potom to nejde vzít zpátky.'",
+        "choices": null,
+        "next": "s4"
+      },
+      {
+        "id": "s4",
+        "speaker": "narrator",
+        "text": "Ben se podíval na obálku. Byl to tenký papír — možná jedna strana, možná dvě. V jeho práci přišel k závěru, že nejnebezpečnější věci mívají vždy nejméně stránek. Beneš čekal. Nesledoval Benovu tvář — díval se na okno, jako by mu výsledek byl jedno. Ale nebyl.",
+        "choices": [
+          {
+            "label": "Věřím vám. Chci to vědět.",
+            "sets_flag": "benes_pravda_prijata",
+            "sets_uzlovy": { "benes_pravda": "prijal" },
+            "effects": { "Vina": 3, "Integrita": 2 },
+            "next": "s5a"
+          },
+          {
+            "label": "Nevěřím. A nechci, abyste sem chodil.",
+            "sets_flag": "benes_pravda_odmitnuta",
+            "sets_uzlovy": { "benes_pravda": "odmitl" },
+            "effects": { "Moc": 2 },
+            "next": "s5b"
+          },
+          {
+            "label": "Vezmu to. Ale nic vám neslibuji.",
+            "sets_flag": "benes_pravda_prijata",
+            "sets_flag_extra": "benes_pravda_s_vyhodou",
+            "sets_uzlovy": { "benes_pravda": "prijal" },
+            "effects": { "Vina": 2, "Moudrost": 2 },
+            "next": "s5c"
+          }
+        ]
+      },
+
+      {
+        "id": "s5a",
+        "speaker": "narrator",
+        "text": "Beneš přikývl — jednou, krátce, jako člověk, který čekal přesně tuto odpověď a byl rád, že ji dostal. Posunul obálku přes stůl. Ben ji vzal a otevřel. Uvnitř byl jeden list, hustě popsaný, s podpisem ve spodním rohu. Podpis, který Ben znal — ale ne odsud. Ne z tohoto kontextu.",
+        "choices": null,
+        "next": "s6a"
+      },
+      {
+        "id": "s6a",
+        "speaker": "Beneš",
+        "text": "'Přijdou se vás na ni ptát. Možná dřív, než čekáte — a možná jinak, než si představujete. Až přijdou, budete vědět, o čem mluví. To je vše, co jsem chtěl.' Vstal, zapnul knoflík u saka a zamířil ke dveřím. Zastavil se jen na okamžik. 'Pečlivě se rozmyslete, komu o tom říkáte. Já vám to neřeknu dvakrát.' Pak odešel.",
+        "choices": null,
+        "next": "s7a"
+      },
+      {
+        "id": "s7a",
+        "speaker": "narrator",
+        "text": "Na stole ležela obálka a v ní jeden list papíru, který Ben přečetl ještě dvakrát. Pak třikrát. Pak ho složil a uložil do spodní zásuvky, pod svazek starých nálezů. Svejda zaklepal a přinesl kávu. Ben mu poděkoval a koukal za okno. Venku šlo kolem pár lidí a nic z toho nevěděli.",
+        "choices": null,
+        "next": null,
+        "morning_fragment_append": "V zásuvce pod starými nálezy leží obálka. Ben na ni celý den nemyslel — nebo si to alespoň říkal."
+      },
+
+      {
+        "id": "s5b",
+        "speaker": "Beneš",
+        "text": "Beneš se nezarazil. Vzal obálku zpátky — pomalu, bez spěchu — a zasunul ji do kapsy u saka. 'Rozumím.' Vstal. Nezlobil se, nebo to aspoň nedával najevo. 'Možná budete litovat. Možná ne. Každopádně — přijdou se vás ptát i tak. Jen nebudete vědět proč.'",
+        "choices": null,
+        "next": "s6b"
+      },
+      {
+        "id": "s6b",
+        "speaker": "narrator",
+        "text": "Odešel tak tiše, jak přišel. Svejda pak zaklepal a zeptal se, jestli je vše v pořádku. Ben řekl, že ano. Celý den pak seděl u spisů a občas se podíval na dveře — ne proto, že by čekal někoho dalšího, ale proto, že si nebyl jistý, jestli ta schůzka vůbec proběhla.",
+        "choices": null,
+        "next": null,
+        "morning_fragment_append": "Ben má pocit, že měl udělat něco jinak. Přesně neví co."
+      },
+
+      {
+        "id": "s5c",
+        "speaker": "Beneš",
+        "text": "Beneš se pousmál — poprvé za celou dobu, a bylo to nečekané, protože úsměv mu seděl přirozeně. 'To je jediná poctivá odpověď, jakou jsem mohl čekat od soudce.' Posunul obálku přes stůl. 'Berte si čas. Ale ne příliš.'",
+        "choices": null,
+        "next": "s6c"
+      },
+      {
+        "id": "s6c",
+        "speaker": "narrator",
+        "text": "Obálka zůstala na stole. Ben ji neotevřel hned — nejdřív dopil kávu, kterou mu přinesl Svejda, a chvíli seděl a pozoroval, jak se přes sklo pohybují stíny stromů. Pak obálku vzal. Přečetl list jednou, pomalu. Pak ji zavřel a uložil do kabátu, k srdci. Beneš byl pryč a v kanceláři bylo ticho.",
+        "choices": null,
+        "next": null,
+        "morning_fragment_append": "V kapse u kabátu je obálka. Ben ještě neví, co s ní udělá. Ale ví, co v ní je."
+      }
+    ]
+  }
+}
