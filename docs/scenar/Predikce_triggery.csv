@@ -1,0 +1,44 @@
+oblast;typ_pasma;prah_od;prah_do;efekt_navrh;priorita;cooldown_dny;poznamka
+Finance;normal;120;999;fragmenty bez ekonomickeho tlaku;50;0;balance v hernim stavu (Kcs)
+Finance;varovani;80;119;obcasna zminka o penazich;40;0;
+Finance;tlak;50;79;pravidelne vynechavani obedu ve fragmentech;30;0;
+Finance;krize;1;49;denne temnejsi ranni fragmenty;20;0;
+Finance;bankrot;0;0;krizovy rezim dle economy.mdc;10;0;
+Integrita;normal;41;100;plna sada cestnych moznosti;50;0;0-100
+Integrita;varovani;21;40;omezeni nekterych cistych vetvi;40;0;
+Integrita;korupce_pokus;1;20;aktivni nabidka uplatku v UI;25;0;
+Integrita;krize;0;10;krizovy stav integrity dle economy.mdc;5;0;
+Odvaha;normal;41;100;konfrontace dostupna pri splneni podminek;50;0;
+Odvaha;varovani;21;40;zvysene zvyrazneni Odlozit;35;0;
+Odvaha;krize;0;10;krizovy stav odvahy dle economy.mdc;5;0;
+Moudrost;slaba;0;29;zaznamy mene uzitecne dle traits-factions;40;0;
+Moudrost;normal;30;60;standardni pruzkum;50;0;
+Moudrost;silna;61;80;precedenty a lepsi vystupy;45;0;
+Moudrost;spicka;81;100;jemne vizualni napovedy dle cases.mdc;30;0;
+Vina;normal;0;59;standardni ton;50;0;
+Vina;varovani;60;74;psychologicky tlak v textech;35;0;
+Vina;vysoka;75;84;omezit nektere tvrdé volby v UI pokud design dovoli;25;0;
+Vina;extrem;85;100;silna emocni zatez, uzke vetve;15;0;
+Nadeje;normal;41;100;plny vyber optimistickych veceru;50;0;
+Nadeje;varovani;21;40;temnejsi popisy veceru;40;0;
+Nadeje;krize;0;20;zmizi nejoptimistictejsi volba, trigger preziti pri extremu;10;0;
+Moc_frakce;normal;21;79;neutralni reakce instituce;50;0;
+Moc_frakce;nizka;0;20;trigger atentat vetve dle traits-factions;15;3;jen pokud splni i dalsi podminky konce
+Moc_frakce;vysoka;80;100;Vlcek jako sef, zmizi odvazne rozsudky;20;0;
+Lid_frakce;normal;21;79;standardni svedci;50;0;
+Lid_frakce;nizka;0;20;svedci odmitaji dle traits-factions;25;0;
+Lid_frakce;vysoka;80;100;levnejsi informator, Zavadova bonus;30;0;
+Kapital_frakce;normal;21;79;standardni Haas tlak;50;0;
+Kapital_frakce;nizka;0;20;Haas agresivnejsi, finance -20 procent dle traits;20;2;
+Kapital_frakce;vysoka;80;100;vyssi uplatek, integrita -1 denne dle traits;15;0;
+Trust_vlcek;stred;1;2;neutralni dopisy;50;0;skala 0-3 dle dat
+Trust_vlcek;nizka;0;0;formalnejsi komunikace;40;0;
+Trust_vlcek;vysoka;3;3;pratelske dopisy, riziko kompromisu;30;0;
+Trust_zavadova;stred;1;1;standardni kontakt;50;0;
+Trust_zavadova;vysoka;2;3;drivejsi nabidky pujcky;35;0;
+Trust_karas;stred;1;1;standardni pritel;50;0;
+Trust_karas;vysoka;2;3;osobni pujcka a tiche prehlednuti vetve;25;0;
+Inkoust_den;baseline;3;3;reset na 3 akce v pracovni den s pripady;60;0;viz engine.js
+Inkoust_den;pondeli_bonus;4;4;+1 po nedeli matka/prochazka;55;0;den % 7 == 1
+Kombinace;finance_krize_a_nadeje_nizka;0;0;Nadeje -3 denne dokud finance 0;8;0;dle economy.mdc
+Kombinace;integrita_krize_a_uplatek;0;10;uplatek stale dostupny;5;0;dle economy.mdc

@@ -165,10 +165,10 @@ Implementačně:
 ## SYSTÉM INKOUSTOVÝCH KAPEK
 
 Akce = kapky inkoustu v kalamáři. Vizuální zobrazení na stole.
-Kapky **sdílené mezi všemi případy**, které jsou daný den aktivní na stole (standardně 2; od 3. týdne podmíněně až 3). Konkrétní počty kapek denně se ladí až se stabilní ekonomikou hry.
+Kapky **sdílené mezi všemi případy**, které jsou daný den aktivní na stole (výchozí baseline 3 na pracovní den; dál navýšení přes bonusy/volby). Konkrétní počty kapek denně se ladí až se stabilní ekonomikou hry.
 
 ### Kapacita
-Výchozí: 2 kapky/den. Maximum: 5 kapek/den.
+Výchozí: 3 kapky/den. Maximum: 5 kapek/den.
 
 ### Jak získat víc kapek
 - Neděle procházka/matka: +1 kapka v pondělí
@@ -185,7 +185,7 @@ Výchozí: 2 kapky/den. Maximum: 5 kapek/den.
 - Konfrontace: 2 kapky
 
 ### Strategické napětí
-2 případy, 2 kapky. Konfrontace = celý den jednomu případu, druhý naslepo.
+2–3 případy, 3 kapky. Konfrontace (2 kapky) stále znamená silný fokus na jeden spis a tlačí hráče k prioritizaci.
 
 ## PRŮZKUM — ČTYŘI TYPY AKCÍ
 

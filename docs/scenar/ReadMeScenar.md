@@ -9,14 +9,17 @@ Tato složka je **jedno místo** pro denní mapu, případy ve dnech, vlákna, d
 | Co | Kde |
 |----|-----|
 | **Denní mapa, sloty, večery, poznámky** | [`Mapa_15dni.csv`](./Mapa_15dni.csv) — **jediný** řádkový plán dní pro vývoj |
-| **Případy ve dnech (ID, beat, vrstva)** | [`Pripady_15dni.csv`](./Pripady_15dni.csv) |
+| **Případy ve dnech (ID, beat, vrstva, plán slotů)** | [`Pripady_15dni.csv`](./Pripady_15dni.csv) |
+| **Případy podle `days.json` + čísla z verdiktů (INT…FIN, min..max)** | [`Pripady.csv`](./Pripady.csv) — generuje se: `node scripts/build-pripady-csv.js` ze `data/days.json` (dny 1–15) a `data/pool_cases_akt1.json`; **neobsahuje** runtime typové bonusy z `js/cases.js`, jen surové `effects` ve verdiktech |
 | **Vlákna / dopisy (15d)** | [`Vlakna_15dni.csv`](./Vlakna_15dni.csv), [`Dopisy_15dni.csv`](./Dopisy_15dni.csv) |
-| **Milníky, limity revizí, dynamika aktu** | [`Milniky-dynamika-akt1.md`](./Milniky-dynamika-akt1.md) + [`Balancing.csv`](./Balancing.csv) |
+| **Milníky, limity revizí, dynamika aktu** | [`Milniky-dynamika-akt1.md`](./Milniky-dynamika-akt1.md) + [`Balancing.csv`](./Balancing.csv) (včetně sloupců *Predikce_* pro ladění simulací) |
+| **Prahy a pásma pro predikci / triggery (design)** | [`Predikce_triggery.csv`](./Predikce_triggery.csv) — není runtime; sladit s `economy.mdc` / `traits-factions.mdc` |
+| **V0 balanc model (hratelnost + feedback)** | [`Balance_V0.md`](./Balance_V0.md) — guardrails, checkpointy, anti-frustrace před batch testy |
 | **Migrace a historie 20d → 15d** | [`MIGRACE_20-15.md`](./MIGRACE_20-15.md) |
-| **20denní soubory (archiv, ne kanon)** | [`ARCHIV_20D_README.md`](./ARCHIV_20D_README.md) — `Mapa_20dni.csv`, starý `Pripady.csv` (ne `Pripady_15dni`), atd. **nepoužívat** pro nové úpravy |
-| **Ekonomika / bilance** | [`Balancing.csv`](./Balancing.csv) — sloupec *Scenar_modif_navrh* (návrhy k pozdějšímu ladění) |
-| **Dopisy** | [`Dopisy.csv`](./Dopisy.csv) |
-| **Vlákna** | [`Vlakna.csv`](./Vlakna.csv) |
+| **20denní soubory (archiv, ne kanon)** | [`ARCHIV_20D_README.md`](./ARCHIV_20D_README.md) — `Mapa_20dni.csv`, historický 20d rozvrh případů (před migrací), atd. **nepoužívat** pro nové úpravy; **aktuální** [`Pripady.csv`](./Pripady.csv) je 15d generovaný přehled, ne součást tohoto archivu |
+| **Ekonomika / bilance** | [`Balancing.csv`](./Balancing.csv) — *Scenar_modif_navrh*, *Manual zasah*, *Predikce_tagy*, *Riziko_*; přepočet: `node scripts/recalc-balancing.js` |
+| **Dopisy (pracovní osnova)** | [`Dopisy_15dni.csv`](./Dopisy_15dni.csv) |
+| **Vlákna** | [`Vlakna_15dni.csv`](./Vlakna_15dni.csv) |
 | **Konce** | [`Konce.csv`](./Konce.csv) |
 | **Statistiky** | [`Statistiky.csv`](./Statistiky.csv) |
 
@@ -44,8 +47,8 @@ docs/
     Milniky-dynamika-akt1.md
     ARCHIV_20D_README.md
     Balancing.csv
-    Dopisy.csv
-    Vlakna.csv
+    Dopisy_15dni.csv
+    Vlakna_15dni.csv
     Konce.csv
     Statistiky.csv
   InDubio_20dni_Mapa.xlsx      ← volitelný Excel
@@ -59,6 +62,7 @@ docs/
 
 data/
   days.json                    ← kalendář ve hře (vývoj = postupné změny)
+  letters.json                 ← texty dopisů používané enginem
   pool_cases_akt1.json
 ```
 

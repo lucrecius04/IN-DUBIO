@@ -173,7 +173,7 @@ Engine._vyhodnotVariabilniKonec = function() {
     return Engine.spustKonec('atentat');
   }
 
-  // 7. ŘÁD (nejdříve D14)
+  // 7. KRUH (nejdříve D14)
   if (den >= 14
     && u.vlcek_vztah !== 'vzdor'
     && u.haas_kontakt === 'zavazany'

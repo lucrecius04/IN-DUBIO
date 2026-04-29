@@ -3,43 +3,43 @@
     "id": "fragment_d1_morning",
     "type": "clipping",
     "title": "Ranní výstřižek — 1. března 1931",
-    "text": "SOUDCE ČERNÝ SE VRÁTIL\n\nDr. Jakub Černý, soudce Krajského soudu, se vrátil do funkce po roční přestávce. Ministr spravedlnosti přivítal jeho návrat jako „posílení soudnictví v době zkoušek”. Podrobnosti k důvodu přestávky nebyly poskytnuty."
+    "text": "VRANÝ ZPĚT U STOLU\n\nDr. Benedikt Vraný se po roční přestávce vrací ke Krajskému soudu. Ministerstvo mluví o posílení soudnictví v neklidné době.\n\nPodrobnosti k důvodu přerušení služby nebyly zveřejněny."
   },
   {
     "id": "fragment_d1_night",
     "type": "dream",
     "title": "Sen — první noc",
-    "text": "Sedíš ve velké prázdné síni.\n\nZa skleněnou stěnou stojí muž. Nevíš jak se jmenuje. Ale víš, kdo to je.\n\nDívá se na tebe. Nic neříká.\n\nProbudíš se v pět ráno. Okno je zamlžené. Venku prší."
+    "text": "Sedíš v prázdné síni. Lavice jsou rovné, jako by čekaly na jediné slovo.\n\nZa sklem stojí starý muž. Nehýbe se. Jen čeká.\n\nProbudíš se ještě za tmy. Na skle je pára a v krku prach."
   },
   {
     "id": "fragment_d5_tichy_rano",
     "type": "clipping",
     "title": "Ranní ticho — 7. března 1931",
-    "text": "Slunce. Poprvé tento měsíc. Na chodbě voní káva — někdo ji uvařil v kanceláři naproti. Otevřel jsi okno. Vzduch byl jiný."
+    "text": "Poprvé po dnech vyšlo slunce. Na chodbě je cítit káva a studený kámen.\n\nNa okamžik to vypadá, že město dýchá pomaleji."
   },
   {
     "id": "fragment_d5_tichy_noc",
     "type": "dream",
     "title": "Noc beze snu",
-    "text": "Usnul jsi brzy. Poprvé za týden se ti nic nezdálo."
+    "text": "Usnul jsi bez snu. Jen tma, která nic nevysvětluje a nic neodpouští."
   },
   {
     "id": "fragment_d3_noviny",
     "type": "clipping",
     "title": "Ranní list — 3. března 1931",
-    "text": "ROZSUDEK Z ROKU 1921 POD LUPOU\n\nHistorická analýza soudního procesu s Antonínem Benešem (odsouzen 1921, zemřel ve vězení 1924) přinesla nové otázky. Právní experti poukazují na procedurální nesrovnalosti. Soud své záznamy nezveřejnil."
+    "text": "STARÝ ROZSUDEK, NOVÉ OTÁZKY\n\nRedakční sloupek připomíná případ Antonína Beneše. Odsouzen v roce 1921, zemřel ve vězení.\n\nAutoři píší o procesních mezerách. Archiv soudu zůstává uzavřen."
   },
   {
     "id": "fragment_d6_morning",
     "type": "letter",
     "title": "Anonymní dopis",
-    "text": "Pane doktore,\n\nMám pro Vás informaci, která se Vás týká.\n\nV příštích dnech přijde případ, který znáte. Jiné jméno, stejná situace. Nezapomněli jste?\n\nPřítel, který si přeje zůstat anonymní"
+    "text": "V obálce je jen vizitka. Bez věty, bez podpisu.\n\nEmil Haas.\n\nPapír je těžký skoro stejně jako ticho na stole."
   },
   {
     "id": "fragment_d8_morning",
     "type": "letter",
     "title": "Dopis od doktora Síbra",
-    "text": "Vážený pane doktore,\n\ndovolujeme si Vás informovat, že stav Vaší paní matky Alžběty Černé si vyžaduje operaci bez zbytečného odkladu.\n\nCelkové náklady na zákrok a pobyt jsou stanoveny na 400 Kčs. Nejvhodnější termín by měl být do 23. března — déle bych nerad sliboval.\n\nS lékařskou úctou,\nMUDr. Síbr, Zemská nemocnice"
+    "text": "Před budovou stojí policejní vůz. Motor běží i bez posádky.\n\nSvejda jen kývne ke dveřím: „Dneska bude těžký den, pane doktore.“\n\nNa stole už čekají tři složky."
   },
   {
     "id": "fragment_vyplata",
@@ -87,25 +87,31 @@
     "id": "fragment_d10_morning",
     "type": "clipping",
     "title": "Ranní list — 10. března 1931",
-    "text": "HORÁKOVÁ PÍŠE O SOUDNICTVÍ\n\nVěra Horáková, novinářka Nezávislého deníku, zahájila sérii článků o systému výkonu spravedlnosti v naší republice. „Zajímá mě prostor mezi zákonem a spravedlností,” říká. „Tento prostor je obýván reálnými lidmi s reálnými životy.“"
+    "text": "V novinách je článek o soudech. Podtržená věta: „Prostor mezi zákonem a spravedlností obývají konkrétní lidé.“\n\nPapír vrzne, když ho přeložíš. Dnes bude vrzat víc věcí."
+  },
+  {
+    "id": "fragment_d10_osobni_rano",
+    "type": "clipping",
+    "title": "Ráno — osobní den",
+    "text": "Na stole čeká spis, který není jako ostatní. Dnes se minulost netváří jako archiv, ale jako předvolání.\n\nSvejda postaví kávu bez slova. Poprvé nechce nic komentovat."
   },
   {
     "id": "fragment_d12_morning",
     "type": "dream",
     "title": "Sen — dvanáctá noc",
-    "text": "Stojíš před prázdnou klecí.\n\nKlíč máš v ruce. Ale nevíš, jestli klec zamknouti nebo odemknout.\n\nZa mřížemi není nic. Nebo snad je — jen to nevidíš.\n\nProboudíš se s pocitem, že jsi zapomněl udělat něco důležitého. Nevíš co."
+    "text": "V noci držíš v ruce klíč, ale dveře nikam nevedou.\n\nProbudíš se dřív, než zazvoní hodiny. Na stole leží stejný pořad jednání jako včera, jen těžší."
   },
   {
     "id": "fragment_d11_morning_base",
     "type": "clipping",
     "title": "Ranní stůl",
-    "text": "Na stole leží pořad jednání. Jména, která znáš z obálky — a jedno, které znáš z chodby."
+    "text": "Pořad jednání leží přesně uprostřed stolu. Jedno jméno znáš ze spisu, druhé z cizí obálky."
   },
   {
     "id": "fragment_d12_echo_base",
     "type": "clipping",
     "title": "Ranní ticho",
-    "text": "Kancelář se probouzí pomalu. Rádio v sousední místnosti chytá první věty dne."
+    "text": "Kancelář se probouzí pomalu. Rádio v sousední místnosti chytá zprávy přes šum.\n\nNěkterá jména zůstávají v éteru déle, než by měla."
   },
   {
     "id": "fragment_d15_night",
@@ -135,25 +141,31 @@
     "id": "fragment_d7_nedele_rano",
     "type": "letter",
     "title": "Neděle — ticho",
-    "text": "Telefon nezvoní. V chodbě se neozývají kroky úředníků. Papír na stole leží rovně — jako by si i on odpočinul.\n\nDnes nejsi soudcem. Jsi jen člověk, který musí rozhodnout, co s tím udělá."
+    "text": "Telefon mlčí. Chodba je prázdná a papír na stole leží nezvykle rovně.\n\nDnes nesoudíš. Dnes jen neseš, co z týdne zůstalo."
   },
   {
     "id": "fragment_d7_nedele_vecer",
     "type": "dream",
     "title": "Nedělní večer",
-    "text": "Světlo lampy je měkčí. Deník zůstal zavřený — nebo otevřený na prázdné stránce. Obojí je odpověď.\n\nZítra zase začne týden, který nepočítá s tebou."
+    "text": "Světlo lampy je měkčí než ve všední den. Na stole zůstane jen jeden list, nepopsaný.\n\nZítra začne týden, který se ptá rychleji, než odpovídáš."
   },
   {
     "id": "fragment_d14_nedele_rano",
     "type": "letter",
     "title": "Neděle",
-    "text": "Druhá neděle v březnu. Tělo si zvyklo na lavici — a dnes ji postrádá jako zvláštní druh úlevy i prázdnoty."
+    "text": "Druhá neděle v březnu. Tělo si zvyklo na lavici a dnes ji chybí i ne.\n\nMěsto je stejné, jen ty už nečteš ticho stejně jako dřív."
   },
   {
     "id": "fragment_d14_nedele_vecer",
     "type": "dream",
     "title": "Večer",
-    "text": "V hlavě se line týden jako pomalý film. Některé tváře už nejsou jména — jen gesta a papír."
+    "text": "Týden se vrací v krátkých obrazech: dveře, podpis, pohled přes stůl.\n\nNěkteré tváře už nejsou jména. Jsou to jen gesta a papír."
+  },
+  {
+    "id": "fragment_d15_morning",
+    "type": "clipping",
+    "title": "Ráno — poslední pracovní den",
+    "text": "V budově je nezvyklé ticho, jako před bouřkou. I kroky na chodbě dnes znějí opatrněji.\n\nNa pořadu je jediný spis. Ten, který se nedá odsunout."
   },
   {
     "id": "fragment_d21_nedele_rano",

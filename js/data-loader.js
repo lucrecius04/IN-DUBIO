@@ -29,6 +29,7 @@ const DataLoader = (() => {
   // Definice všech datových souborů
   const SOUBORY = {
     days:       'data/days.json',
+    letters:    'data/letters.json',
     characters: 'data/characters.json',
     fragments:  'data/fragments.json',
     factions:   'data/factions.json',
@@ -334,6 +335,14 @@ const DataLoader = (() => {
     return days.find(d => Number(d.day) === n) || null;
   }
 
+  function ziskejDopis(id) {
+    const letters = ziskej('letters');
+    if (!Array.isArray(letters)) return null;
+    const key = String(id == null ? '' : id).trim();
+    if (!key) return null;
+    return letters.find(l => l && String(l.id || '').trim() === key) || null;
+  }
+
   function ziskejPostavu(id) {
     const characters = ziskej('characters');
     if (!characters) return null;
@@ -363,6 +372,7 @@ const DataLoader = (() => {
     ziskej,
     jeHernaDataOK,
     ziskejPripad,
+    ziskejDopis,
     normalizujPoolPripad,
     ziskejDen,
     ziskejPostavu,

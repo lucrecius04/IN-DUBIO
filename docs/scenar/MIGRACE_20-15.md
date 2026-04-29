@@ -279,9 +279,9 @@ Hranice:  D4 (slot 2), D8 (slot 2)                  — beaty 1–2; beat 3 (tyc
 
 ### 4.1 Soubory k **nahrazení** (novými verzemi z této migrace):
 - `docs/scenar/Mapa_15dni.csv` → `docs/scenar/Mapa_15dni.csv`
-- `docs/scenar/Dopisy.csv` → nová verze (15 dní)
+- `docs/scenar/Dopisy_15dni.csv` → nová verze (15 dní)
 - `docs/scenar/Konce.csv` → nová verze (sloupec `Nejdrive` s dnem)
-- `docs/scenar/Vlakna.csv` → nová verze (max 3 beaty)
+- `docs/scenar/Vlakna_15dni.csv` → nová verze (max 3 beaty)
 
 ### 4.2 Soubory k **aktualizaci** (přepsat relevantní sekce):
 

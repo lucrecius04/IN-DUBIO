@@ -426,7 +426,12 @@
           "type": "fragment",
           "text": "V novinách krátká zpráva: Krajský soud zavedl dozorčí režim nad lékárnou. Odborníci chválí jako precedent."
         }
-      ]
+      ],
+      "stamp_moment": {
+        "guilty": "Malina sklopil oči. V síni to vonělo po lihu a studeném kameni.",
+        "not_guilty": "Malina vydechl, ale ruce mu zůstaly sevřené na hraně stolu.",
+        "insufficient": "Nikdo se nepohnul. Jen zapisovatelka otočila stránku."
+      }
     },
     {
       "id": "pool_a1_vyveseni",
@@ -842,7 +847,12 @@
           "type": "letter",
           "text": "Dopis od Vlčka. Krátký, suše zdvořilý: Zaznamenal jsem rozsudek ve věci Fassbinder. Zákon na ochranu republiky je pilířem naší demokracie. Spoléhám na Vaši soudnost v budoucích případech."
         }
-      ]
+      ],
+      "stamp_moment": {
+        "guilty": "Fassbinder přikývl, jako by čekal přesně tuto větu.",
+        "not_guilty": "Plakát zmizel ze stolu, ale ne z hlav v poslední řadě.",
+        "insufficient": "Sál zůstal viset mezi zákonem a ulicí."
+      }
     },
     {
       "id": "pool_a1_trafika",
@@ -1143,7 +1153,12 @@
           "type": "fragment",
           "text": "Na chodbě soudu poznámka od sekretariátu: Pojišťovna Slavia propustila pojistného agenta Miroslava Krejčího. Žádá o přezkum dalších smluv uzavřených tímto agentem. Na stole leží šest dalších spisů."
         }
-      ]
+      ],
+      "stamp_moment": {
+        "guilty": "Bartošová stála rovně, jen prsty tiskla lem kabátu.",
+        "not_guilty": "Bartošová zavřela oči na jediný nádech a pak se narovnala.",
+        "insufficient": "V síni zůstalo ticho, které nepatřilo nikomu."
+      }
     },
     {
       "id": "pool_a1_vytrznost",
@@ -1587,7 +1602,12 @@
           "type": "letter",
           "text": "Dopis od Vlčka. Zdvořilý, suchý: Zaznamenal jsem případ Šimánek. Spolupráce obžalovaného s orgány je vždy vítána. Doufám, že informace povedou k příslušným opatřením. Rád bych byl informován o dalším vývoji."
         }
-      ]
+      ],
+      "stamp_moment": {
+        "guilty": "Šimánek se díval na podlahu, jako by tam hledal rozbité sklo.",
+        "not_guilty": "Šimánek se neohlédl. U dveří čekal stejný březnový vítr.",
+        "insufficient": "Rozsudek dozněl, ale křik u výloh ne."
+      }
     },
     {
       "id": "pool_a1_nemocenska",
@@ -2036,7 +2056,12 @@
           "type": "fragment",
           "text": "Na stole leží zpráva z tovární inspekce. Závodní lékař MUDr. Mašek, Textile Praga a.s. — prémie vázaná na nemocnost zaměstnanců. Inspekce doporučuje přezkum smlouvy. Kratochvíl stále pracuje ve stejné továrně."
         }
-      ]
+      ],
+      "stamp_moment": {
+        "guilty": "Kratochvíl stiskl čepici v dlaních. Kašel v síni zněl náhle blíž.",
+        "not_guilty": "Kratochvíl jen přikývl. Úleva vypadala skoro jako únava.",
+        "insufficient": "Papír mlčel a tělo bolelo dál."
+      }
     },
     {
       "id": "pool_a1_stara_rana",
@@ -2476,7 +2501,12 @@
           "type": "fragment",
           "text": "Zpráva sociální pracovnice: Rodina Hofr, Žižkov — první návštěva proběhla. Pan Hofr nebyl přítomen. Paní Hofrová spolupracuje. Dcera Jitka — šikovná dívka. Ptala se, jestli může sociální pracovnici navštívit sama."
         }
-      ]
+      ],
+      "stamp_moment": {
+        "guilty": "Hofrová neuhla pohledem. Jen sevřela rty do tenké čáry.",
+        "not_guilty": "Hofrová si pomalu sedla, jako by jí na chvíli vypověděla kolena.",
+        "insufficient": "Stará rána zůstala otevřená i po úderu razítka."
+      }
     },
     {
       "id": "pool_a1_zhar",
@@ -2916,7 +2946,12 @@
         "pojistovna_slavia",
         "zalosna",
         "smichov"
-      ]
+      ],
+      "stamp_moment": {
+        "guilty": "Houška se nadechl, ale nic neřekl. V síni bylo cítit popel.",
+        "not_guilty": "Houška zavřel oči a pomalu vydechl, jako po dlouhé noční směně.",
+        "insufficient": "Požár ve spise zhasl. Ve městě ne."
+      }
     },
     {
       "id": "pool_a1_weiss",
@@ -3341,7 +3376,12 @@
           "type": "letter",
           "text": "Dopis od Vlčka. Kratký, suchý: Věc Schwarz. Zaznamenal jsem Vaše rozhodnutí předat případ diplomatickému oddělení. Dovolte mi poznamenat, že precedenty v otázkách přistěhovalectví spadají do kompetence ministerstva, nikoli krajského soudu. Spolehám na Vaši soudnost v budoucích případech podobné povahy."
         }
-      ]
+      ],
+      "stamp_moment": {
+        "guilty": "Weiss sklopil hlavu. U dveří zašustily cizí doklady.",
+        "not_guilty": "Weiss se uklonil krátce, bez úsměvu. Stráž ustoupila o krok.",
+        "insufficient": "Jména i papíry zůstaly dvojí. I po rozsudku."
+      }
     },
     {
       "id": "pool_a1_stavba",
@@ -3769,7 +3809,12 @@
         "leseni_predpisy",
         "vinohrady",
         "pracovni_urazy"
-      ]
+      ],
+      "stamp_moment": {
+        "guilty": "Kolář narovnal manžetu, ale ruka se mu třásla.",
+        "not_guilty": "Kolář přikývl a díval se na desku stolu, ne na lidi v síni.",
+        "insufficient": "Lešení zůstalo ve spise stát. Bez jistého viníka."
+      }
     },
     {
       "id": "pool_a1_exekuce",
@@ -4194,7 +4239,12 @@
           "type": "fragment",
           "text": "Ve Svobodném obzoru Eliška Závadová — pod pseudonymem — krátký sloupek: Záložna sv. Václava přezkoumává osm smluv uzavřených v letech 1928–1930 po rozhodnutí krajského soudu. Sloupek je na třetí straně. Ale je tam."
         }
-      ]
+      ],
+      "stamp_moment": {
+        "guilty": "Součková sevřela šátek v ruce, až zbělely klouby.",
+        "not_guilty": "Součková zůstala stát, jako by čekala, že přijde ještě jedna věta.",
+        "insufficient": "Dluh nezmizel. Jen dostal další datum."
+      }
     },
     {
       "id": "pool_a1_tiskarna",
@@ -4670,7 +4720,12 @@
           "type": "fragment",
           "text": "<button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"smichov\" title=\"Slovník: Smíchov\">Smíchovská</button> vrátnice hlásí, že podpis v registru klíčů byl přepsán přes původní iniciály. Vyšetřovatel žádá nové výslechy vedení tiskárny."
         }
-      ]
+      ],
+      "stamp_moment": {
+        "guilty": "Mareš sklopil oči k inkoustovým skvrnám na prstech.",
+        "not_guilty": "Mareš si pomalu vyhrnul rukávy, jako by směna ještě neskončila.",
+        "insufficient": "Papír šustil, lis mlčel a pravda zůstala mezi řádky."
+      }
     },
     {
       "id": "pool_a1_spravce",
@@ -5058,7 +5113,12 @@
           "vina": -3
         }
       },
-      "narrative_link": null
+      "narrative_link": null,
+      "stamp_moment": {
+        "guilty": "Blecha sevřel klíče v dlani. Kov cinkl o hranu lavice.",
+        "not_guilty": "Blecha se opřel o stůl a poprvé toho dne vydechl.",
+        "insufficient": "Zmizelý dopis zůstal zmizelý i po rozsudku."
+      }
     },
     {
       "id": "pool_a1_bytova_komise",
@@ -5474,7 +5534,12 @@
           "type": "fragment",
           "text": "Hospodářská kontrola ověřila evidenční knihu kancelářských potřeb: razítko č. 7 bylo Dolejšovi vydáno dne devátého února 1931 jako náhrada za ztracené. Otisk na přihlášce Novotné s datem šestého února je technicky nemožný. Vyšetřovatel žádá Dolejšovu výpověď znovu."
         }
-      ]
+      ],
+      "stamp_moment": {
+        "guilty": "Dolejš si upravil límec a neřekl ani slovo navíc.",
+        "not_guilty": "Dolejš se podíval k oknu, kde se držela zimní mlha.",
+        "insufficient": "Komise odešla po svých. Otázky zůstaly v síni."
+      }
     },
     {
       "id": "pool_a1_revizor",
@@ -5915,7 +5980,12 @@
           "type": "fragment",
           "text": "Hospodářská inspekce požádala o originál doručovací knihy dispečinku za prosinec 1930. Vedení Elektrických podniků sdělilo, že kniha je v archivu a bude zapůjčena do čtrnácti pracovních dnů."
         }
-      ]
+      ],
+      "stamp_moment": {
+        "guilty": "Kopecký stál rovně, jen palec přejížděl po okraji čepice.",
+        "not_guilty": "Kopecký kývl a na chvíli zavřel oči, jako po dlouhé trase.",
+        "insufficient": "Vagon jel dál. Jistota viny ne."
+      }
     },
     {
       "id": "pool_a1_druha_ruka",
@@ -6358,7 +6428,12 @@
           "type": "fragment",
           "text": "Soudní znalec z Chemického ústavu Karlovy university zažádal o přístup k originálnímu přípisku. Kolářová písemně odmítla vydat deník bez soudního příkazu. Šrámek mezitím podal žádost o dovolenou."
         }
-      ]
+      ],
+      "stamp_moment": {
+        "guilty": "Šrámek složil ruce za zády a čekal na pokyn stráže.",
+        "not_guilty": "Šrámek pohlédl ke dveřím, ale nikam nepospíchal.",
+        "insufficient": "Druhá ruka zůstala bez jména i po přečtení rozsudku."
+      }
     },
     {
       "id": "pool_a1_posledni_vule",
@@ -12743,9 +12818,13 @@
       "case_track_label": "tycove",
       "type": "osobni",
       "color": "#4A3A5A",
-      "available_days": [10],
+      "available_days": [
+        10
+      ],
       "act": 1,
-      "weight_conditions": { "forced": true },
+      "weight_conditions": {
+        "forced": true
+      },
       "title": "Složka",
       "case_number": "Sp. zn. interní — bez čísla",
       "defendant": {
@@ -12761,14 +12840,22 @@
           "id": "obsah_slozky",
           "speaker": "Obsah složky — soupis dokumentů",
           "text": "Tři listy. První: rodný list Anny Vránové, narozené 12. března 1891 v Holešovicích. Otec: Josef Vrana, matka: Hedvika Vránová, rozená Haasová. <span class=\"clue\" data-clue-id=\"clue_anna_haas_rodina\">Slovo Haasová — Anna je neteří nebo sestřenicí Emila Haase. Příbuznost doložená v rodném listu.</span> Druhý list: výpis z obchodního rejstříku — Wolfova poradenská firma, zapsaná dubna 1929. Mezi zakladateli: Emil Haas jako tichý společník. Třetí list: rukou psaná poznámka. Bez podpisu. Text: <em>'Dokument ze září osmadvacátého existuje ve dvou verzích. Druhá verze je u ministra. Použijte rodný list, pokud chcete vědět proč.'</em>",
-          "contradiction_keywords": ["Haasová", "tichý společník", "druhá verze"],
+          "contradiction_keywords": [
+            "Haasová",
+            "tichý společník",
+            "druhá verze"
+          ],
           "hidden_at_wisdom_below": null
         },
         {
           "id": "svejda_vypoved",
           "speaker": "Svejda, soudní úředník",
           "text": "Budova se zavírá v šest. Klíče mám já, vrátný Procházka a pan předseda senátu. <span class=\"clue\" data-clue-id=\"clue_kdo_mel_pristup\">Procházka říká, že nikoho neviděl. Já jsem odcházel v půl sedmé — kancelář byla prázdná, stůl čistý. Ráno jsem přišel v osm a složka tam byla.</span> To je vše, co vím. Kdo tam byl mezi půl sedmou a osmi — nevím.",
-          "contradiction_keywords": ["půl sedmé", "osm", "nevím"],
+          "contradiction_keywords": [
+            "půl sedmé",
+            "osm",
+            "nevím"
+          ],
           "hidden_at_wisdom_below": null
         }
       ],
@@ -12776,7 +12863,9 @@
         {
           "id": "anna_je_haasova",
           "description": "Anna Wolfová, manželka obžalovaného z Velezrady, je příbuzná Emila Haase — neteř nebo sestřenice. Haas je tichým společníkem ve Wolfově poradenské firmě. Wolf, Haas, Anna — tři jména, jeden kruh.",
-          "involves": ["obsah_slozky"],
+          "involves": [
+            "obsah_slozky"
+          ],
           "highlight_at_wisdom": 60,
           "unlocks_confrontation": null
         }
@@ -12785,22 +12874,44 @@
         "enabled": true,
         "true_pair_id": "haas_anna_wolf_strong",
         "pairs": [
-          { "pair_id": "haas_anna_wolf_strong", "a_id": "clue_anna_haas_rodina", "b_id": "clue_kdo_mel_pristup", "strength": "strong" }
+          {
+            "pair_id": "haas_anna_wolf_strong",
+            "a_id": "clue_anna_haas_rodina",
+            "b_id": "clue_kdo_mel_pristup",
+            "strength": "strong"
+          }
         ],
-        "decoys": ["decoy_poznamka_bez_podpisu"],
-        "timed_hunt": { "enabled": false },
+        "decoys": [
+          "decoy_poznamka_bez_podpisu"
+        ],
+        "timed_hunt": {
+          "enabled": false
+        },
         "info_threshold_unlocks": {
           "actions": [],
           "verdicts": [
-            { "min": 40, "ids": ["pouzit_dokument"] },
-            { "min": 70, "ids": ["odevzdat_statnimu"] }
+            {
+              "min": 40,
+              "ids": [
+                "pouzit_dokument"
+              ]
+            },
+            {
+              "min": 70,
+              "ids": [
+                "odevzdat_statnimu"
+              ]
+            }
           ]
         },
         "rewards": {
           "on_confirm": {
             "strong": {
               "investigation_progress_delta": 50,
-              "unlock_verdict_ids": ["pouzit_dokument", "odevzdat_statnimu"],
+              "unlock_verdict_ids": [
+                "pouzit_dokument",
+                "odevzdat_statnimu"
+              ],
               "narrative_lines": [
                 "Anna Vránová-Wolfová, rozená Haasová. Wolf, Haas, Anna — kruh, který se teď uzavřel.",
                 "Haas jako tichý společník ve Wolfově firmě. To vysvětluje transakce z Velezrady jinak.",
@@ -12817,20 +12928,48 @@
           "reveals": "motivation",
           "text": "Procházka stojí u vchodu a přesunuje váhu z nohy na nohu. <span class=\"clue\" data-clue-id=\"decoy_poznamka_bez_podpisu\">Říká: 'Viděl jsem jednoho člověka. Chodí sem někdy — starší pán, civilu, šedý kabát. Říkám mu pane, on přikývne a jde dál. Nikdy ho nezastavuji, protože vypadá jako někdo, koho zastavovat nemám.'</span> Popis sedí na Beneše. Nebo na tucet jiných lidí.",
           "cost": 1,
-          "dirty_unlock": { "finance": -8, "traits": { "Integrita": -1, "Vina": 1 }, "factions": { "Moc": -1 } }
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Integrita": -1,
+              "Vina": 1
+            },
+            "factions": {
+              "Moc": -1
+            }
+          }
         },
         "records": {
           "source": "Obchodní rejstřík — Wolfova poradenská firma; matrika narozených Holešovice 1891",
           "reveals": "facts",
           "text": "Matrika: Anna Vránová, otec Josef, matka Hedvika Vránová rozená Haasová. Emil Haas — syn Hedvičina bratra. Anna a Emil jsou bratranci. Obchodní rejstřík Wolfovy firmy: <span class=\"clue\" data-clue-id=\"clue_anna_haas_rodina\">zakladatelé Wolf Alexander a Haas Emil jako tichý společník s podílem 30%. Firma zapsána dubna 1929 — osm měsíců po Wolfově propuštění z ministerstva.</span> Haasův podíl byl převeden na Annu v lednu 1931 — dva týdny před zahájením vyšetřování Wolfa.",
           "cost": 1,
-          "dirty_unlock": { "finance": -12, "traits": { "Integrita": -2, "Vina": 1 }, "factions": { "Kapital": 2, "Moc": -1 } },
+          "dirty_unlock": {
+            "finance": -12,
+            "traits": {
+              "Integrita": -2,
+              "Vina": 1
+            },
+            "factions": {
+              "Kapital": 2,
+              "Moc": -1
+            }
+          },
           "unlocks_contradiction": "anna_je_haasova"
         },
         "informant": {
           "reveals": "context",
           "cost": 1,
-          "dirty_unlock": { "finance": -8, "traits": { "Vina": 2 }, "factions": { "Moc": -1, "Kapital": 1 } },
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Vina": 2
+            },
+            "factions": {
+              "Moc": -1,
+              "Kapital": 1
+            }
+          },
           "variants": {
             "moc_high": "Složka se na Benově stole neobjevila náhodou. Někdo věděl, že Ben dostane Wolfův případ — a věděl to dřív, než byl případ přiřazen. To znamená, že rozvrh případů pro pátek 20. března byl znám přinejmenším den předem. Kdo ho znal: předseda senátu, kancelář Vlčka, státní zastupitelství.",
             "kapital_high": "Wolfova firma existovala osm měsíců — od propuštění do zahájení vyšetřování. Haasův podíl přešel na Annu dva týdny před zatčením. Ten přesun naznačuje, že Haas věděl, co přijde. A věděl to dřív, než to věděl Wolf.",
@@ -12850,8 +12989,14 @@
                 "integrita": -1,
                 "nadeje": 2,
                 "flags": [
-                  { "key": "flag_rodny_list_pouzit", "value": true },
-                  { "key": "benes_identified", "value": true }
+                  {
+                    "key": "flag_rodny_list_pouzit",
+                    "value": true
+                  },
+                  {
+                    "key": "benes_identified",
+                    "value": true
+                  }
                 ]
               }
             }
@@ -12867,7 +13012,12 @@
                 "integrita": 3,
                 "vina": -1,
                 "moudrost": 2,
-                "flags": [{ "key": "flag_rodny_list_odevzdan", "value": true }]
+                "flags": [
+                  {
+                    "key": "flag_rodny_list_odevzdan",
+                    "value": true
+                  }
+                ]
               }
             },
             "znicit": {
@@ -12877,7 +13027,12 @@
                 "integrita": 1,
                 "vina": 2,
                 "nadeje": -1,
-                "flags": [{ "key": "flag_rodny_list_znicen", "value": true }]
+                "flags": [
+                  {
+                    "key": "flag_rodny_list_znicen",
+                    "value": true
+                  }
+                ]
               }
             }
           }
@@ -12887,7 +13042,16 @@
             "odlozit": {
               "label": "Odložit — nechat složku ležet a vrátit se k ní",
               "description": "Ben složku uzavře a dá do šuplíku. Nepřečetl ji celou. Nebo přečetl — ale nechce se rozhodnout dnes.",
-              "effects": { "moudrost": 2, "vina": 1, "flags": [{ "key": "flag_rodny_list_odlozen", "value": true }] }
+              "effects": {
+                "moudrost": 2,
+                "vina": 1,
+                "flags": [
+                  {
+                    "key": "flag_rodny_list_odlozen",
+                    "value": true
+                  }
+                ]
+              }
             }
           }
         }
@@ -12925,12 +13089,21 @@
       "case_track_label": "tycove",
       "type": "osobni",
       "color": "#3A4A3A",
-      "available_days": [11],
+      "available_days": [
+        11
+      ],
       "act": 1,
-      "weight_conditions": { "forced": true },
+      "weight_conditions": {
+        "forced": true
+      },
       "title": "Obálka",
       "case_number": "Sp. zn. interní — bez čísla",
-      "defendant": { "name": "—", "age": 0, "occupation": "—", "detail": "Tento případ nemá obžalovaného. Je to návštěva Emila Haase." },
+      "defendant": {
+        "name": "—",
+        "age": 0,
+        "occupation": "—",
+        "detail": "Tento případ nemá obžalovaného. Je to návštěva Emila Haase."
+      },
       "charge": "Bez obžaloby. Emil Haas přišel osobně.",
       "description": "Svejda tentokrát klepal třikrát a čekal. Pak otevřel dveře a řekl jen: 'Je tu někdo.' Ben se podíval. Ve dveřích stál muž, kterého znal jen ze jméne a z vizitky, která přišla v únoru — výrobce strojů z Holešovic, který má bratra nebo bratrance v Drážďanech nebo v Berlíně a jehož jméno se v posledních týdnech objevovalo na místech, kde být nemělo. Emil Haas byl asi šedesát let starý, tmavý oblek, střižený přesně. Přišel bez obhájce, bez sekretáře, bez svědka. Sám.",
       "testimonies": [
@@ -12938,14 +13111,22 @@
           "id": "haas_uvod",
           "speaker": "Emil Haas",
           "text": "'Pane doktore, nepřišel jsem jako účastník řízení. Přišel jsem jako soukromá osoba.' Posadil se — bez vyzvání, klidně, jako člověk, který je zvyklý sedat v místnostech jiných lidí. <span class=\"clue\" data-clue-id=\"clue_haas_soukrome\">Položil na stůl obálku. Silnější, než by čekal Ben. 'Tři sta korun. Žádné podmínky, žádný závazek. Říkáme tomu gesto dobré vůle — vy si to nazvěte jak chcete.'</span> Čekal.",
-          "contradiction_keywords": ["žádné podmínky", "gesto dobré vůle", "soukromá osoba"],
+          "contradiction_keywords": [
+            "žádné podmínky",
+            "gesto dobré vůle",
+            "soukromá osoba"
+          ],
           "hidden_at_wisdom_below": null
         },
         {
           "id": "haas_vysvetleni",
           "speaker": "Emil Haas",
           "text": "'Vím o vaší matce. Operace stojí čtyři sta korun — tři sta vás přibližuje. Zbytek si seženete.' Pauza. 'Nebo ne. To je na vás.' <span class=\"clue\" data-clue-id=\"clue_haas_vi_o_matce\">Vstal. 'Já neprosím o nic konkrétního. Prosím jen o to, abyste si vzpomněl, že jsem tu byl — až přijde případ, kde bude záležet, jak se díváte na důkazy.'</span> Přejel pohledem po stole — po spisech, po inkoustové skvrně, po fotografii, na které Ben neměl fotografii. Ale Haas se díval, jako by tam nějaká byla.",
-          "contradiction_keywords": ["čtyři sta korun", "tři sta", "jak se díváte na důkazy"],
+          "contradiction_keywords": [
+            "čtyři sta korun",
+            "tři sta",
+            "jak se díváte na důkazy"
+          ],
           "hidden_at_wisdom_below": null
         }
       ],
@@ -12953,7 +13134,10 @@
         {
           "id": "bez_podminek_ale_s_odkazem",
           "description": "Haas řekl žádné podmínky — a pak řekl: vzpomněl si, až přijde případ, kde bude záležet, jak se díváte na důkazy. To je podmínka. Jen nepojmenovaná.",
-          "involves": ["haas_uvod", "haas_vysvetleni"],
+          "involves": [
+            "haas_uvod",
+            "haas_vysvetleni"
+          ],
           "highlight_at_wisdom": 55,
           "unlocks_confrontation": null
         }
@@ -12962,22 +13146,44 @@
         "enabled": true,
         "true_pair_id": "gesto_s_podminkou_strong",
         "pairs": [
-          { "pair_id": "gesto_s_podminkou_strong", "a_id": "clue_haas_soukrome", "b_id": "clue_haas_vi_o_matce", "strength": "strong" }
+          {
+            "pair_id": "gesto_s_podminkou_strong",
+            "a_id": "clue_haas_soukrome",
+            "b_id": "clue_haas_vi_o_matce",
+            "strength": "strong"
+          }
         ],
-        "decoys": ["decoy_obalka_tlusta"],
-        "timed_hunt": { "enabled": false },
+        "decoys": [
+          "decoy_obalka_tlusta"
+        ],
+        "timed_hunt": {
+          "enabled": false
+        },
         "info_threshold_unlocks": {
           "actions": [],
           "verdicts": [
-            { "min": 40, "ids": ["vzit_obalku"] },
-            { "min": 70, "ids": ["odmitnut_s_komentarem"] }
+            {
+              "min": 40,
+              "ids": [
+                "vzit_obalku"
+              ]
+            },
+            {
+              "min": 70,
+              "ids": [
+                "odmitnut_s_komentarem"
+              ]
+            }
           ]
         },
         "rewards": {
           "on_confirm": {
             "strong": {
               "investigation_progress_delta": 50,
-              "unlock_verdict_ids": ["vzit_obalku", "odmitnut_s_komentarem"],
+              "unlock_verdict_ids": [
+                "vzit_obalku",
+                "odmitnut_s_komentarem"
+              ],
               "narrative_lines": [
                 "Žádné podmínky — a pak: vzpomněl si, až přijde případ.",
                 "Haas ví o matce. Ví o čtyřech stech korunách. To nejsou věci, které se ví náhodou.",
@@ -12994,20 +13200,47 @@
           "reveals": "motivation",
           "text": "Svejda stál za dveřmi celou dobu. Ne jako špeh — jen jako člověk, který neví, zda se má vrátit s kávou nebo ne. Ben se ho zeptal: poznal jsi ho? <span class=\"clue\" data-clue-id=\"decoy_obalka_tlusta\">Svejda řekl: 'Je to Haas. Z Holešovic. Byl tady jednou dřív — loni na jaře, přinesl zásilku pro předsedu senátu. Zásilka byla velká obálka. Jako tato.'</span> Ben se na něj podíval. Svejda přikývl a odešel.",
           "cost": 1,
-          "dirty_unlock": { "finance": -8, "traits": { "Integrita": -1, "Vina": 1 }, "factions": { "Moc": -1 } }
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Integrita": -1,
+              "Vina": 1
+            },
+            "factions": {
+              "Moc": -1
+            }
+          }
         },
         "records": {
           "source": "Finanční záznamy, operace matky; vizitka Haas und Söhne z února 1931",
           "reveals": "facts",
           "text": "Vizitka z února: Emil Haas, Haas und Söhne, Holešovice. <span class=\"clue\" data-clue-id=\"clue_haas_vi_o_matce\">Bankovní záznam: stav Benova účtu k 11. březnu — 87 Kčs. Operace matky: 400 Kčs, deadline 12. března. Rozdíl: 313 Kčs.</span> Haas přinesl tři sta. Jako by věděl přesně, kolik chybí — ne přesně kolik je potřeba, ale kolik chybí.",
           "cost": 1,
-          "dirty_unlock": { "finance": -12, "traits": { "Integrita": -2, "Vina": 2 }, "factions": { "Kapital": 2 } },
+          "dirty_unlock": {
+            "finance": -12,
+            "traits": {
+              "Integrita": -2,
+              "Vina": 2
+            },
+            "factions": {
+              "Kapital": 2
+            }
+          },
           "unlocks_contradiction": "bez_podmínek_ale_s_odkazem"
         },
         "informant": {
           "reveals": "context",
           "cost": 1,
-          "dirty_unlock": { "finance": -8, "traits": { "Vina": 2 }, "factions": { "Kapital": 2, "Moc": -1 } },
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Vina": 2
+            },
+            "factions": {
+              "Kapital": 2,
+              "Moc": -1
+            }
+          },
           "variants": {
             "kapital_high": "Haas dělá tohle pravidelně — ne vždy soudcům, někdy úředníkům, někdy revizorům. Vždy přesně tolik, kolik chybí, nikdy víc. Člověk, který přijme, není zkorumpovaný — jen je v situaci, kdy nemůže odmítnout. A Haas to ví dopředu.",
             "moc_high": "Haas und Söhne má zakázky od státní správy. Kdo rozhoduje o zakázkách, se s Haasem zná. Tato návštěva je pravděpodobně vědomá — někdo Haase poslal, nebo Haas věděl, že nikdo ho nezastaví.",
@@ -13029,8 +13262,14 @@
                 "kapital": 2,
                 "finance": 300,
                 "flags": [
-                  { "key": "haas_envelope_opened", "value": true },
-                  { "key": "uplatek_prijat", "value": true }
+                  {
+                    "key": "haas_envelope_opened",
+                    "value": true
+                  },
+                  {
+                    "key": "uplatek_prijat",
+                    "value": true
+                  }
                 ]
               }
             }
@@ -13048,14 +13287,21 @@
                 "nadeje": -2,
                 "moc": 2,
                 "kapital": -2,
-                "flags": [{ "key": "flag_haas_odmitnut_d11", "value": true }]
+                "flags": [
+                  {
+                    "key": "flag_haas_odmitnut_d11",
+                    "value": true
+                  }
+                ]
               }
             },
             "odmitnut_s_komentarem": {
               "label": "Alternativa: Odmítnout a říct proč",
               "description": "Ben vrátí obálku a řekne: 'Vím, co děláte. A vím, proč přicházíte teď.' Haas se na něj podívá — dlouho, bez výrazu. Pak obálku vezme a odejde. Nic dalšího.",
               "requires_investigation": 2,
-              "requires": { "odvaha_min": 60 },
+              "requires": {
+                "odvaha_min": 60
+              },
               "effects": {
                 "integrita": 7,
                 "odvaha": 7,
@@ -13064,9 +13310,18 @@
                 "moc": 3,
                 "kapital": -3,
                 "flags": [
-                  { "key": "flag_haas_odmitnut_d11", "value": true },
-                  { "key": "flag_vlcek_upozorneni", "value": true },
-                  { "key": "bonus_inkoust_rano", "value": 1 }
+                  {
+                    "key": "flag_haas_odmitnut_d11",
+                    "value": true
+                  },
+                  {
+                    "key": "flag_vlcek_upozorneni",
+                    "value": true
+                  },
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 1
+                  }
                 ]
               }
             }
@@ -13077,7 +13332,16 @@
             "pozadit_cas": {
               "label": "Požádat o čas — nechat obálku na stole do zítřka",
               "description": "Ben řekne: potřebuji noc. Haas přikývne a odejde — bez obálky, která zůstane na stole. Ráno Ben rozhodne.",
-              "effects": { "moudrost": 2, "vina": 2, "flags": [{ "key": "flag_haas_ceka", "value": true }] }
+              "effects": {
+                "moudrost": 2,
+                "vina": 2,
+                "flags": [
+                  {
+                    "key": "flag_haas_ceka",
+                    "value": true
+                  }
+                ]
+              }
             }
           }
         }
@@ -13115,34 +13379,55 @@
       "case_track_label": "tycove",
       "type": "osobni",
       "color": "#5A4A2A",
-      "available_days": [12],
+      "available_days": [
+        12
+      ],
       "act": 1,
-      "weight_conditions": { "forced": true },
+      "weight_conditions": {
+        "forced": true
+      },
       "title": "Víme vše",
       "case_number": "Sp. zn. interní — bez čísla",
-      "defendant": { "name": "—", "age": 0, "occupation": "—", "detail": "Tento případ nemá obžalovaného. Je to návštěva Mileny Zavadové." },
+      "defendant": {
+        "name": "—",
+        "age": 0,
+        "occupation": "—",
+        "detail": "Tento případ nemá obžalovaného. Je to návštěva Mileny Zavadové."
+      },
       "charge": "Bez obžaloby. Milena Zavadová přišla se sdělením.",
-      "description": "Milena Zavadová přišla ve středu dopoledne, bez ohlášení, s kufříkem z hnědé kůže, který vypadal, jako by ho nosila všude a vždy. Seděla přímo, mluvila jasně a věci říkala v takovém pořadí, že Ben neměl chvíli na to, aby se zeptal na předchozí, než přišla další. Pracuje pro Řád — tak to řekla, bez vysvětlení, co Řád je, jako by to bylo samozřejmé. Možná proto, že pro ni bylo.",
+      "description": "Milena Zavadová přišla ve středu dopoledne, bez ohlášení, s kufříkem z hnědé kůže, který vypadal, jako by ho nosila všude a vždy. Seděla přímo, mluvila jasně a věci říkala v takovém pořadí, že Ben neměl chvíli na to, aby se zeptal na předchozí, než přišla další. Pracuje pro Kruh svědomí — tak to řekla, bez vysvětlení, co Kruh je, jako by to bylo samozřejmé. Možná proto, že pro ni bylo.",
       "testimonies": [
         {
           "id": "zavadova_vi",
           "speaker": "Milena Zavadová",
           "text": "'Víme o vaší matce. Víme o Haasově návštěvě — jestli přijal nebo odmítl, víme taky. Víme o složce, která se objevila na vašem stole.' Přestala a nechala ta slova sedět. <span class=\"clue\" data-clue-id=\"clue_zavadova_vi_vse\">Pak otevřela kufřík a položila na stůl jeden list papíru. 'Toto je zpráva z ministerstva dopravy ze čtrnáctého března 1931 — včera. Jmenuje se v ní Benedikt Vraný jako soudce, jehož rozhodnutí jsou v posledních třech měsících sledována.'</span> Ben se podíval na list. Razítko bylo reálné.",
-          "contradiction_keywords": ["sledována", "čtrnáctého března", "zpráva"],
+          "contradiction_keywords": [
+            "sledována",
+            "čtrnáctého března",
+            "zpráva"
+          ],
           "hidden_at_wisdom_below": null
         },
         {
           "id": "zavadova_nabidka",
           "speaker": "Milena Zavadová",
           "text": "'Nejsme nepřátelé, pane doktore. Jsme lidé, kteří vědí, jak věci fungují — a kteří mají zájem na tom, aby fungovaly určitým způsobem.' <span class=\"clue\" data-clue-id=\"clue_zavadova_rad\">Sáhla do kufříku a přidala druhý list. 'Pokud podepíšete toto prohlášení — nic velkého, jen že souhlasíte s tím, být v kontaktu s naší právní sekcí — zaručíme vám, že zpráva z ministerstva zmizí z archivu.</span> Beze stopy. A vy budete pokračovat v práci.'",
-          "contradiction_keywords": ["právní sekce", "zpráva zmizí", "podepíšete"],
+          "contradiction_keywords": [
+            "právní sekce",
+            "zpráva zmizí",
+            "podepíšete"
+          ],
           "hidden_at_wisdom_below": null
         },
         {
           "id": "zavadova_podvrh",
           "speaker": "Milena Zavadová — k přímé otázce",
           "text": "Ben se zeptal: jak víte o Haasově návštěvě? Zavadová na okamžik zaváhala — poprvé za celou dobu. <span class=\"clue\" data-clue-id=\"clue_zavadova_podvrh\">Pak řekla: 'Haas je náš kontakt. Nebo byl — záleží na tom, co jste mu řekl.' Pauza. 'Zpráva z ministerstva, kterou jsem vám přinesla — není originál. Je to přesná kopie. Originál existuje nebo neexistuje, to závisí na tom, co teď uděláte.'</span> Řekla to klidně, jako by oznámila čas odjezdu vlaku.",
-          "contradiction_keywords": ["přesná kopie", "Haas je náš kontakt", "existuje nebo neexistuje"],
+          "contradiction_keywords": [
+            "přesná kopie",
+            "Haas je náš kontakt",
+            "existuje nebo neexistuje"
+          ],
           "hidden_at_wisdom_below": null
         }
       ],
@@ -13150,14 +13435,20 @@
         {
           "id": "zprava_je_padelek",
           "description": "Zavadová přinesla zprávu z ministerstva jako hrozbu — ale pak přiznala, že jde o kopii, ne originál. Originál existuje nebo ne, záleží na Benově rozhodnutí. Hrozba, která může být smyšlená, je pořád hrozba — jen jiného druhu.",
-          "involves": ["zavadova_ví", "zavadova_podvrh"],
+          "involves": [
+            "zavadova_ví",
+            "zavadova_podvrh"
+          ],
           "highlight_at_wisdom": 65,
           "unlocks_confrontation": "zavadova_vi"
         },
         {
           "id": "haas_rad_spojeni",
-          "description": "Haas byl Řádův kontakt — nebo je, záleží na výsledku jeho návštěvy D11. Zavadová to řekla bez přemýšlení, jako by to byl fakt. Složka na D10, Haas na D11, Zavadová na D12 — to není náhoda. Je to sekvence.",
-          "involves": ["zavadova_nabidka", "zavadova_podvrh"],
+          "description": "Haas byl kontakt Kruhu — nebo je, záleží na výsledku jeho návštěvy D11. Zavadová to řekla bez přemýšlení, jako by to byl fakt. Složka na D10, Haas na D11, Zavadová na D12 — to není náhoda. Je to sekvence.",
+          "involves": [
+            "zavadova_nabidka",
+            "zavadova_podvrh"
+          ],
           "highlight_at_wisdom": 75,
           "unlocks_confrontation": "zavadova_vi"
         }
@@ -13166,24 +13457,56 @@
         "enabled": true,
         "true_pair_id": "padelek_sekvence_strong",
         "pairs": [
-          { "pair_id": "padelek_sekvence_strong", "a_id": "clue_zavadova_podvrh", "b_id": "clue_zavadova_vi_vse", "strength": "strong" },
-          { "pair_id": "rad_haas_spojeni_medium", "a_id": "clue_zavadova_rad", "b_id": "clue_zavadova_podvrh", "strength": "medium" }
+          {
+            "pair_id": "padelek_sekvence_strong",
+            "a_id": "clue_zavadova_podvrh",
+            "b_id": "clue_zavadova_vi_vse",
+            "strength": "strong"
+          },
+          {
+            "pair_id": "rad_haas_spojeni_medium",
+            "a_id": "clue_zavadova_rad",
+            "b_id": "clue_zavadova_podvrh",
+            "strength": "medium"
+          }
         ],
-        "decoys": ["decoy_kufrik_hnedobily"],
-        "timed_hunt": { "enabled": false },
+        "decoys": [
+          "decoy_kufrik_hnedobily"
+        ],
+        "timed_hunt": {
+          "enabled": false
+        },
         "info_threshold_unlocks": {
           "actions": [],
           "verdicts": [
-            { "min": 35, "ids": ["podepsat"] },
-            { "min": 65, "ids": ["odmitnut_formal"] },
-            { "min": 80, "ids": ["odmitnut_s_konfrontaci"] }
+            {
+              "min": 35,
+              "ids": [
+                "podepsat"
+              ]
+            },
+            {
+              "min": 65,
+              "ids": [
+                "odmitnut_formal"
+              ]
+            },
+            {
+              "min": 80,
+              "ids": [
+                "odmitnut_s_konfrontaci"
+              ]
+            }
           ]
         },
         "rewards": {
           "on_confirm": {
             "strong": {
               "investigation_progress_delta": 52,
-              "unlock_verdict_ids": ["odmitnut_formal", "odmitnut_s_konfrontaci"],
+              "unlock_verdict_ids": [
+                "odmitnut_formal",
+                "odmitnut_s_konfrontaci"
+              ],
               "narrative_lines": [
                 "Kopie, ne originál. Hrozba, která může být smyšlená — ale také nemusí.",
                 "Haas byl jejich kontakt. Složka, Haas, Zavadová — tři dny, jedna sekvence.",
@@ -13192,7 +13515,10 @@
             },
             "medium": {
               "investigation_progress_delta": 24,
-              "unlock_verdict_ids": ["podepsat", "odmitnut_formal"],
+              "unlock_verdict_ids": [
+                "podepsat",
+                "odmitnut_formal"
+              ],
               "narrative_lines": [
                 "Prohlášení o kontaktu s právní sekcí. Malý papír, velké důsledky.",
                 "Zpráva z ministerstva — reálné razítko. Obsah může být vymyšlený."
@@ -13208,22 +13534,49 @@
           "reveals": "motivation",
           "text": "Jméno Milena Zavadová se v dostupných rejstřících neobjevuje. Adresa, která je na vizitce — ulice v Dejvicích — vede k podnájmu registrovanému na jiné jméno. <span class=\"clue\" data-clue-id=\"decoy_kufrik_hnedobily\">Kufřík byl hnědý, kování zlaté, monogram MZ — to potvrzuje Svejda, který ji viděl odcházet.</span> Ben ví méně o Zavadové po návštěvě, než věděl před ní.",
           "cost": 1,
-          "dirty_unlock": { "finance": -8, "traits": { "Integrita": -1, "Vina": 1 }, "factions": { "Moc": -1 } }
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Integrita": -1,
+              "Vina": 1
+            },
+            "factions": {
+              "Moc": -1
+            }
+          }
         },
         "records": {
-          "source": "Zpráva ministerstva dopravy — ověření autenticity razítka; seznam právních sekcí Řádu",
+          "source": "Zpráva ministerstva dopravy — ověření autenticity razítka; seznam právních sekcí Kruhu svědomí",
           "reveals": "facts",
           "text": "Razítko na zprávě: ministerstvo dopravy, oddělení správy, číslo série odpovídá dokumentům z února 1931. <span class=\"clue\" data-clue-id=\"clue_zavadova_podvrh\">Avšak: sériové číslo razítka patří dávce, která byla vydána 18. února — a Hora z tiskového odboru potvrdil Karasovi, že tato čísla byla přidělena jiným dokumentům. Razítko je pravé, ale číslo série na tomto dokumentu neodpovídá originálu z archivu.</span> Zpráva je padělek — přesný, ale padělek.",
           "cost": 1,
-          "dirty_unlock": { "finance": -12, "traits": { "Integrita": -2, "Vina": 1 }, "factions": { "Moc": 1 } },
+          "dirty_unlock": {
+            "finance": -12,
+            "traits": {
+              "Integrita": -2,
+              "Vina": 1
+            },
+            "factions": {
+              "Moc": 1
+            }
+          },
           "unlocks_contradiction": "zprava_je_padélek"
         },
         "informant": {
           "reveals": "context",
           "cost": 1,
-          "dirty_unlock": { "finance": -8, "traits": { "Vina": 2 }, "factions": { "Moc": 1, "Kapital": 1 } },
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Vina": 2
+            },
+            "factions": {
+              "Moc": 1,
+              "Kapital": 1
+            }
+          },
           "variants": {
-            "moc_high": "Řád existuje — nebo existovalo něco podobného — jako síť právníků a úředníků, kteří si navzájem pomáhají. Není to ilegální, dokud nepřekračuje určitou linii. Prohlášení, které Zavadová přinesla, je vstup. Výstup z toho neexistuje.",
+            "moc_high": "Kruh existuje — nebo existovalo něco podobného — jako síť právníků a úředníků, kteří si navzájem pomáhají. Není to ilegální, dokud nepřekračuje určitou linii. Prohlášení, které Zavadová přinesla, je vstup. Výstup z toho neexistuje.",
             "kapital_high": "Zavadová není jméno, které by Haas znal — nebo tvrdí, že nezná. Ale Haas je jejich kontakt. Buď Haas lže, nebo Zavadová lže o tom, čí kontakt Haas je. Jedno z toho musí být pravda.",
             "default": "Tři dny v řadě: složka, Haas, Zavadová. Ben nebyl vybrán náhodou — byl vybrán proto, že má Wolfův případ. A Wolfův případ je pátek."
           }
@@ -13254,8 +13607,14 @@
                 "moc": -2,
                 "kapital": 2,
                 "flags": [
-                  { "key": "zavadova_kontakt", "value": 1 },
-                  { "key": "masek_document_signed", "value": true }
+                  {
+                    "key": "zavadova_kontakt",
+                    "value": 1
+                  },
+                  {
+                    "key": "masek_document_signed",
+                    "value": true
+                  }
                 ]
               }
             }
@@ -13274,14 +13633,21 @@
                 "nadeje": -1,
                 "moc": 2,
                 "kapital": -2,
-                "flags": [{ "key": "flag_zavadova_odmitnuta", "value": true }]
+                "flags": [
+                  {
+                    "key": "flag_zavadova_odmitnuta",
+                    "value": true
+                  }
+                ]
               }
             },
             "odmitnut_s_konfrontaci": {
               "label": "Alternativa: Odmítnout a konfrontovat s padělkem",
               "description": "Ben odmítne a řekne, co ví o sériovém čísle. Zavadová odejde. Zavadová ví, že Ben ví o padělku — a Ben ví, že Zavadová ví. To je jiná situace než pouhé odmítnutí.",
               "requires_investigation": 3,
-              "requires": { "odvaha_min": 65 },
+              "requires": {
+                "odvaha_min": 65
+              },
               "effects": {
                 "integrita": 7,
                 "odvaha": 8,
@@ -13290,9 +13656,18 @@
                 "moc": 3,
                 "kapital": -3,
                 "flags": [
-                  { "key": "flag_zavadova_odmitnuta", "value": true },
-                  { "key": "flag_zavadova_padelek_odhalen", "value": true },
-                  { "key": "bonus_inkoust_rano", "value": 2 }
+                  {
+                    "key": "flag_zavadova_odmitnuta",
+                    "value": true
+                  },
+                  {
+                    "key": "flag_zavadova_padelek_odhalen",
+                    "value": true
+                  },
+                  {
+                    "key": "bonus_inkoust_rano",
+                    "value": 2
+                  }
                 ]
               }
             }
@@ -13303,7 +13678,16 @@
             "cas_na_rozmysleni": {
               "label": "Požádat o čas na rozmyšlenou",
               "description": "Ben řekne: dejte mi den. Zavadová přikývne a nechá prohlášení na stole. Odejde bez kufříku — kufřík zanechá jako záruku, že se vrátí.",
-              "effects": { "moudrost": 3, "vina": 2, "flags": [{ "key": "flag_zavadova_ceka", "value": true }] }
+              "effects": {
+                "moudrost": 3,
+                "vina": 2,
+                "flags": [
+                  {
+                    "key": "flag_zavadova_ceka",
+                    "value": true
+                  }
+                ]
+              }
             }
           }
         }

@@ -73,7 +73,7 @@ Po **rozsudku** (`Cases.zpracujRozsudek`) se může spustit konec hry:
 
 Konce nastaví `gameOver`, `endingType`, uloží stav a zobrazí **UI epilog** (`UI.zobrazKonecHry`).
 
-> **Poznámka:** V `story.mdc` je rozpracováno **osm naratálních konců** (Přežití, Korupce, Hrdina, Útěk, Smíření, Atentát, Řád, Anna). V kódu jsou zatím **konkrétně vyvolané typy** epilogu vázané na `endingType` a epilogové řádky (např. v `engine.js` u postav). Plné mapování „8 konců = 8 větví v engine“ je cíl designu; tento soubor popisuje **co dnes engine umí spustit** a obecný denní tok.
+> **Poznámka:** V `story.mdc` je rozpracováno **osm naratálních konců** (Přežití, Korupce, Hrdina, Útěk, Smíření, Atentát, Kruh, Anna). V kódu jsou zatím **konkrétně vyvolané typy** epilogu vázané na `endingType` a epilogové řádky (např. v `engine.js` u postav). Plné mapování „8 konců = 8 větví v engine“ je cíl designu; tento soubor popisuje **co dnes engine umí spustit** a obecný denní tok.
 
 ---
 

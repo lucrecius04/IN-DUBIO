@@ -43,7 +43,7 @@ days.push({
   newspaper_headline: 'Krize pokračuje. Nezaměstnanost dosáhla rekordních hodnot.',
   morning_fragment: 'fragment_d1_morning',
   cases: ['pool_a1_lekarna', 'pool_a1_weiss'],
-  vlcek_letter: 'vlcek_d1',
+  letters: ['vlcek_d1'],
   evening_choice: {
     text: 'Stůl je čistý. Lampa svítí. Poprvé po roce jsi zpátky. Na stole leží prázdný list a pero.',
     options: [
@@ -59,7 +59,7 @@ days.push({
   day: 2,
   newspaper_headline: 'Demonstrace v Brně. Policie rozháněla dav vodními děly.',
   cases: ['pool_a1_vytrznost', 'pool_a1_nemocenska'],
-  vlcek_letter: null,
+  letters: ['martin_d2'],
   evening_choice: {
     text: 'Pekář zvýšil ceny. U přepážky slyšíš, jak někdo šeptá o hladu.',
     options: [
@@ -89,6 +89,7 @@ days.push({
   day: 4,
   newspaper_headline: 'Haasova továrna propustila 40 dělníků. Management: nutné kroky.',
   cases: ['pool_a1_zhar', 'pool_a1_exekuce'],
+  letters: ['doktor_d4', 'vlcek_d4'],
   morning_fragment: null,
   evening_choice: {
     text: 'Dopis od doktora: matka, operace, 400 Kč. Termín se krátí. Na stole leží i lístek od Vlčka.',
@@ -139,7 +140,7 @@ days.push({
   morning_fragment: 'fragment_d8_morning',
   cases: ['pool_a1_spravce', 'pool_a1_bytova_komise', 'pool_a1_revizor'],
   cases_light: [false, false, true],
-  vlcek_letter: 'vlcek_d6',
+  letters: ['martin_d6'],
   evening_choice: {
     text: 'Na stůl padla vizitka — beze slov, ale těžká. Vlčkův dopis čekal na odpověď.',
     options: [
@@ -151,16 +152,16 @@ days.push({
 
 // 9–19 podle Pripady_15dni / pool
 const rest = [
-  { d: 9, h: 'Horáčková u soudu. Politický nádech houstne.', c: ['pool_a1_vyveseni', 'pool_a1_druha_ruka'], f: 'fragment_d10_morning' },
-  { d: 10, h: 'Zástupci bank jednají. Creditánstalt ve vzduchu.', c: ['pool_a1_tiskarna', 'pool_a1_stavba', 'pool_a1_nemocenska'], l: [false, false, true] },
-  { d: 11, h: 'Politické napětí. Noviny plné jmen.', c: ['pool_a1_weiss', 'pool_a1_vytrznost', 'pool_a1_exekuce'], l: [false, false, true] },
-  { d: 12, h: 'Kdo řídí justici? Titulky se třesou na kostře věty.', c: ['pool_a1_stara_rana', 'pool_a1_zhar', 'pool_a1_trafika'], l: [false, false, true] },
-  { d: 13, h: 'Konec týdne. Chodby jsou plnější, hlasy opatrnější.', c: ['pool_a1_lekarna', 'pool_a1_revizor'], f: 'fragment_d12_morning' },
+  { d: 9, h: 'Horáčková u soudu. Politický nádech houstne.', c: ['pool_a1_vyveseni', 'pool_a1_druha_ruka'], f: 'fragment_d10_morning', letters: ['vlcek_d7'] },
+  { d: 10, h: 'Zástupci bank jednají. Creditánstalt ve vzduchu.', c: ['pool_a1_tiskarna', 'pool_a1_stavba', 'pool_a1_nemocenska'], l: [false, false, true], letters: ['vlcek_d8'] },
+  { d: 11, h: 'Politické napětí. Noviny plné jmen.', c: ['pool_a1_weiss', 'pool_a1_vytrznost', 'pool_a1_exekuce'], l: [false, false, true], letters: ['benes_d9'] },
+  { d: 12, h: 'Kdo řídí justici? Titulky se třesou na kostře věty.', c: ['pool_a1_stara_rana', 'pool_a1_zhar', 'pool_a1_trafika'], l: [false, false, true], letters: ['martin_d10'] },
+  { d: 13, h: 'Konec týdne. Chodby jsou plnější, hlasy opatrnější.', c: ['pool_a1_lekarna', 'pool_a1_revizor'], f: 'fragment_d12_morning', letters: ['vlcek_d11'] },
   { d: 14, h: 'Druhá neděle. Město dýchá stejně — ty už ne.', ned: true },
   { d: 15, h: 'Třetí týden. Před bouří je nejvíc ticha.', c: ['pool_a1_spravce', 'pool_a1_tiskarna', 'pool_a1_nemocenska'], l: [false, false, true] },
   { d: 16, h: 'Rikají o něm věci — titulky i lidé u výlohy.', c: ['pool_a1_bytova_komise', 'pool_a1_druha_ruka', 'pool_a1_stavba'], l: [false, false, true] },
   { d: 17, h: 'Průmysl, politika, soud — jeden proud.', c: ['pool_a1_vyveseni', 'pool_a1_vytrznost', 'pool_a1_exekuce'], l: [false, false, true] },
-  { d: 18, h: 'Předposlední nadechnutí. Světlo v okně jinak.', c: ['pool_a1_zhar', 'pool_a1_trafika', 'pool_a1_nemocenska'], l: [false, false, true] },
+  { d: 18, h: 'Předposlední nadechnutí. Světlo v okně jinak.', c: ['pool_a1_zhar', 'pool_a1_trafika', 'pool_a1_nemocenska'], l: [false, false, true], letters: ['martin_d14'] },
   { d: 19, h: 'Březen se loučí. Soudní síň naposledy tento týden.', c: ['pool_a1_stara_rana', 'pool_a1_tiskarna'], f: 'fragment_d20_odhaleni', spec: ['finale_15d'] }
 ];
 
@@ -184,6 +185,7 @@ for (const r of rest) {
   };
   if (r.l) o.cases_light = r.l;
   if (r.f) o.morning_fragment = r.f;
+  if (r.letters) o.letters = r.letters;
   o.evening_choice = {
     text: r.d === 19 ? 'Poslední listy, poslední rozhodnutí. Co zůstane z tebe?' : 'Den se chýlí. Ruka drží pero pevněji, než by chtěla.',
     options: [

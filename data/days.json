@@ -1,13 +1,15 @@
 [
   {
     "day": 1,
-    "newspaper_headline": "Krize pokračuje. Nezaměstnanost dosáhla rekordních hodnot.",
+    "newspaper_headline": "Hospodářská krize pokračuje: nezaměstnanost je opět vyšší.",
     "morning_fragment": "fragment_d1_morning",
     "cases": [
       "pool_a1_lekarna",
       "pool_a1_weiss"
     ],
-    "vlcek_letter": "vlcek_d1",
+    "letters": [
+      "vlcek_d1"
+    ],
     "evening_choice": {
       "text": "Stůl je čistý. Lampa svítí. Poprvé po roce jsi zpátky. Na stole leží prázdný list a pero.",
       "options": [
@@ -36,12 +38,14 @@
   },
   {
     "day": 2,
-    "newspaper_headline": "Demonstrace v Brně. Policie rozháněla dav vodními děly.",
+    "newspaper_headline": "Brno po demonstracích: policie rozpustila dav vodními děly.",
     "cases": [
       "pool_a1_vytrznost",
       "pool_a1_nemocenska"
     ],
-    "vlcek_letter": null,
+    "letters": [
+      "martin_d2"
+    ],
     "evening_choice": {
       "text": "Pekář zvýšil ceny. U přepážky slyšíš, jak někdo šeptá o hladu.",
       "options": [
@@ -64,7 +68,7 @@
   },
   {
     "day": 3,
-    "newspaper_headline": "Rozsudek z roku 1921 pod lupou. Právníci žádají přezkoumání.",
+    "newspaper_headline": "Starý rozsudek znovu otevřen: právníci žádají přezkum postupu.",
     "morning_fragment": "fragment_d3_noviny",
     "cases": [
       "pool_a1_stara_rana",
@@ -91,10 +95,14 @@
   },
   {
     "day": 4,
-    "newspaper_headline": "Haasova továrna propustila 40 dělníků. Management: nutné kroky.",
+    "newspaper_headline": "Haasova továrna propouští: čtyřicet dělníků bez práce.",
     "cases": [
       "pool_a1_zhar",
       "pool_a1_exekuce"
+    ],
+    "letters": [
+      "doktor_d4",
+      "vlcek_d4"
     ],
     "morning_fragment": null,
     "evening_choice": {
@@ -120,7 +128,7 @@
   },
   {
     "day": 5,
-    "newspaper_headline": "Březen. Město dýchá stejně jako včera.",
+    "newspaper_headline": "Páteční vydání bez senzace: město žije, pod povrchem však přituhuje.",
     "cases": [
       "pool_a1_vyveseni",
       "pool_a1_zhar"
@@ -131,7 +139,7 @@
   },
   {
     "day": 6,
-    "newspaper_headline": "Sobota. Město drží dech.",
+    "newspaper_headline": "Sobotní vydání: úřady hlásí klid, ulice mluví opatrněji.",
     "cases": [],
     "morning_fragment": "fragment_d6_morning",
     "morning_conditional_lines": [
@@ -140,28 +148,28 @@
           "flag": "verdict_pool_a1_lekarna",
           "value": "alternative"
         },
-        "text": "Na Národní lékárna stále otevřená. V okně nový nápis: Dozorčí režim. Pod ním stojí fronta."
+        "text": "Na Národní je lékárna stále otevřená. Ve výloze visí nový nápis: Dozorčí režim. Pod ním se táhne ranní fronta."
       },
       {
         "condition": {
           "flag": "verdict_pool_a1_lekarna",
           "value": "guilty"
         },
-        "text": "Lékárna na Národní zavřená. Cedule K PRONÁJMU. Někdo pod ni napsal tužkou číslo."
+        "text": "Lékárna na Národní je zavřená. Ve skle visí cedule K PRONÁJMU a pod ní někdo tužkou dopsal číslo."
       },
       {
         "condition": {
           "flag": "verdict_pool_a1_lekarna",
           "value": "not_guilty"
         },
-        "text": "U lékárny na Národní postává inspektor. Malina za pultem předstírá, že ho nevidí."
+        "text": "U lékárny postává inspektor. Malina za pultem dělá, že ho nevidí."
       }
     ],
     "evening_choice": null
   },
   {
     "day": 7,
-    "newspaper_headline": "Nedělní ticho. I noviny vycházejí jinak.",
+    "newspaper_headline": "Nedělní list: menší rozsah, stejné nejisté vyhlídky.",
     "morning_fragment": "fragment_d7_nedele_rano",
     "cases": [],
     "newspaper_conditional_lines": [
@@ -170,18 +178,18 @@
           "flag": "verdict_pool_a1_weiss",
           "value": "alternative"
         },
-        "text": "Krátká zpráva na třetí straně: Berlínský občan požádal o azyl v ČSR. Ministerstvo bez komentáře."
+        "text": "Třetí strana, krátká zpráva: berlínský občan podal žádost o azyl v ČSR. Ministerstvo věc nekomentovalo."
       },
       {
         "condition": {
           "flag": "verdict_pool_a1_weiss",
           "value": "guilty"
         },
-        "text": "Pod čarou: Cizinec s padělanými doklady odsouzen. Deportace do Německa v řízení."
+        "text": "Pod čarou redakce: cizinec s padělanými doklady odsouzen, správní řízení o deportaci pokračuje."
       }
     ],
     "nedelni_volba": {
-      "text": "Jak strávíš neděli, Jakube?",
+      "text": "Jak strávíš neděli, Benedikte?",
       "options": [
         {
           "id": "A",
@@ -221,7 +229,7 @@
   },
   {
     "day": 8,
-    "newspaper_headline": "Plakát: pochod hladu. Úřady hovoří o klidu.",
+    "newspaper_headline": "Plakát zve na pochod hladu, úřady vyzývají ke klidu.",
     "morning_fragment": "fragment_d8_morning",
     "morning_conditional_lines": [
       {
@@ -229,14 +237,14 @@
           "flag": "verdict_pool_a1_nemocenska",
           "value": "alternative"
         },
-        "text": "Svejda při kávě: 'Slyšel jsem, že inspekce prověřuje závodního lékaře ve Smíchově. Váš případ, ne?'"
+        "text": "Svejda u kávy utrousí: „Prý teď ve Smíchově prověřují závodního lékaře. Váš případ, pane doktore?“"
       },
       {
         "condition": {
           "flag": "verdict_pool_a1_nemocenska",
           "value": "guilty"
         },
-        "text": "Svejda při kávě: 'Ten tkadlec ze Smíchova. Vrátil se do práce. Kašle, ale je tam.'"
+        "text": "Svejda tiše dodá: „Ten tkadlec ze Smíchova je zpátky v dílně. Kašle, ale přišel.“"
       }
     ],
     "cases": [
@@ -244,24 +252,26 @@
       "tyc_hranice_2",
       "pool_a1_spravce"
     ],
+    "letters": [
+      "martin_d6"
+    ],
     "cases_light": [
       false,
       false,
       true
     ],
-    "vlcek_letter": "vlcek_d6",
     "evening_choice": {
-      "text": "Na stůl padla vizitka — beze slov, ale těžká. Vlčkův dopis čekal na odpověď.",
+      "text": "Na stole leží Haasova vizitka. Bez jediné věty, a přesto mluví hlasitěji než půlka spisů.",
       "options": [
         {
-          "text": "Vizitku otočíš. Zítra.",
+          "text": "Uložíš vizitku do zásuvky. Ještě ne dnes.",
           "effects": {
-            "Moudrost": 3,
-            "Vina": 3
+            "Moudrost": 2,
+            "Vina": 1
           }
         },
         {
-          "text": "Zahodíš ji. Dnes ne.",
+          "text": "Necháš ji na očích. Ať připomíná, co přichází.",
           "effects": {
             "Odvaha": 2,
             "Vina": 1
@@ -272,10 +282,13 @@
   },
   {
     "day": 9,
-    "newspaper_headline": "Horáčková u soudu. Politický nádech houstne.",
+    "newspaper_headline": "Horáčková před soudem: politický kontext případu sílí.",
     "cases": [
       "pool_a1_vyveseni",
       "pool_a1_druha_ruka"
+    ],
+    "letters": [
+      "vlcek_d7"
     ],
     "morning_fragment": "fragment_d10_morning",
     "adventure_scene": {
@@ -385,7 +398,7 @@
           "text": "Odešel tak tiše, jak přišel. Svejda pak zaklepal a zeptal se, jestli je vše v pořádku. Ben řekl, že ano. Celý den pak seděl u spisů a občas se podíval na dveře — ne proto, že by čekal někoho dalšího, ale proto, že si nebyl jistý, jestli ta schůzka vůbec proběhla.",
           "choices": null,
           "next": null,
-          "morning_fragment_append": "Ben má pocit, že měl udělat něco jinak. Přesně neví ohodnotit co."
+          "morning_fragment_append": "Ben má pocit, že měl udělat něco jinak. Přesně neví popsat co."
         },
         {
           "id": "s5c",
@@ -410,30 +423,30 @@
           "flag": "verdict_pool_a1_stara_rana",
           "value": "alternative"
         },
-        "text": "Na chodbě mladá dívka. Ptala se vrátného, kde jsou sociální služby. Ben ji poznal — Jitka Hofrová."
+        "text": "Na chodbě stojí mladá dívka a ptá se Švejdy na sociální odbor. Ben ji pozná až na druhý pohled: Jitka Hofrová."
       },
       {
         "condition": {
           "flag": "verdict_pool_a1_stara_rana",
           "value": "guilty"
         },
-        "text": "Na chodbě ticho. Ben si vzpomněl na Hofrovou. Nevzpomněl si proč."
+        "text": "Na chodbě je nezvyklé ticho. Ben si vybaví jméno Hofrová, ale neví, proč se vrací právě dnes."
       }
     ],
     "evening_choice": {
-      "text": "Den se chýlí. Ruka drží pero pevněji, než by chtěla.",
+      "text": "Benešova obálka je pořád v hlavě, i když už leží zavřená v zásuvce.",
       "options": [
         {
-          "text": "Krátce zapisuješ, co bys neřekl nahlas.",
+          "text": "Sepíšeš krátkou poznámku k tomu, co dnes zaznělo mezi dveřmi.",
           "effects": {
             "Moudrost": 2,
             "Vina": 1
           }
         },
         {
-          "text": "Jdeš bez zápisku. Jen s vědomím.",
+          "text": "Zhasneš lampu bez zápisu. Necháš to doznít ve tmě.",
           "effects": {
-            "Integrita": 2,
+            "Integrita": 1,
             "Nadeje": 1
           }
         }
@@ -442,21 +455,22 @@
   },
   {
     "day": 10,
-    "newspaper_headline": "Zástupci bank jednají. Creditánstalt ve vzduchu.",
+    "newspaper_headline": "Banky jednají o likviditě, trh sleduje Creditanstalt.",
+    "morning_fragment": "fragment_d10_osobni_rano",
     "newspaper_conditional_lines": [
       {
         "condition": {
           "flag": "verdict_pool_a1_vytrznost",
           "value": "alternative"
         },
-        "text": "Sloupek: Akademický národní spolek pod dohledem policie. Zdroj z vedení spolku popřel souvislost."
+        "text": "Městský sloupek: Akademický národní spolek je pod dohledem policie; vedení spolku odmítá přímou souvislost."
       },
       {
         "condition": {
           "flag": "verdict_pool_a1_vytrznost",
           "value": "not_guilty"
         },
-        "text": "Na Vodičkově nová výloha. Sklo lesklé. Meisel napsal stížnost na policii — marně."
+        "text": "Vodičkova ulice: poškozená výloha je opravena. Obchodník Meisel podal stížnost na policejní postup, zatím bez výsledku."
       }
     ],
     "cases": [
@@ -464,25 +478,28 @@
       "tyc_zvraty_d10",
       "pool_a1_nemocenska"
     ],
+    "letters": [
+      "vlcek_d8"
+    ],
     "cases_light": [
       false,
       false,
       true
     ],
     "evening_choice": {
-      "text": "Den se chýlí. Ruka drží pero pevněji, než by chtěla.",
+      "text": "Po dnešku je jasné jen to, že některé podpisy mají delší stín než jiné.",
       "options": [
         {
-          "text": "Krátce zapisuješ, co bys neřekl nahlas.",
+          "text": "Vrátíš se ke spisu a ověříš každé datum ještě jednou.",
           "effects": {
             "Moudrost": 2,
             "Vina": 1
           }
         },
         {
-          "text": "Jdeš bez zápisku. Jen s vědomím.",
+          "text": "Jdeš domů bez papíru v ruce. Jen s tím, co nejde odložit.",
           "effects": {
-            "Integrita": 2,
+            "Integrita": 1,
             "Nadeje": 1
           }
         }
@@ -491,7 +508,7 @@
   },
   {
     "day": 11,
-    "newspaper_headline": "Politické napětí. Noviny plné jmen.",
+    "newspaper_headline": "Politické napětí roste: justice pod drobnohledem tisku.",
     "morning_fragment": "fragment_d11_morning_base",
     "morning_conditional_lines": [
       {
@@ -499,7 +516,7 @@
           "flag": "flag_pospisil_dluzi",
           "value": true
         },
-        "text": "U hostinského Pospíšila víš, co dluží — ne v korunách. Dnes se u soudu bude mluvit o věcech, které protokol nepojmenuje celý."
+        "text": "U Pospíšila víš, co dluží - a nejde o koruny. Dnes se v síni budou vyslovovat věci, které protokol stejně nikdy nepojmenuje celé."
       }
     ],
     "cases": [
@@ -507,25 +524,28 @@
       "tyc_haas_d11",
       "pool_a1_exekuce"
     ],
+    "letters": [
+      "benes_d9"
+    ],
     "cases_light": [
       false,
       false,
       true
     ],
     "evening_choice": {
-      "text": "Den se chýlí. Ruka drží pero pevněji, než by chtěla.",
+      "text": "Po Haasově návštěvě je v kanceláři dusno, i když je okno dokořán.",
       "options": [
         {
-          "text": "Krátce zapisuješ, co bys neřekl nahlas.",
+          "text": "Sepíšeš věcný záznam dne, bez jediné zbytečné věty.",
           "effects": {
             "Moudrost": 2,
             "Vina": 1
           }
         },
         {
-          "text": "Jdeš bez zápisku. Jen s vědomím.",
+          "text": "Nezapíšeš nic. Jen složíš ruce a počkáš, až se dech uklidní.",
           "effects": {
-            "Integrita": 2,
+            "Integrita": 1,
             "Nadeje": 1
           }
         }
@@ -534,7 +554,7 @@
   },
   {
     "day": 12,
-    "newspaper_headline": "Kdo řídí justici? Titulky se třesou na kostře věty.",
+    "newspaper_headline": "Kdo řídí justici: editorial otevírá otázku odpovědnosti.",
     "morning_fragment": "fragment_d12_echo_base",
     "morning_conditional_lines": [
       {
@@ -542,14 +562,14 @@
           "flag": "verdict_pool_a1_exekuce",
           "value": "alternative"
         },
-        "text": "Ve Svobodném obzoru krátký sloupek. Bez podpisu. O exekucích na venkově. Ben věděl, kdo ho napsal."
+        "text": "Ve Svobodném obzoru vyšel krátký sloupek o exekucích na venkově. Bez podpisu. Ben pozná autora hned po první větě."
       },
       {
         "condition": {
           "flag": "verdict_pool_a1_exekuce",
           "value": "guilty"
         },
-        "text": "Součková zaplatila pokutu. Syn Josef prodal hodinky. Hospodářství stálo dál. Lopata taky."
+        "text": "Součková pokutu zaplatila. Josef prodal hodinky a statek běží dál, jen tišeji než dřív."
       }
     ],
     "cases": [
@@ -557,25 +577,28 @@
       "tyc_zavadova_d12",
       "pool_a1_trafika"
     ],
+    "letters": [
+      "martin_d10"
+    ],
     "cases_light": [
       false,
       false,
       true
     ],
     "evening_choice": {
-      "text": "Den se chýlí. Ruka drží pero pevněji, než by chtěla.",
+      "text": "Věta ze Závadové spisu se vrací pořád stejně: jednou slyšená, potřetí jiná.",
       "options": [
         {
-          "text": "Krátce zapisuješ, co bys neřekl nahlas.",
+          "text": "Do deníku zapíšeš jen fakta. Bez přídavných jmen.",
           "effects": {
             "Moudrost": 2,
             "Vina": 1
           }
         },
         {
-          "text": "Jdeš bez zápisku. Jen s vědomím.",
+          "text": "Necháš deník zavřený. Dnes by slova byla horší než ticho.",
           "effects": {
-            "Integrita": 2,
+            "Integrita": 1,
             "Nadeje": 1
           }
         }
@@ -584,10 +607,13 @@
   },
   {
     "day": 13,
-    "newspaper_headline": "Konec týdne. Chodby jsou plnější, hlasy opatrnější.",
+    "newspaper_headline": "Konec týdne u soudu: více lidí na chodbách, méně slov nahlas.",
     "cases": [
       "pool_a1_lekarna",
       "pool_a1_revizor"
+    ],
+    "letters": [
+      "vlcek_d11"
     ],
     "morning_fragment": "fragment_d12_morning",
     "adventure_scene": {
@@ -744,19 +770,19 @@
       ]
     },
     "evening_choice": {
-      "text": "Den se chýlí. Ruka drží pero pevněji, než by chtěla.",
+      "text": "Karas odešel. V kanceláři po něm zůstalo víc otázek než odpovědí.",
       "options": [
         {
-          "text": "Krátce zapisuješ, co bys neřekl nahlas.",
+          "text": "Napíšeš si tři jména, která dnes padla. Nic víc.",
           "effects": {
             "Moudrost": 2,
             "Vina": 1
           }
         },
         {
-          "text": "Jdeš bez zápisku. Jen s vědomím.",
+          "text": "Papír necháš čistý a jdeš domů dřív, než začneš pochybovat.",
           "effects": {
-            "Integrita": 2,
+            "Integrita": 1,
             "Nadeje": 1
           }
         }
@@ -765,7 +791,7 @@
   },
   {
     "day": 14,
-    "newspaper_headline": "Druhá neděle. Město dýchá stejně — ty už ne.",
+    "newspaper_headline": "Druhá neděle v březnu: město zvolnilo, nervozita trvá.",
     "morning_fragment": "fragment_d14_nedele_rano",
     "morning_conditional_lines": [
       {
@@ -773,14 +799,14 @@
           "flag": "verdict_pool_a1_trafika",
           "value": "not_guilty"
         },
-        "text": "Na Žižkově nová trafika. Dvě děti sedí za pultem a kreslí. Bartošová počítá drobné."
+        "text": "Na Žižkově je v trafikě znovu světlo. Dvě děti kreslí u pultu a Bartošová počítá drobné."
       },
       {
         "condition": {
           "flag": "verdict_pool_a1_trafika",
           "value": "guilty"
         },
-        "text": "Na Žižkově prázdný krám. Výloha zaprášená. Někdo tam nechal dětskou kresbu."
+        "text": "Na Žižkově zůstal prázdný krám. Ve výloze je prach a za sklem někdo nechal dětskou kresbu."
       }
     ],
     "cases": [
@@ -790,7 +816,7 @@
     ],
     "evening_choice": null,
     "nedelni_volba": {
-      "text": "Jak strávíš neděli, Jakube?",
+      "text": "Jak strávíš neděli, Benedikte?",
       "options": [
         {
           "id": "A",
@@ -835,12 +861,18 @@
   },
   {
     "day": 15,
-    "newspaper_headline": "Třetí týden. Před bouří je nejvíc ticha.",
-    "cases": ["tyc_velezrada_d15"],
+    "newspaper_headline": "Třetí týden začíná: před zásadním dnem nezvyklé ticho.",
+    "morning_fragment": "fragment_d15_morning",
+    "cases": [
+      "tyc_velezrada_d15"
+    ],
     "morning_conditional_lines": [
       {
-        "condition": { "flag": "benes_pravda_prijata", "value": true },
-        "text": "V zásuvce pod nálezy leží obálka. Ben ví, čí podpis je na tom dokumentu."
+        "condition": {
+          "flag": "benes_pravda_prijata",
+          "value": true
+        },
+        "text": "V zásuvce pod starými nálezy leží obálka. Ben už ví, čí podpis na tom listu čeká."
       }
     ],
     "cases_light": [
@@ -849,19 +881,19 @@
       true
     ],
     "evening_choice": {
-      "text": "Den se chýlí. Ruka drží pero pevněji, než by chtěla.",
+      "text": "Poslední pracovní den. Každá věta ve spise dnes váží víc než jindy.",
       "options": [
         {
-          "text": "Krátce zapisuješ, co bys neřekl nahlas.",
+          "text": "Uděláš poslední poznámku do deníku a podtrhneš datum.",
           "effects": {
             "Moudrost": 2,
             "Vina": 1
           }
         },
         {
-          "text": "Jdeš bez zápisku. Jen s vědomím.",
+          "text": "Zavřeš deník bez slova. Dnešek už nic nepřepíše.",
           "effects": {
-            "Integrita": 2,
+            "Integrita": 1,
             "Nadeje": 1
           }
         }
@@ -870,7 +902,7 @@
   },
   {
     "day": 16,
-    "newspaper_headline": "Rikají o něm věci — titulky i lidé u výlohy.",
+    "newspaper_headline": "O Vraném se píše i mluví: výklad událostí se rozchází.",
     "cases": [
       "pool_a1_bytova_komise",
       "pool_a1_druha_ruka",
@@ -903,7 +935,7 @@
   },
   {
     "day": 17,
-    "newspaper_headline": "Průmysl, politika, soud — jeden proud.",
+    "newspaper_headline": "Průmysl, politika a soud: spory se setkávají v jedné síni.",
     "cases": [
       "pool_a1_vyveseni",
       "pool_a1_vytrznost",
@@ -936,11 +968,14 @@
   },
   {
     "day": 18,
-    "newspaper_headline": "Předposlední nadechnutí. Světlo v okně jinak.",
+    "newspaper_headline": "Předposlední den před finále: město je plné světla i stínů.",
     "cases": [
       "pool_a1_zhar",
       "pool_a1_trafika",
       "pool_a1_nemocenska"
+    ],
+    "letters": [
+      "martin_d14"
     ],
     "cases_light": [
       false,
@@ -969,7 +1004,7 @@
   },
   {
     "day": 19,
-    "newspaper_headline": "Březen se loučí. Soudní síň naposledy tento týden.",
+    "newspaper_headline": "Březnové vydání na závěr: soud dnes uzavře poslední jednání týdne.",
     "cases": [
       "pool_a1_stara_rana",
       "pool_a1_tiskarna"

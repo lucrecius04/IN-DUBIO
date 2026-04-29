@@ -21,7 +21,7 @@
     "detail": "Tento případ nemá obžalovaného. Je to návštěva Mileny Zavadové."
   },
   "charge": "Bez obžaloby. Milena Zavadová přišla se sdělením.",
-  "description": "Milena Zavadová přišla ve středu dopoledne, bez ohlášení, s kufříkem z hnědé kůže, který vypadal, jako by ho nosila všude a vždy. Seděla přímo, mluvila jasně a věci říkala v takovém pořadí, že Ben neměl chvíli na to, aby se zeptal na předchozí, než přišla další. Pracuje pro Řád — tak to řekla, bez vysvětlení, co Řád je, jako by to bylo samozřejmé. Možná proto, že pro ni bylo.",
+  "description": "Milena Zavadová přišla ve středu dopoledne, bez ohlášení, s kufříkem z hnědé kůže, který vypadal, jako by ho nosila všude a vždy. Seděla přímo, mluvila jasně a věci říkala v takovém pořadí, že Ben neměl chvíli na to, aby se zeptal na předchozí, než přišla další. Pracuje pro Kruh svědomí — tak to řekla, bez vysvětlení, co Kruh je, jako by to bylo samozřejmé. Možná proto, že pro ni bylo.",
   "testimonies": [
     {
       "id": "zavadova_vi",
@@ -70,7 +70,7 @@
     },
     {
       "id": "haas_rad_spojeni",
-      "description": "Haas byl Řádův kontakt — nebo je, záleží na výsledku jeho návštěvy D11. Zavadová to řekla bez přemýšlení, jako by to byl fakt. Složka na D10, Haas na D11, Zavadová na D12 — to není náhoda. Je to sekvence.",
+      "description": "Haas byl kontakt Kruhu — nebo je, záleží na výsledku jeho návštěvy D11. Zavadová to řekla bez přemýšlení, jako by to byl fakt. Složka na D10, Haas na D11, Zavadová na D12 — to není náhoda. Je to sekvence.",
       "involves": [
         "zavadova_nabidka",
         "zavadova_podvrh"
@@ -172,7 +172,7 @@
       }
     },
     "records": {
-      "source": "Zpráva ministerstva dopravy — ověření autenticity razítka; seznam právních sekcí Řádu",
+      "source": "Zpráva ministerstva dopravy — ověření autenticity razítka; seznam právních sekcí Kruhu svědomí",
       "reveals": "facts",
       "text": "Razítko na zprávě: ministerstvo dopravy, oddělení správy, číslo série odpovídá dokumentům z února 1931. <span class=\"clue\" data-clue-id=\"clue_zavadova_podvrh\">Avšak: sériové číslo razítka patří dávce, která byla vydána 18. února — a Hora z tiskového odboru potvrdil Karasovi, že tato čísla byla přidělena jiným dokumentům. Razítko je pravé, ale číslo série na tomto dokumentu neodpovídá originálu z archivu.</span> Zpráva je padělek — přesný, ale padělek.",
       "cost": 1,
@@ -202,7 +202,7 @@
         }
       },
       "variants": {
-        "moc_high": "Řád existuje — nebo existovalo něco podobného — jako síť právníků a úředníků, kteří si navzájem pomáhají. Není to ilegální, dokud nepřekračuje určitou linii. Prohlášení, které Zavadová přinesla, je vstup. Výstup z toho neexistuje.",
+        "moc_high": "Kruh existuje — nebo existovalo něco podobného — jako síť právníků a úředníků, kteří si navzájem pomáhají. Není to ilegální, dokud nepřekračuje určitou linii. Prohlášení, které Zavadová přinesla, je vstup. Výstup z toho neexistuje.",
         "kapital_high": "Zavadová není jméno, které by Haas znal — nebo tvrdí, že nezná. Ale Haas je jejich kontakt. Buď Haas lže, nebo Zavadová lže o tom, čí kontakt Haas je. Jedno z toho musí být pravda.",
         "default": "Tři dny v řadě: složka, Haas, Zavadová. Ben nebyl vybrán náhodou — byl vybrán proto, že má Wolfův případ. A Wolfův případ je pátek."
       }

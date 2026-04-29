@@ -1,21 +1,33 @@
-﻿ID;Den;Slot;Nazev;Sp.zn.;Typ;Vrstva;Varianta;Podminka;Obzalovany;INT;ODV;MOU;VIN;NAD;MOC;LID;KAP;FIN;Rozpory;Pruzkum klic;Haas?;Odlozeny dusledek;Pozn
-d01s1_boz1;1;1;Slepice Bozeny 1;47/31;Rut;Tyc;--;--;Bozena Slepicova;0/+2;0;+2;0;+1;0/+2;0/-2;0;+10;1: cas krmeni;Zaznamy: vlastnictvi;Ne;D4: soused;Vtipne
-d01s2_horak;1;2;Kradez chleba;48/31;Rut;Tyc;--;--;Jan Horak 34;+-5;+-3;+3;+-3;+-3;+-5;+-8;+-3;+10-20;1: cas rano/odp/15:40;Informator: Haas tov.;ANO;D+3: zena/Vlcek;Vzorovy
-d02s1_dluh;2;1;Nesplaceny dluh;49/31;Rut;Var;A/B/C;MOC>=50/LID>=50/neutr;Variabilni;+-3;0;+2;+-2;+-1;+-3;+-3;+-2;+10;1: vyse vs doklad;Zaznamy: dluzni upis;Var.A;--;1. variabilni
-d02s2_pool;2;2;Pool: drobna kradez;50/31;Rut;Pool;--;--;Pool;0;0;+2;+-1;0;+1;-1;+1;+10;1: svedectvi vs alibi;Vyslech;Ne;--;Poolovy
-d03s1_posp1;3;1;Pospisil 1 hospoda;51/31;Rut;Tyc;--;--;Vladimir Simanek;0;+2;+2;0;0;0;+2;0;+10;1: kdo zacal;Vyslech Pospisila;Ne;D7: strach;Podpis hacek
-d03s2_mark1;3;2;Markova 1;52/31;Rut;Tyc;--;--;Pool obzalovany;0;0;+3;0;0;0;0;0;+10;1: prilis presna;Zaznamy: overeni;Ne;D12;Podezrela presnost
-d04s1_boz2;4;1;Bozena 2;47b/31;Rut;Tyc;--;--;Bozena Slepicova;0;0;+2;0;+1;0;0;0;+10;1: novy dukaz vs logika;Zaznamy: obecni;Ne;D8: korupce;Absurdita
-d04s2_hran1;4;2;Hranice 1;53/31;Rut;Tyc;--;--;Oba sousede;0;0;+2;0;+1;0;0;0;+10;1: mereni vs katastr;Zaznamy: Haas;ANO;D10: Nemec;34 cm
-d05s1_mor1;5;1;Var: moralni 1;54/31;Mor;Var;A/B;VIN>55/default;Variabilni;+-5;+-3;+3;+-8;+-5;+-3;+-5;+-3;+10;2: motivace+okolnosti;Vyslech: trauma;Ne;var;1. moralni
-d05s2_pool2;5;2;Pool: vytrznost;55/31;Rut;Pool;--;--;Pool;0;+2;+2;0;0;+2;0;0;+10;1: provokace;Vyslech;Ne;--;Pool
-d06s1_mor2;6;1;Var: moralni 2;56/31;Mor;Var;A/B;NAD<50/default;Variabilni;+-5;+-3;+3;+-8;+-5;+-3;+-5;+-3;+10;2: nouze vs zakon;Zaznamy;Ne;var;Countdown den
-d06s2_pool3;6;2;Pool: podvod;57/31;Mor;Pool;--;--;Pool;+-2;0;+2;+-3;+-2;0;+-3;+-2;+10;1: falesny doklad;Zaznamy;Ne;--;Pool moralni
-d07s1_pol1;7;1;Horackova svedkyne;58/31;Pol;Tyc;--;--;Politicky obzal.;+-5;+-5;+3;0;+-2;+-8;+-5;+-3;+10;2: svedectvi+motiv;Informator: obe strany;ANO(neprime);D15: obzalovana;Horackova zmini klienta
-d07s2_posp2;7;2;Pospisil 2;51b/31;Rut;Tyc;--;--;Novy obzalovany;0;+2;+2;0;0;0;+2;0;+10;1: Pospisil se boji;Vyslech: proc strach;Ne;D14: svedek;Strach
-d08s1_boz3;8;1;Bozena 3;47c/31;Rut>Mor;Tyc;--;--;Bozena + starosta;+-3;0;+3;0;+-2;+-3;+-3;0;+10;2: korupce+slepice;Zaznamy: obecni ucty;Ne;D13: otrava;Korupce na vesnici
-d08s2_pol2;8;2;Var: politicky;59/31;Pol;Var;A/B/C;MOC>=60/LID>=60/neutr;Variabilni;+-5;+-5;+3;0;+-2;+-10;+-8;+-3;+10;2: politika+dukazy;Informator;var;var;VETVENI 1 kontext
-d09s1_prop;9;1;Var: propojeni;60/31;Mor;Var;A/B;VIN>60/default;Variabilni;+-3;+-2;+3;+-5;+-3;+-2;+-3;+-2;+10;2: jmeno propojeni;Zaznamy: krizovy odkaz;var;var;Dva pripady propojeny
-d09s2_pool4;9;2;Pool: dom. nasili;61/31;Mor;Pool;--;--;Pool;+-2;+-2;+2;+-5;+-3;0;+-2;0;+10;1: motivace vs cin;Vyslech;Ne;--;Moralni pool
-d10s1_hran2;10;1;Hranice 2 (Nemec);53b/31;Pol;Tyc;--;--;Oba sousede;+-3;+-3;+3;0;+-2;+-5;+-5;+-3;+10;2: narod+pozemek;Zaznamy+informator;ANO;D17: finale;Narodnostni rozmer
-d10s2_sved;10;2;Var: svedek z D3;62/31;Mor;Var;A/B;ODV>=60/default;Variabilni;+-3;+-3;+3;+-3;+-2;+-3;+-3;+-2;+10;2: navaznost+rozpor;Zaznamy: krizovy;var;var;Pavucina viditelna
+ID;Den;Slot;Nazev;Sp.zn.;Typ;Vrstva;Varianta;Podminka;Obzalovany;INT;ODV;MOU;VIN;NAD;MOC;LID;KAP;FIN;TrustNPC;Rozpory;Pruzkum klic;Haas?;Odlozeny dusledek;Pozn
+pool_a1_lekarna;1;1;Ředění léků;Sp. zn. 61/1931;Rut;Pool;—;—;Rudolf Malina;-1..4;1..5;1..3;-2..3;-3..3;-6..3;-5..8;-5..5;5..10;—;n=2(analysis_discrepancy,anonymous_tip);hidden_info:0+clue;ANO;—;trust:—
+pool_a1_weiss;1;2;Herr Weiss;Sp. zn. 83/1931;Rut;Pool;—;—;Max Schwarz, alias Max Weiss;-2..5;1..6;1..3;-2..5;-4..4;-9..6;-7..9;—;5..10;—;n=2(dvojite_doklady,duvod_nervozity);hidden_info:0+clue;Ne;—;trust:—
+pool_a1_vytrznost;2;1;Rozbité výlohy;Sp. zn. 67/1931;Rut;Pool;—;—;Karel Šimánek;-1..4;1..5;1..3;-2..3;-2..3;-7..5;-5..6;—;5..10;—;n=2(strepy_na_klope,prednaska_na_fakulte);hidden_info:0+clue;Ne;—;trust:—
+pool_a1_nemocenska;2;2;Nemocenský lístek;Sp. zn. 71/1931;Mor;Pool;—;—;Josef Kratochvíl;1..6;1..5;1..4;-2..4;-3..4;-5..2;-7..10;-7..4;5..10;—;n=2(domaci_navsteva,delka_nemocenske);hidden_info:0+clue;Ne;—;trust:—
+pool_a1_stara_rana;3;1;Stará rána;Sp. zn. 79/1931;Mor;Pool;—;—;Marie Hofrová;-1..5;2..6;1..4;-2..5;-4..4;-5..2;-8..9;—;5..10;—;n=2(praskot_pred_padem,dvě_sklenky);hidden_info:0+clue;Ne;—;trust:—
+pool_a1_trafika;3;2;Mrtvý trafikant;Sp. zn. 65/1931;Rut;Pool;—;—;Ludmila Bartošová;2..5;1..5;1..3;-3..5;-4..4;-5..3;-8..10;-8..6;5..10;—;n=2(doctor_visit,insurance_timing);hidden_info:0;Ne;—;trust:—
+pool_a1_zhar;4;1;Žhářství na Smíchově;Sp. zn. 81/1931;Rut;Pool;—;—;Antonín Houška;-1..4;1..4;1..4;-2..4;-4..3;-5..3;-6..7;-4..4;5..10;—;n=2(cas_navratu,ohnisko_pozaru);hidden_info:0+clue;Ne;—;trust:—
+pool_a1_exekuce;4;2;Záložna;Sp. zn. 86/1931;Mor;Pool;—;—;Anna Součková;-1..6;2..7;1..4;-3..4;-4..5;-7..4;-8..12;-8..3;5..10;—;n=2(oznameni_exekuce,vyse_dluhu);hidden_info:0+clue;Ne;—;trust:—
+pool_a1_vyveseni;5;1;Závadný plakát;Sp. zn. 63/1931;Rut;Pool;—;—;Heinrich Fassbinder;-2..5;1..6;1..3;-2..4;-4..3;-12..8;-6..8;—;5..10;—;n=1(book_existence);hidden_info:0+clue;Ne;—;trust:—
+pool_a1_zhar;5;2;Žhářství na Smíchově;Sp. zn. 81/1931;Rut;Pool;—;—;Antonín Houška;-1..4;1..4;1..4;-2..4;-4..3;-5..3;-6..7;-4..4;5..10;—;n=2(cas_navratu,ohnisko_pozaru);hidden_info:0+clue;Ne;—;trust:—
+tyc_bozena_3;8;1;Stavební zájem;Sp. zn. 108/1931;Pol;Tyc;—;—;Božena Kučerová;1..6;3..7;4;-2..4;-3..3;-8..5;-6..8;-4..3;8..10;—;n=2(geodesia_dvojrole,souhlas_pred_pruzkumem);hidden_info:0+clue;Ne;—;trust:—
+tyc_hranice_2;8;2;Německý dopis;Sp. zn. 109/1931;Pol;Tyc;—;—;Wilhelm Grünbaum;-1..5;2..5;3;-2..3;-1..2;-6..2;-3..6;—;8..10;—;n=2(kriz_nevede_co,amt_neni_politicky);hidden_info:0+clue;Ne;—;trust:—
+pool_a1_spravce;8;3;Zmizelý dopis;Sp. zn. 87/1931;Mor;Pool;light;—;Jaroslav Blecha;-10..12;—;—;-6..7;-8..8;—;-12..13;-11..8;25..35;—;n=2(dopis_doruceni,oprava_bez_souhlasu);hidden_info:0+clue;Ne;—;trust:—
+pool_a1_vyveseni;9;1;Závadný plakát;Sp. zn. 63/1931;Rut;Pool;—;—;Heinrich Fassbinder;-2..5;1..6;1..3;-2..4;-4..3;-12..8;-6..8;—;5..10;—;n=1(book_existence);hidden_info:0+clue;Ne;—;trust:—
+pool_a1_druha_ruka;9;2;Druhá ruka;Sp. zn. 90/1931;Mor;Pool;—;—;Václav Šrámek;1..9;3..4;1..6;-6..12;-8..6;-8..8;-10..9;—;15..35;—;n=2(log_vs_ink,witness_vs_log);hidden_info:0+clue;Ne;—;trust:—
+adventure_benes_d9;9;0;Adventure scena;—;Osob;Scena;—;—;Viktor Beneš;—;—;—;—;—;—;—;—;—;—;—;—;Ne;—;efekty v choices v data/days.json adventure_scene
+pool_a1_tiskarna;10;1;Noční směna;Sp. zn. 84/1931;Rut;Pool;—;—;Alois Mareš;1..7;3..4;1..5;-5..10;-5..5;-6..5;-8..8;—;5..20;—;n=2(meeting_interrupted,third_key_exists);hidden_info:0+clue;Ne;—;trust:—
+tyc_zvraty_d10;10;2;Složka;Sp. zn. interní — bez čísla;Osob;Tyc;—;—;—;-1..3;—;2..4;-1..3;-1..2;—;—;—;—;—;n=1(anna_je_haasova);hidden_info:0+clue;ANO;—;trust:—
+pool_a1_nemocenska;10;3;Nemocenský lístek;Sp. zn. 71/1931;Mor;Pool;light;—;Josef Kratochvíl;1..6;1..5;1..4;-2..4;-3..4;-5..2;-7..10;-7..4;5..10;—;n=2(domaci_navsteva,delka_nemocenske);hidden_info:0+clue;Ne;—;trust:—
+pool_a1_weiss;11;1;Herr Weiss;Sp. zn. 83/1931;Rut;Pool;—;—;Max Schwarz, alias Max Weiss;-2..5;1..6;1..3;-2..5;-4..4;-9..6;-7..9;—;5..10;—;n=2(dvojite_doklady,duvod_nervozity);hidden_info:0+clue;Ne;—;trust:—
+tyc_haas_d11;11;2;Obálka;Sp. zn. interní — bez čísla;Osob;Tyc;—;—;—;-8..7;5..7;2;-2..6;-2..2;-3..3;—;-3..2;300;—;n=1(bez_podminek_ale_s_odkazem);hidden_info:0+clue;ANO;—;trust:—
+pool_a1_exekuce;11;3;Záložna;Sp. zn. 86/1931;Mor;Pool;light;—;Anna Součková;-1..6;2..7;1..4;-3..4;-4..5;-7..4;-8..12;-8..3;5..10;—;n=2(oznameni_exekuce,vyse_dluhu);hidden_info:0+clue;Ne;—;trust:—
+pool_a1_stara_rana;12;1;Stará rána;Sp. zn. 79/1931;Mor;Pool;—;—;Marie Hofrová;-1..5;2..6;1..4;-2..5;-4..4;-5..2;-8..9;—;5..10;—;n=2(praskot_pred_padem,dvě_sklenky);hidden_info:0+clue;Ne;—;trust:—
+tyc_zavadova_d12;12;2;Víme vše;Sp. zn. interní — bez čísla;Osob;Tyc;—;—;—;-10..7;4..8;3;-2..7;-1..1;-2..3;—;-3..2;—;—;n=2(zprava_je_padelek,haas_rad_spojeni);hidden_info:0+clue;ANO;—;trust:—
+pool_a1_trafika;12;3;Mrtvý trafikant;Sp. zn. 65/1931;Rut;Pool;light;—;Ludmila Bartošová;2..5;1..5;1..3;-3..5;-4..4;-5..3;-8..10;-8..6;5..10;—;n=2(doctor_visit,insurance_timing);hidden_info:0;Ne;—;trust:—
+pool_a1_lekarna;13;1;Ředění léků;Sp. zn. 61/1931;Rut;Pool;—;—;Rudolf Malina;-1..4;1..5;1..3;-2..3;-3..3;-6..3;-5..8;-5..5;5..10;—;n=2(analysis_discrepancy,anonymous_tip);hidden_info:0+clue;ANO;—;trust:—
+pool_a1_revizor;13;2;Revizor;Sp. zn. 89/1931;Mor;Pool;—;—;Josef Kopecký;1..7;3..5;2..5;-5..10;-5..5;-8..5;-8..9;—;5..20;—;n=2(trasa_hajekov_klam,prosinec_pismo_dopis);hidden_info:0+clue;Ne;—;trust:—
+adventure_karas_d13;13;0;Adventure scena;—;Osob;Scena;—;—;Pavel Karas;—;—;—;—;—;—;—;—;—;—;—;—;Ne;—;efekty v choices v data/days.json adventure_scene
+tyc_markova_3;14;1;Sešit jako důkaz;Sp. zn. 118/1931;Mor;Tyc;—;—;Věra Marková;1..6;3..7;4;-2..5;-4..3;-6..4;-6..7;-3;8..14;—;n=2(benes_v_brne_ale_zapisy_14,sesit_zachranil_nebo_obvinil);hidden_info:0+clue;Ne;—;trust:—
+pool_a1_spravce;14;2;Zmizelý dopis;Sp. zn. 87/1931;Mor;Pool;—;—;Jaroslav Blecha;-10..12;—;—;-6..7;-8..8;—;-12..13;-11..8;25..35;—;n=2(dopis_doruceni,oprava_bez_souhlasu);hidden_info:0+clue;Ne;—;trust:—
+pool_a1_tiskarna;14;3;Noční směna;Sp. zn. 84/1931;Rut;Pool;light;—;Alois Mareš;1..7;3..4;1..5;-5..10;-5..5;-6..5;-8..8;—;5..20;—;n=2(meeting_interrupted,third_key_exists);hidden_info:0+clue;Ne;—;trust:—
+tyc_velezrada_d15;15;1;Velezrada;Sp. zn. 124/1931;Pol;Tyc;—;—;Alexander Wolf;2..7;4..8;4;-3..7;-5..4;-10..10;-8..8;-4..3;8..25;—;n=2(odmitl_pred_propustenim,podpis_vs_transakce);hidden_info:0+clue;ANO;—;trust:—

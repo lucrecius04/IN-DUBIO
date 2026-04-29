@@ -12,8 +12,8 @@ Hra na tuto otázku NIKDY neodpoví. Osm konců = osm odpovědí, žádná sprá
 Noir, meziválečné období, Československo, morální šedá zóna.
 
 ## TŘI VELKÉ LŽI
-MOC (Vlček): „Řád nás zachrání." — řád slouží moci, ne lidem.
-LID (Závadová, Řád): „Spravedlnost nás zachrání." — jejich spravedlnost vyžaduje novou nespravedlnost.
+MOC (Vlček): „Kruh nás zachrání." — Kruh slouží moci, ne lidem.
+LID (Závadová, Kruh svědomí): „Spravedlnost nás zachrání." — jejich spravedlnost vyžaduje novou nespravedlnost.
 KAPITÁL (Haas): „Prosperita nás zachrání." — prosperita postavena na vykořisťování.
 BENOVA LEŽ: „Jen jsem dodržoval zákon." — nikdo netlačil. Nepřečetl spis z lhostejnosti. Muž zemřel.
 
@@ -30,8 +30,8 @@ Metoda: gradace dopisů — formální → pochvala → naznačení → nátlak 
 Odhalení identity (Wolf / rodný list ve spise): střed **D10** (Zvraty); plná hra s podvrhem a důkazem u **D12** (Závadová: „Víme vše“ + podvrh). Podvrh rodného listu připravila Závadová (nástroj vůči Vlčkovi / systému).
 
 ### Eliška Závadová — novinářka, 38 let
-Vedoucí buňky Řádu. Absolventka práv. Píše do Svobodného obzoru pod pseudonymem.
-OSOBNÍ MOTIVACE: Bratr Tomáš odsouzen za velezradu 1928 z téže budovy. Založila Řád.
+Vedoucí buňky Kruhu svědomí. Absolventka práv. Píše do Svobodného obzoru pod pseudonymem.
+OSOBNÍ MOTIVACE: Bratr Tomáš odsouzen za velezradu 1928 z téže budovy. Založila Kruh svědomí.
 Skrytý podtext **D12** („víme o vás vše“ apod.): „Vy jste mohl zachránit mého bratra."
 Kontext rodného listu: odhalení **D10**; rozhodování o falešném důkazu a práce s podvrhem **D12**.
 
@@ -47,13 +47,13 @@ Otec Karla Beneše. JEDINÁ postava bez skryté agendy.
 Karel BYL vinen — kradl jídlo, ne stroje. Ben odsoudil za sabotáž bez přečtení důkazů.
 
 ### Viktor Haas — průmyslník, 58 let
-Neviditelný střed pavučiny. Financuje Vlčka, platí Řádu, vlastnil Benešovu továrnu, propustil Horáka.
+Neviditelný střed pavučiny. Financuje Vlčka, platí Kruhu svědomí, vlastnil Benešovu továrnu, propustil Horáka.
 SKRYTÁ VAZBA: Platil Anninu léčbu v Podolí. K odhalení Anně / Haasovi hra míří **D10** (Zvraty). Ben „vlastní“ tajemství postupně skládá; Haas u něj může být až s plným obrazem.
 **D11**: přijde OSOBNĚ s 300 Kčs (VETVENÍ 3). Podtext: naposledy Ben „nezaplatil" a Anna zemřela. Termín u doktora / matka: dle mapy střílí s **D4** (dopis, 400 Kč) a sítí kolem **D12** (doplatek očekávané operace dle `Mapa_15dni` / ekonomika).
 
 ### Martin Vraný — syn, 24 let
 Dopisy: **D2** studium, **D6** o spravedlnosti, **D10** případ z novin / tón kolem zvratů, **D14** „přijedu o víkendu“.
-TAJEMSTVÍ: Verbován Řádem. V dopisech postupně používá slova Závadové.
+TAJEMSTVÍ: Verbován Kruhem svědomí. V dopisech postupně používá slova Závadové.
 
 ### Růžena Horáčková — advokátka, 41 let
 **D7**: svědkyně. **D14**: obžalovaná. Hráč soudí ženu, která dřív svědčila.
@@ -64,10 +64,10 @@ Antonín Švejda, vrátný (63): ví o všech. V ranních fragmentech: „Švejd
 Nikdy víc než větu. Jsou nábytek, který dýchá.
 
 ## SKRYTÁ PROPOJENÍ + HAASOVA PAVUČINA
-Vlček ← financuje ← Haas → platí → Řád. Vlček → platí → Karas → informuje → Vlček.
-Řád (Závadová) → sleduje Vlčka i Bena (od 1928). Haas → Horák, Benešova továrna, Annina léčba.
+Vlček ← financuje ← Haas → platí → Kruh svědomí. Vlček → platí → Karas → informuje → Vlček.
+Kruh (Závadová) → sleduje Vlčka i Bena (od 1928). Haas → Horák, Benešova továrna, Annina léčba.
 VŠE VEDE K HAASOVI. Mechanismus odhalení: hráč skládá sám z průzkumu.
-Kostra stop dle `Mapa_15dni`: **D1** záznamy (Haas u Horáka), průběžně poolech **D2–5**; **D6** Haasova vizitka; **D7** Horáčková a klient; **D8** tlak; **D9** Beneš a továrna; **D10–D12** osobní trilogie ve druhém slotu (`tyc_zvraty_d10`, `tyc_haas_d11`, `tyc_zavadova_d12`) — zrcadlení Anny / Haase / Wolfa a nátlak Řádu; **D13** Karas; epilog u **D14–15** (Marková 3, velezrada).
+Kostra stop dle `Mapa_15dni`: **D1** záznamy (Haas u Horáka), průběžně poolech **D2–5**; **D6** Haasova vizitka; **D7** Horáčková a klient; **D8** tlak; **D9** Beneš a továrna; **D10–D12** osobní trilogie ve druhém slotu (`tyc_zvraty_d10`, `tyc_haas_d11`, `tyc_zavadova_d12`) — zrcadlení Anny / Haase / Wolfa a nátlak Kruhu; **D13** Karas; epilog u **D14–15** (Marková 3, velezrada).
 
 ## DENNÍ RYTMUS
 RÁNO: fragment 2-3 věty (svět mimo soud, Švejda, počasí, fronty). Foreshadowing.
@@ -88,7 +88,7 @@ Celkem ~52 unikátních textů, hráč vidí ~38. Při druhém průchodu ~12 jin
 
 ## TŘI ZVRATY (doplněk k denní kostře v `Mapa_15dni`)
 ZVRAT 1 **(D10)** — osobní tyč ve druhém slotu (`tyc_zvraty_d10`): **Haas a Anna**, rodný list, vazba na spis (Wolf); viz `Pripady_15dni` řádek `d10s2_zvrat` + `days.json` den 10.
-ZVRAT 2 **(D12)** — Závadová ve druhém slotu (`tyc_zavadova_d12`), podvrh, tlak Řádu; viz `Pripady_15dni` řádek `d12s2_zavad`.
+ZVRAT 2 **(D12)** — Závadová ve druhém slotu (`tyc_zavadova_d12`), podvrh, tlak Kruhu; viz `Pripady_15dni` řádek `d12s2_zavad`.
 ZVRAT 3 **(D15)** — finální případ (velezrada / epilog): poslední obžalovaný, cynická hra frakcí, uzavření dechu aktu 1 dle scénáře.
 
 ## DRAMATICKÝ OBLOUK — 15 PRACOVNÍCH DNŮ
@@ -97,7 +97,7 @@ Benův oblouk: „Dělám svou práci" → „Stojím pevně" → „Rozbil jsem
 **Akt 1 (D1–5):** falešná normalita, tutorial; háček **D3** (Karas, káva, kázeň spisu), **D4** dopis od doktora (400 Kč, odpočet k termínu v mapě), první morální tlaky (pool D5).  
 **Akt 2 (D6–8):** praskliny. **D6** Haasova vizitka, Pospíšil se bojí. **D7** Horáčková (VETVENÍ 1). **D8** Vlček: očekávání (natlak), Božena finále, třetí spis, Hranice — národnostní.  
 **Akt 3 (D9–11):** **D9** Beneš (VETVENÍ 2). **D10** zvraty — osobní spis `tyc_zvraty_d10` (Anna / Haas / Wolf), vedle rutinního poolu. **D11** Haas 300 Kč — `tyc_haas_d11` (VETVENÍ 3), vedle poolu; ranní echo k Pospíšilovi může zůstat z `flag_pospisil_dluzi`.  
-**Akt 4 (D12–15):** **D12** Závadová — `tyc_zavadova_d12` (podvrh, druhý slot), vedle morálního poolu. **D13** Karas (VETVENÍ 4). **D14** Marková obžalovaná (`tyc_markova_3`), konec vybraných konců (Řád / Anna). **D15** Velezrada, jeden slot — epilog, **HRDINA** / **PŘEŽITÍ** apod. dle mechanik. *(Finále vláken Pospíšil 3 / Hranice 3 / Marková 2 je v datech poolu, ale nemusí být v aktuálním `days.json` — ověř mapu.)*
+**Akt 4 (D12–15):** **D12** Závadová — `tyc_zavadova_d12` (podvrh, druhý slot), vedle morálního poolu. **D13** Karas (VETVENÍ 4). **D14** Marková obžalovaná (`tyc_markova_3`), konec vybraných konců (Kruh / Anna). **D15** Velezrada, jeden slot — epilog, **HRDINA** / **PŘEŽITÍ** apod. dle mechanik. *(Finále vláken Pospíšil 3 / Hranice 3 / Marková 2 je v datech poolu, ale nemusí být v aktuálním `days.json` — ověř mapu.)*
 
 (Stará sekce „20 dní" v bibles — přemapovat na tento rozklad; 20d CSV v repu je archiv.)
 
@@ -135,7 +135,7 @@ Odvaha < 10: Ben odkládá. Systém ho přehlíží. → PŘEŽITÍ
 
 6. ATENTÁT (tajný): MOC ●○ + Odvaha ★★★★★ + Vlček 0 + Integrita >60 + odmítl Haase + odmítl Závadovou + NEPOUŽIL rodný list. Absolutní nezávislost. Vlastní protokol. „Protokol číslo 49..."
 
-7. ŘÁD: Závadová 3 + odmítl Vlčka + **D12** přijal (rodný list / podvrh) + použil rodný list. Martin verbován Řádem pod otcem. „Spravedlnost není v zákoně."
+7. KRUH: Závadová 3 + odmítl Vlčka + **D12** přijal (rodný list / podvrh) + použil rodný list. Martin verbován Kruhem svědomí pod otcem. „Spravedlnost není v zákoně."
 
 8. ANNA (skrytý skrytý): Vina ★☆ + **D9** Beneš + odmítl Haase + zjistil o Anně (**D10**, zvrat Anna/Haas) + odmítl Vlčka + odmítl Závadovou + Finance <100 + průzkum 80%+. Absolutní čistota + přijetí ztráty. Martin zanechal práva, chce být učitel. „Lampa svítí. Slabě, ale svítí."
 

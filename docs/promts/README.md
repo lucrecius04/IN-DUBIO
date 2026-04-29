@@ -13,4 +13,8 @@
 
 **Úprava už hotových pool případů** (doplnění `narrative_lines`, lidštějších popisů verdiktů, `review_card`…): [`PROMPT-doplneni-stavajicich-pool-pripadu.md`](./PROMPT-doplneni-stavajicich-pool-pripadu.md) + do zadání **vložit celý JSON** daného případu.
 
+**Denní narativní rytmus** (ranní/večerní/víkendové fragmenty + echo): [`PROMPT-fragmenty-rano-vecer-vikend.md`](./PROMPT-fragmenty-rano-vecer-vikend.md).
+
+**Epilogy konců kampaně** (obsah, styl, JSON výstup + povinné podklady): [`PROMPT-epilogy.md`](./PROMPT-epilogy.md).
+
 **Pozn.:** Název složky zůstává `promts` (projektová volba), obsah můžete otevírat v libovolném editoru.

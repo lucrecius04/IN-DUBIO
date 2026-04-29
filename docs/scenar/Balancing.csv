@@ -1,28 +1,18 @@
-﻿Den;Prijmy (2 pripady);Plat;Vydaje;Specialni;Denni bilance;Kumulativni;Poznamky;Scenar_modif_navrh
-0;--;--;--;--;--;120;Vychozi uspory;viz Milniky-dynamika-akt1.md §3
-1;20;0;-55;0;-35;85;;std
-2;20;0;-58;0;-38;47;+3 vydaje;ekonom_tlak_navaz_Map_D2
-3;20;0;-58;0;-38;9;;std
-4;20;0;-58;0;-38;-29;;std
-5;20;0;-58;0;-38;-67;;std
-SO;0;0;0;15;15;-52;Bonus peclivy;
-NE;0;80;0;-5;75;23;Plat + matka;
-6;20;0;-58;0;-38;-15;Dopis doktor;countdown_navaz_Map_D6
-7;20;0;-58;0;-38;-53;;std
-8;20;0;-58;0;-38;-91;Vlckovo ocekavani;VETVENI1_navaz
-9;20;0;-58;0;-38;-129;;stress_den_navaz_Map_D9
-10;20;0;-58;0;-38;-167;Vizitka;tlak_urad_navaz_Map_D10
-SO;0;0;0;15;15;-152;Bonus;
-NE;0;80;0;0;80;-72;Plat;
-11;20;0;-58;0;-38;-110;;std
-12;20;0;-58;0;-38;-148;;std
-13;20;0;-58;-15;-53;-201;Uhli -15;Benes_milnik
-14;20;0;-58;0;-38;-239;;std
-15;20;0;-58;0;-38;-277;Zvraty;zvraty+treti_spis_plan
-SO;0;0;0;15;15;-262;Bonus;
-NE;0;80;0;-5;75;-187;Plat + matka;matka_milnik
-16;20;0;-58;0;-38;-225;HAAS: +300 pokud prijme;Haas_vecer_navaz
-17;20;0;-58;0;-38;-263;;std
-18;20;0;-58;0;-38;-301;;Karas_var_navaz
-19;20;0;-58;0;-38;-339;;std
-20;10;0;-58;0;-48;-387;Jen 1 pripad;finale_1slot
+﻿KalDen;TypDne;PracDen;Pocet spisu;Inkoust baseline;Inkoust bonus potencial;Prijmy pripady min;Prijmy pripady stred;Prijmy pripady max;Plat;Vydaje;Specialni system;Manual zasah (vikend/design);Denni bilance min;Denni bilance stred;Denni bilance max;Kumulativ min;Kumulativ stred;Kumulativ max;Predikce_tagy;Riziko_finance;Riziko_integrita;Riziko_odvaha;Riziko_vina;Riziko_nadeje;Frakcni_vektor;Pozn_predikce;Poznamky;Scenar_modif_navrh
+0;Start;0;0;0;0;0;0;0;0;0;0;0;0;0;0;120;120;120;;;0;0;0;0;0;;Vychozi stav pro simulace;Vychozi uspory;viz Milniky-dynamika-akt1.md §3
+1;Pracovni;1;2;3;+1 az +3;10;15;20;0;-55;0;0;-45;-40;-35;75;80;85;tutorial,finance_mierny_tlak;0;0;0;0;0;Moc~,Lid~,Kapital~;Nizky ekonomicky stres, uceni tempa;Dva rutinni spisy, nastaveni tempa;std
+2;Pracovni;2;2;3;+1 az +3;10;15;20;0;-58;0;0;-48;-43;-38;27;37;47;ekonom_tlak_navaz;1;0;0;0;0;Kapital+,Lid-;Pekar zvedl ceny, kumulativ pod tlakem;Pekar +3 vydaje;ekonom_tlak_navaz_Map_D2
+3;Pracovni;3;2;3;+1 az +3;10;15;20;0;-58;0;0;-48;-43;-38;-21;-6;9;std_stred_tydne;1;0;0;0;0;Moc~,Kapital~;Stabilni tlak bez jednorazove pomoci;Stabilni tlak bez jednorazove pomoci;std
+4;Pracovni;4;2;3;+1 az +3;10;15;20;0;-58;0;0;-48;-43;-38;-69;-49;-29;countdown_operace,dopis_doktor;2;1;0;1;0;Moc~,Lid+;Operace 400 Kc v horizontu, domaci stres;Dopis doktora/finance;countdown_navaz_Map_D4
+5;Pracovni;5;2;3;+1 az +3;10;15;20;0;-58;0;0;-48;-43;-38;-117;-92;-67;prvni_moralni_zlom;1;1;0;1;1;Lid+,Moc~;Prvni silnejsi moralni den v mape;Prvni moralni zlom;std
+6;Sobota;--;0;0;0;0;0;0;0;0;15;0;15;15;15;-102;-77;-52;vikend_oddech,sobota_bonus;0;0;0;0;0;;Snizeni tlaku fragmentem, priprava na tyden;Sobotni bonus (peclivy);vikend_bonus
+7;Nedele;--;0;0;+1 v pondeli (matka/prochazka);0;0;0;80;0;-5;0;75;75;75;-27;-2;23;nedele_volby,vyplata_relief;0;0;0;0;1;Lid+,Moc~;Vyplata + emocni volba (matka/kostel/spisy);Vyplata + volba matka/prochazka/spisy;nedele_vyplata
+8;Pracovni;6;3;3;+1 az +4;41;48;55;0;-58;0;0;-17;-10;-3;-44;-12;20;vetveni1,treti_spis,frakcni_tlak;1;1;0;1;0;Moc+,Kapital+,Lid-;Tri spisy, politicka a moralni slozka;Treti spis (light), vyssi volatilita;VETVENI1_navaz
+9;Pracovni;7;2 + adventure;3;+1 az +3;20;32.5;45;0;-58;0;0;-38;-25.5;-13;-82;-37.5;7;adventure_benes,stress_uhli;2;2;1;2;1;Moc+,Kapital~,Lid~;Osobni scena + ucet za uhli v narrativu;Adventure scena + tlak z uhli;stress_den_navaz_Map_D9
+10;Pracovni;8;3;3;+1 az +4;10;20;30;0;-58;0;0;-48;-38;-28;-130;-75.5;-21;tyc_zvraty,osobni_tyk;1;1;1;2;0;Moc+,Kapital+;Anna/Haas vlakno, vysoka emocni zatez;Slozka (osobni tyc) + light;tlak_urad_navaz_Map_D10
+11;Pracovni;9;3;3;+1 az +4;310;315;320;0;-58;0;0;252;257;262;122;181.5;241;haas_obalka,finance_spike,integrita_krize;3;3;1;2;1;Kapital+++,Moc+,Integrita-;Extrémní finanční injekce, silný tlak na kompromis;Haasova obalka v case toku;VETVENI3_navaz
+12;Pracovni;10;3;3;+1 az +4;10;15;20;0;-58;0;0;-48;-43;-38;74;138.5;203;zavadova_trilogie,podvrh;1;2;1;2;0;Kapital+,Moc~,Lid~;Uzavreni osobni trilogie D10-D12;Zavadova/uzavreni osobni trilogie;std
+13;Sobota;--;0;0;0;0;0;0;0;0;0;0;0;0;0;74;138.5;203;vikend_manual_slot;0;0;0;0;0;;Sem doplnit manualni financni zmeny;Rezerva pro vikendove financni zmeny (manual);vikend_manual_slot
+14;Nedele;--;0;0;+1 v pondeli (matka/prochazka);0;0;0;80;0;0;0;80;80;80;154;218.5;283;nedele_2,vyplata_relief;0;0;0;0;0;Lid+;Druha vyplata, priprava na zaver;Druha vyplata v 15dennim scenari;nedele_vyplata_2
+15;Pracovni;11;2 + adventure;3;+1 az +3;10;20;30;0;-58;-15;0;-63;-53;-43;91;165.5;240;benes_milnik,uhli_jednorazove;2;1;1;1;1;Moc~,Kapital-;Jednorazovy vydaj + osobni scena;Ucet za uhli -15;Benes_milnik
+16;Pracovni;12;1;3;+0 az +2;8;16.5;25;0;-58;0;0;-50;-41.5;-33;41;124;207;finale_velezrada,politicky_vrchol;1;2;2;2;1;Moc++,Lid-,Kapital+;Jeden slot, maximalni politicky tlak;Finalni velezrada (1 spis);finale_1slot

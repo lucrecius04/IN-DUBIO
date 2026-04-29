@@ -12,6 +12,14 @@ Texty pro design, autorování a orientaci v kódu. Kanon detailů mechanik zůs
 - Milníky, limity revizí, dynamika aktu: [`scenar/Milniky-dynamika-akt1.md`](./scenar/Milniky-dynamika-akt1.md) + [`scenar/Balancing.csv`](./scenar/Balancing.csv).
 - Lore a postavy: **Story Bible** — `InDubio_StoryBible_v2_Cursor.txt` v `docs/` (v3.0, 15 prac. dní; název souboru může stále obsahovat `v2` v cestě), není duplikována ve `scenar/`.
 
+## UI a grafika
+
+- Návrh menu, oken a adventure / dialog scény (včetně „dvou dveří“ a JSON kontraktu): [`UI/README.md`](./UI/README.md).
+
+## Playtesting a balanc (AI běhy)
+
+- Dvanáct person, formát reportů a metriky pro analýzu: [`playtesting/README.md`](./playtesting/README.md).
+
 ## Případy (JSON) a prompty
 
 - Staging **jednoho spisu = jeden soubor** (stejné schéma jako položka v `pool_cases_akt1`): [`Pripady/README.md`](./Pripady/README.md).  

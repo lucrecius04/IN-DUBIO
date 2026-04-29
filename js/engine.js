@@ -200,12 +200,25 @@ const Engine = (() => {
       State.resetTydenniStatistikyNedele();
     }
 
-    // Pondělí — důsledky nedělní volby (investigace)
+    // Pondělí — důsledky nedělní volby (inkoust navíc)
+    let pondelniBonusInkoust = 0;
     if (den % 7 === 1) {
       const v = State.get('nedele_volba');
       if (v === 'A' || v === 'D') {
-        State.set('investigationActionsLeft', 10);
+        pondelniBonusInkoust = 1;
       }
+    }
+
+    // Výchozí inkoust na pracovní den s případy.
+    _denData = DataLoader.ziskejDen(den);
+    const dnesniPripady = Array.isArray(_denData && _denData.cases) ? _denData.cases.length : 0;
+    if (dnesniPripady > 0) {
+      State.set('investigationActionsLeft', 3);
+    }
+
+    if (pondelniBonusInkoust > 0) {
+      const curInk = Number(State.get('investigationActionsLeft')) || 0;
+      State.set('investigationActionsLeft', curInk + pondelniBonusInkoust);
     }
 
     if (State.get('flags.rano_bonus_inkoust_z_kavy')) {
@@ -225,9 +238,6 @@ const Engine = (() => {
     if (recUntil != null && Number.isFinite(Number(recUntil)) && den > Number(recUntil)) {
       State.set('flags.records_free_until_day', null);
     }
-
-    // Načti denní data
-    _denData = DataLoader.ziskejDen(den);
 
     // Aktualizuj vizuál stolu
     State.set('phase', 'morning');
@@ -303,6 +313,8 @@ const Engine = (() => {
         State.uloz();
       }
     }
+
+    await _zpracujDopisyDne(den, _denData);
 
     // Adventure scéna: po ranním fragmentu, před načtením případů.
     const adventureScena = _denData && _denData.adventure_scene;
@@ -399,13 +411,7 @@ const Engine = (() => {
     State.set('phase', 'forenoon');
     Desk.aktualizujVse();
 
-    // Vlčkův dopis
-    if (denData?.vlcek_letter) {
-      Desk.zobrazVlcekDopis(true);
-      Desk.zobrazSuplikIndikator(true);
-    } else {
-      Desk.zobrazVlcekDopis(false);
-    }
+    _obnovDopisyNaStoleProDen(denData, den);
 
     // Skrýt tlačítko do vyřešení případů; po F5 / resume znovu sladit s uloženým casesResolvedToday
     UI.zobrazBtnDalsiDen(false);
@@ -440,13 +446,7 @@ const Engine = (() => {
 
     if (_denData) Narrative.aktualizujNoviny(_denData);
 
-    if (_denData?.vlcek_letter) {
-      Desk.zobrazVlcekDopis(true);
-      Desk.zobrazSuplikIndikator(true);
-    } else {
-      Desk.zobrazVlcekDopis(false);
-      Desk.zobrazSuplikIndikator(false);
-    }
+    _obnovDopisyNaStoleProDen(_denData, den);
 
     Desk.aktualizujVse();
     Music.aktualizujStopu();
@@ -597,7 +597,7 @@ const Engine = (() => {
       return 'atentát';
     }
 
-    // 7. ŘÁD (nejdříve D14)
+    // 7. KRUH (nejdříve D14)
     if (den >= 14
       && u.vlcek_vztah !== 'vzdor'
       && u.haas_kontakt === 'zavazany'
@@ -767,6 +767,153 @@ const Engine = (() => {
         text:  dialog.text
       });
     }
+  }
+
+  function _klicPendingDeskDopisu(den) {
+    return 'pending_desk_letters_day_' + Number(den);
+  }
+
+  function _klicZpracovaniDopisu(den) {
+    return 'letters_processed_day_' + Number(den);
+  }
+
+  function _sestavTextDopisu(dopis) {
+    if (!dopis || typeof dopis !== 'object') return '';
+    let body = String(dopis.body || '');
+    const flagWb = String(dopis.wrote_back_flag || '').trim();
+    if (flagWb && dopis.body_wrote_back && State.get('flags.' + flagWb) === true) {
+      body = String(dopis.body_wrote_back);
+      State.set('flags.' + flagWb, false);
+    }
+    const casti = [];
+    if (dopis.salutation) casti.push(String(dopis.salutation).trim());
+    if (body) casti.push(body.trim());
+    if (dopis.closing) casti.push(String(dopis.closing).trim());
+    if (dopis.postscript) casti.push('P.S. ' + String(dopis.postscript).trim());
+    return casti.filter(Boolean).join('\n\n');
+  }
+
+  function _vyhodnotPodminkuDopisu(cond) {
+    if (!cond || typeof cond !== 'object') return true;
+    if (cond.trust && typeof cond.trust === 'object') {
+      for (const [npc, cfg] of Object.entries(cond.trust)) {
+        const c = cfg && typeof cfg === 'object' ? cfg : {};
+        const v = Number(State.get('trust.' + npc)) || 0;
+        if (c.min != null && v < Number(c.min)) return false;
+        if (c.max != null && v > Number(c.max)) return false;
+      }
+    }
+    if (cond.flags && typeof cond.flags === 'object') {
+      for (const [k, expected] of Object.entries(cond.flags)) {
+        if (State.get('flags.' + k) !== expected) return false;
+      }
+    }
+    return true;
+  }
+
+  function _aplikujEfektyDopisu(effects) {
+    if (!effects || typeof effects !== 'object') return;
+    if (effects.traits && typeof effects.traits === 'object') {
+      for (const [k, d] of Object.entries(effects.traits)) {
+        const n = Number(d);
+        if (Number.isFinite(n) && n !== 0) State.upravRys(k, n);
+      }
+    }
+    if (effects.trust && typeof effects.trust === 'object') {
+      for (const [k, d] of Object.entries(effects.trust)) {
+        const n = Number(d);
+        if (Number.isFinite(n) && n !== 0) State.upravDuveru(k, n);
+      }
+    }
+    if (effects.flags && typeof effects.flags === 'object') {
+      for (const [k, v] of Object.entries(effects.flags)) {
+        State.set('flags.' + k, v);
+      }
+    }
+  }
+
+  async function _zobrazReakciDopisu(reaction) {
+    if (!reaction || !Array.isArray(reaction.options) || reaction.options.length === 0) return;
+    const vyber = await new Promise(resolve => {
+      UI.zobrazVecerniVolbu({ evening_choice: reaction }, moznost => resolve(moznost || null));
+    });
+    if (vyber && vyber.effects) {
+      _aplikujEfektyDopisu(vyber.effects);
+    }
+  }
+
+  async function _zobrazDopisModalem(dopis) {
+    const text = _sestavTextDopisu(dopis);
+    const den = Number(State.get('currentDay')) || 0;
+    const npcId = String(dopis.from || '').trim();
+    if (npcId) {
+      const souhrn = String(dopis.archive_summary || Characters.getHistorieRadkaTitulek(npcId, 'letter') || 'Dopis');
+      State.zalogujNpcSetkani(npcId, den, souhrn, text);
+      State.zapisNpcPosledniDialog(npcId, den, text);
+    }
+    await _cekejNaFragment(null, {
+      type: 'letter',
+      title: dopis.title || 'Dopis',
+      text
+    });
+    _aplikujEfektyDopisu(dopis.effects);
+    await _zobrazReakciDopisu(dopis.reaction);
+    Desk.aktualizujVse();
+    State.uloz();
+  }
+
+  function _pridejDeskDopisProDen(den, letterId) {
+    const klic = _klicPendingDeskDopisu(den);
+    const arr = Array.isArray(State.get('flags.' + klic)) ? State.get('flags.' + klic).slice() : [];
+    if (!arr.includes(letterId)) arr.push(letterId);
+    State.set('flags.' + klic, arr);
+  }
+
+  function _obnovDopisyNaStoleProDen(denData, den) {
+    const klic = _klicPendingDeskDopisu(den);
+    const pending = Array.isArray(State.get('flags.' + klic)) ? State.get('flags.' + klic) : [];
+    const legacy = !!(denData && denData.vlcek_letter);
+    const maDeskDopis = pending.length > 0 || legacy;
+    Desk.zobrazVlcekDopis(maDeskDopis);
+    Desk.zobrazSuplikIndikator(maDeskDopis);
+  }
+
+  async function _zpracujDopisyDne(den, denData) {
+    if (!denData || !Array.isArray(denData.letters) || denData.letters.length === 0) return;
+    const doneKey = _klicZpracovaniDopisu(den);
+    if (State.get('flags.' + doneKey) === true) return;
+    for (const letterId of denData.letters) {
+      const dopis = DataLoader.ziskejDopis(letterId);
+      if (!dopis || !_vyhodnotPodminkuDopisu(dopis.condition)) continue;
+      if (dopis.delivery === 'auto') {
+        await _zobrazDopisModalem(dopis);
+      } else {
+        _pridejDeskDopisProDen(den, letterId);
+      }
+    }
+    State.set('flags.' + doneKey, true);
+    State.uloz();
+  }
+
+  function otevriDopisZeStolu() {
+    const den = Number(State.get('currentDay')) || 0;
+    const klic = _klicPendingDeskDopisu(den);
+    const pending = Array.isArray(State.get('flags.' + klic)) ? State.get('flags.' + klic).slice() : [];
+    if (pending.length === 0) {
+      otevriVlcekuvDopis();
+      return;
+    }
+    const letterId = pending.shift();
+    const dopis = DataLoader.ziskejDopis(letterId);
+    State.set('flags.' + klic, pending);
+    if (!dopis) {
+      _obnovDopisyNaStoleProDen(_denData, den);
+      State.uloz();
+      return;
+    }
+    _zobrazDopisModalem(dopis).then(() => {
+      _obnovDopisyNaStoleProDen(_denData, den);
+    });
   }
 
   // --- HAASOVA OBÁLKA ---
@@ -1021,7 +1168,8 @@ const Engine = (() => {
     zkontrolujKonecDne,
     spustKonec,
     otevriHaasovuObalku,
-    otevriVlcekuvDopis
+    otevriVlcekuvDopis,
+    otevriDopisZeStolu
   };
 
 })();

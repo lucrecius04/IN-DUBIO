@@ -1,0 +1,227 @@
+[
+  {
+    "id": "vlcek_d1",
+    "day": 1,
+    "from": "vlcek",
+    "format": "official",
+    "delivery": "desk",
+    "phase": "morning_after_fragment",
+    "title": "Dopis od ministra Vlcka",
+    "salutation": "Vazeny pane doktore,",
+    "body": "dovoluji si Vas privitat zpet v plnem vykonu funkce. Doba klade na soudnictvi mimoradne naroky a ja verim, ze Vase zkusenost bude v nadchazejicich tydnech cenna.\n\nRad Vas budu mit na pameti.",
+    "closing": "S uctivym pozdravem,\nJUDr. Alexandr Vlcek\nministr spravedlnosti",
+    "postscript": null,
+    "condition": null,
+    "effects": { "traits": {}, "trust": {}, "flags": {} },
+    "reaction": null,
+    "archive_summary": "Vlcek vita Bena zpet do funkce. Formalni, zdvorily - a pozorny."
+  },
+  {
+    "id": "martin_d2",
+    "day": 2,
+    "from": "martin",
+    "format": "personal",
+    "delivery": "auto",
+    "phase": "morning_after_fragment",
+    "title": "Dopis od Martina",
+    "salutation": "Otče,",
+    "body": "profesor Kalousek dnes prednasel o ustavnim pravu a ja jsem si uvedomil, proc jsem na ta prava sel. Je v tom neco cisteho - v myslence, ze zakon chrani kazdeho stejne.\n\nAsi je to naivni. Ale zatim mi to staci.\n\nSnad se Ti dari. Pis, az budes mit cas.",
+    "body_wrote_back": "dekuji za dopis. Potesil me vic, nez bys cekal.\n\nProfesor Kalousek dnes prednasel o ustavnim pravu a ja jsem si uvedomil, proc jsem na ta prava sel. Je v tom neco cisteho - v myslence, ze zakon chrani kazdeho stejne.\n\nAsi je to naivni. Ale zatim mi to staci.",
+    "wrote_back_flag": "wrote_martin",
+    "closing": "Tvuj Martin",
+    "postscript": null,
+    "condition": null,
+    "effects": { "traits": { "Vina": -1, "Nadeje": 1 }, "trust": {}, "flags": {} },
+    "reaction": null,
+    "archive_summary": "Martin pise o studiu prav. Nadseny, idealisticky."
+  },
+  {
+    "id": "doktor_d4",
+    "day": 4,
+    "from": "doktor",
+    "format": "typed",
+    "delivery": "auto",
+    "phase": "morning_after_fragment",
+    "title": "Nemocnice Podoli - oznameni",
+    "salutation": "Vazeny pane doktore Vrany,",
+    "body": "potvrzuji termin zakroku u Vasi matky, pani Alzbety Vrane, na den 17. brezna t. r. v Nemocnici Podoli.\n\nDoplatek cini 400 Kc a je splatny nejpozdeji v den vykonu.\n\nBez uhrady nebude mozno zakrok provest.",
+    "closing": "S pozdravem,\nMUDr. Frantisek Hora\nchirurgicke oddeleni",
+    "postscript": null,
+    "condition": null,
+    "effects": { "traits": {}, "trust": {}, "flags": { "dopis_operace_den4_viden": true, "countdown_operace_start": true } },
+    "reaction": {
+      "prompt": "Ctyri sta korun. Dvanact dni.",
+      "options": [
+        { "text": "Pocitas v hlave. Stihnout se to da.", "effects": { "traits": { "Nadeje": 2 } } },
+        { "text": "Zaviras oci. Zas ty penize.", "effects": { "traits": { "Vina": 2 } } }
+      ]
+    },
+    "archive_summary": "Doktor potvrzuje operaci matky. 400 Kc do 17. brezna."
+  },
+  {
+    "id": "vlcek_d4",
+    "day": 4,
+    "from": "vlcek",
+    "format": "official",
+    "delivery": "desk",
+    "phase": "morning_after_fragment",
+    "title": "Dopis od ministra Vlcka",
+    "salutation": "Vazeny pane doktore,",
+    "body": "s potesenim sleduji, ze pripady ve Vasem portfoliu jsou reseny s nalezitou rozvahou. V dnesni nejiste dobe je takovy pristup vzacny.\n\nJsem rad, ze se na Vas mohu spolehnout.",
+    "closing": "S uctivym pozdravem,\nJUDr. Alexandr Vlcek\nministr spravedlnosti",
+    "postscript": null,
+    "condition": null,
+    "effects": { "traits": {}, "trust": {}, "flags": {} },
+    "reaction": {
+      "prompt": "Pochvala od ministra.",
+      "options": [
+        { "text": "Usmev. Mozna poprve za tyden.", "effects": { "traits": { "Nadeje": 2 } } },
+        { "text": "Odkladas bez vyrazu. Pochvaly od Vlcka nic neznamenaji.", "effects": { "traits": { "Integrita": 2 } } }
+      ]
+    },
+    "archive_summary": "Vlcek chvali Benovy rozsudky. Pochvala, nebo oznaceni?"
+  },
+  {
+    "id": "martin_d6",
+    "day": 8,
+    "from": "martin",
+    "format": "personal",
+    "delivery": "auto",
+    "phase": "morning_after_fragment",
+    "title": "Dopis od Martina",
+    "salutation": "Otče,",
+    "body": "profesor dnes rekl vec, ktera mi nejde z hlavy: \"Pravo bez svedomi je jen nastroj. A nastroj slouzi tomu, kdo ho drzi.\"\n\nPremyslim, jestli to tak opravdu je. Ty jsi cely zivot drzel zakon - ale drzel nekdy on Tebe?\n\nNa koleji je plakat o pochodu. Lide se zlobi. Maji proc.",
+    "body_wrote_back": "dekuji za dopis. Premyslel jsem nad nim dlouho.\n\nProfesor dnes rekl vec, ktera mi nejde z hlavy: \"Pravo bez svedomi je jen nastroj. A nastroj slouzi tomu, kdo ho drzi.\"\n\nTy jsi cely zivot drzel zakon - ale drzel nekdy on Tebe?\n\nNa koleji je plakat o pochodu. Lide se zlobi. Maji proc.",
+    "wrote_back_flag": "wrote_martin",
+    "closing": "Martin",
+    "postscript": null,
+    "condition": null,
+    "effects": { "traits": { "Vina": -1 }, "trust": {}, "flags": {} },
+    "reaction": null,
+    "archive_summary": "Martin cituje profesora o spravedlnosti. Ton se meni."
+  },
+  {
+    "id": "vlcek_d7",
+    "day": 9,
+    "from": "vlcek",
+    "format": "official",
+    "delivery": "desk",
+    "phase": "forenoon",
+    "title": "Dopis od ministra Vlcka",
+    "salutation": "Vazeny pane doktore,",
+    "body": "dovolim si Vas upozornit, ze jeden z dnesnich spisu spada do oblasti, o kterou se zajimaji osoby z sirsiho politickeho prostredi.\n\nNepredjimam Vase rozhodnuti. Pouze konstatuji, ze bude pozorne sledovano.",
+    "closing": "JUDr. Alexandr Vlcek\nministr spravedlnosti",
+    "postscript": null,
+    "condition": null,
+    "effects": { "traits": {}, "trust": {}, "flags": { "vlcek_vetveni_1": true } },
+    "reaction": null,
+    "archive_summary": "Vlcek upozornuje na politicky sledovany pripad. Vetveni 1."
+  },
+  {
+    "id": "vlcek_d8",
+    "day": 10,
+    "from": "vlcek",
+    "format": "official",
+    "delivery": "desk",
+    "phase": "morning_after_fragment",
+    "title": "Dopis od ministra Vlcka",
+    "salutation": "Pane doktore,",
+    "body": "ocekavam, ze zalezitost, o niz jsem psal, bude vyresena vhodnym zpusobem.\n\nNebudu zastirat: klid v justici je spolecny zajem. Verim, ze to vidite stejne.",
+    "closing": "Vlcek",
+    "postscript": null,
+    "condition": null,
+    "effects": { "traits": { "Vina": 3 }, "trust": {}, "flags": {} },
+    "reaction": {
+      "prompt": "Dopis lezi na stole.",
+      "options": [
+        { "text": "Slozis ho peclive ke spisum.", "effects": { "traits": { "Moudrost": 2 } } },
+        { "text": "Zmackas ho v dlani.", "effects": { "traits": { "Odvaha": 2, "Vina": 1 } } }
+      ]
+    },
+    "archive_summary": "Vlcek ocekava vhodne vyreseni. Natlak."
+  },
+  {
+    "id": "benes_d9",
+    "day": 11,
+    "from": "benes",
+    "format": "note",
+    "delivery": "auto",
+    "phase": "morning_after_fragment",
+    "title": "Slozeny listek",
+    "salutation": "",
+    "body": "Pane doktore,\nbudu dnes cekat u soudu. Prosim Vas o chvili.\nJde o meho syna.\n\nA. B.",
+    "closing": "",
+    "postscript": null,
+    "condition": null,
+    "effects": { "traits": { "Vina": 3 }, "trust": {}, "flags": { "benes_listek_precten": true } },
+    "reaction": null,
+    "archive_summary": "Listek tuzkou. Alois Benes chce mluvit o svem synovi."
+  },
+  {
+    "id": "martin_d10",
+    "day": 12,
+    "from": "martin",
+    "format": "personal",
+    "delivery": "auto",
+    "phase": "morning_after_fragment",
+    "title": "Dopis od Martina",
+    "salutation": "Otče,",
+    "body": "cetl jsem v novinach o jednom starsim pripadu. Soudce odsoudil cloveka za sabotaz, ale dukazy byly slabe. Ten muz zemrel ve vezeni. Novinar psal, ze soudce jednal pod natlakem.\n\nPremyslim - co by clovek udelal na jeho miste? Odmitl by podepsat?\n\nAsi ano. Doufam, ze ano.",
+    "body_wrote_back": "dekuji za dopis, otce.\n\nCetl jsem v novinach o jednom starsim pripadu. Soudce odsoudil cloveka za sabotaz, ale dukazy byly slabe. Ten muz zemrel ve vezeni. Novinar psal, ze soudce jednal pod natlakem.\n\nPremyslim - co by clovek udelal na jeho miste? Odmitl by podepsat?\n\nAsi ano. Doufam, ze ano.",
+    "wrote_back_flag": "wrote_martin",
+    "closing": "Martin",
+    "postscript": null,
+    "condition": null,
+    "effects": { "traits": { "Vina": 2 }, "trust": {}, "flags": {} },
+    "reaction": {
+      "prompt": "Martin pise o Tvem pripadu. Nevi to.",
+      "options": [
+        { "text": "Ctes znovu. A jeste jednou.", "effects": { "traits": { "Vina": 3 } } },
+        { "text": "Odkladas dopis tvari dolu.", "effects": { "traits": { "Moudrost": 1 } } }
+      ]
+    },
+    "archive_summary": "Martin pise o pripadu z novin. Nevi, ze je to Benuv."
+  },
+  {
+    "id": "vlcek_d11",
+    "day": 13,
+    "from": "vlcek",
+    "format": "official",
+    "delivery": "desk",
+    "phase": "morning_after_fragment",
+    "title": "Dopis od ministra Vlcka",
+    "salutation": "Pane doktore,",
+    "body": "nemam ve zvyku se opakovat. Presto - povazoval jsem za samozrejme, ze jiste veci pochopite sam.\n\nVidim, ze se mylim.\n\nBudu nucen zvazit, zda je Vase pozice jeste udrzitelna.",
+    "closing": "Vlcek",
+    "postscript": null,
+    "condition": { "trust": { "vlcek": { "max": 1 } } },
+    "effects": { "traits": {}, "trust": {}, "flags": {} },
+    "reaction": {
+      "prompt": "Hrozba. Poprve otevrena.",
+      "options": [
+        { "text": "Schovas do supliku.", "effects": { "traits": { "Moudrost": 2 } } },
+        { "text": "Nechas na stole. At lezi.", "effects": { "traits": { "Odvaha": 3 } } }
+      ]
+    },
+    "archive_summary": "Vlcek hrozi odvolanim. Nemam ve zvyku se opakovat."
+  },
+  {
+    "id": "martin_d14",
+    "day": 18,
+    "from": "martin",
+    "format": "personal",
+    "delivery": "auto",
+    "phase": "morning_after_fragment",
+    "title": "Dopis od Martina",
+    "salutation": "Otče,",
+    "body": "prijedu o vikendu. Mam Ti neco rict - ne v dopise, osobne.\n\nNemej obavy. Jen jsem se rozhodl o jedne veci a chci, abys to slysel ode mne.\n\nJe toho hodne, co se neda napsat.",
+    "body_wrote_back": "dekuji za posledni dopis.\n\nPrijedu o vikendu. Mam Ti neco rict - ne v dopise, osobne.\n\nNemej obavy. Jen jsem se rozhodl o jedne veci a chci, abys to slysel ode mne.\n\nJe toho hodne, co se neda napsat.",
+    "wrote_back_flag": "wrote_martin",
+    "closing": "Martin",
+    "postscript": null,
+    "condition": null,
+    "effects": { "traits": { "Vina": 2, "Nadeje": -1 }, "trust": {}, "flags": {} },
+    "reaction": null,
+    "archive_summary": "Martin prijede o vikendu. Ma neco na srdci."
+  }
+]

@@ -32,7 +32,7 @@ Flagy jsou uloženy v `State.flags`. Nastavují je: verdikty případů, adventu
 |---------|---------------|-------------------|
 | `odmitnut` | Ben odmítl vizitku (D6), nepoužil rodný list (D10), odmítl obálku (D11). | Čistý. Cesta k ATENTÁTU nebo HRDINOVI. |
 | `otevren` | Ben přijal informaci (rodný list D10 nebo Benešovu pravdu D9) ale ne peníze. | Ambivalentní — záleží na ostatním. |
-| `zavazany` | Ben přijal obálku 300 Kčs na D11 NEBO použil rodný list jako páku. | Kompromitovaný. Cesta ke KORUPCI nebo ŘÁDU. |
+| `zavazany` | Ben přijal obálku 300 Kčs na D11 NEBO použil rodný list jako páku. | Kompromitovaný. Cesta ke KORUPCI nebo KRUHU. |
 
 **Kde se nastavuje:**
 - `D6`: Haasova vizitka — přijmout nebo odložit (efekt jen na `otevren`)
@@ -48,7 +48,7 @@ Flagy jsou uloženy v `State.flags`. Nastavují je: verdikty případů, adventu
 |---------|---------------|-------------------|
 | `nezna` | Výchozí. Beneš nepřišel nebo Ben scénu odmítl. | Jen pokud hráč zcela ignoroval signály. |
 | `prijal` | Ben v adventure scéně D9 zvolil: věřím ti / vezmu dokument. | Ví víc než ostatní. Cesta ke SMÍŘENÍ nebo ATENTÁTU. |
-| `odmitl` | Ben dokument odmítl nebo Benešovi nevěřil. | Zůstává v instituci. Cesta k PŘEŽITÍ nebo ŘÁDU. |
+| `odmitl` | Ben dokument odmítl nebo Benešovi nevěřil. | Zůstává v instituci. Cesta k PŘEŽITÍ nebo KRUHU. |
 
 **Kde se nastavuje:**
 - `D9`: Adventure scéna Beneš — jediné rozhodnutí, nastavuje flag okamžitě.
@@ -84,7 +84,7 @@ Každý konec potřebuje **max 2 uzlové flagy** + případně 1 pomocný flag. 
 | 5 | **SMÍŘENÍ** | D12 | `benes_pravda == prijal` + `osobni_cena != haasem` | INT ≥ 60, VIN ≤ 20 |
 | 4 | **ÚTĚK** | D13 | `haas_kontakt != zavazany` + `osobni_cena == zaplatil` + Karas D13 nabídl odchod | Finance > 300 |
 | 6 | **ATENTÁT** | D13 | `vlcek_vztah == vzdor` + `haas_kontakt == odmitnut` + `benes_pravda == prijal` | ODV ≥ 80, MOC ≤ 20 |
-| 7 | **ŘÁD** | D14 | `vlcek_vztah != vzdor` + `haas_kontakt == zavazany` + `benes_pravda == odmitl` | Zavadová ≥ 3 |
+| 7 | **KRUH** | D14 | `vlcek_vztah != vzdor` + `haas_kontakt == zavazany` + `benes_pravda == odmitl` | Zavadová ≥ 3 |
 | 8 | **ANNA** | D14 | `benes_pravda == prijal` + `haas_kontakt == odmitnut` + `osobni_cena == nerozhodl` | Finance < 100, průzkum ≥ 80 % |
 | 3 | **HRDINA** | D15 | `vlcek_vztah == vzdor` + `haas_kontakt == odmitnut` | INT ≥ 80, ODV ≥ 80 |
 | 1 | **PŘEŽITÍ** | D15 | Výchozí — žádné jiné podmínky nesplněny | — |

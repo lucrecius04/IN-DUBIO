@@ -32,7 +32,7 @@ Vstupní přehled celé složky: [`ReadMeScenar.md`](./ReadMeScenar.md) — vžd
 
 **Forma:** 1–3 obrazovky max.; žádné dlouhé expo. Preferuj **jednu volbu** s 2–4 variantami nebo krátký dialog + jedna volba.
 
-**Od cca 10. dne (druhá polovina aktu):** večery mohou nést **druhou vrstvu** — odložený dopad včerejšího dne, ostřejší reakci NPC na verdikt, nebo krátký „dohled“ bez nové mechaniky. V `Mapa_15dni.csv` je to sloupec **Vecer_doplnek** (návrhy pro `Vlakna.csv` / `Dopisy.csv` / `evening_choice`).
+**Od cca 10. dne (druhá polovina aktu):** večery mohou nést **druhou vrstvu** — odložený dopad včerejšího dne, ostřejší reakci NPC na verdikt, nebo krátký „dohled“ bez nové mechaniky. V `Mapa_15dni.csv` je to sloupec **Vecer_doplnek** (návrhy pro `Vlakna_15dni.csv` / `Dopisy_15dni.csv` / `evening_choice`).
 
 **Propojení s tabulkami:** v `Mapa_15dni.csv` má každý pracovní den sloupce pro večer, poznámky a dále **Modif_dne**, **Vecer_doplnek**, **Patrani_navrh**; v `Balancing.csv` sloupec **Scenar_modif_navrh**. V `days.json` se obsah napojí až bude scénář nasazen do hry. Přehled milníků: [`Milniky-dynamika-akt1.md`](./Milniky-dynamika-akt1.md).
 

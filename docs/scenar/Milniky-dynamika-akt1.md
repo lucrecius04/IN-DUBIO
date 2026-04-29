@@ -18,7 +18,7 @@ Související: [`Mapa_15dni.csv`](./Mapa_15dni.csv), [`Pripady_15dni.csv`](./Pri
 | 9 | **Beneš**, **VETVENÍ 2** | Osobní pravda, účet za uhlí. |
 | 10 | **Zvraty** (`tyc_zvraty_d10`, slot 2), rutinní pool (slot 1), light (slot 3) | Rodný list / Anna / Haas — osobní tyč místo klasického spisu. |
 | 11 | **Haas osobně** (`tyc_haas_d11`, slot 2), rutinní pool (slot 1), light (slot 3) | **VETVENÍ 3**, obálka 300 Kčs; echo `flag_pospisil_dluzi` zůstává v ranním fragmentu. |
-| 12 | **Závadová** (`tyc_zavadova_d12`, slot 2), morální pool (slot 1), light (slot 3) | Podvrh, Řád; uzavření osobní trilogie D10–D12. |
+| 12 | **Závadová** (`tyc_zavadova_d12`, slot 2), morální pool (slot 1), light (slot 3) | Podvrh, Kruh svědomí; uzavření osobní trilogie D10–D12. |
 | 13 | **Karas**, **VETVENÍ 4** | Osobní cena. |
 | 14 | Marková obžalovaná, poslední pool | Předposlední pracovní den. |
 | 15 | **Velezrada** (1 slot) | Epilog aktu. |
@@ -69,6 +69,6 @@ V **`Mapa_15dni.csv`** typy **Mor** / **Pol** přibývají od 2. týdne. Tento s
 
 ---
 
-## 7) Třetí spis (od D15)
+## 7) Třetí spis (od D8)
 
-Oddělený pool `data/pool_cases_light_akt1.json`, pravidla v `cases.mdc`. Tento přehled **nepřidává** třetí řádek do tabulky milníků — jen upozorňuje na synchronizaci s mapou od 15. dne.
+Od druhého týdne kalendáře (`day >= 8`) může být na stole třetí spis v režimu light (viz `days.json` + `cases_light`). Pravidla drž v `cases.mdc`; tento přehled jen hlídá synchronizaci mapy a denních dat.

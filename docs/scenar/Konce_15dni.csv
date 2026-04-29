@@ -5,5 +5,5 @@ Konec;Nejdrive;INT;ODV;MOU;VIN;NAD;MOC;LID;KAP;Vlcek;Zavad;Karas;Benes;D7;D9;D11
 4. UTEK;D13;--;--;--;--;--;--;--;--;--;>=2;--;--;--;--;--;Poslechl;--;>300;--;Utek
 5. SMIRENI;D12;>=60;--;--;<=20;--;--;--;--;--;--;--;scena;--;Prijal;Odmitl;--;--;--;--;Klid
 6. ATENTAT;D13;>=60;>=80;--;--;--;<=20;--;--;0;--;--;--;Odmitl;--;Odmitl;Ignoroval;NEPOUZIL;--;--;Tragicka velikost
-7. RAD;D14;--;--;--;--;--;--;--;--;odmitl;3;--;--;Odmitl;--;--;--;POUZIL;--;--;Temna ironie
+7. KRUH;D14;--;--;--;--;--;--;--;--;odmitl;3;--;--;Odmitl;--;--;--;POUZIL;--;--;Temna ironie
 8. ANNA;D14;--;--;--;<=20;--;--;--;--;odmitl;odmitl;--;scena;Odmitl;Prijal;Odmitl;--;--;<100;80%+;Ticha katarze

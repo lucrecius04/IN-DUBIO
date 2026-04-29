@@ -5875,7 +5875,7 @@ const UI = (() => {
       hrdina:   'Hrdina',
       smireni:  'Smíření',
       utek:     'Útěk',
-      rad:      'Řád',
+      rad:      'Kruh',
       anna:     'Anna'
     };
 

@@ -380,10 +380,17 @@ const Desk = (() => {
     if (obalka) {
       obalka.classList.remove('desk-scene-obalka--prvni-let');
       const preceteno = _obalkaStoluPrecetenaProDen.has(denCislo);
-      /* Den 1: obálka vždy (nová hra / chybějící days.json); jinak dle letter / vlcek_letter. */
+      /* Den 1: obálka vždy (nová hra / chybějící days.json); jinak dle letter / letters / vlcek_letter. */
+      const pendingKlic = 'flags.pending_desk_letters_day_' + denCislo;
+      const pending = State.get(pendingKlic);
+      const maPendingDeskLetters = Array.isArray(pending) && pending.length > 0;
       const maDatyDopis = !!(
         denEfektivni &&
-        (!!denEfektivni.letter || !!denEfektivni.vlcek_letter)
+        (
+          !!denEfektivni.letter ||
+          !!denEfektivni.vlcek_letter ||
+          maPendingDeskLetters
+        )
       );
       /* Den 1: vrstva dopisu i bez days.json; skrytí jen po přečtení (viz skryjObalkuStoluPoPreceniVlcka). */
       const maVrstvuDopisu = denCislo === 1 || maDatyDopis;
@@ -463,6 +470,16 @@ const Desk = (() => {
           typeof DataLoader !== 'undefined' && DataLoader.ziskejDen
             ? DataLoader.ziskejDen(d)
             : null;
+        if (
+          denDat &&
+          Array.isArray(denDat.letters) &&
+          denDat.letters.length > 0 &&
+          typeof Engine !== 'undefined' &&
+          typeof Engine.otevriDopisZeStolu === 'function'
+        ) {
+          Engine.otevriDopisZeStolu();
+          return;
+        }
         if (
           denDat &&
           denDat.vlcek_letter &&

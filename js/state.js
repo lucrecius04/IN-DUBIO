@@ -262,7 +262,7 @@ const State = (() => {
   const VYCHOZI_STAV = {
     currentDay: 1,
     phase: 'morning',          // morning | forenoon | noon | afternoon | evening | night
-    investigationActionsLeft: 10,
+    investigationActionsLeft: 3,
 
     traits: {
       Integrita: 70,
