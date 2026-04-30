@@ -1,10 +1,10 @@
 {
   "id": "tyc_bozena_3",
-  "slot": "pool",
+  "slot": "pillar",
   "type": "political",
   "color": "#8A5A3A",
   "available_days": [
-    8
+    10
   ],
   "act": 1,
   "weight_conditions": {
@@ -16,7 +16,7 @@
     "name": "Božena Kučerová",
     "age": 56,
     "occupation": "chalupářka",
-    "detail": "tatáž osoba jako Sp. zn. Božena 1 (slepice) a Božena 2 (kozel). Tentokrát nečelí přestupku. Čelí vyvlastnění."
+    "detail": "tatáž osoba jako ve věcech Sp. zn. 91/1931 (slepice) a 92/1931 (urážka na cti). Tentokrát nečelí přestupku. Čelí vyvlastnění."
   },
   "charge": "Řízení o námitkách proti vyvlastnění dle §§ 365–370 občanského zákoníku ve spojení s §4 zákona č. 126/1927 Sb. o stavbě silnic: Stavební společnost PRAGA ROADS a.s. podala žádost o vyvlastnění pozemku č. p. 12 (Kučerová, Úněticích) jako nezbytnou součást trasy silnice II. třídy Praha–Únětice–Horoměřice. Božena Kučerová námitky podala — tvrdí, že trasa byla uměle vedena přes její pozemek, ačkoli existuje alternativní trasa přes obecní louku.",
   "description": "Dvě věci se staly ve stejný týden. Václav Šebek prodal svůj statek firmě PRAGA ROADS za cenu, o níž se v Úněticích nemluví. A Boženě přišlo oznámení, že její zahrada s jabloněmi — ta, kvůli níž čelila dvěma soudům — má být vyvlastněna ve veřejném zájmu. Trasa silnice Praha–Horoměřice vede přes čtyři pozemky. Tři jsou obecní nebo opuštěné. Jeden je Boženin. Projektant tvrdí, že alternativa přes obecní louku by prodloužila trasu o 340 metrů a zvýšila náklady. Božena tvrdí, že louka je rovná a prázdná a 340 metrů nikomu neuškodí. JUDr. Knot zastupuje PRAGA ROADS.",
@@ -75,7 +75,7 @@
         "knot"
       ],
       "highlight_at_wisdom": 65,
-      "unlocks_confrontation": "projektant"
+      "unlocks_confrontation": null
     },
     {
       "id": "souhlas_pred_pruzkumem",
@@ -166,7 +166,7 @@
           "narrative_lines": [
             "Geodesia Praha: průzkum trasy v září, ocenění pozemku v říjnu — obojí pro PRAGA ROADS.",
             "Jeden dodavatel. Dva výstupy. Oba výhodné pro zadavatele. To není náhoda — to je systém.",
-            "Šebek prodal v červenci. Trasa šla přes Kučerovou v srpnu. Průzkum přišel v září. Pořadí mluví samo."
+            "Šebek prodal v červenci 1930. Trasa šla přes Kučerovou v srpnu 1930. Průzkum přišel v září 1930. Pořadí mluví samo."
           ]
         },
         "medium": {

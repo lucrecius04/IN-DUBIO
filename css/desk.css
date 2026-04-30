@@ -462,6 +462,43 @@
   padding: 0 12px;
 }
 
+/* Den explicitně bez spisů (cases: []) — variant „schovat složky“, panel místo nich */
+.desk-bez-spisu-hlaska {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: clamp(72px, 18vh, 140px);
+  z-index: 8;
+  max-width: 420px;
+  width: calc(100% - 40px);
+  margin: 0;
+  padding: 14px 18px;
+  text-align: center;
+  font-family: var(--pismo-typewriter, 'IBM Plex Mono', monospace);
+  color: #231c12;
+  /* Plně krycí pozadí (žádná průhlednost přes dřevo stolu) */
+  background: linear-gradient(180deg, #f3ead8 0%, #e4d9c2 100%);
+  border: 1px solid #7a6a4e;
+  border-radius: 2px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
+  pointer-events: none;
+}
+
+.desk-bez-spisu-hlaska__titul {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: #3d3428;
+}
+
+.desk-bez-spisu-hlaska__text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  font-style: italic;
+}
+
 .slozka {
   width: 138px;
   min-height: 148px;

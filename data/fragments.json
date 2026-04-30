@@ -15,7 +15,7 @@
     "id": "fragment_d5_tichy_rano",
     "type": "clipping",
     "title": "Ranní ticho — 7. března 1931",
-    "text": "Poprvé po dnech vyšlo slunce. Na chodbě je cítit káva a studený kámen.\n\nNa okamžik to vypadá, že město dýchá pomaleji."
+    "text": "Poprvé po dnech vyšlo slunce. Na chodbě je cítit vlkost a studený kámen.\n\nNa okamžik to vypadá, že město dýchá pomaleji."
   },
   {
     "id": "fragment_d5_tichy_noc",
@@ -27,7 +27,7 @@
     "id": "fragment_d3_noviny",
     "type": "clipping",
     "title": "Ranní list — 3. března 1931",
-    "text": "STARÝ ROZSUDEK, NOVÉ OTÁZKY\n\nRedakční sloupek připomíná případ Antonína Beneše. Odsouzen v roce 1921, zemřel ve vězení.\n\nAutoři píší o procesních mezerách. Archiv soudu zůstává uzavřen."
+    "text": "STARÝ ROZSUDEK, NOVÉ OTÁZKY\n\nRubrika „Za naleštěným sklem“ se vrací k případu dělníka Antonína Beneše, odsouzeného roku 1921 a mrtvého ve vězení dřív, než stihl odvolání. Redaktor drží tón suchý, bez patosu, jen datum, paragraf a chladná věta o poslední návštěvě rodiny, a mezi řádky pořád dokola otáčí lhůtu, opis a doručení tak, že na konci zůstane mezera tam, kde by měl stát podpis.\n\nDál list naznačuje, že jeden svědek mluvil v předběžném řízení jinak než v hlavním líčení a že spisy stažené z oběhu dřív, než je viděla obhajoba, nejsou v kuloárech výjimkou z jednoho pátku. Autoři končí u archivu soudu, který na dotazy odpovídá jednou větou o zvláštním řízení a o tom, že spis „dosud není k dispozici“, a nechávají čtenáře s pocitem, že papír voní inkoustem, ale mezera po něm voní hůř."
   },
   {
     "id": "fragment_d6_morning",
@@ -140,8 +140,8 @@
   {
     "id": "fragment_d7_nedele_rano",
     "type": "letter",
-    "title": "Neděle — ticho",
-    "text": "Telefon mlčí. Chodba je prázdná a papír na stole leží nezvykle rovně.\n\nDnes nesoudíš. Dnes jen neseš, co z týdne zůstalo."
+    "title": "Neděle — prázdná budova",
+    "text": "Neděle: soud nevolá jednání a úřední telefon na chodbě umlkl. Přesto si bereš klíče od kanceláře — v pátek zůstala rozepsaná věta v okraji spisu, v hlavě máš datum, které si opakuješ sám od sebe, a doma by tě stejně čekal stůl a lampa jen bez kroku přes nádvoří.\n\nBudova je prázdná, protože sem dnes nikoho nečekají. Ty sis ji vybral na chvíli, kdy nemusíš odpovídat živému hlasu — jen papíru a vlastnímu rytmu."
   },
   {
     "id": "fragment_d7_nedele_vecer",
@@ -195,30 +195,60 @@
     "id": "fragment_tyden_bonus_a",
     "type": "clipping",
     "title": "Poznámka do spisu",
-    "text": "Týdenní stopa: důsledně jsi četl, než jsi razil. Někdo to na chodbě pošeptal — bez jména, bez pochvaly, jen jako fakt."
+    "text": "Většinu spisů jsi nechal projít rukama opravdu — ne šmiknutím přes diagonálu. Chodby to nepoklonkovaly, ale všimly si toho."
   },
   {
     "id": "fragment_tyden_bonus_b",
     "type": "clipping",
     "title": "Úřední záznam",
-    "text": "Týden bez obálky v šuplíku. V knize to nebude kapitola — jen řádek, který se vejde mezi dvě čísla."
+    "text": "Co šlo koupit mlčení, sis nekoupil. Město o tom nevydá článek — jen si to někam škrtne."
   },
   {
     "id": "fragment_tyden_bonus_c",
     "type": "clipping",
     "title": "Poznámka",
-    "text": "Žádné odložení. Tvrdší tempo — a přesto sis nenechal ujít termín. Úřad to zaznamená jako výjimku, ne jako pravidlo."
+    "text": "Termíny držely čelist; nic nezůstalo ve šuplíku jako „jen do pátku“."
   },
   {
     "id": "fragment_tyden_bonus_d",
     "type": "clipping",
     "title": "Týdenní vzorec",
-    "text": "Linie rozhodování se vykrystalizovala. Až příliš čitelná na to, aby o ní nikdo nevěděl — a příliš tichá na to, aby o ní křičeli noviny."
+    "text": "Tvoje rozsudky tento týden dávaly jednu barvu — takovou, aby ji nešlo přehlédnout shora ani zdola. Noviny o tom možná neřvou, ale chodby o tom ví."
   },
   {
     "id": "fragment_tyden_bonus_e",
     "type": "clipping",
     "title": "Těžké dny",
-    "text": "Několik rozsudků tě stálo víc než inkoust. Nepočítá se to veřejně — ale ty to na sobě cítíš ještě v neděli."
+    "text": "Několik tvrdých vět pod pečetí tě stálo víc než úsměv v září radnice. Tělo to ví dřív než kalendář."
+  },
+  {
+    "id": "fragment_d2_rano",
+    "type": "clipping",
+    "title": "Ráno — úterý u soudu",
+    "text": "Druhý den zpátky ti chodby připadají kratší. Tělo si zvyká asi rychleji než hlava. Papír na stole přestává být novinkou, stává se jen povinností.\n\nU pekárny je fronta delší než včera. Unavená prodavačka opakovaně říká cenu. O tři koruny vyšší než loni v březnu."
+  },
+  {
+    "id": "fragment_d4_rano",
+    "type": "clipping",
+    "title": "Ráno — čtvrtek",
+    "text": "Na dvorku za soudem hrají děti s papírovým míčem. Kopnou ho až na chodník — a pak ho zase vrátí, jako by nic nenašlapovalo přes práh.\n\nNa stole už čeká pošta. Jedna obálka je od doktora. Druhá od Vlčka."
+  },
+  {
+    "id": "fragment_d5_patek_trh",
+    "type": "clipping",
+    "title": "Ráno — pátek na trhu",
+    "text": "Sobotní trh se přesouvá už od rána: méně stánků, víc očí na bednách. Někdo prodává poslední jablka, někdo jen mlčí a váží.\n\nV kanceláři voní káva a starý vosk. Týden se chýlí — a ty cítíš, že město drží dech o den dřív než obvykle."
+  },
+  {
+    "id": "fragment_d13_sobota_rano",
+    "type": "clipping",
+    "title": "Druhá sobota v březnu",
+    "text": "Budova soudu je zavřená jako trezor. Jen hlídač kývne z okénka a vrátí se ke čtení.\n\nTy máš volno — a přesto tě bolí zápěstí, jako bys pořád razil."
+  },
+  {
+    "id": "fragment_d18_rano",
+    "type": "clipping",
+    "title": "Předposlední pracovní ráno",
+    "text": "Světlo v okně je jiné — ostřejší, bledší. Jako by se město probudilo dřív než ty.\n\nNa stole leží spisy, které nejdou odložit pod „později“. Martinův dopis šeptá o víkendu. Ty víš, že některé věty se nečtou nahlas."
   }
 ]

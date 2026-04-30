@@ -6,7 +6,7 @@
   "type": "moral_dilemma",
   "color": "#5A5A4A",
   "available_days": [
-    14
+    18
   ],
   "act": 1,
   "weight_conditions": {
@@ -18,7 +18,7 @@
     "name": "Věra Marková",
     "age": 34,
     "occupation": "účetní",
-    "detail": "zaměstnankyně firmy Beneš & syn, Karlín — tatáž osoba jako Sp. zn. Marková 1 (svědkyně) a Marková 2 (záchrankyně). Tentokrát sedí na druhé straně stolu."
+    "detail": "zaměstnankyně firmy Beneš & syn, Karlín — tatáž osoba jako ve věci Sp. zn. 95/1931 (svědkyně u Čermáka) a Sp. zn. 112/1931 (svědkyně ve prospěch Vávry). Tentokrát sedí na druhé straně stolu."
   },
   "charge": "Padělání obchodních dokladů dle §201 trestního zákona a porušení obchodní věrnosti dle §200: Věra Marková v době od ledna do března 1931 systematicky pozměňovala záznamy v účetní knize firmy Beneš & syn — konkrétně výkazy příjmů za zakázky pro odběratele Fojtík a Mrázek — tak, aby zakryly platby přijaté mimo řádnou evidenci firmy. Celková výše manipulovaných záznamů: 6 800 Kčs.",
   "description": "Věra Marková, která dvakrát zachránila jiné lidi přesností svých záznamů, teď čelí obžalobě z padělání záznamů. Přesně ona. Přesnost jako zbraň i jako štít — a teď jako důkaz viny. Beneš ml. předložil účetní knihy a vlastní revizní zprávu. Marková přiznala, že záznamy opravovala — ale říká, že opravovala chyby, které tam neudělala ona. Sešit — ten záhadný sešit z D3 a D10 — je nyní v rukou soudu. A v sešitu je víc, než všichni čekali.",
@@ -26,7 +26,7 @@
     {
       "id": "markova_obzalovana",
       "speaker": "Věra Marková, obžalovaná",
-      "text": "Záznamy jsem opravovala. To přiznám. Ale neopravovala jsem je, aby skryly příjmy — opravovala jsem je, protože příjmy tam nebyly správně zapsány. <span class=\"clue\" data-clue-id=\"clue_markova_puvodni\">Původní záznamy pro Fojtíka a Mrázka psal pan Beneš ml. sám — v lednu, když jsem byla čtyři dny nemocná. Pak mi předal knihy. Čísla nesedela. Ptala jsem se. Řekl: přepsat to takhle. Přepsala jsem.</span> V sešitu mám původní čísla — ta, které jsem před přepsáním opsala.",
+      "text": "Záznamy jsem opravovala. To přiznám. Ale neopravovala jsem je, aby skryly příjmy — opravovala jsem je, protože příjmy tam nebyly správně zapsány. <span class=\"clue\" data-clue-id=\"clue_markova_puvodni\">Původní záznamy pro Fojtíka a Mrázka psal pan Beneš ml. sám — v lednu, když jsem byla na pracovní neschopnosti od 12. do 17. Pak mi předal knihy. Čísla nesedela. Ptala jsem se. Řekl: přepsat to takhle. Přepsala jsem.</span> V sešitu mám původní čísla — ta, které jsem před přepsáním opsala.",
       "contradiction_keywords": [
         "Beneš ml. psal sám",
         "nemocná",
@@ -48,7 +48,7 @@
     {
       "id": "revisor_doklad",
       "speaker": "Ing. Miroslav Šimánek, revizor, Obchodní komora Praha",
-      "text": "Záznamy pro <span class=\"clue\" data-clue-id=\"decoy_fojtik_zakaznik\">Fojtíka a Mrázka</span> v únoru 1931. Záznamy pro Fojtík a Mrázek nevykazují shodu s platebními doklady. <span class=\"clue\" data-clue-id=\"clue_revisor_prepis\">U čtyř záznamů jsou patrné stopy přepisu — jiný inkoust, mírně odlišný sklon písma. Přepis provedla jedna ruka. Zda je to ruka Markové — grafolog by musel potvrdit.</span> Numericky: záznamy skrývají příjem 6 800 Kčs, který v bance nesedí.",
+      "text": "Záznamy pro <span class=\"clue\" data-clue-id=\"decoy_fojtik_zakaznik\">Fojtíka a Mrázka</span> v únoru 1931. Záznamy pro Fojtík a Mrázek nevykazují shodu s platebními doklady. <span class=\"clue\" data-clue-id=\"clue_revisor_prepis\">U čtyř záznamů jsou patrné stopy přepisu — jiný inkoust, mírně odlišný sklon písma oproti původním nižším číslům. Zda druhá ruka patří Markové — to by musel potvrdit grafolog.</span> Numericky: záznamy skrývají příjem 6 800 Kčs, který v bance nesedí.",
       "contradiction_keywords": [
         "jiný inkoust",
         "grafolog",
@@ -81,13 +81,13 @@
     },
     {
       "id": "sesit_zachranil_nebo_obvinil",
-      "description": "Sešit Markové dokumentuje původní čísla a datum 18. ledna — den jejího návratu z nemoci. Sešit tak potvrzuje její verzi: záznamy byly hotové před jejím příchodem. Ale revizor říká, že přepis provedla jedna ruka. Čí ruka — to sešit neříká.",
+      "description": "Sešit Markové dokumentuje původní čísla a datum 18. ledna — den jejího návratu z nemoci. Sešit tak potvrzuje její verzi: záznamy byly hotové před jejím příchodem. Revizor a grafolog shodně ukazují na přepis jinou rukou než původní zápis — čí ruka přesně, to sešit sám o sobě neprokáže.",
       "involves": [
         "sesit_obsah",
         "revisor_doklad"
       ],
       "highlight_at_wisdom": 75,
-      "unlocks_confrontation": "benes_ml_obvinalej"
+      "unlocks_confrontation": null
     }
   ],
   "clue_system": {
@@ -283,7 +283,7 @@
       "approaches": {
         "formal": {
           "label": "Zproštění — přepis na pokyn nadřízeného, záměr padělání neprokázán",
-          "description": "Marková přepisovala záznamy na pokyn spolumajitele firmy. Osobní záměr padělat chybí. Sešit dokumentuje původní čísla — projev vůle záchovat pravdu, nikoli ji skrýt. Pokud soud v D3 zpochybnil Markovino svědectví (viz Sp. zn. Marková 1), toto zproštění jej přehodnocuje — bylo správné ji pochybovat? Nebo právě sešit dokazuje, že ne?",
+          "description": "Marková přepisovala záznamy na pokyn spolumajitele firmy. Osobní záměr padělat chybí. Sešit dokumentuje původní čísla — projev vůle záchovat pravdu, nikoli ji skrýt. Pokud soud v D3 zpochybnil Markovino svědectví (viz Sp. zn. 95/1931), toto zproštění jej přehodnocuje — bylo správné ji pochybovat? Nebo právě sešit dokazuje, že ne?",
           "requires_investigation": 2,
           "effects": {
             "integrita": 3,

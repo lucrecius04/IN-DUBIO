@@ -118,7 +118,7 @@
       "target": "vesely_kolega",
       "target_label": "František Duda, tiskař, přítomen na schůzi",
       "reveals": "motivation",
-      "text": "Byl jsem tam. Veselý mluvil o Ostravě — to ano. O nezákonných prostředcích? <span class=\"clue\" data-clue-id=\"clue_vesely_slova\">Říkal: 'Zákonné prostředky nestačí — ale to neznamená, že se máme vzdát.'</span> Takhle. Ne výzva. Konstatování. Ta ženská si to sedla do třetí řady a pořád něco psala. Mysleli jsme, že stenografuje pro stranu. <span class=\"clue\" data-clue-id=\"decoy_svedkyni_pozvani\">Kdesi u pultu se říkalo, že přišla na oficiální pozvání z ústředí — nikdo to neověřoval.</span> Pak jsme se dozvěděli, kdo je.",
+          "text": "Byl jsem tam. Veselý mluvil o Ostravě — to ano. O nezákonných prostředcích? <span class=\"clue\" data-clue-id=\"clue_vesely_slova\">Říkal: 'Zákonné prostředky nestačí — ale to neznamená, že se máme vzdát.'</span> Takhle. Ne výzva. Konstatování. Ta ženská si sedla do druhé řady a pořád něco psala. Mysleli jsme, že stenografuje pro stranu. <span class=\"clue\" data-clue-id=\"decoy_svedkyni_pozvani\">Kdesi u pultu se říkalo, že přišla na oficiální pozvání z ústředí — nikdo to neověřoval.</span> Pak jsme se dozvěděli, kdo je.",
       "cost": 1,
       "dirty_unlock": {
         "finance": -8,

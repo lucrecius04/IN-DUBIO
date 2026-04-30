@@ -55,7 +55,7 @@
       "description": "Navrátil zapsal náklad od Horáka 14. ledna jako II/B. Rejzek přijal náklad 16. ledna s dokladem II/B. Je to tentýž náklad — a Navrátil ho viděl.",
       "involves": ["navratil", "rejzek"],
       "highlight_at_wisdom": 60,
-      "unlocks_confrontation": "navratil"
+      "unlocks_confrontation": null
     }
   ],
   "clue_system": {

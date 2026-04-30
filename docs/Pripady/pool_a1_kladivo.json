@@ -62,7 +62,7 @@
       "description": "Dobiáš hrozil v úterý a v pátek se vrátil s otázkou 'tak co jsi rozhodl'. Šulc ho loni upozornil na politické vazby. Dobiáš nebyl náhodný agresor — opakovaně a vědomě tlačil na Řehoře.",
       "involves": ["rehor", "sulc_majitel"],
       "highlight_at_wisdom": 70,
-      "unlocks_confrontation": "rehor"
+      "unlocks_confrontation": null
     }
   ],
   "clue_system": {
@@ -82,7 +82,7 @@
         "strength": "medium"
       },
       {
-        "pair_id": "dobiasova_metoda_medium",
+        "pair_id": "horak_znalec_weak",
         "a_id": "clue_horak_uder",
         "b_id": "clue_znalec_rany",
         "strength": "weak"
@@ -207,7 +207,7 @@
         },
         "minimum": {
           "label": "3 roky — afekt v mezích zákona, mimořádná provokace",
-          "description": "Řehoř čelil třítýdennímu soustavnému zastrašování včetně přímé hrozby nezletilému synovi. Zákon uznává mimořádnou provokaci jako zmírňující okolnost. Tři roky jsou minimum pro čin s následkem smrti — ale odpovídají míře, v níž oběť přispěla k situaci.",
+          "description": "Řehoř čelil několikadennímu soustavnému zastrašování včetně přímé hrozby nezletilému synovi. Zákon uznává mimořádnou provokaci jako zmírňující okolnost. Tři roky jsou minimum pro čin s následkem smrti — ale odpovídají míře, v níž oběť přispěla k situaci.",
           "requires_investigation": 1,
           "effects": {
             "integrita": 1, "vina": 3, "nadeje": 0, "odvaha": 2, "lid": 1, "moc": -1, "finance": 12
@@ -226,7 +226,7 @@
         },
         "alternative_provokace": {
           "label": "Alternativa: 2 roky podmíněně — vražda v afektu za mimořádné provokace",
-          "description": "Obhajitelné pouze pokud soud uzná plný afekt. Znalec ho nevyloučil. Soustavná hrozba synovi po dobu týdne jako spouštěč — podmíněný trest v krajní hranici zákona. Řehoř jde domů. Ladislav dostane otce. Dobiášova žena dostane nic.",
+          "description": "Obhajitelné pouze pokud soud uzná plný afekt. Znalec ho nevyloučil. Soustavná hrozba synovi během několika dnů jako spouštěč — podmíněný trest v krajní hranici zákona. Řehoř jde domů. Ladislav dostane otce. Dobiášova žena dostane nic.",
           "requires_investigation": 3,
           "requires": { "odvaha_min": 65, "moudrost_min": 60 },
           "effects": {
@@ -241,7 +241,7 @@
       "approaches": {
         "afekt_pure": {
           "label": "Zproštění — plný afekt vylučující příčetnost",
-          "description": "Pouze pokud soud uzná, že soustavná hrozba synovi po dobu týdne vedla ke stavu plné afektivní nepříčetnosti v době činu. Znalec to nevyloučil. Řehoř jde domů — ale precedent říká, že hrozba odemyká beztrestnost.",
+          "description": "Pouze pokud soud uzná, že soustavná hrozba synovi během několika dnů vedla ke stavu plné afektivní nepříčetnosti v době činu. Znalec to nevyloučil. Řehoř jde domů — ale precedent říká, že hrozba odemyká beztrestnost.",
           "requires_investigation": 3,
           "requires": { "odvaha_min": 75 },
           "effects": {

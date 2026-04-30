@@ -19,6 +19,32 @@ const Narrative = (() => {
     clipping: 'Z NOVIN'
   };
 
+  /** Název dne v týdnu (kalendář hry = stejný posun jako u data ve fragmentech). */
+  const CESKE_DNY_V_TYDNU = ['Neděle', 'Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pátek', 'Sobota'];
+
+  /**
+   * Za „Typ — “ před kalendářní datum vloží den v týdnu (např. „Ranní ticho — Sobota, 7. března 1931“).
+   * Nechá beze změny tituly, kde za „—“ není datum (např. „Neděle — ticho“).
+   */
+  function doplnDenVTydneDoTitulku(titulek, den) {
+    const t = String(titulek || '').trim();
+    if (!t) return titulek;
+    const d = Number(den);
+    if (!Number.isFinite(d) || d < 1) return titulek;
+    const sep = '—';
+    const idx = t.indexOf(sep);
+    if (idx === -1) return titulek;
+    const prava = t.slice(idx + sep.length).trim();
+    if (!/^\d{1,2}\.\s+[a-záíéúěščřžýňťď]+/i.test(prava)) return titulek;
+    if (/^(neděle|pondělí|úterý|středa|čtvrtek|pátek|sobota)\s*,/i.test(prava)) return titulek;
+    const ZACATEK = new Date(1931, 2, 2);
+    const datum = new Date(ZACATEK);
+    datum.setDate(datum.getDate() + d - 1);
+    const jmeno = CESKE_DNY_V_TYDNU[datum.getDay()];
+    const leva = t.slice(0, idx).trimEnd() + ' ' + sep + ' ';
+    return leva + jmeno + ', ' + prava;
+  }
+
   function zobrazFragment(id, callback) {
     const fragment = DataLoader.ziskejFragment(id);
     if (!fragment) {
@@ -28,7 +54,12 @@ const Narrative = (() => {
     }
 
     State.oznacFragment(id);
-    UI.zobrazFragment(fragment, callback);
+    const den = Number(State.get('currentDay')) || 1;
+    const sTitulem = {
+      ...fragment,
+      title: doplnDenVTydneDoTitulku(fragment.title, den)
+    };
+    UI.zobrazFragment(sTitulem, callback);
   }
 
   function zpracujRanni(denDat) {
@@ -92,7 +123,8 @@ const Narrative = (() => {
     aktualizujNoviny,
     vyhodnotPodmineneRadky,
     getTYP_PANEL,
-    getTYP_NADPIS
+    getTYP_NADPIS,
+    doplnDenVTydneDoTitulku
   };
 
 })();

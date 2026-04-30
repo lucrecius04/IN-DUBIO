@@ -18,7 +18,7 @@
     "name": "Wilhelm Grünbaum",
     "age": 67,
     "occupation": "penzionovaný učitel",
-    "detail": "tatáž osoba jako Sp. zn. Hranice 1 (34 cm). Tentokrát nečelí sporu o zeď — čelí udání pro korespondenci se synem v Berlíně."
+    "detail": "tatáž osoba jako ve věci Sp. zn. 93/1931 (zeď, 34 cm). Tentokrát nečelí sporu o zeď — čelí udání pro korespondenci se synem v Berlíně."
   },
   "charge": "Šíření protistátní propagandy dle §14 zákona na ochranu republiky č. 50/1923 Sb.: Wilhelm Grünbaum dne 18. února 1931 zaslal svému synovi Ernstu Grünbaumovi (Berlín, Německo) dopis, v němž požádal o zprostředkování žádosti k berlínskému Úřadu pro ochranu Němců v zahraničí o potvrzení vlastnictví nemovitosti v Bubenči. Podnět podal Josef Kříž, soused Grünbaumův.",
   "description": "Zeď mezi Grünbaumem a Křížem stojí, kde stála — nebo skoro. Ale v únoru přišel z Berlína dopis. Ernstův. S hlavičkou, která Kříže znepokojila. Šel na policii. Wilhelm Grünbaum napsal synovi o potvrzení vlastnictví domu — kvůli německé dědické daně, říká. Kříž říká, že šlo o kontakt s nacistickou organizací. Zákon na ochranu republiky zná slovo protistátní. Nezná slovo sousedská zloba.",
@@ -87,7 +87,7 @@
         "komisar_bezpecnost"
       ],
       "highlight_at_wisdom": 70,
-      "unlocks_confrontation": "kriz"
+      "unlocks_confrontation": null
     }
   ],
   "clue_system": {

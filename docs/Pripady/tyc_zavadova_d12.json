@@ -6,7 +6,7 @@
   "type": "osobni",
   "color": "#5A4A2A",
   "available_days": [
-    12
+    16
   ],
   "act": 1,
   "weight_conditions": {
@@ -21,17 +21,17 @@
     "detail": "Tento případ nemá obžalovaného. Je to návštěva Mileny Zavadové."
   },
   "charge": "Bez obžaloby. Milena Zavadová přišla se sdělením.",
-  "description": "Milena Zavadová přišla ve středu dopoledne, bez ohlášení, s kufříkem z hnědé kůže, který vypadal, jako by ho nosila všude a vždy. Seděla přímo, mluvila jasně a věci říkala v takovém pořadí, že Ben neměl chvíli na to, aby se zeptal na předchozí, než přišla další. Pracuje pro Kruh svědomí — tak to řekla, bez vysvětlení, co Kruh je, jako by to bylo samozřejmé. Možná proto, že pro ni bylo.",
+      "description": "Milena Zavadová přišla v úterý dopoledne, bez ohlášení, s kufříkem z hnědé kůže, který vypadal, jako by ho nosila všude a vždy. Seděla přímo, mluvila jasně a věci říkala v takovém pořadí, že Ben neměl chvíli na to, aby se zeptal na předchozí, než přišla další. Pracuje pro Kruh svědomí — tak to řekla, bez vysvětlení, co Kruh je, jako by to bylo samozřejmé. Možná proto, že pro ni bylo.",
   "testimonies": [
     {
       "id": "zavadova_vi",
       "speaker": "Milena Zavadová",
-      "text": "'Víme o vaší matce. Víme o Haasově návštěvě — jestli přijal nebo odmítl, víme taky. Víme o složce, která se objevila na vašem stole.' Přestala a nechala ta slova sedět. <span class=\"clue\" data-clue-id=\"clue_zavadova_vi_vse\">Pak otevřela kufřík a položila na stůl jeden list papíru. 'Toto je zpráva z ministerstva dopravy ze čtrnáctého března 1931 — včera. Jmenuje se v ní Benedikt Vraný jako soudce, jehož rozhodnutí jsou v posledních třech měsících sledována.'</span> Ben se podíval na list. Razítko bylo reálné.",
-      "contradiction_keywords": [
-        "sledována",
-        "čtrnáctého března",
-        "zpráva"
-      ],
+          "text": "'Víme o vaší matce. Víme o Haasově návštěvě — jestli přijal nebo odmítl, víme taky. Víme o složce, která se objevila na vašem stole.' Přestala a nechala ta slova sedět. <span class=\"clue\" data-clue-id=\"clue_zavadova_vi_vse\">Pak otevřela kufřík a položila na stůl jeden list papíru. 'Toto je zpráva z ministerstva dopravy ze šestnáctého března 1931 — včera. Jmenuje se v ní Benedikt Vraný jako soudce, jehož rozhodnutí jsou v posledních třech měsících sledována.'</span> Ben se podíval na list. Razítko bylo reálné.",
+          "contradiction_keywords": [
+            "sledována",
+            "šestnáctého března",
+            "zpráva"
+          ],
       "hidden_at_wisdom_below": null
     },
     {
@@ -61,23 +61,23 @@
     {
       "id": "zprava_je_padelek",
       "description": "Zavadová přinesla zprávu z ministerstva jako hrozbu — ale pak přiznala, že jde o kopii, ne originál. Originál existuje nebo ne, záleží na Benově rozhodnutí. Hrozba, která může být smyšlená, je pořád hrozba — jen jiného druhu.",
-      "involves": [
-        "zavadova_ví",
-        "zavadova_podvrh"
-      ],
-      "highlight_at_wisdom": 65,
-      "unlocks_confrontation": "zavadova_vi"
-    },
-    {
-      "id": "haas_rad_spojeni",
-      "description": "Haas byl kontakt Kruhu — nebo je, záleží na výsledku jeho návštěvy D11. Zavadová to řekla bez přemýšlení, jako by to byl fakt. Složka na D10, Haas na D11, Zavadová na D12 — to není náhoda. Je to sekvence.",
-      "involves": [
-        "zavadova_nabidka",
-        "zavadova_podvrh"
-      ],
-      "highlight_at_wisdom": 75,
-      "unlocks_confrontation": "zavadova_vi"
-    }
+          "involves": [
+            "zavadova_vi",
+            "zavadova_podvrh"
+          ],
+          "highlight_at_wisdom": 65,
+          "unlocks_confrontation": "zavadova_vi"
+        },
+        {
+          "id": "haas_rad_spojeni",
+          "description": "Haas byl kontakt Kruhu — nebo je, záleží na výsledku jeho návštěvy u Bena. Zavadová to řekla bez přemýšlení, jako by to byl fakt. Nejdřív složka na stole, pak Haasova návštěva, pak Zavadová v kanceláři — to není náhoda. Je to sekvence.",
+          "involves": [
+            "zavadova_nabidka",
+            "zavadova_podvrh"
+          ],
+          "highlight_at_wisdom": 75,
+          "unlocks_confrontation": null
+        }
   ],
   "clue_system": {
     "enabled": true,
@@ -135,7 +135,7 @@
           ],
           "narrative_lines": [
             "Kopie, ne originál. Hrozba, která může být smyšlená — ale také nemusí.",
-            "Haas byl jejich kontakt. Složka, Haas, Zavadová — tři dny, jedna sekvence.",
+                "Haas byl jejich kontakt. Složka, Haas, Zavadová — jedna sekvence, ne náhoda.",
             "Podvrh jako nástroj. Zavadová to řekla klidně, jako by to bylo normální. Možná pro ni bylo."
           ]
         },
@@ -186,29 +186,29 @@
           "Moc": 1
         }
       },
-      "unlocks_contradiction": "zprava_je_padélek"
-    },
-    "informant": {
-      "reveals": "context",
-      "cost": 1,
-      "dirty_unlock": {
-        "finance": -8,
-        "traits": {
-          "Vina": 2
+          "unlocks_contradiction": "zprava_je_padelek"
         },
-        "factions": {
-          "Moc": 1,
-          "Kapital": 1
-        }
-      },
-      "variants": {
-        "moc_high": "Kruh existuje — nebo existovalo něco podobného — jako síť právníků a úředníků, kteří si navzájem pomáhají. Není to ilegální, dokud nepřekračuje určitou linii. Prohlášení, které Zavadová přinesla, je vstup. Výstup z toho neexistuje.",
-        "kapital_high": "Zavadová není jméno, které by Haas znal — nebo tvrdí, že nezná. Ale Haas je jejich kontakt. Buď Haas lže, nebo Zavadová lže o tom, čí kontakt Haas je. Jedno z toho musí být pravda.",
-        "default": "Tři dny v řadě: složka, Haas, Zavadová. Ben nebyl vybrán náhodou — byl vybrán proto, že má Wolfův případ. A Wolfův případ je pátek."
-      }
-    },
-    "confrontation": {
-      "target": "zavadova_vi",
+        "informant": {
+          "reveals": "context",
+          "cost": 1,
+          "dirty_unlock": {
+            "finance": -8,
+            "traits": {
+              "Vina": 2
+            },
+            "factions": {
+              "Moc": 1,
+              "Kapital": 1
+            }
+          },
+          "variants": {
+            "moc_high": "Kruh existuje — nebo existovalo něco podobného — jako síť právníků a úředníků, kteří si navzájem pomáhají. Není to ilegální, dokud nepřekračuje určitou linii. Prohlášení, které Zavadová přinesla, je vstup. Výstup z toho neexistuje.",
+            "kapital_high": "Zavadová není jméno, které by Haas znal — nebo tvrdí, že nezná. Ale Haas je jejich kontakt. Buď Haas lže, nebo Zavadová lže o tom, čí kontakt Haas je. Jedno z toho musí být pravda.",
+            "default": "Nejdřív se objevila složka na stole, pak přišel Haas, pak Zavadová — Ben nebyl vybrán náhodou; byl vybrán proto, že má Wolfův případ. A ten případ je naplánovaný na pátek."
+          }
+        },
+        "confrontation": {
+          "target": "zavadova_vi",
       "target_label": "Milena Zavadová",
       "requires_contradiction": "zprava_je_padelek",
       "requires_courage": 65,
@@ -326,7 +326,7 @@
   },
   "stamp_moment": {
     "guilty": "Zavadová zavřela kufřík. Cvaknutí zámku bylo velmi hlasité v tiché místnosti.",
-    "not_guilty": "Zavadová odešla. Kufřík s sebou. Prohlášení s sebou. Ben seděl sám — a poprvé za tři dny byl v kanceláři skutečně sám.",
+    "not_guilty": "Zavadová odešla. Kufřík s sebou. Prohlášení s sebou. Ben seděl sám — a poprvé po této sérii návštěv byl v kanceláři skutečně sám.",
     "insufficient": "Kufřík stojí v rohu. Prohlášení leží na stole. Ben ví, že ráno bude jiný den — ale kufřík tam bude pořád."
   },
   "delayed_consequences": [
@@ -334,7 +334,7 @@
       "trigger": "guilty_podepsat",
       "delay_days": 2,
       "type": "fragment",
-      "text": "Přišel dopis bez odesílatele. Uvnitř jeden list — seznam jmen, u každého krátká poznámka. Benovo jméno bylo třetí. Poznámka u něj: 'V kontaktu od 12. března.' Ben list přečetl a spálil. Nebo ne."
+      "text": "Přišel dopis bez odesílatele. Uvnitř jeden list — seznam jmen, u každého krátká poznámka. Benovo jméno bylo třetí. Poznámka u něj: 'V kontaktu od 17. března.' Ben list přečetl a spálil. Nebo ne."
     },
     {
       "trigger": "not_guilty_odmitnut_s_konfrontaci",

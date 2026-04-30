@@ -25,14 +25,17 @@
   "description": "Správce nájemního domu Jaroslav Blecha je obžalován ze zpronevěry 520 Kčs nájemného za čtvrtý kvartál roku 1930. Majitel domu Eugen Taussig schodek odhalil při ročním vyúčtování v lednu 1931 a neprodleně podal trestní oznámení. Blecha přijetí hotovosti od nájemníků nezapírá, tvrdí však, že celou částku v plné výši vynaložil na havarijní opravu vodoinstalace a výměnu shnilých okenních rámů, k nimž dal příkaz sám, neboť majitel na jeho opakované žádosti nereagoval. Na stole leží opis dopisu, jejž prý Blecha Taussigovi odeslal doporučeně v září 1930, a faktura žižkovského tesáře Antonína Beneše na přesně 520 Kčs. Taussig prohlašuje, že žádný dopis v průběhu roku 1930 neobdržel a k žádné opravě nedal souhlas.",
   "testimonies": [
     {
+      "id": "taussig",
       "speaker": "Eugen Taussig, 61 let, rentier, Praha-Vinohrady (poškozený)",
-      "text": "Jsem vlastníkem předmětné nemovitosti od roku 1921. Správce Blecha byl mým zaměstnancem na základě písemné smlouvy a byl povinen nájemné přijímat, řádně zaznamenávat a každé čtvrtletí mi je v plné výši předávat; k jakékoli opravě musel předem obdržet můj písemný souhlas a výslovné finanční krytí. <span class=\"clue\" data-clue-id=\"clue_taussig_zadny_dopis\">Žádnou písemnou žádost o provedení oprav ani upozornění na technické závady jsem od správce Blechů v průběhu celého roku 1930 neobdržel.</span> <span class=\"clue\" data-clue-id=\"clue_taussig_cervenec\">Dům jsem osobně navštívil v červenci 1930 a shledal jej v plně provozuschopném stavu bez zjevných závad.</span> Blecha jednal zcela bez mého vědomí a způsobil mi majetkovou újmu. <span class=\"clue\" data-clue-id=\"clue_taussig_prodej\">Přiznám, že jsem v listopadu 1930 přizval soudního odhadce — posuzoval jsem, zda a za kolik mohu nemovitost v příštích letech prodat. To s touto věcí nesouvisí.</span>"
+      "text": "Jsem vlastníkem předmětné nemovitosti od roku 1921. Správce Blecha byl mým zaměstnancem na základě písemné smlouvy a byl povinen nájemné přijímat, řádně zaznamenávat a každé čtvrtletí mi je v plné výši předávat; k jakékoli opravě musel předem obdržet můj písemný souhlas a výslovné finanční krytí. <span class=\"clue\" data-clue-id=\"clue_taussig_zadny_dopis\">Žádnou písemnou žádost o provedení oprav ani upozornění na technické závady jsem od správce Blechy v průběhu celého roku 1930 neobdržel.</span> <span class=\"clue\" data-clue-id=\"clue_taussig_cervenec\">Dům jsem osobně navštívil v červenci 1930 a shledal jej v plně provozuschopném stavu bez zjevných závad.</span> Blecha jednal zcela bez mého vědomí a způsobil mi majetkovou újmu. <span class=\"clue\" data-clue-id=\"clue_taussig_prodej\">Přiznám, že jsem v listopadu 1930 přizval soudního odhadce — posuzoval jsem, zda a za kolik mohu nemovitost v příštích letech prodat. To s touto věcí nesouvisí.</span>"
     },
     {
+      "id": "kopecka",
       "speaker": "Věra Kopecká, 54 let, nájemnice v bytě č. 3, Žižkov (svědkyně)",
-      "text": "<span class=\"clue\" data-clue-id=\"clue_kopecka_zari\">Koncem září přestala v bytě řádně téct teplá voda — potrubí u kuchyňského spoje cedilo a na přilehlé zdi se začala šířit vlhkost.</span> Pan Blecha přišel bez vyzvání ještě téhož týdne, závadu si prohlédl a slíbil zařídit nápravu. Za dva týdny dorazil tesař, potrubí opravil a bylo po potížích. <span class=\"clue\" data-clue-id=\"clue_kopecka_majitel\">Od pana Taussiga jsem za celý rok 1930 neslyšela ani slova — ani přes Blechů, ani osobně.</span> Nevím, co si mezi sebou psali."
+      "text": "<span class=\"clue\" data-clue-id=\"clue_kopecka_zari\">Koncem září přestala v bytě řádně téct teplá voda — potrubí u kuchyňského spoje cedilo a na přilehlé zdi se začala šířit vlhkost.</span> Pan Blecha přišel bez vyzvání ještě téhož týdne, závadu si prohlédl a slíbil zařídit nápravu. Za dva týdny dorazil tesař, potrubí opravil a bylo po potížích. <span class=\"clue\" data-clue-id=\"clue_kopecka_majitel\">Od pana Taussiga jsem za celý rok 1930 neslyšela ani slova — ani přes pana Blechu, ani osobně.</span> Nevím, co si mezi sebou psali."
     },
     {
+      "id": "benes",
       "speaker": "Antonín Beneš, 38 let, tesař a instalatér, Žižkov (svědek)",
       "text": "Pan Blecha mě přivolal začátkem října loňského roku. Práce obnášela opravu vodovodního rozvodu v přízemí a výměnu dvou dřevěných okenních rámů v prvním patře, kde dřevo vykazovalo hnilobu. <span class=\"clue\" data-clue-id=\"clue_benes_castka\">Celková cena za provedené dílo činila 520 Kčs; přijal jsem platbu v hotovosti ve dvou splátkách — 250 Kčs dne 18. října a 270 Kčs dne 3. listopadu 1930.</span> Fakturu jsem vystavil na jméno Blecha, neboť s ním jsem dohodu uzavřel. Majitele domu jsem nikdy neviděl ani neslyšel."
     }
@@ -43,7 +46,7 @@
       "description": "Taussig uvádí, že žádný dopis neobdržel, poštovní kniha ale eviduje převzetí zásilky č. 4471 dne 16. září 1930.",
       "involves": [
         "taussig",
-        "posta"
+        "records"
       ],
       "highlight_at_wisdom": 81,
       "unlocks_confrontation": "taussig"

@@ -650,6 +650,14 @@
   margin-bottom: 4px;
 }
 
+.odhalene-info-who {
+  font-family: var(--pismo-typewriter);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--barva-text-slaby);
+  margin-bottom: 6px;
+}
+
 .odhalene-info-text {
   font-family: var(--pismo-telo);
   font-size: 13px;
@@ -1029,7 +1037,20 @@
   line-height: 1.85;
   color: var(--barva-text);
   font-style: italic;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+}
+
+/* Upozornění na herní následky (rysy, frakce, důvěra) — pod narativním textem večera / neděle. */
+.vecer-mechanika-hint {
+  font-family: var(--pismo-telo);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--barva-text-slaby);
+  font-style: normal;
+  margin: 0 0 20px;
+  padding: 10px 12px;
+  border-left: 2px solid rgba(60, 45, 30, 0.35);
+  background: rgba(40, 30, 18, 0.06);
 }
 
 .vecer-volby {
@@ -1060,6 +1081,56 @@
   opacity: 0.45;
   cursor: not-allowed;
   padding-left: 18px;
+}
+
+/* ==========================================
+   ZÁPISNÍK — pověsti postav (data/postavy_okoli.json)
+   ========================================== */
+
+.povest-zapisnik-seznam {
+  margin-bottom: 1.35rem;
+}
+
+.povest-zapisnik-prazdno {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--barva-text-slaby);
+  font-style: italic;
+  margin: 0 0 0.5rem;
+}
+
+.povest-zapisnik-zaznam {
+  margin-bottom: 1.15rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(60, 45, 30, 0.18);
+  scroll-margin-top: 12px;
+}
+
+.povest-zapisnik-zaznam:last-child {
+  border-bottom: none;
+  margin-bottom: 0.25rem;
+  padding-bottom: 0;
+}
+
+.povest-zapisnik-jmeno {
+  font-family: var(--pismo-typewriter);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.25em;
+}
+
+.povest-zapisnik-role {
+  font-size: 12px;
+  color: var(--barva-text-slaby);
+  margin: 0 0 0.45em;
+  font-style: italic;
+}
+
+.povest-zapisnik-expozice {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--barva-text);
 }
 
 /* ==========================================
@@ -1095,6 +1166,7 @@
   color: var(--barva-text);
   font-style: italic;
   margin: 0 0 18px;
+  white-space: pre-line;
 }
 
 .tyden-shrnuti-jemne {
@@ -1105,7 +1177,8 @@
   font-family: var(--pismo-telo);
   font-size: 12px;
   line-height: 1.55;
-  color: rgba(180, 170, 150, 0.55);
+  color: var(--barva-text);
+  opacity: 0.92;
   margin: 0 0 6px;
 }
 
@@ -2217,6 +2290,35 @@
 #stavova-zprava.viditelna {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+
+#stavova-zprava.stavova-zprava--html {
+  white-space: normal;
+  max-width: min(92vw, 34rem);
+  pointer-events: auto;
+  text-align: center;
+  line-height: 1.45;
+}
+
+#stavova-zprava .stavova-zprava-link,
+#stavova-zprava .povest-zapisnik-link {
+  pointer-events: auto;
+  background: none;
+  border: none;
+  color: var(--barva-papir-stary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  font: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  padding: 0;
+  margin: 0 1px;
+}
+
+#stavova-zprava .stavova-zprava-link:hover,
+#stavova-zprava .povest-zapisnik-link:hover {
+  color: #fff8e8;
 }
 
 /* ==========================================

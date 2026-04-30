@@ -14,7 +14,7 @@
     "name": "Emil Pospíšil",
     "age": 48,
     "occupation": "hostinský",
-    "detail": "provozuje U Zlatého sudu na Žižkově — tatáž osoba jako Sp. zn. 62/1931; tentokrát čelí stížnosti za incident ze 7. března 1931"
+    "detail": "provozuje U Zlatého sudu na Žižkově — tatáž osoba jako Sp. zn. 94/1931; tentokrát čelí stížnosti za incident ze 7. března 1931"
   },
   "charge": "Porušení povinností provozovatele hostince dle §22 živnostenského řádu: Emil Pospíšil dne 7. března 1931 neprodleně nevykázal z prostor hospody osobu vyvolávající pohoršení, čímž umožnil fyzický střet, při němž hostinský Jan Červenka (52 let) utrpěl zranění způsobující pracovní neschopnost. Navrhovatelem je Červenkova manželka Alžběta.",
   "description": "V sobotu 7. března se v U Zlatého sudu strhla hádka. Dva muži u vedlejšího stolu. Jan Červenka — host, jehož Pospíšil zná léta — dostal úder pěstí do tváře a spadl ze židle. Útočník odešel. Červenka strávil čtyři dny v nemocnici se zlomeným lícním obloukem. Kdo byl útočník, nikdo z přítomných svědků nedokázal říci jméno. Nebo nechtěl. Alžběta Červenková obviňuje Pospíšila, že útočníka znal, celou věc viděl — a nezasáhl. Pospíšil říká, že šlo o nenadálý střet, který nemohl předvídat. Ben si všímá jedné věci: Pospíšil sedí u stolu a třese se. Tohle není obvyklá nervozita z výslechu.",
@@ -34,7 +34,7 @@
       "hidden_at_wisdom_below": null
     },
     {
-      "id": "barta_svedly",
+      "id": "barta_svedek",
       "speaker": "František Bárta, host, přítomen při incidentu",
       "text": "Byl jsem u vedlejšího stolu. Slyšel jsem ránu — a bylo po všem. Ten muž odešel bez hledání zpátky. <span class=\"clue\" data-clue-id=\"clue_barta_vychod\">Vyšel zadním vchodem. Ne předními dveřmi — zadními, přes dvůr. Přesně věděl, kudy jít.</span> Nikdo za ním nešel. Pospíšil stál za pultem a nedíval se za ním. Pak volal sanitku pro Červenku.",
       "contradiction_keywords": ["zadním vchodem", "přesně věděl"],
@@ -45,14 +45,14 @@
     {
       "id": "znal_pred_incident",
       "description": "Pospíšil říká, že útočníka jednou viděl. Červenková říká, že útočník přišel k pultu půl hodiny před ránou a potichu mluvil s Pospíšilem. Bárta potvrzuje, že útočník věděl o zadním vchodu.",
-      "involves": ["pospisil", "cervenka_alzbeta", "barta_svedly"],
+      "involves": ["pospisil", "cervenka_alzbeta", "barta_svedek"],
       "highlight_at_wisdom": 65,
       "unlocks_confrontation": "pospisil"
     },
     {
       "id": "zadni_vychod",
       "description": "Útočník šel zadním vchodem přes dvůr — cestu, kterou nezná náhodný host. Znal ji buď z dřívějších návštěv, nebo mu ji někdo ukázal.",
-      "involves": ["barta_svedly", "pospisil"],
+      "involves": ["barta_svedek", "pospisil"],
       "highlight_at_wisdom": 70,
       "unlocks_confrontation": "pospisil"
     }

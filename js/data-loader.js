@@ -33,7 +33,8 @@ const DataLoader = (() => {
     characters: 'data/characters.json',
     fragments:  'data/fragments.json',
     factions:   'data/factions.json',
-    traits:     'data/traits-text.json'
+    traits:         'data/traits-text.json',
+    postavy_okoli:  'data/postavy_okoli.json'
   };
 
   // Případy jsou rozděleny do tří souborů pro přehlednost
@@ -156,13 +157,16 @@ const DataLoader = (() => {
 
     if (inv.interview && inv.interview.text) {
       const cInt = Number(inv.interview.cost);
+      const iv = inv.interview;
+      const speakerIv = String(iv.speaker || iv.target_label || iv.target || '').trim();
       const rowI = {
         id: 'pool_inv_interview',
         action: 'witness',
-        reveal: inv.interview.text,
+        reveal: iv.text,
         cost: Number.isFinite(cInt) && cInt > 0 ? cInt : 1
       };
-      if (inv.interview.dirty_unlock !== undefined) rowI.dirty_unlock = inv.interview.dirty_unlock;
+      if (speakerIv) rowI.speaker = speakerIv;
+      if (iv.dirty_unlock !== undefined) rowI.dirty_unlock = iv.dirty_unlock;
       hidden_info.push(rowI);
     }
     if (inv.records && inv.records.text) {
@@ -194,12 +198,16 @@ const DataLoader = (() => {
       if (konf.prompt) casti.push(String(konf.prompt).trim());
       if (konf.success && konf.success.text) casti.push(String(konf.success.text).trim());
       const kCost = Number(konf.cost);
+      const speakerK = String(
+        (konf.success && konf.success.speaker) || konf.target_label || konf.target || ''
+      ).trim();
       const rowK = {
         id: 'pool_inv_confrontation',
         action: 'confrontation',
         reveal: casti.filter(Boolean).join('\n\n'),
         cost: Number.isFinite(kCost) && kCost > 0 ? kCost : 2
       };
+      if (speakerK) rowK.speaker = speakerK;
       if (konf.dirty_unlock !== undefined) rowK.dirty_unlock = konf.dirty_unlock;
       hidden_info.push(rowK);
     }

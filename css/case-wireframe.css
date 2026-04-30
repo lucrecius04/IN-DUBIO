@@ -941,6 +941,14 @@
   margin-bottom: 4px;
 }
 
+#modal-pripad .pripad-panel--wireframe .case-wf-finding .case-wf-finding-speaker {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: #4a3d2e;
+  margin-bottom: 8px;
+}
+
 #modal-pripad .pripad-panel--wireframe .case-wf-finding .case-wf-finding-text {
   font-size: 14px;
   line-height: 1.6;

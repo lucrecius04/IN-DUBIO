@@ -18,9 +18,9 @@
     "name": "Wilhelm Grünbaum",
     "age": 67,
     "occupation": "penzionovaný učitel",
-    "detail": "tatáž osoba jako Sp. zn. Hranice 1 a Hranice 2. Po mrtvici v lednu 1931 částečně ochrnutý, nemluví plynně. Zastupuje ho syn Ernst Grünbaum (42), přijel z Berlína."
+    "detail": "tatáž osoba jako ve věcech Sp. zn. 93/1931 (zeď) a 109/1931 (dopis). Po mrtvici v lednu 1931 částečně ochrnutý, nemluví plynně. Zastupuje ho syn Ernst Grünbaum (42), přijel z Berlína."
   },
-  "charge": "Pokračující spor dle Sp. zn. 66/1931 — odvolání Josefa Kříže proti výsledku prvního projednání. Kříž trvá na posunutí zdi zpět o 34 centimetrů nebo na finanční náhradě 180 Kčs za neoprávněné užívání pozemku.",
+  "charge": "Pokračující spor dle Sp. zn. 93/1931 — odvolání Josefa Kříže proti výsledku prvního projednání. Kříž trvá na posunutí zdi zpět o 34 centimetrů nebo na finanční náhradě 180 Kčs za neoprávněné užívání pozemku.",
   "description": "Tři měsíce po prvním rozsudku. Zeď stojí, kde stála. Josef Kříž podal odvolání a přišel. Wilhelm Grünbaum přijít nemůže — v lednu ho ranila mrtvice. Mluví obtížně, pohybuje se s holí. Zastupuje ho syn Ernst, který přijel z Berlína. Na začátku jednání se stane něco, co se u soudu nestává: Kříž se podívá na Ernsta Grünbauma — ne na spis, ne na soudce — a řekne: 'Jak se daří panu Grünbaumovi?' Ernst odpoví: 'Otec vás každý den jmenuje. Víc říct nemůže.' Pak projednávání začne. Ale něco se už změnilo — a Ben to vidí.",
   "testimonies": [
     {
@@ -48,7 +48,7 @@
     {
       "id": "znalec_hora",
       "speaker": "Ing. Pavel Hora, soudní geometr — nový posudek dle usnesení soudu",
-      "text": "Provedl jsem nové zaměření 3. března 1931, za přítomnosti obou stran. Použil jsem přístroj s přesností ±3 centimetry. <span class=\"clue\" data-clue-id=\"clue_hora_mereni\">Výsledek: osa zdi leží 19 centimetrů od katastrální hranice — na straně Grünbaumova pozemku. Jinými slovy: zeď je 19 centimetrů na Grünbaumově straně od linie, kde by měla stát.</span> Kříž měřil od rohu svého domu — to je nespolehlivý referenční bod. Od katastrální hranice: odchylka 19 cm, nikoli 34.",
+      "text": "Provedl jsem nové zaměření 7. dubna 1931, za přítomnosti obou stran. Použil jsem přístroj s přesností ±3 centimetry. <span class=\"clue\" data-clue-id=\"clue_hora_mereni\">Výsledek: osa zdi leží 19 centimetrů od katastrální hranice — na straně Grünbaumova pozemku. Jinými slovy: zeď je 19 centimetrů na Grünbaumově straně od linie, kde by měla stát.</span> Kříž měřil od rohu svého domu — to je nespolehlivý referenční bod. Od katastrální hranice: odchylka 19 cm, nikoli 34.",
       "contradiction_keywords": [
         "19 centimetrů",
         "od rohu",
@@ -77,7 +77,7 @@
         "znalec_hora"
       ],
       "highlight_at_wisdom": 65,
-      "unlocks_confrontation": "kriz_navrhovatel"
+      "unlocks_confrontation": null
     },
     {
       "id": "princip_nebo_uznani",
@@ -198,7 +198,7 @@
       }
     },
     "records": {
-      "source": "Nový geodetický posudek Hora, 3. března 1931; původní katastrální mapa 1912; Křížův zápisník měření",
+      "source": "Nový geodetický posudek Hora, 7. dubna 1931; původní katastrální mapa 1912; Křížův zápisník měření",
       "reveals": "facts",
       "text": "Geodetický posudek Hora: zeď posunuta o 19 cm od katastrální hranice, v rámci přesnosti původní mapy (±15 cm). <span class=\"clue\" data-clue-id=\"clue_hora_mereni\">Závěr Hora: 'Zeď pravděpodobně stojí blíže původní poloze než jakémukoli alternativnímu umístění. Posun v absolutním smyslu existuje, ale leží na hranici průkaznosti.'</span> Křížův zápisník: 17 záznamů, vždy v sobotu mezi 9:00 a 10:00, vždy výsledek 19 cm od rohu (±1 cm). Konzistentní — protože roh domu se nehýbe. Zeď se nehýbala od října.",
       "cost": 1,
@@ -358,7 +358,7 @@
     }
   },
   "aftermath": {
-    "posun": "Ernst najal zedníka. Zeď se posunula o sedmnáct centimetrů — víc základ nedovolil. Kříž naměřil: chybí ještě dva. Odvolání nestáhl. Pak přišlo léto a přestal měřit. Nikdo neví proč.",
+    "posun": "Ernst najal zedníka. Zeď se posunula o devatenáct centimetrů — víc základ nedovolil. Kříž naměřil: rozdíl oproti požadavku už jen kosmetický. Odvolání nestáhl. Pak přišlo léto a přestal měřit. Nikdo neví proč.",
     "nahrada": "Ernst zaplatil. Kříž peníze vzal a složil je do šuplíku. Marie je o měsíc později dala na opravu střechy. Kříž o tom nevěděl. Nebo věděl.",
     "zamitnut": "Odvolání zamítnuto. Kříž vyšel na chodbu a zastavil se. Ernst byl ještě uvnitř — podepisoval protokol. Kříž počkal. Když Ernst vyšel, Kříž řekl: 'Jak se daří otci?' Ernst řekl: 'Lépe.' Kříž přikývl. Šli každý jinam.",
     "smir": "Omluva na protokol. Kříž stáhl odvolání. Šli ven spolu — Kříž a Ernst — a na chodbě se zastavili. Ernst řekl: 'Přijďte ho navštívit. Rozezná vás.' Kříž řekl: 'Přijdu.' Zeď stojí, kde stála. V sobotu ráno Kříž nešel měřit.",

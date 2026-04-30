@@ -4,18 +4,6 @@
     "name": "Ministr Vlček",
     "dialogues": [
       {
-        "day": 1,
-        "condition": null,
-        "type": "letter",
-        "text": "Vážený pane doktore,\n\nDovolte mi Vás uvítat zpět na lavici. Republika potřebuje soudce Vašich kvalit — moudré, zkušené, schopné kompromisu.\n\nVěřím, že jste muž který rozumí nutnosti kompromisů.\n\nS uctivostí,\nMinistr Vlček"
-      },
-      {
-        "day": 6,
-        "condition": null,
-        "type": "letter",
-        "text": "Pane doktore,\n\nSledoval jsem Vaše rozsudky s pozorností. Potěšila mě Vaše rozvaha.\n\nBrzy přijde případ, na kterém záleží. Věřím, že Vaše rozhodnutí bude — jak to říci — státotvorné.\n\nVlček"
-      },
-      {
         "day": 14,
         "condition": null,
         "type": "visit",
@@ -69,12 +57,6 @@
     "id": "masek",
     "name": "Kolega soudce Mašek",
     "dialogues": [
-      {
-        "day": 3,
-        "condition": null,
-        "type": "visit",
-        "text": "Jakube! Vítej zpátky. Vypadáš... trochu unaveně. Nebo je to jen ten starý stůl?\n\nPoslouchej — přijde na tebe Vlčkův muž. Nehrdi se. Tohle není o morálce. Je to o přežití."
-      },
       {
         "day": 12,
         "condition": null,

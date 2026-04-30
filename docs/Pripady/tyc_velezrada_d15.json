@@ -6,7 +6,7 @@
   "type": "political",
   "color": "#3A3A4A",
   "available_days": [
-    15
+    19
   ],
   "act": 1,
   "weight_conditions": {
@@ -86,11 +86,11 @@
         "grafolog_expert",
         "dvorak_statni_zastupce"
       ],
-      "highlight_at_wisdom": 75,
-      "unlocks_confrontation": "dvorak_statni_zastupce"
-    }
-  ],
-  "clue_system": {
+          "highlight_at_wisdom": 75,
+          "unlocks_confrontation": null
+        }
+      ],
+      "clue_system": {
     "enabled": true,
     "true_pair_id": "odmitl_pak_propusten_strong",
     "pairs": [

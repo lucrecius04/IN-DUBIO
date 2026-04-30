@@ -1,6 +1,9 @@
 /**
  * Generuje data/days.json pro 15 pracovních dní + 2 víkendy = 19 kalendářních dní.
  * Spusť: node scripts/build-days-19.js
+ *
+ * POZOR: tento skript přepíše ruční obsah (adventure, scénářové pořadí).
+ * Kanon vůči Mapa_15dni / Pripady_15dni drží `scripts/align-days-to-scenar.js`.
  */
 const fs = require('fs');
 const path = require('path');

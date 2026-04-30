@@ -6,7 +6,7 @@
   "type": "osobni",
   "color": "#4A3A5A",
   "available_days": [
-    10
+    12
   ],
   "act": 1,
   "weight_conditions": {
@@ -259,7 +259,7 @@
       "trigger": "guilty_pouzit_dokument",
       "delay_days": 1,
       "type": "fragment",
-      "text": "Ráno D11: V zásuvce pod nálezy leží složka. Ben ví, čí podpis je na dokumentu ze září osmadvacátého — a ví, proč Wolf prodal Haasův podíl na Annu dva týdny před zatčením."
+          "text": "Další ráno leží složka v zásuvce pod nálezy. Ben ví, čí podpis je na dokumentu ze září osmadvacátého — a ví, proč Wolf prodal Haasův podíl na Annu dva týdny před zatčením."
     },
     {
       "trigger": "not_guilty_odevzdat_statnimu",

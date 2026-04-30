@@ -669,8 +669,9 @@
     }
 
     /*
-     * Tři pevné sloty na stole — UI mění jen typ/barvu složky podle případu;
-     * pozice zůstává stejná pro všechny čtyři herní typy desek.
+     * Sloty na stole: výchozí tři pozice (třída slozky-wrapper--tri-sloty na #slozky-wrapper).
+     * Při 2 nebo 1 aktivním spisu — režimy --dva-sloty / --jedna-slozka (viz UI.aktualizujSlozky).
+     * Archiv souřadnic trojice: docs/desk-slozky-layout-3-sloty.md
      */
     #stul.desk-scene-root #plocha-stred .slozka {
       position: absolute;
@@ -766,6 +767,47 @@
       top: calc(38.25% + 40px);
       z-index: 7;
       transform: rotate(3deg) scale(1.07);
+    }
+
+    /*
+     * Dva aktivní spisy: třetí slot skrytý, I. a II. posunuté ke středu stolu.
+     * Záloha trojice pozic: docs/desk-slozky-layout-3-sloty.md
+     */
+    #stul.desk-scene-root #plocha-stred #slozky-wrapper.slozky-wrapper--dva-sloty #slozka-3 {
+      display: none !important;
+    }
+    #stul.desk-scene-root #plocha-stred #slozky-wrapper.slozky-wrapper--dva-sloty #slozka-1 {
+      left: 30%;
+      top: calc(39.25% + 40px);
+      z-index: 5;
+      transform: rotate(-3deg) scale(1.07);
+    }
+    #stul.desk-scene-root #plocha-stred #slozky-wrapper.slozky-wrapper--dva-sloty #slozka-2 {
+      left: 50.5%;
+      top: calc(39.25% + 40px);
+      z-index: 6;
+      transform: rotate(1deg) scale(1.07);
+    }
+    #stul.desk-scene-root #plocha-stred #slozky-wrapper.slozky-wrapper--dva-sloty .slozka#slozka-1:not(.slozka--ceka).slozka--hover {
+      transform: rotate(-4.5deg) scale(1.1) translateY(-11px);
+    }
+    #stul.desk-scene-root #plocha-stred #slozky-wrapper.slozky-wrapper--dva-sloty .slozka#slozka-2:not(.slozka--ceka).slozka--hover {
+      transform: rotate(2.5deg) scale(1.1) translateY(-11px);
+    }
+
+    /* Jeden aktivní spis — jedna uprostřed (např. závěrečný případ) */
+    #stul.desk-scene-root #plocha-stred #slozky-wrapper.slozky-wrapper--jedna-slozka #slozka-2,
+    #stul.desk-scene-root #plocha-stred #slozky-wrapper.slozky-wrapper--jedna-slozka #slozka-3 {
+      display: none !important;
+    }
+    #stul.desk-scene-root #plocha-stred #slozky-wrapper.slozky-wrapper--jedna-slozka #slozka-1 {
+      left: 39.5%;
+      top: calc(39.25% + 40px);
+      z-index: 6;
+      transform: rotate(-1deg) scale(1.07);
+    }
+    #stul.desk-scene-root #plocha-stred #slozky-wrapper.slozky-wrapper--jedna-slozka .slozka#slozka-1:not(.slozka--ceka).slozka--hover {
+      transform: rotate(-2.5deg) scale(1.1) translateY(-11px);
     }
 
     #stul.desk-scene-root #plocha-stred .slozka#slozka-1:not(.slozka--ceka).slozka--hover {
@@ -909,6 +951,46 @@
       display: none !important;
       pointer-events: none;
     }
+
+    /*
+     * Plachta mezi úvodním logem (2000) a stolem: úplná tma bez „náběhu“ opacity.
+     * Rozehnání jen při třídě --rozdeni (pomalý nástup světla na stole).
+     * Modaly fragmentů z-index 100 — plachta pod nimi (ranní výplata apod.), nad stolem.
+     */
+    #desk-priprava-overlay.desk-priprava-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 95;
+      background: #000000;
+      opacity: 0;
+      pointer-events: none;
+      transition: none;
+    }
+    #desk-priprava-overlay.desk-priprava-overlay--aktivni {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    /* Přechod na další den: pomalé zatmavení (0 → 1), pak stejné rozednění jako při startu. */
+    #desk-priprava-overlay.desk-priprava-overlay--pomalu {
+      transition: opacity 1.45s ease-in;
+    }
+    #desk-priprava-overlay.desk-priprava-overlay--rozdeni {
+      /* Zachytí kliky i při průhledné plachtě během rozednění. */
+      pointer-events: auto;
+      transition: opacity 3s ease-out;
+    }
+    #desk-priprava-overlay.desk-priprava-overlay--rozdeni.desk-priprava-overlay--propustne {
+      pointer-events: none;
+    }
+
+    /* Mezi koncem rozednění a otevřením modalu fragmentu — zákaz kliků na stůl. */
+    #desk-stul-click-blok.desk-stul-click-blok {
+      position: fixed;
+      inset: 0;
+      z-index: 96;
+      background: transparent;
+      cursor: default;
+    }
   </style>
 </head>
 <body class="bez-vyberu desk-scene-page">
@@ -918,7 +1000,7 @@
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   z-index: 2000; cursor: pointer;
-  transition: opacity 1.5s ease;
+  transition: opacity 1.35s ease;
 ">
   <div class="logo-hry-nazev logo-hry-nazev--uvod">IN DUBIO</div>
   <div style="font-family: 'IBM Plex Mono', Consolas, 'Courier New', monospace; font-size: 12px; color: rgba(240,220,180,0.5); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 48px; animation: konecHryText 2s ease 0.5s both;">Střední Evropa, 1931</div>
@@ -928,6 +1010,10 @@
   <div style="font-family: monospace; font-size: 10px; color: rgba(240,220,180,0.2); letter-spacing: 2px; animation: blikani 2s ease-in-out infinite;">KLIKNĚTE PRO ZAHÁJENÍ</div>
   <div id="uvod-ulozena-zprava" style="margin-top: 24px; font-size: 11px; color: rgba(240,220,180,0.3); font-family: monospace;"></div>
 </div>
+
+<!-- Zatemnění pod úvodním overlay: po načtení dne se rozsvítí dřív než ranní fragment (z-index pod modaly 100). -->
+<div id="desk-priprava-overlay" class="desk-priprava-overlay" aria-hidden="true"></div>
+<div id="desk-stul-click-blok" class="desk-stul-click-blok skryto" aria-hidden="true"></div>
 
 <div id="stul" class="desk-scene-root">
 
@@ -1013,8 +1099,8 @@
     </div>
   </div>
 
-  <div id="plocha-stred" class="desk-scene-plocha">
-    <div id="slozky-wrapper">
+    <div id="plocha-stred" class="desk-scene-plocha">
+    <div id="slozky-wrapper" class="slozky-wrapper--tri-sloty">
       <div class="slozka" id="slozka-1" data-slot="0" aria-label="Složka 1">
         <div class="folder" data-art="src/folder-gold.png">
           <div class="folder-label">
@@ -1042,6 +1128,11 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div id="desk-bez-spisu-hlaska" class="desk-bez-spisu-hlaska skryto" role="status" aria-live="polite">
+      <div class="desk-bez-spisu-hlaska__titul"></div>
+      <p class="desk-bez-spisu-hlaska__text"></p>
     </div>
 
     <button id="btn-dalsi-den" class="btn" type="button">Další den →</button>
@@ -1233,6 +1324,7 @@
   <div class="panel-papir vecer-panel panel-papir--nastup">
     <div class="vecer-cas">VEČER</div>
     <div class="vecer-text" id="vecer-text">—</div>
+    <p class="vecer-mechanika-hint" id="vecer-mechanika-hint">Každé Benovo rozhodnutí se projeví na jeho rozpoložení a v pohledu na svět kolem něj.</p>
     <div class="vecer-volby" id="vecer-volby"></div>
   </div>
 </div>

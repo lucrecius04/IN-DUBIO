@@ -18,7 +18,7 @@
     "name": "Božena Kučerová",
     "age": 56,
     "occupation": "chalupářka",
-    "detail": "tatáž jako Sp. zn. 59/1931 — vdova z Únětic, případ slepic"
+    "detail": "tatáž jako ve věci Sp. zn. 91/1931 (slepice) — vdova z Únětic"
   },
   "charge": "Urážka na cti dle §488 trestního zákona. Božena Kučerová dne 15. února 1931 na návsi v Úněticích před čtyřmi osobami nazvala Václava Šebka 'starým kozlem' a dodala, že 'krade lidem zahrádky'.",
   "description": "Týden poté, co Šebek prohrál (nebo vyhrál) případ se slepicemi, přichází k soudu znovu. Tentokrát jako navrhovatel žaloby na urážku cti — s advokátem <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"knot_svoboda\" title=\"Slovník: Knot & Svoboda\">JUDr. Milanem Knotem</button> z realitní kanceláře Knot & Svoboda. Božena mu říkala kozel. Šebek žádá veřejnou omluvu a 150 Kčs. Ten den ráno Ben dostal dopis od doktora — operace matky stojí 400 Kčs.",
@@ -74,7 +74,7 @@
         "simova"
       ],
       "highlight_at_wisdom": 60,
-      "unlocks_confrontation": "sebek"
+      "unlocks_confrontation": null
     },
     {
       "id": "realitni_advokat_na_urazku",

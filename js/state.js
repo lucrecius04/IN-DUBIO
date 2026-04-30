@@ -147,6 +147,26 @@ const State = (() => {
     if (typeof _stav.flags.rano_bonus_inkoust_z_kavy !== 'boolean') {
       _stav.flags.rano_bonus_inkoust_z_kavy = false;
     }
+    if (!Array.isArray(_stav.flags.povest_odemcene_ids)) {
+      _stav.flags.povest_odemcene_ids = [];
+    }
+    const POVEST_ZAKLAD = ['svejda', 'kovarova', 'martin', 'karas', 'masek', 'vlcek'];
+    const curP = _stav.flags.povest_odemcene_ids.slice();
+    const mergedP = [];
+    const seenP = new Set();
+    for (const pid of POVEST_ZAKLAD) {
+      if (!seenP.has(pid)) {
+        seenP.add(pid);
+        mergedP.push(pid);
+      }
+    }
+    for (const pid of curP) {
+      if (!seenP.has(pid)) {
+        seenP.add(pid);
+        mergedP.push(pid);
+      }
+    }
+    _stav.flags.povest_odemcene_ids = mergedP;
     if (_stav.flags.records_free_until_day != null) {
       const rf = Number(_stav.flags.records_free_until_day);
       _stav.flags.records_free_until_day = Number.isFinite(rf) ? rf : null;
@@ -316,7 +336,12 @@ const State = (() => {
       /** Záznamy v případech stojí 0 akcí do tohoto dne včetně (null = vypnuto). */
       records_free_until_day: null,
       /** Po dohrání běhu: nabídka režimu zobrazení statistik v menu. */
-      stats_display_unlocked: false
+      stats_display_unlocked: false,
+      /**
+       * Pořadí odemčených id z data/postavy_okoli.json (zápisník → Pověst).
+       * Základ = lidé, které Ben už zná (viz postavy_okoli od_zacatku).
+       */
+      povest_odemcene_ids: ['svejda', 'kovarova', 'martin', 'karas', 'masek', 'vlcek']
     },
 
     // Uzlové flagy — přepočítávány denně, nikdy ručně.

@@ -87,7 +87,7 @@
         "records"
       ],
       "highlight_at_wisdom": 75,
-      "unlocks_confrontation": "hora_znalec"
+      "unlocks_confrontation": null
     }
   ],
   "clue_system": {
@@ -191,7 +191,8 @@
           "Integrita": -1,
           "Vina": 1
         }
-      }
+      },
+      "unlocks_contradiction": "omitka_vs_zed"
     },
     "records": {
       "source": "Stavební povolení 1930, katastrální mapa 1912, záznamy sousedky Svobodové",

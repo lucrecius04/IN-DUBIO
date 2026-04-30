@@ -8,11 +8,21 @@ const Engine = (() => {
   let _denData = null;
 
   /**
-   * Testování: u dne 1 nespouští dva modaly (modal-fragment) — ranní úvodní text
-   * a první dopis z dialogů (Vlček). Obálka / noviny na stole zůstanou, jdou otevřít ručně.
-   * Pro ostrý běh hry nastav na `false`.
+   * Den 1: při `false` proběhne ranní fragment (`days.json` → `morning_fragment`) a běžná logika dopisů.
+   * Dopis Vlčka v den 1 je v `letters.json` (delivery `desk`) — není duplicitně v `characters.json` jako dialog.
    */
-  const _SKIP_D1_INTRO_MODALS = true;
+  const _SKIP_D1_INTRO_MODALS = false;
+
+  /**
+   * Akce průzkumu (inkoust) na každý den s alespoň jedním případem. V ostré hře nastavit na 3.
+   * Nyní zvýšeno kvůli testování stop v případech.
+   */
+  const _INVESTIGATION_ACTIONS_BASE_DEN_S_PRIPADY = 15;
+
+  /** První `spustDen` v relaci: zatemnění stolu do rozsvícení po přípravě (ne každé ráno). */
+  let _stulPripravaMaRozsvitit = true;
+  /** Po kliknutí „Další den“: rozednění až po dokončení `_pokracujSpustDen` (nebo fallback při game over). */
+  let _rozdeniPoPrepnuDne = false;
 
   function _vyhodnotTydenniBonusyKody() {
     const st = State.get('tydenni_statistiky');
@@ -28,33 +38,39 @@ const Engine = (() => {
 
   function _sestavTydenniShrnutiPayload(kody) {
     const n = kody.length;
+    const ramec =
+      'Sobota večer. Úřad už netluče do telefonu — jen ty ještě slyšíš v hlavě razítko a větu, která byla v pátek na konci papíru.\n\n';
     let hlavni;
     if (n === 0) {
-      hlavni = 'Týden končí. Lavice mlčí — žádný z tichých vzorců se neprojevil natolik, aby sis toho všiml odměnou.';
+      hlavni =
+        'Tenhle týden nenechal po sobě ostudu ani jméno, které by sis chtěl vyvézt. Šel — a zůstala po něm jen hromada listů.';
     } else if (n === 1) {
-      hlavni = 'Linie týdne se vyjasnila — jeden vzorec převážil. Zbytek byl jen práce.';
+      hlavni = 'Jedna věc z týdne přetrvá v paměti silnější než ostatní. Stačí pár slov pod čarou.';
     } else if (n === 2) {
-      hlavni = 'Dva principy vedle sebe — ani jeden nepřekřičel druhého. Týden byl vyrovnaný.';
+      hlavni = 'Dvě věci ti sedly na krk tak najednou, že z toho nešlo vybrat jen jednu. Přečti si je v klidu.';
     } else if (n === 3) {
-      hlavni = 'Víc cest najednou — a přesto z toho nebyl chaos. Jen hustší papír a tišší kroky.';
+      hlavni = 'Týden byl v hlavě hlasitější, než by napovídal rozvrh. Zapisuješ si, co z toho ještě drží tvar.';
     } else {
-      hlavni = 'Komplexní týden. Nic oslavného na povrchu — jen stopy, které si systém zapamatuje jemněji než ty.';
+      hlavni = 'Tolik stop najednou, že z toho nejde udělat jednu větu bez lži. Necháváš si to projít hlavou.';
     }
 
     const J = {
-      A: 'Spisy nebyly jen papír — četl jsi je, jako by na nich záleželo někomu, koho znáš.',
-      B: 'Vaše nezávislost se probírá v kavárnách.',
-      C: 'Žádné odložení — týden plynul dál bez zadrhnutí v šuplíku.',
-      D_stat: 'Stát si tě zapisuje mezi ty, kdo neuhnou, když se tlačí zhora.',
-      D_lid: 'Chudina si vaše jméno pamatuje.',
-      D_mul: 'Každý větší verdikt měl svůj stín v průzkumu — a ty sis ho nenechal ujít.',
-      E: 'Několik rozsudků tě stálo víc než inkoust; tělo to ještě cítíš v klidu sobotní noci.'
+      A:
+        'Většinu spisů jsi nechal projít rukama opravdu — ne šmiknutím přes diagonálu. Chodby to nepoklonkovaly, ale všimly si toho.',
+      B:
+        'Co šlo koupit mlčení, sis nekoupil. Město o tom nevydá článek — jen si to někam škrtne.',
+      C: 'Termíny držely čelist; nic nezůstalo ve šuplíku jako „jen do pátku“.',
+      D_stat: 'Tvoje rozsudky tento týden dávaly jednu barvu — takovou, aby ji nešlo přehlédnout shora.',
+      D_lid: 'Pod okny se šeptá jméno soudce, který se nebál podívat dolů.',
+      D_mul:
+        'Každý těžší verdikt měl svůj stín v šeru chodby — a ty sis ho nenechal ujít ani jednou.',
+      E: 'Několik tvrdých vět pod pečetí tě stálo víc než úsměv v září radnice. Tělo to ví dřív než kalendář.'
     };
     const jemneRadky = kody.map(k => J[k] || k).filter(Boolean);
 
     return {
       titulek: 'Konec pracovního týdne',
-      hlavni,
+      hlavni: ramec + hlavni,
       jemneRadky
     };
   }
@@ -113,6 +129,9 @@ const Engine = (() => {
   // --- INICIALIZACE ---
 
   async function inicializuj() {
+    if (_stulPripravaMaRozsvitit && typeof UI !== 'undefined' && UI.zobrazZatemneniPripravyStolu) {
+      UI.zobrazZatemneniPripravyStolu();
+    }
     // Načti data
     await DataLoader.nactiVse();
 
@@ -152,9 +171,8 @@ const Engine = (() => {
     Desk.inicializujTooltipyPredmetuStolu();
     if (Desk.inicializujNovinyAObaalkaStolu) Desk.inicializujNovinyAObaalkaStolu();
 
-    // Tlačítko Další den
+    // Tlačítko Další den (SFX až po kontrole — nepřehrávat zvuk při blokaci)
     document.getElementById('btn-dalsi-den')?.addEventListener('click', () => {
-      if (typeof SFX !== 'undefined') SFX.prechodNaDalsiDen();
       _dalsiDen();
     });
 
@@ -213,7 +231,7 @@ const Engine = (() => {
     _denData = DataLoader.ziskejDen(den);
     const dnesniPripady = Array.isArray(_denData && _denData.cases) ? _denData.cases.length : 0;
     if (dnesniPripady > 0) {
-      State.set('investigationActionsLeft', 3);
+      State.set('investigationActionsLeft', _INVESTIGATION_ACTIONS_BASE_DEN_S_PRIPADY);
     }
 
     if (pondelniBonusInkoust > 0) {
@@ -238,6 +256,11 @@ const Engine = (() => {
     if (recUntil != null && Number.isFinite(Number(recUntil)) && den > Number(recUntil)) {
       State.set('flags.records_free_until_day', null);
     }
+
+    /* Složky hned podle dne — jinak zůstane výchozí HTML (3 „plné“ sloty) až do _pokracujSpustDen po fragmentu. */
+    Cases.nastavPripadyProDen(den, _denData);
+    UI.aktualizujSlozky(Cases.getPripady(), State.get('casesResolvedToday'));
+    Desk.nastavAktivniSpis(null);
 
     // Aktualizuj vizuál stolu
     State.set('phase', 'morning');
@@ -264,6 +287,11 @@ const Engine = (() => {
     Finance.zkontrolujCilOperace();
     Desk.aktualizujVse();
 
+    if (_stulPripravaMaRozsvitit && typeof UI !== 'undefined' && UI.skryjZatemneniPripravyStoluPoNacteni) {
+      await UI.skryjZatemneniPripravyStoluPoNacteni();
+      _stulPripravaMaRozsvitit = false;
+    }
+
     // Ranní fragment (den 8 — dopis o operaci jen jednou)
     let morningId = _denData?.morning_fragment;
     if (den === 1 && _SKIP_D1_INTRO_MODALS) {
@@ -273,6 +301,9 @@ const Engine = (() => {
       morningId = null;
     }
     if (morningId) {
+      if (typeof UI !== 'undefined' && UI.zobrazStulBlokaciDoModaluFragmentu) {
+        UI.zobrazStulBlokaciDoModaluFragmentu();
+      }
       const addEcho = typeof Narrative !== 'undefined' && Narrative.vyhodnotPodmineneRadky
         ? Narrative.vyhodnotPodmineneRadky(_denData && _denData.morning_conditional_lines)
         : '';
@@ -283,7 +314,7 @@ const Engine = (() => {
           const casti = [(baseF.text || '').trim(), addEcho.trim(), addAdventure].filter(Boolean);
           State.oznacFragment(morningId);
           await _cekejNaFragment(null, {
-            ...baseF,
+            ..._titulFragmentuSDnem(baseF, den),
             text: casti.join('\n\n')
           });
           if (addAdventure) State.set('flags.morning_fragment_append_next', null);
@@ -297,7 +328,7 @@ const Engine = (() => {
             const casti = [(baseF.text || '').trim(), addAdventure].filter(Boolean);
             State.oznacFragment(morningId);
             await _cekejNaFragment(null, {
-              ...baseF,
+              ..._titulFragmentuSDnem(baseF, den),
               text: casti.join('\n\n')
             });
             State.set('flags.morning_fragment_append_next', null);
@@ -385,7 +416,7 @@ const Engine = (() => {
   }
 
   async function _pokracujSpustDen(denData, den) {
-    // Případy dne načítáme až po ranním fragmentu / adventure scéně.
+    /* Případy už nastavené na začátku spustDen (složky pod fragmentem); zopakování je idempotentní. */
     Cases.nastavPripadyProDen(den, denData);
     const pripady = Cases.getPripady();
     UI.aktualizujSlozky(pripady, State.get('casesResolvedToday'));
@@ -416,6 +447,14 @@ const Engine = (() => {
     // Skrýt tlačítko do vyřešení případů; po F5 / resume znovu sladit s uloženým casesResolvedToday
     UI.zobrazBtnDalsiDen(false);
     zkontrolujKonecDne(false);
+
+    if (_rozdeniPoPrepnuDne) {
+      _rozdeniPoPrepnuDne = false;
+      if (typeof UI !== 'undefined' && UI.skryjZatemneniPripravyStoluPoNacteni) {
+        await UI.skryjZatemneniPripravyStoluPoNacteni();
+      }
+    }
+
   }
 
   /**
@@ -426,6 +465,7 @@ const Engine = (() => {
    * sloučení části uložení s výchozím stavem při `State.nacti()`.
    */
   function syncFromSavedState() {
+    _rozdeniPoPrepnuDne = false;
     if (State.get('gameOver')) {
       Desk.aktualizujVse();
       Music.aktualizujStopu();
@@ -663,12 +703,8 @@ const Engine = (() => {
     }
 
     if (!variabilniOk) {
-      const fazePred = State.get('phase');
       State.set('phase', 'evening');
       Desk.aktualizujVse();
-      if (fazePred !== 'evening') {
-        UI.zobrazStavovouZpravu('Dnešní případy jsou uzavřeny.');
-      }
       setTimeout(() => UI.zobrazBtnDalsiDen(true), 800);
       return;
     }
@@ -690,11 +726,15 @@ const Engine = (() => {
 
     State.set('phase', 'evening');
     Desk.aktualizujVse();
-    UI.zobrazStavovouZpravu('Dnešní případy jsou uzavřeny.');
     setTimeout(() => UI.zobrazBtnDalsiDen(true), 800);
   }
 
   async function _dalsiDen() {
+    if (_maNeprectenyDopisNaStole()) {
+      UI.zobrazStavovouZpravu('Na stole leží neotevřený dopis.');
+      return;
+    }
+    if (typeof SFX !== 'undefined') SFX.prechodNaDalsiDen();
     UI.zobrazBtnDalsiDen(false);
 
     // Večerní volba
@@ -735,17 +775,23 @@ const Engine = (() => {
       }
     }
 
-    // Přechod dne — vizuální stmívání
-    const stul = document.getElementById('stul');
-    stul?.classList.add('prechod-dne');
-    await _cekej(1600);
-    stul?.classList.remove('prechod-dne');
+    // Přechod dne: pomalé zatmavení plachtou jako po úvodu; stůl se rozsvítí až po startu nového dne (`_pokracujSpustDen`)
+    if (typeof UI !== 'undefined' && UI.zobrazZatemneniPripravyStoluPomalu) {
+      await UI.zobrazZatemneniPripravyStoluPomalu();
+    } else if (typeof UI !== 'undefined' && UI.zobrazZatemneniPripravyStolu) {
+      UI.zobrazZatemneniPripravyStolu();
+    }
 
-    // Posun na další den
     State.dalsiDen();
     State.uloz();
-
+    _rozdeniPoPrepnuDne = true;
     await spustDen();
+    if (_rozdeniPoPrepnuDne && State.get('gameOver')) {
+      _rozdeniPoPrepnuDne = false;
+      if (typeof UI !== 'undefined' && UI.skryjZatemneniPripravyStoluPoNacteni) {
+        await UI.skryjZatemneniPripravyStoluPoNacteni();
+      }
+    }
   }
 
   // --- DIALOGY POSTAV ---
@@ -771,6 +817,14 @@ const Engine = (() => {
 
   function _klicPendingDeskDopisu(den) {
     return 'pending_desk_letters_day_' + Number(den);
+  }
+
+  /** Nepřečtený dopis na stole (fronta z `letters.json` s delivery „desk“). */
+  function _maNeprectenyDopisNaStole() {
+    const den = Number(State.get('currentDay')) || 0;
+    if (den < 1) return false;
+    const arr = State.get('flags.' + _klicPendingDeskDopisu(den));
+    return Array.isArray(arr) && arr.length > 0;
   }
 
   function _klicZpracovaniDopisu(den) {
@@ -856,6 +910,9 @@ const Engine = (() => {
       title: dopis.title || 'Dopis',
       text
     });
+    if (typeof UI !== 'undefined' && typeof UI.odemkniPovestPodleUdalosti === 'function' && dopis.id) {
+      UI.odemkniPovestPodleUdalosti('dopis', String(dopis.id));
+    }
     _aplikujEfektyDopisu(dopis.effects);
     await _zobrazReakciDopisu(dopis.reaction);
     Desk.aktualizujVse();
@@ -903,16 +960,27 @@ const Engine = (() => {
       otevriVlcekuvDopis();
       return;
     }
-    const letterId = pending.shift();
+    const letterId = pending[0];
     const dopis = DataLoader.ziskejDopis(letterId);
-    State.set('flags.' + klic, pending);
     if (!dopis) {
+      State.set('flags.' + klic, pending.slice(1));
       _obnovDopisyNaStoleProDen(_denData, den);
       State.uloz();
       return;
     }
     _zobrazDopisModalem(dopis).then(() => {
+      const zbytek = Array.isArray(State.get('flags.' + klic)) ? State.get('flags.' + klic).slice() : [];
+      if (zbytek.length && zbytek[0] === letterId) {
+        State.set('flags.' + klic, zbytek.slice(1));
+      }
       _obnovDopisyNaStoleProDen(_denData, den);
+      const po = State.get('flags.' + klic);
+      if (!Array.isArray(po) || po.length === 0) {
+        if (typeof Desk !== 'undefined' && Desk.skryjObalkuStoluPoPreceniVlcka) {
+          Desk.skryjObalkuStoluPoPreceniVlcka();
+        }
+      }
+      State.uloz();
     });
   }
 
@@ -955,30 +1023,36 @@ const Engine = (() => {
   // --- VLČKŮV DOPIS ---
 
   function otevriVlcekuvDopis() {
-    if (!_denData?.vlcek_letter) return;
+    const denV = Number(State.get('currentDay')) || 0;
 
-    const fragment = DataLoader.ziskejFragment(_denData.vlcek_letter);
-    const obsah = fragment || {
-      type:  'letter',
-      title: 'Dopis od ministra Vlčka',
-      text:  _denData.vlcek_letter_text || '„Věřím, že jste muž který rozumí nutnosti kompromisů, pane doktore."'
-    };
+    if (_denData && _denData.vlcek_letter) {
+      const fragment = DataLoader.ziskejFragment(_denData.vlcek_letter);
+      const obsah = fragment || {
+        type:  'letter',
+        title: 'Dopis od ministra Vlčka',
+        text:  _denData.vlcek_letter_text || '„Věřím, že jste muž který rozumí nutnosti kompromisů, pane doktore."'
+      };
 
-    const denV = State.get('currentDay');
-    State.zalogujNpcSetkani('vlcek', denV, 'Dopis od Vlčka', obsah.text || '');
-    State.zapisNpcPosledniDialog('vlcek', denV, obsah.text || '');
+      State.zalogujNpcSetkani('vlcek', denV, 'Dopis od Vlčka', obsah.text || '');
+      State.zapisNpcPosledniDialog('vlcek', denV, obsah.text || '');
 
-    UI.zobrazFragment(obsah, () => {
-      Desk.zobrazVlcekDopis(false);
-      Desk.zobrazSuplikIndikator(false);
-      if (typeof Desk.skryjObalkuStoluPoPreceniVlcka === 'function') {
-        Desk.skryjObalkuStoluPoPreceniVlcka();
-      }
-    });
+      UI.zobrazFragment(obsah, () => {
+        Desk.zobrazVlcekDopis(false);
+        Desk.zobrazSuplikIndikator(false);
+        if (typeof Desk.skryjObalkuStoluPoPreceniVlcka === 'function') {
+          Desk.skryjObalkuStoluPoPreceniVlcka();
+        }
+        if (typeof UI !== 'undefined' && typeof UI.odemkniPovestPodleUdalosti === 'function') {
+          UI.odemkniPovestPodleUdalosti('dopis', 'vlcek_d1');
+        }
+      });
 
-    // Zmačkání dopisu — tíha viny
-    State.upravRys('Vina', 3);
-    State.uloz();
+      State.upravRys('Vina', 3);
+      State.uloz();
+      return;
+    }
+
+    /* Dopisy s delivery „desk“ jdou přes _zpracujDopisyDne + obálku na stole, ne automatickým modalem. */
   }
 
   // --- KONEC HRY ---
@@ -1062,6 +1136,15 @@ const Engine = (() => {
   }
 
   // --- HELPERS ---
+
+  /** Titulek fragmentu s dnem v týdnu před kalendářním datem (viz Narrative.doplnDenVTydneDoTitulku). */
+  function _titulFragmentuSDnem(baseF, den) {
+    if (!baseF || typeof Narrative === 'undefined' || !Narrative.doplnDenVTydneDoTitulku) return baseF;
+    return {
+      ...baseF,
+      title: Narrative.doplnDenVTydneDoTitulku(baseF.title, den)
+    };
+  }
 
   function _cekejNaFragment(id, inlineFragment) {
     return new Promise(resolve => {
@@ -1154,11 +1237,14 @@ const Engine = (() => {
     overlay.addEventListener('click', () => {
       Music.spustPoInterakci();
       if (typeof SFX !== 'undefined') SFX.spustPoInterakci();
+      if (typeof UI !== 'undefined' && UI.zobrazZatemneniPripravyStolu) {
+        UI.zobrazZatemneniPripravyStolu();
+      }
       overlay.style.opacity = '0';
       setTimeout(() => {
         overlay.style.display = 'none';
         inicializuj();
-      }, 1500);
+      }, 1420);
     });
   }
 

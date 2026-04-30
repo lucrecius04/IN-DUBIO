@@ -1,0 +1,82 @@
+[
+  {
+    "id": "svejda",
+    "nazev": "Antonín Švejda",
+    "role": "Vrátný soudu (63 let)",
+    "od_zacatku": true,
+    "expozice": "Znáš ho léta z nástupů a odchodů. Hlídá vchod, deštníky, poštu i kávu a mezi dveřmi poslouchá víc, než by si kdo přál. K tobě mluví krátce, skoro jako hlášení, jedna věta a hotovo. Přesto u něj máš pocit, že ví víc než půl protokolů, a stejně zůstává spíš „nábytkem, který dýchá“, ne aby ti vyprávěl celé příběhy."
+  },
+  {
+    "id": "kovarova",
+    "nazev": "Milena Kovářová",
+    "role": "Zapisovatelka (28 let)",
+    "od_zacatku": true,
+    "expozice": "Sedí u jednání s perem v ruce a mezi vámi platí čistě úřední řád. Ty rozhoduješ, ona zapisuje, a nic mezi tím nepropadne do vzduchu. Umí být podivně tichá ve chvílích, kdy by se o věcech nemělo mluvit nahlas, a přesto nic nevynechá. Její přesnost je zároveň diskrétnost."
+  },
+  {
+    "id": "martin",
+    "nazev": "Martin Vraný",
+    "role": "Syn, student práv v Praze (24 let)",
+    "od_zacatku": true,
+    "expozice": "Píše ti dopisy z Prahy, kde ho baví idea, že zákon má chránit každého stejně. Ty v nich čteš synovu lásku, ale i výčitku, kterou sis možná namlouval, že si zasloužíš. Postupně v dopisech přibývají obraty z veřejné debaty a z novin, jemněji než bys čekal od kluka, který ještě nedávno mluvil jen o škole."
+  },
+  {
+    "id": "karas",
+    "nazev": "Ctibor Karas",
+    "role": "Kolega soudce (56 let)",
+    "od_zacatku": true,
+    "expozice": "Z Vídně ho znáš jako přítele a jediného, kdo ti říká „Ben“. U soudu je ti nablízko v kuloárech i u kávy, umí být vřelý a zároveň nebezpečný tím, co neřekne. Máš pocit, že mezi přátelstvím a výkonem práva umí balancovat lépe než většina lidí v budově, a přesto tě občas zaskočí, když zmlkne úplně ve špatnou chvíli."
+  },
+  {
+    "id": "masek",
+    "nazev": "Kolega soudce Mašek",
+    "role": "Soudce na témže krajském soudu",
+    "od_zacatku": true,
+    "expozice": "V kuloárech tě osloví „Jakube“ a není z něj mentor, spíš varovný prst systému, který už něco přežil. K tobě má vztah kolegiální tvrdosti a předpokládá, že podobné kompromisy přežiješ i ty. Zákon u něj není kazatelna spravedlnosti, ale mechanismus pořádku, a mluví o něm chladně pragmaticky."
+  },
+  {
+    "id": "vlcek",
+    "nazev": "Alexandr Vlček",
+    "role": "Ministr spravedlnosti (51 let)",
+    "od_zacatku": true,
+    "expozice": "Nadřízený v politickém rámci justice, k tobě přichází hlavně přes dopisy a úřední formulace. Umí začít zdvořile, pokračovat náznakem a nechat v listině viset váhu slova, aniž by musel zvednout hlas. Máš z něj pocit člověka, který si vybral pořádek jako nejvyšší hodnotu, i když nevíš všechno o tom, co ho k tomu dovedlo."
+  },
+  {
+    "id": "horakova",
+    "nazev": "Horáčková",
+    "role": "Advokátka (okolo 40 let)",
+    "expozice": "V řízeních ji potkáváš jako právní hlas na druhé straně lavice. K tobě je to často napjatě profesní, hájí klienty proti instituci, kterou reprezentuješ. Bere spisy jako osobní linie, ne jako epizody, a její důslednost je slyšet v každé větě, kterou nechá zaznít v síni.",
+    "odemkni_po_preceteni": [
+      { "typ": "pripad", "id": "tyc_horak_d1" },
+      { "typ": "pripad", "id": "pool_a1_markova_svedkyne" }
+    ]
+  },
+  {
+    "id": "benes",
+    "nazev": "Alois Beneš",
+    "role": "Starý muž, otec zemřelého Karla Beneše (71 let)",
+    "expozice": "K tobě přichází jako k soudci, který už jednou rozhodoval o jeho synovi, ne s plánem, ale s potřebou jedné věty, která by držela. Nemá v sobě politickou agendu v tom smyslu jako jiní kolem tebe. Mluví tiše, dlouho drží oční kontakt a nechává ti prostor, abys sám pochopil, že odcházet bude těžké.",
+    "odemkni_po_preceteni": [
+      { "typ": "adventure", "id": "adventure_benes_d9" }
+    ]
+  },
+  {
+    "id": "haas",
+    "nazev": "Viktor Haas",
+    "role": "Průmyslník (58 let)",
+    "expozice": "U soudu se objevuje jako poškozený nebo jako část systému, který sahá přes peníze, továrny a vlivy daleko za jeden spis. Dlouho působí spíš jako tenká čára v obálce než jako tvář, která by ti chtěla všechno říct najednou. K tobě se váže postupně, skrze stopy, které se skládají z různých stran a v různých dnech.",
+    "odemkni_po_preceteni": [
+      { "typ": "fragment", "id": "fragment_d6_morning" },
+      { "typ": "pripad", "id": "tyc_haas_d11" }
+    ]
+  },
+  {
+    "id": "zavadova",
+    "nazev": "Eliška Závadová",
+    "role": "Novinářka, vedoucí buňky Kruhu svědomí (38 let)",
+    "expozice": "Píše do Svobodného obzoru pod pseudonymem a z profese tě sleduje spíš jako instituci než jako člověka naproti. Má za sebou osobní motivaci kolem člověka, kterého soud poslal do tmy z téže budovy, a přesně to ji drží v napětí mezi redakčním stolem a kuloáry. Ve veřejném článku a v tom, co dělá mimo něj, umí znít dvěma hlasy, aniž by musela říkat všechno najednou.",
+    "odemkni_po_preceteni": [
+      { "typ": "pripad", "id": "tyc_zavadova_d12" }
+    ]
+  }
+]

@@ -320,6 +320,11 @@ const Desk = (() => {
       (np && np.headline) || (denDat && denDat.newspaper_headline) || '—';
     const nazev =
       (np && np.name) || (denDat && denDat.newspaper_name) || 'Denní tisk';
+    const maVlastniClanek = !!(
+      (np && np.body) ||
+      (denDat && denDat.newspaper_body) ||
+      (denDat && denDat.newspaper_article)
+    );
     let telo =
       (np && np.body) ||
       (denDat && denDat.newspaper_body) ||
@@ -327,6 +332,14 @@ const Desk = (() => {
       headline;
     if (denDat && denDat.newspaper_conditional_lines && typeof Narrative !== 'undefined' && Narrative.vyhodnotPodmineneRadky) {
       telo = (telo || '') + Narrative.vyhodnotPodmineneRadky(denDat.newspaper_conditional_lines);
+    }
+    /* Bez newspaper_body v datech byl „článek“ jen opakovaný titulek — doplníme neutrální lead (ne děj případů). */
+    if (!maVlastniClanek && String((telo || '').trim()) === String((headline || '').trim())) {
+      telo =
+        headline +
+        '\n\n' +
+        'Redakční zkratka z první strany — podrobnosti, čísla a reakce úřadů jsou v plném vydání; ' +
+        'zde zůstává jen to, co si město přečte mezi dvěma zákusky a kávou.';
     }
     return { nazev, headline, telo };
   }
@@ -373,7 +386,16 @@ const Desk = (() => {
     const novinyImg = document.querySelector('#desk-scene-noviny .desk-scene-noviny__grafika');
     if (novinyImg) {
       const dd = String(Math.max(1, Math.floor(denCislo))).padStart(2, '0');
-      novinyImg.src = 'src/newspaper/day-' + dd + '.png';
+      const srcDen = 'src/newspaper/day-' + dd + '.png';
+      const srcZaloha = 'src/newspaper - nepouzivane.png';
+      novinyImg.onerror = function _novinyObrazekChybi() {
+        this.onerror = null;
+        if (this.src.indexOf('day-') !== -1 && this.getAttribute('data-zaloha-src') !== '1') {
+          this.setAttribute('data-zaloha-src', '1');
+          this.src = srcZaloha;
+        }
+      };
+      novinyImg.src = srcDen;
     }
 
     const obalka = document.getElementById('desk-scene-obalka');

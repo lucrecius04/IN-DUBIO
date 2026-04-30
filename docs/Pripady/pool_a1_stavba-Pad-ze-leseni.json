@@ -46,7 +46,7 @@
   ],
   "contradictions": [
     {
-      "id": "kolin_podpis",
+      "id": "kolar_podpis",
       "description": "Kolář tvrdí, že o závadě nevěděl. Ale Sýkora říká, že Tuček šel závadu nahlásit mistrovi — Kolářovi. A v záznamu firmy existuje kontrolní list z 14. února, tři dny před nehodou, podepsaný Kolářem. Co je v tom protokolu?",
       "involves": ["kolar", "delnik_sykora"],
       "highlight_at_wisdom": 81,
@@ -148,7 +148,7 @@
       "reveals": "facts",
       "text": "Kontrolní list lešení ze 14. února 1931, podpis: M. Kolář. Poznámka vlastní rukou: čep v severovýchodním rohu — sledovat. Lešení neopraveno. Oprávce přivolán 19. února — dva dny po nehodě. Investor: Bytová společnost Vinohrady s.r.o., majoritní podíl ve vlastnictví JUDr. Karla Ryby, advokáta. Stavební zakázka s penalizační doložkou 200 Kčs/den za prodlení. Tuček František: pracovní smlouva od září 1930, hodnocení vzorný. Záložna: Kolář — hypotéka 3 200 Kčs, zůstatek 2 100 Kčs, splátka 85 Kčs/měsíc.",
       "cost": 1,
-      "unlocks_contradiction": "kolin_podpis"
+      "unlocks_contradiction": "kolar_podpis"
     },
     "informant": {
       "reveals": "context",
@@ -163,7 +163,7 @@
     "confrontation": {
       "target": "kolar",
       "target_label": "Ing. Miroslav Kolář, obžalovaný",
-      "requires_contradiction": "kolin_podpis",
+      "requires_contradiction": "kolar_podpis",
       "requires_courage": 60,
       "cost": 2,
       "prompt": "Pane inženýre, v kontrolním listu ze 14. února — tři dny před nehodou — je Váš vlastnoruční podpis a Vaše vlastnoruční poznámka: čep v severovýchodním rohu, sledovat. Tuček vám přišel závadu nahlásit. Co jste mu řekl?",

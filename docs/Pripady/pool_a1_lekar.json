@@ -147,7 +147,7 @@
       "requires_contradiction": "listina_vs_schopnost",
       "requires_courage": 55,
       "cost": 2,
-      "prompt": "Pane Bendo, trestní jste podal 10. března, tedy až den po notářském čtení závěti 9. března. V čem přesně spočívá vazba mezi otcovým listem a vaším přesvědčením, že list v bibli není jeho — a proč s ním nejdete k graphologovi, ale k trestnímu proti lékaři?",
+      "prompt": "Pane Bendo, trestní jste podal 10. března, tedy až den po notářském čtení závěti 9. března. V čem přesně spočívá vazba mezi otcovým listem a vaším přesvědčením, že list v bibli není jeho — a proč s ním nejdete k grafologovi, ale k trestnímu proti lékaři?",
       "success": {
         "text": "Benda sáhne do kapsy, vytáhne kapesník, ne odpověď. „Závěť je věc rodiny, smrt ve spisu je věc státu — a ten spis, pane doktore, musí říct, jestli tátu podepsal ještě člověk, nebo už jen tělo, kterému nikdo nerozumí.“ Němý souhlas u sestry; Soukup mlčí, ale neodvrátí pohled.",
         "reveals": "Syn přiznává, že pořadí dědictví a trestního stíhání se protnulo — ne nutně v manipulaci, ale v rozhodnutí, kdy bolest rodiny přerostla v požadavek na cizí vinu s časem, který soud musí sám posoudit."
@@ -210,8 +210,8 @@
       "requires": { "moudrost_min": 45 },
       "options": {
         "reopen": {
-          "label": "Přerušit: vyžádat graphologický posudek podpisu 3. 3. a porovnání s rodinnými listy",
-          "description": "Spis se otevíře znovu na písmu, ne na pístu; do té doby zůstává otázka úmyslu v mezeře mezi bibli a kartou o jedné injekci.",
+          "label": "Přerušit: vyžádat grafologický posudek podpisu 3. 3. a porovnání s rodinnými listy",
+          "description": "Spis se otevře znovu na písmu, ne na pístu; do té doby zůstává otázka úmyslu v mezeře mezi bibli a kartou o jedné injekci.",
           "effects": { "integrita": 1, "moudrost": 2, "vina": 1, "finance": 0, "flags": [{ "key": "bonus_inkoust_rano", "value": 1 }] }
         },
         "close": {

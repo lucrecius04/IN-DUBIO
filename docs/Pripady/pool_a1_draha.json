@@ -30,7 +30,7 @@
     {
       "id": "hruska_inspektor",
       "speaker": "Inspektor Bedřich Hruška, provozní oddělení Státních drah",
-      "text": "Hlášení Doudy jsem dostával. První dvě jsem postoupil technickému oddělení. <span class=\"clue\" data-clue-id=\"clue_hruska_postoupil\">Třetí a čtvrté jsem... zdržel. Měli jsme v lednu plánovanou generální revizi celého úseku. Moje rozhodnutí bylo počkat a opravit vše najednou.</span> Svár K-7 byl na seznamu revize. Byl. Douda o tom nevěděl, protože mu to nikdo neřekl. Uznávám, že to byl můj opomenu.",
+      "text": "Hlášení Doudy jsem dostával. První dvě jsem postoupil technickému oddělení. <span class=\"clue\" data-clue-id=\"clue_hruska_postoupil\">Třetí a čtvrté jsem... zdržel. Měli jsme v lednu plánovanou generální revizi celého úseku. Moje rozhodnutí bylo počkat a opravit vše najednou.</span> Svár K-7 byl na seznamu revize. Byl. Douda o tom nevěděl, protože mu to nikdo neřekl. Uznávám, že to bylo mé opomenutí.",
       "contradiction_keywords": ["zdržel", "generální revize", "neuvedl ho"],
       "hidden_at_wisdom_below": null
     },
@@ -55,7 +55,7 @@
       "description": "Douda sám přiznal: 'Záruka to nebyla.' Mrázek potvrdil, že dvě sekundy nebo vyšší rychlost mohly změnit výsledek. Douda riskoval životy 187 lidí — i kdyby to nebylo jeho záměrem.",
       "involves": ["douda", "strojvedouci"],
       "highlight_at_wisdom": 70,
-      "unlocks_confrontation": "douda"
+      "unlocks_confrontation": null
     }
   ],
   "clue_system": {
@@ -239,7 +239,7 @@
     "guilty_maximum": "Douda odešel s policistou. Dcery ho navštěvovaly každou neděli. Hruška dostal pokárání od vedení drah — písemné, do spisu. Svár K-7 byl opraven šestnáctého ledna. Expres z Vídně jezdí od té doby bez komplikací.",
     "guilty_standard": "Douda propuštěn. Našel práci u soukromé dopravní firmy v Holešovicích — nižší plat, žádná státní penze. Hruška zůstal na místě. V únoru proběhla generální revize úseku — bez závad.",
     "guilty_minimum": "Douda zaplatil tisíc korun. Vrátil se k výhybce. Kolegové mu podali ruku — tiše, jeden po druhém. Hruška s ním poprvé za devět měsíců promluvil přímo.",
-    "guilty_alternative": "Symbolická pokuta. Hruška byl předvolán k disciplinárnímu šetření. Státní dráhy podaly stížnost na rozsudek — a zároveň nařídily interní revizi systému hlášení závad. Douda dostal o měsíc senare písemné potvrzení, že jeho hlášení z dubna 1930 byla 'zpracována v souladu s pravidly'.",
+    "guilty_alternative": "Symbolická pokuta. Hruška byl předvolán k disciplinárnímu šetření. Státní dráhy podaly stížnost na rozsudek — a zároveň nařídily interní revizi systému hlášení závad. Douda dostal o měsíc později písemné potvrzení, že jeho hlášení z dubna 1930 bylo úředně zpracováno v souladu s pravidly.",
     "not_guilty_formal": "Douda zproštěn. Státní dráhy se odvolaly. Hruška podal okamžitou výpověď — aniž by ho o to kdokoli žádal. Douda se vrátil k výhybce. Nikdo mu nic neřekl. On taky ne."
   },
   "stamp_moment": {

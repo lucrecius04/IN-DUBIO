@@ -312,12 +312,14 @@ const Cases = (() => {
       console.warn('[Cases] nastavPripadyProDen: denData chybí (days.json?) — složky stejně z pole případů aktu.');
     }
     const idsZDne = denData && Array.isArray(denData.cases) ? denData.cases : null;
-    if (idsZDne && idsZDne.length > 0) {
+    /* Explicitní prázdné pole = žádné spisy (sobota, neděle, …) — nesmí spadnout do _triPripadyDleDne. */
+    if (idsZDne != null) {
       const light = denData && Array.isArray(denData.cases_light) ? denData.cases_light : [];
       nastavPripadyDne(idsZDne, light);
       console.log('[Cases] nastavPripadyProDen z days.json.cases', {
         den: d,
-        slotId: _pripady.map(p => (p && p.id) || null)
+        slotId: _pripady.map(p => (p && p.id) || null),
+        prazdnyDen: idsZDne.length === 0
       });
       return;
     }
@@ -1807,7 +1809,8 @@ const Cases = (() => {
       politicky_tlak:         'Z ministerstva přišel neformální dotaz.',
       uplatky:                'Advokát čeká venku s obálkou.',
       kompromitujici_nabidka: 'Dostal jsi anonymní dopis.',
-      chvala_v_novinach:      'Závadová o tobě napsala pozitivně.',
+      chvala_v_novinach:
+        'Tvého rozhodnutí si všimli důležití lidé.',
       verejne_odsouzeni:      'Na ulici tě někdo poznal. Bylo to nepříjemné.',
       verejna_podpora:        'Farář tě veřejně pochválil.'
     };

@@ -6,7 +6,7 @@
   "type": "osobni",
   "color": "#3A4A3A",
   "available_days": [
-    11
+    15
   ],
   "act": 1,
   "weight_conditions": {
@@ -142,7 +142,7 @@
           "Kapital": 2
         }
       },
-      "unlocks_contradiction": "bez_podmínek_ale_s_odkazem"
+      "unlocks_contradiction": "bez_podminek_ale_s_odkazem"
     },
     "informant": {
       "reveals": "context",
