@@ -6,36 +6,58 @@
   "act": 1,
   "type": "moral_dilemma",
   "color": "#2C4A7C",
-  "available_days": [6, 7, 8, 9],
-  "weight_conditions": { "base_weight": 1 },
+  "available_days": [
+    6,
+    7,
+    8,
+    9
+  ],
+  "weight_conditions": {
+    "base_weight": 1
+  },
   "defendant": {
     "name": "Ladislav Cílek",
     "age": 41,
     "occupation": "tříděč a obsluha telegrafní místnosti, Ústřední pošta, Praha",
     "detail": "20 let u pošty, ženatý, tři děti, bydliště Karlín, bez kázeňského záznamu; od roku 1928 na Florenci u telegrafu a třídění depeší s finanční náplní"
   },
-  "charge": "Porušení poštovního tajemství, neoprávněné narušení zabezpečení zásilky a zneužití postavení veřejného podniku dle zák. č. 1/1924 Sb. o provozu pošty a telegrafu ve spojení s ustanoveními trestního zákona o zneužití služby.",
+  "charge": "Porušení poštovního tajemství a zneužití služby dle zák. č. 1/1924 Sb. a trestního zákona",
   "description": "Ladislava Cílka nahlásil tříděcí kolega František Dvořák. Podle Dvořáka Cílek narušil tři telegrafní zásilky určené soukromé kanceláři v ulici Na Příkopě, které nesměl číst, a tím umožnil, aby se na podvodném výběru vkladů srazilo přes čtyřicet drobných vkladatelů. Cílek písemně přiznává narušení, ale trvá na tom, že v obsahu depeší viděl úmyslné maření pravidel a že podnět předal přímo k poštovní prokuratuře — policejní protokol o zahájení prošetření fiktivní záložny existuje. Morální jádro neleží jen u toho, zda obálku otevřel — ale zda soud odsouhlasí, že tajemství pošty lze v příčinné linii považovat za cenu záchrany, která jinak čekat nemohla — a proč o tom bylo třeba mluvit dva dny poté, co Dvořák neuspěl s převedením na místo v Písku.",
   "testimonies": [
     {
       "id": "cilek",
       "speaker": "Ladislav Cílek, obžalovaný",
       "text": "Ano, porušil jsem. Tři oficiální depeše šly v balíčku, který měl být doručen na adresu, kterou jsme sami evidovali jako fiktivní schránku — třídil jsem je o deset minut déle, než smím, a přečetl jsem tři řádky o místech výběru. <span class=\"clue\" data-clue-id=\"clue_cilek_depele\">Dne 23. 2. 1931, noční směna, pod č. zás. T-14 až T-16, text depeše: 'Doručit hotové z Paláce Lucerna do Kladna do otevřeného okna' — a částka, kterou jsme týden poté našli v seznamu u policejního plánování.</span> Bez toho, že bych je zadržel a ohlásil, by se třináct tisíc korun rozplynulo stejně jako týden předtím. <span class=\"clue\" data-clue-id=\"clue_cilek_postou\">Druhý den jsem odeslal písemný záznam přímo státní prokurátorce u pošty — ne šéfovi, který mi už dvakrát vytýkal, že popletu čísla.</span> To není hrdinství, pane soudu, je to tísňová volba, kterou zákon sám o sobě nenazývá takhle. <span class=\"clue\" data-clue-id=\"decoy_cilek_praxe\">Dvanáct let třídím tisíce zásilek bez jediné reklamace, dokud mne pán Dvořák neshodil na směny, o které nikdo neusiluje.</span>",
-      "contradiction_keywords": ["depeše", "T-14", "prokurátorce", "Dvořák"],
+      "contradiction_keywords": [
+        "depeše",
+        "T-14",
+        "prokurátorce",
+        "Dvořák"
+      ],
       "hidden_at_wisdom_below": null
     },
     {
       "id": "dvorak",
       "speaker": "František Dvořák, tříděč, oznamovatel",
       "text": "Nejsem soud, ale slyšet, jak kolega čte, co není pro něj, je důvod. Otevřeně říkám: než jsem to nahlásil, čekal jsem, co udělá sám ústav — nic. <span class=\"clue\" data-clue-id=\"clue_dvorak_termin\">Trestní podání jsem podal 26. 2. 1931 k večeru, tedy dva dny poté, co u komise pro místní přesuny padlo definitivní odmítnutí mého požadavku o převedení na pobočku v Písku.</span> To spolu nesouvisí, pane doktore — přesouval jsem schránky ve stejné noci, ve které Cílek třídil, a chtěl jsem, aby o tom věděl nadřízený. <span class=\"clue\" data-clue-id=\"clue_dvorak_pet\">Podpis mého hlášení sice jde krátce poté, co nabylo právní moci zápis o komisi, ale fakt, že Cílek hrál s obsahem zásilky, kterou nesl poštovní tisk, je očividný.</span> <span class=\"clue\" data-clue-id=\"decoy_dvorak_vule\">Sám považuji tajemství korespondence za svaté — proto jsem chtěl, aby s tím býval konfrontován někdo, kdo písemnosti číst nesmí.</span>",
-      "contradiction_keywords": ["26. 2", "Písek", "komise", "T-14"],
+      "contradiction_keywords": [
+        "26. 2",
+        "Písek",
+        "komise",
+        "T-14"
+      ],
       "hidden_at_wisdom_below": null
     },
     {
       "id": "bartakova",
       "speaker": "Anežka Bartáková, mzdová účetní, poštovní provoz Florenc (svědkyně mimo půdorys činu)",
       "text": "Spory mezi tříděči jsou tady každý týden — špatná světlice, popletená čísla, přesuny mezi pobočkami. Cílek je svědomitý, ale tvrdohlavý, Dvořák mluvil o odchodu už od ledna, protože chtěl být blíž u rodině na jihu. <span class=\"clue\" data-clue-id=\"clue_bartakova_komise\">Zápis o zamítnutí přestupu Dvořáka nabylo právní moci 24. 2. 1931 v 15.30, podepsaná tříčlenná komise — ve složení byl i Cílek, který hlasoval s většinou pro odmítnutí, formální důvod: místní pobočka v Písku není otevřena dříve než v červnu.</span> Tím končím, pane doktore; co se stalo 23. v noci, neviděla jsem, pracovala jsem s převody na Moravu.",
-      "contradiction_keywords": ["24. 2", "Cílek", "komise", "červnu"],
+      "contradiction_keywords": [
+        "24. 2",
+        "Cílek",
+        "komise",
+        "červnu"
+      ],
       "hidden_at_wisdom_below": null
     }
   ],
@@ -43,14 +65,21 @@
     {
       "id": "dvorak_nacasovani",
       "description": "Dvořák nahlásil Cílka 26. 2. — přesně dva dny poté, co bylo zamítnutí přestupu, včetně Cílkova hlasu, potvrzeno. O náhodě, ne o odvetě, jde spor.",
-      "involves": ["dvorak", "bartakova", "cilek"],
+      "involves": [
+        "dvorak",
+        "bartakova",
+        "cilek"
+      ],
       "highlight_at_wisdom": 65,
       "unlocks_confrontation": "dvorak"
     },
     {
       "id": "dve_depele_nebo_tri",
       "description": "Cílek písemně píše o třech depeších, Dvořák u výslechu původně uvedl čtyři, v pozdějším dopise dvě. Počet narušených zásil je samostatná pochyba.",
-      "involves": ["cilek", "dvorak"],
+      "involves": [
+        "cilek",
+        "dvorak"
+      ],
       "highlight_at_wisdom": 80,
       "unlocks_confrontation": null
     }
@@ -79,7 +108,11 @@
         "soft_fail": true
       }
     ],
-    "decoys": ["decoy_cilek_praxe", "decoy_dvorak_vule", "clue_dvorak_pet"],
+    "decoys": [
+      "decoy_cilek_praxe",
+      "decoy_dvorak_vule",
+      "clue_dvorak_pet"
+    ],
     "timed_hunt": {
       "enabled": true,
       "duration_sec": 62,
@@ -89,23 +122,65 @@
     },
     "info_threshold_unlocks": {
       "actions": [
-        { "min": 32, "ids": ["pool_inv_interview"] },
-        { "min": 40, "ids": ["pool_inv_records"] },
-        { "min": 52, "ids": ["pool_inv_informant"] },
-        { "min": 60, "ids": ["pool_inv_confrontation"] }
+        {
+          "min": 32,
+          "ids": [
+            "pool_inv_interview"
+          ]
+        },
+        {
+          "min": 40,
+          "ids": [
+            "pool_inv_records"
+          ]
+        },
+        {
+          "min": 52,
+          "ids": [
+            "pool_inv_informant"
+          ]
+        },
+        {
+          "min": 60,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
       ],
       "verdicts": [
-        { "min": 40, "ids": ["guilty_lenient", "not_guilty_with_comment"] },
-        { "min": 60, "ids": ["guilty_alternative", "insufficient_reopen"] },
-        { "min": 80, "ids": ["not_guilty_system"] }
+        {
+          "min": 40,
+          "ids": [
+            "guilty_lenient",
+            "not_guilty_with_comment"
+          ]
+        },
+        {
+          "min": 60,
+          "ids": [
+            "guilty_alternative",
+            "insufficient_reopen"
+          ]
+        },
+        {
+          "min": 80,
+          "ids": [
+            "not_guilty_system"
+          ]
+        }
       ]
     },
     "rewards": {
       "on_confirm": {
         "strong": {
           "investigation_progress_delta": 42,
-          "unlock_actions": ["pool_inv_confrontation"],
-          "unlock_verdict_ids": ["guilty_alternative", "insufficient_reopen"],
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "guilty_alternative",
+            "insufficient_reopen"
+          ],
           "narrative_lines": [
             "Policejní protokol o fiktivním výběru a depeších T-14 až T-16 tvoří jeden řetěz: číslo, které Cílek píše, a číslo, které nese úřední stůl, je totéž.",
             "Cílkův písemný zásah není tichá omluva, ale šifrované oznámení, které šlo cestou, kterou má šetřit tajemství, ne nosit ho domů.",
@@ -114,9 +189,11 @@
         },
         "medium": {
           "investigation_progress_delta": 22,
-          "unlock_verdict_ids": ["guilty_lenient"],
+          "unlock_verdict_ids": [
+            "guilty_lenient"
+          ],
           "narrative_lines": [
-                "Datum komise 24. 2. a Dvořákova žaloba 26. 2. tvoří interval, ve kterém se těžko hledá odstup od osobního odmítnutí, které tím tíží výpověď.",
+            "Datum komise 24. 2. a Dvořákova žaloba 26. 2. tvoří interval, ve kterém se těžko hledá odstup od osobního odmítnutí, které tím tíží výpověď.",
             "Cílek sám hlasoval proti Dvořákovu Písku — třeno mezi tříděči je staré o celé čtvrti déle, než trvala tato noc.",
             "Hranice tajemství pošty nezná výjimku, ale záznamy personální komise o takové třenici ano."
           ]
@@ -131,19 +208,39 @@
       "reveals": "motivation",
       "text": "Cílek vytáhne sešit, kde pečetí jednotlivé bloky. Na okraji má opsáno 'T-14, T-15, T-16' vlastním perem s kancelářským razítkem, které přetisk z číselníku stroje nepřilepí zpět. Řekne tiše: 'Dvořák ví, co znamenají T-14 až T-16. Nešlo mi o to ho shodit — šlo o to, že když prokurátorka dostane podnět takhle, stát pošle policii dřív, než stihne pobočka vybrat hotovost, kterou by jinak srovnala s chodníkem.'",
       "cost": 1,
-      "dirty_unlock": { "finance": -8, "traits": { "Integrita": -1, "Vina": 2 } }
+      "dirty_unlock": {
+        "finance": -8,
+        "traits": {
+          "Integrita": -1,
+          "Vina": 2
+        }
+      }
     },
     "records": {
       "source": "Kopie Policejního presidia Praha, oddělení obecné kriminality, spis 1931-312/B; a deník odeslání Ústřední pošty Florenc, únor 1931",
       "reveals": "facts",
       "text": "Přípis z 25. 2. 1931: v návaznosti na podnět státní prokuratury u pošty z 24. 2. 1931 zahájeno prošetřování fiktivní pobočky. <span class=\"clue\" data-clue-id=\"clue_policie_zapis\">Jako podklad je uvedeno 'text tří denních depeší z 23. 2. s čísly T-14, T-15, T-16' a číslo třídícího: Cílek, směna 22.00 až 6.00, Florenc, úsek telegrafu.</span> Denní kniha odeslání, lístek z 24. 2. 7.15: <span class=\"clue\" data-clue-id=\"clue_razitko_odeslany\">zásilka 4717 pro 'St. prokurátorku, pošta' — písmeno třídice Cílek, razítko odeslání a otisk, že písmeno nebylo dodatečně přepsáno; podpis důvěrníka skladu, že obálka nesla úřední tři čísla, která odpovídají telegrafu.</span>",
       "cost": 1,
-      "dirty_unlock": { "finance": -14, "traits": { "Integrita": -2, "Vina": 1 }, "factions": { "Moc": 1 } }
+      "dirty_unlock": {
+        "finance": -14,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1
+        }
+      }
     },
     "informant": {
       "reveals": "context",
       "cost": 1,
-      "dirty_unlock": { "finance": -5, "traits": { "Vina": 1 } },
+      "dirty_unlock": {
+        "finance": -5,
+        "traits": {
+          "Vina": 1
+        }
+      },
       "variants": {
         "lid_high": "Telegraf, který třídil Cílek, zásobuje banky, které samy žádají o exemplární trest každého, kdo sáhne mimo svůj formát. Drobné vklady, o které přišli lidé u fiktivní pobočky, nestojí v sále — stojí u okýnka, odkud píšou, že tři sta korun slevy týdně tvoří ticho, ve kterém se nečte, komu třídí kdo.",
         "moc_high": "Když soud píše, že pošta tajemství chránila tím, že je porušila, ministerstvo poslouchá: úředník musí, ne může. Trestním zákonem se netrestá ten, kdo třídil deset tisíc zásilek, ale ten, kdo třídil tři, které třídírna nesmí číst, i kdyby týž den na stole ležel policejní spis o týchž číslech.",
@@ -170,25 +267,62 @@
         "maximum": {
           "label": "Propustit ze státní služby a zákaz výkonu třídící funkce tři roky",
           "description": "Cílkovo porušení poštovního tajemství je soud považuje za účelově plošné a srozuměné. Propustit po dvaceti letech, bez nároku na odbytné, je těžký, ale srozumitelný důsledek; rodina třídíče přijde o jedinou pravidelnou domácnost s tarifem.",
-          "effects": { "integrita": 0, "vina": 9, "nadeje": -4, "moc": 4, "lid": -5, "finance": 20 }
+          "effects": {
+            "integrita": 0,
+            "vina": 9,
+            "nadeje": -4,
+            "moc": 4,
+            "lid": -5,
+            "finance": 20
+          }
         },
         "standard": {
           "label": "Odnětí platu na šest měsíců a mírnější ponechání s dohledem u pošty",
           "description": "Sankce zásahu do tajemství bez přímé výhody pro pachatele; důkaz, že soud třístupňovou telegrafnici považuje za chráněné vědění i při pohnutkách stran třesoucí se pobočkou a podvodu.",
-          "effects": { "integrita": 1, "vina": 5, "nadeje": -2, "moc": 1, "lid": -2, "finance": 12 }
+          "effects": {
+            "integrita": 1,
+            "vina": 5,
+            "nadeje": -2,
+            "moc": 1,
+            "lid": -2,
+            "finance": 12
+          }
         },
         "lenient": {
           "label": "Pokuta 25 Kčs, veřejné důtka, dočasné snížení třídícího platu o deset procent",
           "description": "Důtka, kterou pošta zapíše do mzdového lístku tak, že ji vidí třídírna, ale děti doma o ní neslyší, pokud třídíč o ní nemluví.",
           "requires_investigation": 1,
-          "effects": { "integrita": -1, "vina": 2, "nadeje": 0, "moc": -1, "lid": 1, "finance": 5 }
+          "effects": {
+            "integrita": -1,
+            "vina": 2,
+            "nadeje": 0,
+            "moc": -1,
+            "lid": 1,
+            "finance": 5
+          }
         },
         "alternative": {
           "label": "Alternativa: Podmíněné upuštění a návrh, aby ministerstvo přezkoumalo, zda podnět, který vedl k podvodu, nešel odděleně ohlásit bez čtení třídírny",
           "description": "Cílek píše podmínky sám, ale soud připisuje, že srozumění s tím, že týž podnět šel z úřední cesty písmem, vyžaduje, aby sami navrhli, jak jinak než třídírnou smět číst, co třídírně nikdo nerozsekl. Riziko: ministerstvo hovoří k telegrafu jazykem, který třídíčům hrozí, že tajnůstkářství zvítězí nad tím, co třídíte.",
           "requires_investigation": 2,
-          "requires": { "moudrost_min": 52 },
-          "effects": { "integrita": 5, "moudrost": 2, "vina": 1, "nadeje": 4, "moc": -2, "lid": 4, "finance": 0, "flags": [{ "key": "bonus_inkoust_rano", "value": 1 }] }
+          "requires": {
+            "moudrost_min": 52
+          },
+          "effects": {
+            "integrita": 5,
+            "moudrost": 2,
+            "vina": 1,
+            "nadeje": 4,
+            "moc": -2,
+            "lid": 4,
+            "finance": 0,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
         }
       }
     },
@@ -198,35 +332,90 @@
           "label": "Zproštění: zásilky byly třídírnou zastaveny jako evidentně podezřelé dle vnitřního opatření, nejde o tiché otevření cizí obálky mimo třídírnu",
           "description": "Převedení třídírny a policejního spisu 312/B považuje soud za jednání v moci ústavu, které nepostihuje třídíč osobně, pokud třídíč jednal s prokurátorkou, ne sám, a pokud tři lístky utvořily jednolitý sled spolu s oznámením, které třídíč nemohl skrýt, ani otevřít dvakrát, než ho oddělí úředník.",
           "requires_investigation": 1,
-          "effects": { "integrita": 2, "odvaha": 1, "moudrost": 1, "vina": -3, "moc": -1, "lid": 0, "finance": 0 }
+          "effects": {
+            "integrita": 2,
+            "odvaha": 1,
+            "moudrost": 1,
+            "vina": -3,
+            "moc": -1,
+            "lid": 0,
+            "finance": 0
+          }
         },
         "with_comment": {
           "label": "Zproštění s komentářem, že tajemství pošty a policejní účinnost tvořily dočasné napětí, které nelze třídit bez konfliktu, ale který musí řešit zákon, ne třídíč",
           "description": "Soud konstatuje, že Dvořákovu výpověď zatěžuje časování, ale to samo neodvíjí, že tři lístky existovaly, byly opsány a tvořily ohlášený hřbet zásilky, kterou pošta sama zaevidovala, ne třídíč v tichosti.",
           "requires_investigation": 1,
-          "effects": { "integrita": 3, "odvaha": 2, "vina": -2, "moc": -1, "lid": 1, "finance": 0 }
+          "effects": {
+            "integrita": 3,
+            "odvaha": 2,
+            "vina": -2,
+            "moc": -1,
+            "lid": 1,
+            "finance": 0
+          }
         },
         "system": {
           "label": "Alternativa: Zproštění a podnět, aby ministerstvo pošty vyčlenilo třídírnu, která čte podezřelou finanční depeš, bokem od jmen soukromých vkladů",
           "description": "Soud navrhuje oddělení technického třídění od třídění, které má těžší razítko, aby se podobný případ netřídil tím, kdo třídí, ale tím, kdo je k tomu úředním slovem odtížen — riziko, že třídíčům tím přibyde písemností, o které pošta tajit nechce, ale tři procenta z pošty na to tlačí.",
           "requires_investigation": 2,
-          "requires": { "moudrost_min": 60, "odvaha_min": 48 },
-          "effects": { "integrita": 6, "moudrost": 3, "vina": -1, "nadeje": 1, "moc": -1, "lid": 0, "finance": 0, "flags": [{ "key": "bonus_inkoust_rano", "value": 2 }] }
+          "requires": {
+            "moudrost_min": 60,
+            "odvaha_min": 48
+          },
+          "effects": {
+            "integrita": 6,
+            "moudrost": 3,
+            "vina": -1,
+            "nadeje": 1,
+            "moc": -1,
+            "lid": 0,
+            "finance": 0,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 2
+              }
+            ]
+          }
         }
       }
     },
     "insufficient_evidence": {
-      "requires": { "moudrost_min": 48 },
+      "requires": {
+        "moudrost_min": 48
+      },
       "options": {
         "reopen": {
           "label": "Přerušit: vyžádat srovnání třídícího pásu z 23. 2. s tím, co třídírna archivovala 24. 2.",
           "description": "Kdo přesně, kdy, za kolik, než se zásilka 4717 pohnula — třídí se i po jednom lístku, a ten lístek se musí třídit, ne třídíč.",
-          "effects": { "integrita": 2, "moudrost": 2, "vina": 0, "nadeje": 0, "moc": 0, "lid": 0, "finance": 0, "flags": [{ "key": "bonus_inkoust_rano", "value": 1 }] }
+          "effects": {
+            "integrita": 2,
+            "moudrost": 2,
+            "vina": 0,
+            "nadeje": 0,
+            "moc": 0,
+            "lid": 0,
+            "finance": 0,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
         },
         "close": {
           "label": "Zamítnout pro nejasnost jedině s tím, že spis zůstane otevřen pro interní šetření pošty",
           "description": "Soud končí bez jednoznačné míry viny; třídírna zůstává místem, kde se ticho korespondence musí poslouchat rukama, které ji dělí na pásy, ne na pocity.",
-          "effects": { "integrita": 0, "moudrost": 0, "vina": 1, "moc": 0, "lid": 0, "finance": 0 }
+          "effects": {
+            "integrita": 0,
+            "moudrost": 0,
+            "vina": 1,
+            "moc": 0,
+            "lid": 0,
+            "finance": 0
+          }
         }
       }
     }

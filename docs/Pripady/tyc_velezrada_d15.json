@@ -20,7 +20,7 @@
     "occupation": "průmyslový poradce, správce trustu",
     "detail": "bývalý vedoucí oddělení průmyslových licencí na Ministerstvu obchodu, propuštěn 1928. Žije v Praze, příjmy z poradenské činnosti pro zahraniční firmy. Ženatý — manželka Anna, rozená Vránová."
   },
-  "charge": "Velezrada dle §1 a §2 zákona na ochranu republiky č. 50/1923 Sb.: Alexander Wolf v době od září 1928 do ledna 1931 vědomě a opakovaně předával důvěrné informace o průmyslové kapacitě a obranných zakázkách Československa zástupcům německého kapitálu — konkrétně firmě Haas und Söhne Holešovice a jejím zahraničním pobočkám. Za tento přenos byl odměněn celkovou částkou nejméně 84 000 Kčs. Trestní sazba: 5–15 let těžkého žaláře, při přitěžujících okolnostech doživotí.",
+  "charge": "Velezrada dle §1 a §2 zákona na ochranu republiky č. 50/1923 Sb.",
   "description": "Alexander Wolf sedí u stolu a je klidný způsobem, který Ben za čtrnáct let u soudu viděl jen zřídka — klidný ne ze zatvrdlosti, ale ze smíření. Jako by výsledek dnešního dne pro něj nebyl otázkou. Státní zástupce Dvořák předložil dvě stě stránek dokumentace: přesuny financí, šifrované dopisy, schůzky v hotelích. A jeden dokument z roku 1928 — podepsaný Wolfem, adresovaný Haasovi — který popisuje rozmístění zbrojní výroby v severních Čechách. Obhájce Wolf říká, že dokument je padělán. Že nikdy neexistoval v originále. Že Wolfova propast začala přesně tím, že v září osmadvacátého odmítl tento dokument podepsat — a někdo ho podepsal za něj.",
   "testimonies": [
     {
@@ -86,11 +86,11 @@
         "grafolog_expert",
         "dvorak_statni_zastupce"
       ],
-          "highlight_at_wisdom": 75,
-          "unlocks_confrontation": null
-        }
-      ],
-      "clue_system": {
+      "highlight_at_wisdom": 75,
+      "unlocks_confrontation": null
+    }
+  ],
+  "clue_system": {
     "enabled": true,
     "true_pair_id": "odmitl_pak_propusten_strong",
     "pairs": [

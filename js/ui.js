@@ -1294,6 +1294,9 @@ const UI = (() => {
   function _wfNastavRichText(el, text) {
     if (!el) return;
     el.innerHTML = _wfRichTextHtml(text);
+    if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
+      Knihovna.obalSlovnikemVElementu(el);
+    }
   }
 
   function _wfClueResetVolby() {
@@ -1813,7 +1816,7 @@ const UI = (() => {
       ? Cases.maPotvrzenouClueVazbu(pripad)
       : false;
     const show = matched || _wfJeVysokaMoudrostProRozpor(pripad);
-    conEl.textContent = c0.description;
+    _wfNastavRichText(conEl, c0.description);
     conEl.classList.toggle('skryto', !show);
   }
 
@@ -2200,12 +2203,12 @@ const UI = (() => {
     const [a, b] = _dveVetyShrnutiRozsudku(pripad);
     const p1 = document.createElement('p');
     p1.className = 'rozsudky-shrnuti-radek';
-    p1.textContent = a || '—';
+    _wfNastavRichText(p1, a || '—');
     wrap.appendChild(p1);
     if (b) {
       const p2 = document.createElement('p');
       p2.className = 'rozsudky-shrnuti-radek';
-      p2.textContent = b;
+      _wfNastavRichText(p2, b);
       wrap.appendChild(p2);
     }
   }
@@ -2303,7 +2306,7 @@ const UI = (() => {
     const inner = prelude?.querySelector('.pripad-consequence-prelude-inner');
     const hintEl = prelude?.querySelector('.pripad-consequence-prelude-hint');
     if (prelude && txtEl) {
-      txtEl.textContent = _textAftermath(pripad, rozsudek);
+      _wfNastavRichText(txtEl, _textAftermath(pripad, rozsudek));
       if (hintEl) {
         hintEl.textContent =
           'Stiskni Enter nebo pokračuj tlačítkem — spis se zavře a vrátíš se na stůl.';
@@ -2335,7 +2338,7 @@ const UI = (() => {
     const raw = (rozsudek.consequence && String(rozsudek.consequence).trim())
       || (rozsudek.text && String(rozsudek.text).trim())
       || '—';
-    txtEl.textContent = `${protoVeta} ${raw}`;
+    _wfNastavRichText(txtEl, `${protoVeta} ${raw}`);
     prelude.querySelector('.pripad-consequence-prelude-inner')
       ?.classList.remove('pripad-consequence-prelude-inner--aftermath');
     const hint0 = prelude.querySelector('.pripad-consequence-prelude-hint');
@@ -3556,6 +3559,9 @@ const UI = (() => {
       });
       step2.appendChild(b);
     }
+    if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
+      Knihovna.obalSlovnikemVElementu(step2);
+    }
     if (confirmBtn) {
       confirmBtn.classList.add('skryto');
       confirmBtn.disabled = true;
@@ -3858,6 +3864,9 @@ const UI = (() => {
           `<div class="case-wf-quote">${sv.text || ''}</div>`;
         svedkySekce.appendChild(item);
       }
+      if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
+        Knihovna.obalSlovnikemVElementu(svedkySekce);
+      }
     }
 
     const conEl = document.getElementById('case-wf-contradiction');
@@ -3957,7 +3966,7 @@ const UI = (() => {
     if (spDatumR) spDatumR.textContent = _formatujDatumSpisu(State.get('currentDay'));
 
     const situaceRo = document.getElementById('pripad-situace-text');
-    if (situaceRo) situaceRo.textContent = _wfZahlaviPlainText(pripad.situation || '');
+    if (situaceRo) _wfNastavRichText(situaceRo, pripad.situation || '');
 
     const svedkySekce = document.getElementById('pripad-svedectvi');
     svedkySekce.innerHTML = '';
@@ -3970,7 +3979,7 @@ const UI = (() => {
         sp.textContent = _wfZahlaviPlainText(sv.label || sv.source || '—');
         const qt = document.createElement('div');
         qt.className = 'case-wf-quote';
-        qt.textContent = _wfZahlaviPlainText(sv.text || '');
+        _wfNastavRichText(qt, sv.text || '');
         item.appendChild(sp);
         item.appendChild(qt);
         svedkySekce.appendChild(item);
@@ -4001,7 +4010,7 @@ const UI = (() => {
         src.textContent = _wfNadpisZjištěníPrůzkumu(pripad, info);
         const txt = document.createElement('div');
         txt.className = 'case-wf-finding-text';
-        txt.textContent = _wfZahlaviPlainText(info.reveal || '');
+        _wfNastavRichText(txt, info.reveal || '');
         box.appendChild(src);
         _wfVlozRadekRečníkaZjištění(box, info);
         box.appendChild(txt);
@@ -4243,7 +4252,7 @@ const UI = (() => {
     }
     const tx = document.createElement('div');
     tx.className = 'odhalene-info-text';
-    tx.innerHTML = _wfRichTextHtml(info.reveal || '');
+    _wfNastavRichText(tx, info.reveal || '');
     el.appendChild(tx);
     kontejner.appendChild(el);
   }
@@ -4361,6 +4370,9 @@ const UI = (() => {
       (extraMeta ? `<div class="case-wf-readonly-meta-row case-wf-readonly-meta-row--muted">${extraMeta}</div>` : '') +
       `<div class="case-wf-readonly-meta-row case-wf-readonly-meta-row--muted">${procPozn}</div>`;
     seznam.appendChild(meta);
+    if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
+      Knihovna.obalSlovnikemVElementu(meta);
+    }
 
     const trida = _rozsudekTrida(rozsudek.id);
     const karta = document.createElement('div');
@@ -4381,13 +4393,13 @@ const UI = (() => {
     radek.className = 'rozsudek-radek-hlavni';
     const nazev = document.createElement('span');
     nazev.className = 'rozsudek-nazev';
-    nazev.textContent = rozsudek.text || '—';
+    _wfNastavRichText(nazev, rozsudek.text || '—');
     radek.appendChild(nazev);
     textWrap.appendChild(radek);
     if (rozsudek.consequence) {
       const cons = document.createElement('div');
       cons.className = 'rozsudek-consequence';
-      cons.textContent = rozsudek.consequence;
+      _wfNastavRichText(cons, rozsudek.consequence);
       textWrap.appendChild(cons);
     }
     const radkyEf =
@@ -4480,19 +4492,21 @@ const UI = (() => {
     };
 
     if (bal < 400) {
-      textEl.textContent =
+      _wfNastavRichText(
+        textEl,
         'Do uzávěrky zbývá málo času a na stole není dost na operaci. ' +
-        'Advokát Haas přichází s obálkou. Lichvář Karas čeká v předsíni. Nebo můžete riskovat odklad — a doufat.';
+          'Advokát Haas přichází s obálkou. Lichvář Karas čeká v předsíni. Nebo můžete riskovat odklad — a doufat.'
+      );
       const varianty = [
         {
-          text: 'Přijmout 300 Kčs od Haase (Integrita −15)',
+          text: 'Přijmout 300 Kčs od Haase',
           run() {
             State.upravFinance(300);
             State.upravRys('Integrita', -15);
           }
         },
         {
-          text: 'Půjčit si 150 Kčs u Karase (splátka do týdne)',
+          text: 'Půjčit si 150 Kčs u Karase',
           run() {
             State.upravFinance(150);
             State.upravDuveru('karas', 1);
@@ -4500,7 +4514,7 @@ const UI = (() => {
           }
         },
         {
-          text: 'Odložit operaci — snášet tíhu doma (Naděje −10, Vina +8)',
+          text: 'Odložit operaci — snášet tíhu doma',
           run() {
             State.upravRys('Nadeje', -10);
             State.upravRys('Vina', 8);
@@ -4520,13 +4534,15 @@ const UI = (() => {
         volby.appendChild(btn);
       }
     } else {
-      textEl.textContent =
+      _wfNastavRichText(
+        textEl,
         'Úspory na operaci stačí — ale Haas přichází s obchodem: 300 Kčs za přízeň v příštím spisu. ' +
-        'Můžete odmítnout bez následků.';
+          'Můžete odmítnout bez následků.'
+      );
       const prijm = document.createElement('button');
       prijm.className = 'btn-vecer';
       prijm.type = 'button';
-      prijm.textContent = 'Přijmout 300 Kčs od Haase (Integrita −15)';
+      prijm.textContent = 'Přijmout 300 Kčs od Haase';
       prijm.addEventListener('click', () => {
         State.upravFinance(300);
         State.upravRys('Integrita', -15);
@@ -4555,10 +4571,18 @@ const UI = (() => {
       return;
     }
 
-    const casVecer = document.querySelector('#modal-vecer .vecer-cas');
-    if (casVecer) casVecer.textContent = 'VEČER';
+    const casVecer =
+      document.getElementById('vecer-cas-label') ||
+      document.querySelector('#modal-vecer .vecer-cas');
+    const casNadpis =
+      (volba && volba.cas_label) || (denDat && denDat.cas_label) || 'VEČER';
+    if (casVecer) casVecer.textContent = String(casNadpis).trim() || 'VEČER';
 
-    document.getElementById('vecer-text').textContent = volba.text;
+    const vecerTxt = document.getElementById('vecer-text');
+    const uvodniText = volba && (volba.text != null && String(volba.text).trim() !== '')
+      ? volba.text
+      : (volba && volba.prompt != null ? volba.prompt : '');
+    if (vecerTxt) _wfNastavRichText(vecerTxt, uvodniText);
 
     const volbyEl = document.getElementById('vecer-volby');
     volbyEl.innerHTML = '';
@@ -4593,10 +4617,13 @@ const UI = (() => {
       return;
     }
 
-    const casEl = document.querySelector('#modal-vecer .vecer-cas');
+    const casEl =
+      document.getElementById('vecer-cas-label') ||
+      document.querySelector('#modal-vecer .vecer-cas');
     if (casEl) casEl.textContent = 'NEDĚLE';
 
-    document.getElementById('vecer-text').textContent = nv.text || 'Jak strávíš neděli?';
+    const vecerTxtN = document.getElementById('vecer-text');
+    if (vecerTxtN) _wfNastavRichText(vecerTxtN, nv.text || 'Jak strávíš neděli?');
 
     const volbyEl = document.getElementById('vecer-volby');
     volbyEl.innerHTML = '';
@@ -4662,10 +4689,16 @@ const UI = (() => {
     const coherence = Number(box.coherenceScore);
     const caseTitle = box.caseTitle || 'Neznámý spis';
     titleEl.textContent = `Revize spisu: ${caseTitle}`;
-    metaEl.textContent =
+    _wfNastavRichText(
+      metaEl,
       `Původní den: ${Number.isFinite(denPuv) ? denPuv : '—'} · Verdikt: ${box.verdictText || '—'} · ` +
-      `fakta ${Number.isFinite(evidence) ? evidence : '—'} / koherence ${Number.isFinite(coherence) ? coherence : '—'}`;
-    sumEl.textContent = box.summaryShort || 'Spis se vrací k revizi. Rozhodněte, zda původní rozsudek podržíte, nebo ho zmírníte.';
+        `fakta ${Number.isFinite(evidence) ? evidence : '—'} / koherence ${Number.isFinite(coherence) ? coherence : '—'}`
+    );
+    _wfNastavRichText(
+      sumEl,
+      box.summaryShort ||
+        'Spis se vrací k revizi. Rozhodněte, zda původní rozsudek podržíte, nebo ho zmírníte.'
+    );
 
     openBtn.onclick = () => {
       if (!box.pripad) {
@@ -4702,10 +4735,18 @@ const UI = (() => {
     }
 
     tit.textContent = payload?.titulek || 'Konec pracovního týdne';
-    hlavni.textContent = payload?.hlavni || '';
+    _wfNastavRichText(hlavni, payload?.hlavni || '');
     jemne.innerHTML = (payload?.jemneRadky || [])
-      .map(r => '<p class="tyden-shrnuti-jemne-radek">' + String(r) + '</p>')
+      .map(
+        r =>
+          '<p class="tyden-shrnuti-jemne-radek">' +
+          _escapeHtmlProfil(String(r)).replace(/\n/g, '<br>') +
+          '</p>'
+      )
       .join('');
+    if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
+      Knihovna.obalSlovnikemVElementu(jemne);
+    }
 
     const novyBtn = btn.cloneNode(true);
     btn.parentNode.replaceChild(novyBtn, btn);
@@ -4739,6 +4780,7 @@ const UI = (() => {
     const typNadpis = Narrative.getTYP_NADPIS()[fragment.type] || 'Záznam';
     nadpis.textContent = fragment.title || typNadpis;
     text.innerHTML = (fragment.text || '').replace(/\n/g, '<br>');
+    /* Slovník jen ve spisu (`_wfNastavRichText` v modal-pripad), ne v ranních/nočních fragmentech. */
 
     const zavritBtn = document.getElementById('fragment-zavrit');
     const novyZavrit = zavritBtn.cloneNode(true);
@@ -4811,6 +4853,9 @@ const UI = (() => {
       const speaker = String(s.speaker || '').trim();
       speakerEl.textContent = speaker && speaker !== 'narrator' ? speaker : '';
       textEl.innerHTML = String(s.text || '').replace(/\n/g, '<br>');
+      if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
+        Knihovna.obalSlovnikemVElementu(textEl);
+      }
       choicesEl.innerHTML = '';
 
       const volby = Array.isArray(s.choices) ? s.choices : [];
@@ -5019,7 +5064,11 @@ const UI = (() => {
         inner.appendChild(per);
       }
       _knihovnaBodyDoRodice(inner, pb.body);
-      const rozh = pb.rozhodnuti || [];
+      const rozhZdroj = pb.rozhodnuti || [];
+      const rozh =
+        typeof Knihovna !== 'undefined' && typeof Knihovna.vyfiltrujPribehRozhodnuti === 'function'
+          ? Knihovna.vyfiltrujPribehRozhodnuti(rozhZdroj)
+          : rozhZdroj;
       if (rozh.length) {
         const hn = document.createElement('div');
         hn.className = 'knihovna-sekce-nadpis';
@@ -5144,6 +5193,9 @@ const UI = (() => {
         body.style.flex = 'none';
         body.style.width = '100%';
         body.innerHTML = _escapeHtmlProfil(nb).replace(/\n/g, '<br>');
+        if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
+          Knihovna.obalSlovnikemVElementu(body);
+        }
         entry.appendChild(title);
         entry.appendChild(body);
         wrap.appendChild(entry);
@@ -5238,7 +5290,7 @@ const UI = (() => {
           }
           const tx = document.createElement('p');
           tx.className = 'povest-zapisnik-expozice';
-          tx.textContent = String(z.expozice || '').trim() || '—';
+          _wfNastavRichText(tx, String(z.expozice || '').trim() || '—');
           sec.appendChild(tx);
           povestWrap.appendChild(sec);
         }
@@ -5491,6 +5543,9 @@ const UI = (() => {
     const plny = (zaznam.fullText || '').trim();
     if (plny) {
       telo.innerHTML = _escapeHtmlProfil(plny).replace(/\n/g, '<br>');
+      if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
+        Knihovna.obalSlovnikemVElementu(telo);
+      }
     } else {
       telo.innerHTML = '<p class="postava-historie-detail-prazdne">Úplný text není k dispozici.</p>';
     }
@@ -5512,6 +5567,9 @@ const UI = (() => {
     duveraEl.dataset.npcId = v.id;
     duveraEl.textContent = Characters.getDuveraVizitka(v.id);
     popis.innerHTML = v.popis.split('\n').join('<br>');
+    if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
+      Knihovna.obalSlovnikemVElementu(popis);
+    }
 
     const vlivText = Characters.getVlivNaHrace(npcId);
     vliv.innerHTML = vlivText
@@ -5519,6 +5577,9 @@ const UI = (() => {
           '<p class="postava-profil-vliv-radek">' + _escapeHtmlProfil(radek) + '</p>'
         ).join('')
       : '<p class="postava-profil-vliv-radek">—</p>';
+    if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
+      Knihovna.obalSlovnikemVElementu(vliv);
+    }
 
     const zaznamy = Characters.getHistorieSetkani(npcId);
     historie.innerHTML = '';
@@ -5574,10 +5635,12 @@ const UI = (() => {
 
   let _zpravaCasovac = null;
 
-  /** Délka zobrazení stavové hlášky (ms) — dlouhá, ať si jí hráč stihne všimnout. */
-  const STAVOVA_ZPRAVA_TRVANI_MS = 18000;
-  /** Toast s HTML (odkazy do zápisníku) ještě o chvíli déle kvůli čtení a kliku. */
-  const STAVOVA_ZPRAVA_TRVANI_HTML_MS = 26000;
+  /** Délka zobrazení stavové hlášky (ms). */
+  const STAVOVA_ZPRAVA_TRVANI_MS = 10000;
+  /** Toast s HTML (odkazy do zápisníku) — déle kvůli čtení a kliku. */
+  const STAVOVA_ZPRAVA_TRVANI_HTML_MS = 18000;
+  /** Krátké atmosférické hlášky (reakce frakcí po rozsudku apod.). */
+  const STAVOVA_ZPRAVA_TRVANI_KRATKA_MS = 5000;
 
   /**
    * @param {string} text — prostý text nebo HTML (viz opts.html).
@@ -5590,6 +5653,9 @@ const UI = (() => {
     const useHtml = opts && opts.html === true;
     if (useHtml) {
       el.innerHTML = text;
+      if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
+        Knihovna.obalSlovnikemVElementu(el);
+      }
       el.classList.add('stavova-zprava--html');
     } else {
       el.innerHTML = '';
@@ -5732,7 +5798,8 @@ const UI = (() => {
         autoBtn.title = 'Automatické uložení vznikne po chvíli hraní';
       }
     }
-    for (const poz of [1, 2]) {
+    const nSlot = Number(State.pocetRucnichUlozeni) || 5;
+    for (let poz = 1; poz <= nSlot; poz++) {
       const txt = _textProSlotUlozeni(poz);
       const maUlozku = !!State.peekUlozene(poz);
       const ulozBtn = document.getElementById('menu-ulozit-' + poz);
@@ -5782,7 +5849,7 @@ const UI = (() => {
       'Krátké pověsti postav z okolí soudu přibývají v zápisníku na stole (záložka Pověst), ' +
       'jakmile ve hře poprvé zazní jejich jméno.\n\n' +
       'Uložení je v tomto prohlížeči (localStorage): automatické uložení během hry ' +
-      'a dvě nezávislé ruční zálohy. ' +
+      'a pět nezávislých ručních záloh. ' +
       'Na jiném zařízení nebo v jiném prohlížeči uložená pozice není; ' +
       'po vymazání dat stránky nebo v soukromém okně může zmizet.\n\n' +
       'Verze: 0.1 (vývoj)';
@@ -6030,7 +6097,7 @@ const UI = (() => {
       } else {
         ok = window.confirm(
           'Uložit aktuální postup (den ' + denAktualni + ') do této prázdné zálohy?\n\n' +
-          'Později můžete načíst jinou zálohu; neuložené změny v jiném slotu ztratíte, pokud je nepřepíšete úmyslně.'
+          'Později můžete načíst jinou zálohu; neuložené změny v jiné pozici ztratíte, pokud je nepřepíšete úmyslně.'
         );
       }
       if (!ok) return;
@@ -6049,8 +6116,12 @@ const UI = (() => {
       );
     }
 
-    document.getElementById('menu-ulozit-1')?.addEventListener('click', () => _handlerUlozPozici(1));
-    document.getElementById('menu-ulozit-2')?.addEventListener('click', () => _handlerUlozPozici(2));
+    {
+      const nSlot = Number(State.pocetRucnichUlozeni) || 5;
+      for (let poz = 1; poz <= nSlot; poz++) {
+        document.getElementById('menu-ulozit-' + poz)?.addEventListener('click', () => _handlerUlozPozici(poz));
+      }
+    }
 
     function _handlerNactiAutosave() {
       const ulozene = State.peekAutosave();
@@ -6108,8 +6179,12 @@ const UI = (() => {
       zobrazStavovouZpravu('Hra načtena — den ' + ulozene.currentDay + '.');
     }
 
-    document.getElementById('menu-nacist-1')?.addEventListener('click', () => _handlerNactiPozici(1));
-    document.getElementById('menu-nacist-2')?.addEventListener('click', () => _handlerNactiPozici(2));
+    {
+      const nSlot = Number(State.pocetRucnichUlozeni) || 5;
+      for (let poz = 1; poz <= nSlot; poz++) {
+        document.getElementById('menu-nacist-' + poz)?.addEventListener('click', () => _handlerNactiPozici(poz));
+      }
+    }
 
     document.getElementById('menu-o-hre')?.addEventListener('click', () => {
       _zobrazOHre();
@@ -6118,6 +6193,66 @@ const UI = (() => {
     document.getElementById('modal-menu')?.addEventListener('click', (e) => {
       if (e.target === e.currentTarget) _zavriMenu();
     });
+  }
+
+  /**
+   * Před závěrečným epilogem: rámcový text z `data/ending_prelude.json` (konec kampaně, typ konce).
+   * Bez slovníkových prokliků. Chybí-li data nebo DOM, rovnou epilog.
+   */
+  function zobrazPredKoncemAKonecHry(typ, epilogRadky) {
+    const preludeModal = document.getElementById('modal-konec-prelude');
+    const ramecek = document.getElementById('konec-prelude-ramecek');
+    const nadpisEl = document.getElementById('konec-prelude-nadpis');
+    const teloEl = document.getElementById('konec-prelude-telo');
+    const btn = document.getElementById('konec-prelude-pokracovat');
+    if (!preludeModal || !ramecek || !nadpisEl || !teloEl || !btn) {
+      zobrazKonecHry(typ, epilogRadky);
+      return;
+    }
+
+    let data = null;
+    if (typeof DataLoader !== 'undefined' && DataLoader.ziskejEndingPrelude) {
+      data = DataLoader.ziskejEndingPrelude();
+    }
+    if (!data || typeof data !== 'object') {
+      zobrazKonecHry(typ, epilogRadky);
+      return;
+    }
+
+    const typy = data.typy && typeof data.typy === 'object' ? data.typy : {};
+    const blok = typy[typ] || typy.default;
+    const nadpisBlok = blok && typeof blok === 'object' ? String(blok.nadpis || '').trim() : '';
+    const odstavceRaw = blok && typeof blok === 'object' && Array.isArray(blok.odstavce) ? blok.odstavce : [];
+    if (!nadpisBlok && odstavceRaw.length === 0) {
+      zobrazKonecHry(typ, epilogRadky);
+      return;
+    }
+
+    const uvod = String(data.uvod_vzdy || '').trim();
+    ramecek.textContent = uvod || 'Konec příběhové kampaně. Následuje epilog s následky.';
+
+    nadpisEl.textContent = nadpisBlok || '—';
+
+    const htmlPar = [];
+    for (const p of odstavceRaw) {
+      const t = String(p || '').trim();
+      if (!t) continue;
+      htmlPar.push(
+        '<p class="konec-prelude-odstavec">' +
+          _escapeHtmlProfil(t).replace(/\n/g, '<br>') +
+          '</p>'
+      );
+    }
+    teloEl.innerHTML = htmlPar.length ? htmlPar.join('') : '<p class="konec-prelude-odstavec">—</p>';
+
+    const novyBtn = btn.cloneNode(true);
+    btn.parentNode.replaceChild(novyBtn, btn);
+    novyBtn.addEventListener('click', () => {
+      _zavriModal('modal-konec-prelude');
+      zobrazKonecHry(typ, epilogRadky);
+    });
+
+    _otevriModal('modal-konec-prelude');
   }
 
   function zobrazKonecHry(typ, epilogRadky) {
@@ -6147,13 +6282,21 @@ const UI = (() => {
         ${radek.postava ? '<strong>' + radek.postava + '.</strong> ' : ''}${radek.text}
       </div>
     `).join('');
+    if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
+      Knihovna.obalSlovnikemVElementu(epilogEl);
+    }
 
     overlay.classList.remove('skryto');
 
-    document.getElementById('konec-restart')?.addEventListener('click', () => {
-      State.reset();
-      location.reload();
-    });
+    const restartBtn = document.getElementById('konec-restart');
+    if (restartBtn) {
+      const novyRestart = restartBtn.cloneNode(true);
+      restartBtn.parentNode.replaceChild(novyRestart, restartBtn);
+      novyRestart.addEventListener('click', () => {
+        State.reset();
+        location.reload();
+      });
+    }
   }
 
   // Tlačítko Další den
@@ -6446,6 +6589,11 @@ const UI = (() => {
     odemkniPovestPodleUdalosti,
     syncPostavyDuvera,
     zobrazStavovouZpravu,
+    /** ms — atmosférické hlášky po rozsudku (frakce), kratší než výchozí toast. */
+    get stavovaZpravaKratkaTrvaniMs() {
+      return STAVOVA_ZPRAVA_TRVANI_KRATKA_MS;
+    },
+    zobrazPredKoncemAKonecHry,
     zobrazKonecHry,
     zobrazBtnDalsiDen,
     aktualizujSlozky,

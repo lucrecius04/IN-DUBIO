@@ -2,253 +2,199 @@
   {
     "id": "fragment_d1_morning",
     "type": "clipping",
-    "title": "Ranní výstřižek — 1. března 1931",
-    "text": "VRANÝ ZPĚT U STOLU\n\nDr. Benedikt Vraný se po roční přestávce vrací ke Krajskému soudu. Ministerstvo mluví o posílení soudnictví v neklidné době.\n\nPodrobnosti k důvodu přerušení služby nebyly zveřejněny."
+    "title": "Ranní výstřižek — 2. března 1931",
+    "text": "VRANÝ ZPĚT U STOLU\n\nDr. Benedikt Vraný, soudce Krajského soudu v Praze, nastupuje dnes po roční přestávce zpět k výkonu funkce. Ministerstvo spravedlnosti sdělilo, že jde o posílení sboru v náročné době. Bližší podrobnosti sděleny nebyly.\n\n—\n\nVýstřižek ležel na stole jako uvítání nebo jako připomínka. Těžko říct.\n\nVraný si sedl, odložil klobouk na parapet a chvíli jen seděl. Kancelář voněla stejně jako před rokem: starým dřevem, inkoustem a chladem pronikajícím z kamenné chodby. Fotografie Anny a Martina stála v rohu trochu nakřivo, jak ji kdysi naposled postavil. Nikdo s ní nehýbal.\n\nPřestávce se říkalo zdravotní volno, ačkoliv s jeho zdravím nebylo nic v nepořádku — aspoň ne tělesně.\n\nZa oknem viděl kus ulice: mlhu nad střechami, tramvaj mizející za rohem a u pekárny frontu lidí, kteří čekali ještě před otevřením. Bylo půl sedmé ráno, 2. března 1931. Ben měl pocit, že se vrátil do pokoje, který přestal být jeho, ale ještě se to o něm neví.\n\nŠvejda strčil hlavu do dveří: „Vítejte zpátky, pane doktore. Máte dva spisy.“\n\nVraný přikývl a přistoupil ke stolu."
   },
   {
     "id": "fragment_d1_night",
     "type": "dream",
     "title": "Sen — první noc",
-    "text": "Sedíš v prázdné síni. Lavice jsou rovné, jako by čekaly na jediné slovo.\n\nZa sklem stojí starý muž. Nehýbe se. Jen čeká.\n\nProbudíš se ještě za tmy. Na skle je pára a v krku prach."
-  },
-  {
-    "id": "fragment_d5_tichy_rano",
-    "type": "clipping",
-    "title": "Ranní ticho — 7. března 1931",
-    "text": "Poprvé po dnech vyšlo slunce. Na chodbě je cítit vlkost a studený kámen.\n\nNa okamžik to vypadá, že město dýchá pomaleji."
-  },
-  {
-    "id": "fragment_d5_tichy_noc",
-    "type": "dream",
-    "title": "Noc beze snu",
-    "text": "Usnul jsi bez snu. Jen tma, která nic nevysvětluje a nic neodpouští."
-  },
-  {
-    "id": "fragment_d3_noviny",
-    "type": "clipping",
-    "title": "Ranní list — 3. března 1931",
-    "text": "STARÝ ROZSUDEK, NOVÉ OTÁZKY\n\nRubrika „Za naleštěným sklem“ se vrací k případu dělníka Antonína Beneše, odsouzeného roku 1921 a mrtvého ve vězení dřív, než stihl odvolání. Redaktor drží tón suchý, bez patosu, jen datum, paragraf a chladná věta o poslední návštěvě rodiny, a mezi řádky pořád dokola otáčí lhůtu, opis a doručení tak, že na konci zůstane mezera tam, kde by měl stát podpis.\n\nDál list naznačuje, že jeden svědek mluvil v předběžném řízení jinak než v hlavním líčení a že spisy stažené z oběhu dřív, než je viděla obhajoba, nejsou v kuloárech výjimkou z jednoho pátku. Autoři končí u archivu soudu, který na dotazy odpovídá jednou větou o zvláštním řízení a o tom, že spis „dosud není k dispozici“, a nechávají čtenáře s pocitem, že papír voní inkoustem, ale mezera po něm voní hůř."
-  },
-  {
-    "id": "fragment_d6_morning",
-    "type": "letter",
-    "title": "Anonymní dopis",
-    "text": "V obálce je jen vizitka. Bez věty, bez podpisu.\n\nEmil Haas.\n\nPapír je těžký skoro stejně jako ticho na stole."
-  },
-  {
-    "id": "fragment_d8_morning",
-    "type": "letter",
-    "title": "Dopis od doktora Síbra",
-    "text": "Před budovou stojí policejní vůz. Motor běží i bez posádky.\n\nSvejda jen kývne ke dveřím: „Dneska bude těžký den, pane doktore.“\n\nNa stole už čekají tři složky."
-  },
-  {
-    "id": "fragment_vyplata",
-    "type": "letter",
-    "title": "Výplata",
-    "text": "Na stole leží obálka s výplatou. 80 Kčs."
-  },
-  {
-    "id": "fragment_ekonomika_dluh_krize",
-    "type": "clipping",
-    "title": "Dluh",
-    "text": "Dopisy od věřitelů se hromadí. Jedna věta se opakuje: „Splatnost.“\n\nNěkdo na schodech šeptá vaše jméno — ne jako pochvalu."
-  },
-  {
-    "id": "vlcek_d1",
-    "type": "letter",
-    "title": "Dopis od ministra Vlčka",
-    "text": "Vážený pane doktore,\n\nDovolte mi Vás uvítat zpět na lavici. Republika potřebuje soudce Vašich kvalit — moudré, zkušené, schopné kompromisu.\n\nS důvěrou v Vaši rozumnost,\nMinistr Dr. Vladimír Vlček"
-  },
-  {
-    "id": "vlcek_d6",
-    "type": "letter",
-    "title": "Dopis od ministra Vlčka",
-    "text": "Pane doktore,\n\nSledoval jsem Vaše rozsudky s pozorností. Potěšila mě Vaše rozvaha.\n\nBrzy přijde případ, na kterém záleží více než si myslíte. Věřím, že Vaše rozhodnutí bude — jak to říci — státotvorné.\n\nVlček"
-  },
-  {
-    "id": "vlcek_d14",
-    "type": "letter",
-    "title": "Vzkaz od ministra",
-    "text": "Černý,\n\nPřestaňme si hrát na zdvořilosti. Oba víme, co se stalo před deseti lety. Jde mi o jeden konkrétní rozsudek. Pak budeme kvit.\n\nNáklady na operaci Vaší matky jsou značné. Vláda má fond pro rodiny veřejných zaměstnanců. Stačí požádat správnou osobu.\n\n— V."
-  },
-  {
-    "id": "vlcek_d20",
-    "type": "letter",
-    "title": "Ultimátum",
-    "text": "Černý,\n\nVím, co víte. Víte, co vím.\n\nTento tanec může skončit tiše nebo hlasitě. Volba je Vaše. Máte 48 hodin.\n\n— V."
-  },
-  {
-    "id": "vlcek_d26",
-    "type": "letter",
-    "title": "Poslední slovo",
-    "text": "Jste naivní člověk, Černý.\n\nMyslíte, že spravedlnost funguje? Podívejte se kolem sebe. Systém je takový, jaký je — a buď v něm plavete, nebo se topíte.\n\nNabízím Vám záchranný kruh. Naposledy.\n\n— Vlček"
-  },
-  {
-    "id": "fragment_d10_morning",
-    "type": "clipping",
-    "title": "Ranní list — 10. března 1931",
-    "text": "V novinách je článek o soudech. Podtržená věta: „Prostor mezi zákonem a spravedlností obývají konkrétní lidé.“\n\nPapír vrzne, když ho přeložíš. Dnes bude vrzat víc věcí."
-  },
-  {
-    "id": "fragment_d10_osobni_rano",
-    "type": "clipping",
-    "title": "Ráno — osobní den",
-    "text": "Na stole čeká spis, který není jako ostatní. Dnes se minulost netváří jako archiv, ale jako předvolání.\n\nSvejda postaví kávu bez slova. Poprvé nechce nic komentovat."
-  },
-  {
-    "id": "fragment_d12_morning",
-    "type": "dream",
-    "title": "Sen — dvanáctá noc",
-    "text": "V noci držíš v ruce klíč, ale dveře nikam nevedou.\n\nProbudíš se dřív, než zazvoní hodiny. Na stole leží stejný pořad jednání jako včera, jen těžší."
-  },
-  {
-    "id": "fragment_d11_morning_base",
-    "type": "clipping",
-    "title": "Ranní stůl",
-    "text": "Pořad jednání leží přesně uprostřed stolu. Jedno jméno znáš ze spisu, druhé z cizí obálky."
-  },
-  {
-    "id": "fragment_d12_echo_base",
-    "type": "clipping",
-    "title": "Ranní ticho",
-    "text": "Kancelář se probouzí pomalu. Rádio v sousední místnosti chytá zprávy přes šum.\n\nNěkterá jména zůstávají v éteru déle, než by měla."
-  },
-  {
-    "id": "fragment_d15_night",
-    "type": "dream",
-    "title": "Sen — patnáctá noc",
-    "text": "Jsi zpátky v roce 1921.\n\nSoudní síň. Jiná. Starší. Tvůj první rok na lavici.\n\nAntonín Beneš stojí před tebou. Je klidný. Příliš klidný.\n\nTy čteš rozsudek — ale slova jsou jiná, než si pamatuješ. Nebo jsou stejná?\n\nProbudíš se. Hodiny ukazují čtvrt na tři."
-  },
-  {
-    "id": "fragment_d20_odhaleni",
-    "type": "letter",
-    "title": "Nalezený dokument",
-    "text": "PŘÍSNĚ DŮVĚRNÉ — MINISTERSTVO SPRAVEDLNOSTI\nDatum: 14. února 1921\n\nVěc: Případ Beneš — doporučení\n\nDoporučujeme, aby byl případ uzavřen bez dalšího odkladu. Svědectví č. 3 nebude připuštěno. Zájem státu vyžaduje jasný rozsudek.\n\n— Kancelář ministra\n\n[Na okraji rukou psáno: Černý bude spolupracovat. Je to nový člověk. Bude vděčný za tuto příležitost. — V.]"
-  },
-  {
-    "id": "fragment_d28_rano",
-    "type": "letter",
-    "title": "Dopis od syna Martina",
-    "text": "Otče,\n\npíši Ti z Prahy. Dnes jsem měl přednášku o soudní etice. Profesor Brož citoval Tě — jeden Tvůj starší rozsudek.\n\nByl jsem na Tebe pyšný. Doufám, že jednou budu tak dobrý soudce jako Ty.\n\nTvůj Martin"
-  },
-  {
-    "id": "haas_obalka",
-    "type": "letter",
-    "title": "Obálka od Haasova advokáta",
-    "text": "Vážený pane doktore,\n\nDovolujeme si Vás informovat, že náš klient, pan průmyslník Roman Haas, přiložil k tomuto dopisu výraz své úcty v hotovosti ve výši 800 Kčs.\n\nVěříme, že budete jeho záležitostem věnovat patřičnou pozornost a že naše spolupráce bude oboustranně prospěšná.\n\nS uctivým pozdravem,\nJUDr. Pavel Haas, advokátní kancelář Haas & synové\n\n[Uvnitř obálky: osm stokorunových bankovek. Čerstvě tištěných.]"
-  },
-  {
-    "id": "fragment_d7_nedele_rano",
-    "type": "letter",
-    "title": "Neděle — prázdná budova",
-    "text": "Neděle: soud nevolá jednání a úřední telefon na chodbě umlkl. Přesto si bereš klíče od kanceláře — v pátek zůstala rozepsaná věta v okraji spisu, v hlavě máš datum, které si opakuješ sám od sebe, a doma by tě stejně čekal stůl a lampa jen bez kroku přes nádvoří.\n\nBudova je prázdná, protože sem dnes nikoho nečekají. Ty sis ji vybral na chvíli, kdy nemusíš odpovídat živému hlasu — jen papíru a vlastnímu rytmu."
-  },
-  {
-    "id": "fragment_d7_nedele_vecer",
-    "type": "dream",
-    "title": "Nedělní večer",
-    "text": "Světlo lampy je měkčí než ve všední den. Na stole zůstane jen jeden list, nepopsaný.\n\nZítra začne týden, který se ptá rychleji, než odpovídáš."
-  },
-  {
-    "id": "fragment_d14_nedele_rano",
-    "type": "letter",
-    "title": "Neděle",
-    "text": "Druhá neděle v březnu. Tělo si zvyklo na lavici a dnes ji chybí i ne.\n\nMěsto je stejné, jen ty už nečteš ticho stejně jako dřív."
-  },
-  {
-    "id": "fragment_d14_nedele_vecer",
-    "type": "dream",
-    "title": "Večer",
-    "text": "Týden se vrací v krátkých obrazech: dveře, podpis, pohled přes stůl.\n\nNěkteré tváře už nejsou jména. Jsou to jen gesta a papír."
-  },
-  {
-    "id": "fragment_d15_morning",
-    "type": "clipping",
-    "title": "Ráno — poslední pracovní den",
-    "text": "V budově je nezvyklé ticho, jako před bouřkou. I kroky na chodbě dnes znějí opatrněji.\n\nNa pořadu je jediný spis. Ten, který se nedá odsunout."
-  },
-  {
-    "id": "fragment_d21_nedele_rano",
-    "type": "letter",
-    "title": "Neděle",
-    "text": "Třetí týden. Říkáš si, že bys měl něco udělat — a víš, že právě tohle je ten den, kdy se nic nemusí."
-  },
-  {
-    "id": "fragment_d21_nedele_vecer",
-    "type": "dream",
-    "title": "Večer",
-    "text": "Město za oknem tiše. Ty také. Rozdíl je v tom, že ty to cítíš jako povinnost k sobě samému."
-  },
-  {
-    "id": "fragment_d28_nedele_rano",
-    "type": "letter",
-    "title": "Neděle před koncem",
-    "text": "Ještě pár dní. Neděle ti nepřipomíná odpočinek — spíš přestávku mezi dvěma kapitolami, které nechceš číst nahlas."
-  },
-  {
-    "id": "fragment_d28_nedele_vecer",
-    "type": "dream",
-    "title": "Večer",
-    "text": "Světlo zhasíná pomalu. Zítra zase začne týden, který už nebude stejný jako ten první."
-  },
-  {
-    "id": "fragment_tyden_bonus_a",
-    "type": "clipping",
-    "title": "Poznámka do spisu",
-    "text": "Většinu spisů jsi nechal projít rukama opravdu — ne šmiknutím přes diagonálu. Chodby to nepoklonkovaly, ale všimly si toho."
-  },
-  {
-    "id": "fragment_tyden_bonus_b",
-    "type": "clipping",
-    "title": "Úřední záznam",
-    "text": "Co šlo koupit mlčení, sis nekoupil. Město o tom nevydá článek — jen si to někam škrtne."
-  },
-  {
-    "id": "fragment_tyden_bonus_c",
-    "type": "clipping",
-    "title": "Poznámka",
-    "text": "Termíny držely čelist; nic nezůstalo ve šuplíku jako „jen do pátku“."
-  },
-  {
-    "id": "fragment_tyden_bonus_d",
-    "type": "clipping",
-    "title": "Týdenní vzorec",
-    "text": "Tvoje rozsudky tento týden dávaly jednu barvu — takovou, aby ji nešlo přehlédnout shora ani zdola. Noviny o tom možná neřvou, ale chodby o tom ví."
-  },
-  {
-    "id": "fragment_tyden_bonus_e",
-    "type": "clipping",
-    "title": "Těžké dny",
-    "text": "Několik tvrdých vět pod pečetí tě stálo víc než úsměv v září radnice. Tělo to ví dřív než kalendář."
+    "text": "V noci se mu zdálo o soudní síni — prázdné, tiché, s lavicemi přesně zarovnanými jako při slavnostním zasedání. Ben seděl na místě obžalovaného, ne na svém. Věděl, že by se měl přesunout na lavici soudce, ale nedokázal vstát.\n\nPřed ním stál muž, kterého neznal — nebo si to aspoň říkal. Stál klidně, bez výrazu, a čekal na slovo, které Ben nebyl schopen říct.\n\nRáno si sen vybavoval jen v obrysech a záhy přestal zkoušet. Měl dva spisy a v komoře chybělo uhlí."
   },
   {
     "id": "fragment_d2_rano",
     "type": "clipping",
     "title": "Ráno — úterý u soudu",
-    "text": "Druhý den zpátky ti chodby připadají kratší. Tělo si zvyká asi rychleji než hlava. Papír na stole přestává být novinkou, stává se jen povinností.\n\nU pekárny je fronta delší než včera. Unavená prodavačka opakovaně říká cenu. O tři koruny vyšší než loni v březnu."
+    "text": "Druhý den šel kratší cestou — přes Havelský trh, kde se obchoduje od rána. Stánků bylo méně než bývávalo a ti, co stáli, měli napjaté tváře. U zeleniny se žena pohádala s prodavačem o cenu, on jí ukázal tabulku, ona odešla bez nákupu.\n\nV kanceláři kalamář někdo doplnil čerstvým inkoustem — asi Kovářová. Složky na stole leží dvě, pečlivě svázané. Kolegové ho zdraví na chodbě, ale nikdo se neptá, kde celý rok byl. V soudních budovách se otázky, na které se nezná odpověď, nepokládají.\n\nPekař na rohu zvýšil cenu chleba o tři koruny. Jen tak, bez oznámení."
+  },
+  {
+    "id": "fragment_d3_noviny",
+    "type": "clipping",
+    "title": "Ranní list — 4. března 1931",
+    "text": "STARÝ ROZSUDEK, NOVÉ OTÁZKY\n\nRubrika Svobodného obzoru se vrátila k případu dělníka Karla Beneše, odsouzeného roku 1927 a zemřelého ve vazbě dříve, než bylo rozhodnuto o jeho odvolání. Novinář píše suchým tónem — jen data, paragrafy, věta o poslední návštěvě otce ve věznici. Případ prý nebyl přezkoumán, protože spis byl stažen z oběhu dříve, než se k němu dostala obhajoba. Archiv soudu na dotaz odpověděl, že materiály jsou v zvláštním řízení.\n\nVraný noviny přeložil a strčil pod první spis. Těžko se čte o věcech, které znáš z druhé strany stolu."
   },
   {
     "id": "fragment_d4_rano",
     "type": "clipping",
     "title": "Ráno — čtvrtek",
-    "text": "Na dvorku za soudem hrají děti s papírovým míčem. Kopnou ho až na chodník — a pak ho zase vrátí, jako by nic nenašlapovalo přes práh.\n\nNa stole už čeká pošta. Jedna obálka je od doktora. Druhá od Vlčka."
+    "text": "Mezi spisy leží dnes ráno i obálka s kulatým razítkem ordinace. Ben ji otevře jako poslední, protože takové dopisy se nečtou se spěchem.\n\nDoktor Síber píše stručně: stav matky vyžaduje operaci, nejlépe do sedmnáctého března. Cena výkonu a pobytu v Nemocnici Podolí: čtyři sta korun. Žádá odpověď do konce týdne.\n\nČtyři sta korun. Na spořitelní knížce má Vraný sto čtyřicet. Dluh za nájemné je splatný příští pátek. Na stole čekají dva spisy.\n\nBen dá dopis do zásuvky, vezme pero a otevře první složku. Čtyři sta korun — bude muset něco vymyslet."
+  },
+  {
+    "id": "fragment_d5_tichy_rano",
+    "type": "clipping",
+    "title": "Ráno — sobota u soudu",
+    "text": "Sobota dopoledne a budova je jiná — bez jednacích síní v plném chodu, bez kroků, které spěchají na devátou. Přesto vyšlo slunce — nízké, jarní, takové, které svítí ale ještě moc nehřeje. Na chodbě soudu to zezlátlo okna a Švejda se zastavil u dveří a chvíli se díval ven, jako by zapomněl, co tam šel dělat.\n\nBen přišel o čtvrt hodiny dřív než obvykle. V kanceláři zapálil cigaretu a sedl si ke stolu. Dopis od doktora Síbra je stále v zásuvce. Dnes musí napsat odpověď."
+  },
+  {
+    "id": "fragment_d5_tichy_noc",
+    "type": "dream",
+    "title": "Noc beze snu",
+    "text": "Usnul brzy a spal celou noc bez probuzení. Žádný sen, žádné myšlenky ve tři čtvrti na čtyři — jen tichá tma, ze které se ráno vrátil trochu méně unavený než den předtím. V posledním roce si na tohle odvykl."
   },
   {
     "id": "fragment_d5_patek_trh",
     "type": "clipping",
-    "title": "Ráno — pátek na trhu",
-    "text": "Sobotní trh se přesouvá už od rána: méně stánků, víc očí na bednách. Někdo prodává poslední jablka, někdo jen mlčí a váží.\n\nV kanceláři voní káva a starý vosk. Týden se chýlí — a ty cítíš, že město drží dech o den dřív než obvykle."
+    "title": "Páteční trh",
+    "text": "Páteční trh na Havelském náměstí se ve srovnání s úterkem napůl rozložil — méně stánků, víc lidí, kteří se prošli a nekoupili nic. Maso bylo drahé, zelenina prošlá. Jedna stará žena prodávala ze šátku jablka po dvaceti haléřích za kus.\n\nV kanceláři leží složky svázané tkanicí. Týden se chýlí ke konci a Ben ještě nemá odpověď na dopis od doktora. V sobotu bude muset sednout a spočítat, co zbývá a co chybí."
+  },
+  {
+    "id": "fragment_d6_morning",
+    "type": "letter",
+    "title": "Anonymní zásilka",
+    "text": "Na pondělní poště byl i balíček bez zpáteční adresy — obálka z tuhého papíru, uvnitř jediná vizitka. Žádný průvodní dopis, žádné vysvětlení. Jen tištěné jméno:\n\nViktor Haas, průmyslník.\nTelefon, adresa v Bubenči.\n\nBen vizitku položil na kraj stolu vedle cigaretového pouzdra. Cestou do práce viděl na rohu nový plakát: POCHOD HLADU — STŘEDA — VÁCLAVSKÉ NÁMĚSTÍ. Pod ním někdo tužkou přepsal: Přijďte všichni.\n\nSložky na stole čekají. Vizitka taky čeká, ale jinak."
+  },
+  {
+    "id": "fragment_d7_nedele_rano",
+    "type": "letter",
+    "title": "Neděle — prázdná budova",
+    "text": "Soud v neděli nezasedá a Švejda zamyká budovu. Přesto si Ben vzal klíče.\n\nDoma by ho čekal prázdný stůl a Martinův dopis z pátku, na který ještě neodpověděl. Martin píše z Brna a ptá se na spravedlnost — teoreticky, jako student, ale Ben četl pod tím i otázku, na kterou sám nezná odpověď. Místo psaní si oblékl kabát a šel.\n\nV kanceláři je v neděli ticho jiného druhu — bez tabáku kolegů, bez kroků na chodbě. Jen papír a chlad. Ben otevřel okno a chvíli poslouchal město. Pak vzal pero a začal psát Martinovi. Napsal tři věty, přeškrtal dvě a nechal jednu: Mám se dobře. Práce pokračuje."
+  },
+  {
+    "id": "fragment_d7_nedele_vecer",
+    "type": "dream",
+    "title": "Nedělní večer",
+    "text": "Domů se vrátil před šestou. Uvařil čaj, protože káva byla od rána a víc ji nechtel. Z okna viděl sousedku věšet prádlo na šňůru nataženou přes dvůr — v březnu, v šest večer, ve tmě. Nezeptal se proč.\n\nZítra začíná druhý týden. Ben si lehl brzy a zkusil číst Lidové noviny, ale usnul ještě před hospodářskou rubrikou."
+  },
+  {
+    "id": "fragment_d8_morning",
+    "type": "clipping",
+    "title": "Středa — tři složky",
+    "text": "Před budovou soudu stál policejní vůz s běžícím motorem. V autě nikdo neseděl.\n\nŠvejda byl u vchodu dříve než Vraný a hned mu vyšel naproti: „Dneska bude rušno, pane doktore. Mají nahoře schůzi. A přišel jeden dopis, který byste asi měl vidět hned.“\n\nNa stole čekaly tři složky místo obvyklých dvou. Třetí byla přiložena jako doplněk — tenká, bez razítka, s ručně psaným lístkem od Vlčkovy sekretářky: K rukám p. dr. Vraného, osobně.\n\nBen si svlékl kabát, sedl si a otevřel tu třetí jako první."
+  },
+  {
+    "id": "fragment_d9_morning",
+    "type": "clipping",
+    "title": "Ráno — předvolání bez předvolání",
+    "text": "Na chodbě potkal Karase. Ten šel z druhé strany, uviděl ho, přikývl a prošel dál bez slova — ani dobré ráno, ani nic. Karas, který jinak umí mluvit i bez příčiny.\n\nNa stole už na něj čeká ručně psaný lístek — tenký, zlehka přeložený. Obsah zatím nečetl; stačí pohled na okraj, kde někdo pečlivě napsal Beneš, a Ben ví, že dnešek nebude obyčejný."
+  },
+  {
+    "id": "fragment_d10_morning",
+    "type": "clipping",
+    "title": "Ranní list — 13. března 1931",
+    "text": "Ranní vydání Svobodného obzoru leží na stole rozevřené — Švejda ho přinesl jako obvykle. Na čtvrté straně je sloupek o justici. Jedna věta je podtržena tužkou, cizí rukou: Prostor mezi zákonem a spravedlností obývají konkrétní lidé.\n\nKabinet v rohu chodby byl dnes ráno zamčený zvenku, ačkoliv klíče visí obvykle u Švejdy. Ben se ho nezeptal.\n\nNa stole ležel i spis, který sem přišel jinak než ostatní — bez průvodního dopisu, bez razítka státního zastupitelství, jen přiložen k dnešnímu pořadu jednání. Kovářová říká, že ho přinesla kurýrní pošta z ministerstva.\n\nBen otevřel složku a četl pomalu. Druhý spis dneška bude jiný než ostatní.\n\nŠvejda dnes ráno neřekl nic. Ani dobré ráno, ani obvyklá zmínka o počasí. Jen postavil kávu na kraj stolu a odešel. To se ještě nestalo."
+  },
+  {
+    "id": "fragment_d11_morning_base",
+    "type": "clipping",
+    "title": "Ranní stůl — pondělí",
+    "text": "Na stole leží obálka, která tu nebyla v pátek. Tučné jméno odesilatele na zadní straně: Viktor Haas, Bubeneč.\n\nBen ji neotvírá hned. Na chodbě slyší kroky — dvoje, ne jedny — a Švejdův hlas, který někoho uvádí. Návštěvník přišel bez předchozí žádosti o jednání. To si může dovolit málokdo.\n\nPořad jednání pro dnešek leží přesně uprostřed stolu. Ben ho přečte, položí zpátky a sáhne po obálce.\n\nČtyři sta korun. Tolik potřebuje na matčinu operaci. Haas to zřejmě ví."
+  },
+  {
+    "id": "fragment_d12_morning",
+    "type": "dream",
+    "title": "Sen — noc před středou",
+    "text": "V noci se mu zdálo, že hledá klíč. Věděl, od čeho — ale dveře, ke kterým patřil, nenašel. Prošel celou budovou soudu, kolem Kovářové, kolem Karasovy kanceláře, až na studený dvorek.\n\nProbudil se před šestou. Na stole v ložnici ležel pořad jednání z pátku, přinesený domů v kapse saka. Přečetl první řádek a dal ho zpět.\n\nDnes přijde Závadová."
+  },
+  {
+    "id": "fragment_d12_echo_base",
+    "type": "clipping",
+    "title": "Středa — ranní ticho",
+    "text": "Kancelář se probouzí pomalu. Kovářová přišla o deset minut dřív než obvykle a seřadila složky bez ptaní. Na chodbě je neobvyklé ticho — chybí hlasy kolegů, kteří se ráno scházívají u kávovaru.\n\nV rádiu v sousední místnosti chytá zpravodajství přes šum: něco o bankách v Německu, pak přejde na jiné téma.\n\nDnes bude dlouhý den."
   },
   {
     "id": "fragment_d13_sobota_rano",
     "type": "clipping",
     "title": "Druhá sobota v březnu",
-    "text": "Budova soudu je zavřená jako trezor. Jen hlídač kývne z okénka a vrátí se ke čtení.\n\nTy máš volno — a přesto tě bolí zápěstí, jako bys pořád razil."
+    "text": "Budova soudu je v sobotu zavřená a Švejda zamkl hlavní vchod ještě před osmou. Ben přesto přišel — přes boční vchod, který Švejda nechává pro případ jako je tento.\n\nChtěl dokončit přepis rozsudku, který mu leží na stole od čtvrtka. Nebo si aspoň říkal, že to je důvod.\n\nV kanceláři je zima. Kamna nevytápí od pátečního odpoledne. Ben si nechal kabát a pracoval s ním."
+  },
+  {
+    "id": "fragment_d14_nedele_rano",
+    "type": "letter",
+    "title": "Druhá neděle — Karasův telefonát",
+    "text": "Druhá neděle v březnu je jiná než první.\n\nKaras zavolal ráno na telefon sousedky z přízemí — Ben nemá vlastní přístroj. Řekl jen: Přijdu odpoledne. Je to důležité. Vzpomínáš na Vídeň? A zavěsil.\n\nNa Vídeň vzpomíná Ben nerad. Vídeň znamená vzpomínka na přísahu, kterou oba složili jako studenti a oba porušili — každý jinak a v jiný rok. Karas to ví. Ben to ví.\n\nOdpoledne tedy bude jiné. Ben si uvařil kávu a čekal."
+  },
+  {
+    "id": "fragment_d14_nedele_vecer",
+    "type": "dream",
+    "title": "Nedělní večer — po Karasovi",
+    "text": "Karas odešel před čtvrtou. Neřekl mnoho — Karas nikdy neřekne mnoho. Ale řekl dost.\n\nBen seděl u stolu ještě hodinu po jeho odchodu. Pak vstal, oblékl si kabát a šel se projít podél řeky. Mlhy nebylo, ale bylo chladno a skoro nikdo na nábřeží nebyl.\n\nZítra je pondělí. Začíná poslední pracovní týden."
+  },
+  {
+    "id": "fragment_d15_night",
+    "type": "dream",
+    "title": "Sen — poslední noc",
+    "text": "V noci se vrátil rok 1927.\n\nSoudní síň, letní odpoledne, okna dokořán. Anna leží doma nemocná a Ben chce skončit dříve. Na lavici před ním sedí muž — Karel Beneš, čtyřicet let, dělník z Holešovic. Čeká na rozsudek.\n\nBen čte ze spisu. Nebo si myslí, že čte — ale v ruce drží jen prázdné listy.\n\nProbudí se ve čtvrt na tři. Hodiny v ložnici tikají hlasitěji než obvykle. Nebo se mu jen zdá."
   },
   {
     "id": "fragment_d18_rano",
     "type": "clipping",
-    "title": "Předposlední pracovní ráno",
-    "text": "Světlo v okně je jiné — ostřejší, bledší. Jako by se město probudilo dřív než ty.\n\nNa stole leží spisy, které nejdou odložit pod „později“. Martinův dopis šeptá o víkendu. Ty víš, že některé věty se nečtou nahlas."
+    "title": "Čtvrtek — předposlední ráno",
+    "text": "Světlo za oknem je jiné než před třemi týdny — ostřejší, bledší, takové, které se v březnu ozve najednou a bez ohlášení.\n\nNa stole leží spisy, které nešly odložit na jindy. Martinův dopis z úterý říká, že přijede o víkendu. Ben si ho přečetl dvakrát a zatím neodepsal — neví, co říct o tom, co se tento týden stalo.\n\nNěkdy je poctivější nepsat nic, než psát slova, která by mohla být jen prázdná."
+  },
+  {
+    "id": "fragment_d20_odhaleni",
+    "type": "letter",
+    "title": "Poslední pracovní den — nález",
+    "text": "V budově je ráno neobvyklé ticho. Kolegové, kteří jinak chodí o deváté, přišli tentokrát dřív nebo se zatím neukázali — Ben není jistý. Kovářová sedí za svým stolem a píše, aniž by zvedla hlavu.\n\nNa pořadu je jediný spis. Jeden případ na celý den, což se stává jen při závažných řízeních.\n\nŠvejda přišel ke dveřím kanceláře a chvíli stál. Pak řekl: Přeju pěkný den, pane doktore — a odešel, aniž by cokoli doplnil. Poprvé za celý měsíc nezmínil ani počasí.\n\nMezi ranní rutinou se do ruky dostal ještě jeden list — z archivní knihy, kterou měl mít pod klíčem jen úředník, který už nepřijde.\n\nPŘÍSNĚ DŮVĚRNÉ — MINISTERSTVO SPRAVEDLNOSTI\nDatum: 14. dubna 1927\n\nVěc: Případ Beneš — doporučení\n\nDoporučujeme, aby byl případ uzavřen bez dalšího odkladu. Svědectví č. 3 nebude připuštěno. Zájem státu vyžaduje jasný rozsudek.\n\n— Kancelář ministra\n\n[Na okraji rukou psáno: Vraný bude spolupracovat. Je to nový člověk, ještě ambiciózní. Bude vděčný za tuto příležitost. — V.]"
+  },
+  {
+    "id": "fragment_tyden_bonus_a",
+    "type": "clipping",
+    "title": "Poznámka do spisu",
+    "text": "Většinu spisů jsi tento týden poctivě prostudoval — ne přelétl pohledem, ale skutečně přečetl. Chodba o tom nevydá usnesení, ale zapisovatelka si všimla, že rozsudky trvaly déle než obvykle. Někdy to stačí."
+  },
+  {
+    "id": "fragment_tyden_bonus_b",
+    "type": "clipping",
+    "title": "Úřední záznam",
+    "text": "Týden nabízel příležitosti, jak si práci ulehčit na úkor někoho jiného. Nevyužils je. Nikde to není zapsáno a nikdo ti za to nepoděkuje. Ale je to tak."
+  },
+  {
+    "id": "fragment_tyden_bonus_c",
+    "type": "clipping",
+    "title": "Poznámka",
+    "text": "Všechny spisy odevzdány včas, žádný případ odložen přes lhůtu. V těchto budovách je to považováno za samozřejmost — a přesto se to nestává vždy."
+  },
+  {
+    "id": "fragment_tyden_bonus_d",
+    "type": "clipping",
+    "title": "Týdenní vzorec",
+    "text": "Rozsudky tohoto týdne nesly jeden tón — konzistentní, čitelný, bez výkyvů podle toho, kdo co chtěl. Ministerstvo si toho nevšimne. Ale věřitelé a dlužníci, kteří prošli tvou síní, ano."
+  },
+  {
+    "id": "fragment_tyden_bonus_e",
+    "type": "clipping",
+    "title": "Těžké dny",
+    "text": "Byl to náročný týden — několik případů, které nešly rozseknout snadno. Přesto jsi je zkusil rozseknout poctivě. To není málo."
+  },
+  {
+    "id": "fragment_vyplata",
+    "type": "letter",
+    "title": "Výplata",
+    "text": "Na stole leží obálka s výplatou: osmdesát korun na týden — přišla s úřední poštou, i když dnes soud nezasedá. Slušné peníze — dělník bere méně za celý měsíc. A přece: nájem, jídlo, uhlí, dluh u lékárny. A čtyři sta korun pro doktora Síbra.\n\nBen obálku schová do zásuvky. Spisy dnes nečekají; zůstane jen ticho kanceláře a papír, který si bere domů nebo nechává ležet."
+  },
+  {
+    "id": "fragment_vyplata_druha",
+    "type": "letter",
+    "title": "Výplata",
+    "text": "Zase neděle — a zase ta samá obálka: úřední razítko, stejná sazba, osmdesát korun. Není v tom překvapení ani pochvala; jen pravidlo, které platí, dokud platí úřad.\n\nBen ji nepočítá jako výhru. Spíš jako další dílek stejné skládačky: nájem, jídlo, uhlí, lékárna — a pořád ty čtyři sta korun, které Síbrovi dlužíš na matčinu operaci. Peníze z jednání nepřicházejí v neděli; dnes přidá jen tenhle pevný řádek.\n\nObálku zastrčí vedle minulého týdne. Zítra zase lavice a spisy. Dnes aspoň ví, že na chvíli nepřijde nic horšího než ticho."
+  },
+  {
+    "id": "fragment_ekonomika_dluh_krize",
+    "type": "clipping",
+    "title": "Dluh",
+    "text": "Dopisy z lékárny přicházejí pravidelně — zdvořilé, krátké, s datem splatnosti. Ten poslední leží v zásuvce vedle Síberova dopisu a vizitky od Haase.\n\nBen ví, kolik má a kolik chybí. Čísla nejsou záhadná — jsou jen nepříjemná. Při takovém výsledku aritmetiky člověk buď něco vymyslí, nebo přijme pomoc, která přichází ze špatné strany."
+  },
+  {
+    "id": "fragment_d28_rano",
+    "type": "letter",
+    "title": "Dopis od syna Martina",
+    "text": "Dopis přišel z Brna ve čtvrtek ráno.\n\nOtče, píše Martin, dnes jsme měli seminář o soudní etice. Docent Fiala citoval jeden rozsudek z roku 1929 — prý jako příklad metodického přístupu. Neznal jsem autora, ale pak jsem zjistil, že jsi to byl ty.\n\nByl jsem na tebe hrdý. Píšu ti to proto, abys to věděl. Nemusíš odpovídat.\n\nPřijedu o víkendu.\nMartin\n\nBen dopis přečetl, složil a dal ho do kapsy saka. Pak sáhl po peru."
+  },
+  {
+    "id": "haas_obalka",
+    "type": "letter",
+    "title": "Obálka od Haasova advokáta",
+    "text": "Vážený pane doktore,\n\ndovolujeme si Vás informovat, že náš klient, pan průmyslník Viktor Haas, přiložil k tomuto dopisu výraz své osobní úcty — v hotovosti, tři sta korun.\n\nPan Haas věří, že soudce Vraného pověst přesnosti a nezávislosti je dostatečnou zárukou, že jeho záležitostem bude věnována patřičná pozornost. Případnou stvrzenku ani potvrzení nepožadujeme.\n\nS uctivým pozdravem,\nJUDr. Pavel Nový\nAdvokátní kancelář Haas und Söhne\n\n[Uvnitř obálky: tři stokorunové bankovky. Čerstvě tištěné.]"
   }
 ]

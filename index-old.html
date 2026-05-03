@@ -255,7 +255,7 @@
      ========================================== -->
 <div id="modal-vecer" class="overlay" role="dialog" aria-modal="true">
   <div class="panel-papir vecer-panel panel-papir--nastup">
-    <div class="vecer-cas">VEČER</div>
+    <div class="vecer-cas" id="vecer-cas-label">VEČER</div>
     <div class="vecer-text" id="vecer-text">—</div>
     <div class="vecer-volby" id="vecer-volby">
       <!-- Dynamicky plněno -->
@@ -294,6 +294,15 @@
     <div class="fragment-nadpis" id="fragment-nadpis">—</div>
     <div class="fragment-text" id="fragment-text">—</div>
     <button type="button" class="fragment-zavrit" id="fragment-zavrit">Pokračovat →</button>
+  </div>
+</div>
+
+<div id="modal-konec-prelude" class="overlay" role="dialog" aria-modal="true">
+  <div class="panel-papir konec-prelude-panel panel-papir--nastup">
+    <div class="konec-prelude-ramecek" id="konec-prelude-ramecek"></div>
+    <div class="konec-prelude-nadpis" id="konec-prelude-nadpis">—</div>
+    <div class="konec-prelude-telo" id="konec-prelude-telo"></div>
+    <button type="button" class="fragment-zavrit" id="konec-prelude-pokracovat">Zobrazit epilog →</button>
   </div>
 </div>
 
@@ -380,11 +389,21 @@
     <div class="menu-dvojice">
       <button type="button" id="menu-ulozit-1" class="menu-polozka menu-polozka--pul">Záloha 1</button>
       <button type="button" id="menu-ulozit-2" class="menu-polozka menu-polozka--pul">Záloha 2</button>
+      <button type="button" id="menu-ulozit-3" class="menu-polozka menu-polozka--pul">Záloha 3</button>
+    </div>
+    <div class="menu-dvojice">
+      <button type="button" id="menu-ulozit-4" class="menu-polozka menu-polozka--pul">Záloha 4</button>
+      <button type="button" id="menu-ulozit-5" class="menu-polozka menu-polozka--pul">Záloha 5</button>
     </div>
     <div class="menu-dvojice-nadpis">Ruční zálohy — načíst</div>
     <div class="menu-dvojice">
       <button type="button" id="menu-nacist-1" class="menu-polozka menu-polozka--pul">Záloha 1</button>
       <button type="button" id="menu-nacist-2" class="menu-polozka menu-polozka--pul">Záloha 2</button>
+      <button type="button" id="menu-nacist-3" class="menu-polozka menu-polozka--pul">Záloha 3</button>
+    </div>
+    <div class="menu-dvojice">
+      <button type="button" id="menu-nacist-4" class="menu-polozka menu-polozka--pul">Záloha 4</button>
+      <button type="button" id="menu-nacist-5" class="menu-polozka menu-polozka--pul">Záloha 5</button>
     </div>
     <button id="menu-o-hre" class="menu-polozka">O hře</button>
     <button id="menu-zavrit" class="menu-polozka menu-polozka--zavrit">Zpět do hry</button>

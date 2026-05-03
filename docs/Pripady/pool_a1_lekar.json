@@ -6,36 +6,59 @@
   "act": 1,
   "type": "moral_dilemma",
   "color": "#2C4A7C",
-  "available_days": [10, 11, 12, 13, 14],
-  "weight_conditions": { "base_weight": 1 },
+  "available_days": [
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "weight_conditions": {
+    "base_weight": 1
+  },
   "defendant": {
     "name": "MUDr. Emanuel Soukup",
     "age": 52,
     "occupation": "obvodní lékař",
     "detail": "praxe u obvodu Vinohrady od roku 1921, ženatý, bezdětný, dříve ústavní lékař u nemocnice na Františku, čistý disciplinární záznam dle spisu okresního zdravotního úřadu"
   },
-  "charge": "Usmrcení z trestného úmyslu dle ustanovení o vraždě v trestním zákoníku, ve znění platném v roce 1931. Obžaloba tvrdí, že dne 4. března 1931 v bytě pacienta Jana Bendy, Náměstí Míru 9, podal obžalovaný injekci s obsahem morfia v dávce, která nebyla nezbytná k utlumení bolesti, a tím učinil záměrný útok na život, nikoli léčebný zákrok. Syn poškozeného podal trestní oznámení s listinou, v níž má být vyjádřen souhlas zůstavitele s urychlením skonu.",
+  "charge": "Usmrcení z trestného úmyslu (vražda) dle trestního zákoníku — lékařský zákrok",
   "description": "Jan Benda, 72 let, bývalý krejčí, zemřel 4. března 1931 na následky pokročilého onkologického onemocnění v domácí péči. MUDr. Soukup ošetřoval doma tři týdny; dne 4. března podal injekci a otec synu Vladimírovi Bendovi zemřel do pěti hodin. Syn v trestním uvedl, že otec chtěl „jen klid“ a že s podáním, které lékař ukazuje v rodinné bibli, nesouhlasí — otec prý nebyl s to listinu podepsat stejným rukopisem v den, v němž ji lékař datuje. Soukup popírá úmysl usmrtit: trvá na opakované žádosti o ukončení bezvýchodného stavu, zaznamenané 3. března večer, a na tom, že dávka odpovídala bolesti, nikoli záměru. Spor není, kdo stiskl píst — ale zda soud považuje tento čin za vraždu, za omyl, nebo za mezeru v zákoně, kterou soud může pojmenovat, ne uzavřít.",
   "testimonies": [
     {
       "id": "soukup",
       "speaker": "MUDr. Emanuel Soukup, obžalovaný",
       "text": "Benda trpěl bolestí, kterou analgetika v tabletách neztlumila. Dne 3. března večer, kdy u něj byla dcera, požádal, abych zaznamenal, že kdyby mu ještě jedna injekce měla znamenat konec, ne oživení, přijme to. <span class=\"clue\" data-clue-id=\"clue_bib_listina\">Podepsal čáru do rodinné Bible pod kapitolou o milosrdenství, podpis i datum 3. 3. 1931 v 19.40 jsem stvrdil jako svědek.</span> Dne 4. března v 8.15 jsem podal injekci; v domácí kartě je týž den uvedena jediná parenterální dávka, žádná druhá injekce, nic, co by se v opisu dalo skrýt. <span class=\"clue\" data-clue-id=\"decoy_soukup_ucil\">Fakulta mne učila, že bolest má hranice — a že lékař, který hranici přesune o hodinu, ještě není vrah.</span>",
-      "contradiction_keywords": ["Bible", "3. 3", "morfium", "8.15"],
+      "contradiction_keywords": [
+        "Bible",
+        "3. 3",
+        "morfium",
+        "8.15"
+      ],
       "hidden_at_wisdom_below": null
     },
     {
       "id": "vladimir",
       "speaker": "Vladimír Benda, 36 let, syn, účetní u soukromé firmy",
       "text": "Otec chtěl, aby netrpěl, ne aby zmizel za den. Když mi druhý den lékař ukázal linku v bibli, nepoznal jsem tátovo písmo v celé stopce — a otec 3. večer, když jsem přišel já, <span class=\"clue\" data-clue-id=\"clue_vladimir_vecer\">měl oči zavřené, odpověděl jednoslabičně, podpis by musel být naopak o den dřív, kdy k němu nikdo z rodiny nebyl celou hodinu, než přišla sestra.</span> Trestní oznámení jsem podal 10. 3. — ne dřív, <span class=\"clue\" data-clue-id=\"clue_vladimir_notar\">až notář 9. 3. přečetl otcovu závěť: byt a šicí stroj pro mě, menší podíl pro sestru, žádná zmínka o dluhu vůči lékaři.</span> <span class=\"clue\" data-clue-id=\"decoy_vladimir_laska\">Měl jsem ho rád. Jen nechci, aby soud plivl na jeho jméno — ani aby lékař vyšel bez odpovědi.</span>",
-      "contradiction_keywords": ["Bible", "10. 3", "notář", "závet"],
+      "contradiction_keywords": [
+        "Bible",
+        "10. 3",
+        "notář",
+        "závet"
+      ],
       "hidden_at_wisdom_below": null
     },
     {
       "id": "anezka",
       "speaker": "Anežka Bendová, 39 let, dcera, svědkyně",
       "text": "Byla jsem u otce 4. března od šesti ráno. Otec mumlal, oči měl v polospánku, v ruce by nedržel pero — <span class=\"clue\" data-clue-id=\"clue_anezka_rano\">dala jsem mu vodu, stiskl mi prsty, víc ne, že by psal, pane doktore, víc ne, že by podepisoval biblii, v kterou věřil, ale kterou 3. večer s lékařem otevíral, když jsem šla pro mast.</span> Pan doktor říká, že podpis 3. večer otec zvládl — můžu jen říct, <span class=\"clue\" data-clue-id=\"clue_anezka_vecere\">3. v sedm večer otec spal, až v osm, když jsem se vrátila, byl vzhůru, ale řeč mu šla těžce.</span> S bratrem o dědění se nebudu hádat, ale nechci, aby se tátovo utrpení stalo omluvou pro někoho, kdo rozhodl o hodině za něj.",
-      "contradiction_keywords": ["4. března", "pero", "3. večer", "Bible"],
+      "contradiction_keywords": [
+        "4. března",
+        "pero",
+        "3. večer",
+        "Bible"
+      ],
       "hidden_at_wisdom_below": null
     }
   ],
@@ -43,14 +66,21 @@
     {
       "id": "listina_vs_schopnost",
       "description": "Listina v bibli má datum 3. 3. večer, Soukup ji stvrzuje. Anežka tvrdí, že 4. ráno otec neměl schopnost držet pero; Vladimír popisuje 3. večer otcovo stavění, které nesedí k Soukupovu svědectví, že týž večer podepsal.",
-      "involves": ["soukup", "anezka", "vladimir"],
+      "involves": [
+        "soukup",
+        "anezka",
+        "vladimir"
+      ],
       "highlight_at_wisdom": 78,
       "unlocks_confrontation": "vladimir"
     },
     {
       "id": "dennik_spolubydlici",
       "description": "Karta říká jedinou injekci, syn říká 'urychlení' — sám ale oznámení opírá o morální odpor, ne o druhou píchnutí, kterou by soused nebo sestra slyšela.",
-      "involves": ["soukup", "vladimir"],
+      "involves": [
+        "soukup",
+        "vladimir"
+      ],
       "highlight_at_wisdom": 70,
       "unlocks_confrontation": null
     }
@@ -72,7 +102,10 @@
         "strength": "medium"
       }
     ],
-    "decoys": ["decoy_soukup_ucil", "decoy_vladimir_laska"],
+    "decoys": [
+      "decoy_soukup_ucil",
+      "decoy_vladimir_laska"
+    ],
     "timed_hunt": {
       "enabled": true,
       "duration_sec": 65,
@@ -82,22 +115,63 @@
     },
     "info_threshold_unlocks": {
       "actions": [
-        { "min": 35, "ids": ["pool_inv_interview"] },
-        { "min": 48, "ids": ["pool_inv_records"] },
-        { "min": 58, "ids": ["pool_inv_informant"] },
-        { "min": 70, "ids": ["pool_inv_confrontation"] }
+        {
+          "min": 35,
+          "ids": [
+            "pool_inv_interview"
+          ]
+        },
+        {
+          "min": 48,
+          "ids": [
+            "pool_inv_records"
+          ]
+        },
+        {
+          "min": 58,
+          "ids": [
+            "pool_inv_informant"
+          ]
+        },
+        {
+          "min": 70,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
       ],
       "verdicts": [
-        { "min": 40, "ids": ["guilty_lenient", "insufficient_reopen"] },
-        { "min": 55, "ids": ["not_guilty_with_comment", "not_guilty_formal"] },
-        { "min": 75, "ids": ["guilty_alternative", "not_guilty_system"] }
+        {
+          "min": 40,
+          "ids": [
+            "guilty_lenient",
+            "insufficient_reopen"
+          ]
+        },
+        {
+          "min": 55,
+          "ids": [
+            "not_guilty_with_comment",
+            "not_guilty_formal"
+          ]
+        },
+        {
+          "min": 75,
+          "ids": [
+            "guilty_alternative",
+            "not_guilty_system"
+          ]
+        }
       ]
     },
     "rewards": {
       "on_confirm": {
         "strong": {
           "investigation_progress_delta": 40,
-          "unlock_verdict_ids": ["insufficient_reopen", "not_guilty_with_comment"],
+          "unlock_verdict_ids": [
+            "insufficient_reopen",
+            "not_guilty_with_comment"
+          ],
           "narrative_lines": [
             "Biblický řádek a jediná dávka v kartě tvoří jednu osovou linii: podpis 3. večer, injekce 4. ráno, žádný skrytý píst.",
             "Anežčino svědectví 4. ráno popisuje tělo, které nese otázku, zda 3. večer týž člověk píše stejnou rukou, kterou 4. držet neumí.",
@@ -106,7 +180,10 @@
         },
         "medium": {
           "investigation_progress_delta": 20,
-          "unlock_verdict_ids": ["guilty_lenient", "not_guilty_formal"],
+          "unlock_verdict_ids": [
+            "guilty_lenient",
+            "not_guilty_formal"
+          ],
           "narrative_lines": [
             "Vladimírovo 3. večer a Anežčino 3. večer se netlučou slovy, ale tím, kdo byl u postele v které půlhodině — a s kým tedy mluvil lékař.",
             "Syn a dcera chtějí čest otce, ale otec mezi nimi může mluvit jen jednou rukou — a ta je teď tichá."
@@ -122,19 +199,39 @@
       "reveals": "context",
       "text": "V noci ze 3. na 4. slyšela, jak se otec s někým hádal, ale neví, zda to byl doktor, nebo dcera. <span class=\"clue\" data-clue-id=\"clue_soused_4_3\">4. března v osm ráno zaslechla jednu větu z chodby: 'Dnes už jen jednu' — hlas, který přiřadila k doktorovi, nikoli k rodině, ale ze dveří nebyla, jen slyšet.</span> To je vše, pane doktore; nebyla jsem u toho, abych soudila morfium, nebo modlitbu.",
       "cost": 1,
-      "dirty_unlock": { "finance": -5, "traits": { "Vina": 1, "Integrita": -1 } }
+      "dirty_unlock": {
+        "finance": -5,
+        "traits": {
+          "Vina": 1,
+          "Integrita": -1
+        }
+      }
     },
     "records": {
       "source": "Opis domácí karty a poznámka okresního zdravotního dozoru, duben 1931, anonymizovaný výpis pro soud",
       "reveals": "facts",
       "text": "Karta: Jan Benda, 72, domácí ošetřování od 12. 2. 1931. 3. 3. večer záznam 'příbuzní přítomni, hladina bolesti neudržitelná, navrhována další parenterální léčba' — <span class=\"clue\" data-clue-id=\"clue_karta_podepsat\">poznámka lékaře: 'pacient srozumen s písemným záznamem, svědkem podepsal v knize na přání rodiny'.</span> 4. 3. od 5.00 'sopor, krevní tlak 85/50, 8.15 subkutánní injekce' — totožné s výpovědí. <span class=\"clue\" data-clue-id=\"clue_karta_morf\">Dávka: jedna injekce, žádný opakovaný vstup, čas klinické smrti 12.50, příčina koresponduje s dosavadním nálezem.</span>",
       "cost": 1,
-      "dirty_unlock": { "finance": -12, "traits": { "Integrita": -2, "Vina": 1 }, "factions": { "Moc": 1 } }
+      "dirty_unlock": {
+        "finance": -12,
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1
+        }
+      }
     },
     "informant": {
       "reveals": "context",
       "cost": 1,
-      "dirty_unlock": { "finance": -5, "traits": { "Vina": 1 } },
+      "dirty_unlock": {
+        "finance": -5,
+        "traits": {
+          "Vina": 1
+        }
+      },
       "variants": {
         "lid_high": "V domě vědí, že Benda platil Soukupovi hotově, ale ne exorbitantně — lékař chodil, protože mu důvěřoval, ne proto, že by dluh přešel na dědictví. Spor o písmo v bibli se nese mezi sourozenci hlasitěji než po chodbě o smrti, která stejně přišla do týdne.",
         "moc_high": "Zdravotní dozor píše do okresu, že domácí smrti se teď hlásí víc — krize, rakovina, nedostatek lůžek. Kdo z lékařů půjde na smrt doma, je politicky citlivé; kdo půjde na odsouzení lékaře, je to ještě citlivější, protože zákon o životě na konci života nečte, jen o trestu na konci důkazu.",
@@ -160,26 +257,65 @@
         "maximum": {
           "label": "Dvanáct let těžkého žaláře a trvalý zákaz výkonu lékařství",
           "description": "Soud považuje injekci za prokázaný útok na život, byť v domácím prostředí. Trest srovnatelný s vraždou v afektu, nikoli s omyly paliativní péče.",
-          "requires": { "odvaha_max": 30 },
-          "effects": { "integrita": 0, "vina": 10, "nadeje": -5, "moc": 5, "lid": -4, "finance": 20 }
+          "requires": {
+            "odvaha_max": 30
+          },
+          "effects": {
+            "integrita": 0,
+            "vina": 10,
+            "nadeje": -5,
+            "moc": 5,
+            "lid": -4,
+            "finance": 20
+          }
         },
         "standard": {
           "label": "Šest let žaláře a zákaz obvodu na dobu pěti let",
           "description": "Soud uzná úmysl, ale zohlední stav pacienta a písemný záznam; stále však vězení, které znamená konec praxe v Praze pro ženu a děti učitele, pokud jde o majetek domácnosti.",
-          "effects": { "integrita": 0, "vina": 7, "nadeje": -3, "moc": 2, "lid": -2, "finance": 12 }
+          "effects": {
+            "integrita": 0,
+            "vina": 7,
+            "nadeje": -3,
+            "moc": 2,
+            "lid": -2,
+            "finance": 12
+          }
         },
         "lenient": {
           "label": "Podmínka tři roky a veřejné úklidové práce v délce šedesáti dní",
           "description": "Mírnější rámec: soud vidí bolest pacienta, ale trvá na cejchu, že dávka překročila, co by soud považoval za nutné utlumení.",
           "requires_investigation": 1,
-          "effects": { "integrita": -1, "vina": 3, "nadeje": 0, "moc": 0, "lid": 1, "finance": 5 }
+          "effects": {
+            "integrita": -1,
+            "vina": 3,
+            "nadeje": 0,
+            "moc": 0,
+            "lid": 1,
+            "finance": 5
+          }
         },
         "alternative": {
           "label": "Alternativa: Trest, ale s příkazem krajskému zdravotnímu odboru zpracovat směrnici o domácí paliativě",
           "description": "Soud odsoudí, ale v odůvodnění uvede, že zákon neumí jmenovat rozdíl mezi utlumením a skonem — a proto má úřad navrhnout, jak se to má číst dál, ne aby každý soud dělal z lékaře kazatele i kata.",
           "requires_investigation": 2,
-          "requires": { "moudrost_min": 55 },
-          "effects": { "integrita": 4, "moudrost": 3, "vina": 2, "nadeje": 1, "moc": -1, "lid": 2, "finance": 0, "flags": [{ "key": "bonus_inkoust_rano", "value": 1 }] }
+          "requires": {
+            "moudrost_min": 55
+          },
+          "effects": {
+            "integrita": 4,
+            "moudrost": 3,
+            "vina": 2,
+            "nadeje": 1,
+            "moc": -1,
+            "lid": 2,
+            "finance": 0,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
         }
       }
     },
@@ -189,35 +325,92 @@
           "label": "Zproštění: neprokázán trestní úmysl, jediná injekce a list korespondují s lékařským záznamem",
           "description": "Důkazy vylučují vražedný úmysl v tom smyslu, v jakém trestní zákon píše o vraždě; zůstává morální třen, ale ne odsouzení.",
           "requires_investigation": 1,
-          "effects": { "integrita": 2, "odvaha": 1, "moudrost": 1, "vina": -3, "moc": -1, "lid": 0, "finance": 0 }
+          "effects": {
+            "integrita": 2,
+            "odvaha": 1,
+            "moudrost": 1,
+            "vina": -3,
+            "moc": -1,
+            "lid": 0,
+            "finance": 0
+          }
         },
         "with_comment": {
           "label": "Zproštění s komentářem, že zákon nerozlišuje souhlas s koncem života a lékařský zákrok, který ho přinese — a že mezera není omluva, ale fakt, který musí napsat zákonodárce, ne soudce",
           "description": "Soud konstatuje, že písemný záznam v knize a dávka v den smrti netvoří u soudu jednoznačné číslo trestu, protože ustanovení o usmrcení v milosti ještě není tím, čím bude za dvacet let nazýváno.",
           "requires_investigation": 1,
-          "effects": { "integrita": 4, "odvaha": 2, "moudrost": 2, "vina": -1, "moc": -2, "lid": 1, "finance": 0, "flags": [{ "key": "bonus_inkoust_rano", "value": 1 }] }
+          "effects": {
+            "integrita": 4,
+            "odvaha": 2,
+            "moudrost": 2,
+            "vina": -1,
+            "moc": -2,
+            "lid": 1,
+            "finance": 0,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
         },
         "system": {
           "label": "Alternativa: Zproštění a formální podnět k ministerstvu, aby otevřilo otázku domácí smrti v písemné oběžníku pro okresy",
           "description": "Krok, který na Soukupa svítí dál než soud, ale který mu může přinést písmena z ministerstva, v nichž lékaři hledají, kde mají hranice — a kde má hranice stát, který hranice sám nenastavil.",
           "requires_investigation": 2,
-          "requires": { "moudrost_min": 60, "odvaha_min": 50 },
-          "effects": { "integrita": 6, "moudrost": 3, "vina": -1, "nadeje": 0, "moc": 0, "lid": 0, "finance": 0, "flags": [{ "key": "bonus_inkoust_rano", "value": 2 }] }
+          "requires": {
+            "moudrost_min": 60,
+            "odvaha_min": 50
+          },
+          "effects": {
+            "integrita": 6,
+            "moudrost": 3,
+            "vina": -1,
+            "nadeje": 0,
+            "moc": 0,
+            "lid": 0,
+            "finance": 0,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 2
+              }
+            ]
+          }
         }
       }
     },
     "insufficient_evidence": {
-      "requires": { "moudrost_min": 45 },
+      "requires": {
+        "moudrost_min": 45
+      },
       "options": {
         "reopen": {
           "label": "Přerušit: vyžádat grafologický posudek podpisu 3. 3. a porovnání s rodinnými listy",
           "description": "Spis se otevře znovu na písmu, ne na pístu; do té doby zůstává otázka úmyslu v mezeře mezi bibli a kartou o jedné injekci.",
-          "effects": { "integrita": 1, "moudrost": 2, "vina": 1, "finance": 0, "flags": [{ "key": "bonus_inkoust_rano", "value": 1 }] }
+          "effects": {
+            "integrita": 1,
+            "moudrost": 2,
+            "vina": 1,
+            "finance": 0,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
+          }
         },
         "close": {
           "label": "Ukončit: bez závěru, kterému by rodina, lékař i soud sami uvěřili ve stejné větu",
           "description": "Soud ponechá vinu a čest v rovnováze, která dál tíží sousedství, ale ne sítí trestního, kterou by tento den přetáhl přes bolest, kterou zákon nikdy celou nepojme.",
-          "effects": { "integrita": 0, "moudrost": 0, "vina": 2, "finance": 0 }
+          "effects": {
+            "integrita": 0,
+            "moudrost": 0,
+            "vina": 2,
+            "finance": 0
+          }
         }
       }
     }
@@ -239,6 +432,11 @@
     "insufficient": "Soukup se dotkne hřbetu spisu, jako by hledal stránku, kterou by mohl otočit bez toho, aby sám musel napsat další."
   },
   "delayed_consequences": [
-    { "trigger": "not_guilty_with_comment", "delay_days": 5, "type": "fragment", "text": "V tisku odborových lékařů se objeví úryvek o soudcích, kteří v odůvodnění pojmenovali mezeru mezi bolestí a trestem; redakce přidá větu, že zákon musí psát parlament, ne obvod." }
+    {
+      "trigger": "not_guilty_with_comment",
+      "delay_days": 5,
+      "type": "fragment",
+      "text": "V tisku odborových lékařů se objeví úryvek o soudcích, kteří v odůvodnění pojmenovali mezeru mezi bolestí a trestem; redakce přidá větu, že zákon musí psát parlament, ne obvod."
+    }
   ]
 }

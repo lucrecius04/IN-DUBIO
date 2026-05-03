@@ -20,7 +20,7 @@
     "occupation": "chalupářka",
     "detail": "vdova, chová slepice v Úněticích, prodává vejce na havelském trhu, bezúhonná"
   },
-  "charge": "Přestupek dle §1 vyhlášky o obecním majetku: neoprávněný zábor obecní parcely č. 47/3 (6 m²) pro zřízení drůbežího výběhu.",
+  "charge": "Přestupek dle §1 vyhlášky o obecním majetku — neoprávněný zábor parcely",
   "description": "Na návsi v <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"unetice\" title=\"Slovník: Úněticích\">Úněticích</button> severozápadně od Prahy existuje pruh obecní trávy — šest metrů čtverečních, parcela č. 47/3. Sedm let tam Božena Kučerová chová slepice za dřevěným ohradníkem. Nikdo nikdy neprotestoval. V říjnu 1930 za ní Václav Šebek neúspěšně nabídl 200 korun za část její zahrady s jabloněmi po nebožtíkovi; odmítla. V prosinci 1930 pak na obecní radu přišel podnět k soudu v téže věci.",
   "testimonies": [
     {
@@ -61,12 +61,12 @@
         "sebek",
         "horakova_soused"
       ],
-          "highlight_at_wisdom": 81,
-          "unlocks_confrontation": null
-        },
-        {
-          "id": "casova_souslednost",
-          "description": "Božena odmítla prodat v říjnu 1930. Podnět přišel v prosinci 1930. Přímá časová souslednost naznačuje odvetu, ne ochranu obecního zájmu.",
+      "highlight_at_wisdom": 81,
+      "unlocks_confrontation": null
+    },
+    {
+      "id": "casova_souslednost",
+      "description": "Božena odmítla prodat v říjnu 1930. Podnět přišel v prosinci 1930. Přímá časová souslednost naznačuje odvetu, ne ochranu obecního zájmu.",
       "involves": [
         "kucerova",
         "sebek"
@@ -215,7 +215,7 @@
         "lid_high": "V Úněticích se říká, že Šebek koupil loni traktor na dluh. Potřebuje rozšířit příjezdovou cestu ke statku. Boženina zahrada s jabloněmi je přesně v trase. Podnět u soudu je levnější než formální vyvlastnění.",
         "moc_high": "Obecní rada Únětic má příští rok volby. Šebek potřebuje ukázat, že spravuje obec pevnou rukou. Boženin případ je pohodlná demonstrace — žádná politika, jen šest metrů trávy a slepice.",
         "kapital_high": "Kancelář Knot & Svoboda z Dejvic zpracovávala loni dva pozemkové výkupy v Úněticích. Šebek byl u obou jako zprostředkovatel. Kdo je soukromý investor, v dostupných záznamech nefiguruje.",
-            "default": "V říjnu 1930 chtěl Šebek koupit u cesty kus zahrady s jabloněmi za dvě stě — Božena neprodala. V prosinci 1930 je z toho podnět na obec a soud. V <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"unetice\" title=\"Slovník: Úněticích\">Úněticích</button> se říká, že jabloně mají kořeny hlubší než zákon."
+        "default": "V říjnu 1930 chtěl Šebek koupit u cesty kus zahrady s jabloněmi za dvě stě — Božena neprodala. V prosinci 1930 je z toho podnět na obec a soud. V <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"unetice\" title=\"Slovník: Úněticích\">Úněticích</button> se říká, že jabloně mají kořeny hlubší než zákon."
       }
     },
     "confrontation": {
@@ -224,7 +224,7 @@
       "requires_contradiction": "casova_souslednost",
       "requires_courage": 40,
       "cost": 2,
-          "prompt": "Pane Šebku, Božena Kučerová odmítla prodat zahradu v říjnu 1930. Podnět k soudu přišel v prosinci 1930. A na zasedání rady byli tři ze sedmi, z toho vaše sestra. Jak vysvětlíte tu souslednost?",
+      "prompt": "Pane Šebku, Božena Kučerová odmítla prodat zahradu v říjnu 1930. Podnět k soudu přišel v prosinci 1930. A na zasedání rady byli tři ze sedmi, z toho vaše sestra. Jak vysvětlíte tu souslednost?",
       "success": {
         "text": "Šebek se napřímí. Odmlka — delší, než by měla být. Pak řekne: 'Obecní zájem nesleduje kalendář, pane doktore.' To je vše, co dostanete. Ruce má na stole. Třesou se.",
         "reveals": "Šebek nepopřel motivaci. Nepopřel časovou souslednost. Zákon nedokáže vyvrátit to, co neřekl."

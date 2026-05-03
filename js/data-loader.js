@@ -34,7 +34,8 @@ const DataLoader = (() => {
     fragments:  'data/fragments.json',
     factions:   'data/factions.json',
     traits:         'data/traits-text.json',
-    postavy_okoli:  'data/postavy_okoli.json'
+    postavy_okoli:  'data/postavy_okoli.json',
+    endingPrelude:  'data/ending_prelude.json'
   };
 
   // Případy jsou rozděleny do tří souborů pro přehlednost
@@ -363,6 +364,13 @@ const DataLoader = (() => {
     return fragments.find(f => f.id === id) || null;
   }
 
+  /** Texty před závěrečným epilogem (`data/ending_prelude.json`). */
+  function ziskejEndingPrelude() {
+    const raw = ziskej('endingPrelude');
+    if (!raw || typeof raw !== 'object') return null;
+    return raw;
+  }
+
   function ziskejFrakci(id) {
     const factions = ziskej('factions');
     if (!factions) return null;
@@ -385,6 +393,7 @@ const DataLoader = (() => {
     ziskejDen,
     ziskejPostavu,
     ziskejFragment,
+    ziskejEndingPrelude,
     ziskejFrakci,
     ziskejTextyRysu
   };

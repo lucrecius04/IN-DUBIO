@@ -29,21 +29,23 @@ To je záměr. Bez Haase nebo bonusů hráč NEMŮŽE zaplatit operaci čistě. 
 
 ### Klíčové ekonomické momenty
 
-Den 2: Pekař zvýšil ceny. Denní výdaje +3 Kčs (celkem 58 Kčs) — drobný šok, buduje návyk sledovat finance.
+Čísla **dnů** = `currentDay` v `days.json` (kalendář kampaně s víkendy). Pracovní **D4 / D11 / D12** = sloupec **Den** v `Mapa_15dni.csv`.
 
-Den 6: DOPIS OD DOKTORA — matčina operace 400 Kčs. Deadline den 16. Od této chvíle hráč počítá peníze.
+Herní den **2**: Pekař zvýšil ceny. Denní výdaje +3 Kčs (celkem 58 Kčs) — drobný šok, buduje návyk sledovat finance.
 
-Den 10: Haasova vizitka bez textu. Finance <80 Kčs: vizitka svítí zlatě.
+Herní den **4** (pracovní **D4**, čtvrtek v mapě): dopis od doktora Síbra — **matčina** operace **400 Kčs**; echo ve večerní volbě. Termín dle mapy (odpočet k **D12**); ve kódu `Finance.OPERACE_DEADLINE_DEN` = **16** (poslední šance před pracovním D12 v kalendáři hry). Od dopisu hráč počítá peníze.
 
-Den 13: Účet za uhlí navíc. -15 Kčs jednorázově. Tlak sílí.
+Herní den **8** (pracovní **D6**): Haasova vizitka bez textu. Finance <80 Kčs: vizitka svítí zlatě.
 
-Den 16: HAAS PŘIJDE OSOBNĚ — nabídka 300 Kčs za jeden rozsudek.
+Herní den **11** (pracovní **D9**): účet za uhlí navíc. -15 Kčs jednorázově. Tlak sílí.
+
+Herní den **15** (pracovní **D11**, pondělí): HAAS PŘIJDE OSOBNĚ — nabídka 300 Kčs za jeden rozsudek.
   - Finance >400 Kčs (téměř nemožné bez bonusů): Haas nabízí, Ben může odmítnout bez stresu.
   - Finance 200-400 Kčs: Nabídka je lákavá ale ne nutná.
   - Finance <200 Kčs: Nabídka je matematicky nevyhnutelná. Odmítnutí = matka nedostane operaci.
   - Finance <50 Kčs: Haasova obálka svítí zlatě. Krizový moment.
 
-Den 16 (alternativa): Pokud hráč odmítne Haase a Finance <100 Kčs:
+**Po odmítnutí Haase** (návazně na herní den 15): pokud hráč odmítne Haase a Finance <100 Kčs:
   - Závadová nabídne půjčku od Kruhu svědomí: 200 Kčs, žádný úrok, ale „jednou budeme potřebovat laskavost." (= cesta ke KRUH konci)
   - Karas nabídne osobní půjčku: 100 Kčs, žádné podmínky, ale Karas si tím koupí Benovo tiché přehlížení jeho zrady.
 
@@ -97,7 +99,7 @@ Ben odkládá. Každý politický případ má ZVÝRAZNĚNOU volbu „Odložit."
 - Narativní tón: úzkostný, nejistý
 - Vede ke konci PŘEŽITÍ
 
-### Den 16 — extrémní scénář
+### Herní den 16+ — extrémní scénář (po nabídce Haase / blízko deadline operace)
 Pokud hráč odmítne Haase + Finance < 100 + odmítne Závadové půjčku + odmítne Karasovu půjčku:
 Matka nedostane operaci. Hra NEKONČÍ.
 - Krátký fragment: „Dopis od doktora. Operace odložena na neurčito. Stav se zhoršuje."

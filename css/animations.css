@@ -181,6 +181,52 @@
   100% { opacity: 1; letter-spacing: 2px; }
 }
 
+/* Předepilog konce — nad běžnými overlayi, pod finálním #konec-hry-overlay */
+#modal-konec-prelude {
+  z-index: 1100;
+}
+
+.konec-prelude-panel {
+  max-width: 560px;
+}
+
+.konec-prelude-ramecek {
+  font-family: var(--pismo-typewriter);
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--barva-text-tmavy);
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(90, 62, 40, 0.35);
+  background: rgba(255, 252, 245, 0.65);
+}
+
+.konec-prelude-nadpis {
+  font-family: var(--pismo-nadpis);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--barva-text-tmavy);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.konec-prelude-telo {
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.konec-prelude-odstavec {
+  font-family: var(--pismo-telo);
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--barva-text);
+  margin: 0 0 14px;
+}
+
+.konec-prelude-odstavec:last-child {
+  margin-bottom: 0;
+}
+
 #konec-hry-overlay {
   position: fixed;
   inset: 0;

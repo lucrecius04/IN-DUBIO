@@ -1640,7 +1640,7 @@
         "occupation": "tkalcovský dělník, Textile Praga a.s., Smíchov",
         "detail": "vdovec, syn Ladislav (17 let, učeň), 12 let ve stejném závodě, čistý rejstřík"
       },
-      "charge": "Podvod dle §197 trestního zákona — předložení padělaného lékařského potvrzení za účelem vylákání nemocenské dávky",
+      "charge": "Podvod dle §197 trestního zákona — padělané lékařské potvrzení (nemocenská)",
       "description": "Josef Kratochvíl, tkadlec s dvanáctiletou nepřerušenou praxí v závodu Textile Praga na Smíchově, je obžalován z předložení padělaného potvrzení o pracovní neschopnosti ze dne 12. února 1931. Závodní lékař MUDr. Antonín Mašek odmítá potvrzení jako falzifikát — uvádí, že daného dne Kratochvíla nevyšetřoval a podpis není jeho. Kratochvíl trvá na tom, že byl skutečně nemocen a že lékař přišel k němu domů. Na základě potvrzení mu bylo vyplaceno 14 dní nemocenské dávky ve výši 98 Kčs, které zaměstnavatel nyní nárokuje zpět.",
       "testimonies": [
         {
@@ -2944,7 +2944,7 @@
       "encyclopedia_links": [
         "zharství",
         "pojistovna_slavia",
-        "zalosna",
+        "zalozna",
         "smichov"
       ],
       "stamp_moment": {
@@ -3411,7 +3411,7 @@
         "occupation": "stavbyvedoucí, firma Stavební a.s. Dvořák & syn",
         "detail": "ženatý, dvě děti (11 a 8 let), hypotéka u záložny, čistý rejstřík"
       },
-      "charge": "Těžké ublížení na zdraví z nedbalosti dle §335 trestního zákona — smrt dělníka následkem porušení stavebních předpisů",
+      "charge": "Těžké ublížení na zdraví z nedbalosti dle §335 trestního zákona",
       "description": "Ing. Miroslav Kolář, stavbyvedoucí firmy Stavební a.s. Dvořák & syn, je obžalován z nedbalostního způsobení smrti. Dne 17. února 1931 v ranních hodinách upadl dělník František Tuček (32 let) ze lešení ve třetím patře rozestavěného nájemního domu v <span class=\"clue\" data-clue-id=\"decoy_stavba_manesova\">Mánesově ulici</span> na Vinohradech. Tuček zemřel na místě na mnohočetná poranění hlavy a trupu. Obhajoba tvrdí, že Tuček byl v době nehody <span class=\"clue\" data-clue-id=\"decoy_stavba_alkohol_obh\">pod vlivem alkoholu</span>. Obžaloba dokládá, že lešení neodpovídalo stavebním předpisům a že Kolář o závadě věděl.",
       "testimonies": [
         {
@@ -3848,7 +3848,7 @@
         "occupation": "rolnice",
         "detail": "hospodářství 4 ha, obec Ořech u Prahy; vdova od 1923; syn Josef (31) v Praze, pracuje jako listonoš; sama na statku"
       },
-      "charge": "Násilný odpor veřejnému činiteli dle §81 trestního zákona — udeření exekutora Ing. Karla Štěpána násadou od lopaty při výkonu exekuce dne 17. února 1931",
+      "charge": "Násilný odpor veřejnému činiteli dle §81 trestního zákona",
       "description": "Anna Součková, rolnice z Ořechu u Prahy, je obžalována z násilného odporu exekutorovi Ing. Karlu Štěpánovi při výkonu exekuce na movitý majetek. Exekutor Štěpán přišel 17. února 1931 na základě příkazu k výkonu rozhodnutí vydaného Záložnou sv. Václava v Praze pro dluh 340 Kčs. <span class=\"clue\" data-clue-id=\"decoy_exek_uder_lopatou\">Součková ho udeřila násadou od lopaty do předloktí</span> — zhmoždění, pracovní neschopnost tři dny. <span class=\"clue\" data-clue-id=\"decoy_exek_tvrzeni_zlodej\">Součková tvrdí, že nevěděla, kdo přichází, a myslela si, že jde o zloděje</span>.",
       "testimonies": [
         {
@@ -4750,8 +4750,8 @@
         "occupation": "správce nájemního domu",
         "detail": "Dříve tesař u Pražských staveb, od roku 1928 správce nájemního domu č.p. 214 v ulici Chelčického na Žižkově. Ženatý, manželka Alžběta trpí chronickým zánětem kloubů a v posledním roce prakticky nevychází. Starší dcera Marta pracuje jako švadlena."
       },
-      "charge": "Zpronevěra svěřených finančních prostředků dle §183 trestního zákona č. 117/1852 v platném znění. Obžalovaný v období říjen až prosinec 1930 nepředal majiteli nemovitosti Eugenu Taussigovi nájemné v úhrnné výši 520 Kčs, jež v témže období přijal od nájemníků do vlastních rukou.",
-      "description": "Správce nájemního domu Jaroslav Blecha je obžalován ze zpronevěry 520 Kčs nájemného za čtvrtý kvartál roku 1930. Majitel domu Eugen Taussig schodek odhalil při ročním vyúčtování v lednu 1931 a neprodleně podal trestní oznámení. Blecha přijetí hotovosti od nájemníků nezapírá, tvrdí však, že celou částku v plné výši vynaložil na havarijní opravu vodoinstalace a výměnu shnilých okenních rámů, k nimž dal příkaz sám, neboť majitel na jeho opakované žádosti nereagoval. Na stole leží opis dopisu, jejž prý Blecha Taussigovi odeslal doporučeně v září 1930, a faktura žižkovského tesáře Antonína Beneše na přesně 520 Kčs. Taussig prohlašuje, že žádný dopis v průběhu roku 1930 neobdržel a k žádné opravě nedal souhlas.",
+      "charge": "Zpronevěra svěřených finančních prostředků dle §183 trestního zákona č. 117/1852",
+      "description": "Správce nájemního domu Jaroslav Blecha je obžalován ze zpronevěry 520 Kčs nájemného za čtvrtý kvartál roku 1930. Majitel domu Eugen Taussig schodek odhalil při ročním vyúčtování v lednu 1931 a neprodleně podal trestní oznámení. Blecha přijetí hotovosti od nájemníků nezapírá, tvrdí však, že celou částku v plné výši vynaložil na havarijní opravu vodoinstalace a výměnu shnilých okenních rámů, k nimž dal příkaz sám, neboť majitel na jeho opakované žádosti nereagoval. Na stole leží opis dopisu, jejž prý Blecha Taussigovi odeslal doporučeně v září 1930, a faktura žižkovského tesáře Antonína Holuba na přesně 520 Kčs. Taussig prohlašuje, že žádný dopis v průběhu roku 1930 neobdržel a k žádné opravě nedal souhlas.",
       "testimonies": [
         {
           "id": "taussig",
@@ -4764,9 +4764,9 @@
           "text": "<span class=\"clue\" data-clue-id=\"clue_kopecka_zari\">Koncem září přestala v bytě řádně téct teplá voda — potrubí u kuchyňského spoje cedilo a na přilehlé zdi se začala šířit vlhkost.</span> Pan Blecha přišel bez vyzvání ještě téhož týdne, závadu si prohlédl a slíbil zařídit nápravu. Za dva týdny dorazil tesař, potrubí opravil a bylo po potížích. <span class=\"clue\" data-clue-id=\"clue_kopecka_majitel\">Od pana Taussiga jsem za celý rok 1930 neslyšela ani slova — ani přes pana Blechu, ani osobně.</span> Nevím, co si mezi sebou psali."
         },
         {
-          "id": "benes",
-          "speaker": "Antonín Beneš, 38 let, tesař a instalatér, Žižkov (svědek)",
-          "text": "Pan Blecha mě přivolal začátkem října loňského roku. Práce obnášela opravu vodovodního rozvodu v přízemí a výměnu dvou dřevěných okenních rámů v prvním patře, kde dřevo vykazovalo hnilobu. <span class=\"clue\" data-clue-id=\"clue_benes_castka\">Celková cena za provedené dílo činila 520 Kčs; přijal jsem platbu v hotovosti ve dvou splátkách — 250 Kčs dne 18. října a 270 Kčs dne 3. listopadu 1930.</span> Fakturu jsem vystavil na jméno Blecha, neboť s ním jsem dohodu uzavřel. Majitele domu jsem nikdy neviděl ani neslyšel."
+          "id": "holub",
+          "speaker": "Antonín Holub, 38 let, tesař a instalatér, Žižkov (svědek)",
+          "text": "Pan Blecha mě přivolal začátkem října loňského roku. Práce obnášela opravu vodovodního rozvodu v přízemí a výměnu dvou dřevěných okenních rámů v prvním patře, kde dřevo vykazovalo hnilobu. <span class=\"clue\" data-clue-id=\"clue_holub_castka\">Celková cena za provedené dílo činila 520 Kčs; přijal jsem platbu v hotovosti ve dvou splátkách — 250 Kčs dne 18. října a 270 Kčs dne 3. listopadu 1930.</span> Fakturu jsem vystavil na jméno Blecha, neboť s ním jsem dohodu uzavřel. Majitele domu jsem nikdy neviděl ani neslyšel."
         }
       ],
       "contradictions": [
@@ -4845,7 +4845,7 @@
           },
           {
             "pair_id": "pair_dluh",
-            "a_id": "clue_benes_castka",
+            "a_id": "clue_holub_castka",
             "b_id": "clue_blecha_dluh",
             "strength": "weak",
             "soft_fail": true
@@ -6017,7 +6017,7 @@
         "occupation": "notářský kancelista",
         "detail": "kancelista v notářské kanceláři doktora Horáka na Malé Straně, ženatý, dvě dospělé dcery, třicet let praxe"
       },
-      "charge": "Padělání a pozměnění veřejné listiny dle §199 trestního zákona č. 117/1852 — obžalovaný měl po podpisu závěti zůstavitele Augustina Čermáka dodatečně sestavit a opatřit pozměněným datem přípisek ke spisu, čímž měnil dědické podíly bez zákonné notářské formy.",
+      "charge": "Padělání a pozměnění veřejné listiny dle §199 trestního zákona č. 117/1852",
       "description": "Augustin Čermák, jednasedmdesátiletý majitel cihelny v <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"holesovice\" title=\"Slovník: Holešovice\">Holešovicích</button>, zemřel 12. února 1931. Závěť pořídil 8. února v notářské kanceláři doktora Horáka; hlavní text odkazoval dvě třetiny cihelny mladšímu synu Jiřímu a třetinu staršímu Pavlovi. Spolu se závětí byl však nalezen přípisek — rovněž datovaný 8. února — jenž mění podíly na rovný díl. Mladší syn Jiří podal trestní oznámení: notářský deník zaznamenává pro celou schůzku pouhých patnáct minut a chemický rozbor prokazuje jiný inkoust v přípisku než v hlavním textu závěti. Kancelista Václav Šrámek trvá na tom, že oba dokumenty sepsal téhož dne podle výslovného přání zůstavitele.",
       "testimonies": [
         {
@@ -6469,7 +6469,7 @@
         "occupation": "dělník, v evidenci nezaměstnaných, tři děti",
         "detail": "syn zesnulého Aloise Krejse; uplatňuje písemnou závěť, kterou otec dne 10. 1. 1931 u notáře napsal ve prospěch dědice; ústní projev tři dny před smrtí o městské škole napadá sousedka"
       },
-      "charge": "Dědický spor: návrh na vyslovení platnosti a výkladu poslední vůle; předmět — rodinný dům U Školní 7 ve Vršovicích; sousedka tvrdí ústní doplňující vůli ve prospěch městské školy, syn setrvává u písemného prohlášení a hmotného dědění dle sepsaného textu",
+      "charge": "Řízení o platnosti a výkladu poslední vůle (dědický spor)",
       "description": "Alois Krejsa, bývalý učitel (72), zemřel 20. 1. 1931. U notáře dne 10. 1. 1931 podepsaná závěť odkazuje dům ve Vršovicích synu Václavovi, výslovně. Tři dny před smrtí v zahradě sousedce Haně Procházkové promluvil o dárku pro školu — ať děti mají třídu. Sousedka o tom svědčí. Notář v protokole potvrzuje, k notáři doložil jen tento list. <span class=\"clue\" data-clue-id=\"clue_ustni_prochazkova\">Hana Procházková tvrdí, že před třemi dny otcem prý zněla podmínka, že půjde dům škole, ne synovi, ale ústní výrok nemá písemný protokol ani druhý svědek mimo ni.</span> <span class=\"clue\" data-clue-id=\"clue_notar_totoznost\">JUDr. Beran potvrzuje pouze tento písemný rukopis, otisky prstů na pečeti a dva svědčící podpisy, žádný doplňující spis s ústním přáním.</span> <span class=\"clue\" data-clue-id=\"clue_denik_18_1\">V deníku zemřelého: 18. 1. 1931 — ‚Václav na Vánoce nepřišel, ani na Nový rok. Třetí rok.‘ Václav odmítá, že by otce o šest let zanedbával, ale deník otec vedl ručně.</span> <span class=\"clue\" data-clue-id=\"decoy_lichotka\">Kdosi z obce poznamenal, že sousedka při vzpomínce lichotí svému sousedovi — což s listinou a deníkem přímo nesouvisí, jen s pověstí o zahradních hovorech.</span>",
       "testimonies": [
         {
@@ -6757,7 +6757,7 @@
         "occupation": "vedoucí přejímky obilí",
         "detail": "zaměstnanec Zásobovacího a prodejního družstva LÍPA v Brandýse nad Labem, šest let bez výtky, ženatý, tři dospělé děti"
       },
-      "charge": "Podvod dle §197 trestního zákona a §200 (porušení obchodní věrnosti): opakované falšování záznamů o jakostní třídě obilí při přejímce od členů družstva po dobu dvou let, čímž byl způsoben majetkový rozdíl vůči odběratelům v celkové výši nejméně 2 400 Kčs.",
+      "charge": "Podvod dle §197 trestního zákona a porušení obchodní věrnosti dle §200",
       "description": "Zásobovací a prodejní družstvo LÍPA zásobuje odběratele — pekaře, mlýny, hostince — obilím od svých členů. Bedřich Navrátil zodpovídal za přejímku a klasifikaci dodávek. Od roku 1929, kdy přišla špatná úroda, zapisoval obilí nižší třídy jako vyšší, čímž členové dostali plnou výkupní cenu a odběratelé platili za kvalitu, kterou nedostali. Pekař Antonín Rejzek tvrdí, že z jednoho takového nákladu vyrobil chleba, po nichž onemocnělo pět rodin z Brandýsa. Navrátil falšování přiznal, zdravotní škodu popírá. Předseda družstva LÍPA Metoděj Herejk tvrdí, že o ničem nevěděl.",
       "testimonies": [
         {
@@ -7171,7 +7171,7 @@
         "occupation": "mistr kovárny",
         "detail": "zaměstnanec opravny zemědělských strojů Šulc & Novák v Holešovicích, osmnáct let u firmy, vdovec, syn Ladislav 17 let"
       },
-      "charge": "Těžké ublížení na zdraví s následkem smrti dle §152 trestního zákona, alternativně vražda v afektu dle §134 — Pavel Řehoř dne 6. února 1931 v prostorách kovárny opakovaně udeřil mistrovským kladivem spolupracovníka Karla Dobiáše (39 let) do oblasti hlavy a hrudníku. Dobiáš zemřel téhož dne večer ve vinohradské nemocnici na mozkové krvácení. Řehoř čin přiznal okamžitě a nevykazoval pokus o útěk ani zametení stop.",
+      "charge": "Těžké ublížení na zdraví s následkem smrti dle §152 trestního zákona, alternativně vražda v afektu dle §134",
       "description": "V kovárně Šulc & Novák leží na stole čin, o němž nikdo nepochybuje. Pavel Řehoř v pátek odpoledne vzal mistrovské kladivo a čtyřikrát udeřil Karla Dobiáše. Dobiáš zemřel. Řehoř přiznal vše — bez obhájce, bez výmluv, na místě. Soudní znalec určil příčinu smrti jednoznačně. Otázka nestojí na tom, kdo a jak — stojí na tom, proč, a kolik za to. Osmnáct let spolupráce, jeden den, čtyři rány. Co z toho zákon dělá a co dělá člověk z toho, co zákon neumí přečíst.",
       "testimonies": [
         {
@@ -7599,7 +7599,7 @@
         "occupation": "nádeník",
         "detail": "bez stálého zaměstnání od října 1930, ženatý, čtyři děti (3–11 let), bydliště Žižkov, Chelčického 14"
       },
-      "charge": "Krádež dle §171 trestního zákona: dne 3. března 1931 odcizil z pekárny Antonína Mráze na Žižkově dva bochníky chleba v hodnotě 2 Kčs 40 haléřů. Přistižen na místě činu zaměstnancem pekárny.",
+      "charge": "Krádež dle §171 trestního zákona",
       "description": "Tomáš Horák vstoupil v úterý ráno do pekárny Antonína Mráze na rohu Seifertovy ulice. Vzal dva bochníky z regálu u dveří a odešel bez zaplacení. Zaměstnanec Petr Vlček ho zadržel na ulici. Horák nekladl odpor, bochníky vydal a řekl: <em>'Mám doma čtyři děti a od včerejška nic.'</em> Antonín Mráz trvá na trestním oznámení. Případ je technicky jasný. Nic jiného o něm jasné není.",
       "testimonies": [
         {
@@ -7913,7 +7913,7 @@
         "occupation": "tiskař, člen místního výboru sociální demokracie",
         "detail": "zaměstnanec tiskárny Orbis, Smíchov; ženatý, jedno dítě; člen redakční rady stranického tisku"
       },
-      "charge": "Pobuřování dle §15 zákona na ochranu republiky č. 50/1923 Sb.: Jiří Veselý na stranické schůzi dne 18. února 1931 v sále hostince Na Příkopě prohlásil, že 'vláda systematicky dopravuje ozbrojené jednotky do průmyslových měst, aby rozbila stávky dříve, než začnou', a vyzval přítomné k 'odporu zákonnými i nezákonnými prostředky'. Svědkyní obžaloby je Jana Horáčková, úřednice ministerstva vnitra.",
+      "charge": "Pobuřování dle §15 zákona na ochranu republiky č. 50/1923 Sb.",
       "description": "Tiskař Jiří Veselý přednášel na uzavřené stranické schůzi. Schůze byla uzavřená — ale ministerstvo vnitra o ní vědělo. Jana Horáčková, úřednice oddělení politického dohledu, podala zprávu, z níž vychází obžaloba. Veselý popírá přesný obsah svých slov a popírá výzvu k nezákonným prostředkům. Horáčková trvá na svém. Otázka stojí takto: co přesně zaznělo v sále Na Příkopě osmnáctého února — a proč je jedinou svědkyní žena z ministerstva, která tam seděla jako host.",
       "testimonies": [
         {
@@ -8318,7 +8318,7 @@
         "occupation": "tříděč a obsluha telegrafní místnosti, Ústřední pošta, Praha",
         "detail": "20 let u pošty, ženatý, tři děti, bydliště Karlín, bez kázeňského záznamu; od roku 1928 na Florenci u telegrafu a třídění depeší s finanční náplní"
       },
-      "charge": "Porušení poštovního tajemství, neoprávněné narušení zabezpečení zásilky a zneužití postavení veřejného podniku dle zák. č. 1/1924 Sb. o provozu pošty a telegrafu ve spojení s ustanoveními trestního zákona o zneužití služby.",
+      "charge": "Porušení poštovního tajemství a zneužití služby dle zák. č. 1/1924 Sb. a trestního zákona",
       "description": "Ladislava Cílka nahlásil tříděcí kolega František Dvořák. Podle Dvořáka Cílek narušil tři telegrafní zásilky určené soukromé kanceláři v ulici Na Příkopě, které nesměl číst, a tím umožnil, aby se na podvodném výběru vkladů srazilo přes čtyřicet drobných vkladatelů. Cílek písemně přiznává narušení, ale trvá na tom, že v obsahu depeší viděl úmyslné maření pravidel a že podnět předal přímo k poštovní prokuratuře — policejní protokol o zahájení prošetření fiktivní záložny existuje. Morální jádro neleží jen u toho, zda obálku otevřel — ale zda soud odsouhlasí, že tajemství pošty lze v příčinné linii považovat za cenu záchrany, která jinak čekat nemohla — a proč o tom bylo třeba mluvit dva dny poté, co Dvořák neuspěl s převedením na místo v Písku.",
       "testimonies": [
         {
@@ -8766,7 +8766,7 @@
         "occupation": "obvodní lékař",
         "detail": "praxe u obvodu Vinohrady od roku 1921, ženatý, bezdětný, dříve ústavní lékař u nemocnice na Františku, čistý disciplinární záznam dle spisu okresního zdravotního úřadu"
       },
-      "charge": "Usmrcení z trestného úmyslu dle ustanovení o vraždě v trestním zákoníku, ve znění platném v roce 1931. Obžaloba tvrdí, že dne 4. března 1931 v bytě pacienta Jana Bendy, Náměstí Míru 9, podal obžalovaný injekci s obsahem morfia v dávce, která nebyla nezbytná k utlumení bolesti, a tím učinil záměrný útok na život, nikoli léčebný zákrok. Syn poškozeného podal trestní oznámení s listinou, v níž má být vyjádřen souhlas zůstavitele s urychlením skonu.",
+      "charge": "Usmrcení z trestného úmyslu (vražda) dle trestního zákoníku — lékařský zákrok",
       "description": "Jan Benda, 72 let, bývalý krejčí, zemřel 4. března 1931 na následky pokročilého onkologického onemocnění v domácí péči. MUDr. Soukup ošetřoval doma tři týdny; dne 4. března podal injekci a otec synu Vladimírovi Bendovi zemřel do pěti hodin. Syn v trestním uvedl, že otec chtěl „jen klid“ a že s podáním, které lékař ukazuje v rodinné bibli, nesouhlasí — otec prý nebyl s to listinu podepsat stejným rukopisem v den, v němž ji lékař datuje. Soukup popírá úmysl usmrtit: trvá na opakované žádosti o ukončení bezvýchodného stavu, zaznamenané 3. března večer, a na tom, že dávka odpovídala bolesti, nikoli záměru. Spor není, kdo stiskl píst — ale zda soud považuje tento čin za vraždu, za omyl, nebo za mezeru v zákoně, kterou soud může pojmenovat, ne uzavřít.",
       "testimonies": [
         {
@@ -9206,7 +9206,7 @@
         "occupation": "hostinský",
         "detail": "provozuje U Zlatého sudu na Žižkově — tatáž osoba jako Sp. zn. 94/1931; tentokrát čelí stížnosti za incident ze 7. března 1931"
       },
-      "charge": "Porušení povinností provozovatele hostince dle §22 živnostenského řádu: Emil Pospíšil dne 7. března 1931 neprodleně nevykázal z prostor hospody osobu vyvolávající pohoršení, čímž umožnil fyzický střet, při němž hostinský Jan Červenka (52 let) utrpěl zranění způsobující pracovní neschopnost. Navrhovatelem je Červenkova manželka Alžběta.",
+      "charge": "Porušení povinností provozovatele hostince dle §22 živnostenského řádu",
       "description": "V sobotu 7. března se v U Zlatého sudu strhla hádka. Dva muži u vedlejšího stolu. Jan Červenka — host, jehož Pospíšil zná léta — dostal úder pěstí do tváře a spadl ze židle. Útočník odešel. Červenka strávil čtyři dny v nemocnici se zlomeným lícním obloukem. Kdo byl útočník, nikdo z přítomných svědků nedokázal říci jméno. Nebo nechtěl. Alžběta Červenková obviňuje Pospíšila, že útočníka znal, celou věc viděl — a nezasáhl. Pospíšil říká, že šlo o nenadálý střet, který nemohl předvídat. Ben si všímá jedné věci: Pospíšil sedí u stolu a třese se. Tohle není obvyklá nervozita z výslechu.",
       "testimonies": [
         {
@@ -9606,7 +9606,7 @@
         "occupation": "výhybkář, Státní dráhy ČSR, úsek Praha-Smíchov",
         "detail": "zaměstnanec drah devatenáct let, vdovec, dvě dcery (14 a 17 let); ve službě bez disciplinárního záznamu"
       },
-      "charge": "Ohrožení obecné bezpečnosti dle §87 trestního zákona a sabotáž přepravního provozu dle §5 zákona na ochranu republiky č. 50/1923 Sb.: František Douda dne 15. ledna 1931 ve 14:22 vědomě a záměrně přestavil výhybku V-7 na úseku Nusle–Smíchov do polohy odklonu, čímž způsobil odklonění osobního vlaku č. 214 na vedlejší kolej. Vlak zastavil bez srážky. Zpoždění 3 hodiny 20 minut. 187 cestujících, žádné zranění. Douda čin přiznal okamžitě.",
+      "charge": "Ohrožení obecné bezpečnosti dle §87 trestního zákona a sabotáž dle §5 zákona na ochranu republiky č. 50/1923 Sb.",
       "description": "František Douda přestavil výhybku. Přiznal to ihned, na místě, policistovi, který přijel jako první. Nezkoušel utéct ani nic zakrýt. Vlak č. 214 zastavil bez úhony — strojvedoucí zareagoval a zabrzdil. Douda byl odklizen od výhybky a odveden. Druhý den ráno dráhy opravily kolejnicový svár na úseku K-7, který Douda devět měsíců hlásil jako nebezpečný. Tři pracovníci inspekce potvrdili, že svár byl skutečně vadný. Soud musí rozhodnout, co Douda je: sabotér, nebo člověk, který nevěděl jak jinak.",
       "testimonies": [
         {
@@ -9987,7 +9987,7 @@
         "occupation": "chalupářka",
         "detail": "tatáž osoba jako ve věcech Sp. zn. 91/1931 (slepice) a 92/1931 (urážka na cti). Tentokrát nečelí přestupku. Čelí vyvlastnění."
       },
-      "charge": "Řízení o námitkách proti vyvlastnění dle §§ 365–370 občanského zákoníku ve spojení s §4 zákona č. 126/1927 Sb. o stavbě silnic: Stavební společnost PRAGA ROADS a.s. podala žádost o vyvlastnění pozemku č. p. 12 (Kučerová, Úněticích) jako nezbytnou součást trasy silnice II. třídy Praha–Únětice–Horoměřice. Božena Kučerová námitky podala — tvrdí, že trasa byla uměle vedena přes její pozemek, ačkoli existuje alternativní trasa přes obecní louku.",
+      "charge": "Řízení o námitkách proti vyvlastnění dle §§ 365–370 občanského zákoníku ve spojení se zákonem č. 126/1927 Sb. o stavbě silnic",
       "description": "Dvě věci se staly ve stejný týden. Václav Šebek prodal svůj statek firmě PRAGA ROADS za cenu, o níž se v Úněticích nemluví. A Boženě přišlo oznámení, že její zahrada s jabloněmi — ta, kvůli níž čelila dvěma soudům — má být vyvlastněna ve veřejném zájmu. Trasa silnice Praha–Horoměřice vede přes čtyři pozemky. Tři jsou obecní nebo opuštěné. Jeden je Boženin. Projektant tvrdí, že alternativa přes obecní louku by prodloužila trasu o 340 metrů a zvýšila náklady. Božena tvrdí, že louka je rovná a prázdná a 340 metrů nikomu neuškodí. JUDr. Knot zastupuje PRAGA ROADS.",
       "testimonies": [
         {
@@ -10450,7 +10450,7 @@
         "occupation": "penzionovaný učitel",
         "detail": "tatáž osoba jako ve věci Sp. zn. 93/1931 (zeď, 34 cm). Tentokrát nečelí sporu o zeď — čelí udání pro korespondenci se synem v Berlíně."
       },
-      "charge": "Šíření protistátní propagandy dle §14 zákona na ochranu republiky č. 50/1923 Sb.: Wilhelm Grünbaum dne 18. února 1931 zaslal svému synovi Ernstu Grünbaumovi (Berlín, Německo) dopis, v němž požádal o zprostředkování žádosti k berlínskému Úřadu pro ochranu Němců v zahraničí o potvrzení vlastnictví nemovitosti v Bubenči. Podnět podal Josef Kříž, soused Grünbaumův.",
+      "charge": "Šíření protistátní propagandy dle §14 zákona na ochranu republiky č. 50/1923 Sb.",
       "description": "Zeď mezi Grünbaumem a Křížem stojí, kde stála — nebo skoro. Ale v únoru přišel z Berlína dopis. Ernstův. S hlavičkou, která Kříže znepokojila. Šel na policii. Wilhelm Grünbaum napsal synovi o potvrzení vlastnictví domu — kvůli německé dědické daní, říká. Kříž říká, že šlo o kontakt s nacistickou organizací. Zákon na ochranu republiky zná slovo protistátní. Nezná slovo sousedská zloba.",
       "testimonies": [
         {
@@ -10822,7 +10822,7 @@
         "occupation": "obchodní zástupce",
         "detail": "zástupce firmy PRAGA ROADS a.s. pro pozemkové transakce — Žižkov a okolí; ženatý, tři děti"
       },
-      "charge": "Vydírání dle §98 trestního zákona: Ondřej Maňák dne 14. února 1931 v hostinci U Zlatého sudu na Žižkově pohrozil Janu Červenkovi (účetní záložny Žižkov) fyzickým násilím vůči členům jeho rodiny, pokud Červenka nepředá Maňákovi doklady o bankovních transakcích záložny Žižkov za říjen–prosinec 1930. Svědkem vyhrůžky byl hostinský Emil Pospíšil.",
+      "charge": "Vydírání dle §98 trestního zákona",
       "description": "Ondřej Maňák seděl u Zlatého sudu s Červenkou a mluvil potichu. Pospíšil stál za pultem a neslyšel slova — slyšel tón. Zná ho. Pak Červenka vstal a šel domů, a v sobotu mu někdo rozbil čelist. Teď je Maňák obžalovaný z vydírání. Červenka svědčit odmítl. Pospíšil je jediný svědek. A Pospíšil ví, co se stane s lidmi, kteří mluví — protože mu to řekli osobně, v sobotu 7. března, přes dceru Martu. Ben u případu Pospíšil 2 rozhodl, jak rozhodl. Teď Pospíšil sedí naproti a čeká, co Ben udělá.",
       "testimonies": [
         {
@@ -11246,7 +11246,7 @@
         "occupation": "expedient",
         "detail": "zaměstnanec textilní firmy Hartmann & Ries, Vinohrady; svobodný, bydlí s matkou; ve firmě čtyři roky"
       },
-      "charge": "Zpronevěra dle §182 trestního zákona: Josef Vávra dne 27. února 1931 odcizil ze skladu firmy Hartmann & Ries 14 metrů hedvábné látky v hodnotě 520 Kčs. Přistižen při odchodu z budovy s balíkem pod kabátem. Firma trvá na plném trestním stíhání.",
+      "charge": "Zpronevěra dle §182 trestního zákona",
       "description": "Josef Vávra vyšel z budovy Hartmann & Ries se zabaleným balíkem pod kabátem. Vrátný ho zastavil. V balíku bylo 14 metrů hedvábí. Vávra říká, že balík mu dal vedoucí skladu Krejsa a řekl mu, ať ho donese zákazníkovi. Krejsa říká, že nic takového neřekl. Jeden z nich lže — a druhý půjde do vězení. Svědkyní přišla Věra Marková. Nepracuje v Hartmann & Ries. Pracuje v Beneš & syn. Ale má sešit.",
       "testimonies": [
         {
@@ -11606,7 +11606,7 @@
         "occupation": "účetní",
         "detail": "zaměstnankyně firmy Beneš & syn, Karlín — tatáž osoba jako ve věci Sp. zn. 95/1931 (svědkyně u Čermáka) a Sp. zn. 112/1931 (svědkyně ve prospěch Vávry). Tentokrát sedí na druhé straně stolu."
       },
-      "charge": "Padělání obchodních dokladů dle §201 trestního zákona a porušení obchodní věrnosti dle §200: Věra Marková v době od ledna do března 1931 systematicky pozměňovala záznamy v účetní knize firmy Beneš & syn — konkrétně výkazy příjmů za zakázky pro odběratele Fojtík a Mrázek — tak, aby zakryly platby přijaté mimo řádnou evidenci firmy. Celková výše manipulovaných záznamů: 6 800 Kčs.",
+      "charge": "Padělání obchodních dokladů dle §201 trestního zákona a porušení obchodní věrnosti dle §200",
       "description": "Věra Marková, která dvakrát zachránila jiné lidi přesností svých záznamů, teď čelí obžalobě z padělání záznamů. Přesně ona. Přesnost jako zbraň i jako štít — a teď jako důkaz viny. Beneš ml. předložil účetní knihy a vlastní revizní zprávu. Marková přiznala, že záznamy opravovala — ale říká, že opravovala chyby, které tam neudělala ona. Sešit — ten záhadný sešit z D3 a D10 — je nyní v rukou soudu. A v sešitu je víc, než všichni čekali.",
       "testimonies": [
         {
@@ -11999,7 +11999,7 @@
         "occupation": "penzionovaný učitel",
         "detail": "tatáž osoba jako ve věcech Sp. zn. 93/1931 (zeď) a 109/1931 (dopis). Po mrtvici v lednu 1931 částečně ochrnutý, nemluví plynně. Zastupuje ho syn Ernst Grünbaum (42), přijel z Berlína."
       },
-      "charge": "Pokračující spor dle Sp. zn. 93/1931 — odvolání Josefa Kříže proti výsledku prvního projednání. Kříž trvá na posunutí zdi zpět o 34 centimetrů nebo na finanční náhradě 180 Kčs za neoprávněné užívání pozemku.",
+      "charge": "Pokračující spor dle Sp. zn. 93/1931 — odvolání proti prvnímu vyřízení",
       "description": "Tři měsíce po prvním rozsudku. Zeď stojí, kde stála. Josef Kříž podal odvolání a přišel. Wilhelm Grünbaum přijít nemůže — v lednu ho ranila mrtvice. Mluví obtížně, pohybuje se s holí. Zastupuje ho syn Ernst, který přijel z Berlína. Na začátku jednání se stane něco, co se u soudu nestává: Kříž se podívá na Ernsta Grünbauma — ne na spis, ne na soudce — a řekne: 'Jak se daří panu Grünbaumovi?' Ernst odpoví: 'Otec vás každý den jmenuje. Víc říct nemůže.' Pak projednávání začne. Ale něco se už změnilo — a Ben to vidí.",
       "testimonies": [
         {
@@ -12398,7 +12398,7 @@
         "occupation": "průmyslový poradce, správce trustu",
         "detail": "bývalý vedoucí oddělení průmyslových licencí na Ministerstvu obchodu, propuštěn 1928. Žije v Praze, příjmy z poradenské činnosti pro zahraniční firmy. Ženatý — manželka Anna, rozená Vránová."
       },
-      "charge": "Velezrada dle §1 a §2 zákona na ochranu republiky č. 50/1923 Sb.: Alexander Wolf v době od září 1928 do ledna 1931 vědomě a opakovaně předával důvěrné informace o průmyslové kapacitě a obranných zakázkách Československa zástupcům německého kapitálu — konkrétně firmě Haas und Söhne Holešovice a jejím zahraničním pobočkám. Za tento přenos byl odměněn celkovou částkou nejméně 84 000 Kčs. Trestní sazba: 5–15 let těžkého žaláře, při přitěžujících okolnostech doživotí.",
+      "charge": "Velezrada dle §1 a §2 zákona na ochranu republiky č. 50/1923 Sb.",
       "description": "Alexander Wolf sedí u stolu a je klidný způsobem, který Ben za čtrnáct let u soudu viděl jen zřídka — klidný ne ze zatvrdlosti, ale ze smíření. Jako by výsledek dnešního dne pro něj nebyl otázkou. Státní zástupce Dvořák předložil dvě stě stránek dokumentace: přesuny financí, šifrované dopisy, schůzky v hotelích. A jeden dokument z roku 1928 — podepsaný Wolfem, adresovaný Haasovi — který popisuje rozmístění zbrojní výroby v severních Čechách. Obhájce Wolf říká, že dokument je padělán. Že nikdy neexistoval v originále. Že Wolfova propast začala přesně tím, že v září osmadvacátého odmítl tento dokument podepsat — a někdo ho podepsal za něj.",
       "testimonies": [
         {
@@ -13749,7 +13749,7 @@
         "occupation": "chalupářka",
         "detail": "vdova, chová slepice v Úněticích, prodává vejce na havelském trhu, bezúhonná"
       },
-      "charge": "Přestupek dle §1 vyhlášky o obecním majetku: neoprávněný zábor obecní parcely č. 47/3 (6 m²) pro zřízení drůbežího výběhu.",
+      "charge": "Přestupek dle §1 vyhlášky o obecním majetku — neoprávněný zábor parcely",
       "description": "Na návsi v <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"unetice\" title=\"Slovník: Úněticích\">Úněticích</button> severozápadně od Prahy existuje pruh obecní trávy — šest metrů čtverečních, parcela č. 47/3. Sedm let tam Božena Kučerová chová slepice za dřevěným ohradníkem. Nikdo nikdy neprotestoval. V říjnu 1930 za ní Václav Šebek neúspěšně nabídl 200 korun za část její zahrady s jabloněmi po nebožtíkovi; odmítla. V prosinci 1930 pak na obecní radu přišel podnět k soudu v téže věci.",
       "testimonies": [
         {
@@ -14122,8 +14122,8 @@
         "occupation": "chalupářka",
         "detail": "tatáž jako ve věci Sp. zn. 91/1931 (slepice) — vdova z Únětic"
       },
-      "charge": "Urážka na cti dle §488 trestního zákona. Božena Kučerová dne 15. února 1931 na návsi v Úněticích před čtyřmi osobami nazvala Václava Šebka 'starým kozlem' a dodala, že 'krade lidem zahrádky'.",
-      "description": "Týden poté, co Šebek prohrál (nebo vyhrál) případ se slepicemi, přichází k soudu znovu. Tentokrát jako navrhovatel žaloby na urážku cti — s advokátem <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"knot_svoboda\" title=\"Slovník: Knot & Svoboda\">JUDr. Milanem Knotem</button> z realitní kanceláře Knot & Svoboda. Božena mu říkala kozel. Šebek žádá veřejnou omluvu a 150 Kčs. Ten den ráno Ben dostal dopis od doktora — operace matky stojí 400 Kčs.",
+      "charge": "Urážka na cti dle §488 trestního zákona",
+      "description": "Týden poté, co Šebek prohrál (nebo vyhrál) případ se slepicemi, přichází k soudu znovu. Tentokrát jako navrhovatel žaloby na urážku cti — s advokátem JUDr. Milanem Knotem z realitní kanceláře Knot & Svoboda. Božena mu říkala kozel. Šebek žádá veřejnou omluvu a 150 Kčs. Ten den ráno Ben dostal dopis od doktora — operace matky stojí 400 Kčs.",
       "testimonies": [
         {
           "id": "sebek",
@@ -14511,7 +14511,7 @@
         "occupation": "penzionovaný učitel",
         "detail": "bývalý učitel německé obecné školy, pražský Němec, pěstuje růže, vdovec — žena byla Češka, zemřela 1925"
       },
-      "charge": "Neoprávněný zásah do vlastnického práva dle §§ 354–365 občanského zákoníku. Josef Kříž tvrdí, že Grünbaum při opravě zahradní zdi v létě 1930 posunul osu zdi o 34 centimetrů na jeho pozemek.",
+      "charge": "Neoprávněný zásah do vlastnického práva dle §§ 354–365 občanského zákoníku",
       "description": "V <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"bubenec\" title=\"Slovník: Bubenči\">Bubenči</button> sousedí dva domy. Jeden patří Josefu Křížovi, penzionovanému poštovnímu úředníkovi. Druhý Wilhelmu Grünbaumovi, penzionovanému učiteli. Oba domy postavil v roce 1911 tentýž stavitel. Zeď mezi nimi stojí dvacet let. Loni Grünbaum opravil spodní řadu cihel, které mrazem praskly. Kříž naměřil posun 34 centimetrů. Grünbaum říká: zeď stojí, kde stála. Zeď mlčí. Mezi sousedy je ticho.",
       "testimonies": [
         {
@@ -14893,7 +14893,7 @@
         "occupation": "hostinský",
         "detail": "provozuje hospodu U Zlatého sudu na Žižkově, vdovec — žena zemřela 1927 na tuberkulózu, dcera Marta 22 let"
       },
-      "charge": "Přestupek dle §8 živnostenského řádu a městské vyhlášky o výčepních hodinách: provozování výčepu po 22:00. Kontrola dne 22. února 1931 ve 23:15 zastihla v lokálu šest hostů a čepované pivo.",
+      "charge": "Přestupek dle §8 živnostenského řádu a městské vyhlášky o výčepních hodinách",
       "description": "Hospoda <em>U Zlatého sudu</em> na <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"zizkov\" title=\"Slovník: Žižkově\">Žižkově</button> slouží dělníkům z noční směny, kteří končí práci ve 22:00. Než dojdou k Pospíšilovi, je půl jedenácté. Hostinský po desáté neúčtuje — dává pivo na dům. Podnět k soudu nepodala policie z vlastní iniciativy, ale soused Alois Fišer, majitel konkurenční hospody U Kaštanu.",
       "testimonies": [
         {
@@ -15274,7 +15274,7 @@
         "occupation": "skladník",
         "detail": "zaměstnanec textilního skladu Beneš & syn v Karlíně, čtyři roky bez prohřešku, ženatý, dvě děti"
       },
-      "charge": "Krádež dle §171 trestního zákona. Ze skladu firmy Beneš & syn zmizelo 28 metrů bavlněné látky v hodnotě 340 Kčs v době mezi 5. a 12. únorem 1931. Čermák měl jako jediný skladník přístup k zadnímu vstupu.",
+      "charge": "Krádež dle §171 trestního zákona",
       "description": "V textilním skladu Beneš & syn v <button type=\"button\" class=\"knihovna-link\" data-knihovna-id=\"karlin\" title=\"Slovník: Karlíně\">Karlíně</button> zmizely dvě role bavlněné látky. Obžaloba se opírá o inventuru a svědectví účetní firmy, Věry Markové — ženy, která si pamatuje čas příjmu dodávky na minutu, nosí domů kopie firemních dokladů a vede si vlastní paralelní evidenci. Čermák má klíč. Ale zámek zadního vchodu byl rozbitý od prosince.",
       "testimonies": [
         {

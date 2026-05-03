@@ -21,8 +21,8 @@
     "occupation": "správce nájemního domu",
     "detail": "Dříve tesař u Pražských staveb, od roku 1928 správce nájemního domu č.p. 214 v ulici Chelčického na Žižkově. Ženatý, manželka Alžběta trpí chronickým zánětem kloubů a v posledním roce prakticky nevychází. Starší dcera Marta pracuje jako švadlena."
   },
-  "charge": "Zpronevěra svěřených finančních prostředků dle §183 trestního zákona č. 117/1852 v platném znění. Obžalovaný v období říjen až prosinec 1930 nepředal majiteli nemovitosti Eugenu Taussigovi nájemné v úhrnné výši 520 Kčs, jež v témže období přijal od nájemníků do vlastních rukou.",
-  "description": "Správce nájemního domu Jaroslav Blecha je obžalován ze zpronevěry 520 Kčs nájemného za čtvrtý kvartál roku 1930. Majitel domu Eugen Taussig schodek odhalil při ročním vyúčtování v lednu 1931 a neprodleně podal trestní oznámení. Blecha přijetí hotovosti od nájemníků nezapírá, tvrdí však, že celou částku v plné výši vynaložil na havarijní opravu vodoinstalace a výměnu shnilých okenních rámů, k nimž dal příkaz sám, neboť majitel na jeho opakované žádosti nereagoval. Na stole leží opis dopisu, jejž prý Blecha Taussigovi odeslal doporučeně v září 1930, a faktura žižkovského tesáře Antonína Beneše na přesně 520 Kčs. Taussig prohlašuje, že žádný dopis v průběhu roku 1930 neobdržel a k žádné opravě nedal souhlas.",
+  "charge": "Zpronevěra svěřených finančních prostředků dle §183 trestního zákona č. 117/1852",
+  "description": "Správce nájemního domu Jaroslav Blecha je obžalován ze zpronevěry 520 Kčs nájemného za čtvrtý kvartál roku 1930. Majitel domu Eugen Taussig schodek odhalil při ročním vyúčtování v lednu 1931 a neprodleně podal trestní oznámení. Blecha přijetí hotovosti od nájemníků nezapírá, tvrdí však, že celou částku v plné výši vynaložil na havarijní opravu vodoinstalace a výměnu shnilých okenních rámů, k nimž dal příkaz sám, neboť majitel na jeho opakované žádosti nereagoval. Na stole leží opis dopisu, jejž prý Blecha Taussigovi odeslal doporučeně v září 1930, a faktura žižkovského tesáře Antonína Holuba na přesně 520 Kčs. Taussig prohlašuje, že žádný dopis v průběhu roku 1930 neobdržel a k žádné opravě nedal souhlas.",
   "testimonies": [
     {
       "id": "taussig",
@@ -35,9 +35,9 @@
       "text": "<span class=\"clue\" data-clue-id=\"clue_kopecka_zari\">Koncem září přestala v bytě řádně téct teplá voda — potrubí u kuchyňského spoje cedilo a na přilehlé zdi se začala šířit vlhkost.</span> Pan Blecha přišel bez vyzvání ještě téhož týdne, závadu si prohlédl a slíbil zařídit nápravu. Za dva týdny dorazil tesař, potrubí opravil a bylo po potížích. <span class=\"clue\" data-clue-id=\"clue_kopecka_majitel\">Od pana Taussiga jsem za celý rok 1930 neslyšela ani slova — ani přes pana Blechu, ani osobně.</span> Nevím, co si mezi sebou psali."
     },
     {
-      "id": "benes",
-      "speaker": "Antonín Beneš, 38 let, tesař a instalatér, Žižkov (svědek)",
-      "text": "Pan Blecha mě přivolal začátkem října loňského roku. Práce obnášela opravu vodovodního rozvodu v přízemí a výměnu dvou dřevěných okenních rámů v prvním patře, kde dřevo vykazovalo hnilobu. <span class=\"clue\" data-clue-id=\"clue_benes_castka\">Celková cena za provedené dílo činila 520 Kčs; přijal jsem platbu v hotovosti ve dvou splátkách — 250 Kčs dne 18. října a 270 Kčs dne 3. listopadu 1930.</span> Fakturu jsem vystavil na jméno Blecha, neboť s ním jsem dohodu uzavřel. Majitele domu jsem nikdy neviděl ani neslyšel."
+      "id": "holub",
+      "speaker": "Antonín Holub, 38 let, tesař a instalatér, Žižkov (svědek)",
+      "text": "Pan Blecha mě přivolal začátkem října loňského roku. Práce obnášela opravu vodovodního rozvodu v přízemí a výměnu dvou dřevěných okenních rámů v prvním patře, kde dřevo vykazovalo hnilobu. <span class=\"clue\" data-clue-id=\"clue_holub_castka\">Celková cena za provedené dílo činila 520 Kčs; přijal jsem platbu v hotovosti ve dvou splátkách — 250 Kčs dne 18. října a 270 Kčs dne 3. listopadu 1930.</span> Fakturu jsem vystavil na jméno Blecha, neboť s ním jsem dohodu uzavřel. Majitele domu jsem nikdy neviděl ani neslyšel."
     }
   ],
   "contradictions": [
@@ -116,7 +116,7 @@
       },
       {
         "pair_id": "pair_dluh",
-        "a_id": "clue_benes_castka",
+        "a_id": "clue_holub_castka",
         "b_id": "clue_blecha_dluh",
         "strength": "weak",
         "soft_fail": true

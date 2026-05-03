@@ -1,0 +1,76 @@
+{
+  "uvod_vzdy": "Tím končí příběhová kampaň těchto týdnů u soudu. Vše, co jsi na lavici rozhodl — dopisy, spisy, ticho mezi řádky — došlo k bodu, za který hra dál nevede. Na další stránce najdeš stručné následky pro lidi kolem Benda a pro něj samého.",
+  "typy": {
+    "default": {
+      "nadpis": "Uzávěr",
+      "odstavce": [
+        "Rozcestí už má svůj tvar. Co zůstalo na stole v paměti, přetrvá mimo tuto obrazovku — tady jen shrneme, jak se linie rozešly.",
+        "Nejde o známku za výkon, ale o dozvědění: kdo kam odešel a co z toho má Benedikt Vraný."
+      ]
+    },
+    "preziti": {
+      "nadpis": "Konec roku v úřadu",
+      "odstavce": [
+        "Kalendář došel k mezníku, který hra bere jako uzávěr: žádná velká katastrofa na řece, jen únava z opakovaných jednání, obálky a razítka.",
+        "Ben nevyhrál ani neprohrál veřejně — přežil instituci, která ho živila i drtila. Noviny o tom psaly málo; většina lidí ani nevěděla, že nějaký příběh skončil.",
+        "Následující text je krátké vyúčtování postav — a věta, která zůstane u něj."
+      ]
+    },
+    "korupce": {
+      "nadpis": "Když se zákon prodává",
+      "odstavce": [
+        "Rozhodnutí, která šla stranou řádků zákona ve prospěch moci nebo kapsy, se nakonec sečetla. Ben už není jen svědek systému — je jeho součástí, byť tiše.",
+        "Tento konec je výsledkem tvých voleb v kanceláři; epilog níže říká, komu z toho kouká smích a komu ticho."
+      ]
+    },
+    "smireni": {
+      "nadpis": "Smír není očištění",
+      "odstavce": [
+        "Něco z pravdy přijaté v těžkém rozhovoru zůstalo v těle jako kámen, který už nebolí tak často — ale pořád ho cítíš při sklonu.",
+        "Kampaň končí v tomhle tónu: není to vítězství nad minulostí, ale místo, kde se dá dýchat. Následuje shrnutí následků."
+      ]
+    },
+    "utek": {
+      "nadpis": "Útěk do soukromí",
+      "odstavce": [
+        "Šance zaplatit cenu a zmizet z dosahu došla k bodu, který hra bere jako konec linie: dveře se zavřely, žaluzie zůstaly.",
+        "Tvá volba tady uzavírá příběh — epilog popíše, co z toho mají ti, kdo zůstali u okna, a co má Ben za sebou."
+      ]
+    },
+    "atentát": {
+      "nadpis": "Násilný konec",
+      "odstavce": [
+        "Střet, který nešel utlumit slovy ani spisem, došel k tragickému bodu. Hra zde končí — ne jako odměna, ale jako důsledek napětí mezi mocí a odvahou.",
+        "Následující odstavce shrnují ozvěnu u těch, kdo přežili, a co zůstane po Benovi v úřední paměti."
+      ]
+    },
+    "rad": {
+      "nadpis": "Kruh se zavřel",
+      "odstavce": [
+        "Dokumenty, důvěra a strach z udání se sešly v podobu, kterou hra označuje jako uzávěr Kruhu — Ben není mimo síť, jen v jiné její vrstvě.",
+        "Tvoje rozhodnutí dovedla příběh sem; epilog řekne, kdo z toho těží a kdo plave v tichu."
+      ]
+    },
+    "anna": {
+      "nadpis": "Echo bez jména",
+      "odstavce": [
+        "Anna zůstává v minulosti; přítomnost je o matce, o účtech a o tom, co ještě jde zachránit bez iluzí.",
+        "Tento konec uzavírá kampaň v osobním tónu — následuje krátké vyúčtování postav a Benova pozice po tvých volbách."
+      ]
+    },
+    "hrdina": {
+      "nadpis": "Cena za vzdor",
+      "odstavce": [
+        "Odpor vůči tlaku, který se nevešel do formuláře, má svou cenu — úřad, tělo, pověst. Hra zde bere konec linie jako daný.",
+        "Co z toho zůstane v řádcích novin a v chodbách soudu, shrnuje epilog níže — včetně toho, kde skončil Ben."
+      ]
+    },
+    "odvolani": {
+      "nadpis": "Konec lavice",
+      "odstavce": [
+        "Rozsah chyb nebo slabosti přerostl v řízení, které lavici bere. Příběhová kampaň končí — ne jako pomník, ale jako výpověď z funkce.",
+        "Následuje stručné vyúčtovení: kdo zůstal u moci, kdo se odtáhl, a co z toho má Vraný."
+      ]
+    }
+  }
+}

@@ -2,7 +2,7 @@ Den;Typ;Od koho;Obsah;Podminka;Efekty staty;Efekty vztahy;Funkce
 1;Dopis;Vlcek;Vitam Vas zpet. Formalni.;Vzdy;--;Vlcek +0;Ustanovi ton
 2;Dopis;Martin;O studiu prav. Nadseni.;Vzdy;Vina-1 Nad+1;--;Zrcadlo
 2;Udalost;System;Pekar zvysil ceny. +3 Kc/den.;Vzdy;Vydaje 58/den;--;Ekon. tlak
-4;Dopis;Doktor;Operace 400 Kc. Deadline D12.;Vzdy;--;--;COUNTDOWN (8 dni)
+4;Dopis;Doktor;Operace 400 Kc, termin 17. brezna (pri prijmu), Podoli — viz letters doktor_d4.;Vzdy;--;--;COUNTDOWN od D4 (engine: finance OPERACE_DEADLINE_DEN = herni den 16)
 4;Dopis;Vlcek;S potesenim sleduji... Pochvala.;Vzdy;--;--;Gradace — dulezity pro Korupci
 6;Udalost;Haas;Vizitka bez textu.;Vzdy;--;--;Haas vi. Fin<80: sviti.
 6;Dopis;Martin;O spravedlnosti. Citat profesora.;Vzdy;Vina-1;--;Ironie
@@ -13,9 +13,11 @@ Den;Typ;Od koho;Obsah;Podminka;Efekty staty;Efekty vztahy;Funkce
 10;Dopis;Martin;O pripadu z novin (= Benuv).;Vzdy;Vina+2;--;Ironicky twist
 10;Udalost;Spis;Rodny list Wolf + Anna Podoli Haas;Vzdy;--;--;DVA ZVRATY
 NE2;Udalost;Karas;Vzpominas na Viden? Odejdi.;Karas>=1;Odv+-5;dle reakce;VETVENI 4 (presunuto na nedeli)
-11;Dopis;Vlcek;Nemam ve zvyku opakovat se.;Vlcek duv<2;--;--;Hrozba
+11;Dopis;Vlcek;Otevrena hrozba (odvolani) — letters vlcek_d11.;Vzdy;--;--;VETVENI 3 / eskalace (podminka v datech null = vzdy doruceno)
 11;Udalost;Haas;Prijde OSOBNE. Obalka 300 Kc.;Vzdy;dle volby;--;VETVENI 3
 11;Nabidka;Zavadova;Pujcka 200 Kc od Radu.;Fin<200+odmitl Haase;Fin+200;Zavadova+1;Cesta k RAD
 11;Nabidka;Karas;Osobni pujcka 100 Kc.;Fin<150+odmitl Haase;Fin+100;Karas+1;Tiche prehledeni
 12;Udalost;Zavadova;Vime o vas vse. + podvrh.;Zavadova>=1;--;dle reakce;Bratr. Podvrh.
+12;Dopis;Vlcek;Fond rodinnych prislusniku / matka (letters vlcek_d13).;Vzdy;Vina+3 pri cteni dopisu;--;Eskalace po D11 (stejny kalendarovy den jako Zavadova ve days.json)
+14;Dopis;Vlcek;Posledni dopis v teto veci (letters vlcek_d14_letter).;Vzdy;Vina+4 pri cteni;--;Stejny den jako Martin (poradi ve fronte: Martin pak Vlcek), flag vlcek_ultimatum pri cteni
 14;Dopis;Martin;Prijedu o vikendu. Neco rict.;Vzdy;Vina+2 Nad-1;--;Verbovani?

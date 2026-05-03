@@ -11,10 +11,10 @@
       "vlcek_d1"
     ],
     "evening_choice": {
-      "text": "Stůl je čistý. Lampa svítí. Poprvé po roce jsi zpátky za stolem a první den dopadl tak, jak první dny bývají — bez velkých chyb, bez velkých vítězství. Na stole leží prázdný list a pero. Kdosi ti v kanceláři nechal noviny s podtrženou větou o justici. Ještě jsi ji nedočetl celou.",
+      "text": "Stůl je čistý. Lampa svítí. Poprvé po roce jsi zpátky. Na stole leží prázdný list a pero.",
       "options": [
         {
-          "text": "Zapíšeš si na prázdný list: Budu spravedlivý. Pak ho zamkneš do zásuvky.",
+          "text": "Zapíšeš si: „Budu spravedlivý.“",
           "effects": {
             "Integrita": 5,
             "Nadeje": 5
@@ -24,7 +24,7 @@
           }
         },
         {
-          "text": "Nic nepíšeš. Slova jsou jen slova — zítra bude spis a ten bude mluvit za tebe.",
+          "text": "Nevypisuješ nic. Slova nic neznamenají.",
           "effects": {
             "Vina": 8
           },
@@ -48,20 +48,20 @@
       "martin_d2"
     ],
     "evening_choice": {
-      "text": "Martinův dopis leží na rohu stolu. Syn píše o čistotě zákona — a venku u pekárny lidé čekají ve frontě na chleba, který je o tři koruny dražší než loni. Oba máte pravdu. A žádný z vás úplně.",
+      "text": "Pekař zvýšil ceny. U přepážky slyšíš, jak někdo šeptá o hladu.",
       "options": [
         {
-          "text": "Jdeš domů bez řečí. Dnes na dopis neodpovíš.",
+          "text": "Jdeš domů bez řečí.",
           "effects": {
             "Moudrost": 2,
             "Vina": 2
           }
         },
         {
-          "text": "Sednete k dopisu a odpovíš Martinovi — aspoň pár řádků.",
+          "text": "Zapíšeš si poznámku o cenách.",
           "effects": {
             "Integrita": 3,
-            "Nadeje": 3
+            "Moudrost": 3
           }
         }
       ]
@@ -79,10 +79,10 @@
       "pool_a1_markova_svedkyne"
     ],
     "evening_choice": {
-      "text": "Třetí den. Karas sedí v lokále U Fleků jako obvykle ve středu, u okna, s nedopitou kávou. Švejda utrousil při odchodu: Klid, pane doktore. Karas kývl na šálek přes sklo — spíš gesto než pozvání, ale Karas tak funguje.",
+      "text": "Antonín Švejda, vrátný soudu, ti při odchodu utrousí svou obvyklou jednu větu — znáš ho léta, ví o návštěvách víc než kniha podání, ale nikdy to nerozvine na kázání. Dnes je klid. Karas sedí u okna v tom samém lokále jako obvykle — kývne na šálek, ale neřekne nic, dokud si nesedneš.",
       "options": [
         {
-          "text": "Přisedneš. Káva, pár slov o ničem — o počasí, o případech bez jmen.",
+          "text": "Přisedneš — káva, krátká řeč o počasí, o soudech bez jmen.",
           "effects": {
             "Nadeje": 2,
             "Vina": 1
@@ -92,7 +92,7 @@
           }
         },
         {
-          "text": "Zamáváš přes sklo a jdeš dál. Dnes raději sám.",
+          "text": "Zůstaneš v kanceláři a čteš spis. Lokál počká.",
           "effects": {
             "Moudrost": 3
           }
@@ -113,25 +113,25 @@
     ],
     "morning_fragment": "fragment_d4_rano",
     "evening_choice": {
-      "text": "Dopis od doktora Síbra leží v zásuvce. Čtyři sta korun do sedmnáctého. Na spořitelní knížce máš sto čtyřicet. Vlčkova pochvala leží vedle — a to je teprve přidává na ironii situace.",
+      "text": "Dopis od doktora: matka, operace, 400 Kč. Termín se krátí. Na stole leží i lístek od Vlčka.",
       "options": [
         {
-          "text": "Vytáhneš oba dopisy a zapíšeš si čísla. Potřebuješ vědět, co přesně chybí.",
+          "text": "Seřadíš priority — operace, pak zbytek.",
           "effects": {
-            "Nadeje": 3,
-            "Vina": 3,
+            "Nadeje": 5,
+            "Vina": 5,
             "Integrita": 3
           }
         },
         {
-          "text": "Schováš dopis od doktora zpět do zásuvky. Zítra budeš mít víc sil na to přemýšlet.",
+          "text": "Schováš dopis do šuplíku. Ještě dnes ne.",
           "effects": {
             "Vina": 10,
             "Moudrost": 2
           }
         },
         {
-          "text": "Jdeš se projít. Číslům neujdeš, ale alespoň si vyčistíš hlavu.",
+          "text": "Než zhasne lampa, vyrazíš na krátkou procházku — bez spisů v ruce.",
           "effects": {
             "Nadeje": 2,
             "Odvaha": 1
@@ -160,14 +160,14 @@
     ],
     "desk_bez_spisu_titul": "Sobota",
     "desk_bez_spisu_text": "Soud dnes nepřiděluje spisy. Sobota je den zanedbávané úředničiny, která jako obvykle počká ještě týden.",
-    "morning_fragment": "fragment_d5_tichy_rano",
+  "morning_fragment": "fragment_d5_tichy_rano",
     "morning_conditional_lines": [
       {
         "condition": {
           "flag": "verdict_pool_a1_lekarna",
           "value": "alternative"
         },
-        "text": "Na Národní třídě je lékárna stále otevřená. Ve výloze visí nový nápis: Dozorčí režim. Pod ním se táhne ranní fronta."
+        "text": "Na Národní je lékárna stále otevřená. Ve výloze visí nový nápis: Dozorčí režim. Pod ním se táhne ranní fronta."
       },
       {
         "condition": {
@@ -181,7 +181,7 @@
           "flag": "verdict_pool_a1_lekarna",
           "value": "not_guilty"
         },
-        "text": "U lékárny postává inspektor v šedém plášti. Malina za pultem dělá, že ho nevidí."
+        "text": "U lékárny postává inspektor. Malina za pultem dělá, že ho nevidí."
       }
     ],
     "evening_choice": null
@@ -192,7 +192,7 @@
     "morning_fragment": "fragment_d7_nedele_rano",
     "cases": [],
     "desk_bez_spisu_titul": "Neděle",
-    "desk_bez_spisu_text": "Žádné spisy, žádná jednání. Neděle patří tomu, kdo si ji vezme.",
+    "desk_bez_spisu_text": "Žádné noviny k rozhodnutí, žádné spisy k podpisu.",
     "newspaper_conditional_lines": [
       {
         "condition": {
@@ -206,43 +206,43 @@
           "flag": "verdict_pool_a1_weiss",
           "value": "guilty"
         },
-        "text": "Pod čarou redakce: cizinec s neplatnými doklady odsouzen, správní řízení o deportaci pokračuje."
+        "text": "Pod čarou redakce: cizinec s padělanými doklady odsouzen, správní řízení o deportaci pokračuje."
       }
     ],
     "nedelni_volba": {
-      "text": "První neděle bez soudu. Matka leží v Podolí a termín operace se blíží — návštěva by ji potěšila, ale jízdné i drobné výdaje se počítají. Nebo zůstat ve městě a projít se — nebo se zamknout v kanceláři se spisy, protože tam aspoň víš, co děláš. Jak strávíš den, Benedikte?",
+      "text": "První neděle bez soudu. Matka, procházka nebo spisy — tři cesty, které zítra nechají stopu jinak než dnes myslíš. Co zvolíš, Benedikte?",
       "options": [
         {
           "id": "A",
-          "text": "Navštívit matku v Podolí",
+          "text": "Navštívit matku v nemocnici",
           "effects": {
             "Nadeje": 5,
             "Vina": -3,
             "Finance": -5
           },
           "fragment_title": "Nemocnice",
-          "fragment_text": "Chodba nemocnice voní chlórem a vařenou zeleninou. Matka má zavřené oči, ale ví, že jsi přišel — stiskne Ti ruku bez slova a ty sedíš vedle ní tak dlouho, jak si můžeš dovolit."
+          "fragment_text": "Chodba voní chlórem. Matka má zavřené oči — držíš ji za ruku a mlčíš lépe než v síni."
         },
         {
           "id": "D",
-          "text": "Procházka po Praze",
+          "text": "Procházka po městě",
           "effects": {
             "Nadeje": 3,
             "Moudrost": 2
           },
           "fragment_title": "Město",
-          "fragment_text": "Vltavské nábřeží, pak kolem Národního divadla, pak zpátky přes Smíchov. Nikdo po tobě nechce podpis, nikdo tě nevolá pane doktore. Jen dlažba pod botami a chladný březnový vzduch."
+          "fragment_text": "Dláždění, výlohy, hlasy. Nikdo po tobě nechce podpis — jen mineš a dýcháš."
         },
         {
           "id": "C",
-          "text": "Zůstat v kanceláři, projít staré spisy",
+          "text": "Zůstat doma, číst staré spisy",
           "effects": {
             "Moudrost": 3,
             "Nadeje": -2,
             "Vina": 1
           },
           "fragment_title": "Domácí spisy",
-          "fragment_text": "Stará kauza z dvacátých let, pečlivě uložená. Čteš pomalu — a zjišťuješ, že tehdy jsi rozhodl správně, nebo sis to aspoň myslel. Dnes to čteš trochu jinak."
+          "fragment_text": "Papír šustí jako déšť. Některé věty znáš zpaměti — a přesto tě dnes bolí jinak než včera."
         }
       ]
     },
@@ -258,14 +258,14 @@
           "flag": "verdict_pool_a1_nemocenska",
           "value": "alternative"
         },
-        "text": "Švejda u kávy utrousí: Prý teď ve Smíchově prověřují závodního lékaře. Váš případ, pane doktore?"
+        "text": "Svejda u kávy utrousí: „Prý teď ve Smíchově prověřují závodního lékaře. Váš případ, pane doktore?“"
       },
       {
         "condition": {
           "flag": "verdict_pool_a1_nemocenska",
           "value": "guilty"
         },
-        "text": "Švejda tiše dodá: Ten tkadlec ze Smíchova je zpátky v dílně. Kašle, ale přišel."
+        "text": "Svejda tiše dodá: „Ten tkadlec ze Smíchova je zpátky v dílně. Kašle, ale přišel.“"
       }
     ],
     "cases": [
@@ -276,17 +276,17 @@
       "martin_d6"
     ],
     "evening_choice": {
-      "text": "Haasova vizitka leží na okraji stolu tam, kde jsi ji ráno položil. Martinův dopis ji skoro překrývá. Syn píše o nástroji bez svědomí — a na stole leží vizitka člověka, který pravděpodobně přesně ví, co s tím nástrojem dělat.",
+      "text": "Na stole leží Haasova vizitka. Bez jediné věty, a přesto mluví hlasitěji než půlka spisů.",
       "options": [
         {
-          "text": "Uložíš vizitku do zásuvky. Ještě nevíš, co s ní.",
+          "text": "Uložíš vizitku do zásuvky. Ještě ne dnes.",
           "effects": {
             "Moudrost": 2,
             "Vina": 1
           }
         },
         {
-          "text": "Necháš vizitku na stole. Ať připomíná, co přichází.",
+          "text": "Necháš ji na očích. Ať připomíná, co přichází.",
           "effects": {
             "Odvaha": 2,
             "Vina": 1
@@ -307,17 +307,17 @@
     ],
     "morning_fragment": null,
     "evening_choice": {
-      "text": "Vlčkův dopis přišel dopoledne — tentokrát ne chválou, ale upozorněním. Dnešní případ byl sledovaný. Ben to věděl ještě před rozsudkem. Teď je konec pracovního dne a výsledek je zapsaný v protokolu.",
+      "text": "Po síni je cítit politický vánek. Listiny voní inkoustem — a někdy i strachem.",
       "options": [
         {
-          "text": "Zapíšeš si stručnou poznámku o dnešním jednání. Jen fakta, bez hodnocení.",
+          "text": "Zapíšeš si jen fakta z jednání. Bez domýšlení.",
           "effects": {
             "Moudrost": 2,
             "Vina": 1
           }
         },
         {
-          "text": "Nezapíšeš nic. Nechceš, aby v zásuvce leželo víc, než musí.",
+          "text": "Nezapíšeš nic. Necháš to doznít v hlavě.",
           "effects": {
             "Integrita": 1,
             "Nadeje": 1
@@ -360,17 +360,17 @@
       true
     ],
     "evening_choice": {
-      "text": "Tři spisy, Vlčkův dopis, Švejdův pohled při odchodu. Den byl dlouhý a některé z dnešních rozhodnutí budou mít stín delší, než dnes vypadají.",
+      "text": "Po dnešku je jasné jen to, že některé podpisy mají delší stín než jiné.",
       "options": [
         {
-          "text": "Vrátíš se ke spisu a ještě jednou ověříš data. Potřebuješ vědět, že jsi nečetl jen přes prsty.",
+          "text": "Vrátíš se ke spisu a ověříš každé datum ještě jednou.",
           "effects": {
             "Moudrost": 2,
             "Vina": 1
           }
         },
         {
-          "text": "Odcházíš domů bez papíru v ruce. Co bylo, bylo — zítra bude nový den.",
+          "text": "Jdeš domů bez papíru v ruce. Jen s tím, co nejde odložit.",
           "effects": {
             "Integrita": 1,
             "Nadeje": 1
@@ -381,7 +381,7 @@
   },
   {
     "day": 11,
-    "newspaper_headline": "Creditanstalt ve středu zájmu: banky jednají o likviditě, trh je nervózní.",
+    "newspaper_headline": "Creditanstalt ve střeu zájmu: banky jednají o likviditě, trh je nervózní.",
     "morning_fragment": "fragment_d9_morning",
     "morning_conditional_lines": [
       {
@@ -389,7 +389,7 @@
           "flag": "flag_pospisil_dluzi",
           "value": true
         },
-        "text": "Na chodbě potkáš Pospíšila. Ten se na tebe podívá, přikývne a přejde. Víš, co dluží — a on ví, že víš."
+        "text": "U Pospíšila víš, co dluží - a nejde o koruny. Dnes se v síni budou vyslovovat věci, které protokol stejně nikdy nepojmenuje celé."
       }
     ],
     "cases": [
@@ -406,17 +406,17 @@
       true
     ],
     "evening_choice": {
-      "text": "Alois Beneš přišel a odešel. Co řekl, zůstane v kanceláři ještě dlouho — nebo aspoň do té doby, než bude Ben muset udělat nějaké rozhodnutí, které to zpřesní.",
+      "text": "Benešova obálka je pořád v hlavě, i když už leží zavřená v zásuvce.",
       "options": [
         {
-          "text": "Zapíšeš si krátkou poznámku o Benešově návštěvě. Jen to, co řekl — doslova.",
+          "text": "Sepíšeš krátkou poznámku k tomu, co dnes zaznělo mezi dveřmi.",
           "effects": {
             "Moudrost": 2,
             "Vina": 1
           }
         },
         {
-          "text": "Zhasneš lampu bez zápisku. Dnes toho bylo dost.",
+          "text": "Zhasneš lampu bez zápisu. Necháš to doznít ve tmě.",
           "effects": {
             "Integrita": 1,
             "Nadeje": 1
@@ -427,39 +427,39 @@
     "adventure_scene": {
       "id": "adventure_benes_d9",
       "portrait": "benes",
-      "portrait_label": "Alois Beneš",
-      "portrait_description": "Sedmdesátník, šedé vlasy, tmavý kabát. Člověk, který si na svůj věk nepřipouští slabost — ale ruce ho prozradí.",
+      "portrait_label": "Viktor Beneš",
+      "portrait_description": "Šedesátník, sivé vlasy, nenápadný oblek. Člověk, který si na nenápadnost dal záležet.",
       "trigger": "morning_after_fragment",
       "blocks_cases_until_complete": false,
       "screens": [
         {
           "id": "s1",
           "speaker": "narrator",
-          "text": "Švejda zaklepal dvakrát — o jednu ránu víc než obvykle — a prostrčil dovnitř hlavu s výrazem člověka, který neví, jestli udělal dobře. Přišel někdo, pane doktore. Říká, že se jmenuje Beneš. Čekal venku od osmi.",
+          "text": "Svejda zaklepal dvakrát — o jednu ránu víc než obvykle. Otevřel dveře jen na škvíru a prostrčil dovnitř hlavu s výrazem člověka, který neví, jestli udělal dobře. 'Přišel někdo. Říká, že se jmenuje Beneš. Viktor Beneš. Čekal venku od osmi.'",
           "choices": null,
           "next": "s2"
         },
         {
           "id": "s2",
           "speaker": "narrator",
-          "text": "Muž, který vstoupil, byl starý — sedmdesát, možná víc. Šedé vlasy, tmavý kabát, ruce sepjaté před sebou jako při modlitbě, ale bez modlitby v obličeji. Podal ruku pevně a sedl si bez vyzvání. Pak se podíval Benovi do očí a ani nekývl, ani nezačal. Jen čekal, jestli Ben sám neřekne, proč je tady.",
+          "text": "Muž, který vstoupil, byl přesně takový, jakého by si člověk představoval pod slovem nenápadný — kdyby o tom někdy přemýšlel. Sivé vlasy, tmavý oblek bez jediného detailu, který by upoutal pozornost. Podal ruku, sedl si bez vyzvání a položil na stůl obálku. Tenkou. Bez adresy.",
           "choices": null,
           "next": "s3"
         },
         {
           "id": "s3",
           "speaker": "Beneš",
-          "text": "Prosím Vás o minutu, pane doktore. Jen minutu — pak půjdu a nebudu Vás obtěžovat. Jmenuji se Alois Beneš. Můj syn Karel byl odsouzen v roce 1927. Odsoudil jste ho Vy. Zemřel ve vazbě, ještě před odvoláním. Vím, co bylo v obžalobě. Ale vím také, co v obžalobě nebylo.",
+          "text": "'Nemám mnoho času a vy taky ne, takže to řeknu rovnou. Vím o Wolfovi. Vím o Haasovi. A vím, kdo podepsal dokument v září osmadvacátého — dokument, který by měl být ve státním archivu, ale není. Je tady.' Poklepal na obálku. 'Rozhodněte se, jestli to chcete vědět. Potom to nejde vzít zpátky.'",
           "choices": null,
           "next": "s4"
         },
         {
           "id": "s4",
           "speaker": "narrator",
-          "text": "Ben seděl a poslouchal. Beneš mluvil klidně — jako člověk, který tuto větu říká poprvé, ale přemýšlel o ní čtyři roky. Na stole mezi nimi nebyl žádný papír, žádný spis, žádný důkaz. Jen dva muži v kanceláři, jeden mladší, jeden starší, a jméno Karla Beneše viset ve vzduchu mezi nimi.",
+          "text": "Ben se podíval na obálku. Byl to tenký papír — možná jedna strana, možná dvě. V jeho práci přišel k závěru, že nejnebezpečnější věci mívají vždy nejméně stránek. Beneš čekal. Nesledoval Benovu tvář — díval se na okno, jako by mu výsledek byl jedno. Ale nebyl.",
           "choices": [
             {
-              "label": "Poslouchám Vás. Řekněte mi, co víte.",
+              "label": "Věřím vám. Chci to vědět.",
               "sets_flag": "benes_pravda_prijata",
               "sets_uzlovy": {
                 "benes_pravda": "prijal"
@@ -471,7 +471,7 @@
               "next": "s5a"
             },
             {
-              "label": "Případ byl pravomocně uzavřen. Nemohu ho znovu otevírat.",
+              "label": "Nevěřím. A nechci, abyste sem chodil.",
               "sets_flag": "benes_pravda_odmitnuta",
               "sets_uzlovy": {
                 "benes_pravda": "odmitl"
@@ -482,7 +482,7 @@
               "next": "s5b"
             },
             {
-              "label": "Vezmu to na vědomí. Ale nic Vám nemohu slíbit.",
+              "label": "Vezmu to. Ale nic vám neslibuji.",
               "sets_flag": "benes_pravda_prijata",
               "sets_flag_extra": "benes_pravda_s_vyhodou",
               "sets_uzlovy": {
@@ -498,55 +498,55 @@
         },
         {
           "id": "s5a",
-          "speaker": "Beneš",
-          "text": "Přikývl. Jednou, bez spěchu. Pak vytáhl z kapsy kabátu obálku — tenkou, bez adresy — a položil ji na stůl. Karel nekradl stroje. Kradl jídlo ze skladu — protože neměl co jíst. V obžalobě bylo napsáno sabotáž. Já to tehdy nevěděl dokázat. Teď mám svědka, který byl u toho. Svědek je starý a dlouho to nebude platit.",
+          "speaker": "narrator",
+          "text": "Beneš přikývl — jednou, krátce, jako člověk, který čekal přesně tuto odpověď a byl rád, že ji dostal. Posunul obálku přes stůl. Ben ji vzal a otevřel. Uvnitř byl jeden list, hustě popsaný, s podpisem ve spodním rohu. Podpis, který Ben znal — ale ne odsud. Ne z tohoto kontextu.",
           "choices": null,
           "next": "s6a"
         },
         {
           "id": "s6a",
-          "speaker": "narrator",
-          "text": "Ben vzal obálku. Otevřel ji pomalu a četl jeden list, hustě popsaný. Beneš seděl a nespěchal — díval se z okna jako člověk, který má dost trpělivosti na to, aby počkal na jedinou větu. Ben list přečetl a pak ho složil.",
+          "speaker": "Beneš",
+          "text": "'Přijdou se vás na ni ptát. Možná dřív, než čekáte — a možná jinak, než si představujete. Až přijdou, budete vědět, o čem mluví. To je vše, co jsem chtěl.' Vstal, zapnul knoflík u saka a zamířil ke dveřím. Zastavil se jen na okamžik. 'Pečlivě se rozmyslete, komu o tom říkáte. Já vám to neřeknu dvakrát.' Pak odešel.",
           "choices": null,
           "next": "s7a"
         },
         {
           "id": "s7a",
-          "speaker": "Beneš",
-          "text": "Nechci, abyste mě litoval. Nechci omluvu — ta Karlovi nepomůže. Chci jen, abyste věděl, co bylo. Co uděláte s tím věděním, to je Vaše věc. Vstal. Na chvíli se zastavil u dveří. Vy jste věděl, že ten spis byl tenký. Každý soudce to ví. Jen jste nepřečetl, co tam chybělo.",
+          "speaker": "narrator",
+          "text": "Na stole ležela obálka a v ní jeden list papíru, který Ben přečetl ještě dvakrát. Pak třikrát. Pak ho složil a uložil do spodní zásuvky, pod svazek starých nálezů. Svejda zaklepal a přinesl kávu. Ben mu poděkoval a koukal za okno. Venku šlo kolem pár lidí a nic z toho nevěděli.",
           "choices": null,
           "next": null,
-          "morning_fragment_append": "V zásuvce pod starými nálezy leží obálka od Aloise Beneše. Ben na ni celý den nemyslel — nebo si to aspoň říkal."
+          "morning_fragment_append": "V zásuvce pod starými nálezy leží obálka. Ben na ni celý den nemyslel — nebo si to alespoň říkal."
         },
         {
           "id": "s5b",
           "speaker": "Beneš",
-          "text": "Beneš se nezarazil. Vstal pomalu, zapnul knoflík kabátu — jeden, druhý — a podíval se na Bena naposledy. Rozumím. Napsal jsem na ministerstvo, dostalo se mi stejné odpovědi. Já se jen ptal, jestli soudce odpoví jinak. Ukázalo se, že ne.",
+          "text": "Beneš se nezarazil. Vzal obálku zpátky — pomalu, bez spěchu — a zasunul ji do kapsy u saka. 'Rozumím.' Vstal. Nezlobil se, nebo to aspoň nedával najevo. 'Možná budete litovat. Možná ne. Každopádně — přijdou se vás ptát i tak. Jen nebudete vědět proč.'",
           "choices": null,
           "next": "s6b"
         },
         {
           "id": "s6b",
           "speaker": "narrator",
-          "text": "Odešel bez dramatiky — jen otevřel dveře, prošel kolem Švejdy a zmizel ve schodišti. Švejda pak zaklepal a zeptal se, jestli je vše v pořádku. Ben řekl, že ano. Celý den pak pracoval a občas se podíval na prázdné místo u stolu, kde seděl starý muž se sepjatýma rukama.",
+          "text": "Odešel tak tiše, jak přišel. Svejda pak zaklepal a zeptal se, jestli je vše v pořádku. Ben řekl, že ano. Celý den pak seděl u spisů a občas se podíval na dveře — ne proto, že by čekal někoho dalšího, ale proto, že si nebyl jistý, jestli ta schůzka vůbec proběhla.",
           "choices": null,
           "next": null,
-          "morning_fragment_append": "Ben odmítl Beneše. V kanceláři je klid — ale ne ten dobrý druh klidu."
+          "morning_fragment_append": "Ben má pocit, že měl udělat něco jinak. Přesně neví popsat co."
         },
         {
           "id": "s5c",
           "speaker": "Beneš",
-          "text": "Beneš se na okamžik usmál — unavený úsměv člověka, který čekal horší. To je poctivá odpověď, pane doktore. Více jsem nečekal. Vytáhl obálku a položil ji na stůl. Karel nekradl stroje — kradl jídlo. V obžalobě stálo sabotáž. Berte si čas. Ale ne příliš — svědek je starý.",
+          "text": "Beneš se pousmál — poprvé za celou dobu, a bylo to nečekané, protože úsměv mu seděl přirozeně. 'To je jediná poctivá odpověď, jakou jsem mohl čekat od soudce.' Posunul obálku přes stůl. 'Berte si čas. Ale ne příliš.'",
           "choices": null,
           "next": "s6c"
         },
         {
           "id": "s6c",
           "speaker": "narrator",
-          "text": "Beneš odešel. Obálka zůstala na stole. Ben ji vzal, přečetl list a uložil do kabátu — k srdci, ne do zásuvky. Švejda přinesl kávu a Ben mu poděkoval a díval se z okna. Venku šlo kolem pár lidí a žádný z nich nevěděl nic o Karlovi Benešovi.",
+          "text": "Obálka zůstala na stole. Ben ji neotevřel hned — nejdřív dopil kávu, kterou mu přinesl Svejda, a chvíli seděl a pozoroval, jak se přes sklo pohybují stíny stromů. Pak obálku vzal. Přečetl list jednou, pomalu. Pak ji zavřel a uložil do kabátu, k srdci. Beneš byl pryč a v kanceláři bylo ticho.",
           "choices": null,
           "next": null,
-          "morning_fragment_append": "V kapse kabátu je obálka od Aloise Beneše. Ben ví, co v ní je — teď musí vědět, co s tím."
+          "morning_fragment_append": "V kapse u kabátu je obálka. Ben ještě neví, co s ní udělá. Ale ví, co v ní je."
         }
       ]
     }
@@ -569,17 +569,17 @@
       true
     ],
     "evening_choice": {
-      "text": "Martinův dopis leží na stole a Ben ho přečetl dvakrát. Syn píše o starém případu z novin — o soudci pod tlakem, o slabých důkazech, o muži, který zemřel. Neví, o čem píše. Nebo ví víc, než dává najevo?",
+      "text": "Po dnešku je jasné jen to, že některé podpisy mají delší stín než jiné.",
       "options": [
         {
-          "text": "Odpíšeš Martinovi ještě dnes večer — pár slov, nic konkrétního.",
+          "text": "Vrátíš se ke spisu a ověříš každé datum ještě jednou.",
           "effects": {
             "Moudrost": 2,
             "Vina": 1
           }
         },
         {
-          "text": "Odkládáš dopis tváří dolů a otevíráš spis. Na odpověď je čas zítra.",
+          "text": "Jdeš domů bez papíru v ruce. Jen s tím, co nejde odložit.",
           "effects": {
             "Integrita": 1,
             "Nadeje": 1
@@ -590,25 +590,25 @@
   },
   {
     "day": 13,
-    "newspaper_headline": "Sobota: město v přestávce — soudní budova zavřena.",
+    "newspaper_headline": "Sobota: město v přestávce — soudní budova zavřena jako trezor.",
     "cases": [],
     "desk_bez_spisu_titul": "Sobota",
-    "desk_bez_spisu_text": "Budova je v sobotu zavřená. Ben přišel přes boční vchod, který Švejda nechává odemčený.",
+    "desk_bez_spisu_text": "Budova je zavřená jako trezor — a tvůj stůl s ní.",
     "morning_fragment": "fragment_d13_sobota_rano",
     "evening_choice": {
-      "text": "Druhá sobota v březnu a Ben sedí v kanceláři bez topení. Rozsudek z čtvrtka leží nedopsaný. Nebo si aspoň říká, že to je důvod, proč přišel.",
+      "text": "Druhá sobota v březnu. Nemusíš nic podepisovat — jen rozhodnout, jestli necháš týden doznít, nebo ho přepíšeš prací.",
       "options": [
         {
-          "text": "Dopíšeš rozsudek, zamkneš a jdeš domů. Sobota splnila svůj účel.",
+          "text": "Necháš sobotu sobě. Jen krátká procházka a zpátky.",
           "effects": {
-            "Moudrost": 2,
+            "Nadeje": 2,
             "Vina": 1
           }
         },
         {
-          "text": "Necháš rozsudek ležet a jdeš se projít. Hlava potřebuje vzduch víc než papír.",
+          "text": "Otevřeš ještě jednou šuplík a zkontroluješ termíny. Klid má svou cenu.",
           "effects": {
-            "Nadeje": 2,
+            "Moudrost": 2,
             "Vina": 1
           }
         }
@@ -621,31 +621,31 @@
     "morning_fragment": "fragment_d14_nedele_rano",
     "cases": [],
     "desk_bez_spisu_titul": "Neděle",
-    "desk_bez_spisu_text": "Karas zavolal ráno. Přijde odpoledne. Do té doby je neděle.",
+    "desk_bez_spisu_text": "Jen ticho mezi týdny. Co s volnem, je jen na tobě.",
     "evening_choice": null,
     "nedelni_volba": {
-      "text": "Druhá neděle v březnu. Karas přijde odpoledne — ale do té doby je dopoledne volné. Termín operace matky je pozítří. V Podolí přijímají návštěvy od deseti.",
+      "text": "Druhá neděle v březnu. Město dýchá opatrněji — a ty víš, že některá rozhodnutí už nejsou jen o spisech. Jak dnes strávíš den, Benedikte?",
       "options": [
         {
           "id": "A",
-          "text": "Navštívit matku v Podolí",
+          "text": "Navštívit matku v nemocnici",
           "effects": {
             "Nadeje": 5,
             "Vina": -3,
             "Finance": -5
           },
           "fragment_title": "Nemocnice",
-          "fragment_text": "Chodba voní chlórem. Matka má oči pootevřené — ví, že jsi přišel, a chvíli mlčí, protože mlčení je pro ni snadnější než slova. Sedíš u ní hodinu. Pak přijde sestra a Ben vstane."
+          "fragment_text": "Chodba voní chlórem. Matka má zavřené oči — držíš ji za ruku a mlčíš lépe než v síni."
         },
         {
           "id": "D",
-          "text": "Procházka po Praze",
+          "text": "Procházka po městě",
           "effects": {
             "Nadeje": 3,
             "Moudrost": 2
           },
           "fragment_title": "Město",
-          "fragment_text": "Nábřeží, Karlův most, pak přes Malou Stranu. Praha je v neděli jiná — méně hluku, více lidí, kteří jdou bez spěchu. Ben jde mezi nimi a aspoň na chvíli nemusí být soudce."
+          "fragment_text": "Dláždění, výlohy, hlasy. Nikdo po tobě nechce podpis — jen mineš a dýcháš."
         },
         {
           "id": "C",
@@ -656,7 +656,7 @@
             "Vina": 1
           },
           "fragment_title": "Domácí spisy",
-          "fragment_text": "Starý spis z dvaadvacátého roku — případ, který tehdy vyřešil rychle a správně. Dnes ho čte pomaleji a hledá, jestli tehdy přehlédl něco, co by mu teď pomohlo pochopit, kde přesně udělal chybu v sedmadvacátém."
+          "fragment_text": "Papír šustí jako déšť. Některé věty znáš zpaměti — a přesto tě dnes bolí jinak než včera."
         }
       ]
     },
@@ -677,17 +677,17 @@
       true
     ],
     "evening_choice": {
-      "text": "Haas přišel osobně a odešel osobně. Na stole po něm nezůstalo nic — jen obálka nebo prázdné místo, podle toho, co Ben udělal. Termín operace matky je zítra.",
+      "text": "Po Haasově návštěvě je v kanceláři dusno, i když je okno dokořán.",
       "options": [
         {
-          "text": "Sepíšeš věcný záznam dne. Co kdo řekl, co kdo nabídl — bez hodnocení.",
+          "text": "Sepíšeš věcný záznam dne, bez jediné zbytečné věty.",
           "effects": {
             "Moudrost": 2,
             "Vina": 1
           }
         },
         {
-          "text": "Nezapíšeš nic. Jen složíš ruce na stole a počkáš, až se dech uklidní.",
+          "text": "Nezapíšeš nic. Jen složíš ruce a počkáš, až se dech uklidní.",
           "effects": {
             "Integrita": 1,
             "Nadeje": 1
@@ -713,17 +713,17 @@
       true
     ],
     "evening_choice": {
-      "text": "Závadová přinesla věci, které Ben nečekal. Podvrh, rodný list, Vlčkovo pravé jméno — každá z těch informací je zápalná látka. Otázka je, jestli je to záchrana nebo past.",
+      "text": "Věta ze Závadové spisu se vrací pořád stejně: jednou slyšená, potřetí jiná.",
       "options": [
         {
-          "text": "Zapíšeš jen fakta — co přinesla, co tvrdí, co chce. Bez záhad, jen co víš.",
+          "text": "Do deníku zapíšeš jen fakta. Bez přídavných jmen.",
           "effects": {
             "Moudrost": 2,
             "Vina": 1
           }
         },
         {
-          "text": "Necháš zápisník zavřený. Dnes by každé slovo bylo příliš mnoho.",
+          "text": "Necháš deník zavřený. Dnes by slova byla horší než ticho.",
           "effects": {
             "Integrita": 1,
             "Nadeje": 1
@@ -738,18 +738,15 @@
           "flag": "verdict_pool_a1_exekuce",
           "value": "alternative"
         },
-        "text": "Ve Svobodném obzoru vyšel krátký sloupek o exekucích na venkově. Bez podpisu. Ben pozná autorku hned po první větě."
+        "text": "Ve Svobodném obzoru vyšel krátký sloupek o exekucích na venkově. Bez podpisu. Ben pozná autora hned po první větě."
       },
       {
         "condition": {
           "flag": "verdict_pool_a1_exekuce",
           "value": "guilty"
         },
-        "text": "Součková pokutu zaplatila. Josef prodal hodinky a statek běží dál — tišeji než dřív, ale běží."
+        "text": "Součková pokutu zaplatila. Josef prodal hodinky a statek běží dál, jen tišeji než dřív."
       }
-    ],
-    "letters": [
-      "vlcek_d13"
     ]
   },
   {
@@ -766,17 +763,17 @@
       true
     ],
     "evening_choice": {
-      "text": "Karas přišel a řekl, co přišel říct. Memorandum, Hora z tiskového odboru, Benovo jméno dvakrát. Ben ví dost — teď musí vědět, co s tím.",
+      "text": "Karas odešel. V kanceláři po něm zůstalo víc otázek než odpovědí.",
       "options": [
         {
-          "text": "Napíšeš si tři jména, která dnes padla. Jen jména, nic víc.",
+          "text": "Napíšeš si tři jména, která dnes padla. Nic víc.",
           "effects": {
             "Moudrost": 2,
             "Vina": 1
           }
         },
         {
-          "text": "Papír necháš čistý a jdeš domů. Některé věci se lépe nesepíšou.",
+          "text": "Papír necháš čistý a jdeš domů dřív, než začneš pochybovat.",
           "effects": {
             "Integrita": 1,
             "Nadeje": 1
@@ -787,7 +784,7 @@
     "adventure_scene": {
       "id": "adventure_karas_d13",
       "portrait": "assets/portraits/karas.png",
-      "portrait_label": "Ctibor Karas",
+      "portrait_label": "Pavel Karas",
       "portrait_description": "Padesátník, unavená tvář, pečlivý oblek. Člověk, který si na únavu zvykl tak dávno, že ji přestal schovávat.",
       "trigger": "morning_after_fragment",
       "blocks_cases_until_complete": false,
@@ -795,38 +792,38 @@
         {
           "id": "s1",
           "speaker": "narrator",
-          "text": "Karas přišel bez telefonátu, bez dopisu, bez předchozího slova. Prostě seděl na chodbě u vchodu, když Ben přišel ráno — seděl rovně na dřevěné lavici s kabátem na kolenou jako člověk, který tam čekal hodně dlouho a hodlá čekat ještě déle. Švejda ho pustil dál bez vysvětlení. Znal ho.",
+          "text": "Karas přišel bez dopisu, bez telefonátu, bez předchozího upozornění. Prostě seděl na chodbě, když Ben přišel ráno do budovy — seděl rovně na dřevěné lavici, s kabátem na kolenou, a vypadal jako člověk, který tam seděl hodně dlouho a hodlá sedět ještě déle. Svejda ho znal a pustil ho dál.",
           "choices": null,
           "next": "s2"
         },
         {
           "id": "s2",
           "speaker": "narrator",
-          "text": "Zavřeli dveře kanceláře. Karas si sedl, ale kabát si nesundal — jako by si nebyl jistý, jestli zůstane celou hodinu nebo pět minut. Než začal mluvit, podíval se na okno, na stůl, na Benovy ruce. Pak řekl to bez úvodu.",
+          "text": "Zavřeli dveře kanceláře. Karas si sedl, ale kabát si nedal pryč — jako by si nebyl jistý, jak dlouho zůstane. Než začal mluvit, podíval se na okno, na stůl, na Benovy ruce. Pak se podíval Benovi do očí a řekl to bez úvodu, bez omluvy, bez zjemňování.",
           "choices": null,
           "next": "s3"
         },
         {
           "id": "s3",
           "speaker": "Karas",
-          "text": "Potřebuji, abyste odešel z funkce. Ne za měsíc, ne po dalším případu — teď. Vím, jak to zní. Ale není to o Vás. Je to o tom, co se chystá. Lidé, kteří Vás sledují, začínají přicházet na jméno — na Vaše jméno.",
+          "text": "'Potřebuji, abyste odešel. Z funkce. Teď — ne za měsíc, ne po dalším případu. Teď.' Pauza. Nečekal na reakci, jen pokračoval. 'Vím, jak to zní. A vím, co si myslíte. Ale není to o vás. Je to o tom, co se chystá — a o tom, že lidé, kteří vás sledují, začínají přicházet na jméno. Na vaše jméno.'",
           "choices": null,
           "next": "s4"
         },
         {
           "id": "s4",
           "speaker": "Karas",
-          "text": "Mám člověka na ministerstvu. Kamaráda — ne přítele, kamaráda. Řekl mi věci, které by říkat neměl. Jedno ze jmen bylo Benedikt Vraný. Pokud odejdete teď, odejdete jako člověk, který odešel sám. Pokud počkáte — přijdou pro Vás jinak.",
+          "text": "'Mám kamaráda v ministerstvu. Ne přítele — kamaráda. Říkal mi věci, které by neměl říkat. Jedno z těch jmen byl Benedikt Vraný.' Přejel rukou přes kabát, zbytečný pohyb, který ho prozradil. 'Pokud odejdete teď, odejdete jako člověk, který odešel. Pokud počkáte — přijdou pro vás jinak.'",
           "choices": null,
           "next": "s5"
         },
         {
           "id": "s5",
           "speaker": "narrator",
-          "text": "Ben poslouchal a díval se na Karase. Znal ho sedm let — od šachů v hospodě, od podpisů s háčkem, od té tiché rady u Pospíšila tehdy v osmadvacátém. Karas ho nikdy neprosil. Teď prosil — nebo se o to alespoň pokoušel, svým způsobem, se svou pýchou, která ho nepustila celou cestu dolů.",
+          "text": "Ben poslouchal a díval se na Karase. Znal ho sedm let — od těch šachů v hospodě, od těch podpisů s háčkem, od té tiché rady tehdy u Pospíšila. Karas ho nikdy neprosil. Teď prosil — nebo se o to alespoň pokoušel, svým způsobem, se svou pýchou, která ho nepustila celou cestu dolů.",
           "choices": [
             {
-              "label": "Odejdu. Co je potřeba udělat?",
+              "label": "Odejdu. Co potřebujete, abych udělal?",
               "sets_flag": "karas_poslechl_odejit",
               "sets_uzlovy": {
                 "osobni_cena": "zaplatil"
@@ -848,7 +845,7 @@
               "next": "s6b"
             },
             {
-              "label": "Řekněte mi víc. Kdo je ten Váš člověk na ministerstvu?",
+              "label": "Řekněte mi víc. Kdo to je — ten kamarád z ministerstva?",
               "sets_flag": "karas_chce_info",
               "effects": {
                 "Moudrost": 3,
@@ -861,14 +858,14 @@
         {
           "id": "s6a",
           "speaker": "Karas",
-          "text": "Vydechl pomalu — ne úlevou, spíš jako člověk, který se přestal bát, že dostane ne. Žádost o uvolnění ze zdravotních důvodů. Napíšu Vám doporučení k lékaři, ten potvrdí. Bude to vypadat čistě. Sáhl do kapsy a položil na stůl obálku — tlustší než Benešova. Na cestu. Bez podmínek. Nechci ji zpátky.",
+          "text": "Karas vydechl pomalu — ne úlevou, spíš jako člověk, který se přestal bát, že mu řeknou ne. 'Žádost o uvolnění ze zdravotních důvodů. Napíšu vám doporučení k lékaři, lékař potvrdí. Bude to vypadat čistě.' Vstal. 'Mám ještě jednu věc.' Sáhl do kapsy a položil na stůl obálku. Tlustší, než Benešova. 'Na cestu. Bez podmínek. Nechci ji zpátky.'",
           "choices": null,
           "next": "s7a"
         },
         {
           "id": "s7a",
           "speaker": "narrator",
-          "text": "Ben se podíval na obálku a pak na Karase. Karas se díval na dveře, připravený jít — nechtěl čekat na poděkování, nebo se ho bál.",
+          "text": "Ben se podíval na obálku a pak na Karase. Karas se díval na dveře, jako by byl připravený jít. Nechtěl čekat na poděkování — nebo se bál, že přijde. Ben obálku vzal. Nebo ji nechal ležet. Záleží na tom, jestli mu ministerstvo přijde nejdřív, nebo Karasův přítel.",
           "choices": [
             {
               "label": "Vzít obálku.",
@@ -892,7 +889,7 @@
         {
           "id": "s8a_vzal",
           "speaker": "narrator",
-          "text": "Karas odešel. Na stole bylo prázdné místo po obálce. Ben se podíval z okna. Venku byl normální čtvrtek — lidé šli do práce, tramvaj zastavila, prodavač novin skládal svazeček. Nic z toho nevědělo.",
+          "text": "Karas odešel. Na stole byla prázdná místa — šálku od kávy, inkoustová skvrna, místo kde stávalo pero. A teď ještě obálka méně. Ben se podíval z okna. Venku byl normální čtvrtek — lidé šli do práce, tramvaj zastavila, prodavač novin přičítal svazeček. Nic z toho nevědělo.",
           "choices": null,
           "next": null,
           "morning_fragment_append": "V kapse je obálka od Karase. Odchod je teď otázka rozhodnutí, ne peněz."
@@ -900,7 +897,7 @@
         {
           "id": "s8a_nechal",
           "speaker": "narrator",
-          "text": "Karas se podíval na obálku. Pak na Bena. Pak obálku vzal zpátky bez komentáře a dal ji do kapsy. U dveří se ještě zastavil a řekl tiše, skoro pro sebe: Dávejte pozor na Závadovou. Pak odešel.",
+          "text": "Karas se podíval na obálku. Pak na Bena. Pak vzal obálku zpátky, bez komentáře, a dal ji do kapsy kabátu. U dveří se zastavil a řekl ještě jednu věc — tiše, skoro pro sebe. 'Dávejte pozor na Zavadovou.' Pak odešel.",
           "choices": null,
           "next": null,
           "morning_fragment_append": "Karas přišel a odešel. Obálku si vzal zpátky. Varování zůstalo."
@@ -908,14 +905,14 @@
         {
           "id": "s6b",
           "speaker": "narrator",
-          "text": "Karas se na něj díval chvíli — a v té chvíli bylo vidět, že odpověď nečekal, nebo ji čekal a bál se jí. Pak přikývl jednou, pomalu, jako člověk, který respektuje rozhodnutí, se kterým nesouhlasí.",
+          "text": "Karas se na něj díval chvíli — a v té chvíli bylo vidět, že odpověď nečekal, nebo ji čekal a bál se jí. Pak přikývl, jednou, pomalu, jako člověk, který respektuje rozhodnutí, se kterým nesouhlasí.",
           "choices": null,
           "next": "s7b"
         },
         {
           "id": "s7b",
           "speaker": "Karas",
-          "text": "Dobře. To jsem věděl, že řeknete. Vstal a zapnul kabát. Jedno jenom — až přijdou, a přijdou, neříkejte jim, že jsem tu byl. Ne kvůli mně — kvůli lidem, se kterými mluvím a kteří Vám pomáhají, i když to nevíte. U dveří se zastavil. Byl jste dobrý soudce, Vraný. Snad to stačí.",
+          "text": "'Dobře. To jsem věděl, že řeknete.' Vstal a zapnul kabát. 'Jedno jenom — až přijdou, a přijdou, neřekněte jim, že jsem tu byl. Ne kvůli mně. Kvůli lidem, se kterými mluvím, a kteří vám pomáhají, i když to nevíte.' U dveří se zastavil. 'Byl jste dobrý soudce, Vraný. Snad to stačí.'",
           "choices": null,
           "next": null,
           "morning_fragment_append": "Karas řekl: byl jste dobrý soudce. Minulý čas."
@@ -923,14 +920,14 @@
         {
           "id": "s6c",
           "speaker": "Karas",
-          "text": "Chvíli váhal — otázka ho zaskočila ne proto, že by na ni neměl odpověď, ale proto, že ji nečekal. Jmenuje se Hora. Ne ten geodet — jiný Hora, z tiskového odboru. Byl u toho, když psali memorandum o soudcích, kteří komplikují práci ministerstva. Přejel rukou přes kabát, zbytečný pohyb, který ho prozradil. Vaše jméno tam bylo dvakrát.",
+          "text": "Karas chvíli váhal — bylo vidět, že otázka ho zaskočila ne proto, že by na ni neměl odpověď, ale proto, že ji neočekával. 'Jmenuje se Hora.' Pauza. 'Ne ten geodet — jiný Hora. Z tiskového odboru. Byl u toho, když psali memorandum o soudcích, kteří — komplikují práci ministerstva.' Jiný výraz na chvíli přešel přes tvář. 'Vaše jméno tam bylo dvakrát.'",
           "choices": null,
           "next": "s7c"
         },
         {
           "id": "s7c",
           "speaker": "narrator",
-          "text": "Ben si zapamatoval jméno. Hora — ne geodet. Karas vstal a sáhl do kapsy, pak se zastavil, jako by si to rozmyslel. Řekl jsem Vám dost. Co s tím uděláte, to je Vaše věc. Odejděte, dokud ještě odejít můžete. Podal ruku — rychle, pevně, jednou — a byl pryč dřív, než Ben stihl cokoli říct.",
+          "text": "Ben si zapamatoval jméno. Hora — ne geodet. Karas se zvedl a sáhl do kapsy, ale pak se zastavil, jako by si to rozmyslel. 'Řekl jsem vám dost. Co s tím uděláte — to je vaše věc. Ale odejděte, dokud ještě odejít můžete.' Podal ruku — rychle, pevně, jednou — a pak byl pryč dřív, než Ben stihl cokoli říct.",
           "choices": null,
           "next": null,
           "morning_fragment_append": "Hora z tiskového odboru. Memorandum. Jméno Benedikt Vraný, dvakrát. Ben to zapsal na útržek papíru a schoval pod spis."
@@ -941,15 +938,14 @@
   },
   {
     "day": 18,
-    "newspaper_headline": "Poslední dny: noviny si troufnou na otázku, která nepatří na titulní stranu.",
+    "newspaper_headline": "Poslední den? Noviny si troufnou na otázku, která nepatří na titulní stranu.",
     "cases": [
       "tyc_markova_3",
       "pool_a1_posledni_vule",
       "pool_a1_spravce"
     ],
     "letters": [
-      "martin_d14",
-      "vlcek_d14_letter"
+      "martin_d14"
     ],
     "cases_light": [
       false,
@@ -958,20 +954,20 @@
     ],
     "morning_fragment": "fragment_d18_rano",
     "evening_choice": {
-      "text": "Martinův dopis říká, že přijede o víkendu. Má něco říct — osobně. Ben dopis přečetl dvakrát a zatím neodpověděl. Neví, co napsat, aniž by musel lhát nebo říkat víc, než syn potřebuje vědět.",
+      "text": "Den se chýlí. Ruka drží pero pevněji, než by chtěla.",
       "options": [
         {
-          "text": "Napíšeš Martinovi pár řádků. Jen to, že se těšíš.",
+          "text": "Krátce zapisuješ, co bys neřekl nahlas.",
           "effects": {
             "Moudrost": 2,
-            "Nadeje": 2
+            "Vina": 1
           }
         },
         {
-          "text": "Dopis odkládáš. Na odpověď je čas o víkendu, tváří v tvář.",
+          "text": "Jdeš bez zápisku. Jen s vědomím.",
           "effects": {
             "Integrita": 2,
-            "Vina": 1
+            "Nadeje": 1
           }
         }
       ]
@@ -986,19 +982,19 @@
       "",
       ""
     ],
-    "morning_fragment": "fragment_d15_morning",
+    "morning_fragment": "fragment_d20_odhaleni",
     "evening_choice": {
-      "text": "Poslední den. Jeden spis, jeden případ, jeden podpis. Co zůstane z Bena po tomhle měsíci — to záleží na tom, co udělá dnes.",
+      "text": "Poslední listy, poslední rozhodnutí. Co zůstane z tebe?",
       "options": [
         {
-          "text": "Zapíšeš si krátce, co si z tohoto měsíce odneseš. Pro sebe, nikam jinam.",
+          "text": "Krátce zapisuješ, co bys neřekl nahlas.",
           "effects": {
             "Moudrost": 2,
             "Vina": 1
           }
         },
         {
-          "text": "Jdeš bez zápisku. Vědomí nepotřebuje papír.",
+          "text": "Jdeš bez zápisku. Jen s vědomím.",
           "effects": {
             "Integrita": 2,
             "Nadeje": 1
@@ -1015,7 +1011,7 @@
           "flag": "benes_pravda_prijata",
           "value": true
         },
-        "text": "V zásuvce pod starými nálezy leží obálka od Aloise Beneše. Ben už ví, čí podpis na tom listu čeká — a co s tím udělá."
+        "text": "V zásuvce pod starými nálezy leží obálka. Ben už ví, čí podpis na tom listu čeká."
       }
     ]
   }

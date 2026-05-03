@@ -8,6 +8,7 @@ const Finance = (() => {
   /** Kalendář 15denní kampaně: deadline operace = D12 (pracovní) = den 16 (pondělí 3. týdne). */
   const OPERACE_DEADLINE_DEN = 16;
   const DENNI_VYDAJE_KC = 55;
+  /** Týdenní plat soudu — pevná částka; další příjem jen ze spisů, úplatků, dopisů apod. */
   const VYPLATA_KC = 80;
   /** Neděle v herním kalendáři: první a druhá neděle (den 1 = pondělí). */
   const VYPLATA_DNY = [7, 14];

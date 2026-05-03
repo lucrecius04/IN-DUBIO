@@ -39,6 +39,7 @@ Object.assign(den(5), {
 const d8 = den(8);
 d8.cases = ['pool_a1_stara_rana', 'tyc_pospisil_2'];
 d8.cases_light = undefined;
+d8.morning_fragment = 'fragment_d6_morning';
 // Ranní echo k nemocenské — hráč mohl rozhodnout v D5
 // (ponecháno; D8 už není Božena/Hranice 2)
 
@@ -48,7 +49,7 @@ const benešAdventure = d9.adventure_scene;
 delete d9.adventure_scene;
 d9.cases = ['tyc_horac_d7', 'pool_a1_vyveseni'];
 d9.letters = ['vlcek_d7'];
-d9.morning_fragment = 'fragment_d10_morning';
+d9.morning_fragment = null;
 delete d9.morning_conditional_lines;
 d9.evening_choice = {
   text: 'Po síni je cítit politický vánek. Listiny voní inkoustem — a někdy i strachem.',
@@ -69,6 +70,7 @@ const d10 = den(10);
 d10.cases = ['tyc_bozena_3', 'tyc_hranice_2', 'pool_a1_spravce'];
 d10.cases_light = [false, false, true];
 d10.letters = ['vlcek_d8'];
+d10.morning_fragment = 'fragment_d8_morning';
 
 // --- Den 11 = scénář D9: Beneš + morální pool + light ---
 const d11 = den(11);
@@ -76,7 +78,7 @@ d11.adventure_scene = benešAdventure;
 d11.cases = ['pool_a1_spravce', 'pool_a1_bytova_komise', 'pool_a1_nemocenska'];
 d11.cases_light = [false, false, true];
 d11.letters = ['benes_d9'];
-d11.morning_fragment = 'fragment_d11_morning_base';
+d11.morning_fragment = 'fragment_d9_morning';
 d11.morning_conditional_lines = [
   {
     condition: { flag: 'flag_pospisil_dluzi', value: true },
@@ -102,6 +104,7 @@ const d12 = den(12);
 d12.cases = ['pool_a1_tiskarna', 'tyc_zvraty_d10', 'pool_a1_nemocenska'];
 d12.cases_light = [false, false, true];
 d12.letters = ['martin_d10'];
+d12.morning_fragment = 'fragment_d10_morning';
 delete d12.morning_conditional_lines;
 d12.evening_choice = {
   text: 'Po dnešku je jasné jen to, že některé podpisy mají delší stín než jiné.',
@@ -139,7 +142,7 @@ const d15 = den(15);
 d15.cases = ['pool_a1_weiss', 'tyc_haas_d11', 'pool_a1_exekuce'];
 d15.cases_light = [false, false, true];
 d15.letters = ['vlcek_d11'];
-d15.morning_fragment = 'fragment_d15_morning';
+d15.morning_fragment = 'fragment_d11_morning_base';
 delete d15.morning_conditional_lines;
 d15.evening_choice = {
   text: 'Po Haasově návštěvě je v kanceláři dusno, i když je okno dokořán.',

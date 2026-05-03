@@ -1793,17 +1793,21 @@ const Cases = (() => {
   }
 
   function _zpracujFrakceReakce(reakce) {
-    // Zobraz zprávy o reakcích frakcí
+    // Zobraz zprávy o reakcích frakcí (krátký toast — nebrzdit výběr rozsudku)
+    const trvaniKratka = typeof UI !== 'undefined' && Number.isFinite(UI.stavovaZpravaKratkaTrvaniMs)
+      ? UI.stavovaZpravaKratkaTrvaniMs
+      : 5000;
     for (const r of reakce) {
       const zprava = _reakceNaZpravu(r);
       if (zprava) {
-        setTimeout(() => UI.zobrazStavovouZpravu(zprava), 1000);
+        setTimeout(() => UI.zobrazStavovouZpravu(zprava, trvaniKratka), 1000);
         break; // Jedna zpráva najednou
       }
     }
   }
 
   function _reakceNaZpravu(reakce) {
+    /** Mapování na Factions.zkontrolujReakce (např. Moc ≥80 → sledovani = státní dohled). */
     const ZPRAVY = {
       sledovani:              'Cítíš, že tě sledují.',
       politicky_tlak:         'Z ministerstva přišel neformální dotaz.',

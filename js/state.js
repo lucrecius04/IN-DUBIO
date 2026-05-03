@@ -8,14 +8,17 @@ const State = (() => {
   const SAVE_LEGACY = 'indubio_save';
   /** Poslední běžící stav — přepisuje každé `State.uloz()` bez čísla slotu. */
   const SAVE_AUTOSAVE = 'indubio_autosave';
+  /** Počet ručních záloh v localStorage (`indubio_save_1` … `indubio_save_N`). */
+  const POCET_RUCNICH_ULOZENI = 5;
 
   function _klicePozice(n) {
     return 'indubio_save_' + n;
   }
 
   function _normalizujPozici(p) {
-    const x = Number(p);
-    return x === 2 ? 2 : 1;
+    const x = Math.floor(Number(p));
+    if (!Number.isFinite(x)) return 1;
+    return Math.min(POCET_RUCNICH_ULOZENI, Math.max(1, x));
   }
 
   function _migrujStarySave() {
@@ -37,7 +40,7 @@ const State = (() => {
       if (localStorage.getItem(SAVE_AUTOSAVE)) return;
       let bestRaw = null;
       let bestDay = -1;
-      for (const t of [1, 2]) {
+      for (let t = 1; t <= POCET_RUCNICH_ULOZENI; t++) {
         const raw = localStorage.getItem(_klicePozice(t));
         if (!raw || !String(raw).trim()) continue;
         try {
@@ -268,11 +271,11 @@ const State = (() => {
     }
   }
 
-  /** Při startu: autosave → ruční slot 1 → slot 2. */
+  /** Při startu: autosave → ruční sloty 1…N podle pořadí. */
   function _najdiPrvniObsazenyZdroj() {
     const auto = localStorage.getItem(SAVE_AUTOSAVE);
     if (auto && String(auto).trim()) return { typ: 'auto', raw: auto };
-    for (const t of [1, 2]) {
+    for (let t = 1; t <= POCET_RUCNICH_ULOZENI; t++) {
       const raw = localStorage.getItem(_klicePozice(t));
       if (raw && String(raw).trim()) return { typ: 'slot', slot: t, raw };
     }
@@ -453,8 +456,7 @@ const State = (() => {
   // --- Uložení / načtení ---
 
   /**
-   * @param {number} [pozice] 1 nebo 2 — bez argumentu uloží jen automatické uložení (`indubio_autosave`).
-   * Ruční záloha: vždy `State.uloz(1)` nebo `State.uloz(2)`.
+   * @param {number} [pozice] 1…POCET_RUCNICH_ULOZENI — bez argumentu uloží jen automatické uložení (`indubio_autosave`).
    * @returns {boolean} false při chybě zápisu (soukromé okno, zaplněné úložiště, file:// …)
    */
   function uloz(pozice) {
@@ -475,8 +477,8 @@ const State = (() => {
   }
 
   /**
-   * @param {number} [pozice] 1 nebo 2 — načte ruční zálohu z daného slotu.
-   * Bez argumentu: automatické uložení, jinak první neprázdná ruční záloha (1 → 2) — pro start hry.
+   * @param {number} [pozice] číslo ručního slotu — načte zálohu z daného slotu.
+   * Bez argumentu: automatické uložení, jinak první neprázdná ruční záloha (1…N) — pro start hry.
    */
   function nacti(pozice) {
     try {
@@ -770,18 +772,38 @@ const State = (() => {
     if (!_stav.usedCaseIds.some(x => String(x) === s)) _stav.usedCaseIds.push(s);
   }
 
-  /** Je případ uzavřený rozsudkem (dnes, v archivu, nebo v usedCaseIds — vždy přes String). */
-  function jePripadUzavren(caseId) {
+  /**
+   * Je případ uzavřený rozsudkem v daném kalendářním dni (pool může stejné id zopakovat jindy).
+   * `casesResolvedToday` + archivní záznamy s `day === den` — ne globální archiv z jiného dne.
+   */
+  function jePripadUzavrenVDen(caseId, den) {
     if (caseId == null || caseId === '') return false;
     const id = String(caseId).trim();
     if (!id) return false;
-    const dnes = _stav.casesResolvedToday || [];
-    if (dnes.some(x => String(x).trim() === id)) return true;
+    const d = Number(den);
+    if (!Number.isFinite(d) || d < 1) return false;
+
+    const dnesni = Number(_stav.currentDay);
+    if (d === dnesni) {
+      const vyresene = _stav.casesResolvedToday || [];
+      if (vyresene.some(x => String(x).trim() === id)) return true;
+    }
+
     const arch = _stav.archive && _stav.archive.verdicts;
-    if (Array.isArray(arch) && arch.some(v => v && String(v.caseId ?? v.case_id ?? '').trim() === id)) return true;
-    const used = _stav.usedCaseIds || [];
-    if (used.some(x => String(x).trim() === id)) return true;
-    return false;
+    if (!Array.isArray(arch)) return false;
+    return arch.some(v => {
+      if (!v) return false;
+      const cid = String(v.caseId ?? v.case_id ?? '').trim();
+      if (cid !== id) return false;
+      const vden = Number(v.day);
+      return Number.isFinite(vden) && vden === d;
+    });
+  }
+
+  /** Je případ uzavřený pro aktuální herní den (viz `jePripadUzavrenVDen`). */
+  function jePripadUzavren(caseId) {
+    const den = Number(_stav.currentDay);
+    return jePripadUzavrenVDen(caseId, Number.isFinite(den) && den > 0 ? den : 1);
   }
 
   function jeClueParNalezen(caseId, pairId) {
@@ -833,7 +855,7 @@ const State = (() => {
 
   /**
    * Náhled uložené hry — nemění běžící stav.
-   * @param {number} pozice 1 nebo 2
+   * @param {number} pozice 1…POCET_RUCNICH_ULOZENI
    */
   function peekUlozene(pozice) {
     try {
@@ -913,8 +935,9 @@ const State = (() => {
     _zarucTydenniRozsireni();
     localStorage.removeItem(SAVE_LEGACY);
     localStorage.removeItem(SAVE_AUTOSAVE);
-    localStorage.removeItem(_klicePozice(1));
-    localStorage.removeItem(_klicePozice(2));
+    for (let t = 1; t <= POCET_RUCNICH_ULOZENI; t++) {
+      localStorage.removeItem(_klicePozice(t));
+    }
     try {
       if (typeof Desk !== 'undefined' && typeof Desk.vyresetujCacheObalkyStolu === 'function') {
         Desk.vyresetujCacheObalkyStolu();
@@ -1164,6 +1187,8 @@ const State = (() => {
   return {
     get,
     set,
+    /** Počet ručních pozic v menu (localStorage klíče indubio_save_1…). */
+    pocetRucnichUlozeni: POCET_RUCNICH_ULOZENI,
     uloz,
     nacti,
     nactiJenAutosave,
@@ -1187,6 +1212,7 @@ const State = (() => {
     dalsiDen,
     pridejPouzityPripad,
     jePripadUzavren,
+    jePripadUzavrenVDen,
     jeClueParNalezen,
     oznacClueParNalezen,
     ziskejCluePotvrzeni,

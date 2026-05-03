@@ -1,5 +1,26 @@
 /* ui.css — Dialogy, modaly, panely případů, večerní volby */
 
+/* Prokliky slovníku (Knihovna) — základ; modál případu/fragment ladí case-wireframe.css */
+button.knihovna-link {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-style: inherit;
+  color: inherit;
+  text-decoration: underline dotted rgba(90, 55, 30, 0.55);
+  text-underline-offset: 2px;
+  cursor: pointer;
+  vertical-align: baseline;
+}
+
+button.knihovna-link:hover {
+  color: rgba(120, 50, 22, 0.95);
+  text-decoration-color: rgba(120, 50, 22, 0.75);
+}
+
 /* ==========================================
    MODAL — PŘÍPAD
    ========================================== */

@@ -56,21 +56,22 @@ Flagy jsou uloženy v `State.flags`. Nastavují je: verdikty případů, adventu
 ---
 
 ### 4. `osobni_cena`
-**Co měří:** Co Ben udělal s operací matky (deadline D12, 400 Kčs).
+**Co měří:** Co Ben udělal s operací matky (**400 Kčs** při příjmu, **17. března 1931** — viz `data/letters.json` `doktor_d4`, ranní kontext `fragment_d4_rano`). **Pracovní den D12** v `Mapa_15dni.csv` = **úterý 17. 3.** (stejný kalendářní den jako operace v příběhu).
 
 | Hodnota | Kdy se nastaví | Narativní identita |
 |---------|---------------|-------------------|
 | `zaplatil` | Ben sehnal 400 Kčs legitimní cestou (spoření, půjčka od Karase D13). | Zachoval integritu. Cesta k ANNĚ nebo HRDINOVI. |
 | `haasem` | Ben použil Haasovu obálku (300 Kčs) na operaci. | Kompromis přes peníze. Cesta ke KORUPCI nebo ÚTĚKU. |
-| `nerozhodl` | Deadline D12 přišel a Ben nic neudělal — nebo matka operaci odmítla. | Tichá tragédie. Cesta k ANNĚ nebo SMÍŘENÍ. |
+| `nerozhodl` | Po uplynutí lhůty Ben **nezaplatil** 400 Kčs (nebo matka operaci odmítla). | Tichá tragédie. Cesta k ANNĚ nebo SMÍŘENÍ. |
 | `odmitl` | Ben vědomě rozhodl peníze nedát — jiné priority. | Nejtvrdší cesta. |
 
-**Kde se nastavuje:**
-- `D4`: Dopis doktora — spustí countdown
-- `D11–D12`: Finance pod 400 Kčs → varování
-- `D12` (deadline): Engine zkontroluje `Finance >= 400` → `zaplatil` nebo `nerozhodl`
-- `D11` (VĚTVENÍ 3): Přijetí Haasovy obálky + deadline → `haasem`
-- `D13`: Karas nabídne půjčku → pokud Ben přijme + má dost → `zaplatil`
+**Kde se nastavuje (kanon dat + kód):**
+- **`D4`:** dopis doktora + příznaky countdownu (`letters.json` / `engine.js`).
+- **Countdown ve hře:** `js/finance.js` → `OPERACE_DEADLINE_DEN = 16` (`currentDay`; úterý **17. 3.** vůči startu v `days.json`), `getDnuDoDeadline()`.
+- **`Finance.zkontrolujCilOperace()`:** při zůstatku **≥ 400** → `flags.operace_zaplacena` (platba „včas“ dle ekonomiky).
+- **`D11` (VĚTVENÍ 3):** Haas osobně — přijetí obálky → `haas_kontakt` / `operace_zaplacena` podle implementace případu.
+- **`D13`:** Karas nabídne půjčku → při přijetí a dostatečném zůstatku → cesta k `zaplatil`.
+- **Výpočet uzlového `osobni_cena` v `js/state.js` (`vypoctiUzloveFlagy`):** pokud není `operace_zaplacena` ani `operace_odložena`, od **`currentDay >= 12`** se mapuje **`nerozhodl`** (odlišné číslo od `OPERACE_DEADLINE_DEN` — při údržbě kód sjednotit na jednu konstantu).
 
 ---
 
@@ -81,7 +82,7 @@ Každý konec potřebuje **max 2 uzlové flagy** + případně 1 pomocný flag. 
 | # | Konec | Nejdříve | Primární podmínky | Pomocné |
 |---|-------|----------|-------------------|---------|
 | 2 | **KORUPCE** | D11 | `vlcek_vztah == kompromitovan` + `haas_kontakt == zavazany` | INT ≤ 20 |
-| 5 | **SMÍŘENÍ** | D12 | `benes_pravda == prijal` + `osobni_cena != haasem` | INT ≥ 60, VIN ≤ 20 |
+| 5 | **SMÍŘENÍ** | D12 (pracovní — den Závadové / podvrhu, viz `Mapa_15dni.csv`) | `benes_pravda == prijal` + `osobni_cena != haasem` | INT ≥ 60, VIN ≤ 20 |
 | 4 | **ÚTĚK** | D13 | `haas_kontakt != zavazany` + `osobni_cena == zaplatil` + Karas D13 nabídl odchod | Finance > 300 |
 | 6 | **ATENTÁT** | D13 | `vlcek_vztah == vzdor` + `haas_kontakt == odmitnut` + `benes_pravda == prijal` | ODV ≥ 80, MOC ≤ 20 |
 | 7 | **KRUH** | D14 | `vlcek_vztah != vzdor` + `haas_kontakt == zavazany` + `benes_pravda == odmitl` | Zavadová ≥ 3 |
@@ -104,7 +105,7 @@ Tyto flagy nastavují verdikty a scény — uzlové flagy z nich vycházejí.
 | `flag_haas_obalka` | bool | D11 — Ben přijal 300 Kčs | `haas_kontakt → zavazany` + `osobni_cena → haasem` |
 | `flag_benes_scena_prijal` | bool | D9 adventure scéna | `benes_pravda → prijal` |
 | `flag_karas_pujcka` | bool | D13 adventure scéna | `osobni_cena → zaplatil` (pokud finance ≥ 400) |
-| `flag_vlcek_upozorneni` | bool | D7 — soud konstatoval infiltraci | Narativní, ovlivňuje Vlčkovy dopisy |
+| `flag_vlcek_upozorneni` | bool | D7 — soud konstatoval infiltraci | Narativní, ovlivňuje Vlčkovu linii (dopisy `vlcek_*` v `letters.json` jsou doručovány vždy; důvěra `trust.vlcek` řídí jiné projevy) |
 | `flag_pospisil_dluzi` | bool | D6 verdikt Pospíšil 2 | Narativní, ovlivňuje D11 beat |
 | `flag_markova_zpochybnena` | bool | D3 verdikt Marková 1 | Narativní, ovlivňuje D14 |
 
@@ -141,6 +142,7 @@ if (flags.flag_haas_obalka && State.finance >= 400) {
 } else if (flags.flag_karas_pujcka && State.finance >= 400) {
   flags.osobni_cena = 'zaplatil';
 } else if (State.currentDay >= 12 && State.finance < 400) {
+  // Pozn.: v produkčním kódu viz `js/state.js` — zvažte sjednocení s Finance.OPERACE_DEADLINE_DEN (16).
   flags.osobni_cena = 'nerozhodl';
 }
 ```

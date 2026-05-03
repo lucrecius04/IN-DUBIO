@@ -71,7 +71,7 @@ Po **rozsudku** (`Cases.zpracujRozsudek`) se může spustit konec hry:
    - **`odvolani`**: nízká Integrita + nízká Moudrost + den ≥ 20  
    - **`hrdina`**: den ≥ 30 + flagy Beneš pravda + Haas odsouzen  
 
-Konce nastaví `gameOver`, `endingType`, uloží stav a zobrazí **UI epilog** (`UI.zobrazKonecHry`).
+Konce nastaví `gameOver`, `endingType`, uloží stav a zobrazí **předepilog** (`data/ending_prelude.json`, modál `#modal-konec-prelude`) a po tlačítku **UI epilog** (`UI.zobrazKonecHry`). Bez dat předepilogu se volá rovnou epilog.
 
 > **Poznámka:** V `story.mdc` je rozpracováno **osm naratálních konců** (Přežití, Korupce, Hrdina, Útěk, Smíření, Atentát, Kruh, Anna). V kódu jsou zatím **konkrétně vyvolané typy** epilogu vázané na `endingType` a epilogové řádky (např. v `engine.js` u postav). Plné mapování „8 konců = 8 větví v engine“ je cíl designu; tento soubor popisuje **co dnes engine umí spustit** a obecný denní tok.
 

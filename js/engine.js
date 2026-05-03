@@ -135,6 +135,14 @@ const Engine = (() => {
     // Načti data
     await DataLoader.nactiVse();
 
+    if (typeof Knihovna !== 'undefined' && Knihovna.nacti) {
+      try {
+        await Knihovna.nacti();
+      } catch (e) {
+        console.warn('[Engine] Knihovna.nacti:', e);
+      }
+    }
+
     if (typeof DataLoader.jeHernaDataOK === 'function' && !DataLoader.jeHernaDataOK()) {
       const msg =
         'Herní data se nenačetla (days.json / případy). Otevření přes file:// často fetch blokuje.\n\n' +
@@ -274,7 +282,10 @@ const Engine = (() => {
     Finance.aplikujLekarskyBuffRano();
     Finance.tickKarasDluh();
     if (Finance.aplikujNedelniVyplatu(den)) {
-      await _cekejNaFragment('fragment_vyplata');
+      const vyplatyDny = State.get('finance.vyplataPrijataVDnech') || [];
+      const vyplataFragmentId =
+        vyplatyDny.length >= 2 ? 'fragment_vyplata_druha' : 'fragment_vyplata';
+      await _cekejNaFragment(vyplataFragmentId);
     }
     Finance.zaznamenejBankrotAVarovani();
     if (Finance.getDluh() > 100 && !State.get('flags.dluh_pribeh_spusten')) {
@@ -292,7 +303,7 @@ const Engine = (() => {
       _stulPripravaMaRozsvitit = false;
     }
 
-    // Ranní fragment (den 8 — dopis o operaci jen jednou)
+    // Ranní fragment (den 4 — dopis o operaci jen jednou v ranním okně)
     let morningId = _denData?.morning_fragment;
     if (den === 1 && _SKIP_D1_INTRO_MODALS) {
       morningId = null;
@@ -416,22 +427,38 @@ const Engine = (() => {
   }
 
   async function _pokracujSpustDen(denData, den) {
+    /* Po `await` v `spustDen` může hráč načíst zálohu — `syncFromSavedState` přepíše `_denData`,
+       ale uzávěr stále předává staré `den` → nesoulad (např. pondělí + nedělní volba). */
+    let dCislo = Number(den);
+    if (!Number.isFinite(dCislo) || dCislo < 1) dCislo = Number(State.get('currentDay')) || 1;
+    const denZeStavu = Number(State.get('currentDay'));
+    let dDat = denData;
+    if (Number.isFinite(denZeStavu) && denZeStavu > 0 && denZeStavu !== dCislo) {
+      dCislo = denZeStavu;
+      dDat = DataLoader.ziskejDen(dCislo);
+    } else if (dDat && typeof dDat === 'object' && Number.isFinite(Number(dDat.day)) && Number(dDat.day) !== dCislo) {
+      dDat = DataLoader.ziskejDen(dCislo);
+    } else if (!dDat && Number.isFinite(dCislo)) {
+      dDat = DataLoader.ziskejDen(dCislo);
+    }
+    if (dDat) _denData = dDat;
+
     /* Případy už nastavené na začátku spustDen (složky pod fragmentem); zopakování je idempotentní. */
-    Cases.nastavPripadyProDen(den, denData);
+    Cases.nastavPripadyProDen(dCislo, dDat);
     const pripady = Cases.getPripady();
     UI.aktualizujSlozky(pripady, State.get('casesResolvedToday'));
     Desk.nastavAktivniSpis(null);
 
     // Revize spisů — v 15denní verzi vypnuto (MIGRACE_20-15)
-    // await _zpracujRevizeDne(den);
+    // await _zpracujRevizeDne(dCislo);
 
     // Dialogy postav pro tento den
-    await _zpracujDialogyDne(den);
+    await _zpracujDialogyDne(dCislo);
 
     // Nedělní volba (bez případů — samostatný krok před pokračováním dne)
-    if (denData?.nedelni_volba) {
+    if (dDat?.nedelni_volba) {
       await new Promise(resolve => {
-        UI.zobrazNedelniVolbu(denData, () => {
+        UI.zobrazNedelniVolbu(dDat, () => {
           Desk.aktualizujVse();
           State.uloz();
           resolve();
@@ -442,7 +469,7 @@ const Engine = (() => {
     State.set('phase', 'forenoon');
     Desk.aktualizujVse();
 
-    _obnovDopisyNaStoleProDen(denData, den);
+    _obnovDopisyNaStoleProDen(dDat, dCislo);
 
     // Skrýt tlačítko do vyřešení případů; po F5 / resume znovu sladit s uloženým casesResolvedToday
     UI.zobrazBtnDalsiDen(false);
@@ -668,8 +695,8 @@ const Engine = (() => {
       return 'hrdina';
     }
 
-    // 1. PŘEŽITÍ (výchozí D15)
-    if (den >= 15) {
+    // 1. PŘEŽITÍ — výchozí až poslední kalendářní den kampaně (soulad s legacy minDay 19)
+    if (den >= 19) {
       return 'preziti';
     }
 
@@ -684,9 +711,10 @@ const Engine = (() => {
   function zkontrolujKonecDne(allowVariabilni) {
     if (State.get('gameOver')) return;
     const variabilniOk = allowVariabilni === true;
-    const vyresene = State.get('casesResolvedToday');
     const pripadyNactene = Cases.getPripady();
     const vsechnyIds = pripadyNactene.map(p => p && p.id).filter(Boolean);
+    const denKonec = Number(State.get('currentDay'));
+    const denProKontrolu = Number.isFinite(denKonec) && denKonec > 0 ? denKonec : 1;
 
     // Žádné případy dnes → bez kontroly variabilních konců (prázdný den / neděle bez spisů)
     if (vsechnyIds.length === 0) {
@@ -696,8 +724,12 @@ const Engine = (() => {
       return;
     }
 
-    // Všechny případy vyřešeny
-    const vsechnyVyreseny = vsechnyIds.every(id => vyresene.includes(id));
+    // Všechny případy vyřešeny v tento den (pool může opakovat id — globální archiv nestačí)
+    const vsechnyVyreseny = vsechnyIds.every(id =>
+      typeof State.jePripadUzavrenVDen === 'function'
+        ? State.jePripadUzavrenVDen(id, denProKontrolu)
+        : (State.get('casesResolvedToday') || []).includes(id)
+    );
     if (!vsechnyVyreseny) {
       return;
     }
@@ -886,10 +918,15 @@ const Engine = (() => {
     }
   }
 
-  async function _zobrazReakciDopisu(reaction) {
+  async function _zobrazReakciDopisu(reaction, dopisMeta) {
     if (!reaction || !Array.isArray(reaction.options) || reaction.options.length === 0) return;
+    const r = { ...reaction };
+    const ph = dopisMeta && String(dopisMeta.phase || '').trim();
+    if (!r.cas_label && (ph === 'morning_after_fragment' || ph === 'forenoon')) {
+      r.cas_label = 'RÁNO';
+    }
     const vyber = await new Promise(resolve => {
-      UI.zobrazVecerniVolbu({ evening_choice: reaction }, moznost => resolve(moznost || null));
+      UI.zobrazVecerniVolbu({ evening_choice: r }, moznost => resolve(moznost || null));
     });
     if (vyber && vyber.effects) {
       _aplikujEfektyDopisu(vyber.effects);
@@ -914,7 +951,7 @@ const Engine = (() => {
       UI.odemkniPovestPodleUdalosti('dopis', String(dopis.id));
     }
     _aplikujEfektyDopisu(dopis.effects);
-    await _zobrazReakciDopisu(dopis.reaction);
+    await _zobrazReakciDopisu(dopis.reaction, dopis);
     Desk.aktualizujVse();
     State.uloz();
   }
@@ -1066,7 +1103,11 @@ const Engine = (() => {
     Music.nastavStopu('epilog');
 
     const epilog = _sestavEpilog(typ);
-    UI.zobrazKonecHry(typ, epilog);
+    if (typeof UI !== 'undefined' && typeof UI.zobrazPredKoncemAKonecHry === 'function') {
+      UI.zobrazPredKoncemAKonecHry(typ, epilog);
+    } else if (typeof UI !== 'undefined' && typeof UI.zobrazKonecHry === 'function') {
+      UI.zobrazKonecHry(typ, epilog);
+    }
   }
 
   function _sestavEpilog(typ) {
@@ -1223,14 +1264,17 @@ const Engine = (() => {
     const zpravaEl = document.getElementById('uvod-ulozena-zprava');
     if (zpravaEl) {
       const ra = State.peekAutosave();
-      const r1 = State.peekUlozene(1);
-      const r2 = State.peekUlozene(2);
-      if (ra || r1 || r2) {
+      const nSlot = Number(State.pocetRucnichUlozeni) || 5;
+      const castiRucni = [];
+      let necoRucniho = false;
+      for (let i = 1; i <= nSlot; i++) {
+        const ri = State.peekUlozene(i);
+        if (ri) necoRucniho = true;
+        castiRucni.push('záloha ' + i + ': ' + (ri ? 'den ' + ri.currentDay : 'prázdná'));
+      }
+      if (ra || necoRucniho) {
         const ta = ra ? 'den ' + ra.currentDay : '—';
-        const t1 = r1 ? 'den ' + r1.currentDay : 'prázdná';
-        const t2 = r2 ? 'den ' + r2.currentDay : 'prázdná';
-        zpravaEl.textContent =
-          'Automatické uložení: ' + ta + ' · záloha 1: ' + t1 + ' · záloha 2: ' + t2;
+        zpravaEl.textContent = 'Automatické uložení: ' + ta + ' · ' + castiRucni.join(' · ');
       }
     }
 

@@ -3,7 +3,14 @@
   "slot": "pool",
   "type": "moral_dilemma",
   "color": "#2C4A7C",
-  "available_days": [5, 6, 7, 8, 9, 10],
+  "available_days": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
   "act": 1,
   "weight_conditions": {
     "base_weight": 1,
@@ -19,28 +26,40 @@
     "occupation": "stavbyvedoucí, firma Stavební a.s. Dvořák & syn",
     "detail": "ženatý, dvě děti (11 a 8 let), hypotéka u záložny, čistý rejstřík"
   },
-  "charge": "Těžké ublížení na zdraví z nedbalosti dle §335 trestního zákona — smrt dělníka následkem porušení stavebních předpisů",
+  "charge": "Těžké ublížení na zdraví z nedbalosti dle §335 trestního zákona",
   "description": "Ing. Miroslav Kolář, stavbyvedoucí firmy Stavební a.s. Dvořák & syn, je obžalován z nedbalostního způsobení smrti. Dne 17. února 1931 v ranních hodinách upadl dělník František Tuček (32 let) ze lešení ve třetím patře rozestavěného nájemního domu v Mánesově ulici na Vinohradech. Tuček zemřel na místě na mnohočetná poranění hlavy a trupu. Obhajoba tvrdí, že Tuček byl v době nehody pod vlivem alkoholu. Obžaloba dokládá, že lešení neodpovídalo stavebním předpisům a že Kolář o závadě věděl.",
   "testimonies": [
     {
       "id": "lekar_dvorak",
       "speaker": "MUDr. Alois Dvořák, obvodní lékař, provedl pitevní prohlídku",
       "text": "Tuček zemřel okamžitě následkem pádu z výšky přibližně osmi metrů. Lékařská prohlídka na místě prokázala hladinu alkoholu 1,1 promile. To je hodnota, která u zvyklého pijáka neznamená výraznou poruchu pohybu — ale u abstinenta ano. Z kartotéky nevyplývá, že by Tuček byl v léčbě, a kolegové ho popisují jako příležitostného pijce. Zda alkohol k pádu přispěl, nemohu s jistotou říct. Pád ze lešení v tomto stavu by přežil, pokud by bylo lešení správně zajištěno.",
-      "contradiction_keywords": ["1,1 promile", "spravne zajisteno", "nemohu s jistotou"],
+      "contradiction_keywords": [
+        "1,1 promile",
+        "spravne zajisteno",
+        "nemohu s jistotou"
+      ],
       "hidden_at_wisdom_below": null
     },
     {
       "id": "kolar",
       "speaker": "Ing. Miroslav Kolář, obžalovaný",
       "text": "Lešení prošlo kontrolou 10. února. Protokol existuje. Tuček byl zkušený dělník — věděl, jak se na lešení pohybovat. V den nehody jsem byl na staveništi od sedmi ráno. O žádné závadě jsem nevěděl. Pokud se lešení uvolnilo, stalo se tak bez mé vědomosti a bez možnosti to předvídat. Smrt pana Tučka mě zasáhla. Mám rodinu. Vím co to znamená.",
-      "contradiction_keywords": ["10. unora", "protokol existuje", "bez me vedomosti"],
+      "contradiction_keywords": [
+        "10. unora",
+        "protokol existuje",
+        "bez me vedomosti"
+      ],
       "hidden_at_wisdom_below": null
     },
     {
       "id": "delnik_sykora",
       "speaker": "Bedřich Sýkora, dělník, pracoval se zemřelým Tučkem",
       "text": "Franta věděl co dělá. Deset let na stavbách, nikdy pád. Ten den byl střízlivý — pil jsem s ním den před tím večer, ale ráno byl jako vždy. Lešení jsme si sami prohlédli — na čepu v rohu chyběl klin. To jsme viděli oba. Franta řekl, ať to nahlásí mistrovi. Šel za mistrem. Co mu mistr řekl, nevím. Za hodinu Franta spadl.",
-      "contradiction_keywords": ["chybel klin", "sel za mistrem", "za hodinu spadl"],
+      "contradiction_keywords": [
+        "chybel klin",
+        "sel za mistrem",
+        "za hodinu spadl"
+      ],
       "hidden_at_wisdom_below": null
     }
   ],
@@ -48,14 +67,21 @@
     {
       "id": "kolar_podpis",
       "description": "Kolář tvrdí, že o závadě nevěděl. Ale Sýkora říká, že Tuček šel závadu nahlásit mistrovi — Kolářovi. A v záznamu firmy existuje kontrolní list z 14. února, tři dny před nehodou, podepsaný Kolářem. Co je v tom protokolu?",
-      "involves": ["kolar", "delnik_sykora"],
+      "involves": [
+        "kolar",
+        "delnik_sykora"
+      ],
       "highlight_at_wisdom": 81,
       "unlocks_confrontation": "kolar"
     },
     {
       "id": "alkohol_pochybnost",
       "description": "Lékař říká, že 1,1 promile u zvyklého pijáka neznamená poruchu pohybu. Kolář stojí obranu na Tučkově opilosti — ale jeho kolegové ho popisují jako příležitostného pijce, ne alkoholika. Polehčující nebo matoucí?",
-      "involves": ["lekar_dvorak", "kolar", "delnik_sykora"],
+      "involves": [
+        "lekar_dvorak",
+        "kolar",
+        "delnik_sykora"
+      ],
       "highlight_at_wisdom": 81,
       "unlocks_confrontation": null
     }

@@ -5,9 +5,13 @@
   "slot": "pool",
   "type": "routine",
   "color": "#7A9BAD",
-  "available_days": [6],
+  "available_days": [
+    6
+  ],
   "act": 1,
-  "weight_conditions": { "forced": true },
+  "weight_conditions": {
+    "forced": true
+  },
   "title": "Hospodský a tichá hrozba",
   "case_number": "Sp. zn. 98/1931",
   "defendant": {
@@ -16,28 +20,38 @@
     "occupation": "hostinský",
     "detail": "provozuje U Zlatého sudu na Žižkově — tatáž osoba jako Sp. zn. 94/1931; tentokrát čelí stížnosti za incident ze 7. března 1931"
   },
-  "charge": "Porušení povinností provozovatele hostince dle §22 živnostenského řádu: Emil Pospíšil dne 7. března 1931 neprodleně nevykázal z prostor hospody osobu vyvolávající pohoršení, čímž umožnil fyzický střet, při němž hostinský Jan Červenka (52 let) utrpěl zranění způsobující pracovní neschopnost. Navrhovatelem je Červenkova manželka Alžběta.",
+  "charge": "Porušení povinností provozovatele hostince dle §22 živnostenského řádu",
   "description": "V sobotu 7. března se v U Zlatého sudu strhla hádka. Dva muži u vedlejšího stolu. Jan Červenka — host, jehož Pospíšil zná léta — dostal úder pěstí do tváře a spadl ze židle. Útočník odešel. Červenka strávil čtyři dny v nemocnici se zlomeným lícním obloukem. Kdo byl útočník, nikdo z přítomných svědků nedokázal říci jméno. Nebo nechtěl. Alžběta Červenková obviňuje Pospíšila, že útočníka znal, celou věc viděl — a nezasáhl. Pospíšil říká, že šlo o nenadálý střet, který nemohl předvídat. Ben si všímá jedné věci: Pospíšil sedí u stolu a třese se. Tohle není obvyklá nervozita z výslechu.",
   "testimonies": [
     {
       "id": "pospisil",
       "speaker": "Emil Pospíšil, obžalovaný",
       "text": "Pan Červenka seděl u okna. Dva muži přišli kolem osmé. Neznám je — tedy, jednoho jsem jednou viděl. Objednali pivo. Pak začali mluvit hlasitě, pak přišla rána. Bylo to rychlé. <span class=\"clue\" data-clue-id=\"clue_pospisil_znal\">Kdybych věděl, že se něco stane, šel bych mezi ně dřív. Ale nebylo to... nebylo to vidět předem.</span> Červenku znám přes deset let. Nechci mu nic špatného.",
-      "contradiction_keywords": ["jednoho jsem jednou viděl", "nebylo to vidět"],
+      "contradiction_keywords": [
+        "jednoho jsem jednou viděl",
+        "nebylo to vidět"
+      ],
       "hidden_at_wisdom_below": null
     },
     {
       "id": "cervenka_alzbeta",
       "speaker": "Alžběta Červenková, manželka poškozeného, navrhovatelka",
       "text": "Manžel mi řekl, co se stalo. Říkal, že Pospíšil toho muže znal. Stál za pultem, díval se na ně, a nezavolal nikam. <span class=\"clue\" data-clue-id=\"clue_cervenka_znal\">Muž, který Jana udeřil, přišel k pultu před tím — asi půl hodiny před ránou — a říkal Pospíšilovi něco potichu. Pospíšil přikývl.</span> Jan to viděl. Teď leží doma a nemůže otevřít čelist.",
-      "contradiction_keywords": ["půl hodiny", "potichu", "přikývl"],
+      "contradiction_keywords": [
+        "půl hodiny",
+        "potichu",
+        "přikývl"
+      ],
       "hidden_at_wisdom_below": null
     },
     {
       "id": "barta_svedek",
       "speaker": "František Bárta, host, přítomen při incidentu",
       "text": "Byl jsem u vedlejšího stolu. Slyšel jsem ránu — a bylo po všem. Ten muž odešel bez hledání zpátky. <span class=\"clue\" data-clue-id=\"clue_barta_vychod\">Vyšel zadním vchodem. Ne předními dveřmi — zadními, přes dvůr. Přesně věděl, kudy jít.</span> Nikdo za ním nešel. Pospíšil stál za pultem a nedíval se za ním. Pak volal sanitku pro Červenku.",
-      "contradiction_keywords": ["zadním vchodem", "přesně věděl"],
+      "contradiction_keywords": [
+        "zadním vchodem",
+        "přesně věděl"
+      ],
       "hidden_at_wisdom_below": null
     }
   ],
@@ -45,14 +59,21 @@
     {
       "id": "znal_pred_incident",
       "description": "Pospíšil říká, že útočníka jednou viděl. Červenková říká, že útočník přišel k pultu půl hodiny před ránou a potichu mluvil s Pospíšilem. Bárta potvrzuje, že útočník věděl o zadním vchodu.",
-      "involves": ["pospisil", "cervenka_alzbeta", "barta_svedek"],
+      "involves": [
+        "pospisil",
+        "cervenka_alzbeta",
+        "barta_svedek"
+      ],
       "highlight_at_wisdom": 65,
       "unlocks_confrontation": "pospisil"
     },
     {
       "id": "zadni_vychod",
       "description": "Útočník šel zadním vchodem přes dvůr — cestu, kterou nezná náhodný host. Znal ji buď z dřívějších návštěv, nebo mu ji někdo ukázal.",
-      "involves": ["barta_svedek", "pospisil"],
+      "involves": [
+        "barta_svedek",
+        "pospisil"
+      ],
       "highlight_at_wisdom": 70,
       "unlocks_confrontation": "pospisil"
     }
@@ -74,7 +95,9 @@
         "strength": "medium"
       }
     ],
-    "decoys": ["decoy_rychle_stret"],
+    "decoys": [
+      "decoy_rychle_stret"
+    ],
     "timed_hunt": {
       "enabled": true,
       "duration_sec": 55,
@@ -84,20 +107,46 @@
     },
     "info_threshold_unlocks": {
       "actions": [
-        { "min": 50, "ids": ["pool_inv_confrontation"] }
+        {
+          "min": 50,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
       ],
       "verdicts": [
-        { "min": 35, "ids": ["guilty_lenient"] },
-        { "min": 65, "ids": ["not_guilty_formal"] },
-        { "min": 80, "ids": ["guilty_alternative", "not_guilty_with_comment"] }
+        {
+          "min": 35,
+          "ids": [
+            "guilty_lenient"
+          ]
+        },
+        {
+          "min": 65,
+          "ids": [
+            "not_guilty_formal"
+          ]
+        },
+        {
+          "min": 80,
+          "ids": [
+            "guilty_alternative",
+            "not_guilty_with_comment"
+          ]
+        }
       ]
     },
     "rewards": {
       "on_confirm": {
         "strong": {
           "investigation_progress_delta": 42,
-          "unlock_actions": ["pool_inv_confrontation"],
-          "unlock_verdict_ids": ["not_guilty_with_comment", "guilty_alternative"],
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "not_guilty_with_comment",
+            "guilty_alternative"
+          ],
           "narrative_lines": [
             "Půl hodiny před ránou. Potichu. Přikývl. To není náhodný host.",
             "Zadní vchod přes dvůr — cestu, která se na menu nepíše.",
@@ -106,7 +155,10 @@
         },
         "medium": {
           "investigation_progress_delta": 20,
-          "unlock_verdict_ids": ["guilty_lenient", "not_guilty_formal"],
+          "unlock_verdict_ids": [
+            "guilty_lenient",
+            "not_guilty_formal"
+          ],
           "narrative_lines": [
             "Jednoho jsem jednou viděl — ale nezakázal mu vstup, nevykázal ho.",
             "Každý hostinský ví, kdy se schyluje ke střetu. Pospíšil byl za pultem a viděl."
@@ -124,8 +176,13 @@
       "cost": 1,
       "dirty_unlock": {
         "finance": -8,
-        "traits": { "Integrita": -1, "Vina": 1 },
-        "factions": { "Lid": 1 }
+        "traits": {
+          "Integrita": -1,
+          "Vina": 1
+        },
+        "factions": {
+          "Lid": 1
+        }
       }
     },
     "records": {
@@ -135,8 +192,13 @@
       "cost": 1,
       "dirty_unlock": {
         "finance": -12,
-        "traits": { "Integrita": -2, "Vina": 1 },
-        "factions": { "Moc": 1 }
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1
+        }
       },
       "unlocks_contradiction": "zadni_vychod"
     },
@@ -145,8 +207,13 @@
       "cost": 1,
       "dirty_unlock": {
         "finance": -8,
-        "traits": { "Vina": 1 },
-        "factions": { "Lid": -1, "Moc": 2 }
+        "traits": {
+          "Vina": 1
+        },
+        "factions": {
+          "Lid": -1,
+          "Moc": 2
+        }
       },
       "variants": {
         "lid_high": "Na Žižkově se říká, že Pospíšil dostal návštěvu den před incidentem. Muž, který nepil — jen si sedl do rohu a díval se. Pak odešel. Druhý den přišel znovu s kamarádem. Pospíšil to prý věděl a modlil se, ať se nic nestane. Nestalo se — Červenkovi to řekněte.",
@@ -175,15 +242,27 @@
           "label": "Pokuta 300 Kčs za porušení povinností provozovatele",
           "description": "Pospíšil nezasáhl včas. Zákon povinnost zasáhnout stanoví. Pokuta bez ztráty licence — hospoda zůstane otevřená.",
           "effects": {
-            "integrita": 1, "vina": 2, "nadeje": -1, "moc": 2, "lid": -3, "finance": 12
+            "integrita": 1,
+            "vina": 2,
+            "nadeje": -1,
+            "moc": 2,
+            "lid": -3,
+            "finance": 12
           }
         },
         "maximum": {
           "label": "Pokuta 800 Kčs a podmíněné pozastavení živnostenského listu",
           "description": "Pospíšil znal útočníka a nezabránil incidentu. Podmíněné pozastavení — při recidivě zavírá.",
-          "requires": { "odvaha_max": 28 },
+          "requires": {
+            "odvaha_max": 28
+          },
           "effects": {
-            "integrita": 2, "vina": 4, "nadeje": -2, "moc": 4, "lid": -6, "finance": 16
+            "integrita": 2,
+            "vina": 4,
+            "nadeje": -2,
+            "moc": 4,
+            "lid": -6,
+            "finance": 16
           }
         },
         "lenient": {
@@ -191,18 +270,35 @@
           "description": "Střet byl rychlý, Pospíšil volal pomoc. Napomenutí jako výstraha bez finanční sankce.",
           "requires_investigation": 1,
           "effects": {
-            "integrita": 1, "vina": 1, "nadeje": 1, "lid": 2, "moc": -1, "finance": 8
+            "integrita": 1,
+            "vina": 1,
+            "nadeje": 1,
+            "lid": 2,
+            "moc": -1,
+            "finance": 8
           }
         },
         "alternative": {
           "label": "Alternativa: Zastavení — navrhovatelka nemá aktivní legitimaci",
           "description": "Poškozeným je manžel, nikoli manželka. Alžběta Červenková podat stížnost za manžela nemůže — zákon ji k tomu neopravňuje. Případ se zastavuje pro procesní vadu.",
           "requires_investigation": 2,
-          "requires": { "moudrost_min": 55 },
+          "requires": {
+            "moudrost_min": 55
+          },
           "effects": {
-            "integrita": 2, "moudrost": 4, "vina": 1, "nadeje": 2,
-            "lid": 3, "moc": -3, "finance": 8,
-            "flags": [{ "key": "bonus_inkoust_rano", "value": 1 }]
+            "integrita": 2,
+            "moudrost": 4,
+            "vina": 1,
+            "nadeje": 2,
+            "lid": 3,
+            "moc": -3,
+            "finance": 8,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              }
+            ]
           }
         }
       }
@@ -214,18 +310,39 @@
           "description": "Incident trval sekundy. Zákon ukládá povinnost zasáhnout při trvajícím pohoršení — ne předcházet nepředvídatelné ráně.",
           "requires_investigation": 1,
           "effects": {
-            "integrita": -1, "odvaha": 2, "vina": -1, "lid": 4, "moc": -3, "finance": 10
+            "integrita": -1,
+            "odvaha": 2,
+            "vina": -1,
+            "lid": 4,
+            "moc": -3,
+            "finance": 10
           }
         },
         "with_comment": {
           "label": "Alternativa: Zproštění — navrhovatelka jednala v omylu o příčině",
           "description": "Červenka byl napaden z důvodů, které nesouvisejí s provozem hospody. Pospíšil byl v situaci, kde zasáhnout nemohl bez ohrožení vlastní osoby. Soud konstatuje, že žaloba míří na nesprávný subjekt.",
           "requires_investigation": 3,
-          "requires": { "odvaha_min": 55 },
+          "requires": {
+            "odvaha_min": 55
+          },
           "effects": {
-            "integrita": 3, "odvaha": 4, "vina": -1, "nadeje": 2,
-            "lid": 5, "moc": -6, "finance": 10,
-            "flags": [{ "key": "bonus_inkoust_rano", "value": 1 }, { "key": "flag_pospisil_dluzi", "value": true }]
+            "integrita": 3,
+            "odvaha": 4,
+            "vina": -1,
+            "nadeje": 2,
+            "lid": 5,
+            "moc": -6,
+            "finance": 10,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 1
+              },
+              {
+                "key": "flag_pospisil_dluzi",
+                "value": true
+              }
+            ]
           }
         }
       }
@@ -236,8 +353,15 @@
           "label": "Přerušit — doplnit výslech poškozeného Jana Červenky",
           "description": "Stížnost podala manželka. Poškozený Jan Červenka nebyl předvolán. Bez jeho výpovědi nelze posoudit, zda Pospíšil věděl o hrozbě předem.",
           "effects": {
-            "moudrost": 3, "vina": 1, "finance": 8,
-            "flags": [{ "key": "flag_pospisil_cervenka_vyslechnut", "value": true }]
+            "moudrost": 3,
+            "vina": 1,
+            "finance": 8,
+            "flags": [
+              {
+                "key": "flag_pospisil_cervenka_vyslechnut",
+                "value": true
+              }
+            ]
           }
         }
       }

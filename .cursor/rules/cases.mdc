@@ -349,7 +349,7 @@ Hybridní model: generický rámec + případová věta.
 
 Spis zmizí. Nahradí ho:
 1. Razítko VYŘEŠENO (červená = odsouzení, modrá = zproštění, šedá = odloženo)
-2. Narativní fragment 2-3 věty. Nikdy nehodnotí hráče.
+2. Narativní fragment po rozsudku: krátká pasáž (obvykle několik vět), bez hodnocení hráče. Délka ranních fragmentů kampaně viz `story.mdc` (D1 a další rána mohou být delší).
 3. Shrnutí informovanosti (jednovětý)
 
 Tón se mění podle verdiktu, Viny, Naděje.

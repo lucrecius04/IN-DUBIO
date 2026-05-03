@@ -37,7 +37,8 @@ Toto je kompletní zadání pro migraci hry IN DUBIO z 20denní kampaně na **15
 
 ### Countdown matka
 - **Bylo:** dopis doktora D6, deadline D16 (10 dní)
-- **Nyní:** dopis doktora D4, deadline D12 (8 dní)
+- **Nyní (kanon dat):** dopis doktora **pracovní D4** (`data/days.json` + `letters.json` `doktor_d4`) — **MUDr. Síber, Nemocnice Podolí, operace 17. března 1931, 400 Kč při příjmu**; ranní text **`fragment_d4_rano`**. Countdown ve hře: `js/finance.js` → **`OPERACE_DEADLINE_DEN = 16`** (`currentDay` = den operace v kalendáři kampaně). Tabulky: `Mapa_15dni.csv`, `Dopisy_15dni.csv`, `story.mdc`.
+- **Vlček — doplněná eskalace:** `vlcek_d13` (fond / matka), `vlcek_d14_letter` (poslední dopis), oba v `letters.json` + doručení v `days.json`; u `vlcek_d11` / `vlcek_d14_letter` je **`condition: null`** (dopisy se neblokují přes `trust.vlcek`).
 
 ---
 
@@ -238,6 +239,7 @@ Přepsat na 15 pracovních dní + 2 víkendy. Struktura dnů podle `Mapa_15dni.c
 - Zavadová podvrh: den 12 (ne 17)
 - Karas varuje: neděle 2. týdne (ne den 18)
 - Velezrada: den 15 (ne 20)
+- Vlček **d13** / **d14_letter**: dopisy nad rámec původní migrace — viz `data/letters.json` a `data/days.json` (den 16 / den 18 vedle Martina)
 
 ### 3.2 Pool případy — přiřazení k dnům
 Místo čistě náhodného výběru **natvrdo přiřadit** pool případy k dnům podle tematického echa:

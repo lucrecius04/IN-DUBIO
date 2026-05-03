@@ -140,7 +140,7 @@ days.push({
 days.push({
   day: 8,
   newspaper_headline: 'Plakát: pochod hladu. Úřady hovoří o klidu.',
-  morning_fragment: 'fragment_d8_morning',
+  morning_fragment: 'fragment_d6_morning',
   cases: ['pool_a1_spravce', 'pool_a1_bytova_komise', 'pool_a1_revizor'],
   cases_light: [false, false, true],
   letters: ['martin_d6'],
@@ -155,7 +155,7 @@ days.push({
 
 // 9–19 podle Pripady_15dni / pool
 const rest = [
-  { d: 9, h: 'Horáčková u soudu. Politický nádech houstne.', c: ['pool_a1_vyveseni', 'pool_a1_druha_ruka'], f: 'fragment_d10_morning', letters: ['vlcek_d7'] },
+  { d: 9, h: 'Horáčková u soudu. Politický nádech houstne.', c: ['pool_a1_vyveseni', 'pool_a1_druha_ruka'], letters: ['vlcek_d7'] },
   { d: 10, h: 'Zástupci bank jednají. Creditánstalt ve vzduchu.', c: ['pool_a1_tiskarna', 'pool_a1_stavba', 'pool_a1_nemocenska'], l: [false, false, true], letters: ['vlcek_d8'] },
   { d: 11, h: 'Politické napětí. Noviny plné jmen.', c: ['pool_a1_weiss', 'pool_a1_vytrznost', 'pool_a1_exekuce'], l: [false, false, true], letters: ['benes_d9'] },
   { d: 12, h: 'Kdo řídí justici? Titulky se třesou na kostře věty.', c: ['pool_a1_stara_rana', 'pool_a1_zhar', 'pool_a1_trafika'], l: [false, false, true], letters: ['martin_d10'] },

@@ -3,7 +3,13 @@
   "slot": "pool",
   "type": "routine",
   "color": "#5A4A3A",
-  "available_days": [8, 9, 10, 11, 12],
+  "available_days": [
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
   "act": 1,
   "weight_conditions": {
     "base_weight": 1,
@@ -17,28 +23,40 @@
     "occupation": "výhybkář, Státní dráhy ČSR, úsek Praha-Smíchov",
     "detail": "zaměstnanec drah devatenáct let, vdovec, dvě dcery (14 a 17 let); ve službě bez disciplinárního záznamu"
   },
-  "charge": "Ohrožení obecné bezpečnosti dle §87 trestního zákona a sabotáž přepravního provozu dle §5 zákona na ochranu republiky č. 50/1923 Sb.: František Douda dne 15. ledna 1931 ve 14:22 vědomě a záměrně přestavil výhybku V-7 na úseku Nusle–Smíchov do polohy odklonu, čímž způsobil odklonění osobního vlaku č. 214 na vedlejší kolej. Vlak zastavil bez srážky. Zpoždění 3 hodiny 20 minut. 187 cestujících, žádné zranění. Douda čin přiznal okamžitě.",
+  "charge": "Ohrožení obecné bezpečnosti dle §87 trestního zákona a sabotáž dle §5 zákona na ochranu republiky č. 50/1923 Sb.",
   "description": "František Douda přestavil výhybku. Přiznal to ihned, na místě, policistovi, který přijel jako první. Nezkoušel utéct ani nic zakrýt. Vlak č. 214 zastavil bez úhony — strojvedoucí zareagoval a zabrzdil. Douda byl odklizen od výhybky a odveden. Druhý den ráno dráhy opravily kolejnicový svár na úseku K-7, který Douda devět měsíců hlásil jako nebezpečný. Tři pracovníci inspekce potvrdili, že svár byl skutečně vadný. Soud musí rozhodnout, co Douda je: sabotér, nebo člověk, který nevěděl jak jinak.",
   "testimonies": [
     {
       "id": "douda",
       "speaker": "František Douda, obžalovaný",
       "text": "Přestavil jsem výhybku. To nepopírám. Hlásil jsem svár K-7 od dubna loňského roku. Třikrát písemně, dvakrát ústně na poradě. <span class=\"clue\" data-clue-id=\"clue_douda_hlasenky\">Mám kopie všech pěti hlášení. Podal jsem je inspektoru Hruškovi. Poslední hlášení datováno 8. prosince 1930 — šest týdnů před incidentem.</span> Chtěl jsem způsobit zpoždění — ne nehodu. Věděl jsem, kde vlak zastaví, věděl jsem, že strojvedoucí zabrzdí. Ale záruka to nebyla. Vím.",
-      "contradiction_keywords": ["pět hlášení", "8. prosince", "záruka to nebyla"],
+      "contradiction_keywords": [
+        "pět hlášení",
+        "8. prosince",
+        "záruka to nebyla"
+      ],
       "hidden_at_wisdom_below": null
     },
     {
       "id": "hruska_inspektor",
       "speaker": "Inspektor Bedřich Hruška, provozní oddělení Státních drah",
       "text": "Hlášení Doudy jsem dostával. První dvě jsem postoupil technickému oddělení. <span class=\"clue\" data-clue-id=\"clue_hruska_postoupil\">Třetí a čtvrté jsem... zdržel. Měli jsme v lednu plánovanou generální revizi celého úseku. Moje rozhodnutí bylo počkat a opravit vše najednou.</span> Svár K-7 byl na seznamu revize. Byl. Douda o tom nevěděl, protože mu to nikdo neřekl. Uznávám, že to bylo mé opomenutí.",
-      "contradiction_keywords": ["zdržel", "generální revize", "neuvedl ho"],
+      "contradiction_keywords": [
+        "zdržel",
+        "generální revize",
+        "neuvedl ho"
+      ],
       "hidden_at_wisdom_below": null
     },
     {
       "id": "strojvedouci",
       "speaker": "Ladislav Mrázek, strojvedoucí vlaku č. 214",
       "text": "Viděl jsem výhybku v poslední moment. Zabrzdil jsem nouzově. Vlak zastavil třicet metrů za výhybkou. <span class=\"clue\" data-clue-id=\"clue_mrazek_vzdalenost\">Kdybych reagoval o dvě sekundy pozdějc, nebo kdybychom jeli o deset kilometrů za hodinu rychleji — nevím, co by se stalo.</span> Douda stál u výhybky a čekal. Nedával najevo žádnou agresi. Stál tam jako člověk, který udělal, co chtěl udělat, a čeká na důsledky.",
-      "contradiction_keywords": ["dvě sekundy", "deset kilometrů", "čekal"],
+      "contradiction_keywords": [
+        "dvě sekundy",
+        "deset kilometrů",
+        "čekal"
+      ],
       "hidden_at_wisdom_below": null
     }
   ],
@@ -46,14 +64,20 @@
     {
       "id": "hruska_vedel",
       "description": "Hruška přiznal, že třetí a čtvrté hlášení záměrně zdržel — rozhodl čekat na generální revizi a Doudovi to neřekl. Douda devět měsíců nevěděl, že jeho hlášení leží v šuplíku a čeká na plánovaný termín.",
-      "involves": ["douda", "hruska_inspektor"],
+      "involves": [
+        "douda",
+        "hruska_inspektor"
+      ],
       "highlight_at_wisdom": 65,
       "unlocks_confrontation": "hruska_inspektor"
     },
     {
       "id": "zaruka_nebyla",
       "description": "Douda sám přiznal: 'Záruka to nebyla.' Mrázek potvrdil, že dvě sekundy nebo vyšší rychlost mohly změnit výsledek. Douda riskoval životy 187 lidí — i kdyby to nebylo jeho záměrem.",
-      "involves": ["douda", "strojvedouci"],
+      "involves": [
+        "douda",
+        "strojvedouci"
+      ],
       "highlight_at_wisdom": 70,
       "unlocks_confrontation": null
     }
@@ -75,7 +99,9 @@
         "strength": "medium"
       }
     ],
-    "decoys": ["decoy_187_cestujicich"],
+    "decoys": [
+      "decoy_187_cestujicich"
+    ],
     "timed_hunt": {
       "enabled": true,
       "duration_sec": 60,
@@ -85,20 +111,45 @@
     },
     "info_threshold_unlocks": {
       "actions": [
-        { "min": 45, "ids": ["pool_inv_confrontation"] }
+        {
+          "min": 45,
+          "ids": [
+            "pool_inv_confrontation"
+          ]
+        }
       ],
       "verdicts": [
-        { "min": 35, "ids": ["guilty_minimum"] },
-        { "min": 60, "ids": ["guilty_alternative"] },
-        { "min": 80, "ids": ["not_guilty_formal"] }
+        {
+          "min": 35,
+          "ids": [
+            "guilty_minimum"
+          ]
+        },
+        {
+          "min": 60,
+          "ids": [
+            "guilty_alternative"
+          ]
+        },
+        {
+          "min": 80,
+          "ids": [
+            "not_guilty_formal"
+          ]
+        }
       ]
     },
     "rewards": {
       "on_confirm": {
         "strong": {
           "investigation_progress_delta": 44,
-          "unlock_actions": ["pool_inv_confrontation"],
-          "unlock_verdict_ids": ["guilty_alternative", "not_guilty_formal"],
+          "unlock_actions": [
+            "pool_inv_confrontation"
+          ],
+          "unlock_verdict_ids": [
+            "guilty_alternative",
+            "not_guilty_formal"
+          ],
           "narrative_lines": [
             "Pět hlášení. Hruška zdržel třetí a čtvrté — a Doudovi to neřekl.",
             "Devět měsíců čekal Douda na odpověď, která ležela v šuplíku a čekala na revizi.",
@@ -107,7 +158,9 @@
         },
         "medium": {
           "investigation_progress_delta": 22,
-          "unlock_verdict_ids": ["guilty_minimum"],
+          "unlock_verdict_ids": [
+            "guilty_minimum"
+          ],
           "narrative_lines": [
             "Dvě sekundy. Deset kilometrů za hodinu. Douda věděl, že záruka to není.",
             "187 lidí nevědělo, že jejich vlak je součástí Doudovy kalkulace."
@@ -125,8 +178,13 @@
       "cost": 1,
       "dirty_unlock": {
         "finance": -8,
-        "traits": { "Integrita": -1, "Vina": 1 },
-        "factions": { "Moc": 1 }
+        "traits": {
+          "Integrita": -1,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 1
+        }
       }
     },
     "records": {
@@ -136,8 +194,13 @@
       "cost": 1,
       "dirty_unlock": {
         "finance": -12,
-        "traits": { "Integrita": -2, "Vina": 1 },
-        "factions": { "Moc": 2 }
+        "traits": {
+          "Integrita": -2,
+          "Vina": 1
+        },
+        "factions": {
+          "Moc": 2
+        }
       },
       "unlocks_contradiction": "hruska_vedel"
     },
@@ -146,8 +209,13 @@
       "cost": 1,
       "dirty_unlock": {
         "finance": -8,
-        "traits": { "Vina": 1 },
-        "factions": { "Lid": -1, "Moc": 2 }
+        "traits": {
+          "Vina": 1
+        },
+        "factions": {
+          "Lid": -1,
+          "Moc": 2
+        }
       },
       "variants": {
         "lid_high": "Na dráhách jsou Doudové desítky. Hlásí, čekají, hlásí znovu — a nic. Systém funguje tak, že výhybkář hlásí inspektorovi, inspektor rozhodne, výhybkář čeká. Douda devět měsíců čekal. Pak přestal čekat.",
@@ -176,14 +244,24 @@
           "label": "3 roky vězení a trvalé zbavení způsobilosti pracovat u drah",
           "description": "Douda vědomě ohrozil 187 osob. Přiznal, že záruka bezpečného zastavení neexistovala. Tři roky odpovídají závažnosti — bez ohledu na to, co předcházelo. Dcery zůstanou bez otce, práce bez vyhlídky.",
           "effects": {
-            "integrita": 3, "vina": 5, "nadeje": -3, "moc": 6, "lid": -6, "finance": 18
+            "integrita": 3,
+            "vina": 5,
+            "nadeje": -3,
+            "moc": 6,
+            "lid": -6,
+            "finance": 18
           }
         },
         "standard": {
           "label": "18 měsíců podmíněně a propuštění ze státní služby",
           "description": "Sabotáž provozu bez zranění. Podmíněný trest zohledňuje provokaci ze strany systému — ale Douda propuštění ze drah. Devatenáct let bez záznamu, pak konec.",
           "effects": {
-            "integrita": 2, "vina": 3, "nadeje": -1, "moc": 4, "lid": -3, "finance": 14
+            "integrita": 2,
+            "vina": 3,
+            "nadeje": -1,
+            "moc": 4,
+            "lid": -3,
+            "finance": 14
           }
         },
         "minimum": {
@@ -191,18 +269,35 @@
           "description": "Douda jednal po vyčerpání řádných cest. Systém selhal devět měsíců. Žádné zranění. Pokuta bez vězení ani propuštění — Douda může zůstat na dráze.",
           "requires_investigation": 2,
           "effects": {
-            "integrita": 1, "vina": 2, "nadeje": 2, "lid": 4, "moc": -3, "finance": 10
+            "integrita": 1,
+            "vina": 2,
+            "nadeje": 2,
+            "lid": 4,
+            "moc": -3,
+            "finance": 10
           }
         },
         "alternative": {
           "label": "Alternativa: Symbolická pokuta 100 Kčs a doporučení trestního šetření inspektora Hrušky",
           "description": "Soud konstatuje, že Hruška záměrně zadržoval hlášení bez informování podřízeného. Bez tohoto selhání by Douda pravděpodobně čekal na únorovou revizi. Douda dostane symbolickou pokutu — Hruška bude předán k šetření.",
           "requires_investigation": 3,
-          "requires": { "odvaha_min": 60 },
+          "requires": {
+            "odvaha_min": 60
+          },
           "effects": {
-            "integrita": 5, "odvaha": 5, "vina": 2, "nadeje": 3,
-            "lid": 6, "moc": -8, "finance": 8,
-            "flags": [{ "key": "bonus_inkoust_rano", "value": 2 }]
+            "integrita": 5,
+            "odvaha": 5,
+            "vina": 2,
+            "nadeje": 3,
+            "lid": 6,
+            "moc": -8,
+            "finance": 8,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 2
+              }
+            ]
           }
         }
       }
@@ -213,11 +308,24 @@
           "label": "Alternativa: Zproštění — systémové selhání jako vyšší moc",
           "description": "Douda vyčerpal všechny dostupné řádné prostředky. Hruška zdržoval hlášení bez informování. V situaci, kdy systém nefunguje a hrozba je reálná, nelze od zaměstnance požadovat nečinnost. Zproštění — bez precedentu pro budoucí sabotáže.",
           "requires_investigation": 3,
-          "requires": { "odvaha_min": 70, "moudrost_min": 65 },
+          "requires": {
+            "odvaha_min": 70,
+            "moudrost_min": 65
+          },
           "effects": {
-            "integrita": 4, "odvaha": 7, "vina": 3, "nadeje": 3,
-            "lid": 7, "moc": -10, "finance": 8,
-            "flags": [{ "key": "bonus_inkoust_rano", "value": 2 }]
+            "integrita": 4,
+            "odvaha": 7,
+            "vina": 3,
+            "nadeje": 3,
+            "lid": 7,
+            "moc": -10,
+            "finance": 8,
+            "flags": [
+              {
+                "key": "bonus_inkoust_rano",
+                "value": 2
+              }
+            ]
           }
         }
       }
@@ -228,8 +336,16 @@
           "label": "Přerušit — prošetření odpovědnosti inspektora Hrušky",
           "description": "Bez jasného obrazu Hruškova zavinění nelze spravedlivě posoudit míru Doudovy odpovědnosti. Soud přerušuje a předává podnět k šetření Hrušky.",
           "effects": {
-            "moudrost": 4, "vina": 1, "nadeje": 1, "finance": 8,
-            "flags": [{ "key": "flag_hruska_setreni", "value": true }]
+            "moudrost": 4,
+            "vina": 1,
+            "nadeje": 1,
+            "finance": 8,
+            "flags": [
+              {
+                "key": "flag_hruska_setreni",
+                "value": true
+              }
+            ]
           }
         }
       }

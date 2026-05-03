@@ -451,7 +451,12 @@ const Desk = (() => {
     if (elN) elN.textContent = meta.nazev;
     if (elD) elD.textContent = datumN;
     if (elH) elH.textContent = meta.headline;
-    if (elT) elT.textContent = meta.telo;
+    if (elT) {
+      elT.innerHTML = String(meta.telo || '—').replace(/\r\n/g, '\n').replace(/\n/g, '<br>');
+      if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
+        Knihovna.obalSlovnikemVElementu(elT);
+      }
+    }
     _otevriModalStul(modal);
   }
 
@@ -461,7 +466,10 @@ const Desk = (() => {
     const telo = document.getElementById('modal-desk-dopis-telo');
     if (!modal || !telo) return;
     const txt = (denDat && denDat.letter_text) ? String(denDat.letter_text) : '—';
-    telo.textContent = txt;
+    telo.innerHTML = txt.replace(/\r\n/g, '\n').replace(/\n/g, '<br>');
+    if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
+      Knihovna.obalSlovnikemVElementu(telo);
+    }
     _otevriModalStul(modal);
   }
 
@@ -935,6 +943,9 @@ const Desk = (() => {
         (pripad.defendant?.name || '—') + ' — ' + (pripad.charge || '—') +
       '</div>' +
       '<div class="spis-situace-kratka">' + (pripad.situation || '') + '</div>';
+    if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
+      Knihovna.obalSlovnikemVElementu(telo);
+    }
   }
 
   function _nastavPoziciTooltipu(e, tooltip) {

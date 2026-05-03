@@ -7,19 +7,19 @@
         "day": 14,
         "condition": null,
         "type": "visit",
-        "text": "Černý, přestaňme si hrát na zdvořilosti. Oba víme, co se stalo před deseti lety. Jde mi o jeden konkrétní rozsudek. Jen jeden. A pak budeme kvit.\n\nOstatně — náklady na operaci Vaší matky jsou značné, že? Naše vláda má fond pro rodiny veřejných zaměstnanců. Stačí požádat správnou osobu."
+        "text": "Vraný, přestaňme si hrát na zdvořilosti. Oba víme, co se stalo před deseti lety. Jde mi o jeden konkrétní rozsudek. Jen jeden. A pak budeme kvit.\n\nOstatně — náklady na operaci Vaší matky jsou značné, že? Naše vláda má fond pro rodiny veřejných zaměstnanců. Stačí požádat správnou osobu."
       },
       {
         "day": 20,
         "condition": { "flag": "pravda_odhalena" },
         "type": "letter",
-        "text": "Černý,\n\nVím, co víte. Víte, co vím. \n\nTento tanec může skončit tiše nebo hlasitě. Volba je Vaše. Máte 48 hodin.\n\n— V."
+        "text": "Vraný,\n\nVím, co víte. Víte, co vím. \n\nTento tanec může skončit tiše nebo hlasitě. Volba je Vaše. Máte 48 hodin.\n\n— V."
       },
       {
         "day": 26,
         "condition": null,
         "type": "visit",
-        "text": "Jste naivní člověk, Černý. Myslíte, že spravedlnost funguje? Podívejte se kolem sebe. Systém je takový, jaký je — a buď v něm plavete, nebo se topíte. Já vám nabízím záchranný kruh. Naposledy."
+        "text": "Jste naivní člověk, Vraný. Myslíte, že spravedlnost funguje? Podívejte se kolem sebe. Systém je takový, jaký je — a buď v něm plavete, nebo se topíte. Já vám nabízím záchranný kruh. Naposledy."
       }
     ]
   },
@@ -49,7 +49,7 @@
         "day": 21,
         "condition": { "flag": "horakova_alliance" },
         "type": "visit",
-        "text": "Věřím Vám, Černý. A to je věc, které nejsem zvyklá říkat. Buďte opatrný v příštích dnech. Vlček se pohybuje."
+        "text": "Věřím Vám, pane doktore. A to je věc, které nejsem zvyklá říkat. Buďte opatrný v příštích dnech. Vlček se pohybuje."
       }
     ]
   },
@@ -79,13 +79,13 @@
         "day": 12,
         "condition": null,
         "type": "visit",
-        "text": "Pane doktore. Jmenuji se Josef Beneš. Přišel jsem vypovídat v případu číslo třiadvacet.\n\nAle... smím říct ještě jednu věc? Jednu větu?\n\nMůj bratr byl vězněm. Zemřel tam. V roce 1924. Jmenoval se Antonín Beneš."
+        "text": "Pane doktore. Jmenuji se Josef Beneš. Přišel jsem vypovídat v případu číslo třiadvacet.\n\nAle... smím říct ještě jednu věc? Jednu větu?\n\nMůj bratr byl vězněm. Zemřel tam. V roce 1928. Jmenoval se Karel Beneš."
       },
       {
         "day": 20,
         "condition": { "flag": "benes_identified" },
         "type": "visit",
-        "text": "Víte. Vidím to na Vás. Věděl jsem, že jednou přijdu před soudce, který ví.\n\nNechci nic. Nechci, abyste se omlouval. Nechci, abyste byl potrestán. Jsem stará troska.\n\nChci jen, abyste věděl, že Antonín byl dobrý člověk."
+        "text": "Víte. Vidím to na Vás. Věděl jsem, že jednou přijdu před soudce, který ví.\n\nNechci nic. Nechci, abyste se omlouval. Nechci, abyste byl potrestán. Jsem stará troska.\n\nChci jen, abyste věděl, že Karel byl dobrý člověk."
       }
     ]
   },
@@ -103,13 +103,13 @@
         "day": 16,
         "condition": null,
         "type": "visit",
-        "text": "Zase se potkáváme, Černý. Tentokrát trochu jiný případ, ale princip stejný — majetek musí být chráněn. Co jiného je zákon?\n\nŘekl bych, že jsme se mezitím poznali lépe. Obálka přišla, ne? Doufám, že jste ji otevřel."
+        "text": "Zase se potkáváme, pane doktore. Tentokrát trochu jiný případ, ale princip stejný — majetek musí být chráněn. Co jiného je zákon?\n\nŘekl bych, že jsme se mezitím poznali lépe. Obálka přišla, ne? Doufám, že jste ji otevřel."
       },
       {
         "day": 24,
         "condition": null,
         "type": "visit",
-        "text": "Naposledy sedím v téhle síni, Černý. Tentokrát máte důkazy. Zajímavé, jak se věci mění.\n\nAle víte, co se nezmění? To, co víte o sobě. A to, co o Vás ví Vlček. Zauvažujte."
+        "text": "Naposledy sedím v téhle síni, pane doktore. Tentokrát máte důkazy. Zajímavé, jak se věci mění.\n\nAle víte, co se nezmění? To, co víte o sobě. A to, co o Vás ví Vlček. Zauvažujte."
       }
     ]
   }

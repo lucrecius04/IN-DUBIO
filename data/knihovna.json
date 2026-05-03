@@ -1,9 +1,121 @@
 {
   "version": 2,
   "pribeh": {
-    "perex": "Krátká orientace pro hráče — bez spoilerů na konkrétní případy.",
-    "body": "Hrajete za soudce JUDr. Benedikta Vraného v první polovině třicátých let. Město ani stát nejsou pojmenovány doslova; jde o středoevropský rámec doby krize, nátlaků a státní mašinérie.\n\nVraný se vrací k přísaze u soudu s tíhou minulosti — rozhodnutí, která už jednou udělal, ho pronásledují. Každý den přináší nové spisy; večer a v neděli se otevírají osobní volby, které formují jeho nitro i okolí.\n\nCílem není „vyhrát“ — ale dohrát příběh s vědomím ceny, kterou za svá slova platí.",
-    "rozhodnuti": []
+    "perex": "Jste soudce Benedikt Vraný. Po roce přestávky vás vrátili do funkce — a vy víte, že to není laskavost.",
+    "body": "Krajský soud v Praze, březen 1931. Republika má deset let, hospodářská krize víc než rok a vám je čtyřiapadesát. Přestávce se říkalo zdravotní volno. Bylo to zdvořilejší než pravda.\n\nV roce 1927 jste podepsal rozsudek nad dělníkem Karlem Benešem. Důkazy byly slabé, tlak shora silný a vy jste byl tehdy nový člověk s ambicemi. Beneš zemřel ve vazbě dříve, než bylo rozhodnuto o odvolání. V roce 1930 vás odvolali — tiše, bez skandálu, s formulací o zdravotním stavu. Tři roky jste žil s tím, co jste podepsal. Teď vás vracejí zpátky, a to taky není náhoda.\n\nKaždý pracovní den přinesou dva spisy. Vynášíte rozsudky za dluh, výtržnost, podvod, sabotáž. Přicházejí dopisy — od ministra, od syna, od lidí, které neznáte. Matka leží v nemocnici. Město je v pohybu a ne dobrém.\n\nSpravedlnost se nedá vyhrát. Lze o ní ale věčně usilovat.",
+    "rozhodnuti": [
+      {
+        "id": "A",
+        "minDay": 4,
+        "titulek": "Dům a soud",
+        "text": "Dopis od doktora přišel ve čtvrtek. Čtyři sta korun do sedmnáctého — dvanáct dní. Na spořitelní knížce mám sto čtyřicet. Práce pokračuje, ale teď ji čtu jinak: každý spis má váhu a já poprvé počítám, co zbývá a co chybí."
+      },
+      {
+        "id": "B",
+        "minDay": 6,
+        "titulek": "Vizitka bez věty",
+        "text": "Na pondělní poště přišla obálka bez zpáteční adresy. Uvnitř jen vizitka: Viktor Haas, průmyslník, Bubeneč. Žádné vysvětlení. Vizitka leží na stole. Nevím ještě, co chce — ale vím, že ji neposlal náhodou."
+      },
+      {
+        "id": "C",
+        "minDay": 7,
+        "titulek": "Jméno v systému",
+        "text": "Jeden z případů tohoto týdne byl sledován — ne mnou. Vlček to napsal dopředu jako informaci o počasí. Začínám rozumět, co znamená být jménem v systému, ne jen hlasem za stolem."
+      },
+      {
+        "id": "D",
+        "minDay": 8,
+        "titulek": "Dopis bez razítka",
+        "text": "Vlčkův dopis tentokrát neobsahoval pochvalu. Jen očekávání — formulované tak, aby bylo jasné, že jde o příkaz. Přidal jsem ho ke spisům. Může se hodit."
+      },
+      {
+        "id": "E1",
+        "minDay": 9,
+        "exclusiveGroup": "E",
+        "condition": "benes_pravda == prijal",
+        "titulek": "Starý muž a jeho syn",
+        "text": "Přišel starý muž. Jmenuje se Alois Beneš a jeho syn Karel zemřel ve vazbě před čtyřmi lety — v případu, který jsem soudil já. Vyslechl jsem ho. To, co řekl, nejde vzít zpět. A já ho nechci brát zpět."
+      },
+      {
+        "id": "E2",
+        "minDay": 9,
+        "exclusiveGroup": "E",
+        "condition": "benes_pravda == odmitl",
+        "titulek": "Zavřené dveře",
+        "text": "Přišel starý muž. Jmenoval se Beneš a chtěl mluvit o svém synu. Odmítl jsem ho — případ byl pravomocně uzavřen. Odešel bez scény. To mě znepokojuje víc, než kdyby křičel."
+      },
+      {
+        "id": "F",
+        "minDay": 10,
+        "titulek": "Minulost jako spis",
+        "text": "Jeden ze dnešních případů nebyl jako ostatní. Šlo o minulost — mou nebo cizí, to ještě nevím přesně. V záznamu bylo jméno, které znám z jiného kontextu. Minulost se vrací pomaleji, než člověk čeká. Ale vrátí se vždy."
+      },
+      {
+        "id": "G1",
+        "minDay": 12,
+        "exclusiveGroup": "G",
+        "condition": "haas_kontakt == odmitnut",
+        "titulek": "Odmítnutá obálka",
+        "text": "Haas přišel osobně. Nabídl peníze — tři sta korun, žádná smlouva, žádný podpis. Odmítl jsem. Nevím ještě, jak zaplatím operaci. Ale tuto cenu platit nechci."
+      },
+      {
+        "id": "G2",
+        "minDay": 12,
+        "exclusiveGroup": "G",
+        "condition": "haas_kontakt == zavazany",
+        "titulek": "Tři sta korun",
+        "text": "Haas přišel a odešel. Vzal jsem obálku. Řekl jsem si, že matka je důležitější než čistý stůl. Možná. Nebo si to jen říkám, abych spal."
+      },
+      {
+        "id": "G3",
+        "minDay": 12,
+        "exclusiveGroup": "G",
+        "condition": "osobni_cena == nerozhodl",
+        "titulek": "Otevřená zásuvka",
+        "text": "Haas přišel a odešel. Termín operace se blíží a v zásuvce je stále mezera mezi tím, co mám a co potřebuji. Ještě jsem se nerozhodl. To je samo o sobě rozhodnutí."
+      },
+      {
+        "id": "H1",
+        "minDay": 12,
+        "condition": "flag_rodny_list_pouzit == true",
+        "titulek": "Nástroj nebo člověk",
+        "text": "Závadová přinesla věci, které jsem nečekal — dokumenty, jméno, spojení, která nedávají smysl dohromady a přitom dávají. Nevím ještě, jestli mě chce zachránit nebo použít. Možná obojí."
+      },
+      {
+        "id": "H2",
+        "minDay": 12,
+        "titulek": "Zrcadlo",
+        "text": "Závadová řekla větu, která mi nejde z hlavy: někdo mohl tehdy pomoct a nepomohl. Nevím jistě, jestli mluvila o mně. Pravděpodobně ano."
+      },
+      {
+        "id": "I1",
+        "minDay": 13,
+        "exclusiveGroup": "I",
+        "condition": "karas_odmitl_odejit == true",
+        "titulek": "Karas prosil",
+        "text": "Karas přišel bez telefonátu a sedl si bez vyzvání. Řekl: odejdi, dokud ještě odejít můžeš. Sedm let ho znám — a nikdy mě o nic neprosil. Dnes prosil. Zůstal jsem."
+      },
+      {
+        "id": "I2",
+        "minDay": 13,
+        "exclusiveGroup": "I",
+        "condition": "karas_poslechl_odejit == true",
+        "titulek": "Moje jméno, dvakrát",
+        "text": "Karas přišel a řekl mi věci, které přátelé říkají pozdě nebo vůbec. Moje jméno je dvakrát v memorandu na ministerstvu. On to věděl dřív, než přišel. Nevím, proč přišel teď — ale přišel."
+      },
+      {
+        "id": "J",
+        "minDay": 14,
+        "titulek": "Poslední týden",
+        "text": "Zbývají poslední dny. Martin píše, že přijede. Na stole leží spisy, které ještě musím podepsat. Podepisuji. Svět za oknem vypadá stejně jako první den — jen já ho čtu jinak."
+      },
+      {
+        "id": "K",
+        "minDay": 15,
+        "titulek": "Poslední případ",
+        "text": "Poslední den. Jeden spis. Celý měsíc se scvrkl na tuto lavici a tuto složku. Otázka, se kterou jsem začal — zda může být jeden člověk spravedlivý v nespravedlivém světě — zůstává bez odpovědi. Možná odpověď není v rozsudku. Možná je v tom, jak jsem se k němu dostal."
+      }
+    ]
   },
   "pravidla": {
     "perex": "Zkrácený přehled mechanismů — podrobnosti zůstávají ve hře a v nástrojích (zápisník, spisy).",
@@ -71,19 +183,284 @@
     "perex": "Krátká hesla ke jménům a místům z reálného kontextu doby — ne k herním mechanismům. Ve spisech jsou některá slova prokliknutelná (otevřou příslušné heslo).",
     "hesla": [
       {
-        "id": "kramar",
-        "title": "Kramář",
-        "body": "Politická postava první republiky — v našem fiktivním městě může být zmíněna jako reference na národní politiku a rozpor mezi centrem a periferií. Nemusí přímo vstoupit do děje."
+        "id": "akademicke_spolky",
+        "title": "Akademické spolky",
+        "body": "Na pražských univerzitách fungovaly desítky studentských spolků — národnostních, odborových, politických i konfesijních. Členství mohlo mladému právníkovi otevřít dveře k prvnímu místu u soudu, ale také ho kompromitovat, pokud spolek překročil zákon na ochranu republiky. S prohlubující se krizí kolem roku 1931 se univerzitní prostředí radikalizovalo: studenti bez vyhlídek na práci byli vnímavější k radikálním řešením zleva i zprava."
       },
       {
-        "id": "zizkov",
-        "title": "Žižkov",
-        "body": "Pražská čtvrť známá hustou zástavbou a dělnickým charakterem — ve hře slouží jako obecný symbol městského lidu, šumu a sociálního napětí, nikoli jako přesná geografická mapa."
+        "id": "antisemitismus",
+        "title": "Antisemitismus",
+        "body": "Meziválečné Československo patřilo v rámci střední Evropy k tolerantnějším státům — ústava zaručovala rovnost bez ohledu na vyznání. V praxi ale protižidovské nálady nevymizely: existovaly letáky, karikaturní plakáty, výjimečně i rozbíjení výloh. S hospodářskou krizí zesílily hlasy obviňující židovské obchodníky z „lichvy\", a to jak z řad krajní pravice, tak z části venkovského obyvatelstva postiženého dluhy. U soudu se antisemitské motivy mohly objevit jako pozadí výtržností nebo šíření protistátních tiskovin."
+      },
+      {
+        "id": "benes_a_syn",
+        "title": "Beneš a syn",
+        "body": "Označení „a syn\" bylo v meziválečném Československu běžnou obchodní firmou rodinných živností — od řeznických krámů po menší továrny. Právně šlo zpravidla o veřejnou obchodní společnost, kde otec i syn ručili celým majetkem. S nástupem krize po roce 1929 řada takových podniků krachovala a exekuce na živnost znamenala konec celé rodiny. Ve hře odkazuje jméno Beneš na příběhovou linii spojenou s odsouzením Karla Beneše."
+      },
+      {
+        "id": "bubenec",
+        "title": "Bubeneč",
+        "body": "Bubeneč byl na přelomu dvacátých a třicátých let jednou z lepších pražských adres — vilová čtvrť se zahraničními vyslanectvími, širokými ulicemi a blízkostí Stromovky. Na rozdíl od dělnického Žižkova nebo průmyslové Libně tu krizi člověk pociťoval zatím jen zprostředkovaně — přes noviny a přes služebné, kterým už nebylo čím přidat. Dodnes patří Bubeneč k nejdražším rezidenčním čtvrtím Prahy."
+      },
+      {
+        "id": "cizinecke_oddeleni",
+        "title": "Cizinecké oddělení",
+        "body": "Cizinecká oddělení policejních ředitelství evidovala pobyt cizích státních příslušníků a rozhodovala o jejich vyhoštění. Povolení k pobytu se muselo pravidelně obnovovat a úředník mohl žádost zamítnout bez udání důvodu. Pro cizince bez řádných dokladů — uprchlíky, lidi s pasy zaniklých států — znamenal kontakt s touto institucí existenční nejistotu. Zákon na ochranu republiky navíc umožňoval urychleně vyhostit cizince podezřelé z protistátní činnosti."
+      },
+      {
+        "id": "dedictvi",
+        "title": "Dědictví",
+        "body": "Dědické řízení se v meziválečném Československu řídilo stále platným rakouským obecným zákoníkem občanským z roku 1811. O pozůstalosti rozhodoval soud za přítomnosti notáře — proces mohl trvat měsíce, zvláště pokud se dědicové hádali nebo byl majetek zatížen dluhy. V době krize bylo dědictví po živnostníkovi nebo rolníkovi často spíše břemenem než ziskem: zdědil se i dluh, exekuce, nesplacená hypotéka."
+      },
+      {
+        "id": "dnsap",
+        "title": "DNSAP",
+        "body": "Deutsche Nationalsozialistische Arbeiterpartei byla sudetoněmecká strana navazující ideologicky na hitlerovo hnutí v Německu, aktivní v Československu od počátku dvacátých let. Působila zejména v průmyslových oblastech podél hranic, kde hospodářská krize zasáhla německé dělníky obzvláště tvrdě. Československé úřady stranu sledovaly a v roce 1933 ji zakázaly pro protistátní činnost; na její místo nastoupila Henleinova Sudetendeutsche Partei. V březnu 1931 šlo o organizaci legální, ale pod rostoucím dohledem — a přesně v té době přitahovala frustrované voliče, kteří ještě před třemi lety volili sociální demokraty."
+      },
+      {
+        "id": "druzstvo_lipa",
+        "title": "Družstvo Lípa",
+        "body": "Lípa — česky lipa, symbol národní identity — bylo jedno z nejrozšířenějších jmen spotřebních a výrobních družstev v Čechách a na Moravě. Družstevní hnutí zažívalo rozkvět od přelomu století: sdružovalo rolníky, řemeslníky i dělníky, kteří společně nakupovali suroviny, prodávali úrodu nebo provozovali konzum. S krizí po roce 1929 se mnohá menší družstva dostala do platební neschopnosti — dlužila záložnám, členové přestávali platit příspěvky. Ve hře slouží fiktivní Družstvo Lípa jako příklad instituce na pomezí spolku a podniku, jejíž vnitřní poměry byly jen těžko průhledné zvenčí."
+      },
+      {
+        "id": "exekuce",
+        "title": "Exekuce",
+        "body": "Exekuce — soudní vymáhání dluhu zabavením a prodejem majetku — patřila v letech 1930–1933 k nejčastějším životním pohromám české a moravské vesnice. Exekutor přišel s příkazem, označil nábytek, dobytek nebo stroje, a pokud dlužník nezaplatil, vše se vydražilo — často za zlomek hodnoty. Stát sice vydával dočasná nařízení o odkladu exekucí, ale jejich dosah byl omezený. Pro soudce znamenaly spisy s exekučními případy každodenní konfrontaci s tím, co abstraktní paragraf udělá s konkrétní rodinou."
+      },
+      {
+        "id": "geodesia_praha",
+        "title": "Geodesia Praha",
+        "body": "Zeměměřičské a geodetické kanceláře zajišťovaly v meziválečném Československu vytyčování hranic pozemků, zpracování katastrálních map a znalecké posudky pro soudy i stavební úřady. Jejich práce byla klíčová při sporech o vlastnictví půdy — přesnost zaměření mohla rozhodovat o desítkách centimetrů, které měnily celý rozsudek. Katastr nemovitostí zdědilo Československo z rakouské správy a postupně ho modernizovalo; přesto byly na venkově stále běžné hraniční kameny starší než republika sama. Ve hře odkazuje geodetická firma na kontext pozemkových sporů, kde technický posudek vstupuje do právního řízení jako zdánlivě neutrální autorita."
+      },
+      {
+        "id": "haas_und_sohne",
+        "title": "Haas und Söhne",
+        "body": "Německy psané obchodní firmy typu „und Söhne\" (a synové) byly v pražském a sudetoněmeckém podnikatelském prostředí běžné ještě hluboko do třicátých let — odrážely skutečnost, že velká část průmyslu v Čechách vznikla za Rakouska-Uherska v německy mluvícím prostředí. Firma s takovým názvem mohla být ryze česká, ryze německá nebo obojí najednou: jazyk obchodního jména nemusel odpovídat národnosti majitele. Ve hře je Haas und Söhne průmyslový podnik spjatý s postavou Viktora Haase — jednoho z neviditelných ekonomických center příběhu."
+      },
+      {
+        "id": "hartmann_ries",
+        "title": "Hartmann & Ries",
+        "body": "Obchodní partnerství s německy znějícími příjmeními bylo v pražském a středočeském průmyslu běžné — odráželo strukturu podnikatelské vrstvy zděděnou z Rakouska-Uherska, kde němčina dlouho dominovala obchodu a bankovnictví. Firmy tohoto typu podnikaly v pojišťovnictví, velkoobchodu i lehkém průmyslu a jejich sítě přesahovaly hranice nástupnických států. S krizí po roce 1929 se mnohé z nich ocitly pod tlakem věřitelů nebo v rukou likvidátorů. Ve hře slouží název jako odkaz na konkrétní obchodní kontext případu."
+      },
+      {
+        "id": "holesovice",
+        "title": "Holešovice",
+        "body": "Holešovice byly na přelomu dvacátých a třicátých let průmyslovou a dělnickou čtvrtí na severním břehu Vltavského ohbí — sídlily tu mlýny, skladiště, tiskárny a menší továrny. Zároveň tu stálo pražské výstaviště, které hostilo v roce 1928 velkou Výstavu soudobé kultury. Sociálně šlo o čtvrť s hustou zástavbou nájemních domů, kde se dělnické rodiny tísnily v malých bytech a politická agitace — komunistická i fašistická — nacházela snadné posluchače. Dnes jsou Holešovice jednou z nejvýrazněji proměněných čtvrtí Prahy."
+      },
+      {
+        "id": "horomerice",
+        "title": "Horoměřice",
+        "body": "Horoměřice byly v meziválečném období malou zemědělskou obcí na severozápadním okraji pražského okresu, s několika statky, hospodou a obecní školou. Takové obce závisely na cenách obilí a dobytka, které s krizí padaly, zatímco dluhy u záložen zůstávaly. Exekuce na rolnický majetek byly v okolí Prahy ve třicátých letech běžné a někdy přitáhly pozornost tisku. Ve hře může podobná venkovská lokalita figurovat jako místo původu obžalovaného nebo jako adresa v pozemkovém sporu."
+      },
+      {
+        "id": "hospodarska_krize",
+        "title": "Hospodářská krize",
+        "body": "Velká hospodářská krize zasáhla Československo se zpožděním oproti USA a Německu — ještě v roce 1930 se hovořilo o „mírném dopadu\". V roce 1931 se situace rapidně zhoršila: nezaměstnanost vyskočila z desítek tisíc na stovky tisíc, krachující banky stáhly úvěry živnostníkům a záložny přestaly vyplácet vklady. Krach vídeňské Creditanstalt v květnu 1931 zasáhl i česky provázané finanční domy. Na ulicích přibyly fronty u zprostředkovatelen práce, prodej snubních prstýnků a žebračenky — poukázky na jídlo pro ty, kteří nevyhovovali podmínkám odborového pojištění."
+      },
+      {
+        "id": "karlin",
+        "title": "Karlín",
+        "body": "Karlín byl jednou z nejstarších průmyslových čtvrtí Prahy — továrny tu stály od první poloviny devatenáctého století a dělnické nájemní domy se táhly ulicemi s hustotou, jaká v centru města nebyla možná. V roce 1931 tu žili strojní dělníci, skladníci, podomní obchodníci a nezaměstnaní, jejichž situaci zhoršoval každý nový týden krize. Politicky bylo Karlín tradičně levicové; KSČ tu měla silnou základnu a agitační plakáty se střídaly na každém rohu. Dnes je čtvrť proslulá jako příklad rychlé gentrifikace — po povodních v roce 2002 ji postupně proměnila střední třída a developeři."
+      },
+      {
+        "id": "kramar",
+        "title": "Karel Kramář",
+        "body": "Karel Kramář byl první předseda vlády Československé republiky a vůdce mladočeské, později národnědemokratické strany — politik, jehož kariéra sahala ještě do dob Rakouska-Uherska, kde byl za války odsouzen za velezradu a čekal na popravu. Po roce 1918 representoval konzervativní, protilevicové a výrazně protiruské křídlo české politiky; s Masarykem a Benešem se rozcházel v zahraniční i sociální politice. V roce 1931 byl Kramář již starcem na okraji aktivní politiky, ale jeho jméno zůstávalo symbolem určitého typu vlastenectví — slavnostního, měšťanského, hluboce nedůvěřivého vůči každému kompromisu s levicí."
+      },
+      {
+        "id": "lekopis",
+        "title": "Lékopis",
+        "body": "Lékopis — oficálně Pharmacopoea Bohemoslovaca — byl závazný seznam léčiv, jejich složení, čistoty a způsobu přípravy, vydávaný státem a závazný pro lékárny i výrobce. V meziválečném Československu platilo, že lékárník směl vydávat jen přípravky odpovídající lékopisným normám; odchylka mohla být základem trestního oznámení za ředění nebo falšování léčiv. Pro soudy šlo o znalecky náročnou oblast — posouzení, zda konkrétní přípravek normě odpovídal, vyžadovalo chemický rozbor a odborného svědka."
+      },
+      {
+        "id": "leseni_predpisy",
+        "title": "Lešení — předpisy",
+        "body": "Bezpečnostní předpisy pro stavební lešení existovaly v meziválečném Československu v podobě ministerských výnosů a živnostenských norem, ale jejich dodržování na menších stavbách bylo sporadické. Stavební dělníci pracovali bez systematické ochrany — pád z lešení byl jednou z nejčastějších příčin pracovních úrazů. Při úrazech s trvalými následky nebo smrtí se otázka odpovědnosti dostala k soudu: klíčové bylo prokázat, zda šlo o chybu dělníka, nedbalost mistra, nebo závadu materiálu, který dodal stavitel."
+      },
+      {
+        "id": "masarykovo_nadrazi",
+        "title": "Masarykovo nádraží",
+        "body": "Nejstarší pražské nádraží — původně Státní nádraží, za Rakouska zvané Severní — dostalo v meziválečném období lidové označení Masarykovo, i když oficální přejmenování proběhlo až později. Sloužilo především regionálním a podřízeným spojům; rychlíky na Brno nebo Vídeň odjížděly z Wilsonova nádraží. V roce 1931 bylo prostředím přeplněným cestujícími i těmi, kteří nikam neodjížděli — nezaměstnaní přespávající na lavičkách patřili k obrazu každého většího nádraží doby. Ve hře může figurovat jako místo odjezdu, útěku nebo čekání."
+      },
+      {
+        "id": "ministerstvo_vnitra",
+        "title": "Ministerstvo vnitra",
+        "body": "Ministerstvo vnitra řídilo státní policii, četnické sbory, evidenci obyvatelstva a cizinecké záležitosti — bylo tedy institucí, skrze níž stát nejvíce zasahoval do každodenního života. Za krize přibyla agenda spojená s politickým dohledem: sledování komunistických a fašistických organizací, konfiskace tiskovin, povolování nebo zakazování veřejných shromáždění. Zákon na ochranu republiky z roku 1923 posiloval pravomoci bezpečnostních složek vůči podezřelým z rozvratu; přesné vymezení vůči soudní moci záviselo na praxi a na konkrétním řízení. Ve spisech se ministerstvo objevuje například jako zaměstnavatel svědků u politických kauz."
+      },
+      {
+        "id": "nemecka_mensina",
+        "title": "Německá menšina",
+        "body": "V Praze žilo kolem roku 1931 přibližně 35 000 až 40 000 Němců — asi pět procent obyvatel — s vlastními školami, novinami, spolky a divadlem. Vztahy s českou majoritou byly každodenní realitou spíše než programovým konfliktem: smíšené sousedství, dvojjazyčné úřední formuláře, obchody s českou i německou vývěsní tabulí. Vyhrocení přicházelo postupně — s krizí, s Hitlerovým nástupem v Německu roku 1933 a s rostoucím vlivem nacionalistických organizací v pohraničí. V březnu 1931 bylo napětí přítomné, ale otevřená nepřátelství ještě nebyla normou."
+      },
+      {
+        "id": "nemocenske_pojisteni",
+        "title": "Nemocenské pojištění",
+        "body": "Československo po roce 1918 postupně budovalo povinné nemocenské pojištění podle vzoru z rakouské éry: odvody zaměstnavatele a zaměstnance tvořily fond, z nějž se vyplácela podpora při pracovní neschopnosti a částečně léčení. Zákonodárství se v první republice měnilo — rozsah nároku, délka podpory i role lékaře se lišily podle typu zaměstnání. Plné krytí se týkalo hlavně organizovaných dělníků ve fabrikách a u státu; živnostníci, zemědělští námezdníci a hospodyně často zůstávali mimo systém nebo měli slabší ochranu. V první polovině třicátých let krize snižovala výdělky i odvody — a s tím i prostředky na lékaře, které pojistovka vždy nehradila. Spory o pravost pracovní neschopnosti nebo o závodní posudek patřily mezi časté soudní tření mezi dělníkem, lékařem a podnikem."
+      },
+      {
+        "id": "nedbalost_trestni",
+        "title": "Nedbalost trestní",
+        "body": "Trestní zákon z roku 1852, platný v Československu až do roku 1950, rozlišoval mezi úmyslným činem a činem spáchaným z nedbalosti — vědomé riskování následku bylo posuzováno přísněji než prostá nepozornost. V praxi bylo dokazování nedbalosti komplikované: znalecký posudek musel prokázat, že obviněný mohl a měl předvídat škodlivý následek. Soudce měl při hodnocení nedbalosti značný prostor pro uvážení, což z těchto případů dělalo jedny z nejnáročnějších — a nejspornějších."
+      },
+      {
+        "id": "narodni_obce_fasisticke",
+        "title": "Národní obec fašistická",
+        "body": "Národní obec fašistická vznikla v roce 1926 pod vedením generála Radoly Gajdy a představovala nejviditelnější českou fašistickou organizaci meziválečné doby. Imitovala italský fašismus v rétorice i uniformách, ale zůstávala na okraji politického spektra — v parlamentních volbách nikdy výrazně neuspěla. Hlasitou součástí jejího programu byl antisemitismus a odpor k „marxistickému rozvratu\". Policie ji sledovala a část její agitace narážela na zákon na ochranu republiky; v roce 1933 se pokus o puč v Libeňských kasárnách stal jejím politickým koncem."
+      },
+      {
+        "id": "nsdap",
+        "title": "NSDAP",
+        "body": "Nationalsozialistische Deutsche Arbeiterpartei — Hitlerova strana — se dostala k moci v Německu v lednu 1933, ale v březnu 1931, kdy se odehrává hra, šlo stále o radikální opoziční stranu s masovou podporou, nikoli o vládu. Pro Československo byl německý vývoj sledován s narůstající úzkostí: sudetoněmečtí sympatizanti udržovali kontakty přes hranice a DNSAP fungovala jako místní odnož téhož hnutí. Tisk v Praze přinášel zprávy o Hitlerových projevech — ale málokdo v březnu 1931 věřil, že o dva roky bude kancléřem."
+      },
+      {
+        "id": "obchodni_komora_praha",
+        "title": "Obchodní komora Praha",
+        "body": "Obchodní a živnostenské komory byly v Československu povinné samosprávné instituce sdružující podnikatele — členství nebylo dobrovolné, příspěvky byly povinné. Pražská komora vydávala stanoviska k hospodářské legislativě, zprostředkovávala obchodní spory a vystavovala osvědčení o zachovalosti nutná pro řadu živnostenských povolení. V době krize přibývala agenda spojená s úpadky a likvidacemi; komora zároveň lobbovala u ministerstva za odklad exekucí a úvěrovou pomoc. Znalecký posudek obchodní komory mohl v soudním spisu figurovat jako klíčový doklad o tržní hodnotě nebo zvyklosti oboru."
+      },
+      {
+        "id": "obecni_dum",
+        "title": "Obecní dům",
+        "body": "Obecní dům na náměstí Republiky — dokončený roku 1912 — byl jednou z nejreprezentativnějších budov Prahy, sloužící zároveň jako koncertní sál, restaurace, kavárna a místo společenských akcí. Ve dvacátých a třicátých letech se tu konaly plesy, přednášky, politické schůze i obchodní bankety; v Smetanově sále hrál filharmonický orchestr. Pro měšťanstvo šlo o prostor, kde se uzavíraly kontakty i obchody. Hospodářská krize snížila počet velkých společenských akcí, ale Obecní dům zůstal symbolem pražské reprezentace — místem, kam se chodilo, když bylo třeba ukázat, že se ještě stojí."
+      },
+      {
+        "id": "orech_u_prahy",
+        "title": "Ořech u Prahy",
+        "body": "Ořech byla malá obec jihozápadně od Prahy, tehdy ještě za hranicí města — zemědělská zástavba s několika statky, cihelnou a zastávkou úzkorozchodné dráhy. Blízkost metropole znamenala, že část obyvatel dojížděla za prací do Prahy, zatímco jiní žili ze zemědělství nebo drobného řemesla. Podobné obce v okolí Prahy byly v krizi zvláště zranitelné: příliš malé na to, aby měly vlastní záchrannou síť, příliš blízko města, aby jim stát věnoval pozornost jako vzdálenému venkovu."
+      },
+      {
+        "id": "pojistovna_slavia",
+        "title": "Pojišťovna Slavia",
+        "body": "Pojišťovna Slavia byla jednou z největších a nejstarších českých pojišťoven — zhruba od devadesátých let devatenáctého století patřila k pilířům českého finančního světa. V meziválečném období nabízela životní, majetkové i úrazové pojištění a měla pobočky po celých Čechách a Moravě. V době krize přibývaly pojistné podvody — žhářství zkrachovalých živnostníků nebo nafouknuté škody po vloupání — a pojišťovna se stávala pravidelným účastníkem soudních sporů. Zároveň platila jako solidní instituce, jejíž policie mohla pojistku přijmout jako doklad finanční situace pojistníka."
+      },
+      {
+        "id": "politicka_bezpecnost",
+        "title": "Politická bezpečnost",
+        "body": "Politická bezpečnost — oddělení státní policie zaměřené na dohled nad politickými organizacemi a osobami — fungovala v meziválečném Československu jako specializovaná složka pražského policejního ředitelství. Sledovala komunistické buňky, fašistické organizace, německé nacionalistické spolky i podezřelé cizince; pořizovala záznamy, vedla konfidenty a předávala podněty státnímu zastupitelství. Zákon na ochranu republiky z roku 1923 jí dával právní rámec, ale hranice mezi oprávněným dohledem a politicky motivovaným pronásledováním byla v praxi tenká a závisela na konkrétním úředníkovi."
+      },
+      {
+        "id": "postaveni_zen",
+        "title": "Postavení žen",
+        "body": "Československo patřilo po roce 1918 k průkopníkům ženských práv — ženy získaly volební právo mezi prvními v Evropě a přístup na univerzity nebyl formálně omezen. V praxi ale vdaná žena stále potřebovala manželův souhlas s řadou právních úkonů a mzda ženy-úřednice byla systematicky nižší než mužova za tutéž práci. Krize po roce 1929 situaci paradoxně proměnila: tam, kde muž přišel o práci, šla žena hledat cokoli — do továrny, k cizí domácnosti, za pult. Žena-právnička nebo novinářka zůstávala výjimkou, která budila pozornost."
+      },
+      {
+        "id": "pracovni_urazy",
+        "title": "Pracovní úrazy",
+        "body": "Úrazové pojištění dělníků existovalo v Československu od dob Rakouska-Uherska a spravoval ho systém pojišťovacích ústavů. V praxi ale odškodnění záviselo na tom, zda byl úraz řádně nahlášen, zda zaměstnavatel platil příspěvky a zda posudkový lékař uznal příčinnou souvislost. Stavební dělníci, horníci a tovární dělníci byli nejvíce ohrožení — pády, stroje, otrava — a jejich spory s pojišťovnami nebo zaměstnavateli se pravidelně dostávaly před soud. V době krize zaměstnavatelé na pojistném šetřili a poškození dělníci měli ztíženou pozici: právní zastoupení bylo drahé a znalecký posudek mohl být objednán kteroukoli stranou."
+      },
+      {
+        "id": "rolnicke_zadluzeni",
+        "title": "Rolnické zadlužení",
+        "body": "Zemědělská krize předcházela té průmyslové: ceny obilí a dobytka padaly od druhé poloviny dvacátých let, zatímco splátky hypotéky nebo záložního úvěru zůstávaly stejné. Rolník, který si půjčil na koupi pole nebo stroje v době prosperity, zjistil kolem roku 1930, že výnos z úrody nestačí ani na úroky. Exekuce na hospodářský inventář nebo přímo na usedlost byly ve venkovských okresech kolem Prahy i na Moravě každodenní realitou. Stát vydával dílčí opatření — odklady, úvěrová moratoria — ale systémové řešení nepřišlo a počet zadlužených rolníků dál rostl."
+      },
+      {
+        "id": "slogan_jeden_narod",
+        "title": "„Jeden národ — jedno právo\"",
+        "body": "Na německých politických letácích a plakátech sudetoněmeckých radikálů se kolem roku 1930 často objevovalo heslo v češtině přibližně „Jeden národ — jedno právo\", ideologicky příbuzné německému Ein Volk, ein Recht. Směřovalo k požadavku jednotného „národního\" práva v územích s německým obyvatelstvem a bylo snadno zaměnitelné s legální knižní reklamou — právě o to šlo i v policejních sporech o výklad listin. Československé úřady takové materiály sledovaly v souvislosti se zákonem na ochranu republiky a s činností DNSAP; strana byla v roce 1933 rozpuštěna, v době hry (březen 1931) ještě legální. Heslo nemělo nic společného s oficiální československou doktrínou čechoslovakismu — šlo o konkurenční, německonacionální rétoriku."
       },
       {
         "id": "smichov",
         "title": "Smíchov",
-        "body": "Pražská čtvrť na levém břehu Vltavy — v době první republiky průmysl, závody, dělnické kolonie i menší podniky (např. tiskárny). Ve hře značí spíš průmyslový okraj města než turistické centrum."
+        "body": "Smíchov na levém břehu Vltavy byl v meziválečném období průmyslovou i měšťanskou čtvrtí zároveň — velkopivovary, strojírny a plynárna sousedily s obchodní třídou Anděla a solidními nájemními domy. Žilo tu početné dělnictvo i střední vrstva; národnostně šlo o smíšené prostředí s výraznější německou a židovskou komunitou než v jiných čtvrtích. Politicky byl Smíchov pestřejší než čistě dělnický Žižkov — vedle sociálních demokratů tu měly zázemí i křesťanské odbory a živnostenské strany."
+      },
+      {
+        "id": "socialni_demokracie",
+        "title": "Sociální demokracie",
+        "body": "Československá sociálně demokratická strana dělnická byla jednou z nejsilnějších politických sil první republiky — v parlamentních volbách pravidelně získávala přes deset procent hlasů a podílela se na vládních koalicích. Strana stála za zavedením osmihodinové pracovní doby a nemocenského pojištění, ale hospodářská krize ji stavěla před nepříjemnou otázku: jak hájit dělníky, když vláda škrtá a zaměstnavatelé propouštějí. Část členské základny odešla ke komunistům, část k agrárníkům; strana zůstávala silnou, ale pod tlakem z obou stran. Odborové svazy spjaté se sociální demokracií spravovaly podpůrné pokladny — a v roce 1931 byly tyto pokladny přeplněné žadateli."
+      },
+      {
+        "id": "socialni_pece",
+        "title": "Sociální péče",
+        "body": "Sociální péče v meziválečném Československu byla rozdělena mezi stát, obce a dobrovolné spolky — systém bez centrální koordinace, který v době klidu fungoval, ale pod tlakem krize praskal. Obce vydávaly žebračenky a provozovaly lidové kuchyně; spolky jako Červený kříž nebo církevní charity zajišťovaly noclehárenky a opatrovny. Státní podpora v nezaměstnanosti existovala, ale jen pro odborově organizované dělníky — ostatní záviseli na obecní laskavosti nebo rodině. V roce 1931 byly obecní pokladny ve velkých městech na hranici únosnosti."
+      },
+      {
+        "id": "statni_drahy",
+        "title": "Státní dráhy",
+        "body": "Československé státní dráhy — ČSD — převzaly po roce 1918 síť z Rakouska-Uherska a postupně ji sjednocovaly a modernizovaly. Vlak byl hlavním dopravním prostředkem na střední a delší vzdálenosti: spojení Praha–Brno trvalo čtyři až pět hodin, Praha–Bratislava přes noc. Jízdné bylo dostupné i pro dělníky a jízdní řád byl v Praze k dostání v každém trafice. V době krize šetřily dráhy na topení ve vagónech a odkladem oprav — a zároveň přepravovaly stále více lidí hledajících práci v jiném kraji."
+      },
+      {
+        "id": "statni_policie_praha",
+        "title": "Státní policie Praha",
+        "body": "Pražské policejní ředitelství bylo jednou z největších a nejlépe vybavených policejních institucí v republice — spravovalo uniformovanou stráž, kriminální oddělení i specializované složky pro politickou bezpečnost a cizineckou agendu. V roce 1931 přibývalo práce na všech frontách: demonstrace, kapesní krádeže z nouze, politické šarvátky mezi komunisty a fašisty. Spolupráce mezi policií a soudem probíhala skrze státní zastupitelství; soudce jako Ben přicházel do styku s policejními spisy jako hotovým podkladem, jehož kvalita se velmi lišila případ od případu."
+      },
+      {
+        "id": "stary_vek",
+        "title": "Stáří a důchod",
+        "body": "Důchodové pojištění dělníků zavedlo Československo v roce 1924, ale vyplácené částky byly nízké a nárok měli jen pojištění zaměstnanci — živnostníci, rolníci a ženy v domácnosti zůstávali bez nároku. Stáří bez rodinného zázemí znamenalo v praxi chudobu nebo závislost na obecní podpoře. Státní úředníci a soudci měli nárok na výslužné, které jim zajišťovalo důstojný příjem — ale i ten mohl být krácen, jak Ben ve hře zakusil po roce 1927. Stařecké chudobince provozovaly obce a církve; čekací doby byly dlouhé."
+      },
+      {
+        "id": "stavebni_zakon",
+        "title": "Stavební zákon",
+        "body": "Stavební řád platil v Čechách a na Moravě v podobě zemských zákonů zděděných z Rakouska — sjednocení do jednotné celostátní normy proběhlo v meziválečném období jen částečně. Stavební povolení vydávaly obecní nebo okresní úřady; dozor nad prováděním stavby byl v menších obcích minimální. Spory o to, zda stavba odpovídá povolení, zda byl respektován souhlas souseda nebo zda byly dodrženy bezpečnostní předpisy, se pravidelně dostávaly k soudu — a znalecký posudek stavebního odborníka byl klíčovým, ale drahým důkazním prostředkem."
+      },
+      {
+        "id": "unetice",
+        "title": "Únětice",
+        "body": "Únětice byla malá zemědělská obec severozápadně od Prahy, v meziválečném období součást pražského politického okresu. Žili tu převážně rolníci a drobní řemeslníci závislí na pražském trhu se zemědělskými produkty. Obec je archeologicky proslulá nálezem bronzového pokladu z doby bronzové, podle nějž se jmenuje celá středoevropská archeologická kultura — ale pro obyvatele třicátých let šlo prostě o venkov s hospodou, školou a starostou řešícím obecní dluhy. Ve hře může podobná lokalita figurovat jako místo původu obžalovaného nebo jako adresa pozemkového sporu."
+      },
+      {
+        "id": "uprchlici",
+        "title": "Uprchlíci",
+        "body": "Meziválečné Československo přijalo vlny uprchlíků z několika směrů — ruští bělogvardějci a emigranti po bolševické revoluci, Arméni prchající před tureckými masakry, později Maďaři po Horthyho převratu. Praha se stala jedním z center ruské emigrace, s vlastními novinami, spolky a pravoslavnou komunitou. Právní postavení uprchlíků bylo nejisté: mezinárodní Nansenův pas zavedený v roce 1922 pomáhal části z nich, ale pobyt závisel na dobré vůli cizineckého oddělení a na tom, zda dotyčný nepřilákal pozornost politické bezpečnosti."
+      },
+      {
+        "id": "urad_ochrany_nemcu_zahranici",
+        "title": "Úřad ochrany Němců v zahraničí",
+        "body": "Různé organizace sdružující zájmy zahraničních Němců — mezi nimi berlínský Verein für das Deutschtum im Ausland nebo Deutsches Ausland-Institut ve Stuttgartu — sledovaly v meziválečném období situaci německých menšin v nástupnických státech Rakouska-Uherska. Jejich činnost zahrnovala kulturní podporu, právní poradenství i sběr informací o postavení menšin; pro Prahu a sudetoněmecké oblasti šlo o citlivé téma, protože tyto instituce byly vnímány jako prodloužená ruka německé zahraniční politiky. Československé úřady jejich aktivity sledovaly a kontakty místních Němců s takovými organizacemi mohly skončit jako podnět pro politickou bezpečnost."
+      },
+      {
+        "id": "vinohrady",
+        "title": "Vinohrady",
+        "body": "Královské Vinohrady byly na přelomu dvacátých a třicátých let jednou z nejprestižnějších pražských adres — solidní nájemní domy z přelomu století, kavárny, obchody a divadlo na Náměstí Míru. Bydleli tu lékaři, právníci, novináři a vyšší úředníci; čtvrť měla pověst liberální a kulturní. Oproti Žižkovu za kopcem nebo průmyslovému Smíchovu šly Vinohrady krizí tvrdě, ale nenápadně — nájmy klesaly pomaleji, ale klesaly, a z některých bytů se stěhovala právě ta vrstva, která je naplňovala."
+      },
+      {
+        "id": "waltrovka",
+        "title": "Waltrovka",
+        "body": "Továrna Josefa Waltera v Jinonicích u Prahy patřila k předním českým strojírenským závodům — vyráběla letecké motory, automobily a později i motocykly. Waltrovka zaměstnávala stovky dělníků z okolních obcí a její osud byl citlivým barometrem průmyslové konjunktury; v době krize se zakázky ztenčovaly a propouštění přicházelo postupně. Podobné střední továrny stály v meziválečném Československu na pomezí: příliš velké, aby zmizely bez povšimnutí, příliš malé, aby je stát zachraňoval jako strategický podnik."
+      },
+      {
+        "id": "vyvlastneni",
+        "title": "Vyvlastnění",
+        "body": "Vyvlastnění soukromého majetku ve veřejném zájmu bylo v meziválečném Československu možné na základě zvláštních zákonů — nejčastěji pro stavbu silnic, drah nebo veřejných budov. Podmínkou byla přiměřená náhrada, ale její výše byla předmětem sporů: stát nebo obec nabídly znalecký odhad, vlastník ho zpravidla odmítl a věc skončila u soudu. Pozemková reforma po roce 1919 představovala zvláštní případ masového vyvlastnění šlechtických velkostatků — probíhala stále, záběr byl obrovský a spory o náhrady táhly soudy ještě hluboko do třicátých let."
+      },
+      {
+        "id": "zakon_na_ochranu_republiky",
+        "title": "Zákon na ochranu republiky",
+        "body": "Zákon č. 50/1923 o ochraně republiky byl přijat jako reakce na politické násilí a vnímané ohrožení demokratického státu ze strany extremistů zleva i zprava. Umožňoval stíhat verbální i písemné útoky na republiku, její představitele a ústavu, šíření protistátních tiskovin i přípravu ozbrojeného povstání. Kritici upozorňovali, že jeho formulace byly záměrně široké — „rozvracení republiky\" bylo pojmem, který mohl obsáhnout mnoho. Politické případy podle tohoto zákona putovaly k Státnímu soudu v Praze, nikoli k běžným krajským soudům; soudce jako Ben se s ním setkával spíše jako s pozadím případů než jako s každodenní agendou."
+      },
+      {
+        "id": "zakon_posta_telegraf_1924",
+        "title": "Zákon o poštách a telegrafu",
+        "body": "Zákon z roku 1924 upravoval provoz poštovních a telegrafních služeb jako státního monopolu — soukromé doručování zásilek nebo provozování telegrafu bez státního povolení bylo přestupkem. Pošta zajišťovala nejen doručování dopisů a balíků, ale i poštovní spořitelnu a telegrafní spojení mezi úřady. Pro soudní řízení bylo důležité, že doručení zásilky poštou mělo právní účinky — doručenka byla dokladem, od nějž se odvíjely lhůty. Odposlech soukromé korespondence byl formálně možný jen na základě soudního příkazu, ale v politicky citlivých případech se hranice stíraly."
+      },
+      {
+        "id": "zalozna",
+        "title": "Záložna",
+        "body": "Záložny byly družstevní nebo obecní spořitelní ústavy poskytující úvěry svým členům — typicky rolníkům, řemeslníkům a drobným živnostníkům, kteří neměli přístup k velkým bankám. Úroky z vkladů byly nižší než u bank, ale záložna znala své dlužníky osobně — a v malé obci to znamenalo, že nesplacení půjčky bylo věcí cti i sousedských vztahů. S krizí po roce 1929 se záložny dostávaly pod tlak z obou stran: vkladatelé vybírali úspory a dlužníci přestávali splácet. Záložna, která zkrachovala, brala s sebou úspory celé vesnice.\n\nVe hře vystupuje jako konkrétní věřitel například Záložna sv. Václava v Praze u kauzy s exekucí na statek — jde o typický název venkovské či katolicky orientované záložny vložený do spisu, nikoli o přesné kopírování jedné dohledatelné historické živnosti pod tímto názvem."
+      },
+      {
+        "id": "zavet",
+        "title": "Závěť",
+        "body": "Závěť se v meziválečném Československu pořizovala zpravidla ve formě notářského zápisu nebo vlastnoručně psaného dokumentu opatřeného datem a podpisem — holografní závěť bez notáře byla platná, ale snáze napadnutelná. Zákonná dědická posloupnost zvýhodňovala nejbližší příbuzné a závětí bylo možné ji změnit jen v mezích povinného dílu, který zákon vyhrazoval dětem. Spory o pravost závěti nebo o příčetnost zůstavitele byly jednou z nejčastějších rodinných agend před soudem — a znalecký posudek písma nebo lékařský posudek o stavu mysli mohly případ obrátit."
+      },
+      {
+        "id": "zavodna_medicina",
+        "title": "Závodní medicína",
+        "body": "Závodní lékaři působili při větších průmyslových podnicích — jejich úkolem bylo posuzovat pracovní schopnost dělníků, ošetřovat drobné úrazy a vydávat posudky pro pojišťovny. Kritici poukazovali na strukturální konflikt zájmů: závodní lékař byl zaměstnancem továrny a jeho hodnocení mohlo být ovlivněno tím, zda zaměstnavatel stál o dlouhodobou pracovní neschopnost. V soudních sporech o odškodnění po pracovním úrazu stál posudek závodního lékaře zpravidla proti nezávislému znalci a soudce musel rozhodnout, které expertize dá přednost."
+      },
+      {
+        "id": "zemsky_zdravotni_urad",
+        "title": "Zemský zdravotní úřad",
+        "body": "Zemský zdravotní úřad byl správním orgánem odpovědným za veřejné zdravotnictví v Čechách — dozoroval nemocnice, lékárny, porodnice a hygienické předpisy. V meziválečném období pod jeho agendu patřilo i potírání epidemií, dohled nad pohřebnictvím a vydávání souhlasů k provozování zdravotnických zařízení. Pro soudní řízení byl důležitý jako zdroj znaleckých posudků v případech týkajících se zdravotní způsobilosti, otrav nebo pochybení lékáren. Personálně šlo o relativně malý úřad závislý na síti krajských a okresních lékařů."
+      },
+      {
+        "id": "zharství",
+        "title": "Žhářství",
+        "body": "Žhářství patřilo v době hospodářské krize k deliktům, které soudy řešily výrazně častěji než v letech prosperity. Zkrachovalý živnostník nebo rolník s přepojištěným majetkem mohl být v pokušení vyřešit dluh pojistnou událostí — požár skladu, stodoly nebo dílny. Pojišťovny si toho byly vědomy a zaměstnávaly vlastní vyšetřovatele; u soudu se pak střetávaly jejich posudky s obhajobou. Důkaz úmyslu byl klíčový a zároveň obtížný — příčina požáru se mnohdy neprokázala jednoznačně a soudce musel rozhodovat v pochybnostech."
+      },
+      {
+        "id": "zizkov",
+        "title": "Žižkov",
+        "body": "Žižkov byl v meziválečném období jednou z nejhustěji obydlených a politicky nejradikálnějších pražských čtvrtí — dělnické nájemní domy, hospody na každém rohu, KSČ s pevnou základnou a pověst místa, kde policie zasahuje pravidelně. Čtvrť vznikla jako samostatné město v druhé polovině 19. století, pojmenovaná po husitském vojevůdci, a k Praze byla připojena až v roce 1922. Chudoba tu nebyla stigmatem, ale sdílenou realitou — a frustrace z krize měla tendenci přetékat do ulic rychleji než jinde. Na Žižkově byl také pochován Franz Kafka, na Novém židovském hřbitově, ale jeho jméno v Praze roku 1931 znalo jen úzké literární publikum."
       }
     ]
   }

@@ -3,7 +3,12 @@
   "slot": "pool",
   "type": "moral_dilemma",
   "color": "#2C4A7C",
-  "available_days": [7, 8, 9, 10],
+  "available_days": [
+    7,
+    8,
+    9,
+    10
+  ],
   "act": 1,
   "weight_conditions": {
     "base_weight": 1,
@@ -25,28 +30,40 @@
     "occupation": "rolnice",
     "detail": "hospodářství 4 ha, obec Ořech u Prahy; vdova od 1923; syn Josef (31) v Praze, pracuje jako listonoš; sama na statku"
   },
-  "charge": "Násilný odpor veřejnému činiteli dle §81 trestního zákona — udeření exekutora Ing. Karla Štěpána násadou od lopaty při výkonu exekuce dne 17. února 1931",
+  "charge": "Násilný odpor veřejnému činiteli dle §81 trestního zákona",
   "description": "Anna Součková, rolnice z Ořechu u Prahy, je obžalována z násilného odporu exekutorovi Ing. Karlu Štěpánovi při výkonu exekuce na movitý majetek. Exekutor Štěpán přišel 17. února 1931 na základě příkazu k výkonu rozhodnutí vydaného Záložnou sv. Václava v Praze pro dluh 340 Kčs. Součková ho udeřila násadou od lopaty do předloktí — zhmoždění, pracovní neschopnost tři dny. Součková tvrdí, že nevěděla, kdo přichází, a myslela si, že jde o zloděje.",
   "testimonies": [
     {
       "id": "stepan",
       "speaker": "Ing. Karel Štěpán, soudní exekutor, 44 let",
       "text": "Přijel jsem ve čtvrt na deset dopoledne, zaklepal na dveře, představil se jménem a funkcí, předložil exekuční příkaz. Součková otevřela dveře, vzala příkaz, přečetla si ho — nebo se tak tvářila — a pak sáhla za dveře a udeřila mě. Vůbec nic nenaznačovalo, že mě považuje za zloděje. Věděla přesně, kdo jsem a proč jsem tam. V exekuční praxi pro záložny působím už šest let — toto chování je na místě naprosto výjimečné.",
-      "contradiction_keywords": ["přečetla si ho", "zaklepal na dveře", "exekuční praxi šest let"],
+      "contradiction_keywords": [
+        "přečetla si ho",
+        "zaklepal na dveře",
+        "exekuční praxi šest let"
+      ],
       "hidden_at_wisdom_below": null
     },
     {
       "id": "souckova",
       "speaker": "Anna Součková, obžalovaná",
       "text": "Přišel chlap v civilu, zaťukal a chtěl vstoupit do domu. Já jsem vdova, sama na statku, bylo dopoledne. Papír mi strčil do ruky — já bez brýlí nečtu. Bála jsem se. Vzala jsem lopatu, co stála za dveřmi — vždy ji tam mám, když jsem sama. Když ke mně leze cizí mužský, já nevím kdo je. Trochu jsem ho praštila, to přiznám. Ale zloděje bych ho praštila víc.",
-      "contradiction_keywords": ["bez brýlí nečtu", "strčil do ruky", "zloděje bych víc"],
+      "contradiction_keywords": [
+        "bez brýlí nečtu",
+        "strčil do ruky",
+        "zloděje bych víc"
+      ],
       "hidden_at_wisdom_below": null
     },
     {
       "id": "syn_josef",
       "speaker": "Josef Souček, syn obžalované, 31 let, listonoš",
       "text": "Matka mi o exekuci řekla až po té události. Nevěděl jsem, že dluh je tak velký — věděl jsem, že záložna existuje, ale matka mi nikdy neřekla kolik. Zjistil jsem to sám. Původně si půjčila sto osmdesát korun v devětadvacátém — na léky pro krávy. Od té doby platila každý měsíc, co mohla. Ale záložna má osmnáct procent ročně a matka to nespočítala. Nikdo jí to nevysvětlil. Teď dluhuje tři sta čtyřicet — více než dvojnásobek původní půjčky.",
-      "contradiction_keywords": ["sto osmdesát korun", "osmnáct procent", "nikdo jí to nevysvětlil"],
+      "contradiction_keywords": [
+        "sto osmdesát korun",
+        "osmnáct procent",
+        "nikdo jí to nevysvětlil"
+      ],
       "hidden_at_wisdom_below": 20
     }
   ],
@@ -54,14 +71,20 @@
     {
       "id": "oznameni_exekuce",
       "description": "Exekutor tvrdí, že příkaz k exekuci byl Součkové doručen předem poštou — ale zákon vyžaduje doručení alespoň tři dny předem. Datum na doručence a datum exekuce jsou identické. Šel exekutor bez předchozího oznámení?",
-      "involves": ["stepan", "souckova"],
+      "involves": [
+        "stepan",
+        "souckova"
+      ],
       "highlight_at_wisdom": 81,
       "unlocks_confrontation": "stepan"
     },
     {
       "id": "vyse_dluhu",
       "description": "Původní dluh byl 180 Kčs, nyní je 340 Kčs. Záložna sv. Václava — úrok 18 % ročně. Součková splácela, ale splátky nestačily pokrýt ani úrok. Dluh matematicky nemohl klesnout. Věděla Součková, co podepisuje?",
-      "involves": ["souckova", "syn_josef"],
+      "involves": [
+        "souckova",
+        "syn_josef"
+      ],
       "highlight_at_wisdom": 81,
       "unlocks_confrontation": null
     }
