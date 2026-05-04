@@ -1394,20 +1394,26 @@
   </div>
 </div>
 
-<div id="modal-archiv" class="overlay" role="dialog" aria-modal="true">
-  <div class="panel-papir archiv-panel panel-papir--nastup">
+<div id="modal-archiv" class="overlay" role="dialog" aria-modal="true" aria-labelledby="archiv-dialog-title">
+  <div class="archiv-panel panel-papir--nastup">
+    <div class="archiv-panel-ilustrace" aria-hidden="true">
+      <img src="src/zapisnik-archiv-panel.png" alt="" decoding="async" width="2528" height="1684">
+    </div>
     <div class="archiv-zahlavi">
-      <h2>Zápisník</h2>
-      <button type="button" class="pripad-zavrit-x" id="archiv-zavrit" title="Zavřít" aria-label="Zavřít">✕</button>
+      <h2 id="archiv-dialog-title" class="archiv-nadpis-sr">Zápisník</h2>
+      <button type="button" class="pripad-zavrit-x archiv-zavrit-plovouci" id="archiv-zavrit" title="Zavřít" aria-label="Zavřít">✕</button>
     </div>
-    <div class="archiv-tabs">
-      <div class="archiv-tab archiv-tab--aktivni" data-tab="rozsudky">ROZSUDKY</div>
-      <div class="archiv-tab" data-tab="stav-duse">STAV</div>
-      <div class="archiv-tab" data-tab="postavy">POVĚST</div>
-      <div class="archiv-tab" data-tab="fragmenty">ZÁZNAMY</div>
-      <div class="archiv-tab" data-tab="knihovna">KNIHOVNA</div>
+    <div class="archiv-panel-inner-wrap">
+      <div class="archiv-tabs" role="tablist" aria-label="Záložky zápisníku">
+        <!-- Popisky záložek jsou v PNG — jen neviditelné hit zóny -->
+        <button type="button" class="archiv-tab archiv-tab--aktivni" data-tab="rozsudky" role="tab" tabindex="0" aria-selected="true" aria-label="Rozsudky"></button>
+        <button type="button" class="archiv-tab" data-tab="stav-duse" role="tab" tabindex="-1" aria-selected="false" aria-label="Stav duše"></button>
+        <button type="button" class="archiv-tab" data-tab="postavy" role="tab" tabindex="-1" aria-selected="false" aria-label="Pověst"></button>
+        <button type="button" class="archiv-tab" data-tab="fragmenty" role="tab" tabindex="-1" aria-selected="false" aria-label="Záznamy"></button>
+        <button type="button" class="archiv-tab" data-tab="knihovna" role="tab" tabindex="-1" aria-selected="false" aria-label="Knihovna"></button>
+      </div>
+      <div class="archiv-obsah" id="archiv-obsah"></div>
     </div>
-    <div class="archiv-obsah" id="archiv-obsah"></div>
   </div>
 </div>
 

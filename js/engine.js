@@ -184,7 +184,7 @@ const Engine = (() => {
       _dalsiDen();
     });
 
-    // Složky — capture: spolehlivě i při pointer-events none na obalu #slozky-wrapper; prázdný slot = .slozka--ceka
+    // Složky — capture; klik jen na neprůhledný pixel PNG (viz desk-slozka-pixel-hover.js → _slozkaRasterHitTest)
     for (let i = 0; i < 3; i++) {
       const slozka = document.getElementById('slozka-' + (i + 1));
       if (!slozka) continue;
@@ -192,10 +192,10 @@ const Engine = (() => {
       if (!folder) continue;
       const onSlozkaClick = (event) => {
         if (slozka.classList.contains('slozka--ceka')) return;
-        const folder = slozka.querySelector('.folder');
-        if (!folder) return;
-        const rect = folder.getBoundingClientRect();
-        if (event.clientY < rect.top) return;
+        const folderEl = slozka.querySelector('.folder');
+        if (!folderEl) return;
+        const ht = folderEl._slozkaRasterHitTest;
+        if (typeof ht !== 'function' || !ht(event.clientX, event.clientY)) return;
         Cases.otevriPripad(i);
       };
       folder.addEventListener('click', onSlozkaClick, true);

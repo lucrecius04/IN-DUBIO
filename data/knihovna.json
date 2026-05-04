@@ -2,7 +2,7 @@
   "version": 2,
   "pribeh": {
     "perex": "Jste soudce Benedikt Vraný. Po roce přestávky vás vrátili do funkce — a vy víte, že to není laskavost.",
-    "body": "Krajský soud v Praze, březen 1931. Republika má deset let, hospodářská krize víc než rok a vám je čtyřiapadesát. Přestávce se říkalo zdravotní volno. Bylo to zdvořilejší než pravda.\n\nV roce 1927 jste podepsal rozsudek nad dělníkem Karlem Benešem. Důkazy byly slabé, tlak shora silný a vy jste byl tehdy nový člověk s ambicemi. Beneš zemřel ve vazbě dříve, než bylo rozhodnuto o odvolání. V roce 1930 vás odvolali — tiše, bez skandálu, s formulací o zdravotním stavu. Tři roky jste žil s tím, co jste podepsal. Teď vás vracejí zpátky, a to taky není náhoda.\n\nKaždý pracovní den přinesou dva spisy. Vynášíte rozsudky za dluh, výtržnost, podvod, sabotáž. Přicházejí dopisy — od ministra, od syna, od lidí, které neznáte. Matka leží v nemocnici. Město je v pohybu a ne dobrém.\n\nSpravedlnost se nedá vyhrát. Lze o ní ale věčně usilovat.",
+    "body": "Krajský soud v Praze, březen 1931. Republika má deset let, hospodářská krize víc než rok a vám je čtyřiapadesát. Přestávce se říkalo zdravotní volno. Bylo to zdvořilejší než pravda.\n\nV roce 1927 jste podepsal rozsudek nad dělníkem Karlem Benešem. Důkazy byly slabé, tlak shora silný a vy jste byl tehdy nový člověk s ambicemi. Beneš zemřel ve vazbě dříve, než bylo rozhodnuto o odvolání. V roce 1930 vás odvolali — tiše, bez skandálu, s formulací o zdravotním stavu. Tři roky jste žil s tím, co jste podepsal. Teď vás vracejí zpátky, a to taky není náhoda.\n\nKaždý pracovní den přinesou dva spisy. Vynášíte rozsudky za dluhy, výtržnosti, podvody a sabotáže. Přicházejí dopisy — od ministra, od syna, od lidí, které neznáte. Matka leží v nemocnici. Město je v pohybu.\n\nSpravedlnost se nedá vyhrát. Lze o ní ale věčně usilovat.",
     "rozhodnuti": [
       {
         "id": "A",
@@ -180,7 +180,7 @@
     ]
   },
   "slovnik": {
-    "perex": "Krátká hesla ke jménům a místům z reálného kontextu doby — ne k herním mechanismům. Ve spisech jsou některá slova prokliknutelná (otevřou příslušné heslo).",
+    "perex": "Krátká hesla ke jménům, místům a reáliím v kontextu meziválečného Československa.",
     "hesla": [
       {
         "id": "akademicke_spolky",

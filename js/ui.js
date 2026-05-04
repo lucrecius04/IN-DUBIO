@@ -11,8 +11,10 @@ const UI = (() => {
     const el = document.getElementById(id);
     if (!el) return;
     el.classList.add('aktivni');
-    // Animace panelu
-    const panel = el.querySelector('.panel-papir');
+    // Animace panelu (archiv = .archiv-panel bez .panel-papir)
+    const panel =
+      el.querySelector('.panel-papir') ||
+      (el.id === 'modal-archiv' ? el.querySelector('.archiv-panel') : null);
     if (panel) {
       panel.classList.remove('panel-papir--nastup');
       void panel.offsetWidth;
@@ -4909,7 +4911,12 @@ const UI = (() => {
 
   function _prepniArchivTab(tab) {
     document.querySelectorAll('.archiv-tab').forEach(t => {
-      t.classList.toggle('archiv-tab--aktivni', t.dataset.tab === tab);
+      const sel = t.dataset.tab === tab;
+      t.classList.toggle('archiv-tab--aktivni', sel);
+      if (t.getAttribute('role') === 'tab') {
+        t.setAttribute('aria-selected', sel ? 'true' : 'false');
+        t.setAttribute('tabindex', sel ? '0' : '-1');
+      }
     });
     _vyplnArchivTab(tab);
   }
@@ -5175,7 +5182,17 @@ const UI = (() => {
 
     if (tab === 'stav-duse') {
       obsah.innerHTML = '';
-      const wrap = document.createElement('div');
+      const layout = document.createElement('div');
+      layout.className = 'archiv-stav-duse-layout';
+
+      const levy = document.createElement('div');
+      levy.className = 'archiv-stav-duse-levy';
+
+      const nadpisRysy = document.createElement('div');
+      nadpisRysy.className = 'postavy-frakce-nadpis';
+      nadpisRysy.textContent = 'SOUČASNÉ ROZPOLOŽENÍ';
+      levy.appendChild(nadpisRysy);
+
       const modeSD = _getStatsDisplayMode();
       const rysyArchiv = ['Integrita', 'Odvaha', 'Moudrost', 'Vina', 'Nadeje'];
       for (const nazev of rysyArchiv) {
@@ -5186,12 +5203,11 @@ const UI = (() => {
           nb = Traits.getTraitText(nazev, v).notebook || '—';
         }
         const entry = document.createElement('div');
-        entry.style.marginBottom = '1.15rem';
+        entry.className = 'archiv-stav-duse-zaznam';
         const title = document.createElement('div');
         title.className = 'archiv-rozsudek-den';
         title.style.display = 'block';
         title.style.minWidth = '0';
-        title.style.marginBottom = '5px';
         title.style.letterSpacing = '0.18em';
         title.textContent = _archivTitulekTraitStavDuse(nazev, v, modeSD);
         const body = document.createElement('div');
@@ -5199,51 +5215,149 @@ const UI = (() => {
         body.style.display = 'block';
         body.style.flex = 'none';
         body.style.width = '100%';
+        body.style.minWidth = '0';
         body.innerHTML = _escapeHtmlProfil(nb).replace(/\n/g, '<br>');
         if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
           Knihovna.obalSlovnikemVElementu(body);
         }
         entry.appendChild(title);
         entry.appendChild(body);
-        wrap.appendChild(entry);
+        levy.appendChild(entry);
       }
 
+      const pravy = document.createElement('div');
+      pravy.className = 'archiv-stav-duse-pravy';
+
       const finSekce = document.createElement('div');
-      finSekce.className = 'archiv-souhrn-fin-sekce';
+      finSekce.className = 'archiv-souhrn-fin-sekce archiv-souhrn-fin-sekce--stav-pravy-sloupec';
       const finNad = document.createElement('div');
       finNad.className = 'postavy-frakce-nadpis';
       finNad.textContent = 'OBŽIVA';
       finSekce.appendChild(finNad);
+      if (typeof Finance !== 'undefined' && Finance.zkontrolujCilOperace) {
+        Finance.zkontrolujCilOperace();
+      }
       const p = Finance.getPrehled();
+      const denHry = Number(State.get('currentDay')) || 1;
+      const ukazOperaci = denHry >= 4 || p.dopisOperaceViden === true;
+      const dluhC = Math.round(Number(p.dluh) || 0);
+
+      let radekVyplata = '';
+      if (p.dniDoDalsiVyplaty != null) {
+        const n = p.dniDoDalsiVyplaty;
+        const val =
+          n === 0 ? 'dnes (neděle)' : n === 1 ? 'zítra' : `za ${n} dní`;
+        radekVyplata =
+          '<div class="finance-radek">' +
+          '<span>Příští plat</span>' +
+          '<span class="finance-castka">' + val + '</span>' +
+          '</div>';
+      } else {
+        radekVyplata =
+          '<div class="finance-radek">' +
+          '<span>Nedělní plat v kampani</span>' +
+          '<span class="finance-castka">vše vyplaceno</span>' +
+          '</div>';
+      }
+
+      let radekDluh = '';
+      if (dluhC > 0) {
+        radekDluh =
+          '<div class="finance-radek">' +
+          '<span>Dluh</span>' +
+          '<span class="finance-castka finance-castka--minus">' + dluhC + ' Kčs</span>' +
+          '</div>';
+      }
+
+      let operaceHtml = '';
+      if (ukazOperaci) {
+        if (p.operaceOdlozena === true) {
+          operaceHtml =
+            '<div class="finance-operace-blok">' +
+            '<div class="finance-operace-podnadpis">Matčina operace</div>' +
+            '<p class="finance-operace-text">Operace u lékaře je odložena; další postup hlídejte ve spisu a ve večerních volbách.</p>' +
+            '</div>';
+        } else if (p.operaceZaplacena === true) {
+          operaceHtml =
+            '<div class="finance-operace-blok">' +
+            '<div class="finance-operace-podnadpis">Matčina operace</div>' +
+            '<p class="finance-operace-text">Na poplatek u lékaře (' + p.operaceCil +
+            ' Kčs) máte naspořeno.</p>' +
+            '</div>';
+        } else {
+          const chybi = Math.round(Number(p.chybiNaOperaci) || 0);
+          const nd = Number(p.dnuDoDeadlineOperace) || 0;
+          let lhutaTxt;
+          if (nd <= 0) {
+            lhutaTxt = 'Lhůta operace v kampani dnes končí.';
+          } else if (nd === 1) {
+            lhutaTxt = 'Do uzávěrky lhůty v kampani zbývá 1 herní den.';
+          } else {
+            lhutaTxt = 'Do uzávěrky lhůty v kampani zbývá ' + nd + ' herních dní.';
+          }
+          operaceHtml =
+            '<div class="finance-operace-blok">' +
+            '<div class="finance-operace-podnadpis">Matčina operace</div>' +
+            '<div class="finance-radek finance-radek--operace">' +
+            '<span>Chybí do cíle (' + p.operaceCil + ' Kčs)</span>' +
+            '<span class="finance-castka">' + chybi + ' Kčs</span>' +
+            '</div>' +
+            '<p class="finance-operace-text">' + lhutaTxt + '</p>' +
+            '<p class="finance-operace-text finance-operace-text--hint">Podrobnosti a termín připomíná dopis od lékaře ve spisu.</p>' +
+            '</div>';
+        }
+      }
+
       const krize = p.zustatek < 50
         ? '<p class="finance-krize">Méně než 50 Kčs — každá koruna bolí.</p>'
         : '';
-      const finHost = document.createElement('div');
-      finHost.innerHTML = `
-        <div class="finance-widget">
-          <div class="finance-radek">
-            <span>Měsíční plat</span>
-            <span class="finance-castka finance-castka--plus">+${p.plat} Kčs</span>
-          </div>
-          <div class="finance-radek">
-            <span>Týdenní výdaje</span>
-            <span class="finance-castka finance-castka--minus">-${p.vydaje} Kčs</span>
-          </div>
-          <div class="finance-radek">
-            <span>Plat za</span>
-            <span class="finance-castka">${p.dniDoPlatby} dní</span>
-          </div>
-          <div class="finance-radek">
-            <span>Zůstatek</span>
-            <span class="finance-castka">${p.zustatek} Kčs</span>
-          </div>
-          ${krize}
-        </div>
-      `;
-      finSekce.appendChild(finHost);
-      wrap.appendChild(finSekce);
+      const rzMin = Number.isFinite(Number(p.rozsudekOdmenaMin)) ? Number(p.rozsudekOdmenaMin) : 0;
+      const rzMax = Number.isFinite(Number(p.rozsudekOdmenaMax)) ? Number(p.rozsudekOdmenaMax) : 55;
+      const rozsudekBlok =
+        '<div class="finance-radek finance-radek--rozsudek">' +
+        '<span>Odměna za rozsudek</span>' +
+        '<span class="finance-castka finance-castka--plus">+' + rzMin + '–' + rzMax + ' Kčs</span>' +
+        '</div>' +
+        '<p class="finance-operace-text finance-operace-text--hint finance-rozsudek-hint">' +
+        'Orientační rozmezí: skutečná částka závisí na typu spisu, průzkumu a souladu výroku se spisem ' +
+        '(u náročnějších spisů přibývá typový příplatek).</p>';
 
-      obsah.appendChild(wrap);
+      const skupinaPlatARozsudek =
+        '<div class="finance-archiv-skupina-plat-rozsudek">' +
+        radekVyplata +
+        rozsudekBlok +
+        '</div>';
+
+      const finHost = document.createElement('div');
+      finHost.innerHTML =
+        '<div class="finance-widget">' +
+        '<div class="finance-radek finance-radek--zustatek">' +
+        '<span>Zůstatek</span>' +
+        '<span class="finance-castka">' + p.zustatek + ' Kčs</span>' +
+        '</div>' +
+        '<div class="finance-radek">' +
+        '<span>Nedělní plat soudu</span>' +
+        '<span class="finance-castka finance-castka--plus">+' + p.plat + ' Kčs</span>' +
+        '</div>' +
+        '<div class="finance-radek">' +
+        '<span>Běžné výdaje (denně)</span>' +
+        '<span class="finance-castka finance-castka--minus">-' + p.vydaje + ' Kčs</span>' +
+        '</div>' +
+        '<div class="finance-radek">' +
+        '<span>Za 7 dní celkem</span>' +
+        '<span class="finance-castka finance-castka--minus">-' + p.vydajeTydenni + ' Kčs</span>' +
+        '</div>' +
+        skupinaPlatARozsudek +
+        radekDluh +
+        operaceHtml +
+        krize +
+        '</div>';
+      finSekce.appendChild(finHost);
+      pravy.appendChild(finSekce);
+
+      layout.appendChild(levy);
+      layout.appendChild(pravy);
+      obsah.appendChild(layout);
 
     } else if (tab === 'postavy') {
       obsah.innerHTML = '';

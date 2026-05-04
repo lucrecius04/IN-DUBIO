@@ -13,6 +13,13 @@ const Finance = (() => {
   /** Neděle v herním kalendáři: první a druhá neděle (den 1 = pondělí). */
   const VYPLATA_DNY = [7, 14];
 
+  /**
+   * Orientační rozmezí odměny za jeden uzavřený spis (základ + typ spisu v cases.js).
+   * Horní mez odpovídá silnému výsledku s politickým příplatkem (viz economy.mdc).
+   */
+  const ROZSUDEK_ODMENA_ORIENT_MIN_KS = 0;
+  const ROZSUDEK_ODMENA_ORIENT_MAX_KS = 55;
+
   function getZustatek() {
     return State.get('finance.balance');
   }
@@ -111,17 +118,44 @@ const Finance = (() => {
     }
   }
 
+  /**
+   * Počet dní do příští nedělní výplaty (+80 Kčs), nebo null po poslední výplatě v kampani.
+   */
+  function _getDniDoDalsiNedelniVyplaty() {
+    const den = Number(State.get('currentDay')) || 1;
+    const prijato = State.get('finance.vyplataPrijataVDnech') || [];
+    const prijSet = new Set(prijato);
+    for (const d of [...VYPLATA_DNY].sort((a, b) => a - b)) {
+      if (d < den) continue;
+      if (d === den && prijSet.has(d)) continue;
+      return d - den;
+    }
+    return null;
+  }
+
   function getPrehled() {
-    const f = State.get('finance');
-    const den = State.get('currentDay');
-    const dniDoPlatby = 7 - ((den - 1) % 7);
+    const f = State.get('finance') || {};
+    const zustatek = Math.round(Number(f.balance) || 0);
+    const vydajeTydenni = DENNI_VYDAJE_KC * 7;
+    const fl = State.get('flags') || {};
+    const dniDoDalsiVyplaty = _getDniDoDalsiNedelniVyplaty();
 
     return {
-      zustatek:     f.balance,
-      plat:         VYPLATA_KC,
-      vydaje:       DENNI_VYDAJE_KC,
-      dniDoPlatby,
-      mesicniCistka: VYPLATA_KC - DENNI_VYDAJE_KC * 7
+      zustatek,
+      plat: VYPLATA_KC,
+      vydaje: DENNI_VYDAJE_KC,
+      vydajeTydenni,
+      dniDoDalsiVyplaty,
+      mesicniCistka: VYPLATA_KC - vydajeTydenni,
+      operaceCil: OPERACE_CIL_KC,
+      chybiNaOperaci: Math.max(0, OPERACE_CIL_KC - zustatek),
+      dnuDoDeadlineOperace: getDnuDoDeadline(),
+      operaceZaplacena: fl.operace_zaplacena === true,
+      operaceOdlozena: fl.operace_odlozena === true,
+      dopisOperaceViden: fl.dopis_operace_den4_viden === true,
+      dluh: getDluh(),
+      rozsudekOdmenaMin: ROZSUDEK_ODMENA_ORIENT_MIN_KS,
+      rozsudekOdmenaMax: ROZSUDEK_ODMENA_ORIENT_MAX_KS
     };
   }
 
@@ -156,6 +190,8 @@ const Finance = (() => {
     DENNI_VYDAJE_KC,
     VYPLATA_KC,
     VYPLATA_DNY,
+    ROZSUDEK_ODMENA_ORIENT_MIN_KS,
+    ROZSUDEK_ODMENA_ORIENT_MAX_KS,
     getZustatek,
     getDluh,
     jeDostupne,

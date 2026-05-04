@@ -3,6 +3,7 @@
  * Přidává/odebírá třídu slozka--hover na #slozka-* (CSS místo :hover).
  * Grafika je CSS background na .folder — raster z offscreen Image (stejná URL jako data-art).
  * Ze stejného rastru spočítá ohraničení papíru a nastaví --folder-label-* na .folder (štítek sedí na papíře).
+ * Na `.folder` nastaví `_slozkaRasterHitTest` — engine.js klik otevře spis jen při stejném alfa prahu.
  */
 (function () {
   const root = document.querySelector('#stul.desk-scene-root');
@@ -134,37 +135,31 @@
       slozka.classList.toggle('slozka--hover', on);
     }
 
+    /** Stejný práh jako hover — pro klik v engine.js (ne celý obdélník .folder). */
+    function hitTestOpaque(clientX, clientY) {
+      if (!ready || slozka.classList.contains('slozka--ceka')) return false;
+      const rect = folder.getBoundingClientRect();
+      if (rect.width < 1 || rect.height < 1) return false;
+      const rx = (clientX - rect.left) / folder.offsetWidth;
+      const ry = (clientY - rect.top) / folder.offsetHeight;
+      if (rx < 0 || ry < 0 || rx > 1 || ry > 1) return false;
+      const x = Math.min(canvas.width - 1, Math.max(0, Math.floor(rx * canvas.width)));
+      const y = Math.min(canvas.height - 1, Math.max(0, Math.floor(ry * canvas.height)));
+      try {
+        const alpha = ctx.getImageData(x, y, 1, 1).data[3];
+        return alpha > ALPHA_MIN;
+      } catch (_e) {
+        return false;
+      }
+    }
+
     function sample(e) {
       slozka.style.pointerEvents = 'none';
       folder.style.pointerEvents = 'auto';
-      if (!ready || slozka.classList.contains('slozka--ceka')) {
-        setHover(false);
-        return;
-      }
-      const rect = folder.getBoundingClientRect();
-      if (rect.width < 1 || rect.height < 1) {
-        setHover(false);
-        return;
-      }
-      const scaleX = rect.width / folder.offsetWidth;
-      const scaleY = rect.height / folder.offsetHeight;
-      const rx = (e.clientX - rect.left) / folder.offsetWidth;
-      const ry = (e.clientY - rect.top) / folder.offsetHeight;
-      if (rx < 0 || ry < 0 || rx > 1 || ry > 1) {
-        setHover(false);
-        return;
-      }
-      const x = Math.min(canvas.width - 1, Math.max(0, Math.floor(rx * canvas.width)));
-      const y = Math.min(canvas.height - 1, Math.max(0, Math.floor(ry * canvas.height)));
-      let alpha;
-      try {
-        alpha = ctx.getImageData(x, y, 1, 1).data[3];
-      } catch (_e) {
-        setHover(false);
-        return;
-      }
-      setHover(alpha > ALPHA_MIN);
+      setHover(hitTestOpaque(e.clientX, e.clientY));
     }
+
+    folder._slozkaRasterHitTest = hitTestOpaque;
 
     folder.addEventListener('mousemove', sample);
     folder.addEventListener('mouseleave', function () {
