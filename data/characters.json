@@ -72,6 +72,11 @@
     ]
   },
   {
+    "id": "karas",
+    "name": "Karas",
+    "dialogues": []
+  },
+  {
     "id": "benes",
     "name": "Starý muž Beneš",
     "dialogues": [

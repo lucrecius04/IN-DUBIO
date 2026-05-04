@@ -1119,6 +1119,7 @@ const Engine = (() => {
       vlcek:     _epilogVlcek(typ, stav),
       horakova:  _epilogHorakova(typ, stav),
       masek:     _epilogMasek(typ, stav),
+      karas:     _epilogKaras(typ, stav),
       benes:     _epilogBenes(typ, stav),
       novak:     _epilogNovak(typ, stav)
     };
@@ -1136,32 +1137,105 @@ const Engine = (() => {
     return radky;
   }
 
+  /**
+   * Jedna epilogová větev z `data/endings_epilog.json` (`typy[typ][npcId]`).
+   * Horáková: { low, high } podle trust.zavadova. Beneš: unknown / identified / identified_hrdina (atentát|hrdina + identified).
+   */
+  function _epilogRadekZeSouboru(typ, npcId, stav) {
+    if (typeof DataLoader === 'undefined' || typeof DataLoader.ziskejEndingsEpilog !== 'function') return null;
+    const root = DataLoader.ziskejEndingsEpilog();
+    if (!root || !root.typy || typeof root.typy !== 'object') return null;
+    const blok = root.typy[typ];
+    if (!blok || typeof blok !== 'object') return null;
+    const entry = blok[npcId];
+    if (entry == null) return null;
+    if (npcId === 'horakova' && typeof entry === 'object' && !Array.isArray(entry)) {
+      const tr = Number(stav.trust && stav.trust.zavadova) || 0;
+      const t = tr >= 2 ? entry.high : entry.low;
+      return typeof t === 'string' && t.trim() ? t.trim() : null;
+    }
+    if (npcId === 'benes' && typeof entry === 'object' && !Array.isArray(entry)) {
+      const identified = !!(stav.flags && stav.flags.benes_identified);
+      if (!identified) {
+        const u = entry.unknown;
+        return typeof u === 'string' && u.trim() ? u.trim() : null;
+      }
+      if (
+        (typ === 'atentát' || typ === 'hrdina') &&
+        typeof entry.identified_hrdina === 'string' &&
+        entry.identified_hrdina.trim()
+      ) {
+        return entry.identified_hrdina.trim();
+      }
+      const i = entry.identified;
+      return typeof i === 'string' && i.trim() ? i.trim() : null;
+    }
+    if (typeof entry === 'string' && entry.trim()) return entry.trim();
+    return null;
+  }
+
   function _epilogVlcek(typ, stav) {
+    const z = _epilogRadekZeSouboru(typ, 'vlcek', stav);
+    if (z) return z;
     if (typ === 'hrdina') return 'Byl odvolán z funkce. Řízení bylo zastaveno po dvou týdnech.';
     if (typ === 'korupce') return 'Nadále slouží republice. Vraného případ nikdy nezmínil.';
     return 'Zůstal na místě. Jako vždy.';
   }
 
   function _epilogHorakova(typ, stav) {
-    const trust = stav.trust.horakova;
+    const z = _epilogRadekZeSouboru(typ, 'horakova', stav);
+    if (z) return z;
+    /* Důvěra u Horákové je ve stavu pod klíčem zavadova (viz Characters._duveraProDialog / cases._duveraKlicProPozadavek). */
+    const trust = Number(stav.trust && stav.trust.zavadova) || 0;
     if (typ === 'hrdina')        return 'Vydala sérii článků. Tři novináři přišli o práci kvůli ní. Pokračovala.';
     if (trust >= 2)              return 'Napsala o Vraném. Ne o případu — o člověku.';
     return 'Sledovala případ z dálky. Psala o jiných věcech.';
   }
 
+  function _epilogKaras(typ, stav) {
+    const z = _epilogRadekZeSouboru(typ, 'karas', stav);
+    if (z) return z;
+    const tr = Number(stav.trust && stav.trust.karas) || 0;
+    if (typ === 'utek') {
+      return 'Půjčky bere dál — jen se o Vraném v lokálu už nevyptává. Říká, že někteří klienti jsou „dočasně mimo dosah“.';
+    }
+    if (typ === 'korupce') {
+      return 'Úsměv zůstal stejný; jen smlouvy nosil častěji lidem, kteří už nepotřebují soudní síň.';
+    }
+    if (typ === 'odvolani') {
+      return 'Vraného v účtech nechává být. Příliš mnoho jmen na jednom stole, prý — až moc čitelných.';
+    }
+    if (typ === 'atentát') {
+      return 'V týdnech chaosu půjčoval dál. Peníze neznají politiku, říkával — jen splatnost.';
+    }
+    if (typ === 'hrdina') {
+      return 'U šachovnice dlouho mlčel. Pak jen odfrkl, že každý musí jednou risknout — a zase hrál dál.';
+    }
+    if (tr >= 2) {
+      return 'Vraného si nechal v hlavě jako číslo, které se vyplatí nechat žít — pro jindy.';
+    }
+    return 'U okna v U Fleků seděl jako vždy. Kávu pije teplejší — účty chladnější.';
+  }
+
   function _epilogMasek(typ, stav) {
+    const z = _epilogRadekZeSouboru(typ, 'masek', stav);
+    if (z) return z;
     if (typ === 'korupce') return 'Přivítal Vraného mezi svými. Nikdy o tom nemluvili.';
     return 'Odešel do penze o rok dříve. Bez rozloučení.';
   }
 
   function _epilogBenes(typ, stav) {
-    const identified = stav.flags.benes_identified;
+    const z = _epilogRadekZeSouboru(typ, 'benes', stav);
+    if (z) return z;
+    const identified = stav.flags && stav.flags.benes_identified;
     if (identified && typ === 'hrdina') return 'Přišel na pohřeb. Nestál blízko. Ale byl tam.';
     if (identified) return 'Odešel tiše. Nikdo nevěděl, kdo byl.';
     return 'Starý muž. Vraný nikdy nezjistil, kdo byl.';
   }
 
   function _epilogNovak(typ, stav) {
+    const z = _epilogRadekZeSouboru(typ, 'novak', stav);
+    if (z) return z;
     const endingTexty = {
       odvolani: 'Dr. Benedikt Vraný byl odvolán z funkce. Kariéra skončila. Přestěhoval se na venkov.',
       korupce:  'Dr. Benedikt Vraný se stal součástí systému. Přesně tak, jak se bál.',

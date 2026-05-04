@@ -71,9 +71,11 @@ Po **rozsudku** (`Cases.zpracujRozsudek`) se může spustit konec hry:
    - **`odvolani`**: nízká Integrita + nízká Moudrost + den ≥ 20  
    - **`hrdina`**: den ≥ 30 + flagy Beneš pravda + Haas odsouzen  
 
-Konce nastaví `gameOver`, `endingType`, uloží stav a zobrazí **předepilog** (`data/ending_prelude.json`, modál `#modal-konec-prelude`) a po tlačítku **UI epilog** (`UI.zobrazKonecHry`). Bez dat předepilogu se volá rovnou epilog.
+Konce nastaví `gameOver`, `endingType`, uloží stav a hudbu epilogu. **Řádky epilogu** (postavy + Ben) sestaví `Engine._sestavEpilog(typ)` především z **`data/endings_epilog.json`** (`typy[endingType]`, načtení `DataLoader.ziskejEndingsEpilog()`; výběr větví např. Beneš / Horáková viz `_napojeni` v JSON a `Engine._epilogRadekZeSouboru`). Chybí-li soubor, typ v datech nebo konkrétní řetězec, použije se **záložní text** v `js/engine.js`.
 
-> **Poznámka:** V `story.mdc` je rozpracováno **osm naratálních konců** (Přežití, Korupce, Hrdina, Útěk, Smíření, Atentát, Kruh, Anna). V kódu jsou zatím **konkrétně vyvolané typy** epilogu vázané na `endingType` a epilogové řádky (např. v `engine.js` u postav). Plné mapování „8 konců = 8 větví v engine“ je cíl designu; tento soubor popisuje **co dnes engine umí spustit** a obecný denní tok.
+**UI:** `Engine.spustKonec` volá **`UI.zobrazPredKoncemAKonecHry(typ, epilog)`** — modál **`#modal-konec-prelude`** z **`data/ending_prelude.json`**, po potvrzení **`UI.zobrazKonecHry`** (`#konec-hry-overlay`). Chybí-li DOM předepilogu, data předepilogu nebo exportovaná funkce, jde se rovnou na **`zobrazKonecHry`**.
+
+> **Poznámka:** V `story.mdc` je rozpracováno **osm naratálních konců** (Přežití, Korupce, Hrdina, Útěk, Smíření, Atentát, Kruh, Anna). V kódu jsou **vyvolané typy** konce vázané na `endingType`; texty epilogu pro daný typ jsou v **`endings_epilog.json`** (klíče musí odpovídat `endingType`). Plné mapování všech naratálních variant na podmínky ve hře je cíl designu; tento soubor popisuje **co dnes engine umí spustit** a obecný denní tok.
 
 ---
 

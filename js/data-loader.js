@@ -35,7 +35,8 @@ const DataLoader = (() => {
     factions:   'data/factions.json',
     traits:         'data/traits-text.json',
     postavy_okoli:  'data/postavy_okoli.json',
-    endingPrelude:  'data/ending_prelude.json'
+    endingPrelude:  'data/ending_prelude.json',
+    endingsEpilog:  'data/endings_epilog.json'
   };
 
   // Případy jsou rozděleny do tří souborů pro přehlednost
@@ -371,6 +372,13 @@ const DataLoader = (() => {
     return raw;
   }
 
+  /** Epilog po typu konce — `data/endings_epilog.json`, kořen s `typy`. */
+  function ziskejEndingsEpilog() {
+    const raw = ziskej('endingsEpilog');
+    if (!raw || typeof raw !== 'object' || !raw.typy || typeof raw.typy !== 'object') return null;
+    return raw;
+  }
+
   function ziskejFrakci(id) {
     const factions = ziskej('factions');
     if (!factions) return null;
@@ -394,6 +402,7 @@ const DataLoader = (() => {
     ziskejPostavu,
     ziskejFragment,
     ziskejEndingPrelude,
+    ziskejEndingsEpilog,
     ziskejFrakci,
     ziskejTextyRysu
   };

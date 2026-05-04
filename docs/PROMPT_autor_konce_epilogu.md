@@ -24,12 +24,18 @@ Struktura JSON: `uvod_vzdy` (string), `typy.<klic>.nadpis`, `typy.<klic>.odstavc
 
 ## Vrstva B — dlouhý epilog (rozšíření)
 
-Dnes: `js/engine.js` — `_sestavEpilog`, `_epilogVlcek`, … Cíl:
+Zdroj textů: `data/endings_epilog.json` (načítá `DataLoader`, používá `Engine._epilogRadekZeSouboru`; při chybě souboru nebo chybějícím typu fallback na krátké řetězce v `js/engine.js`). Cíl:
 
 - **3–8 vět na postavu** podle konce a stavu (flags, trust).
 - **Ben 8–15 vět** s konkrétní obrazností.
 
-Migrace: např. `data/endings_epilog.json` + načtení v engine, nebo rozšíření přímo `_epilog*`.
+**Důvěra Horáková:** ve `State.trust` je uložena jako **`zavadova`** (mapování `horakova → zavadova` v `characters.js` / `cases.js`). Epilog musí číst `trust.zavadova`, ne `trust.horakova`.
+
+**Ben v datech:** vnitřní klíč v engine zůstává **`novak`** u `_epilogNovak` / řádek s `klic: true` v UI — v navrhovaném JSON lze použít `novak` bez změny kódu, nebo `ben` + mapování v loaderu.
+
+**Karas:** epilogový řádek je v řetězci po Maškovi; jméno z `characters.json` (`id` karas).
+
+Struktura JSON: viz `_struktura` / `_napojeni` v souboru; klíče `typy` musí odpovídat `endingType` ve hře.
 
 ---
 

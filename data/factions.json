@@ -3,7 +3,7 @@
     "id": "moc",
     "name": "MOC",
     "value": 50,
-    "want": "Vlček, stát, systém — pořádek za každou cenu",
+    "zapisnik_popis": "Stát má instituce, instituce mají lidi a lidé mají zájmy. Ministerstva, policejní ředitelství, státní zastupitelství — každé z nich funguje podle předpisů a zároveň podle něčeho, co v předpisech napsáno není. Republika je mladá a její aparát si teprve zvyká na to, co smí. Někdy to zachází příliš daleko. Někdy to nestačí.",
     "reactions": [
       { "threshold": 80, "direction": "high", "event": "sledovani" },
       { "threshold": 20, "direction": "low",  "event": "politicky_tlak" }
@@ -13,7 +13,7 @@
     "id": "kapital",
     "name": "KAPITÁL",
     "value": 50,
-    "want": "Majetek, smlouvy, tlak průmyslu",
+    "zapisnik_popis": "Průmysl, banky, pojišťovny, obchodní domy — část z nich tu byla ještě za Rakouska a přežila změnu vlajky bez větších ztrát. Krize po roce 1929 přerozděluje karty: slabší podniky padají, silnější přebírají jejich místo. Peníze nezmizely — přesouvají se. A kam se přesunou, tam se přesune i těžiště rozhodnutí.",
     "reactions": [
       { "threshold": 80, "direction": "high", "event": "uplatky" },
       { "threshold": 20, "direction": "low",  "event": "kompromitujici_nabidka" }
@@ -23,7 +23,7 @@
     "id": "lid",
     "name": "LID",
     "value": 50,
-    "want": "Spravedlnost pro chudé, ulice, svědci",
+    "zapisnik_popis": "Dělníci, rolníci, nezaměstnaní, živnostníci na hraně platební neschopnosti. Fronty u zprostředkovatelen práce jsou delší každý týden. Odbory vyjednávají, kde se dá, a agitátoři — zleva i zprava — nabízejí výklad, proč to tak je a kdo za to může. Soud tohle prostředí vidí zezdola: jako jména v obžalobě, jako svědky, jako lidi, kteří přišli o dost.",
     "reactions": [
       { "threshold": 80, "direction": "high", "event": "chvala_v_novinach" },
       { "threshold": 20, "direction": "low",  "event": "verejne_odsouzeni" }

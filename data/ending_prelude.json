@@ -1,75 +1,93 @@
 {
-  "uvod_vzdy": "Tím končí příběhová kampaň těchto týdnů u soudu. Vše, co jsi na lavici rozhodl — dopisy, spisy, ticho mezi řádky — došlo k bodu, za který hra dál nevede. Na další stránce najdeš stručné následky pro lidi kolem Benda a pro něj samého.",
+  "uvod_vzdy": "Příběhová kampaň těchto týdnů u Krajského soudu tímto končí. Co Benedikt Vraný podepsal, odmítl nebo odložil — to má teď svůj tvar. Následující stránka shrnuje, kde skončili lidé kolem něj a kde skončil on.",
+
   "typy": {
     "default": {
       "nadpis": "Uzávěr",
       "odstavce": [
-        "Rozcestí už má svůj tvar. Co zůstalo na stole v paměti, přetrvá mimo tuto obrazovku — tady jen shrneme, jak se linie rozešly.",
-        "Nejde o známku za výkon, ale o dozvědění: kdo kam odešel a co z toho má Benedikt Vraný."
+        "Linie příběhu došla k bodu, za který tato kampaň dál nevede.",
+        "Není to hodnocení průchodu — je to konec jednoho oblouku. Následující text shrnuje, co z března 1931 zbylo pro postavy a pro Bena."
       ]
     },
+
     "preziti": {
-      "nadpis": "Konec roku v úřadu",
+      "nadpis": "Konec pracovního měsíce",
       "odstavce": [
-        "Kalendář došel k mezníku, který hra bere jako uzávěr: žádná velká katastrofa na řece, jen únava z opakovaných jednání, obálky a razítka.",
-        "Ben nevyhrál ani neprohrál veřejně — přežil instituci, která ho živila i drtila. Noviny o tom psaly málo; většina lidí ani nevěděla, že nějaký příběh skončil.",
-        "Následující text je krátké vyúčtování postav — a věta, která zůstane u něj."
+        "Kalendář došel k poslednímu dni bez velké katastrofy. Žádný skandál v novinách, žádné předvolání k ministrovi, žádný dopis, který by nešlo odložit do zásuvky.",
+        "Ben přežil instituci, která ho živila i tížila. Spisy jsou podepsány, chodby jsou stejné jako první den a město venku pokračuje bez ohledu na to, co se odehrálo za zavřenými dveřmi kanceláře.",
+        "Tenhle konec nemá vítěze. Má jen pokračování — pořad jednání na pondělí, nová jména, nové složky. Následující stránka shrnuje, co z toho měsíce zbylo lidem kolem Bena a jemu samému."
       ]
     },
+
     "korupce": {
-      "nadpis": "Když se zákon prodává",
+      "nadpis": "Cena kompromisu",
       "odstavce": [
-        "Rozhodnutí, která šla stranou řádků zákona ve prospěch moci nebo kapsy, se nakonec sečetla. Ben už není jen svědek systému — je jeho součástí, byť tiše.",
-        "Tento konec je výsledkem tvých voleb v kanceláři; epilog níže říká, komu z toho kouká smích a komu ticho."
+        "Rozhodnutí, která šla mimo řádky zákona — ve prospěch moci, peněz nebo klidu — se nakonec sečetla do podoby, ze které není snadný návrat.",
+        "Ben není první soudce, který takovou cestu prošel, a nebude poslední. Systém takové lidi nepotřebuje vylučovat — potřebuje je uvnitř, použitelné.",
+        "Epilog níže říká, kdo z toho těží a jakou pozici v tom Ben teď drží."
       ]
     },
+
     "smireni": {
-      "nadpis": "Smír není očištění",
+      "nadpis": "Smír bez výmazu",
       "odstavce": [
-        "Něco z pravdy přijaté v těžkém rozhovoru zůstalo v těle jako kámen, který už nebolí tak často — ale pořád ho cítíš při sklonu.",
-        "Kampaň končí v tomhle tónu: není to vítězství nad minulostí, ale místo, kde se dá dýchat. Následuje shrnutí následků."
+        "Pravda přijatá ve špatnou chvíli je stále pravda. Ben ji nesl celý měsíc a něco z té tíhy se posunulo — ne zmizelo, posunulo.",
+        "Smíření v tomto světě neznamená, že se věci napravily. Znamená, že člověk ví přesně, co napravit nešlo, a přesto vstane.",
+        "Následující stránka shrnuje, jak to dopadlo pro lidi, kteří v příběhu stáli na druhé straně stolu."
       ]
     },
+
     "utek": {
-      "nadpis": "Útěk do soukromí",
+      "nadpis": "Odjezd",
       "odstavce": [
-        "Šance zaplatit cenu a zmizet z dosahu došla k bodu, který hra bere jako konec linie: dveře se zavřely, žaluzie zůstaly.",
-        "Tvá volba tady uzavírá příběh — epilog popíše, co z toho mají ti, kdo zůstali u okna, a co má Ben za sebou."
+        "Byly chvíle, kdy odejít znamená jediné rozumné rozhodnutí — ne zbabělost, jen odhad, co je ještě možné zachránit a co ne.",
+        "Dveře se zavřely. Praha zůstala za oknem vlaku nebo za rohem ulice, kam se Ben nevrátil.",
+        "Epilog shrnuje, co z toho odchodu zůstalo ostatním a co si Ben vzal s sebou."
       ]
     },
+
     "atentát": {
-      "nadpis": "Násilný konec",
+      "nadpis": "Cena vzdoru",
       "odstavce": [
-        "Střet, který nešel utlumit slovy ani spisem, došel k tragickému bodu. Hra zde končí — ne jako odměna, ale jako důsledek napětí mezi mocí a odvahou.",
-        "Následující odstavce shrnují ozvěnu u těch, kdo přežili, a co zůstane po Benovi v úřední paměti."
+        "Střet s mocí, která neodpouští veřejný odpor, má v tomto světě předvídatelný průběh. Příběhová kampaň končí v bodě, kde se linie přestaly míjet.",
+        "Tohle není trest za špatnou volbu — je to důsledek napětí, které se v průběhu měsíce nedalo uvolnit jinak.",
+        "Následující stránka shrnuje ozvěnu u těch, kdo přežili, a co z Bena zůstalo v úřední paměti."
       ]
     },
+
     "rad": {
-      "nadpis": "Kruh se zavřel",
+      "nadpis": "Jiná síť",
       "odstavce": [
-        "Dokumenty, důvěra a strach z udání se sešly v podobu, kterou hra označuje jako uzávěr Kruhu — Ben není mimo síť, jen v jiné její vrstvě.",
-        "Tvoje rozhodnutí dovedla příběh sem; epilog řekne, kdo z toho těží a kdo plave v tichu."
+        "Kruh není organizace s adresou a stanovami. Je to způsob, jak věci fungují, když přestanou fungovat jinak — tiše, přes důvěru, přes dluh.",
+        "Ben nevystoupil ze systému. Přešel do jeho jiné vrstvy — s jiným pánem a jinými pravidly, která jsou stejně nepsaná jako ta předchozí.",
+        "Epilog říká, kdo z toho profituje a co Ben za tento přechod zaplatil."
       ]
     },
+
     "anna": {
-      "nadpis": "Echo bez jména",
+      "nadpis": "Co zbývá",
       "odstavce": [
-        "Anna zůstává v minulosti; přítomnost je o matce, o účtech a o tom, co ještě jde zachránit bez iluzí.",
-        "Tento konec uzavírá kampaň v osobním tónu — následuje krátké vyúčtování postav a Benova pozice po tvých volbách."
+        "Anna patří minulosti — ne jako vzpomínka, která bolí méně, ale jako uzavřená kapitola, ke které se nedá vrátit jinak než v mysli.",
+        "Přítomnost je o matce, o účtech, o Martinových dopisech a o otázkách, které syn pokládá a na které Ben nemá dobré odpovědi.",
+        "Tento konec nemá velké gesto. Má lampu na stole, která svítí, a příběh, který pokračuje bez fanfár. Epilog shrnuje, co z toho zůstalo."
       ]
     },
+
     "hrdina": {
-      "nadpis": "Cena za vzdor",
+      "nadpis": "Veřejná věc",
       "odstavce": [
-        "Odpor vůči tlaku, který se nevešel do formuláře, má svou cenu — úřad, tělo, pověst. Hra zde bere konec linie jako daný.",
-        "Co z toho zůstane v řádcích novin a v chodbách soudu, shrnuje epilog níže — včetně toho, kde skončil Ben."
+        "Odpor, který se nevešel do formuláře ani do ticha zásuvky, se stal věcí veřejnou. Ben to věděl — nebo musel vědět — že tato cesta má cenu, která se platí předem.",
+        "Noviny napíšou jméno. Chodby soudu budou ticho. Obojí pomine rychleji, než člověk čeká.",
+        "Epilog shrnuje, co z toho vzdoru zbylo v řádcích úředních dokumentů a co si Ben odnesl mimo ně."
       ]
     },
+
     "odvolani": {
-      "nadpis": "Konec lavice",
+      "nadpis": "Konec funkce",
       "odstavce": [
-        "Rozsah chyb nebo slabosti přerostl v řízení, které lavici bere. Příběhová kampaň končí — ne jako pomník, ale jako výpověď z funkce.",
-        "Následuje stručné vyúčtovení: kdo zůstal u moci, kdo se odtáhl, a co z toho má Vraný."
+        "Lavice se bere tiše — bez rozsudku, bez veřejného řízení, s formulací, která nikoho neobviňuje a nikoho nebrání.",
+        "Ben není první, komu to přišlo takto, a systém to dobře ví. Místo se obsadí, spisy rozdělí, jméno zmizí z pořadu jednání.",
+        "Epilog shrnuje, kdo zůstal u moci, kdo se odtáhl a co z toho měsíce nese Ben dál."
       ]
     }
   }

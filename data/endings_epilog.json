@@ -1,0 +1,138 @@
+{
+  "_struktura": "typy[endingType][npcId] = string nebo objekt s variantami. Horakova: {low, high}. Benes: {identified, unknown} nebo {identified, identified_hrdina, unknown}. Novak = Benův blok.",
+  "_napojeni": {
+    "horakova_trust": "Větve low/high číst z trust.zavadova — opravit v engine: Number(stav.trust?.zavadova) >= 2, ne stav.trust.horakova",
+    "benes_flag": "Větve identified/unknown podle flags.benes_identified === true",
+    "karas": "Nový blok — přidat _epilogKaras(typ, stav) do engine.js a řádek karas: _epilogKaras(typ, stav) do _sestavEpilog"
+  },
+  "typy": {
+    "preziti": {
+      "vlcek": "Zůstal na ministerstvu bez veřejné zmínky o Vraném nebo o březnovém měsíci. Pochvaly přestaly přicházet, ale ani hrozba nepřišla — Vlček takové věci nechává doznít v tichu, ne ve spisech. Jméno Benedikta Vraného zmizelo z jeho denního pořádku přibližně ve stejnou dobu, kdy přestalo být užitečné. Ministerstvo funguje dál.",
+      "horakova": {
+        "low": "Sledovala průběh z dálky a psala o jiných věcech — o exekucích, o nezaměstnanosti, o věcech, které mají více čtenářů. Vraný v jejích textech nezůstal ani jako stopa.",
+        "high": "Napsala jeden odstavec o soudci, který přežil měsíc beze skandálu v době, kdy to vyžadovalo určité umění. Nepodepsala to jménem — ani jeho, ani svým. Vraný to poznal, přečetl a noviny přeložil."
+      },
+      "masek": "Pokračoval na stejném místě stejným způsobem. Vraného přežití komentoval jednou větou v lokále: Věděl jsem, že to dáš. Pak si objednal kávu a přešel k jinému tématu.",
+      "benes": {
+        "identified": "Odešel z Prahy brzy po jejich setkání. Ben to věděl — nebo to aspoň tušil, když přestal přicházet. Co přinesl a co odnášel, to Vraný znal. Co s tím udělá příště, to je věc jiného měsíce.",
+        "unknown": "Starý muž přišel a odešel a Vraný nikdy nezjistil jeho jméno. V archivu soudu leží spis, ve kterém by mohl začít hledat. Zatím ho tam nechal."
+      },
+      "karas": "Vraný zaplatil nebo nezaplatil — Karas byl v obou případech stejně přítomný, stejně nenápadný, stejně dostupný na příštím rohu. Takový člověk neztrácí klienty přežitím.",
+      "novak": "Ben zamkl kancelář v pátek odpoledne jako každý týden. Klíč cvakl do zámku a on chvíli stál na chodbě a poslouchal, jak budova utichá. Nikdo na něj nečekal dole — Švejda byl pryč, Kovářová taky. Schody pod nohama zněly prázdně. Venku bylo oblačno a trochu pršelo — drobný březnový déšť, který nic neohlašuje a nic neuzavírá. Matka se zotavovala po operaci a doktor Síber řekl, že prognóza je dobrá. Martin napsal, že přijede. Vlček mlčel. To byl výsledek měsíce — ne vítězství, ne prohra, spíš stav, ve kterém se dá jít domů a uvařit čaj. Spisy na příští týden čekaly svázané u dveří kanceláře. Ben je vzal pod paži, přešel přes nádvoří a vyšel na ulici. Déšť mu chvíli padal na kabát, pak si ho všiml a zapnul knoflík u límce. Tram zastavila na rohu. Ben nastoupil."
+    },
+    "korupce": {
+      "vlcek": "Nadále slouží republice s titulem, kancelářemi a přístupem ke spisům, které by nikdo jiný neměl vidět. Vraného případ nikdy nezmínil — ani jako vítězství, ani jako závazek. Takové věci se nezapisují; drží se jinak. V určitých chodbách ministerstva se jméno Vraný říká se znalostí věci.",
+      "horakova": {
+        "low": "Psala o justici dál, ale o tomto případu ne. Buď nevěděla dost, nebo věděla příliš — žádná z variant nezní dobře. Její jméno ve Svobodném obzoru pokračovalo pod jinými titulky.",
+        "high": "Tušila. Napsala jeden sloupek o tom, jak instituce mění lidi — bez jmen, bez přímých odkazů. Vraný si ho přečetl a věděl, že je to o něm. Ona věděla, že to přečte."
+      },
+      "masek": "Přivítal Vraného jako člověk, který něco podobného předvídal a nestěžuje si, že měl pravdu. Nikdy o tom nemluvili přímo. Bylo to jedno z těch přátelství, která fungují právě proto, že se určité věci pojmenovávají jen gesty.",
+      "benes": {
+        "identified": "Odešel a Vraný to věděl. Co přinesl, to zůstalo v zásuvce — nebo bylo vráceno, nebo předáno dál. V každém případě mezera ve spisu zůstala mezerou. To Beneš asi věděl dřív, než přišel.",
+        "unknown": "Starý muž přišel a odešel a Vraný nikdy nezjistil, kdo to byl. Možná to bylo lepší tak — znát jméno by některé věci komplikovalo."
+      },
+      "karas": "Zůstal na dostupném místě. Korupce takové lidi nepotřebuje vylučovat — potřebuje je blízko, pro případ, že bude zase potřeba rychlá hotovost bez zápisu.",
+      "novak": "Nové pero na stole ráno bylo těžší než to staré — nebo si to Ben říkal, protože na takových věcech záleží, když se hledají rozdíly. Vlčkův člověk přišel v pondělí s dokumenty k podpisu a Ben je podepsal. Nezabývalo to víc času než obvyklé spisy, a to byl možná největší problém — jak rychle se z neobvyklého stane obvyklé. Matka se zotavovala. To bylo dobré. Martin napsal o víkendu a Ben mu odpověděl stručně a pravdivě, pokud se pravdivost měří tím, co se do dopisu napíše a ne tím, co se vynechá. Karas věděl a neřekl nic. Mašek věděl a taky neřekl nic. Takové věci se neříkají — to je přesně to, co je drží pohromadě. Ben si v pátek sedl u okna a koukal na ulici pod sebou. Lidi chodili a nevěděli nic o tom, co se odehrálo v kanceláři ve třetím patře, a to bylo tak správně — oni to vědět nepotřebovali. Ben to vědět potřeboval. A věděl. A šel dál."
+    },
+    "smireni": {
+      "vlcek": "Odešel do pozadí — ne politicky, jen z Benova výhledu. Hrozba se nenaplnila nebo se přesunula jinam. Vlček takové věci odloží, ne zruší — ale prozatím je ticho. Ben to ticho četl jako prostor, ne jako bezpečí.",
+      "horakova": {
+        "low": "Napsala o případu Beneš — ne osobně o Benovi, ale o mezeře ve spisu, o svědkovi, o datu. Tiše, přesně, bez dramatu. Vraný to četl a věděl, že tohle bude mít dohru.",
+        "high": "Napsala o Vraném — ne o případu, o člověku. O soudci, který přečetl spis znovu a nemusel. O tom, co to stojí. Byl to nejkratší text, který napsala ten měsíc, a nejdelší, co přečetl Vraný."
+      },
+      "masek": "Nic zvláštního neřekl — ani ke smíření, ani k tomu, co mu Vraný řekl nebo neřekl. Mašek takové věci nekomentuje; respektuje je tím, že pokračuje normálně.",
+      "benes": {
+        "identified": "Seděli spolu chvíli na lavičce u soudu. Ne jako přátelé — jako dva muži, kteří sdílí jeden fakt a žijí s ním každý jinak. Beneš vstoupil a přikývl. Odešel krokem člověka, který má kam jít, i když nikam nespěchá. Vraný to vzal jako odpověď, i když žádná otázka nebyla vyslovena.",
+        "unknown": "Starý muž odešel a Vraný nikdy nezjistil jeho celé jméno. Ale věděl dost — a to dost bylo těžší než jméno."
+      },
+      "karas": "Půjčka nebo ne — Karas byl součástí měsíce, který skončil jinak, než začal. Nezlobil se. Takový člověk se nezlobí; drží si to pro případ, že se hodí někdy jindy.",
+      "novak": "Martinovi napsal dopis — ne celou pravdu, protože celá pravda by se nevešla na papír a ani do jazyka, ale dost na to, aby syn věděl, že otec jednou nepřečetl spis správně a že muž zemřel a že se to nedá vzít zpět. Pero váhalo jen na začátku. Pak šlo řádek za řádkem, jako výpověď, u které je Ben svědkem i obžalovaným. Alois Beneš seděl v parku u soudu, když Ben vycházel — nebo aspoň Ben věřil, že to byl on. Nepřišli k sobě. Prostě dva lidé ve stejném prostoru, jeden starší, jeden méně. Ben přinesl čaj z výdejny a posadil se na sousední lavičku. Odpuštění nepřišlo a Ben ho nečekal. Ale Beneš vstal, přikývl a řekl tiše: Tak to tedy víte. A odešel. Ben zůstal chvíli na lavičce a díval se za ním. Pak vstal, šel zpět do budovy a dopsal rozsudek, který mu ležel od rána. Bylo to nejprostší odpoledne toho měsíce — a přesto nejdelší."
+    },
+    "utek": {
+      "vlcek": "Podal dotaz na ministerstvo o Benově nepřítomnosti. Odpověď přišla týden po odchodu — zdravotní důvody, podepsáno lékařem. Vlček to nechal projít. Takový člověk neztrácí čas na ty, kteří odešli — hledá ty, kteří zůstali a ještě nejsou přesvědčeni.",
+      "horakova": {
+        "low": "Napsala krátkou poznámku o soudci, který se nedostavil. Bez dramatu, bez teorií — jen fakt v záznamu o stavu justice.",
+        "high": "Tušila víc, než napsala. Nechala si to — možná pro jindy, možná pro sebe. Vraný odjel dřív, než mohla cokoli říct nebo napsat, a to ji trochu mrzelo, i když by to nepřiznala."
+      },
+      "masek": "Přišel v pondělí a Bena tam nenašel. Pochopil to bez vysvětlení. Přikývl na Švejdovo oznámení a šel k vlastnímu stolu. Takové věci se stávají — Mašek to věděl ještě před Benem.",
+      "benes": {
+        "identified": "Odešel dřív, než odešel Ben — nebo aspoň tak to Ben vnímal. To, co přinesl, Ben vzal s sebou. V kufru nebo v hlavě, záleží na tom, co se dá sbalit.",
+        "unknown": "Starý muž přišel a odešel a Vraný odjel, aniž by zjistil jeho jméno. Možná to byl záměr. Možná jen souběh okolností."
+      },
+      "karas": "Půjčka nebo ne — Karas v tom hrál roli. Odchod byl možný částečně i proto, co Karas dal nebo nenabídl. Takoví lidé jsou součástí příběhů, i když se v nich neobjevují jako postavy s replikami.",
+      "novak": "Kufr byl lehčí než čekal — dvě košile, holící potřeby, deník bez zápisků za poslední týden. Na dně obálka s Martinovým dopisem, který neotvřel, protože otevřít ho by znamenalo mít důvod zůstat. Karas řekl: odejděte. A Ben poslechl, ne proto, že Karas měl pravdu, ale proto, že po tom měsíci neměl sílu zjišťovat, kdo ji má. Nádraží vonělo uhlím a mokrým železem. U pokladny žena počítala drobné. Ben si koupil lístek a neřekl kam. Vlak stál u třetího nástupiště s okny zamlženými od dechu lidí, kteří jedou odjinud jinam. Sedl si ke dveřím a díval se, jak Praha za sklem měkne v šeru. V kapse měl klíč od kanceláře, který vrátit zapomněl nebo nechtěl. Matka se zotavovala — to věděl z posledního dopisu od doktora Síbra. Martin přijede o víkendu do Prahy a nenajde ho. To Bena bolelo víc než Vlčkovy dopisy. Vlak odjel v šest. Ben se neohlédl — ne z pýchy, jen proto, že za oknem nebylo co vidět kromě kolejí a tmy, a na ty koukat bylo zbytečné."
+    },
+    "atentát": {
+      "vlcek": "Byl odvolán z funkce tři týdny po událostech. Řízení bylo zastaveno po dvou týdnech s formulací o nedostatku důkazů. Vlček odešel z úřadu tichým způsobem, který v politice znamená přesun, ne konec. V jiném ministerstvu, na jiné pozici, s jiným jménem v záhlaví dopisů.",
+      "horakova": {
+        "low": "Napsala o tom. Suchý tón, fakta, datum — přesně tak, jak psala vždy. Tři novináři přišli o práci kvůli věcem, které v textu byly jen naznačeny. Ona pokračovala.",
+        "high": "Vydala sérii článků, které začaly u faktu a skončily u otázky zůstavší bez odpovědi v úředním záznamu. Tři novináři přišli o práci kvůli ní. Pokračovala — to byl způsob, jak vzdávala hold."
+      },
+      "masek": "Podepsal kondolenci. Na pohřbu nestál v první řadě. Po ceremonii šel rovnou zpět do budovy a ten den dopsal dva spisy, které měl rozepsané. Takový byl Mašek — ne bez citu, jen s jinou hierarchií výrazů.",
+      "benes": {
+        "identified_hrdina": "Přišel na pohřeb. Nestál blízko — stál za posledním řadem, u stromu, s rukama sepjatýma. Nemluvil s nikým. Odešel dřív, než začalo, nebo až poté, co všichni odešli — záleží na tom, koho se zeptat, a nikdo přesně nevěděl.",
+        "identified": "Odešel z Prahy krátce po událostech. Co přinesl a co se s tím stalo, to se nedá zjistit z veřejných zdrojů. V archivu je mezera tam, kde by měl být podpis.",
+        "unknown": "Starý muž přišel a odešel a Vraný nikdy nezjistil jeho jméno. Teď to zjistit nejde jinak než ze spisu, ke kterému nikdo přístup nemá."
+      },
+      "karas": "Byl povolán k výpovědi jako svědek. Řekl, co řekl — přesně tolik, kolik musel. Propuštěn bez obvinění. Vrátil se tam, kde byl. Takový člověk má vždy kam se vrátit.",
+      "novak": "Zamkl kancelář ve čtvrt na osm a budova byla prázdná — ani Švejda, ani zapisovatelka, ani echo kroků, které obvykle provázely odchod. Jen hodiny na chodbě a jeho vlastní dech. V šuplíku ležel dopis adresovaný předsedovi krajského soudu — tři strany klidným písmem bez škrtanců. Věc: žádost o přezkoumání postupu Ministerstva spravedlnosti ve věci personální politiky soudců. Příloha A: seznam případů. Příloha B: jména. Příloha C: kopie korespondence. První jméno na seznamu bylo jeho vlastní. Nevěděl, jestli to stačí — spíš ne. Ale spisy byly očíslované, podepsané a zapečetěné jako soudce, ne jako oznamovatel ani jako oběť — jako člověk, který jednou nepřečetl a teď přečetl všechno. Pak zhasl, vzal klobouk a šel ke schodišti. Venku byl normální večer — tramvaj, déšť, okna s lampami. Nic z toho nevědělo."
+    },
+    "rad": {
+      "vlcek": "Přesunul se do pozadí — ne z oslabení, ale z přerozdělení. Vlček nikdy nebojoval frontálně; přesouval zdroje jinam a nechával lidi myslet, že vyhráli. Kruhu nepotřeboval — ale s Kruhem pracoval, pokud to bylo výhodné. Dál pracuje.",
+      "horakova": {
+        "low": "Psala o jiných věcech. Vraný v jejím výhledu přestal být příběhem a stal se pozadím příběhu, který teprve přijde.",
+        "high": "Tušila, co se stalo — nebo aspoň část toho. Napsala o Kruhu obecně, bez jmen, bez adres. Redakce to otiskla s komentářem šéfredaktora, že jde o spekulaci. Možná byla. Možná ne."
+      },
+      "masek": "Pokračoval na svém místě. Co věděl o Kruhu, to bylo jeho věc — Mašek věci komentoval jen tehdy, když to bylo bezpečné, a toto bezpečné nebylo.",
+      "benes": {
+        "identified": "Odešel a nepřišel znovu. Co přinesl, to teď sloužilo jinému účelu, než pro který přinesl. Beneš to asi věděl — nebo aspoň tušil, jinak by nepřišel způsobem, jakým přišel.",
+        "unknown": "Starý muž přišel a odešel a zůstal jako otázka, na kterou Ben v tomto průchodu příběhem nedostal odpověď."
+      },
+      "karas": "Byl součástí sítě nebo nebyl — záleží na tom, jak moc se Kruh s jeho byznysem překrýval. Každopádně jeho pozice se po březnu nezměnila — ani k lepšímu, ani k horšímu. Zůstal kde byl.",
+      "novak": "Závadová mu podala ruku pevně a krátce, jako se podává rozsudek. Rodný list byl v redakci Svobodného obzoru a Benův podpis pod průvodním dopisem vedle jejího. Vlček padne nebo nepadne — moc se neláme, jen přelévá, a na jeho místo přijde jiný muž se stejnými potřebami. Ben o tom přemýšlel cestou domů a přišel k závěru, že to ví, a přesto podepsal. Martin psal dopisy, ve kterých citoval slova, jejichž původ neznal, a Ben v nich slyšel Závadovou tak zřetelně, až ho to zastavilo uprostřed čtení. Na stole ležel nový spis — tentokrát od Kruhu. Instrukce psané jiným písmem, ale ve stejné kadenci, jakou Ben celý měsíc četl z Vlčkových obálek. Čerstvý inkoust na čistém papíře a ruka, která ho drží, je Bena. Jen zákon, který vykládá, je jiný. Možná lepší. Možná jen jiný — to se přijde jindy."
+    },
+    "anna": {
+      "vlcek": "Zůstal na místě. Hrozba se nenaplnila — nebo se přesunula na jiný terč. Vlček takové věci nevzdává; odkládá je na dobu, kdy budou znovu výhodné.",
+      "horakova": {
+        "low": "Psala o jiných případech. Vraný nebyl příběhem, který by stál za risiko v tu chvíli.",
+        "high": "Napsala o případu Beneš — bez Benova jména, bez soudu, jen o mezeře ve svědectví. Tiše a přesně. Vraný si to přečetl a věděl, co je to za text."
+      },
+      "masek": "Pokračoval. Jeden den se zeptal, jak se má — Vraný odpověděl dobře, Mašek přikývl a přešel k jinému tématu. To bylo rozloučení se starým měsícem.",
+      "benes": {
+        "identified": "Odešel bez dramatiky — tak, jak přišel. Ben věděl, co mu přinesl, a nosil to s sebou. Ne jako vinu, ne jako úkol — jako fakt, se kterým žil.",
+        "unknown": "Starý muž přišel a odešel. Vraný nikdy nezjistil jeho celé jméno. To ho občas napadlo — ne jako lítost, spíš jako otevřená otázka."
+      },
+      "karas": "Byl součástí měsíce tak, jak byl součástí každého měsíce — přítomný, dostupný, bez velkých výstupů. Co se stalo s operací matky, to bylo věcí Bena a doktora Síbra, ne Karase.",
+      "novak": "Martinův dopis ležel na stole, otevřený a přečtený dvakrát, podruhé pomaleji. Nechce být soudce — chce učit. Napsal to opatrně, jako by se bál, že otec neporozumí. Ben rozuměl líp, než syn myslel — věděl, co znamená stát v síni a nevědět, jestli slovo, které vyslovíš, zachrání nebo zničí. Anna patří minulosti — ne jako vzpomínka, která bolí méně, ale jako uzavřená kapitola. Přítomnost je o matce, o účtech, o Martinových otázkách, na které Ben nemá dobré odpovědi a nikdy mít nebude. Finance nesedí a matčina operace proběhla o dva dny později, než doktor Síber chtěl. Ale proběhla. Matka leží v Podolí a zotavuje se, Martin píše z Brna a Ben sedí v bytě, kde voní staré dřevo a prach z knih. Za oknem se setmívá. Ben zapíná lampu na stole. Vlákno zabliká jednou a dvakrát, pak se chytí. Svítí slabě, ale svítí. To na tento večer stačí."
+    },
+    "hrdina": {
+      "vlcek": "Byl odvolán z funkce. Řízení bylo zastaveno po dvou týdnech s odůvodněním, které nikoho neuspokojilo — ani ty, kdo Vlčka podporovali, ani ty, kdo ho chtěli soudit. V jiném odboru, s jiným titulem, s jiným přístupem ke korespondenci. Vlček odchod z jednoho místa vždy bral jako příchod jinam.",
+      "horakova": {
+        "low": "Napsala o tom fakticky — datum, věc, výsledek. Vydržela tlak redakce a jeden rozhovor s právníkem ministerstva, který ji radil ke zdrženlivosti. Zůstala u svého.",
+        "high": "Vydala sérii článků. Začala u faktu, skončila u otázky. Tři novináři přišli o práci kvůli věcem, které byly v textu jen naznačeny. Pokračovala — to byl způsob, jak vzdávala hold."
+      },
+      "masek": "Podepsal kondolenci nebo pogratuloval — záleží na tom, jak dopadlo. V každém případě bez velké řeči. Mašek takové věci nerozpracovával; respektoval je tím, že šel dál.",
+      "benes": {
+        "identified_hrdina": "Přišel a podal ruku. Neřekl mnoho — Beneš nikdy neřekl mnoho; Ben slyšel víc v tlaku prstů než ve větách a uložil si to jako věc, která nepotřebuje spis. Nestál v první řadě u žádného pódia — byl vidět jen tomu, kdo hledal. Odešel dřív, než se veřejně rozhodlo, o jaký druh shromáždění šlo, a přesně takhle to asi mělo zůstat: gesto místo prohlášení.",
+        "identified": "Přišel, přikývl a zmizel v davu. Jméno už Ben znal — zbytek si nechal být.",
+        "unknown": "Starý muž přišel a odešel. Vraný nikdy nezjistil jeho jméno — ale co přinesl, to sehrálo roli. Tak to někdy chodí."
+      },
+      "karas": "Byl povolán k výpovědi nebo nebyl — záleží na tom, co se vědělo a kdo se ptal. Každopádně z toho měsíce vyšel tak, jak vstoupil — na svém místě, se svou sítí, s tím, co drží.",
+      "novak": "Redaktor Svobodného obzoru ho fotografoval u východu ze soudní budovy a blesk mu na okamžik vzal celou ulici. Ben stál rovně, ne proto, že by chtěl — nohy prostě nevěděly kam jinam. Rodný list byl v redakci a Ben věděl, co je to za papír — podvrh, který nese skutečnou pravdu jako obálka nese dopis. Vlček to věděl, Ben to věděl, a zítra ráno to bude vědět celé město, včetně Martina. Šel domů pěšky, kolem kasáren a přes tržiště, kde dnes nikdo neprodával. V kapse měl výpověď — tři věty na zadní straně obálky. V hlavě ticho, které nepřipomínalo úlevu, spíš prázdný sál po jednání, kdy všichni odešli a zůstal jen pach inkoustu a starého dřeva. U vchodu do bytu visela na zábradlí mokrá rukavice — cizí, zapomenutá. Vzal ji a pověsil na kliku, protože pořád dělal věci, na které se nikdo nedíval. Noviny dnes píšou jeho jméno. Zítra ho zapomenou. To Ben věděl a šel spát."
+    },
+    "odvolani": {
+      "vlcek": "Podal návrh na odvolání. Bylo schváleno bez veřejného projednání — formulace zdravotní a pracovní důvody, bez konkrétního obvinění. Vlček na celé věci nevydělal tolik, kolik čekal — ale to nebylo poprvé. Systém byl zachován, soudce vyměněn, případ uzavřen.",
+      "horakova": {
+        "low": "Napsala o odvolání soudce z funkce — krátce, fakticky, bez jmen. Opakovala znění tiskové zprávy. Víc k tomu neměla nebo víc říct nemohla.",
+        "high": "Napsala víc než tiskovou zprávu — ale méně, než věděla. Uveřejnila otázku o postupu ministerstva, na kterou nikdo v té rubrice neodpověděl. Možná přijde odpověď jindy."
+      },
+      "masek": "Odešel do penze o rok dříve, než plánoval — nebo zůstal a přijal nového kolegu bez komentáře. V každém případě bez rozloučení se starým způsobem. Takové věci Mašek neuzavírá slavnostně.",
+      "benes": {
+        "identified": "Odešel a Vraný věděl kdo to byl — věděl to celý ten měsíc. Konec funkce to nezmění. Spis s mezerou zůstane v archivu.",
+        "unknown": "Starý muž přišel a odešel a Vraný nikdy nezjistil jeho jméno. Teď to zjišťovat nemá smysl — nebo má, záleží na tom, co chce dělat se zbytkem času."
+      },
+      "karas": "Byl součástí měsíce — ne jako příčina odvolání, ale jako jedna z proměnných. Nezlobil se. Takový člověk se nezlobí; drží si to.",
+      "novak": "Rozsah chyb nebo slabosti přerostl v řízení, které lavici bere. Formulace byla stručná — zdravotní a pracovní důvody — protože stručná formulace nikoho neobviňuje a nikoho nebrání. Ben si to přečetl dvakrát, složil papír a dal ho do kapsy. Pak si oblékl kabát. Kancelář voněla stejně jako první den — starým dřevem, inkoustem, chladem z kamenné chodby. Fotografie Martina stála v rohu. Vzal ji, zabalil do novin a strčil do tašky. Kovářová byla ve vedlejší místnosti — klepání stroje, pak ticho, pak zase klepání. Ben nezaklepal. Šel po schodech dolů, přes nádvoří a ven. Švejda u vchodu zavřel oči a otevřel je znovu — to byl jeho způsob rozloučení. Ben přikývl. Venku byl normální den. Tram zastavila na rohu. Lavice se obsadí, spisy rozdělí, jméno zmizí z pořadu jednání. Každý soudce to ví od prvního dne — jen si to aktivně nemyslí, dokud nepřijde formulář."
+    }
+  }
+}

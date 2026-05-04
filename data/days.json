@@ -10,6 +10,106 @@
     "letters": [
       "vlcek_d1"
     ],
+    "adventure_scene": {
+      "id": "adventure_benes_d1_dev",
+      "_poznamka_dev": "Dočasně: rozhovor s Benešem v kanceláři pro ladění UI. Před návratem k scénáři smaž celý klíč adventure_scene u dne 1.",
+      "portrait": "benes",
+      "portrait_label": "Alois Beneš",
+      "portrait_description": "Sedmdesátník, šedé vlasy, tmavý kabát. Člověk, který si na svůj věk nepřipouští slabost — ale ruce ho prozradí.",
+      "trigger": "morning_after_fragment",
+      "blocks_cases_until_complete": false,
+      "screens": [
+        {
+          "id": "d1dev_s1",
+          "speaker": "narrator",
+          "text": "Švejda zaklepal dvakrát — o jednu ránu víc než obvykle — a prostrčil dovnitř hlavu s výrazem člověka, který neví, jestli udělal dobře. Přišel někdo, pane doktore. Říká, že se jmenuje Beneš. Čekal venku od osmi.",
+          "choices": null,
+          "next": "d1dev_s2"
+        },
+        {
+          "id": "d1dev_s2",
+          "speaker": "narrator",
+          "text": "Muž, který vstoupil, byl starý — sedmdesát, možná víc. Šedé vlasy, tmavý kabát, ruce sepjaté před sebou jako při modlitbě, ale bez modlitby v obličeji. Podal ruku pevně a sedl si bez vyzvání. Pak se podíval Benovi do očí a ani nekývl, ani nezačal. Jen čekal, jestli Ben sám neřekne, proč je tady.",
+          "choices": null,
+          "next": "d1dev_s3"
+        },
+        {
+          "id": "d1dev_s3",
+          "speaker": "Beneš",
+          "text": "Prosím Vás o minutu, pane doktore. Jen minutu — pak půjdu a nebudu Vás obtěžovat. Jmenuji se Alois Beneš. Můj syn Karel byl odsouzen v roce 1927. Odsoudil jste ho Vy. Zemřel ve vazbě, ještě před odvoláním. Vím, co bylo v obžalobě. Ale vím také, co v obžalobě nebylo.",
+          "choices": null,
+          "next": "d1dev_s4"
+        },
+        {
+          "id": "d1dev_s4",
+          "speaker": "narrator",
+          "text": "Ben seděl a poslouchal. Beneš mluvil klidně — jako člověk, který tuto větu říká poprvé, ale přemýšlel o ní čtyři roky. Na stole mezi nimi nebyl žádný papír, žádný spis, žádný důkaz. Jen dva muži v kanceláři, jeden mladší, jeden starší, a jméno Karla Beneše viset ve vzduchu mezi nimi.",
+          "choices": [
+            {
+              "label": "Poslouchám Vás. Řekněte mi, co víte.",
+              "next": "d1dev_s5a"
+            },
+            {
+              "label": "Případ byl pravomocně uzavřen. Nemohu ho znovu otevírat.",
+              "next": "d1dev_s5b"
+            },
+            {
+              "label": "Vezmu to na vědomí. Ale nic Vám nemohu slíbit.",
+              "next": "d1dev_s5c"
+            }
+          ]
+        },
+        {
+          "id": "d1dev_s5a",
+          "speaker": "Beneš",
+          "text": "Přikývl. Jednou, bez spěchu. Pak vytáhl z kapsy kabátu obálku — tenkou, bez adresy — a položil ji na stůl. Karel nekradl stroje. Kradl jídlo ze skladu — protože neměl co jíst. V obžalobě bylo napsáno sabotáž. Já to tehdy nevěděl dokázat. Teď mám svědka, který byl u toho. Svědek je starý a dlouho to nebude platit.",
+          "choices": null,
+          "next": "d1dev_s6a"
+        },
+        {
+          "id": "d1dev_s6a",
+          "speaker": "narrator",
+          "text": "Ben vzal obálku. Otevřel ji pomalu a četl jeden list, hustě popsaný. Beneš seděl a nespěchal — díval se z okna jako člověk, který má dost trpělivosti na to, aby počkal na jedinou větu. Ben list přečetl a pak ho složil.",
+          "choices": null,
+          "next": "d1dev_s7a"
+        },
+        {
+          "id": "d1dev_s7a",
+          "speaker": "Beneš",
+          "text": "Nechci, abyste mě litoval. Nechci omluvu — ta Karlovi nepomůže. Chci jen, abyste věděl, co bylo. Co uděláte s tím věděním, to je Vaše věc. Vstal. Na chvíli se zastavil u dveří. Vy jste věděl, že ten spis byl tenký. Každý soudce to ví. Jen jste nepřečetl, co tam chybělo.",
+          "choices": null,
+          "next": null
+        },
+        {
+          "id": "d1dev_s5b",
+          "speaker": "Beneš",
+          "text": "Beneš se nezarazil. Vstal pomalu, zapnul knoflík kabátu — jeden, druhý — a podíval se na Bena naposledy. Rozumím. Napsal jsem na ministerstvo, dostalo se mi stejné odpovědi. Já se jen ptal, jestli soudce odpoví jinak. Ukázalo se, že ne.",
+          "choices": null,
+          "next": "d1dev_s6b"
+        },
+        {
+          "id": "d1dev_s6b",
+          "speaker": "narrator",
+          "text": "Odešel bez dramatiky — jen otevřel dveře, prošel kolem Švejdy a zmizel ve schodišti. Švejda pak zaklepal a zeptal se, jestli je vše v pořádku. Ben řekl, že ano. Celý den pak pracoval a občas se podíval na prázdné místo u stolu, kde seděl starý muž se sepjatýma rukama.",
+          "choices": null,
+          "next": null
+        },
+        {
+          "id": "d1dev_s5c",
+          "speaker": "Beneš",
+          "text": "Beneš se na okamžik usmál — unavený úsměv člověka, který čekal horší. To je poctivá odpověď, pane doktore. Více jsem nečekal. Vytáhl obálku a položil ji na stůl. Karel nekradl stroje — kradl jídlo. V obžalobě stálo sabotáž. Berte si čas. Ale ne příliš — svědek je starý.",
+          "choices": null,
+          "next": "d1dev_s6c"
+        },
+        {
+          "id": "d1dev_s6c",
+          "speaker": "narrator",
+          "text": "Beneš odešel. Obálka zůstala na stole. Ben ji vzal, přečetl list a uložil do kabátu — k srdci, ne do zásuvky. Švejda přinesl kávu a Ben mu poděkoval a díval se z okna. Venku šlo kolem pár lidí a žádný z nich nevěděl nic o Karlovi Benešovi.",
+          "choices": null,
+          "next": null
+        }
+      ]
+    },
     "evening_choice": {
       "text": "Stůl je čistý. Lampa svítí. Poprvé po roce jsi zpátky za stolem a první den dopadl tak, jak první dny bývají — bez velkých chyb, bez velkých vítězství. Na stole leží prázdný list a pero. Kdosi ti v kanceláři nechal noviny s podtrženou větou o justici. Ještě jsi ji nedočetl celou.",
       "options": [

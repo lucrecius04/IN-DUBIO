@@ -2409,6 +2409,8 @@ const UI = (() => {
 
   /** Podzáložka Knihovny: pribeh | pravidla | slovnik */
   let _knihovnaPodpanel = 'pribeh';
+  /** Podzáložka Pověsti v zápisníku: lide | frakce */
+  let _povestArchivPodtab = 'lide';
   /** Po otevření slovníku: scroll na heslo (id z JSON). */
   let _knihovnaAnchorId = null;
   /** Po otevření zápisníku na Pověst: scroll na záznam postavy (id z postavy_okoli.json). */
@@ -4913,7 +4915,7 @@ const UI = (() => {
   }
 
   /**
-   * @param {string} [tab='rozsudky'] — např. 'stav-duse' po kliknutí na panel financí na stole (obživa v záložce Benedikt).
+   * @param {string} [tab='rozsudky'] — např. 'stav-duse' po kliknutí na panel financí na stole (obživa v záložce Stav).
    * @param {{ knihovna?: { panel?: 'pribeh'|'pravidla'|'slovnik', anchorId?: string }, povest?: { anchorId?: string } }} [opts] — podzáložka / kotva slovníku nebo záznam v Pověsti.
    */
   function zobrazArchiv(tab, opts) {
@@ -4932,8 +4934,13 @@ const UI = (() => {
       _knihovnaAnchorId = null;
     }
 
-    if (t === 'postavy' && opts && opts.povest && typeof opts.povest === 'object' && opts.povest.anchorId) {
-      _povestZapisnikAnchorId = String(opts.povest.anchorId).trim().replace(/[^a-zA-Z0-9_-]/g, '');
+    if (t === 'postavy') {
+      if (opts && opts.povest && typeof opts.povest === 'object' && opts.povest.anchorId) {
+        _povestZapisnikAnchorId = String(opts.povest.anchorId).trim().replace(/[^a-zA-Z0-9_-]/g, '');
+        _povestArchivPodtab = 'lide';
+      } else {
+        _povestZapisnikAnchorId = null;
+      }
     } else {
       _povestZapisnikAnchorId = null;
     }
@@ -5164,7 +5171,7 @@ const UI = (() => {
   function _vyplnArchivTab(tab) {
     const obsah = document.getElementById('archiv-obsah');
     if (!obsah) return;
-    obsah.classList.toggle('archiv-obsah--knihovna', tab === 'knihovna');
+    obsah.classList.toggle('archiv-obsah--knihovna', tab === 'knihovna' || tab === 'postavy');
 
     if (tab === 'stav-duse') {
       obsah.innerHTML = '';
@@ -5241,113 +5248,259 @@ const UI = (() => {
     } else if (tab === 'postavy') {
       obsah.innerHTML = '';
 
-      const povestNad = document.createElement('div');
-      povestNad.className = 'postavy-frakce-nadpis';
-      povestNad.textContent = 'POSTAVY VE VYPRÁVĚNÍ';
-      obsah.appendChild(povestNad);
-      const povestWrap = document.createElement('div');
-      povestWrap.className = 'povest-zapisnik-seznam';
-      const unlockedIdsRaw = State.get('flags.povest_odemcene_ids');
-      const unlockedIds = Array.isArray(unlockedIdsRaw) ? unlockedIdsRaw : [];
-      const unlockedSet = new Set(unlockedIds.map(x => String(x)));
       const polePov =
         typeof DataLoader !== 'undefined' && DataLoader.ziskej
           ? DataLoader.ziskej('postavy_okoli')
           : null;
-      if (!Array.isArray(polePov) || polePov.length === 0) {
-        const prazd = document.createElement('p');
-        prazd.className = 'povest-zapisnik-prazdno';
-        prazd.textContent = 'Data pověstí postav nejsou k dispozici.';
-        povestWrap.appendChild(prazd);
-      } else if (!unlockedSet.size) {
-        const prazd = document.createElement('p');
-        prazd.className = 'povest-zapisnik-prazdno';
-        prazd.textContent =
-          'Jakmile ve hře poprvé zazní nové jméno, doplní se sem stručná pověst — sledujte stavovou hlášku dole.';
-        povestWrap.appendChild(prazd);
-      } else {
-        const byId = new Map();
+      const byIdPov = new Map();
+      if (Array.isArray(polePov)) {
         for (const z of polePov) {
-          if (z && z.id) byId.set(String(z.id), z);
-        }
-        for (const uid of unlockedIds) {
-          const z = byId.get(String(uid));
-          if (!z || typeof z !== 'object') continue;
-          const idBez = String(z.id || '').replace(/[^a-zA-Z0-9_-]/g, '');
-          const sec = document.createElement('section');
-          sec.className = 'povest-zapisnik-zaznam';
-          if (idBez) sec.id = 'povest-zaznam-' + idBez;
-          const h = document.createElement('h3');
-          h.className = 'povest-zapisnik-jmeno';
-          h.textContent = String(z.nazev || z.id || '—').trim() || '—';
-          sec.appendChild(h);
-          const role = String(z.role || '').trim();
-          if (role) {
-            const r = document.createElement('p');
-            r.className = 'povest-zapisnik-role';
-            r.textContent = role;
-            sec.appendChild(r);
-          }
-          const tx = document.createElement('p');
-          tx.className = 'povest-zapisnik-expozice';
-          _wfNastavRichText(tx, String(z.expozice || '').trim() || '—');
-          sec.appendChild(tx);
-          povestWrap.appendChild(sec);
+          if (z && z.id) byIdPov.set(String(z.id), z);
         }
       }
-      obsah.appendChild(povestWrap);
+      const unlockedIdsRaw = State.get('flags.povest_odemcene_ids');
+      const unlockedIds = Array.isArray(unlockedIdsRaw) ? unlockedIdsRaw : [];
+      const unlockedSet = new Set(unlockedIds.map(x => String(x)));
+      const TRIO_KLIC = ['vlcek', 'zavadova', 'karas'];
+      const trioSet = new Set(TRIO_KLIC);
 
-      const moc = Number(State.get('factions.Moc') ?? 50);
-      const kapital = Number(State.get('factions.Kapital') ?? 50);
-      const lid = Number(State.get('factions.Lid') ?? 50);
-      const frBlok = document.createElement('div');
-      frBlok.className = 'postavy-frakce-blok';
-      const frNadpis = document.createElement('div');
-      frNadpis.className = 'postavy-frakce-nadpis';
-      frNadpis.textContent = 'POVĚST U FRAKCÍ';
-      frBlok.appendChild(frNadpis);
-      const frRadky = [
-        { lab: 'Moc', val: _statPasmoTextFrakce(moc) },
-        { lab: 'Kapitál', val: _statPasmoTextFrakce(kapital) },
-        { lab: 'Lid', val: _statPasmoTextFrakce(lid) }
-      ];
-      for (const { lab, val } of frRadky) {
-        const r = document.createElement('div');
-        r.className = 'postavy-frakce-radek';
-        const a = document.createElement('span');
-        a.className = 'postavy-frakce-jmeno';
-        a.textContent = lab;
-        const b = document.createElement('span');
-        b.className = 'postavy-frakce-popis';
-        b.textContent = val || '—';
-        r.appendChild(a);
-        r.appendChild(b);
-        frBlok.appendChild(r);
-      }
-      obsah.appendChild(frBlok);
+      const root = document.createElement('div');
+      root.className = 'povest-zapisnik-root';
 
-      const grid = document.createElement('div');
-      grid.className = 'postavy-mrizka';
-      for (const v of Characters.getSeznamVizitek()) {
-        const card = document.createElement('button');
-        card.type = 'button';
-        card.className = 'postava-vizitka';
-        card.dataset.npcId = v.id;
-        const duvera = Characters.getDuveraVizitka(v.id);
-        card.innerHTML =
-          '<div class="postava-vizitka__radek">' +
-            '<div class="postava-vizitka__left">' +
-              '<div class="postava-vizitka-jmeno">' + _escapeHtmlProfil(v.jmeno) + '</div>' +
-              '<div class="postava-vizitka-role">' + _escapeHtmlProfil(v.role) + '</div>' +
-            '</div>' +
-            '<div class="postava-duvera" data-npc-id="' + v.id + '">' + _escapeHtmlProfil(duvera) + '</div>' +
-          '</div>';
-        card.addEventListener('click', () => {
-          _otevriProfilPostavy(v.id);
+      const nav = document.createElement('div');
+      nav.className = 'knihovna-podtabs';
+      nav.setAttribute('role', 'tablist');
+      for (const pane of [{ id: 'lide', label: 'Lidé' }, { id: 'frakce', label: 'Frakce' }]) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className =
+          'knihovna-podtab' +
+          (_povestArchivPodtab === pane.id ? ' knihovna-podtab--aktivni' : '');
+        b.dataset.povestPodtab = pane.id;
+        b.setAttribute('role', 'tab');
+        b.setAttribute('aria-selected', _povestArchivPodtab === pane.id ? 'true' : 'false');
+        b.textContent = pane.label;
+        b.addEventListener('click', () => {
+          _povestArchivPodtab = pane.id;
+          _vyplnArchivTab('postavy');
         });
-        grid.appendChild(card);
+        nav.appendChild(b);
       }
-      obsah.appendChild(grid);
+      root.appendChild(nav);
+
+      const panel = document.createElement('div');
+      panel.className = 'knihovna-panel';
+
+      if (_povestArchivPodtab === 'lide') {
+        const nadK = document.createElement('div');
+        nadK.className = 'postavy-frakce-nadpis';
+        nadK.textContent = 'KLÍČOVÉ KONTAKTY';
+        panel.appendChild(nadK);
+
+        const vizSeznam =
+          typeof Characters !== 'undefined' && Characters.getSeznamVizitek
+            ? Characters.getSeznamVizitek()
+            : [];
+        const modeDuvera = _getStatsDisplayMode();
+        for (const v of vizSeznam) {
+          const sec = document.createElement('section');
+          sec.className = 'povest-klicovy-clovek';
+          const head = document.createElement('div');
+          head.className = 'povest-klicovy-hlavicka';
+          const tit = document.createElement('h3');
+          tit.className = 'povest-klicovy-jmeno';
+          tit.textContent = String(v.jmeno || v.id || '—').trim();
+          head.appendChild(tit);
+          if (v.role) {
+            const ro = document.createElement('div');
+            ro.className = 'povest-klicovy-role';
+            ro.textContent = String(v.role);
+            head.appendChild(ro);
+          }
+          sec.appendChild(head);
+
+          const zRec = byIdPov.get(String(v.id));
+          const expText =
+            zRec && unlockedSet.has(String(v.id)) && String(zRec.expozice || '').trim()
+              ? String(zRec.expozice).trim()
+              : String(v.popis || v.popisKratky || '').trim() || '—';
+          const exp = document.createElement('div');
+          exp.className = 'povest-klicovy-expozice';
+          _wfNastavRichText(exp, expText);
+          if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
+            Knihovna.obalSlovnikemVElementu(exp);
+          }
+          sec.appendChild(exp);
+
+          const tVal = Math.max(
+            0,
+            Math.min(3, Math.round(Number(State.get('trust.' + v.id)) || 0))
+          );
+          const duBlok = document.createElement('div');
+          duBlok.className = 'povest-duvera-blok';
+          const duH = document.createElement('div');
+          duH.className = 'povest-duvera-hlava';
+          const duLab = document.createElement('span');
+          duLab.className = 'povest-duvera-label';
+          duLab.textContent = 'Důvěra';
+          const punky = document.createElement('div');
+          punky.className = 'povest-duvera-punky';
+          punky.setAttribute('role', 'img');
+          punky.setAttribute(
+            'aria-label',
+            'Důvěra ' + tVal + ' z 3'
+          );
+          for (let i = 0; i < 3; i++) {
+            const d = document.createElement('span');
+            d.className =
+              'povest-duvera-punkt' + (i < tVal ? ' povest-duvera-punkt--plny' : '');
+            d.setAttribute('aria-hidden', 'true');
+            punky.appendChild(d);
+          }
+          const slovo = document.createElement('strong');
+          slovo.className = 'povest-duvera-slovo';
+          slovo.textContent =
+            typeof Characters !== 'undefined' && Characters.getDuveraVizitka
+              ? Characters.getDuveraVizitka(v.id)
+              : '—';
+          duH.appendChild(duLab);
+          duH.appendChild(punky);
+          duH.appendChild(slovo);
+          if (modeDuvera === 'spreadsheet') {
+            const c = document.createElement('span');
+            c.className = 'povest-duvera-cislo';
+            c.textContent = ' · ' + tVal + '/3';
+            duH.appendChild(c);
+          }
+          duBlok.appendChild(duH);
+          sec.appendChild(duBlok);
+
+          const profBtn = document.createElement('button');
+          profBtn.type = 'button';
+          profBtn.className = 'povest-klicovy-profil-btn';
+          profBtn.textContent = 'Profil a historie';
+          profBtn.addEventListener('click', () => {
+            _otevriProfilPostavy(v.id);
+          });
+          sec.appendChild(profBtn);
+          panel.appendChild(sec);
+        }
+
+        const nadO = document.createElement('div');
+        nadO.className = 'postavy-frakce-nadpis';
+        nadO.style.marginTop = '20px';
+        nadO.textContent = 'DALŠÍ JMÉNA VE VYPRÁVĚNÍ';
+        panel.appendChild(nadO);
+
+        const povestWrap = document.createElement('div');
+        povestWrap.className = 'povest-zapisnik-seznam';
+        const ostatni = unlockedIds.filter(uid => !trioSet.has(String(uid)));
+        if (!Array.isArray(polePov) || polePov.length === 0) {
+          const prazd = document.createElement('p');
+          prazd.className = 'povest-zapisnik-prazdno';
+          prazd.textContent = 'Data pověstí postav nejsou k dispozici.';
+          povestWrap.appendChild(prazd);
+        } else if (!unlockedSet.size) {
+          const prazd = document.createElement('p');
+          prazd.className = 'povest-zapisnik-prazdno';
+          prazd.textContent =
+            'Jakmile ve hře poprvé zazní nové jméno, doplní se sem stručná pověst — sledujte stavovou hlášku dole.';
+          povestWrap.appendChild(prazd);
+        } else if (!ostatni.length) {
+          const prazd = document.createElement('p');
+          prazd.className = 'povest-zapisnik-prazdno';
+          prazd.textContent =
+            'Zatím tu nejsou další odemčená jména mimo klíčové kontakty výše.';
+          povestWrap.appendChild(prazd);
+        } else {
+          for (const uid of ostatni) {
+            const z = byIdPov.get(String(uid));
+            if (!z || typeof z !== 'object') continue;
+            const idBez = String(z.id || '').replace(/[^a-zA-Z0-9_-]/g, '');
+            const sec = document.createElement('section');
+            sec.className = 'povest-zapisnik-zaznam';
+            if (idBez) sec.id = 'povest-zaznam-' + idBez;
+            const h = document.createElement('h3');
+            h.className = 'povest-zapisnik-jmeno';
+            h.textContent = String(z.nazev || z.id || '—').trim() || '—';
+            sec.appendChild(h);
+            const role = String(z.role || '').trim();
+            if (role) {
+              const rr = document.createElement('p');
+              rr.className = 'povest-zapisnik-role';
+              rr.textContent = role;
+              sec.appendChild(rr);
+            }
+            const tx = document.createElement('p');
+            tx.className = 'povest-zapisnik-expozice';
+            _wfNastavRichText(tx, String(z.expozice || '').trim() || '—');
+            sec.appendChild(tx);
+            povestWrap.appendChild(sec);
+          }
+        }
+        panel.appendChild(povestWrap);
+      } else {
+        const moc = Number(State.get('factions.Moc') ?? 50);
+        const kapital = Number(State.get('factions.Kapital') ?? 50);
+        const lid = Number(State.get('factions.Lid') ?? 50);
+        const frBlok = document.createElement('div');
+        frBlok.className = 'postavy-frakce-blok';
+        const frNadpis = document.createElement('div');
+        frNadpis.className = 'postavy-frakce-nadpis';
+        frNadpis.textContent = 'MOC · KAPITÁL · LID';
+        frBlok.appendChild(frNadpis);
+        const frRadky = [
+          { stateKey: 'Moc', idKey: 'moc', hodnota: moc },
+          { stateKey: 'Kapital', idKey: 'kapital', hodnota: kapital },
+          { stateKey: 'Lid', idKey: 'lid', hodnota: lid }
+        ];
+        for (const { stateKey, idKey, hodnota } of frRadky) {
+          const val = _statPasmoTextFrakce(hodnota);
+          const def =
+            typeof DataLoader !== 'undefined' && DataLoader.ziskejFrakci
+              ? DataLoader.ziskejFrakci(idKey)
+              : null;
+          const dlouhy =
+            def && typeof def.zapisnik_popis === 'string' ? def.zapisnik_popis.trim() : '';
+          const lab =
+            typeof Factions !== 'undefined' && Factions.getNazev
+              ? Factions.getNazev(stateKey)
+              : stateKey;
+
+          const r = document.createElement('div');
+          r.className =
+            'postavy-frakce-radek' + (dlouhy ? ' postavy-frakce-radek--s-lore' : '');
+
+          const a = document.createElement('span');
+          a.className = 'postavy-frakce-jmeno';
+          a.textContent = lab;
+
+          const pravy = document.createElement('div');
+          pravy.className = 'postavy-frakce-pravy';
+          if (dlouhy) {
+            const lore = document.createElement('div');
+            lore.className = 'postavy-frakce-lore';
+            lore.innerHTML = _escapeHtmlProfil(dlouhy).replace(/\n/g, '<br>');
+            if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
+              Knihovna.obalSlovnikemVElementu(lore);
+            }
+            pravy.appendChild(lore);
+          }
+          const b = document.createElement('div');
+          b.className =
+            'postavy-frakce-popis' + (dlouhy ? ' postavy-frakce-popis--pod-lore' : '');
+          b.textContent = dlouhy ? ('Nyní: ' + (val || '—')) : (val || '—');
+          pravy.appendChild(b);
+
+          r.appendChild(a);
+          r.appendChild(pravy);
+          frBlok.appendChild(r);
+        }
+        panel.appendChild(frBlok);
+      }
+
+      root.appendChild(panel);
+      obsah.appendChild(root);
 
       if (_povestZapisnikAnchorId) {
         const aid = _povestZapisnikAnchorId;
@@ -5891,7 +6044,7 @@ const UI = (() => {
       zobrazArchiv('knihovna', { knihovna: { panel: 'slovnik', anchorId: kid } });
     }, true);
 
-    // Panel financí na stole → totéž okno archivu, záložka Benedikt (obživa)
+    // Panel financí na stole → totéž okno archivu, záložka Stav (obživa)
     document.querySelector('.pravy-panel-finance-wrap')?.addEventListener('click', () => {
       zobrazArchiv('stav-duse');
     });
