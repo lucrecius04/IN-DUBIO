@@ -39,12 +39,14 @@
 #modal-pripad .pripad-panel--wireframe .pripad-zahlavi {
   position: relative;
   background: transparent;
-  border-bottom: 1px solid rgba(196, 163, 90, 0.35);
+  /* Bez borderu — přechod hnědá/papír je v PNG; čára se u záporného marginu těla zdvojovala */
+  border-bottom: none;
   margin: var(--spis-content-offset-y) var(--spis-content-inset-x) 0;
-  padding: 12px 12px 8px;
+  padding: 12px 12px 4px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(200px, 280px);
-  gap: 6px 10px;
+  /* Užší pravý sloupec = více místa pro obžalobu / lead (max. 2 řádky) při stejné šířce modálu */
+  grid-template-columns: minmax(0, 1fr) minmax(142px, 198px);
+  gap: 6px 6px;
   align-items: start;
 }
 
@@ -140,53 +142,69 @@
   display: none;
 }
 
-#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn--start {
-  width: 48px;
-  min-width: 48px;
-  height: 48px;
-  min-height: 48px;
+/* Pátrání: vyšší specificita než .case-wf-clue-hud-btn */
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn.case-wf-clue-hud-btn--start {
+  width: 56px;
+  min-width: 56px;
+  height: 56px;
+  min-height: 56px;
   box-sizing: border-box;
-  text-transform: none;
-  letter-spacing: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0;
-  font-size: 0;
-  font-weight: 600;
-  color: transparent;
   padding: 0;
-  border-radius: 8px;
-  border: 1px solid #f4f6fb;
-  background: linear-gradient(180deg, #e4e8f0 0%, #cfd5e0 100%);
+  border-radius: 6px;
+  border: 1px solid #8a7a5a;
+  background: linear-gradient(180deg, #4a3e2a 0%, #2e2416 100%);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.75) inset,
-    0 3px 8px rgba(0, 0, 0, 0.24);
-  transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
+    0 1px 0 rgba(255, 220, 150, 0.12) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.4) inset,
+    0 3px 10px rgba(0, 0, 0, 0.6);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+  font-size: 0;
+  color: transparent;
 }
 
-#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn--start::before {
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn.case-wf-clue-hud-btn--start::before {
   content: "";
   width: 58px !important;
   height: 58px !important;
   flex: 0 0 58px !important;
   background: url("../src/lupa.png") center / contain no-repeat;
   opacity: 1;
-  filter: none;
+  filter:
+    brightness(1.3)
+    drop-shadow(0 1px 4px rgba(0, 0, 0, 0.8));
 }
 
-#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn--start:hover {
-  border-color: #ffffff;
-  background: linear-gradient(180deg, #edf1f8 0%, #d8deea 100%);
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn.case-wf-clue-hud-btn--start:hover {
+  border-color: #c9a84c;
+  background: linear-gradient(180deg, #5e5035 0%, #3a2e1a 100%);
   transform: translateY(-1px);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.85) inset,
-    0 5px 10px rgba(0, 0, 0, 0.28);
+    0 1px 0 rgba(255, 220, 150, 0.18) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.45) inset,
+    0 5px 14px rgba(0, 0, 0, 0.65),
+    0 0 10px rgba(201, 168, 76, 0.2);
 }
 
-#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn--start:focus-visible {
-  outline: 2px solid rgba(218, 226, 242, 0.95);
-  outline-offset: 1px;
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn.case-wf-clue-hud-btn--start:hover::before {
+  filter:
+    brightness(1.45)
+    drop-shadow(0 1px 4px rgba(0, 0, 0, 0.8));
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn.case-wf-clue-hud-btn--start:active {
+  transform: translateY(1px);
+  background: linear-gradient(180deg, #2e2416 0%, #4a3e2a 100%);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.5) inset,
+    0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn.case-wf-clue-hud-btn--start:focus-visible {
+  outline: 2px solid rgba(201, 168, 76, 0.7);
+  outline-offset: 2px;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-clue-hud--detail {
@@ -230,8 +248,13 @@
   letter-spacing: 0.03em;
   line-height: 1.4;
   color: rgba(216, 192, 155, 0.88);
-  max-height: 2.1em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
   transform: translateY(-8px);
 }
 
@@ -241,7 +264,7 @@
 
 #modal-pripad .pripad-panel--wireframe .pripad-zahlavi-akce {
   display: block;
-  margin-top: -2px;
+  margin-top: 4px;
   font-family: var(--pismo-typewriter, monospace);
   font-size: 11px;
   letter-spacing: 0.06em;
@@ -253,7 +276,6 @@
   flex-direction: column;
   gap: 4px;
   min-width: 0;
-  transform: translateY(-8px);
 }
 
 #modal-pripad .pripad-panel--wireframe .pripad-kategorie.badge {
@@ -286,8 +308,10 @@
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-clue-hud {
-  min-width: 230px;
-  max-width: 280px;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   padding: 6px 8px;
   border: 1px solid rgba(196, 163, 90, 0.42);
   border-radius: 6px;
@@ -412,7 +436,8 @@
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
-  margin: 0 var(--spis-content-inset-x) var(--spis-content-bottom-safe);
+  /* Odsazení těla spisu od hlavičky — měnit jen zde, hlavička zůstává */
+  margin: 3px var(--spis-content-inset-x) var(--spis-content-bottom-safe);
   padding: 0 0 var(--spis-content-bottom-safe);
   box-sizing: border-box;
   background: transparent;
@@ -457,6 +482,10 @@
 #modal-pripad .pripad-panel--wireframe .case-wf-section {
   padding: 12px 18px;
   border-bottom: 1px solid #d4c4a8;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-section:first-of-type {
+  padding-top: 9px;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-section:last-of-type {
