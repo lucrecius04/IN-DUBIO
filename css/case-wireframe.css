@@ -5,22 +5,46 @@
 
 #modal-pripad .pripad-panel--wireframe {
   min-width: 0;
-  width: min(780px, 92vw) !important;
-  max-width: min(780px, 92vw) !important;
-  background: #f5f0e6;
-  border: 1px solid rgba(196, 163, 90, 0.28);
-  border-radius: 8px;
+  width: min(720px, 88vw, calc(84vh * 1269 / 1415)) !important;
+  max-width: min(720px, 88vw, calc(84vh * 1269 / 1415)) !important;
+  aspect-ratio: 1269 / 1415;
+  height: auto !important;
+  max-height: 84vh !important;
+  min-height: 0 !important;
+  position: relative;
+  isolation: isolate;
+  background: url("../src/spis-panel.png") center / 100% 100% no-repeat;
+  border: none;
+  border-radius: 0;
+  box-shadow: none !important;
   overflow: hidden;
+  --spis-content-inset-x: 18px;
+  --spis-content-offset-y: 34px;
+  --spis-content-bottom-safe: 56px;
+}
+
+#modal-pripad .pripad-panel--wireframe .pripad-panel-ilustrace {
+  display: none;
+}
+
+#modal-pripad .pripad-panel--wireframe .pripad-panel-ilustrace img {
+  display: none;
+}
+
+#modal-pripad .pripad-panel--wireframe > :not(.pripad-panel-ilustrace) {
+  position: relative;
+  z-index: 1;
 }
 
 #modal-pripad .pripad-panel--wireframe .pripad-zahlavi {
   position: relative;
-  background: #3d2b1f;
+  background: transparent;
   border-bottom: 1px solid rgba(196, 163, 90, 0.35);
-  padding: 14px 20px;
+  margin: var(--spis-content-offset-y) var(--spis-content-inset-x) 0;
+  padding: 12px 12px 8px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 10px 16px;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 280px);
+  gap: 6px 10px;
   align-items: start;
 }
 
@@ -28,29 +52,44 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
+  transform: translateY(-14px);
 }
 
 #modal-pripad .pripad-panel--wireframe .pripad-zahlavi-right {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 10px;
+  gap: 4px;
   flex-shrink: 0;
+  width: 100%;
+  min-width: 0;
+  transform: translateY(-14px);
 }
 
 #modal-pripad .pripad-panel--wireframe .pripad-zahlavi-close-row {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
   gap: 6px;
+  padding-right: 0;
+}
+
+#modal-pripad .pripad-panel--wireframe .pripad-zahlavi-close-row .pripad-kategorie.badge {
+  margin: 0;
+  align-self: center;
+  padding: 2px 8px;
+  font-size: 10px;
+  letter-spacing: 0.09em;
 }
 
 #modal-pripad .pripad-panel--wireframe .pripad-zahlavi .pripad-zavrit-x {
   position: static;
   padding: 2px 6px;
   margin: 0;
+  z-index: 2;
 }
 
 #modal-pripad .pripad-panel--wireframe .pripad-zahlavi .pripad-zpet-archiv {
@@ -75,9 +114,15 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 8px;
+  gap: 4px;
   min-width: 0;
-  max-width: min(280px, 44vw);
+  width: 100%;
+  max-width: 100%;
+  margin-top: 4px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-slot:empty {
+  display: none;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-slot.skryto {
@@ -85,23 +130,92 @@
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-header-wrap {
-  width: min(280px, 44vw);
+  width: auto;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-header-wrap:empty {
+  display: none;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn--start {
-  width: 100%;
+  width: 48px;
+  min-width: 48px;
+  height: 48px;
+  min-height: 48px;
   box-sizing: border-box;
   text-transform: none;
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  font-size: 0;
+  font-weight: 600;
+  color: transparent;
+  padding: 0;
+  border-radius: 8px;
+  border: 1px solid #f4f6fb;
+  background: linear-gradient(180deg, #e4e8f0 0%, #cfd5e0 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.75) inset,
+    0 3px 8px rgba(0, 0, 0, 0.24);
+  transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn--start::before {
+  content: "";
+  width: 58px !important;
+  height: 58px !important;
+  flex: 0 0 58px !important;
+  background: url("../src/lupa.png") center / contain no-repeat;
+  opacity: 1;
+  filter: none;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn--start:hover {
+  border-color: #ffffff;
+  background: linear-gradient(180deg, #edf1f8 0%, #d8deea 100%);
+  transform: translateY(-1px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 5px 10px rgba(0, 0, 0, 0.28);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-btn--start:focus-visible {
+  outline: 2px solid rgba(218, 226, 242, 0.95);
+  outline-offset: 1px;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-clue-hud--detail {
+  display: none;
   min-width: 0;
-  max-width: min(280px, 44vw);
+  max-width: 100%;
   width: 100%;
   box-sizing: border-box;
   position: relative;
   overflow: visible;
+}
+
+#modal-pripad.case-wf-clue-hunt-active .pripad-panel--wireframe .case-wf-clue-hud--detail:not(.skryto),
+#modal-pripad.case-wf-clue-patrani-ui .pripad-panel--wireframe .case-wf-clue-hud--detail:not(.skryto) {
+  display: block;
+}
+
+@media (max-width: 760px) {
+  #modal-pripad .pripad-panel--wireframe .pripad-zahlavi {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #modal-pripad .pripad-panel--wireframe .pripad-zahlavi-right {
+    align-items: stretch;
+  }
+
+  #modal-pripad .pripad-panel--wireframe .pripad-zahlavi-close-row {
+    justify-content: flex-end;
+  }
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-clue-focus-lock-actions--dual,
@@ -118,6 +232,7 @@
   color: rgba(216, 192, 155, 0.88);
   max-height: 2.1em;
   overflow: hidden;
+  transform: translateY(-8px);
 }
 
 #modal-pripad .pripad-panel--wireframe .pripad-zahlavi-lead:empty {
@@ -125,6 +240,8 @@
 }
 
 #modal-pripad .pripad-panel--wireframe .pripad-zahlavi-akce {
+  display: block;
+  margin-top: -2px;
   font-family: var(--pismo-typewriter, monospace);
   font-size: 11px;
   letter-spacing: 0.06em;
@@ -136,6 +253,7 @@
   flex-direction: column;
   gap: 4px;
   min-width: 0;
+  transform: translateY(-8px);
 }
 
 #modal-pripad .pripad-panel--wireframe .pripad-kategorie.badge {
@@ -146,7 +264,7 @@
   font-size: 11px;
   letter-spacing: 1px;
   font-family: var(--pismo-typewriter, monospace);
-  margin: 0 0 4px;
+  margin: 0 0 1px;
   border-radius: 0;
   background: transparent;
   color: #c4a35a;
@@ -154,15 +272,15 @@
 
 #modal-pripad .pripad-panel--wireframe .pripad-nazev {
   font-family: Georgia, var(--pismo-serif, serif);
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 400;
   color: #e8d5b0;
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 #modal-pripad .pripad-panel--wireframe .pripad-obvineni.sub {
-  font-size: 13px;
+  font-size: 12px;
   color: #a0896e;
   margin-top: 2px;
 }
@@ -255,13 +373,18 @@
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-dots {
-  display: flex;
+  display: none;
   gap: 6px;
   justify-content: center;
+  margin: 0 var(--spis-content-inset-x);
   padding: 10px;
   flex-shrink: 0;
-  background: #ede6d6;
+  background: transparent;
   border-bottom: 1px solid #d4c4a8;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-sec-spis .case-wf-section-label {
+  display: none;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-dot {
@@ -289,18 +412,56 @@
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
-  padding: 0 0 20px;
+  margin: 0 var(--spis-content-inset-x) var(--spis-content-bottom-safe);
+  padding: 0 0 var(--spis-content-bottom-safe);
   box-sizing: border-box;
-  background: #f5f0e6;
+  background: transparent;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(180, 145, 88, 0.9) rgba(34, 24, 18, 0.35);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-body::-webkit-scrollbar {
+  width: 11px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-body::-webkit-scrollbar-track {
+  background: linear-gradient(
+    180deg,
+    rgba(33, 23, 16, 0.28) 0%,
+    rgba(28, 20, 14, 0.42) 100%
+  );
+  border-left: 1px solid rgba(84, 62, 42, 0.25);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(206, 175, 112, 0.95) 0%,
+    rgba(156, 121, 74, 0.95) 100%
+  );
+  border: 2px solid rgba(34, 24, 18, 0.55);
+  border-radius: 999px;
+  box-shadow:
+    0 1px 0 rgba(255, 232, 192, 0.35) inset,
+    0 1px 3px rgba(0, 0, 0, 0.28);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(225, 194, 128, 0.98) 0%,
+    rgba(173, 136, 84, 0.98) 100%
+  );
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-section {
-  padding: 16px 20px;
+  padding: 12px 18px;
   border-bottom: 1px solid #d4c4a8;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-section:last-of-type {
   border-bottom: none;
+  padding-bottom: 12px;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-section-label {
@@ -316,36 +477,36 @@
   display: flex;
   justify-content: space-between;
   font-family: var(--pismo-typewriter, monospace);
-  font-size: 12px;
+  font-size: 11px;
   color: #8b7355;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-case-text {
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: 14px;
+  line-height: 1.6;
   color: #3d2b1f;
   font-family: Georgia, var(--pismo-serif, serif);
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-testimony {
   background: #ede6d6;
-  padding: 12px 16px;
+  padding: 10px 12px;
   border-left: 3px solid #c4a35a;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   border-radius: 0 6px 6px 0;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-testimony .case-wf-speaker {
   font-family: var(--pismo-typewriter, monospace);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   color: #5c4a32;
   margin-bottom: 6px;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-testimony .case-wf-quote {
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.6;
   color: #3d2b1f;
   font-style: italic;
@@ -1275,14 +1436,7 @@
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-nav-hint {
-  font-family: var(--pismo-typewriter, monospace);
-  font-size: 11px;
-  color: #a0896e;
-  text-align: center;
-  padding: 8px;
-  background: #ede6d6;
-  border-top: 1px solid #d4c4a8;
-  flex-shrink: 0;
+  display: none;
 }
 
 #modal-pripad .pripad-panel--wireframe .rozsudky-shrnuti {

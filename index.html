@@ -1200,10 +1200,12 @@
 
 <div id="modal-pripad" class="overlay" role="dialog" aria-modal="true">
   <div class="panel-papir pripad-panel pripad-panel--wireframe panel-papir--nastup">
+    <div class="pripad-panel-ilustrace" aria-hidden="true">
+      <img src="src/spis-panel.png" alt="" decoding="async">
+    </div>
     <div class="pripad-zahlavi">
       <div class="pripad-zahlavi-left">
         <div class="pripad-zahlavi-text">
-          <div class="pripad-kategorie badge" id="pripad-kategorie-text">—</div>
           <h2 class="pripad-nazev" id="pripad-nazev-text">Případ</h2>
           <div class="pripad-obvineni sub" id="pripad-obvineni-text"></div>
         </div>
@@ -1212,6 +1214,7 @@
       </div>
       <div class="pripad-zahlavi-right">
         <div class="pripad-zahlavi-close-row">
+          <div class="pripad-kategorie badge pripad-kategorie--vpravo" id="pripad-kategorie-text">—</div>
           <button type="button" class="pripad-zavrit-x pripad-zpet-archiv skryto" id="pripad-zpet-do-archivu" title="Zpět do zápisníku (Rozsudky)">◀</button>
           <button type="button" class="pripad-zavrit-x" id="pripad-zavrit-x" title="Zavřít (Esc)">✕</button>
         </div>

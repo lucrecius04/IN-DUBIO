@@ -938,7 +938,7 @@ const UI = (() => {
       headerWrap.id = 'case-wf-clue-hud-header-wrap';
       headerWrap.className = 'case-wf-clue-hud-header-wrap';
       headerWrap.innerHTML =
-        `<button type="button" class="case-wf-clue-hud-btn case-wf-clue-hud-btn--start" id="case-wf-clue-hud-action">Zahájit pátrání</button>`;
+        `<button type="button" class="case-wf-clue-hud-btn case-wf-clue-hud-btn--start" id="case-wf-clue-hud-action" aria-label="Pátrání" title="Zahájit pátrání"></button>`;
       slot.appendChild(headerWrap);
     } else if (headerWrap.parentElement !== slot) {
       slot.appendChild(headerWrap);
@@ -1206,12 +1206,14 @@ const UI = (() => {
       if (actionBtn) {
         if (timed && runCfg) {
           const startLabelSec = Math.max(60, Number(runCfg.durationSec) || 0);
-          actionBtn.textContent = `Zahájit pátrání (${startLabelSec}s)`;
-          actionBtn.title = '';
+          actionBtn.textContent = '';
+          actionBtn.setAttribute('aria-label', `Pátrání (${startLabelSec}s)`);
+          actionBtn.title = 'Zahájit pátrání';
           actionBtn.disabled = !!(maxF > 0 && locked && !matched);
         } else if (pokusyRezim) {
-          actionBtn.textContent = 'Zahájit pátrání';
-          actionBtn.title = 'Omezený počet pokusů; každá špatná dvojice stáhně jeden pokus.';
+          actionBtn.textContent = '';
+          actionBtn.setAttribute('aria-label', 'Pátrání');
+          actionBtn.title = 'Zahájit pátrání';
           actionBtn.disabled = !!(pokClosed || (maxF > 0 && locked && !matched));
         }
       }
