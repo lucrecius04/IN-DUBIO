@@ -80,6 +80,8 @@ const UI = (() => {
     best: null,
     hasRun: false,
     lastHeartbeatAt: 0,
+    /** Dvojice v časovaném pátrání (stejný formát jako _wfCluePokusy.triedPairs) — vykreslení v „Propojené stopy“. */
+    triedPairs: [],
     /** Po odemčení soustředění za Moudrost: −15 s na další běh (kumulativně, max ~ základ). */
     extraDurationCut: 0,
     /** Po odemknutí za inkoust: zobrazit znovu „Zahájit“ i když už jedno pátrání proběhlo. */
@@ -315,7 +317,23 @@ const UI = (() => {
     }
   }
 
-  function _wfCluePokusyVykresliZaznam(hostEl) {
+  function _wfCluePatraniZalogujDvojici(aId, bId, result) {
+    const a = String(aId || '').trim();
+    const b = String(bId || '').trim();
+    if (!a || !b) return;
+    if (!Array.isArray(_wfCluePatrani.triedPairs)) _wfCluePatrani.triedPairs = [];
+    _wfCluePatrani.triedPairs.push({
+      aId: a,
+      bId: b,
+      result: String(result || 'miss').trim()
+    });
+    if (_wfCluePatrani.triedPairs.length > 24) {
+      _wfCluePatrani.triedPairs = _wfCluePatrani.triedPairs.slice(-24);
+    }
+  }
+
+  /** Propojené stopy: data z pokusového režimu nebo z časovaného; prázdný výpis = panel skrytý. */
+  function _wfCluePokusyVykresliZaznam(hostEl, pripad) {
     if (!hostEl) return;
     const esc = (t) =>
       String(t == null ? '' : t)
@@ -332,16 +350,20 @@ const UI = (() => {
       const txt = String(el.textContent || '').replace(/\s+/g, ' ').trim();
       return txt || clueId.replace(/_/g, ' ');
     };
-    const data = Array.isArray(_wfCluePokusy.triedPairs) ? _wfCluePokusy.triedPairs : [];
+    const pokRez = !!(pripad && _wfClueMaPokusovyRezim(pripad));
+    const timed = !!(pripad && _wfCluePouzivaTimedHunt(pripad));
+    const data = pokRez
+      ? (Array.isArray(_wfCluePokusy.triedPairs) ? _wfCluePokusy.triedPairs : [])
+      : timed
+        ? (Array.isArray(_wfCluePatrani.triedPairs) ? _wfCluePatrani.triedPairs : [])
+        : [];
     const head =
       `<div class="case-wf-clue-log-head">` +
       `<div class="case-wf-clue-log-title">Propojené stopy</div>` +
       `</div>`;
     if (!data.length) {
-      hostEl.classList.remove('skryto');
-      hostEl.innerHTML =
-        head +
-        `<div class="case-wf-clue-log-empty">Zatím bez záznamu. První dvojice se zapíše po kliknutí na dvě stopy.</div>`;
+      hostEl.classList.add('skryto');
+      hostEl.innerHTML = '';
       return;
     }
     const firstIdx = Math.max(0, data.length - 8);
@@ -523,6 +545,7 @@ const UI = (() => {
       _wfCluePatrani.hasRun = false;
       _wfCluePatrani.extraDurationCut = 0;
       _wfCluePatrani.zahajitPovolenoPoInkoustu = false;
+      _wfCluePatrani.triedPairs = [];
     }
     const mod = document.getElementById('modal-pripad');
     if (mod) {
@@ -592,13 +615,20 @@ const UI = (() => {
 
   function _wfClueSoudniTextSily(strength) {
     if (strength === 'strong') return 'průkazná';
-    if (strength === 'medium') return 'dobře podložená';
+    if (strength === 'medium') return 'věrohodná';
     return 'slabší, zatím nepřesvědčivá';
+  }
+
+  /** Jednořádek záhlaví — krátká přídavná jména k „Pevnost nalezené stopy“. */
+  function _wfCluePevnostStopyKratce(strength) {
+    if (strength === 'strong') return 'průkazná';
+    if (strength === 'medium') return 'věrohodná';
+    return 'slabá';
   }
 
   function _wfClueSoudniVetaSily(strength) {
     if (strength === 'strong') return 'Průkazná vazba.';
-    if (strength === 'medium') return 'Dobře podložená vazba.';
+    if (strength === 'medium') return 'Věrohodná vazba.';
     return 'Slušná vazba, ale zatím nepřesvědčivá.';
   }
 
@@ -618,7 +648,7 @@ const UI = (() => {
     if (matched && typeof Cases !== 'undefined' && Cases.ziskejPotvrzenouClueVazbu) {
       const v = Cases.ziskejPotvrzenouClueVazbu(pripad);
       if (v && v.strength) {
-        return `Síla nalezené vazby: ${_wfClueSoudniTextSily(v.strength)}.`;
+        return `Pevnost nalezené stopy: ${_wfCluePevnostStopyKratce(v.strength)}.`;
       }
       return 'Vazba ve spisu potvrzena.';
     }
@@ -1338,14 +1368,14 @@ const UI = (() => {
         (pokActive || pokHasRun || (maxF > 0 && locked)))
     );
     if (detail) detail.classList.toggle('skryto', !showDetail);
-    if (pokusyRezim) {
+    if (pokusyRezim || timed) {
       if (logEl) {
         logEl.style.right = '';
         logEl.style.left = '';
         logEl.style.top = '';
         logEl.style.bottom = '';
       }
-      _wfCluePokusyVykresliZaznam(logEl);
+      _wfCluePokusyVykresliZaznam(logEl, pripad);
     } else if (logEl) {
       logEl.classList.add('skryto');
       logEl.innerHTML = '';
@@ -1431,6 +1461,7 @@ const UI = (() => {
     _wfCluePatrani.origDurationSec = cfg.durationSec;
     _wfCluePatrani.config = cfg;
     _wfCluePatrani.best = null;
+    _wfCluePatrani.triedPairs = [];
     _wfCluePatrani.lastHeartbeatAt = 0;
     _wfCluePatrani.startedAt = Date.now();
     _wfCluePatrani.endsAt = Date.now() + (cfg.durationSec * 1000);
@@ -1943,7 +1974,11 @@ const UI = (() => {
 
     const vys = Cases.vyhodnotTwoClickRozpor(pripad, prvni.id, clueId);
     if (!vys || !vys.ok) {
-      _wfCluePokusyZalogujDvojici(prvni.id, clueId, 'miss');
+      if (pokusyCfg && _wfCluePokusy.active) {
+        _wfCluePokusyZalogujDvojici(prvni.id, clueId, 'miss');
+      } else if (timedCfg && _wfCluePatrani.active) {
+        _wfCluePatraniZalogujDvojici(prvni.id, clueId, 'miss');
+      }
       prvni.el.classList.add('clue--miss');
       clueEl.classList.add('clue--miss');
       if (typeof SFX !== 'undefined' && SFX.slozkaPaper) SFX.slozkaPaper();
@@ -1992,16 +2027,25 @@ const UI = (() => {
         );
       } else {
         zobrazStavovouZpravu('Tohle nesedí — zkuste jinou dvojici stop.');
+        if (timedCfg && _wfCluePatrani.active) {
+          _wfCluePatraniHudUpdate(pripad, _wfClueAktivniOnRozsudek);
+        }
       }
       setTimeout(() => _wfClueResetVolby(), 260);
       return;
     }
 
     if (vys.softFail === true) {
-      _wfCluePokusyZalogujDvojici(prvni.id, clueId, 'miss');
+      if (pokusyCfg && _wfCluePokusy.active) {
+        _wfCluePokusyZalogujDvojici(prvni.id, clueId, 'miss');
+      } else if (timedCfg && _wfCluePatrani.active) {
+        _wfCluePatraniZalogujDvojici(prvni.id, clueId, 'miss');
+      }
       if (pokusyCfg && _wfCluePokusy.active) {
         _wfCluePokusyUlozSession(pripad);
         if (State?.uloz) State.uloz();
+      }
+      if ((pokusyCfg && _wfCluePokusy.active) || (timedCfg && _wfCluePatrani.active)) {
         _wfCluePatraniHudUpdate(pripad, _wfClueAktivniOnRozsudek);
       }
       prvni.el.classList.remove('clue--selected');
@@ -2045,6 +2089,9 @@ const UI = (() => {
       return;
     }
     const huntRes = _wfCluePatraniUlozKandidata(vys);
+    if (timedCfg && _wfCluePatrani.active) {
+      _wfCluePatraniZalogujDvojici(vys.aId, vys.bId, String(vys.strength || 'weak'));
+    }
     _wfClueResetVolby();
     _wfClueAplikujUzamceni(pripad);
     _wfClueVykresliPotvrzeni(pripad, _wfClueAktivniOnRozsudek);
@@ -2057,6 +2104,7 @@ const UI = (() => {
         const bestS = huntRes && huntRes.best ? _wfClueSoudniTextSily(huntRes.best.strength) : curText;
         zobrazStavovouZpravu(`Nalezena ${curText} vazba. Nejlepší zatím zůstává ${bestS}.${zbyvaTxt}`);
       }
+      _wfCluePatraniHudUpdate(pripad, _wfClueAktivniOnRozsudek);
       return;
     }
     zobrazStavovouZpravu(`Vybraná dvojice: ${curText}. Můžete potvrdit, nebo hledat dál.${zbyvaTxt}`);
@@ -3585,12 +3633,7 @@ const UI = (() => {
     const lbl = document.getElementById('case-wf-step2-label');
     if (!step2 || !step2w) return;
     step2.innerHTML = kontextPodkladu;
-    if (lbl) {
-      if (grp === 'guilty') lbl.textContent = 'Krok 2 — Trest / přístup';
-      else if (grp === 'not_guilty') lbl.textContent = 'Krok 2 — Zdůvodnění';
-      else if (grp === 'insufficient') lbl.textContent = 'Krok 2 — Postup';
-      else lbl.textContent = 'Krok 2 — Volba';
-    }
+    if (lbl) lbl.textContent = 'Verdikt';
     step2w.classList.remove('skryto');
     const confirmBtn = document.getElementById('case-wf-confirm-rozsudek');
     for (const r of polozky) {
@@ -4094,8 +4137,8 @@ const UI = (() => {
         txt.className = 'case-wf-finding-text';
         _wfNastavRichText(txt, info.reveal || '');
         box.appendChild(src);
-        _wfVlozRadekRečníkaZjištění(box, info);
         box.appendChild(txt);
+        _wfVlozRadekRečníkaZjištění(box, info);
         wfFindRo.appendChild(box);
       }
       if (!jizOdhalene.length) {
@@ -4198,8 +4241,8 @@ const UI = (() => {
         ftx.className = 'case-wf-finding-text';
         if (jizOdhaleno) _wfNastavRichText(ftx, info.reveal || '');
         box.appendChild(src);
-        if (jizOdhaleno) _wfVlozRadekRečníkaZjištění(box, info);
         box.appendChild(ftx);
+        if (jizOdhaleno) _wfVlozRadekRečníkaZjištění(box, info);
         wfFind.appendChild(box);
       }
 

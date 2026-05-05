@@ -21,8 +21,8 @@
   --spis-content-inset-x: 18px;
   --spis-content-offset-y: 34px;
   --spis-content-bottom-safe: 56px;
-  /* Hnědý pruh záhlaví — max. výška + ořez (clamp na textech); řádek akcí zůstává pod textem, ne u spodku */
-  --spis-zahlavi-max-height: 158px;
+  /* Pevná výška = cca hnědý pruh na spis-panel.png; větší hodnota + margin-top:auto vytvoří „díru“ a spodní řádek skončí na béžové */
+  --spis-zahlavi-height: 105px;
 }
 
 /* Okraj z obecného .panel-papir::before (base.css) — u PNG rámu spisu nechceme */
@@ -43,7 +43,7 @@
   z-index: 1;
 }
 
-/* Spis uprostřed obrazovky; rail je mimo šířku obalu (absolute), aby se centrování netýkalo „spis+rail“. */
+/* Spis + rail v jednom flex řádku uvnitř mid; layout může horizontálně scrollovat, aby byl rail vždy „v toku“. */
 #modal-pripad .pripad-wireframe-layout {
   display: flex;
   flex-direction: row;
@@ -55,19 +55,33 @@
   min-width: 0;
   padding: 0 10px;
   box-sizing: border-box;
+  /* Spis + rail v jednom řádku — horizontální posun, aby scrollIntoView na rail fungoval */
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-padding-inline: 12px;
 }
 
 #modal-pripad .pripad-wireframe-mid {
   position: relative;
   flex: 0 0 auto;
   width: max-content;
-  max-width: 100%;
+  max-width: none;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 14px;
+  min-width: 0;
+}
+
+#modal-pripad .pripad-wireframe-mid > .pripad-panel--wireframe {
+  flex: 0 0 auto;
+  min-width: 0;
 }
 
 #modal-pripad .pripad-patrani-rail {
-  position: absolute;
-  left: calc(100% + 14px);
-  top: 0;
+  position: relative;
+  left: auto;
+  top: auto;
   bottom: auto;
   height: auto;
   max-height: 100%;
@@ -75,7 +89,9 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
+  align-self: flex-start;
   gap: 10px;
+  flex: 0 0 auto;
   width: clamp(200px, 24vw, 292px);
   min-width: 188px;
   max-width: min(300px, 30vw);
@@ -100,27 +116,39 @@
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-clue-hud-header-anchor {
-  padding-top: 18px;
+  padding-top: 4px;
 }
 
-/* Světlý text na hnědém PNG, zarovnání jako u tlačítka lupy */
+/* Šířka podle textu (ne natažená přes celý sloupec); max-width jen proti přetečení */
 #modal-pripad .case-wf-clue-hud-header-vysledek {
-  display: block;
-  max-width: 198px;
-  text-align: right;
+  display: inline-block;
+  width: max-content;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  vertical-align: top;
+  text-align: left;
   font-family: var(--pismo-typewriter, monospace);
   font-size: 11px;
-  line-height: 1.45;
-  letter-spacing: 0.05em;
-  color: #f0e2c4;
+  line-height: 1.35;
+  letter-spacing: 0.025em;
+  color: #e8f2e4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 3px 6px;
+  border-radius: 4px;
+  background: rgba(72, 130, 78, 0.38);
+  border: 1px solid rgba(110, 170, 118, 0.45);
   text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.85),
-    0 0 10px rgba(0, 0, 0, 0.35);
-  word-break: break-word;
+    0 1px 2px rgba(0, 0, 0, 0.75),
+    0 0 8px rgba(0, 0, 0, 0.35);
 }
 
 #modal-pripad .case-wf-clue-hud-header-vysledek--neuspech {
   color: #c9948c;
+  background: rgba(60, 28, 24, 0.35);
+  border-color: rgba(140, 70, 62, 0.4);
   text-shadow:
     0 1px 2px rgba(0, 0, 0, 0.92),
     0 0 10px rgba(40, 8, 6, 0.45);
@@ -143,14 +171,15 @@
   padding: 6px 10px 6px;
   display: grid;
   box-sizing: border-box;
-  height: auto;
-  min-height: 0;
-  max-height: var(--spis-zahlavi-max-height);
+  height: var(--spis-zahlavi-height);
+  min-height: var(--spis-zahlavi-height);
+  max-height: var(--spis-zahlavi-height);
   overflow: hidden;
-  /* Užší pravý sloupec = více šířky pro obžalobu pod názvem (max. 2 řádky) */
-  grid-template-columns: minmax(0, 1fr) minmax(112px, 176px);
+  /* Pravý sloupec: jen kolik potřebuje typ + ✕ + lupa; výsledek pátrání má vlastní max-content šířku */
+  grid-template-columns: minmax(0, 1fr) minmax(112px, max-content);
+  grid-template-rows: minmax(0, 1fr);
   gap: 6px 8px;
-  align-items: start;
+  align-items: stretch;
 }
 
 #modal-pripad .pripad-panel--wireframe .pripad-zahlavi-left {
@@ -399,7 +428,7 @@
 #modal-pripad .pripad-panel--wireframe .pripad-zahlavi-akce {
   display: block;
   margin-top: auto;
-  padding-top: 18px;
+  padding-top: 4px;
   font-family: var(--pismo-typewriter, monospace);
   font-size: 11px;
   letter-spacing: 0.06em;
@@ -1061,6 +1090,7 @@
 
   #modal-pripad .pripad-wireframe-mid {
     width: 100%;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1374,6 +1404,20 @@
 
 #modal-pripad .pripad-panel--wireframe #case-wf-sec-verdict:not(.skryto) {
   display: block;
+  margin-top: 10px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  border-top: 2px solid rgba(61, 43, 31, 0.42);
+  border-radius: 0 0 10px 10px;
+  background: linear-gradient(
+    180deg,
+    rgba(42, 34, 28, 0.14) 0%,
+    rgba(52, 44, 36, 0.22) 55%,
+    rgba(48, 40, 34, 0.2) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 1px 0 rgba(0, 0, 0, 0.08);
 }
 
 /* Předehra / aftermath: interaktivní verdikt musí zmizet (jinak po zavření overlay zůstane klikatelný). */
