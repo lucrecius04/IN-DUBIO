@@ -29,8 +29,15 @@ button.knihovna-link:hover {
   z-index: 200;
 }
 
-/* Papírový dokument — případ (šum, bez vnitřního ::before z .panel-papir). Archiv = PNG kniha, viz #modal-archiv > .archiv-panel */
-#modal-pripad > .panel-papir {
+/* Rail u spisu může přesáhnout šířku viewportu — posuvník místo ořezu */
+#modal-pripad.overlay.aktivni {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+/* Papírový dokument — případ (šum, bez vnitřního ::before z .panel-papir). Wireframe spis má vlastní PNG v case-wireframe.css — nesmí sem, jinak přepíše spis-panel.png. */
+#modal-pripad .pripad-wireframe-layout > .panel-papir:not(.pripad-panel--wireframe),
+#modal-pripad > .panel-papir:not(.pripad-panel--wireframe) {
   --modal-dokument-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)' opacity='0.055'/%3E%3C/svg%3E");
   background-color: #f0e8d0;
   background-image: var(--modal-dokument-noise);
@@ -41,13 +48,15 @@ button.knihovna-link:hover {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
 }
 
-#modal-pripad > .panel-papir {
+#modal-pripad .pripad-wireframe-layout > .panel-papir:not(.pripad-panel--wireframe),
+#modal-pripad > .panel-papir:not(.pripad-panel--wireframe) {
   max-width: 780px !important;
   width: min(92vw, 780px) !important;
   max-height: 90vh;
 }
 
-#modal-pripad > .panel-papir::before {
+#modal-pripad .pripad-wireframe-layout > .panel-papir:not(.pripad-panel--wireframe)::before,
+#modal-pripad > .panel-papir:not(.pripad-panel--wireframe)::before {
   display: none;
 }
 

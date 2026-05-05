@@ -335,7 +335,7 @@ const UI = (() => {
     const data = Array.isArray(_wfCluePokusy.triedPairs) ? _wfCluePokusy.triedPairs : [];
     const head =
       `<div class="case-wf-clue-log-head">` +
-      `<div class="case-wf-clue-log-title">Záznam pátrání</div>` +
+      `<div class="case-wf-clue-log-title">Propojené stopy</div>` +
       `</div>`;
     if (!data.length) {
       hostEl.classList.remove('skryto');
@@ -611,6 +611,20 @@ const UI = (() => {
   function _wfCluePatraniVysledekBestText() {
     if (!_wfCluePatrani.best) return 'Objevená vazba: žádná.';
     return `Objevená vazba: ${_wfClueSoudniTextSily(_wfCluePatrani.best.strength)}.`;
+  }
+
+  /** Jednořádek do záhlaví spisu místo tlačítka po ukončení pátrání. */
+  function _wfClueHeaderVysledekText(pripad, matched, pokusyRezim, pokClosed, pokHasRun, timed, hasRunPatrani) {
+    if (matched && typeof Cases !== 'undefined' && Cases.ziskejPotvrzenouClueVazbu) {
+      const v = Cases.ziskejPotvrzenouClueVazbu(pripad);
+      if (v && v.strength) {
+        return `Síla nalezené vazby: ${_wfClueSoudniTextSily(v.strength)}.`;
+      }
+      return 'Vazba ve spisu potvrzena.';
+    }
+    if (pokusyRezim && pokHasRun && pokClosed && !matched) return 'Pátrání nebylo úspěšné.';
+    if (timed && hasRunPatrani && !matched) return 'Pátrání nebylo úspěšné.';
+    return '';
   }
 
   function _wfZahlaviPlainText(text) {
@@ -904,6 +918,8 @@ const UI = (() => {
     const slot = document.getElementById('case-wf-clue-hud-slot');
     if (!slot) return null;
 
+    const headerAnchor = document.getElementById('case-wf-clue-hud-header-anchor');
+
     const migrateFrom = document.getElementById('case-wf-clue-status-slot');
     let detail = document.getElementById('case-wf-clue-hud-detail');
     if (detail && migrateFrom && detail.parentElement === migrateFrom) {
@@ -939,12 +955,22 @@ const UI = (() => {
       headerWrap.className = 'case-wf-clue-hud-header-wrap';
       headerWrap.innerHTML =
         `<button type="button" class="case-wf-clue-hud-btn case-wf-clue-hud-btn--start" id="case-wf-clue-hud-action" aria-label="Pátrání" title="Zahájit pátrání"></button>`;
-      slot.appendChild(headerWrap);
-    } else if (headerWrap.parentElement !== slot) {
+      (headerAnchor || slot).appendChild(headerWrap);
+    } else if (headerAnchor && headerWrap.parentElement !== headerAnchor) {
+      headerAnchor.appendChild(headerWrap);
+    } else if (!headerAnchor && headerWrap.parentElement !== slot) {
       slot.appendChild(headerWrap);
     }
-    if (detail && headerWrap && detail.nextElementSibling !== headerWrap) {
-      slot.insertBefore(detail, headerWrap);
+
+    let headerVys = document.getElementById('case-wf-clue-hud-header-vysledek');
+    if (!headerVys && headerAnchor) {
+      headerVys = document.createElement('div');
+      headerVys.id = 'case-wf-clue-hud-header-vysledek';
+      headerVys.className = 'case-wf-clue-hud-header-vysledek skryto';
+      headerVys.setAttribute('aria-live', 'polite');
+      headerAnchor.appendChild(headerVys);
+    } else if (headerVys && headerAnchor && headerVys.parentElement !== headerAnchor) {
+      headerAnchor.appendChild(headerVys);
     }
 
     const lockAct = detail?.querySelector('.case-wf-clue-focus-lock-actions');
@@ -980,10 +1006,14 @@ const UI = (() => {
     if (!pripad || (!timed && !pokusyRezim && maxF <= 0)) {
       detail?.classList.add('skryto');
       headerWrap?.classList.add('skryto');
+      document.getElementById('case-wf-clue-hud-header-vysledek')?.classList.add('skryto');
       document.getElementById('case-wf-clue-hud-log')?.classList.add('skryto');
+      document.getElementById('case-wf-clue-hud-slot')?.classList.add('skryto');
       _wfAktualizujHeaderAkciPripadu();
       return;
     }
+
+    document.getElementById('case-wf-clue-hud-slot')?.classList.remove('skryto');
 
     const aktivni = !!_wfCluePatrani.active;
     const pokActive = !!_wfCluePokusy.active;
@@ -998,7 +1028,11 @@ const UI = (() => {
       logEl = document.createElement('div');
       logEl.id = 'case-wf-clue-hud-log';
       logEl.className = 'case-wf-clue-hud-log case-wf-clue-hud-log--floating skryto';
-      document.body.appendChild(logEl);
+      const rail = document.getElementById('pripad-patrani-rail');
+      (rail || document.body).appendChild(logEl);
+    } else if (logEl.parentElement && logEl.parentElement.id !== 'pripad-patrani-rail') {
+      const rail = document.getElementById('pripad-patrani-rail');
+      if (rail) rail.appendChild(logEl);
     }
     const lockWrap = document.getElementById('case-wf-clue-focus-lock');
     const actionBtn = document.getElementById('case-wf-clue-hud-action');
@@ -1259,6 +1293,42 @@ const UI = (() => {
     );
     if (headerWrap) headerWrap.classList.toggle('skryto', !showHeaderStart);
 
+    const headerVys = document.getElementById('case-wf-clue-hud-header-vysledek');
+    const huntUkonceno =
+      matched ||
+      (pokusyRezim && pokHasRun && pokClosed) ||
+      (timed && _wfCluePatrani.hasRun);
+    const showHeaderVysledek =
+      !!huntUkonceno &&
+      !showHeaderStart &&
+      !(timed && needPaidHunt && !matched);
+    if (headerVys) {
+      if (!showHeaderVysledek) {
+        headerVys.classList.add('skryto');
+        headerVys.textContent = '';
+        headerVys.classList.remove('case-wf-clue-hud-header-vysledek--neuspech');
+      } else {
+        const txt = _wfClueHeaderVysledekText(
+          pripad,
+          matched,
+          pokusyRezim,
+          pokClosed,
+          pokHasRun,
+          timed,
+          !!_wfCluePatrani.hasRun
+        );
+        if (txt) {
+          headerVys.textContent = txt;
+          headerVys.classList.remove('skryto');
+          headerVys.classList.toggle('case-wf-clue-hud-header-vysledek--neuspech', !matched);
+        } else {
+          headerVys.classList.add('skryto');
+          headerVys.textContent = '';
+          headerVys.classList.remove('case-wf-clue-hud-header-vysledek--neuspech');
+        }
+      }
+    }
+
     const showDetail = !!(
       (timed &&
         !matched &&
@@ -1270,9 +1340,10 @@ const UI = (() => {
     if (detail) detail.classList.toggle('skryto', !showDetail);
     if (pokusyRezim) {
       if (logEl) {
-        logEl.style.right = '12px';
-        logEl.style.left = 'auto';
-        logEl.style.top = '108px';
+        logEl.style.right = '';
+        logEl.style.left = '';
+        logEl.style.top = '';
+        logEl.style.bottom = '';
       }
       _wfCluePokusyVykresliZaznam(logEl);
     } else if (logEl) {
@@ -2137,6 +2208,12 @@ const UI = (() => {
     if (floatingLog) {
       floatingLog.classList.add('skryto');
       floatingLog.innerHTML = '';
+    }
+    const headerVysZav = document.getElementById('case-wf-clue-hud-header-vysledek');
+    if (headerVysZav) {
+      headerVysZav.classList.add('skryto');
+      headerVysZav.textContent = '';
+      headerVysZav.classList.remove('case-wf-clue-hud-header-vysledek--neuspech');
     }
     _wfClueAktivniPripad = null;
     _wfClueAktivniOnRozsudek = null;
@@ -3795,7 +3872,6 @@ const UI = (() => {
     _wfCluePatraniReset();
     _wfCluePatraniNactiZeStavu(pripad);
     _wfCluePokusyNactiDoPameti(pripad);
-    _wfCluePatraniHudUpdate(pripad, onRozsudek);
     _wfClueResetVolby();
     _wfClueResetKandidata();
     document.getElementById('case-wf-clue-confirm-wrap')?.remove();
@@ -3832,7 +3908,6 @@ const UI = (() => {
     document.getElementById('pripad-obvineni-text').textContent = _wfSestavObvineniText(pripad);
     const leadHdr = document.getElementById('pripad-zahlavi-lead');
     if (leadHdr) leadHdr.textContent = _wfZahlaviKratkyPopis(pripad);
-    document.getElementById('case-wf-clue-hud-slot')?.classList.remove('skryto');
 
     const spZn = document.getElementById('pripad-spis-zn');
     if (spZn) spZn.textContent = (pripad.case_number || '—').trim();
@@ -3923,6 +3998,7 @@ const UI = (() => {
     Desk.nastavAktivniSpis(pripad);
 
     if (typeof SFX !== 'undefined') SFX.slozkaPaper();
+    _wfCluePatraniHudUpdate(pripad, onRozsudek);
     _otevriModal('modal-pripad');
     Desk.animujPrichodSpisu();
   }

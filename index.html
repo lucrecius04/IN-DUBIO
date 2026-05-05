@@ -1199,6 +1199,8 @@
 </div>
 
 <div id="modal-pripad" class="overlay" role="dialog" aria-modal="true">
+  <div class="pripad-wireframe-layout">
+  <div class="pripad-wireframe-mid">
   <div class="panel-papir pripad-panel pripad-panel--wireframe panel-papir--nastup">
     <div class="pripad-panel-ilustrace" aria-hidden="true">
       <img src="src/spis-panel.png" alt="" decoding="async">
@@ -1218,7 +1220,7 @@
           <button type="button" class="pripad-zavrit-x pripad-zpet-archiv skryto" id="pripad-zpet-do-archivu" title="Zpět do zápisníku (Rozsudky)">◀</button>
           <button type="button" class="pripad-zavrit-x" id="pripad-zavrit-x" title="Zavřít (Esc)">✕</button>
         </div>
-        <div id="case-wf-clue-hud-slot" class="case-wf-clue-hud-slot"></div>
+        <div id="case-wf-clue-hud-header-anchor" class="case-wf-clue-hud-header-anchor"></div>
       </div>
     </div>
 
@@ -1301,6 +1303,11 @@
         <button type="button" class="btn pripad-consequence-prelude-btn" id="pripad-consequence-prelude-btn">Pokračovat</button>
       </div>
     </div>
+  </div>
+  <aside class="pripad-patrani-rail" id="pripad-patrani-rail" aria-label="Pátrání ve spise">
+    <div id="case-wf-clue-hud-slot" class="case-wf-clue-hud-slot"></div>
+  </aside>
+  </div>
   </div>
   <!-- Krok 2 verdiktu: vlastní kurzor (viz ui.js); obrázek src/verdict-stamp.png -->
   <div id="case-wf-verdict-cursor" class="case-wf-verdict-cursor skryto" aria-hidden="true" role="presentation"></div>
