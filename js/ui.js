@@ -366,9 +366,9 @@ const UI = (() => {
       hostEl.innerHTML = '';
       return;
     }
-    const firstIdx = Math.max(0, data.length - 8);
-    const rows = data.slice(firstIdx).map((x, idx) => {
-      const n = firstIdx + idx + 1;
+    /* Celý zápis pokusů (ve stavu max 24); zkracovat jen ukládání, ne výpis — scroll má #case-wf-clue-hud-log. */
+    const rows = data.map((x, idx) => {
+      const n = idx + 1;
       const res = String(x.result || 'miss');
       const klass =
         res === 'strong' ? 'case-wf-clue-log-item--strong'
@@ -1057,7 +1057,8 @@ const UI = (() => {
     if (!logEl) {
       logEl = document.createElement('div');
       logEl.id = 'case-wf-clue-hud-log';
-      logEl.className = 'case-wf-clue-hud-log case-wf-clue-hud-log--floating skryto';
+      /* Bez --floating: globální .case-wf-clue-hud-log--floating používá position:fixed a může skončit pod/vně modálu. */
+      logEl.className = 'case-wf-clue-hud-log skryto';
       const rail = document.getElementById('pripad-patrani-rail');
       (rail || document.body).appendChild(logEl);
     } else if (logEl.parentElement && logEl.parentElement.id !== 'pripad-patrani-rail') {
@@ -1581,7 +1582,8 @@ const UI = (() => {
     card.appendChild(body);
     card.appendChild(ok);
     wrap.appendChild(card);
-    mod.appendChild(wrap);
+    /* document.body: nad #modal-pripad (z-index 200) a nad vnitřním stacking contextem panelu (transform spisu). */
+    document.body.appendChild(wrap);
     ok.focus();
   }
 
@@ -1916,13 +1918,15 @@ const UI = (() => {
 
   function _wfAktualizujRozporBox(pripad) {
     const conEl = document.getElementById('case-wf-contradiction');
+    const conBody = document.getElementById('case-wf-contradiction-body');
     const c0 = pripad && pripad.contradictions && pripad.contradictions[0];
     if (!conEl || !c0 || !c0.description) return;
     const matched = typeof Cases !== 'undefined' && Cases.maPotvrzenouClueVazbu
       ? Cases.maPotvrzenouClueVazbu(pripad)
       : false;
     const show = matched || _wfJeVysokaMoudrostProRozpor(pripad);
-    _wfNastavRichText(conEl, c0.description);
+    const telo = conBody || conEl;
+    _wfNastavRichText(telo, c0.description);
     conEl.classList.toggle('skryto', !show);
   }
 
@@ -3529,6 +3533,22 @@ const UI = (() => {
     return _wfPruzkumPopisek(info) + _wfKapkyVZavorkach(cena);
   }
 
+  /** Smaže karty průzkumu a panel pátrání v #case-wf-findings; rozpor (#case-wf-contradiction) ponechá. */
+  function _wfVyprazdniFindingsKromRozporu(wfFind) {
+    if (!wfFind) return;
+    wfFind.querySelectorAll('.case-wf-finding').forEach(n => n.remove());
+    document.getElementById('case-wf-clue-confirm-wrap')?.remove();
+  }
+
+  /** Rozpor (čárkovaný odstavec) těsně nad „Výsledek pátrání“, pod kartami zjištění. */
+  function _wfUmistiRozporVRozmerFindings(wfFind) {
+    const conEl = document.getElementById('case-wf-contradiction');
+    const clue = document.getElementById('case-wf-clue-confirm-wrap');
+    if (!conEl || !wfFind) return;
+    if (clue && clue.parentNode === wfFind) wfFind.insertBefore(conEl, clue);
+    else wfFind.appendChild(conEl);
+  }
+
   /** Krátký typ zjištění — pro štítek karty, ne pro tlačítko akce. */
   function _wfTypZjištěníKrátce(info) {
     const a = info && info.action;
@@ -3539,7 +3559,7 @@ const UI = (() => {
     return 'průzkum';
   }
 
-  /** Odliší kartu zjištění od stejnojmenného tlačítka průzkumu (oficiální vs. neoficiální zdroj). */
+  /** Štítek karty zjištění: typ + (průzkum) / (neoficiální zdroj), bez slova „Zjištění“. */
   function _wfNadpisZjištěníPrůzkumu(pripad, info) {
     const typ = _wfTypZjištěníKrátce(info);
     const cid = String(pripad && pripad.id != null ? pripad.id : '').trim();
@@ -3548,8 +3568,8 @@ const UI = (() => {
       State.zpusobOdhaleniInfo &&
       cid &&
       State.zpusobOdhaleniInfo(cid, info.id) === 'unofficial';
-    if (unofficial) return `Zjištění — ${typ} (neoficiální zdroj)`;
-    return `Zjištění — ${typ} (průzkum)`;
+    if (unofficial) return `${typ} (neoficiální zdroj)`;
+    return `${typ} (průzkum)`;
   }
 
   /** Řádek pod nadpisem karty zjištění — kdo mluví / s kým je konfrontace (z `hidden_info.speaker`). */
@@ -3994,9 +4014,11 @@ const UI = (() => {
     }
 
     const conEl = document.getElementById('case-wf-contradiction');
+    const conBody = document.getElementById('case-wf-contradiction-body');
     if (conEl) {
       conEl.classList.add('skryto');
-      conEl.textContent = '';
+      if (conBody) conBody.textContent = '';
+      else conEl.textContent = '';
     }
 
     const odhaleneEl = document.getElementById('pripad-odhalene-info');
@@ -4126,7 +4148,7 @@ const UI = (() => {
     if (akceInfoRo) akceInfoRo.textContent = `Odhaleno: ${jizOdhalene.length}`;
     const wfFindRo = document.getElementById('case-wf-findings');
     if (wfFindRo) {
-      wfFindRo.innerHTML = '';
+      _wfVyprazdniFindingsKromRozporu(wfFindRo);
       for (const info of jizOdhalene) {
         const box = document.createElement('div');
         box.className = 'case-wf-finding';
@@ -4149,6 +4171,7 @@ const UI = (() => {
           '<div class="case-wf-finding-text">V tomto spisu nebyla odhalena žádná průzkumná zjištění.</div>';
         wfFindRo.appendChild(praz);
       }
+      _wfUmistiRozporVRozmerFindings(wfFindRo);
     }
     document.getElementById('case-wf-verdict-readonly')?.classList.remove('skryto');
     document.getElementById('case-wf-step1-wrap')?.classList.add('skryto');
@@ -4201,11 +4224,12 @@ const UI = (() => {
 
     if (wfAkce) wfAkce.innerHTML = '';
     if (tlacitka) tlacitka.innerHTML = '';
-    if (wfFind) wfFind.innerHTML = '';
+    _wfVyprazdniFindingsKromRozporu(wfFind);
 
     if (!pripad.hidden_info || pripad.hidden_info.length === 0) {
       document.getElementById('prukzum-panel')?.classList.add('skryto');
       document.getElementById('case-wf-inform-wrap')?.classList.add('skryto');
+      _wfUmistiRozporVRozmerFindings(wfFind);
       _wfAktualizujHeaderAkciPripadu();
       return;
     }
@@ -4358,6 +4382,7 @@ const UI = (() => {
     if (!prOpts || !prOpts.skipClueConfirm) {
       _wfClueVykresliPotvrzeni(pripad, onRozsudek);
     }
+    _wfUmistiRozporVRozmerFindings(wfFind);
     _wfAktualizujHeaderAkciPripadu();
   }
 

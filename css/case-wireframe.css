@@ -38,65 +38,79 @@
   display: none;
 }
 
-#modal-pripad .pripad-panel--wireframe > :not(.pripad-panel-ilustrace) {
+/* Předehra (#pripad-consequence-prelude) musí zůstat position:absolute — jinak ji toto pravidlo přepíše a „zmizí“ pod vrstvami spisu. */
+#modal-pripad .pripad-panel--wireframe > :not(.pripad-panel-ilustrace):not(#pripad-consequence-prelude) {
   position: relative;
   z-index: 1;
 }
 
-/* Spis + rail v jednom flex řádku uvnitř mid; layout může horizontálně scrollovat, aby byl rail vždy „v toku“. */
-#modal-pripad .pripad-wireframe-layout {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100%;
-  max-width: 100%;
-  max-height: 92vh;
-  min-width: 0;
-  padding: 0 10px;
+#modal-pripad .pripad-panel--wireframe > #pripad-consequence-prelude {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
   box-sizing: border-box;
-  /* Spis + rail v jednom řádku — horizontální posun, aby scrollIntoView na rail fungoval */
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scroll-padding-inline: 12px;
 }
 
+/* Obal: plná šířka modálu — střed spisu řeší grid uvnitř .pripad-wireframe-mid (ne max-content / flex, které se po přidání railu „hýbou“). */
+#modal-pripad .pripad-wireframe-layout {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  flex: 1 1 auto;
+  min-width: 0;
+  max-height: 92vh;
+  padding: 0 10px;
+  box-sizing: border-box;
+  overflow-x: auto;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* Grid: volný prostor vlevo i vpravo stejně (1fr) → střední sloupec se spisem je v ose okna; vpravo pátrání + stopy. */
 #modal-pripad .pripad-wireframe-mid {
   position: relative;
-  flex: 0 0 auto;
-  width: max-content;
-  max-width: none;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 14px;
+  display: grid;
+  width: 100%;
+  max-width: 100%;
   min-width: 0;
+  box-sizing: border-box;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  column-gap: 12px;
+  align-items: start;
 }
 
 #modal-pripad .pripad-wireframe-mid > .pripad-panel--wireframe {
-  flex: 0 0 auto;
+  grid-column: 2;
+  justify-self: center;
   min-width: 0;
+  /* Nižší než .pripad-patrani-rail — panel má transform (nástupní animace) = vlastní stacking. */
+  z-index: 1;
 }
 
+/* Pravý sloupec gridu: stav pátrání + propojené stopy (HUD + log). */
 #modal-pripad .pripad-patrani-rail {
+  grid-column: 3;
+  justify-self: start;
+  align-self: start;
   position: relative;
+  z-index: 20;
   left: auto;
   top: auto;
   bottom: auto;
   height: auto;
-  max-height: 100%;
+  max-height: 84vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-  align-self: flex-start;
   gap: 10px;
-  flex: 0 0 auto;
-  width: clamp(200px, 24vw, 292px);
-  min-width: 188px;
-  max-width: min(300px, 30vw);
+  width: clamp(220px, 27vw, 320px);
+  max-width: min(320px, 38vw);
+  min-width: 0;
   min-height: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 #modal-pripad:has(#case-wf-clue-hud-slot.skryto) .pripad-patrani-rail {
@@ -262,9 +276,8 @@
   margin-top: 4px;
 }
 
-#modal-pripad .case-wf-clue-hud-slot:empty {
-  display: none;
-}
+/* Prázdný slot neskrývat přes :empty — HUD se vkládá až v JS; display:none by jeden frame
+   schoval celý panel pátrání. Viditelnost řídí jen .skryto z _wfCluePatraniHudUpdate. */
 
 #modal-pripad .case-wf-clue-hud-slot.skryto {
   display: none;
@@ -739,6 +752,7 @@
 #modal-pripad .pripad-panel--wireframe .case-wf-case-text,
 #modal-pripad .pripad-panel--wireframe .case-wf-testimony,
 #modal-pripad .pripad-panel--wireframe .case-wf-finding-text,
+#modal-pripad .pripad-panel--wireframe .case-wf-contradiction-body,
 #modal-pripad .pripad-panel--wireframe .clue[data-clue-id] {
   user-select: text;
   -webkit-user-select: text;
@@ -949,7 +963,7 @@
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-clue-log-empty,
-.case-wf-clue-hud-log--floating .case-wf-clue-log-empty {
+#modal-pripad .pripad-patrani-rail .case-wf-clue-hud-log .case-wf-clue-log-empty {
   font-family: var(--pismo-typewriter, monospace);
   font-size: 11px;
   line-height: 1.45;
@@ -1008,25 +1022,8 @@
   }
 }
 
-.case-wf-clue-hud-log--floating {
-  position: fixed;
-  width: min(340px, 30vw);
-  max-height: min(62vh, 460px);
-  overflow: auto;
-  pointer-events: none;
-  margin: 0;
-  padding: 8px 10px 10px;
-  border: 1px dashed rgba(92, 74, 50, 0.34);
-  border-radius: 6px;
-  background: rgba(22, 16, 12, 0.92);
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.35),
-    0 2px 8px rgba(0, 0, 0, 0.25);
-  z-index: 1205;
-}
-
-/* V postranní koleji — výška podle obsahu; při delším seznamu jen vnitřní scroll, neroste na celou výšku spisu */
-#modal-pripad .pripad-patrani-rail .case-wf-clue-hud-log.case-wf-clue-hud-log--floating {
+/* V pravé koleji — v toku modálu (žádné position:fixed z plovoucí varianty). */
+#modal-pripad .pripad-patrani-rail .case-wf-clue-hud-log {
   position: relative;
   inset: auto;
   left: auto;
@@ -1039,7 +1036,7 @@
   flex: 0 1 auto;
   align-self: stretch;
   pointer-events: auto;
-  z-index: 1;
+  z-index: 5;
   overflow-x: hidden;
   overflow-y: auto;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
@@ -1062,53 +1059,13 @@
 }
 
 @media (max-width: 1280px) {
-  .case-wf-clue-hud-log--floating {
-    right: 8px;
-    top: 84px !important;
-    left: auto !important;
-    width: min(290px, 40vw);
-    max-height: 46vh;
-  }
-
-  #modal-pripad .pripad-patrani-rail .case-wf-clue-hud-log.case-wf-clue-hud-log--floating {
-    position: relative;
-    right: auto;
-    top: auto;
-    width: 100%;
+  #modal-pripad .pripad-patrani-rail .case-wf-clue-hud-log {
     max-height: min(38vh, 320px);
     flex: 0 1 auto;
   }
 }
 
-@media (max-width: 900px) {
-  #modal-pripad .pripad-wireframe-layout {
-    flex-direction: column;
-    align-items: center;
-    max-height: none;
-    overflow-y: auto;
-  }
-
-  #modal-pripad .pripad-wireframe-mid {
-    width: 100%;
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  #modal-pripad .pripad-patrani-rail {
-    position: relative;
-    left: auto;
-    top: auto;
-    bottom: auto;
-    width: min(92vw, 400px);
-    max-width: none;
-    min-width: 0;
-    margin-top: 10px;
-  }
-}
-
-.case-wf-clue-hud-log--floating .case-wf-clue-log-head {
+#modal-pripad .pripad-patrani-rail .case-wf-clue-hud-log .case-wf-clue-log-head {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -1116,11 +1073,11 @@
   margin-bottom: 6px;
 }
 
-.case-wf-clue-hud-log--floating .case-wf-clue-log-title {
+#modal-pripad .pripad-patrani-rail .case-wf-clue-hud-log .case-wf-clue-log-title {
   margin-bottom: 0;
 }
 
-.case-wf-clue-hud-log--floating .case-wf-clue-log-list {
+#modal-pripad .pripad-patrani-rail .case-wf-clue-hud-log .case-wf-clue-log-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -1129,7 +1086,7 @@
   gap: 4px;
 }
 
-.case-wf-clue-hud-log--floating .case-wf-clue-log-item {
+#modal-pripad .pripad-patrani-rail .case-wf-clue-hud-log .case-wf-clue-log-item {
   display: grid;
   grid-template-columns: auto 1fr auto;
   gap: 8px;
@@ -1138,36 +1095,36 @@
   color: #dccbb2;
 }
 
-.case-wf-clue-hud-log--floating .case-wf-clue-log-n {
+#modal-pripad .pripad-patrani-rail .case-wf-clue-hud-log .case-wf-clue-log-n {
   color: #aa8f6e;
   min-width: 18px;
 }
 
-.case-wf-clue-hud-log--floating .case-wf-clue-log-pair {
+#modal-pripad .pripad-patrani-rail .case-wf-clue-hud-log .case-wf-clue-log-pair {
   font-family: "IBM Plex Mono", monospace;
   font-size: 11px;
   word-break: break-word;
   color: #e3d1b6;
 }
 
-.case-wf-clue-hud-log--floating .case-wf-clue-log-res {
+#modal-pripad .pripad-patrani-rail .case-wf-clue-hud-log .case-wf-clue-log-res {
   font-size: 11px;
   color: #b9a388;
 }
 
-.case-wf-clue-hud-log--floating .case-wf-clue-log-item--miss .case-wf-clue-log-res {
+#modal-pripad .pripad-patrani-rail .case-wf-clue-hud-log .case-wf-clue-log-item--miss .case-wf-clue-log-res {
   color: #c77373;
 }
 
-.case-wf-clue-hud-log--floating .case-wf-clue-log-item--weak .case-wf-clue-log-res {
+#modal-pripad .pripad-patrani-rail .case-wf-clue-hud-log .case-wf-clue-log-item--weak .case-wf-clue-log-res {
   color: #c7a86f;
 }
 
-.case-wf-clue-hud-log--floating .case-wf-clue-log-item--medium .case-wf-clue-log-res {
+#modal-pripad .pripad-patrani-rail .case-wf-clue-hud-log .case-wf-clue-log-item--medium .case-wf-clue-log-res {
   color: #7fa7d1;
 }
 
-.case-wf-clue-hud-log--floating .case-wf-clue-log-item--strong .case-wf-clue-log-res {
+#modal-pripad .pripad-patrani-rail .case-wf-clue-hud-log .case-wf-clue-log-item--strong .case-wf-clue-log-res {
   color: #82c78d;
 }
 
@@ -1213,7 +1170,22 @@
   padding: 8px 12px;
   border-radius: 6px;
   margin-top: 8px;
+  color: #7a5c2e;
+}
+
+/* Nadpis jako u „Výsledek pátrání“ v panelu pátrání */
+#modal-pripad .pripad-panel--wireframe .case-wf-contradiction-title {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6f563a;
+  margin-bottom: 6px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-contradiction-body {
   font-size: 13px;
+  line-height: 1.55;
   color: #7a5c2e;
 }
 
@@ -1849,11 +1821,11 @@
   }
 }
 
-/* Krátký narativ po potvrzené ose stop (nad panelem spisu) */
-#modal-pripad .case-wf-clue-narrative-overlay {
-  position: absolute;
+/* Krátký narativ po potvrzené ose stop — vkládá se na document.body (viz ui.js), aby byl nad #modal-pripad i nad stacking contextem spisu (transform). */
+#case-wf-clue-narrative-overlay.case-wf-clue-narrative-overlay {
+  position: fixed;
   inset: 0;
-  z-index: 80;
+  z-index: 205;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1862,7 +1834,7 @@
   box-sizing: border-box;
 }
 
-#modal-pripad .case-wf-clue-narrative-card {
+#case-wf-clue-narrative-overlay .case-wf-clue-narrative-card {
   max-width: min(440px, 92vw);
   background: #faf6ee;
   border: 1px solid rgba(120, 80, 40, 0.45);
@@ -1871,7 +1843,7 @@
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
 }
 
-#modal-pripad .case-wf-clue-narrative-title {
+#case-wf-clue-narrative-overlay .case-wf-clue-narrative-title {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 15px;
   font-weight: 700;
@@ -1880,22 +1852,22 @@
   letter-spacing: 0.02em;
 }
 
-#modal-pripad .case-wf-clue-narrative-body {
+#case-wf-clue-narrative-overlay .case-wf-clue-narrative-body {
   font-size: 13px;
   line-height: 1.55;
   color: rgba(40, 22, 10, 0.9);
   margin-bottom: 14px;
 }
 
-#modal-pripad .case-wf-clue-narr-p {
+#case-wf-clue-narrative-overlay .case-wf-clue-narr-p {
   margin: 0 0 0.65em;
 }
 
-#modal-pripad .case-wf-clue-narr-p:last-child {
+#case-wf-clue-narrative-overlay .case-wf-clue-narr-p:last-child {
   margin-bottom: 0;
 }
 
-#modal-pripad .case-wf-clue-narrative-ok {
+#case-wf-clue-narrative-overlay .case-wf-clue-narrative-ok {
   display: block;
   width: 100%;
   margin-top: 4px;
@@ -1909,7 +1881,7 @@
   color: rgba(30, 14, 4, 0.95);
 }
 
-#modal-pripad .case-wf-clue-narrative-ok:hover {
+#case-wf-clue-narrative-overlay .case-wf-clue-narrative-ok:hover {
   border-color: rgba(80, 50, 20, 0.65);
   background: linear-gradient(180deg, #faf0dc 0%, #e8d8b8 100%);
 }

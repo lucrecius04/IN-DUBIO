@@ -29,10 +29,18 @@ button.knihovna-link:hover {
   z-index: 200;
 }
 
-/* Rail u spisu může přesáhnout šířku viewportu — posuvník místo ořezu */
+/* Modál případu: svisle mírně níž než přesný střed (větší padding nahoře); vodorovně obal na plnou šířku. */
 #modal-pripad.overlay.aktivni {
-  overflow-x: auto;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  padding-top: max(20px, min(10vh, 100px));
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+  overflow: auto;
 }
 
 /* Papírový dokument — případ (šum, bez vnitřního ::before z .panel-papir). Wireframe spis má vlastní PNG v case-wireframe.css — nesmí sem, jinak přepíše spis-panel.png. */
