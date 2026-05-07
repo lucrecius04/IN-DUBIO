@@ -3405,7 +3405,7 @@ const UI = (() => {
       if (!d) continue;
       casti.push(`Důvěra ${_NPC_TRUST_LABEL[npcId] || npcId} ${_statSipkyZmeny(d, 3)}`);
     }
-    return `Neoficiální cesta: ${count}×` + (casti.length ? ` · ${casti.join(' · ')}` : '');
+    return `Mimo spis: ${count}×` + (casti.length ? ` · ${casti.join(' · ')}` : '');
   }
 
   function _wfZiskejProcesniPodkladZCest(pripad) {
@@ -3788,8 +3788,8 @@ const UI = (() => {
     detail.innerHTML =
       `<div class="case-wf-step2-detail-line"><strong>Rozsudek:</strong> ${grpLabel}</div>` +
       `<div class="case-wf-step2-detail-line"><strong>Verdikt:</strong> —</div>` +
-      `<div class="case-wf-step2-detail-line"><strong>Odůvodnění:</strong></div>` +
-      `<div class="case-wf-step2-detail-text">Vyberte variantu verdiktu.</div>`;
+      `<div class="case-wf-step2-detail-line case-wf-step2-detail-line--reason"><strong>Odůvodnění:</strong> ` +
+      `<span class="case-wf-step2-detail-text">Vyberte variantu verdiktu.</span></div>`;
     effectsPanel.innerHTML =
       `<div class="case-wf-step2-effects-title"><strong>Efekty:</strong></div>` +
       `<div class="case-wf-step2-detail-effects">—</div>`;
@@ -3864,8 +3864,8 @@ const UI = (() => {
           detail.innerHTML =
             `<div class="case-wf-step2-detail-line"><strong>Rozsudek:</strong> ${grpLabel}</div>` +
             `<div class="case-wf-step2-detail-line"><strong>Verdikt:</strong> ${tit}</div>` +
-            `<div class="case-wf-step2-detail-line"><strong>Odůvodnění:</strong></div>` +
-            `<div class="case-wf-step2-detail-text">${popis || 'Bez doplňujícího odůvodnění.'}</div>`;
+            `<div class="case-wf-step2-detail-line case-wf-step2-detail-line--reason"><strong>Odůvodnění:</strong> ` +
+            `<span class="case-wf-step2-detail-text">${popis || 'Bez doplňujícího odůvodnění.'}</span></div>`;
           effectsPanel.innerHTML =
             `<div class="case-wf-step2-effects-title"><strong>Efekty:</strong></div>` +
             `<div class="case-wf-step2-detail-effects">${efektyHtml}</div>`;
@@ -3975,7 +3975,8 @@ const UI = (() => {
       for (const s of skupiny) {
         const b = document.createElement('button');
         b.type = 'button';
-        const maBytUnlockedSkupina = s.items.some(v => _wfJeNovyVerdikt(pripad, v && v.id) && dostupneId.has(String(v.id || '')));
+        const pocetNovychAlternativ = s.items.filter(v => _wfJeNovyVerdikt(pripad, v && v.id) && dostupneId.has(String(v.id || ''))).length;
+        const maBytUnlockedSkupina = pocetNovychAlternativ > 0;
         b.className = (
           'case-wf-verdict-opt case-wf-verdict-opt--grp-' + s.key +
           (maBytUnlockedSkupina ? ' case-wf-verdict-opt--unlocked' : '')
@@ -3983,11 +3984,17 @@ const UI = (() => {
         b.removeAttribute('title');
         b.innerHTML =
           `<div class="case-wf-v-title">${s.tit}</div>` +
-          `<div class="case-wf-v-desc">${s.desc}</div>`;
+          `<div class="case-wf-v-desc">${s.desc}</div>` +
+          (pocetNovychAlternativ > 0
+            ? `<div class="case-wf-v-unlock">+${pocetNovychAlternativ} ${pocetNovychAlternativ === 1 ? 'alternativa' : 'alternativy'}</div>`
+            : '');
         b.addEventListener('click', () => {
           step1.querySelectorAll('.case-wf-verdict-opt').forEach(x => x.classList.remove('case-wf-verdict-opt--selected'));
           b.classList.add('case-wf-verdict-opt--selected');
           _wfVyplnStep2(s.key, s.items, pripad, onRozsudek, dostupneId);
+          requestAnimationFrame(() => {
+            document.getElementById('case-wf-sec-verdict')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
         });
         step1.appendChild(b);
       }
@@ -4434,7 +4441,7 @@ const UI = (() => {
       pod.className = 'case-wf-process-path';
       const podTxt = _wfTextProcesnihoPodkladu(path.clamped);
       pod.textContent =
-        `Procesní podklad (cesty): ${podTxt} · oficiálně ${path.official}× · neoficiálně ${path.unofficial}×` +
+        `Procesní podklad (cesty): ${podTxt} · řádně ${path.official}× · mimo spis ${path.unofficial}×` +
         (path.confrontation ? ` · konfrontace ${path.confrontation}×` : '');
       wfAkce.appendChild(pod);
     }
@@ -4511,7 +4518,7 @@ const UI = (() => {
       btnOff.type = 'button';
       btnOff.className = 'case-wf-action-btn';
       btnOff.innerHTML =
-        `<span class="case-wf-btn-line-1">Oficiální</span>` +
+        `<span class="case-wf-btn-line-1">Řádně</span>` +
         `<span class="case-wf-btn-line-2">(Průzkum: ${cena > 0 ? `-${cena}` : '0'})</span>`;
       btnOff.disabled = jizOdhaleno || zbyvaji < cena;
       if (!jizOdhaleno) {
@@ -4541,7 +4548,7 @@ const UI = (() => {
         btnUno.type = 'button';
         btnUno.className = 'case-wf-action-btn case-wf-action-btn--unofficial-choice';
         btnUno.innerHTML =
-          `<span class="case-wf-btn-line-1">Neoficiální</span>` +
+          `<span class="case-wf-btn-line-1">Neoficiálně</span>` +
           `<span class="case-wf-btn-line-2">(Průzkum: 0)</span>`;
         const muze = _wfLzePlatitNečisty(dirtySpec);
         btnUno.disabled = !muze || jizOdhaleno;
@@ -4558,7 +4565,7 @@ const UI = (() => {
         infoBtn.type = 'button';
         infoBtn.className = 'case-wf-info-btn';
         infoBtn.setAttribute('aria-expanded', 'false');
-        infoBtn.title = 'Detaily neoficiální cesty';
+        infoBtn.title = 'Detaily postupu mimo spis';
         infoBtn.textContent = 'i';
         infoBtn.classList.add('case-wf-info-btn--corner');
         head.appendChild(infoBtn);
@@ -4602,14 +4609,14 @@ const UI = (() => {
           if (odhalenoNeoficialne) {
             btnOff.classList.add('case-wf-action-btn--unofficial-choice');
             btnOff.innerHTML =
-              `<span class="case-wf-btn-line-1">Neoficiální</span>` +
+              `<span class="case-wf-btn-line-1">Neoficiálně</span>` +
               `<span class="case-wf-btn-line-2">(Průzkum: 0)</span>`;
           }
           const note = document.createElement('div');
           note.className = 'case-wf-action-note case-wf-action-note--side';
           note.textContent = odhalenoNeoficialne
-            ? 'Zjištěno neoficiálně.\nDopady byly uplatněny.'
-            : 'Zjištěno oficiálně.';
+            ? 'Zjištěno mimo spis.\nDopady byly uplatněny.'
+            : 'Zjištěno řádnou cestou.';
           actionsWrap.appendChild(note);
         }
         row.appendChild(head);
@@ -6119,7 +6126,7 @@ const UI = (() => {
           const box = document.createElement('div');
           box.className = 'archiv-rozsudek-unofficial';
           box.innerHTML =
-            `<div class="archiv-rozsudek-unofficial-title">Neoficiální zdroje: ${sum.count}×</div>` +
+            `<div class="archiv-rozsudek-unofficial-title">Mimo spis: ${sum.count}×</div>` +
             `<div class="archiv-rozsudek-unofficial-text">Součet obětovaných zdrojů: ${sum.text}.</div>`;
           detail.appendChild(box);
         }

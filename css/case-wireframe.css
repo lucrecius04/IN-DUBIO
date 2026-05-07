@@ -1638,16 +1638,16 @@
 }
 
 #modal-pripad .pripad-panel--wireframe #case-wf-step1-wrap {
-  margin-top: 2px;
-  padding-top: 10px;
+  margin-top: -4px;
+  padding-top: 3px;
   border-top: 0;
 }
 
 #modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap {
   display: block;
   border-top: 1px solid rgba(92, 74, 50, 0.42);
-  margin-top: 6px;
-  padding-top: 10px;
+  margin-top: 3px;
+  padding-top: 7px;
 }
 
 #modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:not(.skryto) {
@@ -1845,6 +1845,11 @@
   --wf-verdict-gap: 24px;
   grid-template-columns: 1fr;
   gap: var(--wf-verdict-gap);
+  margin-top: -2px;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-verdict-step2 > .case-wf-step2-context + .case-wf-verdict-opt {
+  margin-top: -18px;
 }
 
 #modal-pripad .pripad-panel--wireframe #case-wf-verdict-step2 > .case-wf-verdict-opt {
@@ -2242,6 +2247,587 @@
   display: none;
 }
 
+/* --- Design pass: spis jako herni soudni artefakt ---------------------------------
+   Vrstvi stavajici DOM do citelnejsich fazi: dokument, vypovedi, pruzkum, rozsudek. */
+#modal-pripad .pripad-panel--wireframe {
+  --case-ink: #2f2318;
+  --case-muted-ink: #66513a;
+  --case-line: rgba(92, 68, 42, 0.24);
+  --case-paper-warm: rgba(255, 249, 236, 0.7);
+  --case-paper-cool: rgba(226, 235, 238, 0.34);
+  --case-blue-ink: #2f5f80;
+  --case-green-ink: #416f4d;
+  --case-red-ink: #7b2b22;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-body {
+  position: relative;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0) 28%),
+    linear-gradient(90deg, rgba(83, 57, 33, 0.045) 0 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(180deg, rgba(255, 252, 244, 0.1), rgba(226, 207, 174, 0.08));
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-section {
+  position: relative;
+  z-index: 1;
+  margin: 0 2px 12px;
+  padding: 13px 16px 15px 18px;
+  border: 1px solid rgba(126, 96, 58, 0.18);
+  border-left: 4px solid rgba(126, 96, 58, 0.38);
+  border-radius: 9px;
+  background:
+    linear-gradient(180deg, rgba(255, 251, 241, 0.54), rgba(244, 234, 215, 0.28)),
+    rgba(255, 251, 241, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    0 1px 0 rgba(61, 43, 31, 0.06);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-section:first-of-type {
+  padding-top: 13px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-section:last-of-type {
+  padding-bottom: 15px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-section-label,
+#modal-pripad .pripad-panel--wireframe #case-wf-sec-spis .case-wf-section-label,
+#modal-pripad .pripad-panel--wireframe #case-wf-sec-verdict .case-wf-section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  margin: -1px 0 11px;
+  padding: 3px 9px 3px 8px;
+  border: 1px solid rgba(92, 68, 42, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 248, 232, 0.65);
+  color: var(--case-muted-ink);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-section-label::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.62;
+  box-shadow: 0 0 0 3px rgba(255, 248, 232, 0.72);
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-sec-spis {
+  border-left-color: rgba(102, 73, 43, 0.62);
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-sec-svedectvi {
+  border-left-color: rgba(125, 92, 48, 0.54);
+  background:
+    linear-gradient(180deg, rgba(255, 251, 241, 0.56), rgba(237, 225, 204, 0.24)),
+    repeating-linear-gradient(0deg, rgba(92, 68, 42, 0.045) 0 1px, transparent 1px 26px);
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-sec-pruzkum {
+  border-left-color: rgba(47, 95, 128, 0.62);
+  background:
+    linear-gradient(135deg, rgba(226, 235, 238, 0.46), rgba(255, 250, 239, 0.3)),
+    rgba(255, 250, 239, 0.22);
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-sec-verdict:not(.skryto) {
+  margin-top: 22px;
+  padding-top: 23px;
+  border-top: 2px solid rgba(62, 38, 24, 0.42);
+  border-left-color: rgba(126, 96, 58, 0.38);
+  background:
+    radial-gradient(circle at 88% 10%, rgba(123, 43, 34, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(255, 247, 231, 0.64), rgba(235, 221, 194, 0.34));
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-sec-verdict:not(.skryto)::before {
+  content: "ROZSUDKOVÁ ČÁST";
+  top: -12px;
+  left: 14px;
+  right: auto;
+  height: auto;
+  padding: 2px 10px;
+  border: 1px solid rgba(62, 38, 24, 0.38);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255, 250, 238, 0.98), rgba(226, 211, 184, 0.96));
+  color: rgba(62, 38, 24, 0.76);
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  box-shadow:
+    0 0 0 2px rgba(255, 248, 232, 0.58),
+    0 2px 5px rgba(48, 30, 18, 0.1);
+  pointer-events: none;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-sec-verdict:not(.skryto)::after {
+  content: none;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-meta-row {
+  padding-bottom: 7px;
+  border-bottom: 1px dotted rgba(92, 68, 42, 0.3);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-case-text {
+  padding: 2px 3px 0;
+  color: var(--case-ink);
+  font-size: 14.5px;
+  line-height: 1.72;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-testimony {
+  position: relative;
+  margin: 0 0 9px 10px;
+  padding: 12px 13px 12px 15px;
+  border: 1px solid rgba(116, 84, 47, 0.22);
+  border-left: 3px solid rgba(126, 91, 48, 0.72);
+  border-radius: 3px 8px 8px 3px;
+  background:
+    linear-gradient(180deg, rgba(255, 252, 244, 0.82), rgba(236, 225, 204, 0.52)),
+    rgba(237, 230, 214, 0.72);
+  box-shadow: 0 1px 2px rgba(45, 31, 20, 0.08);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-testimony::before {
+  content: "";
+  position: absolute;
+  left: -13px;
+  top: 10px;
+  width: 18px;
+  height: 7px;
+  transform: rotate(-8deg);
+  border-radius: 2px;
+  background: rgba(175, 145, 95, 0.32);
+  box-shadow: inset 0 0 0 1px rgba(105, 76, 42, 0.12);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-testimony .case-wf-speaker {
+  color: #4e3925;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-testimony .case-wf-quote {
+  color: #342417;
+  font-size: 13.5px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-inform-wrap {
+  padding: 9px 10px;
+  border: 1px solid rgba(47, 95, 128, 0.22);
+  border-radius: 8px;
+  background: rgba(232, 239, 239, 0.42);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-action-btn {
+  position: relative;
+  border-color: rgba(47, 95, 128, 0.38);
+  background:
+    linear-gradient(180deg, rgba(255, 252, 245, 0.84), rgba(222, 232, 235, 0.44));
+  color: #31475a;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.34);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-action-btn::before {
+  content: "ÚŘEDNÍ CESTA";
+  display: block;
+  margin: 0 0 3px;
+  color: rgba(49, 71, 90, 0.62);
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.14em;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-action-btn.case-wf-action-btn--dirty::before,
+#modal-pripad .pripad-panel--wireframe .case-wf-action-btn.case-wf-action-btn--unofficial::before,
+#modal-pripad .pripad-panel--wireframe .case-wf-action-btn.case-wf-action-btn--unofficial-choice::before {
+  content: "MIMO SPIS";
+  color: rgba(107, 62, 46, 0.68);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-action-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background:
+    linear-gradient(180deg, rgba(255, 254, 249, 0.94), rgba(210, 226, 232, 0.58));
+  border-color: rgba(47, 95, 128, 0.72);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-step-label {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  width: fit-content !important;
+  max-width: max-content !important;
+  margin: 0 0 11px;
+  padding: 3px 9px 3px 8px;
+  border: 1px solid rgba(92, 68, 42, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 248, 232, 0.65);
+  color: var(--case-muted-ink);
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-step-label::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.62;
+  box-shadow: 0 0 0 3px rgba(255, 248, 232, 0.72);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-finding,
+#modal-pripad .pripad-panel--wireframe .case-wf-contradiction {
+  position: relative;
+  border: 1px solid rgba(65, 111, 77, 0.26);
+  border-left: 4px solid rgba(65, 111, 77, 0.72);
+  border-radius: 3px 8px 8px 3px;
+  background:
+    linear-gradient(180deg, rgba(237, 248, 239, 0.84), rgba(214, 233, 219, 0.54));
+  box-shadow: 0 1px 2px rgba(30, 55, 35, 0.08);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-contradiction {
+  border-color: rgba(123, 43, 34, 0.26);
+  border-left-color: rgba(123, 43, 34, 0.74);
+  background:
+    linear-gradient(180deg, rgba(255, 241, 226, 0.82), rgba(235, 213, 190, 0.58));
+  color: #68402f;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-finding .case-wf-finding-src,
+#modal-pripad .pripad-panel--wireframe .case-wf-contradiction-title {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(92, 68, 42, 0.22);
+  background:
+    linear-gradient(180deg, rgba(255, 252, 244, 0.86), rgba(232, 222, 202, 0.62));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.36),
+    0 1px 1px rgba(55, 38, 24, 0.06);
+  transition: transform 0.16s ease, background 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.22), transparent 32%);
+  opacity: 0;
+  transition: opacity 0.16s ease;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(112, 79, 44, 0.58);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.44),
+    0 3px 8px rgba(55, 38, 24, 0.12);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt:hover:not(:disabled)::after {
+  opacity: 1;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt.case-wf-verdict-opt--selected {
+  transform: translateY(-1px);
+  border-color: rgba(47, 95, 128, 0.92);
+  background:
+    linear-gradient(180deg, rgba(218, 234, 246, 0.94), rgba(182, 206, 226, 0.82));
+  box-shadow:
+    inset 0 0 0 1px rgba(37, 82, 116, 0.24),
+    0 0 0 2px rgba(47, 95, 128, 0.18),
+    0 4px 10px rgba(35, 50, 60, 0.13);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--grp-guilty,
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt.btn-rozsudek--vinen {
+  border-left: 4px solid rgba(103, 88, 67, 0.62);
+  background:
+    linear-gradient(180deg, rgba(255, 251, 243, 0.92), rgba(230, 220, 202, 0.68));
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--grp-guilty:hover:not(:disabled),
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt.btn-rozsudek--vinen:hover:not(:disabled) {
+  border-color: rgba(103, 88, 67, 0.76);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+    0 3px 9px rgba(64, 48, 32, 0.12);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--grp-not_guilty,
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt.btn-rozsudek--zprosit {
+  border-left: 4px double rgba(103, 88, 67, 0.64);
+  background:
+    linear-gradient(180deg, rgba(255, 251, 243, 0.92), rgba(230, 220, 202, 0.68));
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--grp-not_guilty:hover:not(:disabled),
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt.btn-rozsudek--zprosit:hover:not(:disabled) {
+  border-color: rgba(103, 88, 67, 0.78);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+    0 3px 9px rgba(64, 48, 32, 0.12);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--grp-insufficient {
+  border-left: 4px dashed rgba(103, 88, 67, 0.68);
+  background:
+    linear-gradient(180deg, rgba(250, 248, 242, 0.9), rgba(224, 218, 205, 0.68));
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--grp-guilty.case-wf-verdict-opt--selected,
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt.btn-rozsudek--vinen.case-wf-verdict-opt--selected {
+  border-color: rgba(78, 58, 38, 0.88);
+  background:
+    linear-gradient(180deg, rgba(244, 236, 221, 0.96), rgba(218, 204, 181, 0.86));
+  box-shadow:
+    inset 0 0 0 1px rgba(78, 58, 38, 0.2),
+    0 0 0 2px rgba(78, 58, 38, 0.14),
+    0 4px 10px rgba(64, 48, 32, 0.13);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--grp-not_guilty.case-wf-verdict-opt--selected,
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt.btn-rozsudek--zprosit.case-wf-verdict-opt--selected {
+  border-color: rgba(78, 58, 38, 0.88);
+  background:
+    linear-gradient(180deg, rgba(244, 236, 221, 0.96), rgba(218, 204, 181, 0.86));
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--grp-insufficient.case-wf-verdict-opt--selected {
+  border-color: rgba(103, 88, 67, 0.86);
+  background:
+    linear-gradient(180deg, rgba(241, 238, 229, 0.96), rgba(213, 205, 190, 0.84));
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-v-title {
+  font-size: 17px;
+  line-height: 1.25;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-v-badge {
+  display: inline-block;
+  width: fit-content;
+  background: rgba(47, 95, 128, 0.16);
+  border-color: rgba(47, 95, 128, 0.35);
+  transform: rotate(-1deg);
+  box-shadow: 0 1px 1px rgba(30, 45, 60, 0.08);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-v-unlock {
+  display: inline-block;
+  width: fit-content;
+  margin-top: 8px;
+  margin-bottom: 0;
+  padding: 2px 7px;
+  border: 1px solid rgba(47, 95, 128, 0.35);
+  border-radius: 999px;
+  background: rgba(47, 95, 128, 0.16);
+  color: #1f4668;
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 10px;
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: none;
+  box-shadow: 0 1px 1px rgba(30, 45, 60, 0.08);
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:not(.skryto) > .case-wf-summary-row {
+  margin-top: 40px;
+  padding: 17px 16px 14px;
+  border: 2px solid rgba(62, 38, 24, 0.56);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(95, 53, 36, 0.16), transparent 38%),
+    linear-gradient(180deg, rgba(255, 250, 239, 0.92), rgba(226, 210, 184, 0.72));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.48),
+    0 0 0 4px rgba(62, 38, 24, 0.08),
+    0 8px 18px rgba(48, 30, 18, 0.2);
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:has(.case-wf-verdict-opt--selected) > .case-wf-summary-row {
+  animation: caseWfVerdictWriteIn 0.42s ease-out;
+  border-color: rgba(62, 38, 24, 0.68);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.52),
+    0 0 0 4px rgba(62, 38, 24, 0.1),
+    0 10px 22px rgba(48, 30, 18, 0.22);
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:not(.skryto) > .case-wf-summary-row::before {
+  content: "ZÁPIS ROZSUDKU";
+  position: absolute;
+  right: 16px;
+  bottom: 12px;
+  color: rgba(78, 48, 32, 0.07);
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 22px;
+  letter-spacing: 0.12em;
+  transform: rotate(-3deg);
+  pointer-events: none;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:not(.skryto) > .case-wf-summary-row::after {
+  content: "KONEČNÝ ZÁPIS";
+  position: absolute;
+  left: 14px;
+  top: -12px;
+  padding: 2px 9px;
+  border: 1px solid rgba(62, 38, 24, 0.46);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255, 250, 238, 0.98), rgba(226, 211, 184, 0.96));
+  color: rgba(62, 38, 24, 0.82);
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 9px;
+  letter-spacing: 0.13em;
+  box-shadow:
+    0 0 0 2px rgba(255, 248, 232, 0.72),
+    0 2px 5px rgba(48, 30, 18, 0.12);
+  pointer-events: none;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-step2-detail,
+#modal-pripad .pripad-panel--wireframe .case-wf-step2-effects-panel {
+  position: relative;
+  z-index: 1;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-step2-detail-line strong,
+#modal-pripad .pripad-panel--wireframe .case-wf-step2-effects-title strong {
+  color: #2f2116;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-step2-detail-line,
+#modal-pripad .pripad-panel--wireframe .case-wf-step2-effects-title {
+  padding-bottom: 3px;
+  border-bottom: 1px dotted rgba(77, 48, 32, 0.16);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-step2-detail-line--reason {
+  border-bottom: 0;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-step2-detail-line--reason .case-wf-step2-detail-text {
+  display: inline;
+  margin: 0 0 0 3px;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-confirm-rozsudek {
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(34, 22, 15, 0.68);
+  background:
+    linear-gradient(180deg, #4b3324 0%, #2d1e16 100%);
+  color: #e1bd67;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 227, 158, 0.16),
+    0 4px 10px rgba(42, 24, 12, 0.2);
+  text-transform: uppercase;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-confirm-rozsudek:not(:disabled):not([data-wf-verdict-committed="1"]) {
+  animation: caseWfSealReady 1.55s ease-in-out infinite;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-confirm-rozsudek:hover:not(:disabled) {
+  background:
+    linear-gradient(180deg, #64452f 0%, #352318 100%);
+  color: #f0cf7d;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-confirm-rozsudek:disabled {
+  background:
+    linear-gradient(180deg, #75685c 0%, #5b5048 100%);
+  color: rgba(232, 210, 166, 0.78);
+  border-style: dashed;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+@keyframes caseWfVerdictWriteIn {
+  0% {
+    transform: translateY(3px);
+    filter: sepia(0.16) saturate(0.82);
+  }
+  55% {
+    transform: translateY(0);
+    filter: sepia(0.02) saturate(1.08);
+  }
+  100% {
+    filter: none;
+  }
+}
+
+@keyframes caseWfSealReady {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 227, 158, 0.16),
+      0 4px 10px rgba(42, 24, 12, 0.2);
+  }
+  50% {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 227, 158, 0.24),
+      0 0 0 2px rgba(196, 163, 90, 0.14),
+      0 6px 14px rgba(42, 24, 12, 0.25);
+  }
+}
+
+@media (max-width: 760px) {
+  #modal-pripad .pripad-panel--wireframe .case-wf-section {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  #modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:not(.skryto) > .case-wf-summary-row {
+    grid-template-columns: 1fr;
+  }
+
+  #modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:not(.skryto) > .case-wf-summary-row > .case-wf-step2-effects-panel {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  #modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:not(.skryto) > .case-wf-summary-row > #case-wf-confirm-rozsudek {
+    grid-row: 3;
+  }
+}
+
 /* Krok 2: systémový kurzor schovat jen nad „Potvrdit rozsudek“ (nad volbami zůstane výchozí kurzor). */
 #modal-pripad #case-wf-confirm-rozsudek:not(.skryto):not(:disabled):not([data-wf-verdict-committed="1"]) {
   cursor: none !important;
@@ -2386,6 +2972,11 @@
 @media (prefers-reduced-motion: reduce) {
   #modal-pripad .pripad-panel--wireframe.case-wf-panel--shake-light,
   #modal-pripad .pripad-panel--wireframe.case-wf-panel--shake {
+    animation: none;
+  }
+
+  #modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:has(.case-wf-verdict-opt--selected) > .case-wf-summary-row,
+  #modal-pripad .pripad-panel--wireframe #case-wf-confirm-rozsudek:not(:disabled):not([data-wf-verdict-committed="1"]) {
     animation: none;
   }
 }
