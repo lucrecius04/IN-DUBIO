@@ -25,6 +25,11 @@
   --spis-zahlavi-height: 105px;
 }
 
+/* Ve fázi rozsudku stáhneme spodní „bezpečnou“ rezervu, aby pod shrnutím nezůstávala hluchá plocha. */
+#modal-pripad:has(#case-wf-sec-verdict:not(.skryto)) .pripad-panel--wireframe {
+  --spis-content-bottom-safe: 20px;
+}
+
 /* Okraj z obecného .panel-papir::before (base.css) — u PNG rámu spisu nechceme */
 #modal-pripad .pripad-panel--wireframe::before {
   display: none;
@@ -697,6 +702,12 @@
   margin-bottom: 10px;
 }
 
+#modal-pripad .pripad-panel--wireframe #case-wf-sec-verdict .case-wf-section-label {
+  text-transform: none;
+  font-size: 14px;
+  letter-spacing: 1.1px;
+}
+
 #modal-pripad .pripad-panel--wireframe .case-wf-meta-row {
   display: flex;
   justify-content: space-between;
@@ -1201,6 +1212,118 @@
   margin-bottom: 12px;
 }
 
+#modal-pripad .pripad-panel--wireframe #case-wf-pruzkum-akce {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-pruzkum-row--decision {
+  display: block;
+  position: relative;
+  border: 1px solid rgba(139, 115, 85, 0.35);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: rgba(255, 252, 245, 0.5);
+  margin-bottom: 0;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-pruzkum-head {
+  margin-bottom: 8px;
+  padding-right: 40px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-pruzkum-title {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: #4a3d2e;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-pruzkum-sub {
+  font-size: 11px;
+  color: #5b4a36;
+  margin-top: 3px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-pruzkum-actions-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-pruzkum-actions-inline--dual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-pruzkum-actions-inline--dual .case-wf-action-btn {
+  width: 100%;
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-action-btn .case-wf-btn-line-1,
+#modal-pripad .pripad-panel--wireframe .case-wf-action-btn .case-wf-btn-line-2 {
+  display: block;
+  white-space: nowrap;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-action-btn.case-wf-action-btn--unofficial-choice {
+  border-style: dashed;
+  border-color: #a67c52;
+  color: #6b3e2e;
+  background: rgba(166, 124, 82, 0.1);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-action-btn.case-wf-action-btn--unofficial-choice:hover:not(:disabled) {
+  background: rgba(166, 124, 82, 0.2);
+  border-color: #8b4513;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-info-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(139, 115, 85, 0.7);
+  background: rgba(255, 252, 245, 0.85);
+  color: #5c4a32;
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-info-btn:hover {
+  background: rgba(139, 115, 85, 0.14);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-info-btn--corner {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-process-path {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+
+@media (max-width: 980px) {
+  #modal-pripad .pripad-panel--wireframe #case-wf-pruzkum-akce {
+    grid-template-columns: 1fr;
+  }
+}
+
 #modal-pripad .pripad-panel--wireframe .case-wf-pruzkum-box {
   flex: 1 1 220px;
   min-width: 200px;
@@ -1230,6 +1353,12 @@
   opacity: 0.92;
 }
 
+#modal-pripad .pripad-panel--wireframe .case-wf-pruzkum-box-sub {
+  font-size: 11px;
+  line-height: 1.35;
+  color: #5b4a36;
+}
+
 #modal-pripad .pripad-panel--wireframe .case-wf-pruzkum-shadow-act {
   display: flex;
   flex-direction: column;
@@ -1242,6 +1371,17 @@
   line-height: 1.45;
   color: #5c4030;
   max-width: 36em;
+  margin-top: 6px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-dirty-intro {
+  margin-bottom: 8px;
+  color: #6b3e2e;
+  font-weight: 500;
+  border-left: 2px solid rgba(166, 124, 82, 0.45);
+  padding-left: 8px;
+  background: rgba(166, 124, 82, 0.08);
+  border-radius: 3px;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-dirty-severity {
@@ -1278,11 +1418,40 @@
   flex: 1;
 }
 
+#modal-pripad .pripad-panel--wireframe .case-wf-process-path {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 10px;
+  line-height: 1.35;
+  color: #5b4a36;
+  margin: 2px 0 6px;
+}
+
 #modal-pripad .pripad-panel--wireframe .case-wf-action-note {
   font-size: 11px;
   line-height: 1.4;
   color: #5b4a36;
   font-style: italic;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-pruzkum-actions-inline--resolved {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-pruzkum-actions-inline--resolved .case-wf-action-btn {
+  width: 100%;
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-action-note--side {
+  white-space: pre-line;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-action-btn {
@@ -1359,8 +1528,36 @@
 #modal-pripad .pripad-panel--wireframe .case-wf-finding .case-wf-finding-speaker {
   font-family: var(--pismo-typewriter, monospace);
   font-size: 11px;
+  line-height: 1.35;
+  color: #4a3d2e;
+  padding: 6px 8px;
+  margin-bottom: 10px;
+  border: 1px dashed rgba(90, 143, 106, 0.45);
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 4px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-finding .case-wf-finding-record-source {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 11px;
+  line-height: 1.35;
+  color: #4a3d2e;
+  padding: 6px 8px;
+  margin-bottom: 10px;
+  border: 1px dashed rgba(90, 143, 106, 0.45);
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 4px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-finding .case-wf-finding-path,
+#modal-pripad .pripad-panel--wireframe .case-wf-finding .case-wf-finding-weight {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 10px;
   letter-spacing: 0.04em;
   color: #4a3d2e;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-finding .case-wf-finding-weight {
   margin-bottom: 8px;
 }
 
@@ -1375,21 +1572,177 @@
 }
 
 #modal-pripad .pripad-panel--wireframe #case-wf-sec-verdict:not(.skryto) {
+  position: relative;
   display: block;
   margin-top: 10px;
   padding-top: 18px;
-  padding-bottom: 18px;
-  border-top: 2px solid rgba(61, 43, 31, 0.42);
+  padding-bottom: 6px;
+  border-top: 0;
   border-radius: 0 0 10px 10px;
   background: linear-gradient(
     180deg,
-    rgba(42, 34, 28, 0.14) 0%,
-    rgba(52, 44, 36, 0.22) 55%,
-    rgba(48, 40, 34, 0.2) 100%
+    rgba(255, 251, 242, 0.34) 0%,
+    rgba(248, 240, 226, 0.24) 55%,
+    rgba(245, 236, 221, 0.2) 100%
   );
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
     0 1px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* Když se otevře rozsudek, necháme jen jednu výraznou oddělovací hranu (bez druhé tenké linky z předchozí sekce). */
+#modal-pripad:has(#case-wf-sec-verdict:not(.skryto)) .pripad-panel--wireframe #case-wf-sec-pruzkum {
+  border-bottom: none;
+}
+
+/* Jemný úřední oddělovač mezi případem a rozsudkem. */
+#modal-pripad .pripad-panel--wireframe #case-wf-sec-verdict:not(.skryto)::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  border-top: 2px dashed rgba(92, 74, 50, 0.55);
+  pointer-events: none;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-sec-verdict:not(.skryto)::after {
+  --wf-sep-thickness: 2px;
+  --wf-sep-gap: 4px;
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: calc(-1 * (var(--wf-sep-gap) + var(--wf-sep-thickness)));
+  width: 66%;
+  max-width: 420px;
+  height: calc((var(--wf-sep-gap) + var(--wf-sep-thickness)) * 2 + var(--wf-sep-thickness));
+  transform: translateX(-50%);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(92, 74, 50, 0.42) 0 8px,
+      rgba(92, 74, 50, 0) 8px 14px
+    ) top / 100% var(--wf-sep-thickness) no-repeat,
+    repeating-linear-gradient(
+      90deg,
+      rgba(92, 74, 50, 0.42) 0 8px,
+      rgba(92, 74, 50, 0) 8px 14px
+    ) bottom / 100% var(--wf-sep-thickness) no-repeat;
+  pointer-events: none;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-sec-verdict:not(.skryto) > #rozsudky-shrnuti {
+  margin-bottom: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(92, 74, 50, 0.35);
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-step1-wrap {
+  margin-top: 2px;
+  padding-top: 10px;
+  border-top: 0;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap {
+  display: block;
+  border-top: 1px solid rgba(92, 74, 50, 0.42);
+  margin-top: 6px;
+  padding-top: 10px;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:not(.skryto) {
+  display: block;
+  position: relative;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:not(.skryto) > #case-wf-step2-label {
+  display: block;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:not(.skryto) > #case-wf-verdict-step2 {
+  display: grid;
+  margin-bottom: 0;
+  position: relative;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:not(.skryto) > .case-wf-summary-row {
+  margin-top: 17px;
+  padding-top: 10px;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 12px;
+  row-gap: 10px;
+  align-items: start;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  background: rgba(255, 250, 241, 0.42);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:not(.skryto) > .case-wf-summary-row::before {
+  content: none;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:not(.skryto) > #case-wf-verdict-step2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 7px);
+  border-top: 1px solid rgba(92, 74, 50, 0.42);
+  pointer-events: none;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:not(.skryto) > .case-wf-summary-row > .case-wf-step2-detail--host {
+  margin: 0;
+  padding-top: 0;
+  border-top: 0;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:not(.skryto) > .case-wf-summary-row > #case-wf-confirm-rozsudek {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  justify-self: stretch;
+  align-self: stretch;
+  margin: 0;
+  display: inline-flex !important;
+  width: 100%;
+  height: auto;
+  min-height: 56px;
+  align-items: center;
+  justify-content: center;
+  position: static !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Failsafe: v aktivním VERDIKT bloku musí být tlačítko vždy viditelné. */
+#modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:not(.skryto) #case-wf-confirm-rozsudek {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-step2-wrap:not(.skryto) > .case-wf-summary-row > .case-wf-step2-effects-panel {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-step2-effects-title {
+  margin-bottom: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Verdikt je poslední sekce, takže přepisujeme obecný bottom spacing. */
+#modal-pripad .pripad-panel--wireframe .case-wf-section#case-wf-sec-verdict {
+  padding-bottom: 6px;
 }
 
 /* Předehra / aftermath: interaktivní verdikt musí zmizet (jinak po zavření overlay zůstane klikatelný). */
@@ -1478,26 +1831,62 @@
 
 #modal-pripad .pripad-panel--wireframe .case-wf-verdict-step {
   margin-bottom: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  align-items: stretch;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-verdict-step1 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-verdict-step2 {
+  --wf-verdict-gap: 24px;
+  grid-template-columns: 1fr;
+  gap: var(--wf-verdict-gap);
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-verdict-step2 > .case-wf-verdict-opt {
+  position: relative;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-verdict-step2 > .case-wf-verdict-opt + .case-wf-verdict-opt::before {
+  content: "• • •";
+  position: absolute;
+  left: 50%;
+  top: calc(-1 * var(--wf-verdict-gap) / 2);
+  transform: translate(-50%, -50%);
+  color: rgba(92, 74, 50, 0.65);
+  font-size: 30px;
+  line-height: 1;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-step-label {
   font-family: var(--pismo-typewriter, monospace);
-  font-size: 12px;
+  font-size: 14px;
   color: #8b7355;
   margin-bottom: 8px;
+  text-transform: uppercase;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt {
   background: #ede6d6;
   border: 1px solid #d4c4a8;
   padding: 12px 16px;
-  margin-bottom: 8px;
+  margin-bottom: 0;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.15s;
   text-align: left;
   width: 100%;
   box-sizing: border-box;
+}
+
+@media (max-width: 980px) {
+  #modal-pripad .pripad-panel--wireframe .case-wf-verdict-step {
+    grid-template-columns: 1fr;
+  }
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt:hover:not(:disabled) {
@@ -1554,10 +1943,61 @@
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-v-title {
-  font-size: 15px;
+  font-family: var(--pismo-serif, "Playfair Display", serif);
+  font-size: 16px;
   font-weight: 700;
+  letter-spacing: 0.01em;
   color: #3d2b1f;
   margin-bottom: 2px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--grp-guilty {
+  border-color: rgba(92, 74, 50, 0.45);
+  background: rgba(237, 230, 214, 0.75);
+  box-shadow: inset 0 3px 0 rgba(92, 74, 50, 0.22);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--grp-guilty:hover:not(:disabled) {
+  border-color: rgba(92, 74, 50, 0.7);
+  background: rgba(232, 220, 200, 0.85);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--grp-guilty.case-wf-verdict-opt--selected {
+  border-color: rgba(92, 74, 50, 0.82);
+  background: rgba(220, 206, 184, 0.95);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--grp-not_guilty {
+  border-color: rgba(92, 74, 50, 0.45);
+  background: rgba(237, 230, 214, 0.75);
+  box-shadow: inset 0 3px 0 rgba(92, 74, 50, 0.15), inset 0 6px 0 rgba(92, 74, 50, 0.1);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--grp-not_guilty:hover:not(:disabled) {
+  border-color: rgba(92, 74, 50, 0.7);
+  background: rgba(232, 220, 200, 0.85);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--grp-not_guilty.case-wf-verdict-opt--selected {
+  border-color: rgba(92, 74, 50, 0.82);
+  background: rgba(220, 206, 184, 0.95);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--grp-insufficient {
+  border-color: rgba(92, 74, 50, 0.45);
+  background: rgba(237, 230, 214, 0.75);
+  box-shadow: inset 0 3px 0 rgba(92, 74, 50, 0.22);
+  border-style: dashed;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--grp-insufficient:hover:not(:disabled) {
+  border-color: rgba(92, 74, 50, 0.7);
+  background: rgba(232, 220, 200, 0.85);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-opt--grp-insufficient.case-wf-verdict-opt--selected {
+  border-color: rgba(92, 74, 50, 0.82);
+  background: rgba(220, 206, 184, 0.95);
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-v-unlock {
@@ -1584,13 +2024,16 @@
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-step2-context {
-  margin: 0 0 10px;
-  padding: 8px 10px;
-  border-left: 3px solid rgba(106, 138, 170, 0.8);
-  background: rgba(186, 206, 224, 0.3);
-  color: #3f2e20;
-  font-size: 12px;
-  line-height: 1.45;
+  margin: 0 0 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #5f4b36;
+  font-size: 11px;
+  line-height: 1.35;
+  white-space: normal;
+  overflow: visible;
+  grid-column: 1 / -1;
 }
 
 #modal-pripad.case-wf-unlock-pulse .pripad-panel--wireframe #case-wf-sec-verdict,
@@ -1627,6 +2070,43 @@
   font-family: var(--pismo-typewriter, monospace);
 }
 
+#modal-pripad .pripad-panel--wireframe .case-wf-step2-detail {
+  grid-column: 1 / -1;
+  margin-top: 6px;
+  padding: 8px 10px;
+  border-top: 1px dotted rgba(139, 115, 85, 0.45);
+  color: #5f4b36;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-step2-detail-line + .case-wf-step2-detail-line {
+  margin-top: 4px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-step2-detail-text {
+  margin-top: 5px;
+  text-transform: none;
+  font-size: 14px;
+  line-height: 1.45;
+  font-style: italic;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-step2-detail-effects {
+  margin-top: 4px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-step2-effects-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-step2-effects-list li {
+  margin: 2px 0;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
 #modal-pripad .pripad-panel--wireframe .case-wf-v-podklad {
   margin-top: 6px;
   padding-top: 5px;
@@ -1648,14 +2128,21 @@
   background: #3d2b1f;
   color: #c4a35a;
   border: none;
-  padding: 12px 0;
-  width: 100%;
+  width: 132px;
+  height: 132px;
+  padding: 10px;
   font-family: var(--pismo-typewriter, monospace);
-  font-size: 14px;
+  font-size: 17px;
+  line-height: 1.2;
   letter-spacing: 1px;
   cursor: pointer;
   border-radius: 6px;
-  margin-top: 8px;
+  margin-top: 0;
+  text-align: center;
+  white-space: normal;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #modal-pripad .pripad-panel--wireframe #case-wf-confirm-rozsudek:hover:not(:disabled) {
@@ -1663,9 +2150,13 @@
 }
 
 #modal-pripad .pripad-panel--wireframe #case-wf-confirm-rozsudek:disabled {
-  opacity: 0.35;
+  background: #6a5b4f;
+  color: #d8c7a0;
+  border: 1px solid rgba(42, 30, 22, 0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  filter: saturate(0.6);
+  opacity: 0.72;
   cursor: not-allowed;
-  pointer-events: none !important;
 }
 
 #modal-pripad #case-wf-confirm-rozsudek[data-wf-verdict-committed="1"] {
@@ -1752,7 +2243,7 @@
 }
 
 /* Krok 2: systémový kurzor schovat jen nad „Potvrdit rozsudek“ (nad volbami zůstane výchozí kurzor). */
-#modal-pripad #case-wf-confirm-rozsudek:not(.skryto) {
+#modal-pripad #case-wf-confirm-rozsudek:not(.skryto):not(:disabled):not([data-wf-verdict-committed="1"]) {
   cursor: none !important;
 }
 

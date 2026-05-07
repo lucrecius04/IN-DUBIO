@@ -72,6 +72,10 @@ const Cases = (() => {
 
   const POVOLENE_TYPY = ['rutinni', 'moralni', 'politicky', 'osobni'];
   const _POVOLENE_SET = new Set(POVOLENE_TYPY);
+  const _PATH_SKORE_OFFICIAL = 2;
+  const _PATH_SKORE_UNOFFICIAL = -2;
+  const _PATH_SKORE_CONFRONTATION = 3;
+  const _PATH_SKORE_CAP = 6;
 
   /** Záloha jen pro chybějící nebo legacy `type` v datech. */
   function _typZKategorie(c) {
@@ -808,6 +812,9 @@ const Cases = (() => {
       normativniSmer: meta && meta.normativniSmer ? meta.normativniSmer.key : null,
       evidenceScore:  meta && meta.procesniKvalita ? meta.procesniKvalita.evidenceScore : null,
       coherenceScore: meta && meta.procesniKvalita ? meta.procesniKvalita.coherenceScore : null,
+      pathEvidenceDelta: meta && meta.procesniKvalita && meta.procesniKvalita.path
+        ? Number(meta.procesniKvalita.path.clamped) || 0
+        : 0,
       hiddenVerdictBoost: !!(meta && meta.hiddenVerdictBoost),
       unofficialSummary: _souhrnNeoficialnichZdroju(pripad)
     });
@@ -934,6 +941,11 @@ const Cases = (() => {
       dusledkyRadky:  dusledkyRadky,
       procesniKvalita: meta && meta.procesniKvalita ? meta.procesniKvalita.key : null,
       normativniSmer: meta && meta.normativniSmer ? meta.normativniSmer.key : null,
+      evidenceScore:  meta && meta.procesniKvalita ? meta.procesniKvalita.evidenceScore : null,
+      coherenceScore: meta && meta.procesniKvalita ? meta.procesniKvalita.coherenceScore : null,
+      pathEvidenceDelta: meta && meta.procesniKvalita && meta.procesniKvalita.path
+        ? Number(meta.procesniKvalita.path.clamped) || 0
+        : 0,
       unofficialSummary: _souhrnNeoficialnichZdroju(pripad)
     });
     _bonusInkoustZaNarocnySpis(pripad);
@@ -1544,6 +1556,41 @@ const Cases = (() => {
     return false;
   }
 
+  function vypoctiProcesniPodkladZCest(pripad) {
+    if (!pripad || !Array.isArray(pripad.hidden_info) || typeof State === 'undefined') {
+      return { raw: 0, clamped: 0, official: 0, unofficial: 0, confrontation: 0, revealed: 0 };
+    }
+    const cid = String(pripad.id || '').trim();
+    if (!cid) return { raw: 0, clamped: 0, official: 0, unofficial: 0, confrontation: 0, revealed: 0 };
+
+    let raw = 0;
+    let official = 0;
+    let unofficial = 0;
+    let confrontation = 0;
+    let revealed = 0;
+
+    for (const info of pripad.hidden_info) {
+      if (!info || !State.jeInfoOdhaleno(cid, info.id)) continue;
+      revealed++;
+      if (String(info.action || '') === 'confrontation') {
+        raw += _PATH_SKORE_CONFRONTATION;
+        confrontation++;
+        continue;
+      }
+      const way = State.zpusobOdhaleniInfo ? State.zpusobOdhaleniInfo(cid, info.id) : 'official';
+      if (way === 'unofficial') {
+        raw += _PATH_SKORE_UNOFFICIAL;
+        unofficial++;
+      } else {
+        raw += _PATH_SKORE_OFFICIAL;
+        official++;
+      }
+    }
+
+    const clamped = _clamp(raw, -_PATH_SKORE_CAP, _PATH_SKORE_CAP);
+    return { raw, clamped, official, unofficial, confrontation, revealed };
+  }
+
   function _vypoctiEvidenceScore(pripad, rozsudek) {
     const pr = posoudPruzkumProVerdikt(pripad, rozsudek);
     const info = vypoctiInformovanostPripadu(pripad);
@@ -1555,6 +1602,8 @@ const Cases = (() => {
     score += Math.min(12, revealed * 3);
     if (pr.pouzitPruzkum && pr.soulad) score += 6;
     if (pr.pouzitPruzkum && !pr.soulad) score -= 8;
+    const path = vypoctiProcesniPodkladZCest(pripad);
+    score += Number(path.clamped) || 0;
     return _clamp(Math.round(score), 0, 100);
   }
 
@@ -1570,13 +1619,14 @@ const Cases = (() => {
   function _vyhodnotProcesniKvalitu(pripad, rozsudek) {
     const evidenceScore = _vypoctiEvidenceScore(pripad, rozsudek);
     const coherenceScore = _vypoctiCoherenceScore(pripad);
+    const path = vypoctiProcesniPodkladZCest(pripad);
     if (evidenceScore < 45 || coherenceScore < 35) {
-      return { key: 'nizka', label: 'procesně slabé', evidenceScore, coherenceScore };
+      return { key: 'nizka', label: 'procesně slabé', evidenceScore, coherenceScore, path };
     }
     if (evidenceScore >= 75 && coherenceScore >= 65) {
-      return { key: 'vysoka', label: 'procesně pečlivé', evidenceScore, coherenceScore };
+      return { key: 'vysoka', label: 'procesně pečlivé', evidenceScore, coherenceScore, path };
     }
-    return { key: 'stredni', label: 'procesně přijatelné', evidenceScore, coherenceScore };
+    return { key: 'stredni', label: 'procesně přijatelné', evidenceScore, coherenceScore, path };
   }
 
   function _urciNormativniSmerVerdiktu(rozsudek) {
@@ -1874,6 +1924,7 @@ const Cases = (() => {
     poolVerdiktProjdePoctemPrůzkumu,
     bonusInformovanostiZaClue,
     vypoctiInformovanostPripadu,
+    vypoctiProcesniPodkladZCest,
     maInformacniPrahyVerdiktu,
     zpracujVolbuRevize,
     jeTruePairNalezen,
