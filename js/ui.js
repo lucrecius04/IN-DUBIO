@@ -4783,27 +4783,27 @@ const UI = (() => {
 
     const inner = document.createElement('div');
     inner.className = 'rozsudek-karta-inner';
-    const raz = document.createElement('span');
-    raz.className = 'rozsudek-razitko-vyreseno pripad-typ--' + typ;
-    raz.setAttribute('aria-hidden', 'true');
-    raz.textContent = 'VYŘEŠENO';
-    inner.appendChild(raz);
 
     const textWrap = document.createElement('div');
-    textWrap.className = 'rozsudek-karta-text';
+    textWrap.className = 'rozsudek-karta-text rozsudek-readonly-layout';
+
+    const verdictPanel = document.createElement('div');
+    verdictPanel.className = 'rozsudek-readonly-panel rozsudek-readonly-panel--verdikt';
     const radek = document.createElement('div');
     radek.className = 'rozsudek-radek-hlavni';
     const nazev = document.createElement('span');
     nazev.className = 'rozsudek-nazev';
     _wfNastavRichText(nazev, rozsudek.text || '—');
     radek.appendChild(nazev);
-    textWrap.appendChild(radek);
+    verdictPanel.appendChild(radek);
     if (rozsudek.consequence) {
       const cons = document.createElement('div');
       cons.className = 'rozsudek-consequence';
       _wfNastavRichText(cons, rozsudek.consequence);
-      textWrap.appendChild(cons);
+      verdictPanel.appendChild(cons);
     }
+    textWrap.appendChild(verdictPanel);
+
     const radkyEf =
       (zaznam && zaznam.dusledkyRadky && zaznam.dusledkyRadky.length)
         ? zaznam.dusledkyRadky
@@ -4811,7 +4811,21 @@ const UI = (() => {
           (zaznam && zaznam.consequences) || rozsudek.consequences || {}
         );
     const komp = _dusledkyVytvorKompaktEfekty(radkyEf, { jenZmena: true });
-    if (komp.childElementCount) textWrap.appendChild(komp);
+    const effectsPanel = document.createElement('div');
+    effectsPanel.className = 'rozsudek-readonly-panel rozsudek-readonly-panel--efekty';
+    const effectsTitle = document.createElement('div');
+    effectsTitle.className = 'rozsudek-readonly-panel-title';
+    effectsTitle.textContent = 'Efekty:';
+    effectsPanel.appendChild(effectsTitle);
+    if (komp.childElementCount) {
+      effectsPanel.appendChild(komp);
+    } else {
+      const prazdneEfekty = document.createElement('div');
+      prazdneEfekty.className = 'rozsudek-readonly-empty-effects';
+      prazdneEfekty.textContent = 'Bez zaznamenané změny.';
+      effectsPanel.appendChild(prazdneEfekty);
+    }
+    textWrap.appendChild(effectsPanel);
 
     inner.appendChild(textWrap);
     karta.appendChild(inner);
