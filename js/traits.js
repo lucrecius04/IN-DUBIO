@@ -122,6 +122,24 @@ const Traits = (() => {
     return MAPA[id.toLowerCase()] || null;
   }
 
+  /** Vnitřní klíč rysu → název pro UI (čeština s diakritikou). */
+  const _NAZEV_RYSU_PRO_UI = {
+    Integrita: 'Integrita',
+    Odvaha: 'Odvaha',
+    Moudrost: 'Moudrost',
+    Vina: 'Vina',
+    Nadeje: 'Naděje'
+  };
+
+  function getNazevRysuProUi(vnitrniKlic) {
+    const k = String(vnitrniKlic || '');
+    return _NAZEV_RYSU_PRO_UI[k] || k;
+  }
+
+  function getNazevRysuProUiVelky(vnitrniKlic) {
+    return getNazevRysuProUi(vnitrniKlic).toLocaleUpperCase('cs-CZ');
+  }
+
   function getPopis(nazev) {
     const hodnota = State.get('traits.' + nazev) ?? 50;
     const textyRysu = _texty[nazev];
@@ -186,7 +204,7 @@ const Traits = (() => {
     const data = DataLoader.ziskej('traits');
     const t = data && data[k];
     const vis = t && typeof t.visual === 'string' ? t.visual.trim() : '';
-    if (!vis) return String(traitNazev || '').toUpperCase();
+    if (!vis) return getNazevRysuProUiVelky(traitNazev);
     return vis.toLocaleUpperCase('cs-CZ');
   }
 
@@ -249,6 +267,8 @@ const Traits = (() => {
     getCoToZnamena,
     getTraitText,
     getTraitVisualLabel,
+    getNazevRysuProUi,
+    getNazevRysuProUiVelky,
     getDeskPredmetAtmosfera,
     aplikovatNasobekMoudrostiZaAkci,
     zkontrolujKrajniHodnoty

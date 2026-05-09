@@ -11,8 +11,9 @@ const UI = (() => {
     const el = document.getElementById(id);
     if (!el) return;
     el.classList.add('aktivni');
-    // Animace panelu (archiv = .archiv-panel bez .panel-papir)
+    // Animace panelu (některé nové modaly už nejsou papírové panely).
     const panel =
+      el.querySelector('.narativ-shell') ||
       el.querySelector('.panel-papir') ||
       (el.id === 'modal-archiv' ? el.querySelector('.archiv-panel') : null);
     if (panel) {
@@ -87,6 +88,280 @@ const UI = (() => {
     /** Po odemknutí za inkoust: zobrazit znovu „Zahájit“ i když už jedno pátrání proběhlo. */
     zahajitPovolenoPoInkoustu: false
   };
+
+  const _NARATIV_OBRAZKY = {
+    fallback:  'src/skici/skica_slozky.png',
+    morning:   'src/skici/skica_slozky.png',
+    fragment:  'src/skici/skica_slozky.png',
+    clipping:  'src/skici/skica_mesto.png',
+    letter:    'src/skici/skica_dopis.png',
+    dream:     'src/skici/skica_sen.jpg',
+    evening:   'src/skici/skica_domov.png',
+    sunday:    'src/skici/skica_domov.png',
+    aftermath: 'src/skici/skica_stul.png',
+    verdict:   'src/skici/skica_slozky.png',
+    pressure:  'src/skici/skica_dvere.png',
+    corridor:  'src/skici/skica_prazdna_chodba.png',
+    finance:   'src/skici/skica_rozlity_inkoust.png',
+    crisis:    'src/skici/skica_rozlity_inkoust.png',
+    city:      'src/skici/skica_mesto.png',
+    escape:    'src/skici/skica_vlak.png',
+    court:     'src/skici/skica_soudni_lavice.png'
+  };
+
+  function _narativKlicProFragment(fragment) {
+    const explicit = String(
+      (fragment && (fragment.narrative_image || fragment.image || fragment.illustration)) || ''
+    ).trim();
+    if (explicit) return explicit;
+    const typ = String(fragment && fragment.type || '').trim().toLowerCase();
+    const hay = [
+      fragment && fragment.id,
+      fragment && fragment.title,
+      fragment && fragment.text
+    ].map(s => String(s || '').toLowerCase()).join(' ');
+    if (typ === 'dream') return 'dream';
+    if (typ === 'letter') return 'letter';
+    if (hay.includes('vlak') || hay.includes('útěk') || hay.includes('odjížd')) return 'escape';
+    if (hay.includes('měst') || hay.includes('ulic') || hay.includes('tramvaj') || hay.includes('trh')) return 'city';
+    if (hay.includes('finance') || hay.includes('korun') || hay.includes('dluh') || hay.includes('operac')) return 'finance';
+    if (hay.includes('karas') || hay.includes('vlček') || hay.includes('hrozb') || hay.includes('dveř')) return 'pressure';
+    if (hay.includes('večer') || hay.includes('neděl')) return 'evening';
+    if (typ === 'clipping') return 'morning';
+    return 'fragment';
+  }
+
+  function _narativKickerProFragment(fragment, fallback) {
+    const typ = String(fragment && fragment.type || '').trim().toLowerCase();
+    const title = String(fragment && fragment.title || '').toLowerCase();
+    if (typ === 'dream') return 'NOC';
+    if (typ === 'letter') return 'DOPIS';
+    if (title.includes('večer')) return 'VEČER';
+    if (title.includes('neděle')) return 'NEDĚLE';
+    if (title.includes('ráno') || title.includes('ranní')) return 'RÁNO';
+    return fallback || 'ZÁZNAM';
+  }
+
+  function _narativRozdelTitulekFragmentu(fragment, fallback) {
+    const rawTitle = String(fragment && fragment.title || fallback || '').trim();
+    const parts = rawTitle.split(/\s+[—-]\s+/);
+    if (parts.length < 2) return { nadpis: rawTitle, detail: '' };
+
+    return {
+      nadpis: parts[0].trim() || rawTitle,
+      detail: parts.slice(1).join(' — ').trim()
+    };
+  }
+
+  function _narativFormatDatumFragmentu(fragment, fallbackText) {
+    const mesice = {
+      'ledna': 0,
+      'února': 1,
+      'brezna': 2,
+      'března': 2,
+      'dubna': 3,
+      'května': 4,
+      'kvetna': 4,
+      'června': 5,
+      'cervna': 5,
+      'července': 6,
+      'cervence': 6,
+      'srpna': 7,
+      'září': 8,
+      'zari': 8,
+      'října': 9,
+      'rijna': 9,
+      'listopadu': 10,
+      'prosince': 11
+    };
+    const dny = ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'];
+    const format = (date, den, mesicText, rok) =>
+      `${dny[date.getDay()]}, ${den}. ${mesicText} ${rok}`;
+
+    const text = String(fallbackText || fragment?.title || '').trim();
+    const m = text.match(/(\d{1,2})\.\s*([A-Za-zÁ-žěščřžýáíéúůóďťňĚŠČŘŽÝÁÍÉÚŮÓĎŤŇ]+)\s+(\d{4})/);
+    if (m) {
+      const den = Number(m[1]);
+      const mesicText = m[2].toLowerCase();
+      const rok = Number(m[3]);
+      const mesic = mesice[mesicText];
+      if (Number.isFinite(den) && Number.isFinite(rok) && mesic != null) {
+        return format(new Date(rok, mesic, den), den, mesicText, rok);
+      }
+    }
+
+    const id = String(fragment?.id || fragment?.fragmentId || '');
+    const dm = id.match(/(?:^|_)d(\d+)(?:_|$)/i);
+    if (dm) {
+      const kampanDen = Number(dm[1]);
+      if (Number.isFinite(kampanDen) && kampanDen > 0) {
+        const date = new Date(1931, 2, 2);
+        date.setDate(date.getDate() + kampanDen - 1);
+        return format(date, date.getDate(), 'března', date.getFullYear());
+      }
+    }
+    return '';
+  }
+
+  function _narativDetailKickeruFragmentu(fragment, titulek) {
+    const typ = String(fragment && fragment.type || '').trim().toLowerCase();
+    if (typ === 'dream') return '';
+    if (typ === 'clipping' || _narativKickerProFragment(fragment, '') === 'RÁNO') {
+      return _narativFormatDatumFragmentu(fragment, titulek.detail) || titulek.detail || '';
+    }
+    return titulek.detail || '';
+  }
+
+  function _narativRozdelDopisNaStranky(text) {
+    const blocks = String(text || '').trim().split(/\n{2,}/).map(s => s.trim()).filter(Boolean);
+    const maxChars = 650;
+    const pages = [];
+    let current = [];
+    let currentLen = 0;
+
+    const flush = () => {
+      if (!current.length) return;
+      pages.push(current.join('\n\n'));
+      current = [];
+      currentLen = 0;
+    };
+
+    const splitLongBlock = (block) => {
+      const words = String(block || '').split(/\s+/).filter(Boolean);
+      const chunks = [];
+      let chunk = '';
+      for (const word of words) {
+        const next = chunk ? `${chunk} ${word}` : word;
+        if (next.length > maxChars && chunk) {
+          chunks.push(chunk);
+          chunk = word;
+        } else {
+          chunk = next;
+        }
+      }
+      if (chunk) chunks.push(chunk);
+      return chunks;
+    };
+
+    for (const block of blocks.length ? blocks : [String(text || '').trim()]) {
+      const chunks = block.length > maxChars ? splitLongBlock(block) : [block];
+      for (const chunk of chunks) {
+        const extra = chunk.length + (current.length ? 2 : 0);
+        if (current.length && currentLen + extra > maxChars) flush();
+        current.push(chunk);
+        currentLen += extra;
+      }
+    }
+    flush();
+    return pages.length ? pages : [''];
+  }
+
+  function _narativVytvorDopisStranky(rawText) {
+    const wrap = document.createElement('div');
+    wrap.className = 'narativ-dopis-text';
+
+    const obsah = document.createElement('div');
+    obsah.className = 'narativ-dopis-page-text';
+    wrap.appendChild(obsah);
+
+    const pages = _narativRozdelDopisNaStranky(rawText);
+    let index = 0;
+
+    const controls = document.createElement('div');
+    controls.className = 'narativ-dopis-page-controls';
+    const prev = document.createElement('button');
+    prev.type = 'button';
+    prev.className = 'narativ-dopis-page-btn';
+    prev.textContent = 'Zpět';
+    const status = document.createElement('span');
+    status.className = 'narativ-dopis-page-status';
+    const next = document.createElement('button');
+    next.type = 'button';
+    next.className = 'narativ-dopis-page-btn';
+    next.textContent = 'Otočit stránku';
+    controls.appendChild(prev);
+    controls.appendChild(status);
+    controls.appendChild(next);
+    if (pages.length > 1) wrap.appendChild(controls);
+
+    const render = () => {
+      obsah.innerHTML = _escapeHtmlProfil(pages[index]).replace(/\n/g, '<br>');
+      status.textContent = `${index + 1}/${pages.length}`;
+      prev.disabled = index <= 0;
+      next.disabled = index >= pages.length - 1;
+      prev.classList.toggle('skryto', index <= 0);
+      next.classList.toggle('skryto', index >= pages.length - 1);
+    };
+
+    prev.addEventListener('click', () => {
+      if (index <= 0) return;
+      index -= 1;
+      render();
+    });
+    next.addEventListener('click', () => {
+      if (index >= pages.length - 1) return;
+      index += 1;
+      render();
+    });
+    render();
+    return wrap;
+  }
+
+  function _narativArchivujInlineDopis(fragment) {
+    const typ = String(fragment && fragment.type || '').trim().toLowerCase();
+    const text = String(fragment && fragment.text || '').trim();
+    if (typ !== 'letter' || !text) return;
+    const explicitId = String(fragment.id || fragment.fragmentId || '').trim();
+    if (explicitId && DataLoader.ziskejFragment(explicitId)) return;
+    const title = String(fragment.title || 'Dopis').trim();
+    const den = Number(State.get('currentDay')) || 0;
+    const hash = Array.from(`${title}\n${text}`).reduce(
+      (acc, ch) => ((acc * 31) + ch.charCodeAt(0)) >>> 0,
+      0
+    ).toString(36);
+    State.oznacFragment({
+      id: explicitId || `inline_letter_${den}_${hash}`,
+      type: 'letter',
+      title,
+      text,
+      day: den,
+      inline: true
+    });
+    State.uloz();
+  }
+
+  function _narativKlicProVecer(casLabel) {
+    const label = String(casLabel || '').toLowerCase();
+    if (label.includes('neděl')) return 'sunday';
+    if (label.includes('ráno')) return 'morning';
+    if (label.includes('kriz') || label.includes('23.')) return 'pressure';
+    return 'evening';
+  }
+
+  function _narativCestaObrazku(klic) {
+    const raw = String(klic || '').trim();
+    if (!raw) return _NARATIV_OBRAZKY.fallback;
+    if (/\.(png|jpe?g|webp|gif)$/i.test(raw) || raw.includes('/')) return raw;
+    if (raw.startsWith('skica_')) return `src/skici/${raw}.png`;
+    return _NARATIV_OBRAZKY[raw] || _NARATIV_OBRAZKY.fallback;
+  }
+
+  function _narativNastavObraz(imgEl, klic) {
+    if (!imgEl) return;
+    const wrap = imgEl.closest('.narativ-ilustrace');
+    if (wrap) wrap.classList.remove('narativ-ilustrace--fallback');
+    imgEl.hidden = false;
+    imgEl.onerror = () => {
+      imgEl.hidden = true;
+      imgEl.removeAttribute('src');
+      if (wrap) wrap.classList.add('narativ-ilustrace--fallback');
+    };
+    imgEl.onload = () => {
+      imgEl.hidden = false;
+      if (wrap) wrap.classList.remove('narativ-ilustrace--fallback');
+    };
+    imgEl.src = _narativCestaObrazku(klic);
+  }
 
   const PATRANI_CONFIG = {
     max_attempts: 5,
@@ -2188,6 +2463,14 @@ const UI = (() => {
     if (nar) nar.textContent = '';
   }
 
+  function _pripravPredohruConsequenceOverlay() {
+    const prelude = document.getElementById('pripad-consequence-prelude');
+    if (prelude && prelude.parentElement !== document.body) {
+      document.body.appendChild(prelude);
+    }
+    return prelude;
+  }
+
   function _zavriPripadModal() {
     const pZav = _wfClueAktivniPripad;
     const onZav = _wfClueAktivniOnRozsudek;
@@ -2365,7 +2648,7 @@ const UI = (() => {
     const ctx = _predohraConsequenceCtx;
     _predohraConsequenceCtx = null;
     _zrusPredohruConsequencePosluchace(ctx);
-    const prelude = document.getElementById('pripad-consequence-prelude');
+    const prelude = _pripravPredohruConsequenceOverlay();
     if (prelude) {
       prelude.classList.add('skryto');
       prelude.setAttribute('aria-hidden', 'true');
@@ -2408,11 +2691,25 @@ const UI = (() => {
     if (af) af.classList.remove('case-wf-aftermath--visible');
     if (nar) nar.textContent = '';
 
-    const prelude = document.getElementById('pripad-consequence-prelude');
+    const prelude = _pripravPredohruConsequenceOverlay();
     const txtEl = document.getElementById('pripad-consequence-prelude-text');
     const inner = prelude?.querySelector('.pripad-consequence-prelude-inner');
     const hintEl = prelude?.querySelector('.pripad-consequence-prelude-hint');
     if (prelude && txtEl) {
+      const scena = document.getElementById('pripad-consequence-narativ-scena');
+      if (scena) scena.className = 'narativ-scena narativ-scena--rozsudek narativ-scena--aftermath';
+      const kicker = document.getElementById('pripad-consequence-prelude-kicker');
+      if (kicker) kicker.textContent = 'PO ROZSUDKU';
+      const panelKicker = document.querySelector('#pripad-consequence-prelude .pripad-consequence-panel-kicker');
+      if (panelKicker) panelKicker.textContent = 'PO ROZSUDKU';
+      const nadpis = document.getElementById('pripad-consequence-prelude-nadpis');
+      if (nadpis) nadpis.textContent = 'Dohra';
+      const panelNadpis = document.querySelector('#pripad-consequence-prelude .pripad-consequence-panel-nadpis');
+      if (panelNadpis) panelNadpis.textContent = 'Dohra';
+      _narativNastavObraz(
+        document.getElementById('pripad-consequence-narativ-obraz'),
+        'court'
+      );
       _wfNastavRichText(txtEl, _textAftermath(pripad, rozsudek));
       if (hintEl) {
         hintEl.textContent =
@@ -2429,7 +2726,7 @@ const UI = (() => {
   }
 
   function _zobrazPredohruConsequenceAKlik(pripad, rozsudek, onRozsudek) {
-    const prelude = document.getElementById('pripad-consequence-prelude');
+    const prelude = _pripravPredohruConsequenceOverlay();
     const txtEl = document.getElementById('pripad-consequence-prelude-text');
     if (!prelude || !txtEl) {
       _zavriPripadModal();
@@ -2445,6 +2742,20 @@ const UI = (() => {
     const raw = (rozsudek.consequence && String(rozsudek.consequence).trim())
       || (rozsudek.text && String(rozsudek.text).trim())
       || '—';
+    const scena = document.getElementById('pripad-consequence-narativ-scena');
+    if (scena) scena.className = 'narativ-scena narativ-scena--rozsudek narativ-scena--verdict';
+    const kicker = document.getElementById('pripad-consequence-prelude-kicker');
+    if (kicker) kicker.textContent = 'ROZSUDEK';
+    const panelKicker = document.querySelector('#pripad-consequence-prelude .pripad-consequence-panel-kicker');
+    if (panelKicker) panelKicker.textContent = 'ROZSUDEK';
+    const nadpis = document.getElementById('pripad-consequence-prelude-nadpis');
+    if (nadpis) nadpis.textContent = 'Vynesení rozsudku';
+    const panelNadpis = document.querySelector('#pripad-consequence-prelude .pripad-consequence-panel-nadpis');
+    if (panelNadpis) panelNadpis.textContent = 'Vynesení rozsudku';
+    _narativNastavObraz(
+      document.getElementById('pripad-consequence-narativ-obraz'),
+      'verdict'
+    );
     _wfNastavRichText(txtEl, `${protoVeta} ${raw}`);
     prelude.querySelector('.pripad-consequence-prelude-inner')
       ?.classList.remove('pripad-consequence-prelude-inner--aftermath');
@@ -2524,6 +2835,8 @@ const UI = (() => {
   let _povestZapisnikAnchorId = null;
   /** Filtr záložky Rozsudky: všechny typy nebo jeden z rutinní | morální | politický | osobní. */
   let _archivRozsudkyFiltrTyp = 'vse';
+  /** Filtr záložky Záznamy: nové narativní typy. */
+  let _archivFragmentyFiltrTyp = 'vse';
 
   const _STATS_MODES = ['intuitive', 'hybrid', 'spreadsheet'];
 
@@ -2674,9 +2987,64 @@ const UI = (() => {
     return '·';
   }
 
+  function _dusledkyIkonaAssetu(r) {
+    if (r.typ === 'finance') return 'src/effect-finance.png';
+    if (r.typ === 'trait') {
+      const M = {
+        Integrita: 'src/effect-integrita.png',
+        Odvaha: 'src/effect-odvaha.png',
+        Moudrost: 'src/effect-moudrost.png',
+        Vina: 'src/effect-vina.png',
+        Nadeje: 'src/effect-nadeje.png'
+      };
+      return M[r.klic] || '';
+    }
+    if (r.typ === 'faction') {
+      const M = {
+        Moc: 'src/effect-moc.png',
+        Kapital: 'src/effect-korporat.png',
+        Lid: 'src/effect-lid.png'
+      };
+      return M[r.klic] || '';
+    }
+    return '';
+  }
+
+  function _dusledkyIkonaAssetKlic(r) {
+    if (r.typ === 'finance') return 'finance';
+    if (r.typ === 'trait') {
+      const M = {
+        Integrita: 'integrita',
+        Odvaha: 'odvaha',
+        Moudrost: 'moudrost',
+        Vina: 'vina',
+        Nadeje: 'nadeje'
+      };
+      return M[r.klic] || '';
+    }
+    if (r.typ === 'faction') {
+      const M = {
+        Moc: 'moc',
+        Kapital: 'korporat',
+        Lid: 'lid'
+      };
+      return M[r.klic] || '';
+    }
+    return '';
+  }
+
   function _dusledkyKratkyNazev(r) {
     if (r.typ === 'trust') return 'Důvěra: ' + (_NPC_TRUST_LABEL[r.klic] || r.klic);
-    return r.label;
+    const puvodni = String(r.label || '');
+    if (r.typ === 'finance') {
+      if (!puvodni || puvodni === 'Finance (zůstatek)') return 'Finance';
+      return puvodni;
+    }
+    if (r.typ === 'trait') {
+      if (r.klic === 'Nadeje') return 'Naděje';
+      if (puvodni) return puvodni.replace(/Nadeje/g, 'Naděje');
+    }
+    return puvodni;
   }
 
   function _dusledkySimulujTrait(nazev, aktualni, delta) {
@@ -2744,7 +3112,7 @@ const UI = (() => {
       financeRadky.push({
         typ: 'finance',
         klic: 'balance',
-        label: vlastniLab || 'Finance (zůstatek)',
+        label: vlastniLab || 'Finance',
         pred,
         po,
         delta: finDelta,
@@ -2760,7 +3128,10 @@ const UI = (() => {
       ostatniRadky.push({
         typ: 'trait',
         klic: nazev,
-        label: nazev,
+        label:
+          typeof Traits !== 'undefined' && typeof Traits.getNazevRysuProUi === 'function'
+            ? Traits.getNazevRysuProUi(nazev)
+            : nazev,
         pred,
         po,
         delta: d,
@@ -2909,7 +3280,26 @@ const UI = (() => {
       const ik = document.createElement('span');
       ik.className = 'rozsudek-efekt-ikona';
       ik.setAttribute('aria-hidden', 'true');
-      ik.textContent = _dusledkyIkonaRadku(r);
+      const iconAsset = _dusledkyIkonaAssetu(r);
+      if (iconAsset) {
+        ik.classList.add('rozsudek-efekt-ikona--asset');
+        const iconKey = _dusledkyIkonaAssetKlic(r);
+        if (iconKey) ik.classList.add(`rozsudek-efekt-ikona--${iconKey}`);
+        ik.style.setProperty('--effect-icon-url', `url("${iconAsset}")`);
+        const img = document.createElement('img');
+        img.src = iconAsset;
+        img.alt = '';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.onerror = () => {
+          ik.classList.remove('rozsudek-efekt-ikona--asset');
+          ik.style.removeProperty('--effect-icon-url');
+          ik.textContent = _dusledkyIkonaRadku(r);
+        };
+        ik.appendChild(img);
+      } else {
+        ik.textContent = _dusledkyIkonaRadku(r);
+      }
       const lab = document.createElement('span');
       lab.className = 'rozsudek-efekt-label';
       lab.textContent = _dusledkyKratkyNazev(r);
@@ -3033,6 +3423,73 @@ const UI = (() => {
     { id: 'politicky', lab: 'Politický' },
     { id: 'osobni', lab: 'Osobní' }
   ];
+
+  const _ARCHIV_FRAGMENT_TYP_FILTRY = [
+    { id: 'vse', lab: 'Všechny' },
+    { id: 'dopis', lab: 'Dopisy' },
+    { id: 'denni', lab: 'Denní fragmenty' },
+    { id: 'sen', lab: 'Sny' },
+    { id: 'ostatni', lab: 'Ostatní' }
+  ];
+
+  function _archivFragmentObjekt(zaznam) {
+    const isInline = zaznam && typeof zaznam === 'object';
+    const id = isInline ? String(zaznam.id || zaznam.archiveId || '') : String(zaznam || '');
+    const f = isInline ? zaznam : DataLoader.ziskejFragment(id);
+    if (!f) return null;
+    return { isInline, id, f };
+  }
+
+  function _archivFragmentKategorie(f) {
+    const typ = String(f && f.type || '').trim().toLowerCase();
+    if (typ === 'letter') return 'dopis';
+    if (typ === 'dream') return 'sen';
+    if (typ === 'clipping' || typ === 'fragment' || typ === 'morning' || typ === 'evening') return 'denni';
+    return 'ostatni';
+  }
+
+  function _archivFragmentKategorieLabel(kat) {
+    if (kat === 'dopis') return 'DOPIS';
+    if (kat === 'sen') return 'SEN';
+    if (kat === 'denni') return 'FRAGMENT';
+    return 'ZÁZNAM';
+  }
+
+  function _archivFragmentDen(zaznam) {
+    const f = zaznam && zaznam.f;
+    const direct = Number(f && f.day);
+    if (Number.isFinite(direct) && direct > 0) return Math.round(direct);
+    const rawId = String((f && (f.id || f.archiveId)) || (zaznam && zaznam.id) || '');
+    const m = rawId.match(/(?:^|_)d(\d+)(?:_|$)/i);
+    if (m) {
+      const n = Number(m[1]);
+      if (Number.isFinite(n) && n > 0) return Math.round(n);
+    }
+    return null;
+  }
+
+  function _archivFragmentDatumText(den) {
+    const n = Number(den);
+    if (!Number.isFinite(n) || n <= 0) return 'Datum —';
+    const date = new Date(1931, 2, 2);
+    date.setDate(date.getDate() + Math.round(n) - 1);
+    const dny = ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'];
+    const mesice = [
+      'ledna',
+      'února',
+      'března',
+      'dubna',
+      'května',
+      'června',
+      'července',
+      'srpna',
+      'září',
+      'října',
+      'listopadu',
+      'prosince'
+    ];
+    return `${dny[date.getDay()]}, ${date.getDate()}. ${mesice[date.getMonth()]} ${date.getFullYear()}`;
+  }
 
   function _archivNazevTypuChip(typ) {
     const t = String(typ || 'rutinni');
@@ -4171,6 +4628,7 @@ const UI = (() => {
 
     const zahlavi0 = document.querySelector('.pripad-zahlavi');
     zahlavi0?.classList.remove('zahlavi--vyreseno');
+    _nastavRazitkoUzavrenehoSpisu(null);
     _odstranTridyTypuPripadu(zahlavi0);
     _odstranTridyTypuPripadu(document.getElementById('pripad-kategorie-text'));
 
@@ -4668,6 +5126,41 @@ const UI = (() => {
     return '';
   }
 
+  /** Zkrácená kategorie výroku pro uzavřený spis (readonly). */
+  function _readonlyTextKategorieRozsudku(verdictId) {
+    const id = String(verdictId || '').trim().toLowerCase();
+    if (id.startsWith('guilty_')) return 'Vinen';
+    if (id.startsWith('not_guilty_')) return 'Nevinen';
+    if (id.startsWith('insufficient_')) return 'Odloženo';
+    if (id === 'acquit' || id === 'zprostit') return 'Nevinen';
+    if (id === 'guilty' || id === 'maximum' || id === 'prison') return 'Vinen';
+    return '—';
+  }
+
+  function _readonlyKlicKategorieRozsudku(verdictId) {
+    const id = String(verdictId || '').trim().toLowerCase();
+    if (id.startsWith('guilty_')) return 'vinen';
+    if (id.startsWith('not_guilty_')) return 'nevinen';
+    if (id.startsWith('insufficient_')) return 'odlozeno';
+    if (id === 'acquit' || id === 'zprostit') return 'nevinen';
+    if (id === 'guilty' || id === 'maximum' || id === 'prison') return 'vinen';
+    return '';
+  }
+
+  function _nastavRazitkoUzavrenehoSpisu(verdictId) {
+    const stamp = document.querySelector('.pripad-zahlavi-uzavreno-razitko-text');
+    if (!stamp) return;
+    const klic = _readonlyKlicKategorieRozsudku(verdictId);
+    const text = klic ? _readonlyTextKategorieRozsudku(verdictId) : 'Uzavřeno';
+    stamp.textContent = text.toLocaleUpperCase('cs-CZ');
+    stamp.classList.remove(
+      'pripad-zahlavi-uzavreno-razitko-text--vinen',
+      'pripad-zahlavi-uzavreno-razitko-text--nevinen',
+      'pripad-zahlavi-uzavreno-razitko-text--odlozeno'
+    );
+    if (klic) stamp.classList.add(`pripad-zahlavi-uzavreno-razitko-text--${klic}`);
+  }
+
   /** Readonly: jen uložený rozsudek + dopady (pouze změna, bez pásma v hybridu). */
   function _zobrazRozsudkyReadonly(pripad, zaznam) {
     const seznam =
@@ -4675,6 +5168,7 @@ const UI = (() => {
       document.getElementById('rozsudky-seznam');
     if (!seznam) return;
     seznam.innerHTML = '';
+    _nastavRazitkoUzavrenehoSpisu(null);
 
     const vsechny = pripad.verdicts || [];
     if (!vsechny.length) {
@@ -4710,6 +5204,8 @@ const UI = (() => {
       _wfZamkniInteraktivniVerdiktReadonlyDom();
       return;
     }
+
+    _nastavRazitkoUzavrenehoSpisu(rozsudek.id);
 
     const cid = String(pripad && pripad.id || '').trim();
     const odhalenoCount = (() => {
@@ -4789,6 +5285,18 @@ const UI = (() => {
 
     const verdictPanel = document.createElement('div');
     verdictPanel.className = 'rozsudek-readonly-panel rozsudek-readonly-panel--verdikt';
+
+    const shrnuti = document.createElement('div');
+    shrnuti.className = 'rozsudek-readonly-rozsudek-shrnuti';
+    const shrLab = document.createElement('span');
+    shrLab.className = 'rozsudek-readonly-sekce-nadpis';
+    shrLab.textContent = 'Rozsudek:';
+    shrnuti.appendChild(shrLab);
+    shrnuti.appendChild(
+      document.createTextNode(' ' + _readonlyTextKategorieRozsudku(rozsudek.id))
+    );
+    verdictPanel.appendChild(shrnuti);
+
     const radek = document.createElement('div');
     radek.className = 'rozsudek-radek-hlavni';
     const nazev = document.createElement('span');
@@ -4796,12 +5304,29 @@ const UI = (() => {
     _wfNastavRichText(nazev, rozsudek.text || '—');
     radek.appendChild(nazev);
     verdictPanel.appendChild(radek);
-    if (rozsudek.consequence) {
-      const cons = document.createElement('div');
-      cons.className = 'rozsudek-consequence';
-      _wfNastavRichText(cons, rozsudek.consequence);
-      verdictPanel.appendChild(cons);
+
+    const duvodSrc = String(rozsudek.consequence || '').trim();
+    const odiv = document.createElement('div');
+    odiv.className = 'rozsudek-readonly-oduvodneni';
+    const oNad = document.createElement('div');
+    oNad.className = 'rozsudek-readonly-oduvodneni-nadpis';
+    const oLab = document.createElement('span');
+    oLab.className = 'rozsudek-readonly-sekce-nadpis';
+    oLab.textContent = 'Odůvodnění:';
+    oNad.appendChild(oLab);
+    odiv.appendChild(oNad);
+    const oText = document.createElement('div');
+    oText.className = 'rozsudek-readonly-oduvodneni-text';
+    if (duvodSrc) {
+      _wfNastavRichText(oText, duvodSrc);
+    } else {
+      oText.classList.add('rozsudek-readonly-oduvodneni-text--prazdne');
+      oText.textContent =
+        'U této varianty ve spisu není uveden samostatný text odůvodnění.';
     }
+    odiv.appendChild(oText);
+    verdictPanel.appendChild(odiv);
+
     textWrap.appendChild(verdictPanel);
 
     const radkyEf =
@@ -4815,7 +5340,10 @@ const UI = (() => {
     effectsPanel.className = 'rozsudek-readonly-panel rozsudek-readonly-panel--efekty';
     const effectsTitle = document.createElement('div');
     effectsTitle.className = 'rozsudek-readonly-panel-title';
-    effectsTitle.textContent = 'Efekty:';
+    const efLab = document.createElement('span');
+    efLab.className = 'rozsudek-readonly-sekce-nadpis';
+    efLab.textContent = 'Efekty:';
+    effectsTitle.appendChild(efLab);
     effectsPanel.appendChild(effectsTitle);
     if (komp.childElementCount) {
       effectsPanel.appendChild(komp);
@@ -4830,6 +5358,9 @@ const UI = (() => {
     inner.appendChild(textWrap);
     karta.appendChild(inner);
     seznam.appendChild(karta);
+    if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
+      Knihovna.obalSlovnikemVElementu(karta);
+    }
 
     _wfZamkniInteraktivniVerdiktReadonlyDom();
   }
@@ -4993,6 +5524,20 @@ const UI = (() => {
     const casNadpis =
       (volba && volba.cas_label) || (denDat && denDat.cas_label) || 'VEČER';
     if (casVecer) casVecer.textContent = String(casNadpis).trim() || 'VEČER';
+    const vecerNadpis = document.getElementById('vecer-nadpis');
+    if (vecerNadpis) {
+      const n = String(casNadpis).trim();
+      vecerNadpis.textContent = n.toUpperCase() === 'VEČER' ? 'Večerní chvíle' : (n || 'Večerní chvíle');
+    }
+    const vecerScena = document.getElementById('vecer-narativ-scena');
+    if (vecerScena) {
+      vecerScena.className = 'narativ-scena narativ-scena--vecer';
+    }
+    _narativNastavObraz(
+      document.getElementById('vecer-narativ-obraz'),
+      (volba && (volba.narrative_image || volba.image || volba.illustration)) ||
+        _narativKlicProVecer(casNadpis)
+    );
 
     const vecerTxt = document.getElementById('vecer-text');
     const uvodniText = volba && (volba.text != null && String(volba.text).trim() !== '')
@@ -5037,6 +5582,16 @@ const UI = (() => {
       document.getElementById('vecer-cas-label') ||
       document.querySelector('#modal-vecer .vecer-cas');
     if (casEl) casEl.textContent = 'NEDĚLE';
+    const vecerNadpisN = document.getElementById('vecer-nadpis');
+    if (vecerNadpisN) vecerNadpisN.textContent = 'Nedělní chvíle';
+    const vecerScenaN = document.getElementById('vecer-narativ-scena');
+    if (vecerScenaN) {
+      vecerScenaN.className = 'narativ-scena narativ-scena--vecer narativ-scena--nedele';
+    }
+    _narativNastavObraz(
+      document.getElementById('vecer-narativ-obraz'),
+      (nv && (nv.narrative_image || nv.image || nv.illustration)) || 'sunday'
+    );
 
     const vecerTxtN = document.getElementById('vecer-text');
     if (vecerTxtN) _wfNastavRichText(vecerTxtN, nv.text || 'Jak strávíš neděli?');
@@ -5181,7 +5736,10 @@ const UI = (() => {
 
     const panel = document.getElementById('fragment-panel');
     const nadpis = document.getElementById('fragment-nadpis');
+    const kicker = document.getElementById('fragment-kicker');
     const text = document.getElementById('fragment-text');
+    const scena = document.getElementById('fragment-narativ-scena');
+    const obraz = document.getElementById('fragment-narativ-obraz');
 
     if (!panel || !fragment) {
       if (callback) callback();
@@ -5189,13 +5747,43 @@ const UI = (() => {
     }
 
     // Typ panelu
-    panel.className = 'panel-papir fragment-panel panel-papir--nastup';
+    panel.className = 'fragment-panel narativ-shell panel-papir--nastup';
     const typTrida = Narrative.getTYP_PANEL()[fragment.type];
     if (typTrida) panel.classList.add(typTrida);
 
     const typNadpis = Narrative.getTYP_NADPIS()[fragment.type] || 'Záznam';
-    nadpis.textContent = fragment.title || typNadpis;
-    text.innerHTML = (fragment.text || '').replace(/\n/g, '<br>');
+    const titulek = _narativRozdelTitulekFragmentu(fragment, typNadpis);
+    if (kicker) {
+      const zaklad = _narativKickerProFragment(fragment, typNadpis);
+      kicker.textContent = '';
+      const hlavni = document.createElement('span');
+      hlavni.className = 'narativ-kicker-main';
+      hlavni.textContent = zaklad;
+      kicker.appendChild(hlavni);
+      const detailText = _narativDetailKickeruFragmentu(fragment, titulek);
+      if (detailText) {
+        const detail = document.createElement('span');
+        detail.className = 'narativ-kicker-detail';
+        detail.textContent = detailText;
+        kicker.appendChild(detail);
+      }
+    }
+    nadpis.textContent = titulek.nadpis || typNadpis;
+    const textHtml = (fragment.text || '').replace(/\n/g, '<br>');
+    text.innerHTML = textHtml;
+    if (scena) {
+      scena.className = 'narativ-scena narativ-scena--fragment';
+      const typ = String(fragment.type || '').trim().toLowerCase();
+      if (typ) scena.classList.add(`narativ-scena--${typ}`);
+      scena.querySelector('.narativ-dopis-text')?.remove();
+      if (typ === 'letter') {
+        const ilustrace = scena.querySelector('.narativ-ilustrace');
+        if (ilustrace) {
+          ilustrace.appendChild(_narativVytvorDopisStranky(fragment.text || ''));
+        }
+      }
+    }
+    _narativNastavObraz(obraz, _narativKlicProFragment(fragment));
     /* Slovník jen ve spisu (`_wfNastavRichText` v modal-pripad), ne v ranních/nočních fragmentech. */
 
     const zavritBtn = document.getElementById('fragment-zavrit');
@@ -5203,6 +5791,7 @@ const UI = (() => {
     novyZavrit.textContent = 'Pokračovat →';
     zavritBtn.parentNode.replaceChild(novyZavrit, zavritBtn);
     novyZavrit.addEventListener('click', () => {
+      _narativArchivujInlineDopis(fragment);
       const fid = fragment && (fragment.id || fragment.fragmentId)
         ? String(fragment.id || fragment.fragmentId).trim()
         : '';
@@ -5370,7 +5959,11 @@ const UI = (() => {
 
   function _archivTitulekTraitStavDuse(nazev, vCislo, mode) {
     const m = mode || _getStatsDisplayMode();
-    const naz = String(nazev || '').toUpperCase();
+    const nazZ =
+      typeof Traits !== 'undefined' && typeof Traits.getNazevRysuProUi === 'function'
+        ? Traits.getNazevRysuProUi(nazev)
+        : String(nazev || '');
+    const naz = nazZ.toLocaleUpperCase('cs-CZ');
     if (m === 'spreadsheet') {
       return `${naz} (${Math.round(vCislo)})`;
     }
@@ -5392,7 +5985,11 @@ const UI = (() => {
     const sipky = _statSipkyZmeny(d, skala);
     if (mode === 'spreadsheet') {
       if (typ === 'trait') {
-        return `${klic} ${d > 0 ? '+' : '−'}${Math.abs(Math.round(d))}`;
+        const nz =
+          typeof Traits !== 'undefined' && typeof Traits.getNazevRysuProUi === 'function'
+            ? Traits.getNazevRysuProUi(klic)
+            : String(klic);
+        return `${nz} ${d > 0 ? '+' : '−'}${Math.abs(Math.round(d))}`;
       }
       if (typ === 'faction') {
         const mk = _mapLegacyFactionKlic(klic) || String(klic);
@@ -5404,7 +6001,13 @@ const UI = (() => {
       }
     }
     if (mode === 'intuitive') {
-      if (typ === 'trait') return `${klic} ${sipky}`;
+      if (typ === 'trait') {
+        const nz =
+          typeof Traits !== 'undefined' && typeof Traits.getNazevRysuProUi === 'function'
+            ? Traits.getNazevRysuProUi(klic)
+            : String(klic);
+        return `${nz} ${sipky}`;
+      }
       if (typ === 'faction') {
         const mk = _mapLegacyFactionKlic(klic) || String(klic);
         const nazev = _FAKCNI_NAZEV_ZOBRAZENI[mk] || mk;
@@ -5416,7 +6019,13 @@ const UI = (() => {
     }
     /* hybrid */
     const slovo = _statSilaSlovo(d, skala);
-    if (typ === 'trait') return `${klic} ${sipky} (${slovo})`;
+    if (typ === 'trait') {
+      const nz =
+        typeof Traits !== 'undefined' && typeof Traits.getNazevRysuProUi === 'function'
+          ? Traits.getNazevRysuProUi(klic)
+          : String(klic);
+      return `${nz} ${sipky} (${slovo})`;
+    }
     if (typ === 'faction') {
       const mk = _mapLegacyFactionKlic(klic) || String(klic);
       const nazev = _FAKCNI_NAZEV_ZOBRAZENI[mk] || mk;
@@ -5483,6 +6092,14 @@ const UI = (() => {
 
     if (_knihovnaPodpanel === 'pribeh') {
       const pb = data.pribeh || {};
+      const ilustrace = document.createElement('figure');
+      ilustrace.className = 'knihovna-pribeh-ilustrace';
+      const img = document.createElement('img');
+      img.src = 'src/skici/skica_mesto.png';
+      img.alt = 'Město s tramvají v dešti';
+      img.decoding = 'async';
+      ilustrace.appendChild(img);
+      inner.appendChild(ilustrace);
       if (pb.perex) {
         const per = document.createElement('p');
         per.className = 'knihovna-perex';
@@ -5616,11 +6233,26 @@ const UI = (() => {
         }
         const entry = document.createElement('div');
         entry.className = 'archiv-stav-duse-zaznam';
+        const head = document.createElement('div');
+        head.className = 'archiv-stav-duse-zaznam-head';
+        const iconAsset = _dusledkyIkonaAssetu({ typ: 'trait', klic: nazev });
+        const icon = document.createElement('span');
+        icon.className = 'archiv-stav-duse-ikona';
+        icon.setAttribute('aria-hidden', 'true');
+        if (iconAsset) {
+          const iconKey = _dusledkyIkonaAssetKlic({ typ: 'trait', klic: nazev });
+          if (iconKey) icon.classList.add(`archiv-stav-duse-ikona--${iconKey}`);
+          const img = document.createElement('img');
+          img.src = iconAsset;
+          img.alt = '';
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          icon.appendChild(img);
+        } else {
+          icon.classList.add('archiv-stav-duse-ikona--prazdna');
+        }
         const title = document.createElement('div');
         title.className = 'archiv-rozsudek-den';
-        title.style.display = 'block';
-        title.style.minWidth = '0';
-        title.style.letterSpacing = '0.18em';
         title.textContent = _archivTitulekTraitStavDuse(nazev, v, modeSD);
         const body = document.createElement('div');
         body.className = 'archiv-rozsudek-nazev';
@@ -5632,7 +6264,9 @@ const UI = (() => {
         if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
           Knihovna.obalSlovnikemVElementu(body);
         }
-        entry.appendChild(title);
+        head.appendChild(icon);
+        head.appendChild(title);
+        entry.appendChild(head);
         entry.appendChild(body);
         levy.appendChild(entry);
       }
@@ -5744,7 +6378,7 @@ const UI = (() => {
       finHost.innerHTML =
         '<div class="finance-widget">' +
         '<div class="finance-radek finance-radek--zustatek">' +
-        '<span>Zůstatek</span>' +
+        '<span class="archiv-stav-finance-label"><span class="archiv-stav-duse-ikona" aria-hidden="true"><img src="src/effect-finance.png" alt="" loading="lazy" decoding="async"></span><span>Zůstatek</span></span>' +
         '<span class="finance-castka">' + p.zustatek + ' Kčs</span>' +
         '</div>' +
         '<div class="finance-radek">' +
@@ -5997,6 +6631,19 @@ const UI = (() => {
           r.className =
             'postavy-frakce-radek' + (dlouhy ? ' postavy-frakce-radek--s-lore' : '');
 
+          const iconAsset = _dusledkyIkonaAssetu({ typ: 'faction', klic: stateKey });
+          const icon = document.createElement('span');
+          icon.className = 'postavy-frakce-ikona';
+          icon.setAttribute('aria-hidden', 'true');
+          if (iconAsset) {
+            const img = document.createElement('img');
+            img.src = iconAsset;
+            img.alt = '';
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            icon.appendChild(img);
+          }
+
           const a = document.createElement('span');
           a.className = 'postavy-frakce-jmeno';
           a.textContent = lab;
@@ -6018,6 +6665,7 @@ const UI = (() => {
           b.textContent = dlouhy ? ('Nyní: ' + (val || '—')) : (val || '—');
           pravy.appendChild(b);
 
+          r.appendChild(icon);
           r.appendChild(a);
           r.appendChild(pravy);
           frBlok.appendChild(r);
@@ -6119,10 +6767,10 @@ const UI = (() => {
         headBtn.type = 'button';
         headBtn.className = 'archiv-rozsudek-toggle';
         headBtn.innerHTML =
-          `<span class="archiv-rozsudek-den">Den ${r.day}</span>` +
+          `<span class="archiv-rozsudek-den archiv-rozsudek-datum">${_archivFragmentDatumText(r.day)}</span>` +
           `<span class="archiv-rozsudek-typ-chip archiv-rozsudek-typ-chip--${typZ}">${_archivNazevTypuChip(typZ)}</span>` +
           `<span class="archiv-rozsudek-nazev">${r.caseTitle}</span>` +
-          `<span class="archiv-rozsudek-verdict">${r.verdict}</span>` +
+          `<span class="archiv-rozsudek-verdict">${_readonlyTextKategorieRozsudku(r.verdictId)}</span>` +
           `<span class="archiv-rozsudek-toggle-arrow" aria-hidden="true">▾</span>`;
         item.appendChild(headBtn);
 
@@ -6182,21 +6830,79 @@ const UI = (() => {
       });
 
     } else if (tab === 'fragmenty') {
-      const fragmenty = State.get('archive.fragments') || [];
-      if (!fragmenty.length) {
+      const fragmentyVse = (State.get('archive.fragments') || [])
+        .map(_archivFragmentObjekt)
+        .filter(Boolean);
+      if (!fragmentyVse.length) {
         obsah.innerHTML = '<p style="color: var(--barva-text-slaby); font-style: italic; text-align: center;">Zatím žádné přečtené záznamy.</p>';
         return;
       }
-      obsah.innerHTML = fragmenty.map(id => {
-        const f = DataLoader.ziskejFragment(id);
-        if (!f) return '';
-        return `
-          <div class="archiv-rozsudek-item" style="cursor:pointer;" onclick="Narrative.zobrazFragment('${id}')">
-            <span class="archiv-rozsudek-den">${Narrative.getTYP_NADPIS()[f.type] || '—'}</span>
-            <span class="archiv-rozsudek-nazev">${f.title || id}</span>
-          </div>
-        `;
-      }).join('');
+      obsah.innerHTML = '';
+      const filtrRow = document.createElement('div');
+      filtrRow.className = 'archiv-rozsudky-filtr archiv-fragmenty-filtr';
+      for (const opt of _ARCHIV_FRAGMENT_TYP_FILTRY) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className =
+          'archiv-rozsudky-filtr-btn' +
+          (_archivFragmentyFiltrTyp === opt.id ? ' archiv-rozsudky-filtr-btn--aktivni' : '');
+        b.dataset.filtrTyp = opt.id;
+        b.textContent = opt.lab;
+        b.addEventListener('click', () => {
+          _archivFragmentyFiltrTyp = opt.id;
+          _vyplnArchivTab('fragmenty');
+        });
+        filtrRow.appendChild(b);
+      }
+      obsah.appendChild(filtrRow);
+
+      const fragmenty =
+        _archivFragmentyFiltrTyp === 'vse'
+          ? fragmentyVse
+          : fragmentyVse.filter(z => _archivFragmentKategorie(z.f) === _archivFragmentyFiltrTyp);
+
+      if (!fragmenty.length) {
+        const prazdne = document.createElement('p');
+        prazdne.className = 'archiv-rozsudky-filtr-prazdne';
+        prazdne.textContent = 'Pro zvolený typ tu zatím nic není.';
+        obsah.appendChild(prazdne);
+        return;
+      }
+
+      fragmenty.forEach(({ isInline, id, f }) => {
+        const z = { isInline, id, f };
+        const item = document.createElement('div');
+        item.className = 'archiv-rozsudek-item archiv-fragment-item';
+        item.style.cursor = 'pointer';
+        const den = document.createElement('span');
+        den.className = 'archiv-rozsudek-den archiv-fragment-den';
+        const denNum = _archivFragmentDen(z);
+        den.textContent = _archivFragmentDatumText(denNum);
+        const typ = document.createElement('span');
+        const kat = _archivFragmentKategorie(f);
+        typ.className = `archiv-fragment-typ archiv-fragment-typ--${kat}`;
+        typ.textContent = _archivFragmentKategorieLabel(kat);
+        const nazev = document.createElement('span');
+        nazev.className = 'archiv-rozsudek-nazev';
+        nazev.textContent = f.title || id || 'Záznam';
+        item.appendChild(den);
+        item.appendChild(typ);
+        item.appendChild(nazev);
+        item.addEventListener('click', () => {
+          if (isInline) {
+            zobrazFragment({
+              type: f.type || 'letter',
+              title: f.title || 'Dopis',
+              text: f.text || '',
+              id: f.id || id,
+              archiveId: f.archiveId || id
+            });
+          } else {
+            Narrative.zobrazFragment(id);
+          }
+        });
+        obsah.appendChild(item);
+      });
 
     } else if (tab === 'knihovna') {
       obsah.innerHTML = '<p class="knihovna-nacitani">Načítám…</p>';

@@ -1222,6 +1222,10 @@
         </div>
         <div id="case-wf-clue-hud-header-anchor" class="case-wf-clue-hud-header-anchor"></div>
       </div>
+      <!-- Razítkový nápis (jen uzavřený spis); styl v ui.css -->
+      <div class="pripad-zahlavi-uzavreno-razitko" aria-hidden="true">
+        <span class="pripad-zahlavi-uzavreno-razitko-text">UZAVŘENO</span>
+      </div>
     </div>
 
     <div class="case-wf-dots" id="case-wf-dots" aria-hidden="true">
@@ -1300,10 +1304,25 @@
     <div id="rozsudky-seznam" class="skryto" aria-hidden="true"></div>
 
     <div id="pripad-consequence-prelude" class="pripad-consequence-prelude skryto" role="dialog" aria-modal="true" aria-hidden="true">
-      <div class="pripad-consequence-prelude-inner">
-        <p id="pripad-consequence-prelude-text" class="pripad-consequence-prelude-text"></p>
-        <p class="pripad-consequence-prelude-hint">Stiskni Enter nebo pokračuj tlačítkem.</p>
-        <button type="button" class="btn pripad-consequence-prelude-btn" id="pripad-consequence-prelude-btn">Pokračovat</button>
+      <div class="pripad-consequence-prelude-inner narativ-shell">
+        <div class="narativ-scena narativ-scena--rozsudek" id="pripad-consequence-narativ-scena">
+          <aside class="narativ-vizual" aria-hidden="true">
+            <div class="narativ-kicker" id="pripad-consequence-prelude-kicker">ROZSUDEK</div>
+            <div class="narativ-nadpis" id="pripad-consequence-prelude-nadpis">Vynesení rozsudku</div>
+            <div class="narativ-ilustrace">
+              <img id="pripad-consequence-narativ-obraz" alt="" decoding="async">
+            </div>
+          </aside>
+          <section class="narativ-panel">
+            <div class="narativ-kicker pripad-consequence-panel-kicker">ROZSUDEK</div>
+            <div class="narativ-nadpis pripad-consequence-panel-nadpis">Vynesení rozsudku</div>
+            <div id="pripad-consequence-prelude-text" class="narativ-body pripad-consequence-prelude-text"></div>
+            <p class="pripad-consequence-prelude-hint">Stiskni Enter nebo pokračuj tlačítkem.</p>
+            <div class="narativ-actions">
+              <button type="button" class="btn pripad-consequence-prelude-btn" id="pripad-consequence-prelude-btn">Pokračovat</button>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   </div>
@@ -1334,11 +1353,21 @@
 </div>
 
 <div id="modal-vecer" class="overlay" role="dialog" aria-modal="true">
-  <div class="panel-papir vecer-panel panel-papir--nastup">
-    <div class="vecer-cas" id="vecer-cas-label">VEČER</div>
-    <div class="vecer-text" id="vecer-text">—</div>
-    <p class="vecer-mechanika-hint" id="vecer-mechanika-hint">Každé Benovo rozhodnutí se projeví na jeho rozpoložení a v pohledu na svět kolem něj.</p>
-    <div class="vecer-volby" id="vecer-volby"></div>
+  <div class="vecer-panel narativ-shell panel-papir--nastup">
+    <div class="narativ-scena narativ-scena--vecer" id="vecer-narativ-scena">
+      <aside class="narativ-vizual" aria-hidden="true">
+        <div class="narativ-kicker" id="vecer-cas-label">VEČER</div>
+        <div class="narativ-nadpis" id="vecer-nadpis">Večerní chvíle</div>
+        <div class="narativ-ilustrace">
+          <img id="vecer-narativ-obraz" alt="" decoding="async">
+        </div>
+      </aside>
+      <section class="narativ-panel">
+        <div class="narativ-body vecer-text" id="vecer-text">—</div>
+        <p class="vecer-mechanika-hint" id="vecer-mechanika-hint">Každé Benovo rozhodnutí se projeví na jeho rozpoložení a v pohledu na svět kolem něj.</p>
+        <div class="narativ-actions vecer-volby" id="vecer-volby"></div>
+      </section>
+    </div>
   </div>
 </div>
 
@@ -1360,10 +1389,22 @@
 </div>
 
 <div id="modal-fragment" class="overlay" role="dialog" aria-modal="true">
-  <div class="panel-papir fragment-panel panel-papir--nastup" id="fragment-panel">
-    <div class="fragment-nadpis" id="fragment-nadpis">—</div>
-    <div class="fragment-text" id="fragment-text">—</div>
-    <button type="button" class="fragment-zavrit" id="fragment-zavrit">Pokračovat →</button>
+  <div class="fragment-panel narativ-shell panel-papir--nastup" id="fragment-panel">
+    <div class="narativ-scena narativ-scena--fragment" id="fragment-narativ-scena">
+      <aside class="narativ-vizual" aria-hidden="true">
+        <div class="narativ-kicker" id="fragment-kicker">Záznam</div>
+        <div class="narativ-nadpis fragment-nadpis" id="fragment-nadpis">—</div>
+        <div class="narativ-ilustrace">
+          <img id="fragment-narativ-obraz" alt="" decoding="async">
+        </div>
+      </aside>
+      <section class="narativ-panel">
+        <div class="narativ-body fragment-text" id="fragment-text">—</div>
+        <div class="narativ-actions">
+          <button type="button" class="fragment-zavrit" id="fragment-zavrit">Pokračovat →</button>
+        </div>
+      </section>
+    </div>
   </div>
 </div>
 

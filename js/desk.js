@@ -131,6 +131,12 @@ const Desk = (() => {
 
   const RYSY_LEVY = ['Integrita', 'Odvaha', 'Moudrost', 'Vina', 'Nadeje'];
 
+  function _rysNazevProUiVelky(nazev) {
+    return typeof Traits !== 'undefined' && typeof Traits.getNazevRysuProUiVelky === 'function'
+      ? Traits.getNazevRysuProUiVelky(nazev)
+      : String(nazev || '').toUpperCase();
+  }
+
   function _vyplnPanelRysu(panelId, rysy) {
     const panel = document.getElementById(panelId);
     if (!panel) return;
@@ -145,7 +151,7 @@ const Desk = (() => {
       el.innerHTML =
         '<div class="rys-radek-hlavicka">' +
           '<span class="rys-radek-ikona">' + ikona + '</span>' +
-          '<span class="rys-radek-nazev" data-rys="' + nazev + '">' + nazev.toUpperCase() + '</span>' +
+          '<span class="rys-radek-nazev" data-rys="' + nazev + '">' + _rysNazevProUiVelky(nazev) + '</span>' +
         '</div>' +
         '<div class="rys-radek-hvezdicky">' + _hvezdicky(hodnota) + '</div>' +
         '<div class="rys-radek-popis">' + popis + '</div>';
@@ -682,7 +688,7 @@ const Desk = (() => {
     const elVysvetl  = document.getElementById('rys-detail-vysvetlivka');
 
     if (elIkona)   elIkona.textContent  = ikona;
-    if (elNazev)   elNazev.textContent  = nazev.toUpperCase();
+    if (elNazev)   elNazev.textContent  = _rysNazevProUiVelky(nazev);
     if (elHvezd)   elHvezd.innerHTML   = _hvezdicky(hodnota);
 
     const elHerna = document.getElementById('rys-detail-herna');
@@ -747,7 +753,7 @@ const Desk = (() => {
         tooltipTimer = setTimeout(() => {
           const nazevTooltip = tooltip.querySelector('.rys-tooltip-nazev');
           const textTooltip  = tooltip.querySelector('.rys-tooltip-text');
-          if (nazevTooltip) nazevTooltip.textContent = rys.toUpperCase();
+          if (nazevTooltip) nazevTooltip.textContent = _rysNazevProUiVelky(rys);
           if (textTooltip)  textTooltip.textContent  = Traits.getCoToZnamena(rys) || '';
           tooltip.classList.add('viditelny');
           _nastavPoziciTooltipu(e, tooltip);

@@ -270,6 +270,23 @@
   color: rgba(25, 12, 4, 0.98);
 }
 
+/* Uzavřený spis: razítko nesestřihnout stínem (záhlaví jinak overflow:hidden) */
+#modal-pripad .pripad-panel--wireframe .pripad-zahlavi.zahlavi--vyreseno {
+  overflow: visible;
+}
+
+/* Razítko v hlavičce spisu — níž v pruhu, ne zmenšovat pod základ v ui.css */
+#modal-pripad .pripad-panel--wireframe .pripad-zahlavi .pripad-zahlavi-uzavreno-razitko {
+  right: 34px;
+  bottom: 8px;
+}
+
+#modal-pripad .pripad-panel--wireframe .pripad-zahlavi .pripad-zahlavi-uzavreno-razitko-text {
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  padding: 9px 16px 8px;
+}
+
 #modal-pripad .case-wf-clue-hud-slot {
   display: flex;
   flex-direction: column;
@@ -413,6 +430,19 @@
   #modal-pripad .case-wf-clue-hud-header-anchor {
     margin-top: 8px;
     align-self: flex-end;
+  }
+
+  #modal-pripad .pripad-panel--wireframe .pripad-zahlavi .pripad-zahlavi-uzavreno-razitko {
+    top: auto;
+    bottom: 6px;
+    right: 28px;
+    transform: rotate(-5deg);
+  }
+
+  #modal-pripad .pripad-panel--wireframe .pripad-zahlavi .pripad-zahlavi-uzavreno-razitko-text {
+    font-size: 11px;
+    padding: 7px 12px 6px;
+    letter-spacing: 0.17em;
   }
 }
 
@@ -2883,41 +2913,87 @@
   min-width: 0;
 }
 
+/*
+ * Přesně tři stejné nadpisy (jen slova Rozsudek: / Odůvodnění: / Efekty:).
+ * Stejný font, velikost, řádek — span ve všech třech místech; nic z rodiče nepřepisuje vzhled.
+ */
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-karta--vyreseno span.rozsudek-readonly-sekce-nadpis {
+  display: inline-block;
+  margin: 0 0.4em 0 0;
+  padding: 0;
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  font-variant: normal;
+  letter-spacing: 0.09em;
+  line-height: 1.25;
+  color: #2f2116;
+  vertical-align: baseline;
+}
+
 #modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-readonly-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(190px, 0.9fr);
-  gap: 14px;
+  gap: 0;
   align-items: stretch;
 }
 
 #modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-readonly-panel {
   position: relative;
   min-width: 0;
-  padding: 12px 13px;
-  border: 1px solid rgba(62, 38, 24, 0.24);
-  border-radius: 9px;
-  background:
-    linear-gradient(180deg, rgba(255, 252, 244, 0.62), rgba(238, 225, 202, 0.36));
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.34),
-    0 1px 2px rgba(48, 30, 18, 0.06);
+  padding: 12px 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
+/* Oddělení verdiktu a efektů jen svislou čárou (bez rámečků kolem sloupců) */
 #modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-readonly-panel--verdikt {
-  border-left: 4px solid rgba(62, 38, 24, 0.44);
+  padding-right: 16px;
+  border-right: 1px solid rgba(62, 38, 24, 0.22);
 }
 
 #modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-readonly-panel--efekty {
-  border-left: 4px solid rgba(126, 96, 58, 0.42);
+  padding-left: 16px;
 }
 
 #modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-readonly-panel-title {
+  margin: 0 0 4px;
+}
+
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-readonly-rozsudek-shrnuti {
   margin: 0 0 8px;
-  color: #2f2116;
-  font-family: var(--pismo-serif, "Playfair Display", serif);
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.2;
+  font-family: Georgia, var(--pismo-serif, serif);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #3d2a1a;
+}
+
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-readonly-oduvodneni {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(62, 38, 24, 0.14);
+}
+
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-readonly-oduvodneni-nadpis {
+  margin-bottom: 6px;
+}
+
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-readonly-oduvodneni-text {
+  font-family: var(--pismo-narativ, "EB Garamond", serif);
+  font-size: 14px;
+  line-height: 1.48;
+  color: #4e3925;
+  font-style: italic;
+}
+
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-readonly-oduvodneni-text--prazdne {
+  font-style: italic;
+  color: rgba(78, 57, 37, 0.62);
+  font-size: 13px;
 }
 
 #modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-radek-hlavni {
@@ -2944,24 +3020,94 @@
   margin-top: 0;
   padding-top: 0;
   border-top: 0;
-  gap: 6px;
+  gap: 0;
 }
 
 #modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-efekt-radek {
   display: grid;
-  grid-template-columns: 24px minmax(0, 1fr) auto;
-  gap: 8px;
+  grid-template-columns: 30px minmax(0, 1fr) auto;
+  column-gap: 6px;
+  row-gap: 0;
   align-items: center;
-  min-height: 22px;
+  min-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1;
+}
+
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-efekt-radek + .rozsudek-efekt-radek {
+  margin-top: -6px;
+}
+
+/* Vyřízený spis: kompaktní efektové ikony (řádek drží výšku textu) */
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-efekt-ikona--asset {
+  width: 30px;
+  height: 30px;
+  filter:
+    sepia(0.18)
+    saturate(0.92)
+    contrast(1.05)
+    drop-shadow(0 1px 2px rgba(48, 30, 18, 0.2));
+}
+
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-efekt-ikona--asset img {
+  width: 26px;
+  height: 26px;
+}
+
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-efekt-ikona:not(.rozsudek-efekt-ikona--asset) {
+  width: 30px;
+  height: 30px;
+  font-size: 17px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#modal-pripad .pripad-panel--wireframe .rozsudek-efekt-ikona--asset {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: transparent;
+  filter:
+    sepia(0.22)
+    saturate(0.9)
+    contrast(1.04)
+    drop-shadow(0 1px 1px rgba(48, 30, 18, 0.18));
+}
+
+#modal-pripad .pripad-panel--wireframe .rozsudek-efekt-ikona--asset img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+#modal-pripad .pripad-panel--wireframe .rozsudek-efekt-ikona--vina img {
+  filter: brightness(1.22) contrast(0.92) sepia(0.08);
 }
 
 #modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-efekt-label {
   color: #2f2116;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 #modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-efekt-delta {
-  padding-left: 12px;
+  padding: 0 0 0 6px;
+  margin: 0;
+  line-height: 1;
+  font-size: 12px;
   text-align: right;
+  font-weight: 400;
 }
 
 #modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-readonly-empty-effects {
@@ -2973,6 +3119,19 @@
 @media (max-width: 760px) {
   #modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-readonly-layout {
     grid-template-columns: 1fr;
+  }
+
+  #modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-readonly-panel--verdikt {
+    border-right: none;
+    padding-right: 0;
+    padding-bottom: 14px;
+    margin-bottom: 2px;
+    border-bottom: 1px solid rgba(62, 38, 24, 0.22);
+  }
+
+  #modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .rozsudek-readonly-panel--efekty {
+    padding-left: 0;
+    padding-top: 2px;
   }
 }
 

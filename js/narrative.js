@@ -1,6 +1,6 @@
 /**
  * narrative.js — Narativní fragmenty.
- * Dopisy, sny, novinové výstřižky.
+ * Dopisy, sny a denní fragmenty.
  * Načítá z fragments.json a předává UI k zobrazení.
  */
 
@@ -16,7 +16,7 @@ const Narrative = (() => {
   const TYP_NADPIS = {
     letter:   'DOPIS',
     dream:    'SEN',
-    clipping: 'Z NOVIN'
+    clipping: 'RÁNO'
   };
 
   /** Název dne v týdnu (kalendář hry = stejný posun jako u data ve fragmentech). */

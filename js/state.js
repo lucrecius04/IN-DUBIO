@@ -70,6 +70,7 @@ const State = (() => {
     }
     if (!Array.isArray(_stav.archive.verdicts)) _stav.archive.verdicts = [];
     if (!Array.isArray(_stav.archive.case_reviews)) _stav.archive.case_reviews = [];
+    if (!Array.isArray(_stav.archive.fragments)) _stav.archive.fragments = [];
   }
 
   function _nactiRawDoStavu(raw) {
@@ -994,7 +995,17 @@ const State = (() => {
   }
 
   function oznacFragment(id) {
-    if (!_stav.archive.fragments.includes(id)) {
+    _zarucArchivVerdikty();
+    if (!Array.isArray(_stav.archive.fragments)) _stav.archive.fragments = [];
+    if (id && typeof id === 'object') {
+      const key = String(id.id || id.archiveId || '').trim();
+      if (key && _stav.archive.fragments.some(f =>
+        f && typeof f === 'object' && String(f.id || f.archiveId || '').trim() === key
+      )) {
+        return;
+      }
+      _stav.archive.fragments.push({ ...id });
+    } else if (!_stav.archive.fragments.includes(id)) {
       _stav.archive.fragments.push(id);
     }
   }
