@@ -264,17 +264,6 @@
 </div>
 
 <!-- ==========================================
-     MODAL — 23. BŘEZNA (operace / Haas)
-     ========================================== -->
-<div id="modal-den23-krize" class="overlay" role="dialog" aria-modal="true">
-  <div class="panel-papir vecer-panel panel-papir--nastup">
-    <div class="vecer-cas">23. BŘEZNA</div>
-    <div class="vecer-text" id="den23-krize-text">—</div>
-    <div class="vecer-volby" id="den23-krize-volby"></div>
-  </div>
-</div>
-
-<!-- ==========================================
      MODAL — TÝDENNÍ SHRNUTÍ (sobota)
      ========================================== -->
 <div id="modal-tyden-shrnuti" class="overlay" role="dialog" aria-modal="true">
@@ -298,11 +287,27 @@
 </div>
 
 <div id="modal-konec-prelude" class="overlay" role="dialog" aria-modal="true">
-  <div class="panel-papir konec-prelude-panel panel-papir--nastup">
-    <div class="konec-prelude-ramecek" id="konec-prelude-ramecek"></div>
-    <div class="konec-prelude-nadpis" id="konec-prelude-nadpis">—</div>
-    <div class="konec-prelude-telo" id="konec-prelude-telo"></div>
-    <button type="button" class="fragment-zavrit" id="konec-prelude-pokracovat">Zobrazit epilog →</button>
+  <div class="vecer-panel narativ-shell panel-papir--nastup">
+    <div class="narativ-scena narativ-scena--vecer narativ-scena--konec-prelude">
+      <aside class="narativ-vizual" aria-hidden="true">
+        <div class="narativ-kicker">
+          <span class="narativ-kicker-main">Konec kampaně</span>
+          <span class="narativ-kicker-detail">Krajský soud</span>
+        </div>
+        <div class="narativ-nadpis">Před epilogem</div>
+        <div class="narativ-ilustrace">
+          <img id="konec-prelude-obraz" src="" alt="" decoding="async">
+        </div>
+      </aside>
+      <section class="narativ-panel">
+        <div class="konec-prelude-uvod" id="konec-prelude-ramecek"></div>
+        <h2 class="konec-prelude-nadpis" id="konec-prelude-nadpis">—</h2>
+        <div class="konec-prelude-telo" id="konec-prelude-telo"></div>
+        <div class="narativ-actions">
+          <button type="button" class="fragment-zavrit" id="konec-prelude-pokracovat">Zobrazit epilog →</button>
+        </div>
+      </section>
+    </div>
   </div>
 </div>
 
@@ -362,12 +367,28 @@
      KONEC HRY
      ========================================== -->
 <div id="konec-hry-overlay" class="skryto">
-  <div class="konec-titulek" id="konec-titulek">IN DUBIO</div>
-  <div class="konec-typ" id="konec-typ">—</div>
-  <div class="konec-epilog" id="konec-epilog">
-    <!-- Dynamicky plněno — jedna věta na postavu -->
+  <div class="konec-hry-wrap">
+    <div class="vecer-panel narativ-shell konec-hry-panel panel-papir--nastup">
+      <div class="narativ-scena narativ-scena--vecer narativ-scena--konec-hry">
+        <aside class="narativ-vizual" aria-hidden="true">
+          <div class="narativ-kicker">
+            <span class="narativ-kicker-main">IN DUBIO</span>
+            <span class="narativ-kicker-detail">Epilog</span>
+          </div>
+          <div class="narativ-nadpis" id="konec-typ">—</div>
+          <div class="narativ-ilustrace">
+            <img id="konec-hry-obraz" src="" alt="" decoding="async">
+          </div>
+        </aside>
+        <section class="narativ-panel">
+          <div class="konec-epilog narativ-body" id="konec-epilog"></div>
+          <div class="narativ-actions">
+            <button type="button" class="fragment-zavrit konec-restart" id="konec-restart">Nová hra</button>
+          </div>
+        </section>
+      </div>
+    </div>
   </div>
-  <button class="konec-restart" id="konec-restart">Nová hra</button>
 </div>
 
 <!-- ==========================================

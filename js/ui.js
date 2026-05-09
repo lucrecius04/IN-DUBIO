@@ -122,12 +122,13 @@ const UI = (() => {
     ].map(s => String(s || '').toLowerCase()).join(' ');
     if (typ === 'dream') return 'dream';
     if (typ === 'letter') return 'letter';
+    if (typ === 'visit') return 'pressure';
     if (hay.includes('vlak') || hay.includes('útěk') || hay.includes('odjížd')) return 'escape';
     if (hay.includes('měst') || hay.includes('ulic') || hay.includes('tramvaj') || hay.includes('trh')) return 'city';
     if (hay.includes('finance') || hay.includes('korun') || hay.includes('dluh') || hay.includes('operac')) return 'finance';
+    if (typ === 'clipping') return 'morning';
     if (hay.includes('karas') || hay.includes('vlček') || hay.includes('hrozb') || hay.includes('dveř')) return 'pressure';
     if (hay.includes('večer') || hay.includes('neděl')) return 'evening';
-    if (typ === 'clipping') return 'morning';
     return 'fragment';
   }
 
@@ -136,6 +137,7 @@ const UI = (() => {
     const title = String(fragment && fragment.title || '').toLowerCase();
     if (typ === 'dream') return 'NOC';
     if (typ === 'letter') return 'DOPIS';
+    if (typ === 'visit') return 'NÁVŠTĚVA';
     if (title.includes('večer')) return 'VEČER';
     if (title.includes('neděle')) return 'NEDĚLE';
     if (title.includes('ráno') || title.includes('ranní')) return 'RÁNO';
@@ -190,15 +192,17 @@ const UI = (() => {
       }
     }
 
+    const explicitDay = Number(fragment?.day);
     const id = String(fragment?.id || fragment?.fragmentId || '');
     const dm = id.match(/(?:^|_)d(\d+)(?:_|$)/i);
-    if (dm) {
-      const kampanDen = Number(dm[1]);
-      if (Number.isFinite(kampanDen) && kampanDen > 0) {
-        const date = new Date(1931, 2, 2);
-        date.setDate(date.getDate() + kampanDen - 1);
-        return format(date, date.getDate(), 'března', date.getFullYear());
-      }
+    const kampanDen =
+      Number.isFinite(explicitDay) && explicitDay > 0
+        ? explicitDay
+        : (dm ? Number(dm[1]) : NaN);
+    if (Number.isFinite(kampanDen) && kampanDen > 0) {
+      const date = new Date(1931, 2, 2);
+      date.setDate(date.getDate() + kampanDen - 1);
+      return format(date, date.getDate(), 'března', date.getFullYear());
     }
     return '';
   }
@@ -206,6 +210,12 @@ const UI = (() => {
   function _narativDetailKickeruFragmentu(fragment, titulek) {
     const typ = String(fragment && fragment.type || '').trim().toLowerCase();
     if (typ === 'dream') return '';
+    if (typ === 'visit') {
+      const datum = _narativFormatDatumFragmentu(fragment, '');
+      const jmeno = String(titulek.detail || '').trim();
+      if (datum && jmeno) return `${datum} · ${jmeno}`;
+      return datum || jmeno || '';
+    }
     if (typ === 'clipping' || _narativKickerProFragment(fragment, '') === 'RÁNO') {
       return _narativFormatDatumFragmentu(fragment, titulek.detail) || titulek.detail || '';
     }
@@ -3924,6 +3934,45 @@ const UI = (() => {
     return true;
   }
 
+  /** Závadová (tyč) — na stole jako „spis“, ale jde o soukromé rozhodnutí, ne o vinu podle trestního řádu. */
+  function _wfJeZavadovaTyčOsobni(pripad) {
+    return !!(pripad && String(pripad.id || '').trim() === 'tyc_zavadova_d12');
+  }
+
+  function _wfTitulSkupinyVerdiktu(pripad, grp) {
+    if (_wfJeZavadovaTyčOsobni(pripad)) {
+      if (grp === 'guilty') return 'Přijmout';
+      if (grp === 'not_guilty') return 'Odmítnout';
+      if (grp === 'insufficient') return 'Čas na rozmyšlenou';
+    }
+    if (grp === 'guilty') return 'Vinen';
+    if (grp === 'not_guilty') return 'Zproštění / nevinen';
+    if (grp === 'insufficient') return 'Nedostatek důkazů';
+    return '—';
+  }
+
+  function _wfPopisSkupinyVerdiktu(pripad, grp) {
+    if (_wfJeZavadovaTyčOsobni(pripad)) {
+      if (grp === 'guilty') {
+        return 'Podepsat prohlášení o kontaktu s právní sekcí — výměnou za stažení zprávy z ministerstva.';
+      }
+      if (grp === 'not_guilty') {
+        return 'Odmítnout nabídku. Dostupné varianty závisejí na průzkumu (formální odmítnutí / konfrontace s padělkem).';
+      }
+      if (grp === 'insufficient') {
+        return 'Požádat o den na rozmyšlenou — prohlášení zatím nepodepsat ani nevrátit.';
+      }
+    }
+    if (grp === 'guilty') return 'Obžalovaný spáchal skutek v podobě popsané obžalobou.';
+    if (grp === 'not_guilty') return 'Obžaloba neobstojí nebo nejde o trestný čin v této podobě.';
+    if (grp === 'insufficient') return 'Nelze bezpečně rozhodnout — vrátit k došetření nebo uzavřít.';
+    return '';
+  }
+
+  function _wfNadpisRozhodnutiVRozsudku(pripad) {
+    return _wfJeZavadovaTyčOsobni(pripad) ? 'Rozhodnutí' : 'Rozsudek';
+  }
+
   function _wfVerdiktyDoSkupin(verdicts) {
     const g = { guilty: [], not_guilty: [], insufficient: [], other: [] };
     for (const v of verdicts || []) {
@@ -4237,13 +4286,10 @@ const UI = (() => {
     detail.className = 'case-wf-step2-detail case-wf-step2-detail--host';
     const effectsPanel = document.createElement('div');
     effectsPanel.className = 'case-wf-step2-effects-panel';
-    const grpLabel =
-      grp === 'guilty' ? 'Vinen'
-        : grp === 'not_guilty' ? 'Zproštění / nevinen'
-          : grp === 'insufficient' ? 'Nedostatek důkazů'
-            : '—';
+    const grpLabel = _wfTitulSkupinyVerdiktu(pripad, grp);
+    const rozhNadp = _wfNadpisRozhodnutiVRozsudku(pripad);
     detail.innerHTML =
-      `<div class="case-wf-step2-detail-line"><strong>Rozsudek:</strong> ${grpLabel}</div>` +
+      `<div class="case-wf-step2-detail-line"><strong>${rozhNadp}:</strong> ${grpLabel}</div>` +
       `<div class="case-wf-step2-detail-line"><strong>Verdikt:</strong> —</div>` +
       `<div class="case-wf-step2-detail-line case-wf-step2-detail-line--reason"><strong>Odůvodnění:</strong> ` +
       `<span class="case-wf-step2-detail-text">Vyberte variantu verdiktu.</span></div>`;
@@ -4319,7 +4365,7 @@ const UI = (() => {
               `</ul>`
             : '—';
           detail.innerHTML =
-            `<div class="case-wf-step2-detail-line"><strong>Rozsudek:</strong> ${grpLabel}</div>` +
+            `<div class="case-wf-step2-detail-line"><strong>${rozhNadp}:</strong> ${grpLabel}</div>` +
             `<div class="case-wf-step2-detail-line"><strong>Verdikt:</strong> ${tit}</div>` +
             `<div class="case-wf-step2-detail-line case-wf-step2-detail-line--reason"><strong>Odůvodnění:</strong> ` +
             `<span class="case-wf-step2-detail-text">${popis || 'Bez doplňujícího odůvodnění.'}</span></div>`;
@@ -4400,24 +4446,24 @@ const UI = (() => {
     if (g.guilty.length) {
       skupiny.push({
         key: 'guilty',
-        tit: 'Vinen',
-        desc: 'Obžalovaný spáchal skutek v podobě popsané obžalobou.',
+        tit: _wfTitulSkupinyVerdiktu(pripad, 'guilty'),
+        desc: _wfPopisSkupinyVerdiktu(pripad, 'guilty'),
         items: g.guilty
       });
     }
     if (g.not_guilty.length) {
       skupiny.push({
         key: 'not_guilty',
-        tit: 'Zproštění / nevinen',
-        desc: 'Obžaloba neobstojí nebo nejde o trestný čin v této podobě.',
+        tit: _wfTitulSkupinyVerdiktu(pripad, 'not_guilty'),
+        desc: _wfPopisSkupinyVerdiktu(pripad, 'not_guilty'),
         items: g.not_guilty
       });
     }
     if (g.insufficient.length) {
       skupiny.push({
         key: 'insufficient',
-        tit: 'Nedostatek důkazů',
-        desc: 'Nelze bezpečně rozhodnout — vrátit k došetření nebo uzavřít.',
+        tit: _wfTitulSkupinyVerdiktu(pripad, 'insufficient'),
+        desc: _wfPopisSkupinyVerdiktu(pripad, 'insufficient'),
         items: g.insufficient
       });
     }
@@ -5010,6 +5056,23 @@ const UI = (() => {
           `<span class="case-wf-btn-line-2">(Průzkum: 0)</span>`;
         const muze = _wfLzePlatitNečisty(dirtySpec);
         btnUno.disabled = !muze || jizOdhaleno;
+        const nf = Number(dirtySpec.finance) || 0;
+        const penizeBrani =
+          !muze &&
+          !jizOdhaleno &&
+          nf < 0 &&
+          typeof Finance !== 'undefined' &&
+          typeof Finance.jeDostupne === 'function' &&
+          !Finance.jeDostupne(Math.abs(nf));
+        if (penizeBrani) {
+          btnUno.title = 'Neoficiální cesta vyžaduje hotovost, kterou teď nemáš.';
+          const blok = document.createElement('div');
+          blok.className = 'case-wf-neoficial-blocked-note';
+          blok.textContent = 'Neoficiální cesta zde není k dispozici — nedostatek peněz.';
+          actionsWrap.appendChild(blok);
+        } else if (!muze && !jizOdhaleno) {
+          btnUno.title = 'Tuto variantu průzkumu teď nelze použít.';
+        }
         btnUno.addEventListener('click', () => {
           if (State.jeInfoOdhaleno(pripad.id, info.id)) return;
           const spec = _wfEffectiveDirtyUnlock(info);
@@ -5414,101 +5477,6 @@ const UI = (() => {
     }
   }
 
-  /** Ranní modal 23. března — nabídka Haase / Karas / odložení, nebo volitelná nabídka při dostatečných úsporách. */
-  function zobrazModalDen23Krize(callback) {
-    const wrap = document.getElementById('modal-den23-krize');
-    const textEl = document.getElementById('den23-krize-text');
-    const volby = document.getElementById('den23-krize-volby');
-    if (!wrap || !textEl || !volby) {
-      if (callback) callback();
-      return;
-    }
-
-    const bal = Number(State.get('finance.balance')) || 0;
-    const den = Number(State.get('currentDay')) || 23;
-    volby.innerHTML = '';
-
-    const hotovo = () => {
-      State.set('flags.haas_nabidka_den23_vyresena', true);
-      _zavriModal('modal-den23-krize');
-      if (typeof Finance !== 'undefined' && Finance.zkontrolujCilOperace) {
-        Finance.zkontrolujCilOperace();
-      }
-      State.uloz();
-      if (callback) callback();
-    };
-
-    if (bal < 400) {
-      _wfNastavRichText(
-        textEl,
-        'Do uzávěrky zbývá málo času a na stole není dost na operaci. ' +
-          'Advokát Haas přichází s obálkou. Lichvář Karas čeká v předsíni. Nebo můžete riskovat odklad — a doufat.'
-      );
-      const varianty = [
-        {
-          text: 'Přijmout 300 Kčs od Haase',
-          run() {
-            State.upravFinance(300);
-            State.upravRys('Integrita', -15);
-          }
-        },
-        {
-          text: 'Půjčit si 150 Kčs u Karase',
-          run() {
-            State.upravFinance(150);
-            State.upravDuveru('karas', 1);
-            State.set('flags.karas_dluh_do_dne', den + 7);
-          }
-        },
-        {
-          text: 'Odložit operaci — snášet tíhu doma',
-          run() {
-            State.upravRys('Nadeje', -10);
-            State.upravRys('Vina', 8);
-            State.set('flags.operace_odlozena', true);
-          }
-        }
-      ];
-      for (const v of varianty) {
-        const btn = document.createElement('button');
-        btn.className = 'btn-vecer';
-        btn.type = 'button';
-        btn.textContent = v.text;
-        btn.addEventListener('click', () => {
-          v.run();
-          hotovo();
-        });
-        volby.appendChild(btn);
-      }
-    } else {
-      _wfNastavRichText(
-        textEl,
-        'Úspory na operaci stačí — ale Haas přichází s obchodem: 300 Kčs za přízeň v příštím spisu. ' +
-          'Můžete odmítnout bez následků.'
-      );
-      const prijm = document.createElement('button');
-      prijm.className = 'btn-vecer';
-      prijm.type = 'button';
-      prijm.textContent = 'Přijmout 300 Kčs od Haase';
-      prijm.addEventListener('click', () => {
-        State.upravFinance(300);
-        State.upravRys('Integrita', -15);
-        hotovo();
-      });
-      const odmit = document.createElement('button');
-      odmit.className = 'btn-vecer';
-      odmit.type = 'button';
-      odmit.textContent = 'Odmítnout nabídku';
-      odmit.addEventListener('click', () => {
-        hotovo();
-      });
-      volby.appendChild(prijm);
-      volby.appendChild(odmit);
-    }
-
-    _otevriModal('modal-den23-krize');
-  }
-
   // --- VEČERNÍ VOLBA ---
 
   function zobrazVecerniVolbu(denDat, callback) {
@@ -5624,9 +5592,11 @@ const UI = (() => {
         const ft = moznost.fragment_text;
         if (ft && String(ft).trim()) {
           zobrazFragment({
-            type:  'letter',
-            title: moznost.fragment_title || 'Chvíle',
-            text:  String(ft)
+            type:  'fragment',
+            title: moznost.fragment_title || 'Neděle',
+            text:  String(ft),
+            day:   denN,
+            narrative_image: moznost.narrative_image || moznost.image || moznost.illustration || 'sunday'
           }, () => {
             if (casEl) casEl.textContent = 'VEČER';
             if (callback) callback(moznost);
@@ -5820,6 +5790,8 @@ const UI = (() => {
     const speakerEl = document.getElementById('adventure-speaker');
     const textEl = document.getElementById('adventure-text');
     const choicesEl = document.getElementById('adventure-choices');
+    const nadpisEl = document.getElementById('adventure-nadpis');
+    const kickerDetailEl = document.getElementById('adventure-kicker-detail');
     if (!portraitEl || !speakerEl || !textEl || !choicesEl) {
       if (callback) callback({});
       return;
@@ -5828,6 +5800,16 @@ const UI = (() => {
     const fallbackPortrait = 'src/photo.png';
     const portraitBase = String((scena && scena.portrait) || '').trim();
     const portraitLabel = String((scena && scena.portrait_label) || '').trim();
+    const portraitAlt = String((scena && scena.portrait_alt) || '').trim();
+
+    if (kickerDetailEl) {
+      kickerDetailEl.textContent = portraitLabel || '—';
+    }
+    if (nadpisEl) {
+      const popis = String((scena && scena.portrait_description) || '').trim();
+      nadpisEl.textContent = popis;
+      nadpisEl.style.display = popis ? '' : 'none';
+    }
     let posledniVolba = {};
     let zavreno = false;
 
@@ -5845,7 +5827,7 @@ const UI = (() => {
         return;
       }
 
-      portraitEl.alt = portraitLabel || 'Portrét';
+      portraitEl.alt = portraitAlt || portraitLabel || 'Portrét';
       portraitEl.onerror = () => {
         portraitEl.onerror = null;
         portraitEl.src = fallbackPortrait;
@@ -5868,7 +5850,7 @@ const UI = (() => {
         for (const choice of volby) {
           const btn = document.createElement('button');
           btn.type = 'button';
-          btn.className = 'adventure-choice-btn';
+          btn.className = 'btn-vecer';
           btn.textContent = String(choice && choice.label ? choice.label : 'Pokračovat');
           btn.onclick = function() {
             posledniVolba = {
@@ -5885,8 +5867,8 @@ const UI = (() => {
       } else {
         const btn = document.createElement('button');
         btn.type = 'button';
-        btn.className = 'adventure-continue-btn';
-        btn.textContent = 'Pokračovat';
+        btn.className = 'fragment-zavrit';
+        btn.textContent = 'Pokračovat →';
         btn.onclick = function() {
           if (s.morning_fragment_append) {
             posledniVolba.morning_fragment_append = s.morning_fragment_append;
@@ -6208,6 +6190,7 @@ const UI = (() => {
     const obsah = document.getElementById('archiv-obsah');
     if (!obsah) return;
     obsah.classList.toggle('archiv-obsah--knihovna', tab === 'knihovna' || tab === 'postavy');
+    obsah.classList.toggle('archiv-obsah--split-scroll', tab === 'rozsudky' || tab === 'fragmenty');
 
     if (tab === 'stav-duse') {
       obsah.innerHTML = '';
@@ -6709,18 +6692,21 @@ const UI = (() => {
         filtrRow.appendChild(b);
       }
       obsah.appendChild(filtrRow);
+      const seznamWrap = document.createElement('div');
+      seznamWrap.className = 'archiv-list-scroll';
+      obsah.appendChild(seznamWrap);
 
       const rozsudky =
         _archivRozsudkyFiltrTyp === 'vse'
           ? rozsudkyVse.slice()
           : rozsudkyVse.filter(r => _archivRozsudekTypZaznamu(r) === _archivRozsudkyFiltrTyp);
       const trendyEl = _archivVytvorTrendyPanel(rozsudky);
-      if (trendyEl) obsah.appendChild(trendyEl);
+      if (trendyEl) seznamWrap.appendChild(trendyEl);
       if (!rozsudky.length) {
         const prazdne = document.createElement('p');
         prazdne.className = 'archiv-rozsudky-filtr-prazdne';
         prazdne.textContent = 'Pro zvolený typ tu zatím nic není.';
-        obsah.appendChild(prazdne);
+        seznamWrap.appendChild(prazdne);
         return;
       }
       const modeRz = _getStatsDisplayMode();
@@ -6818,15 +6804,15 @@ const UI = (() => {
 
         headBtn.addEventListener('click', () => {
           const jeSkryte = detail.classList.contains('skryto');
-          obsah.querySelectorAll('.archiv-rozsudek-detail').forEach(el => el.classList.add('skryto'));
-          obsah.querySelectorAll('.archiv-rozsudek-item').forEach(el => el.classList.remove('archiv-rozsudek-item--open'));
+          seznamWrap.querySelectorAll('.archiv-rozsudek-detail').forEach(el => el.classList.add('skryto'));
+          seznamWrap.querySelectorAll('.archiv-rozsudek-item').forEach(el => el.classList.remove('archiv-rozsudek-item--open'));
           if (jeSkryte) {
             detail.classList.remove('skryto');
             item.classList.add('archiv-rozsudek-item--open');
           }
         });
         item.appendChild(detail);
-        obsah.appendChild(item);
+        seznamWrap.appendChild(item);
       });
 
     } else if (tab === 'fragmenty') {
@@ -6855,6 +6841,9 @@ const UI = (() => {
         filtrRow.appendChild(b);
       }
       obsah.appendChild(filtrRow);
+      const seznamWrap = document.createElement('div');
+      seznamWrap.className = 'archiv-list-scroll';
+      obsah.appendChild(seznamWrap);
 
       const fragmenty =
         _archivFragmentyFiltrTyp === 'vse'
@@ -6865,7 +6854,7 @@ const UI = (() => {
         const prazdne = document.createElement('p');
         prazdne.className = 'archiv-rozsudky-filtr-prazdne';
         prazdne.textContent = 'Pro zvolený typ tu zatím nic není.';
-        obsah.appendChild(prazdne);
+        seznamWrap.appendChild(prazdne);
         return;
       }
 
@@ -6901,7 +6890,7 @@ const UI = (() => {
             Narrative.zobrazFragment(id);
           }
         });
-        obsah.appendChild(item);
+        seznamWrap.appendChild(item);
       });
 
     } else if (tab === 'knihovna') {
@@ -7639,6 +7628,11 @@ const UI = (() => {
     }
     teloEl.innerHTML = htmlPar.length ? htmlPar.join('') : '<p class="konec-prelude-odstavec">—</p>';
 
+    const obrPre = document.getElementById('konec-prelude-obraz');
+    if (obrPre && typeof _narativNastavObraz === 'function') {
+      _narativNastavObraz(obrPre, 'aftermath');
+    }
+
     const novyBtn = btn.cloneNode(true);
     btn.parentNode.replaceChild(novyBtn, btn);
     novyBtn.addEventListener('click', () => {
@@ -7651,8 +7645,7 @@ const UI = (() => {
 
   function zobrazKonecHry(typ, epilogRadky) {
     const overlay = document.getElementById('konec-hry-overlay');
-    const titulek = document.getElementById('konec-titulek');
-    const typEl   = document.getElementById('konec-typ');
+    const typEl = document.getElementById('konec-typ');
     const epilogEl = document.getElementById('konec-epilog');
 
     const TYPY_NAZVY = {
@@ -7667,8 +7660,13 @@ const UI = (() => {
       anna:     'Anna'
     };
 
-    titulek.textContent = 'IN DUBIO';
-    typEl.textContent   = TYPY_NAZVY[typ] || typ;
+    if (typEl) typEl.textContent = TYPY_NAZVY[typ] || typ;
+    const obrKon = document.getElementById('konec-hry-obraz');
+    if (obrKon && typeof _narativNastavObraz === 'function') {
+      _narativNastavObraz(obrKon, 'aftermath');
+    }
+
+    if (!overlay || !epilogEl) return;
 
     epilogEl.innerHTML = epilogRadky.map((radek, i) => `
       <div class="epilog-radek ${radek.klic ? 'epilog-radek--novak' : ''}"
@@ -7701,6 +7699,16 @@ const UI = (() => {
     else      btn.classList.remove('viditelny');
   }
 
+  /** Tyčové / osobní položky bez řádného spisu — na stole jen titul (obálka, návštěva…), ne fiktivní Sp. zn. */
+  function _pripadBezUredniSpisoveZnacky(pripad) {
+    if (!pripad) return false;
+    const cn = String(pripad.case_number || '')
+      .toLowerCase()
+      .normalize('NFKD')
+      .replace(/[\u0300-\u036f]/g, '');
+    return cn.includes('interni') && cn.includes('bez') && cn.includes('cisla');
+  }
+
   // Aktualizuj složky případů
   function _vyplnFolderLabelBlok(slozka, pripad, slotIndex) {
     const root = slozka.querySelector('.folder-label');
@@ -7712,12 +7720,24 @@ const UI = (() => {
       if (spz) spz.textContent = '';
       if (tit) tit.textContent = '';
       if (obz) obz.textContent = '';
+      slozka.classList.remove('slozka--bez-uredni-spzn');
       return;
     }
-    const cisloSpisu = 47 + slotIndex;
-    if (spz) spz.textContent = `Sp. zn. ${cisloSpisu}/1931`;
     const rawTit = ((pripad.title || '').trim() || 'Bez názvu');
     if (tit) tit.textContent = rawTit.toLocaleUpperCase('cs-CZ');
+
+    if (_pripadBezUredniSpisoveZnacky(pripad)) {
+      if (spz) spz.textContent = '';
+      const defJm = (pripad.defendant && pripad.defendant.name) ? String(pripad.defendant.name).trim() : '';
+      const defOk = defJm && defJm !== '—' && defJm !== '-';
+      if (obz) obz.textContent = defOk ? defJm : '';
+      slozka.classList.add('slozka--bez-uredni-spzn');
+      return;
+    }
+
+    slozka.classList.remove('slozka--bez-uredni-spzn');
+    const cisloSpisu = 47 + slotIndex;
+    if (spz) spz.textContent = `Sp. zn. ${cisloSpisu}/1931`;
     if (obz) obz.textContent = (pripad.defendant && pripad.defendant.name) ? String(pripad.defendant.name) : '—';
   }
 
@@ -7975,7 +7995,6 @@ const UI = (() => {
     zobrazVecerniVolbu,
     zobrazNedelniVolbu,
     zobrazReviziPripadu,
-    zobrazModalDen23Krize,
     zobrazTydenniShrnuti,
     zobrazFragment,
     zobrazAdventureScenu,

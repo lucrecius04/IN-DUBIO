@@ -7896,7 +7896,7 @@
     {
       "id": "tyc_horac_d7",
       "slot": "pool",
-      "type": "political",
+      "type": "politicky",
       "color": "#5A6E8A",
       "available_days": [
         7
@@ -9970,7 +9970,7 @@
     {
       "id": "tyc_bozena_3",
       "slot": "pillar",
-      "type": "political",
+      "type": "politicky",
       "color": "#8A5A3A",
       "available_days": [
         10
@@ -10433,7 +10433,7 @@
       "slot": "pool",
       "case_track": "pillar",
       "case_track_label": "tycove",
-      "type": "political",
+      "type": "politicky",
       "color": "#7A6A5A",
       "available_days": [
         8
@@ -10805,7 +10805,7 @@
       "slot": "pool",
       "case_track": "pillar",
       "case_track_label": "tycove",
-      "type": "political",
+      "type": "politicky",
       "color": "#7A9BAD",
       "available_days": [
         11
@@ -11982,7 +11982,7 @@
       "slot": "pool",
       "case_track": "pillar",
       "case_track_label": "tycove",
-      "type": "political",
+      "type": "politicky",
       "color": "#9E9A8A",
       "available_days": [
         12
@@ -12381,7 +12381,7 @@
       "slot": "pool",
       "case_track": "pillar",
       "case_track_label": "tycove",
-      "type": "political",
+      "type": "politicky",
       "color": "#3A3A4A",
       "available_days": [
         19

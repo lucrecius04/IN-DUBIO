@@ -1,7 +1,7 @@
 {
   "id": "tyc_horac_d7",
   "slot": "pool",
-  "type": "political",
+  "type": "politicky",
   "color": "#5A6E8A",
   "available_days": [7],
   "act": 1,

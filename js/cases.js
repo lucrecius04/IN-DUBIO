@@ -99,6 +99,8 @@ const Cases = (() => {
     if (!c) return 'rutinni';
     const t = String(c.type || '').toLowerCase();
     if (t === 'routine') return 'rutinni';
+    /* Anglický export z nástrojů / starší JSON — červená složka = politicky */
+    if (t === 'political') return 'politicky';
     if (t === 'personal') return 'osobni';
     if (t === 'moral_dilemma' || t === 'moraldilemma') return 'moralni';
     if (_TYP_LEGACY_NA_RUTINNI.has(t)) return 'rutinni';
@@ -401,9 +403,10 @@ const Cases = (() => {
         if (typ === 'moralni' || pripad.emotional === true) {
           State.set('pondeli_vina_emotivni', false);
           UI.zobrazFragment({
-            type:  'letter',
+            type:  'fragment',
             title: 'Pondělí',
-            text:  'Nedělní ticho je pryč. Tento spis tě zasáhne dřív, než stihneš oddělit lavici od sebe.'
+            text:  'Nedělní ticho skončilo. Ben otevřel první spis a poznal, že tentokrát nepůjde jen o pořádek v protokolu. Případ se dotkne věcí, které si člověk běžně nechává mimo soudní síň.',
+            narrative_image: 'morning'
           }, otevriNorm);
           return;
         }

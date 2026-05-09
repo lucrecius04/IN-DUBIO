@@ -142,7 +142,7 @@ const State = (() => {
     if (!_stav.trust || typeof _stav.trust !== 'object') _stav.trust = {};
     const F = [
       'dopis_operace_den8_viden', 'dopis_operace_den4_viden', 'operace_zaplacena', 'operace_odlozena',
-      'haas_nabidka_den23_vyresena', 'uplatek_prijat', 'bankrot_varovani_zobrazeno',
+      'uplatek_prijat', 'bankrot_varovani_zobrazeno',
       'dluh_pribeh_spusten'
     ];
     for (const k of F) {
@@ -327,7 +327,6 @@ const State = (() => {
       dopis_operace_den4_viden: false,
       operace_zaplacena:      false,
       operace_odlozena:       false,
-      haas_nabidka_den23_vyresena: false,
       /** Splacení půjčky u Karase — den, do kdy. */
       karas_dluh_do_dne:      null,
       /** Naděje +2/den od zítřka do tohoto dne (včetně). */

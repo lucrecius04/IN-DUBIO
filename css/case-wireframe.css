@@ -1320,6 +1320,16 @@
   border-color: #8b4513;
 }
 
+/* Důvod, proč je „Neoficiálně“ vypnuté (např. nedostatek Kčs na stínové náklady) */
+#modal-pripad .pripad-panel--wireframe .case-wf-neoficial-blocked-note {
+  grid-column: 1 / -1;
+  font-size: 12px;
+  line-height: 1.35;
+  color: #6b3e2e;
+  font-style: italic;
+  padding: 4px 2px 0;
+}
+
 #modal-pripad .pripad-panel--wireframe .case-wf-info-btn {
   width: 28px;
   height: 28px;
@@ -3321,11 +3331,7 @@
   background: linear-gradient(180deg, #faf0dc 0%, #e8d8b8 100%);
 }
 
-/* Třetí spis — light režim (MIGRACE 15 dní): tenčí vizuál */
-#modal-pripad.pripad--light-rezim .pripad-panel--wireframe {
-  background: #ece8df;
-  border-color: rgba(120, 110, 95, 0.45);
-}
+/* Light režim (_lightMode) už nemění vzhled panelu — stejný spis-panel.png jako u plných případů. */
 
 @media (prefers-reduced-motion: reduce) {
   #modal-pripad .pripad-panel--wireframe.case-wf-panel--shake-light,

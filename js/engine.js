@@ -39,32 +39,32 @@ const Engine = (() => {
   function _sestavTydenniShrnutiPayload(kody) {
     const n = kody.length;
     const ramec =
-      'Sobota večer. Úřad už netluče do telefonu — jen ty ještě slyšíš v hlavě razítko a větu, která byla v pátek na konci papíru.\n\n';
+      'Sobota večer. Budova soudu utichla a Ben si v kanceláři ještě jednou srovnal, co se během týdne stalo.\n\n';
     let hlavni;
     if (n === 0) {
       hlavni =
-        'Tenhle týden nenechal po sobě ostudu ani jméno, které by sis chtěl vyvézt. Šel — a zůstala po něm jen hromada listů.';
+        'Týden nepřinesl žádný zvláštní zlom. Ben uzavřel spisy, splnil úřední povinnosti a zůstaly po něm hlavně poznámky, podpisy a únava.';
     } else if (n === 1) {
-      hlavni = 'Jedna věc z týdne přetrvá v paměti silnější než ostatní. Stačí pár slov pod čarou.';
+      hlavni = 'Z celého týdne vystoupila jedna věc, kterou si Ben potřeboval poznamenat. Nebyla jediná důležitá, ale vracela se mu v hlavě častěji než ostatní.';
     } else if (n === 2) {
-      hlavni = 'Dvě věci ti sedly na krk tak najednou, že z toho nešlo vybrat jen jednu. Přečti si je v klidu.';
+      hlavni = 'Týden po sobě zanechal dvě výrazné stopy. Ben je zapsal vedle sebe, protože ani jedna nepůsobila jako drobnost, kterou by bylo možné přejít.';
     } else if (n === 3) {
-      hlavni = 'Týden byl v hlavě hlasitější, než by napovídal rozvrh. Zapisuješ si, co z toho ještě drží tvar.';
+      hlavni = 'Týden byl náročnější, než naznačoval rozvrh jednání. Ben si na konci dne zapsal několik věcí, které podle něj mohou mít význam i později.';
     } else {
-      hlavni = 'Tolik stop najednou, že z toho nejde udělat jednu větu bez lži. Necháváš si to projít hlavou.';
+      hlavni = 'Týden přinesl víc podstatných událostí najednou. Ben je nezjednodušoval do jedné věty a raději si je zaznamenal odděleně.';
     }
 
     const J = {
       A:
-        'Většinu spisů jsi nechal projít rukama opravdu — ne šmiknutím přes diagonálu. Chodby to nepoklonkovaly, ale všimly si toho.',
+        'Ben se u většiny spisů opíral o průzkum a nespokojil se s rychlým přečtením základních podkladů.',
       B:
-        'Co šlo koupit mlčení, sis nekoupil. Město o tom nevydá článek — jen si to někam škrtne.',
-      C: 'Termíny držely čelist; nic nezůstalo ve šuplíku jako „jen do pátku“.',
-      D_stat: 'Tvoje rozsudky tento týden dávaly jednu barvu — takovou, aby ji nešlo přehlédnout shora.',
-      D_lid: 'Pod okny se šeptá jméno soudce, který se nebál podívat dolů.',
+        'Ben během týdne nepřijal úplatek a nenechal si zaplatit za mlčení ani za pohodlnější rozhodnutí.',
+      C: 'Ben během týdne neodkládal rozhodnutí a nenechal žádný spis ležet stranou jen proto, že byl nepříjemný.',
+      D_stat: 'Benovy rozsudky během týdne výrazně posílily pozici státní moci a ministerstvo si toho mohlo všimnout.',
+      D_lid: 'Benovy rozsudky během týdne častěji vycházely vstříc lidem mimo úřady a vlivné kanceláře.',
       D_mul:
-        'Každý těžší verdikt měl svůj stín v šeru chodby — a ty sis ho nenechal ujít ani jednou.',
-      E: 'Několik tvrdých vět pod pečetí tě stálo víc než úsměv v září radnice. Tělo to ví dřív než kalendář.'
+        'Ben věnoval pozornost i těžším verdiktům a nenechal je projít jen jako další položky v pořadí.',
+      E: 'Ben vynesl několik tvrdších rozsudků a jejich dopad na sobě cítil ještě po skončení pracovního týdne.'
     };
     const jemneRadky = kody.map(k => J[k] || k).filter(Boolean);
 
@@ -146,10 +146,10 @@ const Engine = (() => {
     if (typeof DataLoader.jeHernaDataOK === 'function' && !DataLoader.jeHernaDataOK()) {
       const msg =
         'Herní data se nenačetla (days.json / případy). Otevření přes file:// často fetch blokuje.\n\n' +
-        'Spusť stránku přes HTTP z kořene projektu, např.:\n' +
+        'Stránku je potřeba spustit přes HTTP z kořene projektu, např.:\n' +
         '  npx --yes serve .\n' +
         'nebo:  python -m http.server\n' +
-        'a v prohlížeči otevři zobrazenou URL.';
+        'Potom je možné v prohlížeči otevřít zobrazenou URL.';
       console.error('[Engine]', msg);
       const el = document.getElementById('stavova-zprava');
       if (el) {
@@ -206,6 +206,81 @@ const Engine = (() => {
   }
 
   // --- DEN ---
+
+  /** Dopady dokončené adventure scény (sdílené mezi `spustDen` a odloženým spuštěním po neděli). */
+  function _aplikujVysledekAdventure(vysledek, adventureDoneKey) {
+    const out = vysledek && typeof vysledek === 'object' ? vysledek : {};
+
+    if (out.sets_flag) {
+      State.set('flags.' + out.sets_flag, true);
+    }
+    if (out.sets_flag_extra) {
+      State.set('flags.' + out.sets_flag_extra, true);
+    }
+
+    if (out.sets_uzlovy && State.get('uzlove')) {
+      const uz = State.get('uzlove');
+      Object.assign(uz, out.sets_uzlovy);
+      State.set('uzlove', uz);
+    }
+
+    if (out.effects && typeof out.effects === 'object') {
+      for (const [klic, deltaRaw] of Object.entries(out.effects)) {
+        const delta = Number(deltaRaw);
+        if (!Number.isFinite(delta) || delta === 0) continue;
+        if (['Integrita', 'Odvaha', 'Moudrost', 'Vina', 'Nadeje'].includes(klic)) {
+          State.upravRys(klic, delta);
+          continue;
+        }
+        if (['Moc', 'Kapital', 'Lid', 'Stat', 'Obchodnici'].includes(klic)) {
+          const frakce = klic === 'Stat' ? 'Moc' : (klic === 'Obchodnici' ? 'Kapital' : klic);
+          State.upravFrakci(frakce, delta);
+          continue;
+        }
+        if (['vlcek', 'zavadova', 'karas'].includes(klic)) {
+          State.upravDuveru(klic, delta);
+          continue;
+        }
+        if (klic === 'Finance') {
+          State.upravFinance(delta);
+        }
+      }
+    }
+
+    if (out.morning_fragment_append) {
+      State.set('flags.morning_fragment_append_next', out.morning_fragment_append);
+    }
+
+    if (adventureDoneKey) {
+      State.set(adventureDoneKey, true);
+    }
+    if (typeof State.vypoctiUzloveFlagy === 'function') {
+      State.vypoctiUzloveFlagy();
+    }
+    State.uloz();
+    return out;
+  }
+
+  /**
+   * Adventure s `after_nedelni_volba: true` — až po nedělní volbě (Karas odpoledne v D14),
+   * před dialogy postav (Vlček).
+   */
+  async function _spustAdventurePoNedeliPokud(dDat) {
+    const adventureScena = dDat && dDat.adventure_scene;
+    if (!adventureScena || adventureScena.after_nedelni_volba !== true) return;
+    if (String(adventureScena.trigger || '') !== 'morning_after_fragment') return;
+    const adventureDoneKey = adventureScena.id
+      ? ('flags.adventure_done_' + adventureScena.id)
+      : null;
+    if (!adventureDoneKey || State.get(adventureDoneKey) === true) return;
+    if (!UI || typeof UI.zobrazAdventureScenu !== 'function') return;
+    await new Promise(resolve => {
+      UI.zobrazAdventureScenu(adventureScena, function(vysledek) {
+        _aplikujVysledekAdventure(vysledek, adventureDoneKey);
+        resolve();
+      });
+    });
+  }
 
   async function spustDen() {
     let den = Number(State.get('currentDay'));
@@ -278,7 +353,7 @@ const Engine = (() => {
     // Aktualizuj noviny
     if (_denData) Narrative.aktualizujNoviny(_denData);
 
-    // Ekonomika ráno: buff lékaře, Karas, výplata, varování, dluh > 100, krize 23. března
+    // Ekonomika ráno: buff lékaře, Karas, výplata, varování, dluh > 100
     Finance.aplikujLekarskyBuffRano();
     Finance.tickKarasDluh();
     if (Finance.aplikujNedelniVyplatu(den)) {
@@ -292,11 +367,11 @@ const Engine = (() => {
       State.set('flags.dluh_pribeh_spusten', true);
       await _cekejNaFragment('fragment_ekonomika_dluh_krize');
     }
-    if (den === 15 && !State.get('flags.haas_nabidka_den23_vyresena')) {
-      await _cekejNaDen23Modal();
-    }
     Finance.zkontrolujCilOperace();
     Desk.aktualizujVse();
+
+    /* Dopisy s fází morning_first: modál hned ráno před ranním fragmentem (např. Benešův lístek). */
+    await _zpracujDopisyRanoPredFragmentem(den, _denData);
 
     if (_stulPripravaMaRozsvitit && typeof UI !== 'undefined' && UI.skryjZatemneniPripravyStoluPoNacteni) {
       await UI.skryjZatemneniPripravyStoluPoNacteni();
@@ -356,68 +431,24 @@ const Engine = (() => {
       }
     }
 
-    await _zpracujDopisyDne(den, _denData);
+    await _zpracujDopisyDne(den, _denData); /* desk + ostatní fáze; morning_first vynecháno — už zobrazeno výše */
 
     // Adventure scéna: po ranním fragmentu, před načtením případů.
     const adventureScena = _denData && _denData.adventure_scene;
     const adventureDoneKey = adventureScena && adventureScena.id
       ? ('flags.adventure_done_' + adventureScena.id)
       : null;
+    const odlozitAdventureNaPoNedeli = adventureScena && adventureScena.after_nedelni_volba === true;
     const maSpustitAdventure =
       adventureScena &&
       adventureScena.trigger === 'morning_after_fragment' &&
       adventureDoneKey &&
-      State.get(adventureDoneKey) !== true;
+      State.get(adventureDoneKey) !== true &&
+      !odlozitAdventureNaPoNedeli;
 
     if (maSpustitAdventure && UI && typeof UI.zobrazAdventureScenu === 'function') {
       UI.zobrazAdventureScenu(adventureScena, function(vysledek) {
-        const out = vysledek && typeof vysledek === 'object' ? vysledek : {};
-
-        if (out.sets_flag) {
-          State.set('flags.' + out.sets_flag, true);
-        }
-        if (out.sets_flag_extra) {
-          State.set('flags.' + out.sets_flag_extra, true);
-        }
-
-        if (out.sets_uzlovy && State.get('uzlove')) {
-          const uz = State.get('uzlove');
-          Object.assign(uz, out.sets_uzlovy);
-          State.set('uzlove', uz);
-        }
-
-        if (out.effects && typeof out.effects === 'object') {
-          for (const [klic, deltaRaw] of Object.entries(out.effects)) {
-            const delta = Number(deltaRaw);
-            if (!Number.isFinite(delta) || delta === 0) continue;
-            if (['Integrita', 'Odvaha', 'Moudrost', 'Vina', 'Nadeje'].includes(klic)) {
-              State.upravRys(klic, delta);
-              continue;
-            }
-            if (['Moc', 'Kapital', 'Lid', 'Stat', 'Obchodnici'].includes(klic)) {
-              const frakce = klic === 'Stat' ? 'Moc' : (klic === 'Obchodnici' ? 'Kapital' : klic);
-              State.upravFrakci(frakce, delta);
-              continue;
-            }
-            if (['vlcek', 'zavadova', 'karas'].includes(klic)) {
-              State.upravDuveru(klic, delta);
-              continue;
-            }
-            if (klic === 'Finance') {
-              State.upravFinance(delta);
-            }
-          }
-        }
-
-        if (out.morning_fragment_append) {
-          State.set('flags.morning_fragment_append_next', out.morning_fragment_append);
-        }
-
-        State.set(adventureDoneKey, true);
-        if (typeof State.vypoctiUzloveFlagy === 'function') {
-          State.vypoctiUzloveFlagy();
-        }
-        State.uloz();
+        _aplikujVysledekAdventure(vysledek, adventureDoneKey);
         _pokracujSpustDen(_denData, den);
       });
       return;
@@ -452,10 +483,7 @@ const Engine = (() => {
     // Revize spisů — v 15denní verzi vypnuto (MIGRACE_20-15)
     // await _zpracujRevizeDne(dCislo);
 
-    // Dialogy postav pro tento den
-    await _zpracujDialogyDne(dCislo);
-
-    // Nedělní volba (bez případů — samostatný krok před pokračováním dne)
+    // Nedělní volba před NPC dialogy (dopoledne před odpolední návštěvou / scénou).
     if (dDat?.nedelni_volba) {
       await new Promise(resolve => {
         UI.zobrazNedelniVolbu(dDat, () => {
@@ -466,21 +494,28 @@ const Engine = (() => {
       });
     }
 
+    await _spustAdventurePoNedeliPokud(dDat);
+
+    await _zpracujDialogyDne(dCislo);
+
     State.set('phase', 'forenoon');
     Desk.aktualizujVse();
 
     _obnovDopisyNaStoleProDen(dDat, dCislo);
 
+    /* Po „Další den“ nejdřív zvednout plachtu a odblokovat stůl — jinak zůstane zachytávat kliky
+       a tlačítko „Další den“ je sice vidět, ale nejde na něj kliknout (zejm. neděle bez spisů). */
+    if (_rozdeniPoPrepnuDne && typeof UI !== 'undefined' && UI.skryjZatemneniPripravyStoluPoNacteni) {
+      _rozdeniPoPrepnuDne = false;
+      await UI.skryjZatemneniPripravyStoluPoNacteni();
+    }
+    if (typeof UI !== 'undefined' && UI.skryjStulBlokaciDoModaluFragmentu) {
+      UI.skryjStulBlokaciDoModaluFragmentu();
+    }
+
     // Skrýt tlačítko do vyřešení případů; po F5 / resume znovu sladit s uloženým casesResolvedToday
     UI.zobrazBtnDalsiDen(false);
     zkontrolujKonecDne(false);
-
-    if (_rozdeniPoPrepnuDne) {
-      _rozdeniPoPrepnuDne = false;
-      if (typeof UI !== 'undefined' && UI.skryjZatemneniPripravyStoluPoNacteni) {
-        await UI.skryjZatemneniPripravyStoluPoNacteni();
-      }
-    }
 
   }
 
@@ -803,7 +838,21 @@ const Engine = (() => {
         });
       });
       for (const fid of _fragmentyProTydenniBonusy(kody)) {
-        await _cekejNaFragment(fid);
+        const f =
+          typeof DataLoader !== 'undefined' && DataLoader.ziskejFragment
+            ? DataLoader.ziskejFragment(fid)
+            : null;
+        if (f) {
+          State.oznacFragment(fid);
+          await _cekejNaFragment(null, {
+            ...f,
+            day: denS,
+            type: 'fragment',
+            title: 'Večer'
+          });
+        } else {
+          await _cekejNaFragment(fid);
+        }
       }
     }
 
@@ -818,12 +867,12 @@ const Engine = (() => {
     State.uloz();
     _rozdeniPoPrepnuDne = true;
     await spustDen();
-    if (_rozdeniPoPrepnuDne && State.get('gameOver')) {
-      _rozdeniPoPrepnuDne = false;
-      if (typeof UI !== 'undefined' && UI.skryjZatemneniPripravyStoluPoNacteni) {
-        await UI.skryjZatemneniPripravyStoluPoNacteni();
-      }
+    /* Po přechodu dne: při game over může `_pokracujSpustDen` nenaběhnout — plachtu stejně zvednout.
+       Příznak „rozjezd“ už mohl `_pokracujSpustDen` vynulovat po rozednění. */
+    if (State.get('gameOver') && typeof UI !== 'undefined' && UI.skryjZatemneniPripravyStoluPoNacteni) {
+      await UI.skryjZatemneniPripravyStoluPoNacteni();
     }
+    _rozdeniPoPrepnuDne = false;
   }
 
   // --- DIALOGY POSTAV ---
@@ -838,11 +887,19 @@ const Engine = (() => {
       const souhrn = Characters.getHistorieRadkaTitulek(id, dialog.type);
       State.zalogujNpcSetkani(id, den, souhrn, dialog.text || '');
       State.zapisNpcPosledniDialog(id, den, dialog.text || '');
-      // Dialogy se zobrazí jako fragmenty
+      // Dopisy zůstávají dopisy, osobní návštěvy patří do běžného narativního okna.
+      const typDialogu = dialog.type === 'letter' ? 'letter' : 'visit';
+      const podtitulNavstevy =
+        typDialogu === 'visit' && dialog && String(dialog.visit_label || '').trim()
+          ? String(dialog.visit_label).trim()
+          : Characters.getNazev(id);
       await _cekejNaFragment(null, {
-        type:  dialog.type === 'letter' ? 'letter' : 'letter',
-        title: Characters.getNazev(id),
-        text:  dialog.text
+        type:  typDialogu,
+        title: typDialogu === 'visit'
+          ? `Návštěva — ${podtitulNavstevy}`
+          : Characters.getNazev(id),
+        text:  dialog.text,
+        day:   den
       });
     }
   }
@@ -922,7 +979,7 @@ const Engine = (() => {
     if (!reaction || !Array.isArray(reaction.options) || reaction.options.length === 0) return;
     const r = { ...reaction };
     const ph = dopisMeta && String(dopisMeta.phase || '').trim();
-    if (!r.cas_label && (ph === 'morning_after_fragment' || ph === 'forenoon')) {
+    if (!r.cas_label && (ph === 'morning_after_fragment' || ph === 'forenoon' || ph === 'morning_first')) {
       r.cas_label = 'RÁNO';
     }
     const vyber = await new Promise(resolve => {
@@ -972,11 +1029,54 @@ const Engine = (() => {
     Desk.zobrazSuplikIndikator(maDeskDopis);
   }
 
+  /**
+   * Dopisy s `phase: "morning_first"` v letters.json — zobrazí se modálně před ranním fragmentem,
+   * nejdou na frontu stolu (stejné efekty jako při čtení z obálky).
+   */
+  async function _zpracujDopisyRanoPredFragmentem(den, denData) {
+    if (!denData || !Array.isArray(denData.letters) || denData.letters.length === 0) return;
+    const hotovoKlic = 'letters_morning_first_done_day_' + Number(den);
+    if (State.get('flags.' + hotovoKlic) === true) return;
+
+    const klicP = _klicPendingDeskDopisu(den);
+    const pen = Array.isArray(State.get('flags.' + klicP)) ? State.get('flags.' + klicP).slice() : [];
+    const promazano = pen.filter(id => {
+      const d = DataLoader.ziskejDopis(id);
+      return !d || String(d.phase || '').trim() !== 'morning_first';
+    });
+    if (promazano.length !== pen.length) {
+      State.set('flags.' + klicP, promazano);
+      if (typeof Desk !== 'undefined' && Desk.aktualizujVse) Desk.aktualizujVse();
+    }
+
+    let udelano = false;
+    for (const letterId of denData.letters) {
+      const dopis = DataLoader.ziskejDopis(letterId);
+      if (!dopis || String(dopis.phase || '').trim() !== 'morning_first') continue;
+      if (!_vyhodnotPodminkuDopisu(dopis.condition)) continue;
+      /* Starší uložení: lístek už byl na stole přečten — neopakovat modál ani efekty */
+      if (letterId === 'benes_d9' && State.get('flags.benes_listek_precten') === true) {
+        udelano = true;
+        continue;
+      }
+      await _zobrazDopisModalem(dopis);
+      udelano = true;
+    }
+    if (udelano) {
+      State.set('flags.' + hotovoKlic, true);
+      State.uloz();
+    }
+  }
+
   async function _zpracujDopisyDne(den, denData) {
     if (!denData || !Array.isArray(denData.letters) || denData.letters.length === 0) return;
     const doneKey = _klicZpracovaniDopisu(den);
     if (State.get('flags.' + doneKey) === true) return;
-    for (const letterId of denData.letters) {
+    const letterIds = denData.letters.filter(id => {
+      const dopis = DataLoader.ziskejDopis(id);
+      return dopis && String(dopis.phase || '').trim() !== 'morning_first';
+    });
+    for (const letterId of letterIds) {
       const dopis = DataLoader.ziskejDopis(letterId);
       if (!dopis || !_vyhodnotPodminkuDopisu(dopis.condition)) continue;
       if (dopis.delivery === 'auto') {
@@ -1028,7 +1128,7 @@ const Engine = (() => {
 
     const den = State.get('currentDay');
     if (den < 8) {
-      UI.zobrazStavovouZpravu('Obálka přišla den 8.');
+      UI.zobrazStavovouZpravu('Obálka bude k dispozici od osmého dne.');
       return;
     }
 
@@ -1067,7 +1167,7 @@ const Engine = (() => {
       const obsah = fragment || {
         type:  'letter',
         title: 'Dopis od ministra Vlčka',
-        text:  _denData.vlcek_letter_text || '„Věřím, že jste muž který rozumí nutnosti kompromisů, pane doktore."'
+        text:  _denData.vlcek_letter_text || '„Věřím, že jste muž, který rozumí nutnosti kompromisů, pane doktore."'
       };
 
       State.zalogujNpcSetkani('vlcek', denV, 'Dopis od Vlčka', obsah.text || '');
@@ -1177,9 +1277,9 @@ const Engine = (() => {
   function _epilogVlcek(typ, stav) {
     const z = _epilogRadekZeSouboru(typ, 'vlcek', stav);
     if (z) return z;
-    if (typ === 'hrdina') return 'Byl odvolán z funkce. Řízení bylo zastaveno po dvou týdnech.';
-    if (typ === 'korupce') return 'Nadále slouží republice. Vraného případ nikdy nezmínil.';
-    return 'Zůstal na místě. Jako vždy.';
+    if (typ === 'hrdina') return 'Vlček byl odvolán z funkce a řízení proti němu bylo po dvou týdnech zastaveno.';
+    if (typ === 'korupce') return 'Vlček zůstal ve službě republice a Vraného případ v úředních rozhovorech nezmiňoval.';
+    return 'Vlček zůstal ve své funkci a pokračoval v práci stejným způsobem jako předtím.';
   }
 
   function _epilogHorakova(typ, stav) {
@@ -1187,9 +1287,9 @@ const Engine = (() => {
     if (z) return z;
     /* Důvěra u Horákové je ve stavu pod klíčem zavadova (viz Characters._duveraProDialog / cases._duveraKlicProPozadavek). */
     const trust = Number(stav.trust && stav.trust.zavadova) || 0;
-    if (typ === 'hrdina')        return 'Vydala sérii článků. Tři novináři přišli o práci kvůli ní. Pokračovala.';
-    if (trust >= 2)              return 'Napsala o Vraném. Ne o případu — o člověku.';
-    return 'Sledovala případ z dálky. Psala o jiných věcech.';
+    if (typ === 'hrdina')        return 'Horáková vydala sérii článků a pokračovala v práci i poté, co kvůli ní tři novináři přišli o místo.';
+    if (trust >= 2)              return 'Horáková napsala o Vraném text, který se nesoustředil jen na případ, ale i na člověka za soudcovským stolem.';
+    return 'Horáková sledovala případ z dálky a ve své práci se později věnovala jiným tématům.';
   }
 
   function _epilogKaras(typ, stav) {
@@ -1197,57 +1297,57 @@ const Engine = (() => {
     if (z) return z;
     const tr = Number(stav.trust && stav.trust.karas) || 0;
     if (typ === 'utek') {
-      return 'Půjčky bere dál — jen se o Vraném v lokálu už nevyptává. Říká, že někteří klienti jsou „dočasně mimo dosah“.';
+      return 'Karas půjčoval peníze dál, ale o Vraném se už v lokálu nevyptával a říkal jen, že někteří klienti jsou dočasně mimo dosah.';
     }
     if (typ === 'korupce') {
-      return 'Úsměv zůstal stejný; jen smlouvy nosil častěji lidem, kteří už nepotřebují soudní síň.';
+      return 'Karas si ponechal stejný způsob jednání, jen častěji nosil smlouvy lidem, kteří už soudní síň nepotřebovali.';
     }
     if (typ === 'odvolani') {
-      return 'Vraného v účtech nechává být. Příliš mnoho jmen na jednom stole, prý — až moc čitelných.';
+      return 'Karas nechal Vraného v účtech stranou, protože kolem případu zůstalo příliš mnoho čitelných jmen.';
     }
     if (typ === 'atentát') {
-      return 'V týdnech chaosu půjčoval dál. Peníze neznají politiku, říkával — jen splatnost.';
+      return 'Karas půjčoval peníze i v týdnech chaosu a opakoval, že peníze podle něj neznají politiku, jen splatnost.';
     }
     if (typ === 'hrdina') {
-      return 'U šachovnice dlouho mlčel. Pak jen odfrkl, že každý musí jednou risknout — a zase hrál dál.';
+      return 'Karas u šachovnice dlouho mlčel a nakonec poznamenal, že každý člověk musí někdy přijmout riziko.';
     }
     if (tr >= 2) {
-      return 'Vraného si nechal v hlavě jako číslo, které se vyplatí nechat žít — pro jindy.';
+      return 'Karas si Vraného zapamatoval jako člověka, kterého se mohlo vyplatit nechat pro pozdější příležitost.';
     }
-    return 'U okna v U Fleků seděl jako vždy. Kávu pije teplejší — účty chladnější.';
+    return 'Karas dál sedával u okna v U Fleků a vedl své účty se stejnou pečlivostí jako dřív.';
   }
 
   function _epilogMasek(typ, stav) {
     const z = _epilogRadekZeSouboru(typ, 'masek', stav);
     if (z) return z;
-    if (typ === 'korupce') return 'Přivítal Vraného mezi svými. Nikdy o tom nemluvili.';
-    return 'Odešel do penze o rok dříve. Bez rozloučení.';
+    if (typ === 'korupce') return 'Mašek přijal Vraného mezi lidi, kteří se naučili s režimem spolupracovat, a nikdy o tom nemluvili nahlas.';
+    return 'Mašek odešel do penze o rok dříve a s většinou kolegů se nerozloučil.';
   }
 
   function _epilogBenes(typ, stav) {
     const z = _epilogRadekZeSouboru(typ, 'benes', stav);
     if (z) return z;
     const identified = stav.flags && stav.flags.benes_identified;
-    if (identified && typ === 'hrdina') return 'Přišel na pohřeb. Nestál blízko. Ale byl tam.';
-    if (identified) return 'Odešel tiše. Nikdo nevěděl, kdo byl.';
-    return 'Starý muž. Vraný nikdy nezjistil, kdo byl.';
+    if (identified && typ === 'hrdina') return 'Beneš přišel na pohřeb, nestál blízko rakve, ale zůstal až do konce.';
+    if (identified) return 'Beneš odešel tiše a většina lidí v budově se nikdy nedozvěděla, kdo vlastně byl.';
+    return 'Vraný se nikdy nedozvěděl, kdo byl starý muž, který se kolem případu objevil.';
   }
 
   function _epilogNovak(typ, stav) {
     const z = _epilogRadekZeSouboru(typ, 'novak', stav);
     if (z) return z;
     const endingTexty = {
-      odvolani: 'Dr. Benedikt Vraný byl odvolán z funkce. Kariéra skončila. Přestěhoval se na venkov.',
-      korupce:  'Dr. Benedikt Vraný se stal součástí systému. Přesně tak, jak se bál.',
+      odvolani: 'Dr. Benedikt Vraný byl odvolán z funkce, jeho soudcovská kariéra skončila a později se přestěhoval na venkov.',
+      korupce:  'Dr. Benedikt Vraný se postupně stal součástí systému, kterého se na začátku své služby obával.',
       'atentát':  'Dr. Benedikt Vraný zemřel 28. března 1931. Příčina nebyla nikdy plně objasněna.',
-      preziti:  'Dr. Benedikt Vraný došel na konec roku s rozpačitým úlevou — úřad přežil, tělo taky. Co dál, to už nepsali noviny.',
-      hrdina:   'Dr. Benedikt Vraný přežil. A věděl — napravit minulost správnými rozhodnutími nejde. Ale žít s ní — to ano.',
-      smireni:  'Dr. Benedikt Vraný si odnesl ticho, ve kterém se dá dýchat. Nebyl čistý — ale nebyl rozbitý.',
-      utek:     'Dr. Benedikt Vraný nechal žaluzie stažené. Venku hluk; uvnitř jenom účty, které sedí.',
-      rad:      'Dr. Benedikt Vraný si myslel, že slyší smích dozadu. Možná to byl jen větřík v šachtě.',
-      anna:     'Dr. Benedikt Vraný večer zhasínal knihu dřív než poslední větu. A přesto usnul lehčeji než včera.'
+      preziti:  'Dr. Benedikt Vraný došel na konec roku s opatrnou úlevou, protože úřad i jeho vlastní život pokračovaly dál.',
+      hrdina:   'Dr. Benedikt Vraný přežil a pochopil, že minulost nejde napravit správnými rozhodnutími, ale je možné s ní dál žít.',
+      smireni:  'Dr. Benedikt Vraný odešel z příběhu bez jistoty vlastní čistoty, ale také bez úplného zlomení.',
+      utek:     'Dr. Benedikt Vraný nechal žaluzie stažené a soustředil se na každodenní účty, které šly alespoň spočítat.',
+      rad:      'Dr. Benedikt Vraný dál žil s pochybností, zda se některé události skutečně staly tak, jak si je pamatoval.',
+      anna:     'Dr. Benedikt Vraný večer zhasínal dřív než dřív a po dlouhé době usínal klidněji.'
     };
-    return endingTexty[typ] || 'Dr. Benedikt Vraný. 1931.';
+    return endingTexty[typ] || 'Dr. Benedikt Vraný uzavřel svůj příběh v roce 1931.';
   }
 
   // --- HELPERS ---
@@ -1257,6 +1357,7 @@ const Engine = (() => {
     if (!baseF || typeof Narrative === 'undefined' || !Narrative.doplnDenVTydneDoTitulku) return baseF;
     return {
       ...baseF,
+      day: Number(den) || Number(State.get('currentDay')) || 1,
       title: Narrative.doplnDenVTydneDoTitulku(baseF.title, den)
     };
   }
@@ -1266,7 +1367,17 @@ const Engine = (() => {
       if (inlineFragment) {
         UI.zobrazFragment(inlineFragment, resolve);
       } else if (id) {
-        Narrative.zobrazFragment(id, resolve);
+        const den = Number(State.get('currentDay')) || 1;
+        const f =
+          typeof DataLoader !== 'undefined' && DataLoader.ziskejFragment
+            ? DataLoader.ziskejFragment(id)
+            : null;
+        if (f) {
+          State.oznacFragment(id);
+          UI.zobrazFragment(_titulFragmentuSDnem(f, den), resolve);
+        } else {
+          Narrative.zobrazFragment(id, resolve);
+        }
       } else {
         resolve();
       }
@@ -1280,12 +1391,6 @@ const Engine = (() => {
         Desk.aktualizujVse();
         resolve();
       });
-    });
-  }
-
-  function _cekejNaDen23Modal() {
-    return new Promise(resolve => {
-      UI.zobrazModalDen23Krize(() => resolve());
     });
   }
 

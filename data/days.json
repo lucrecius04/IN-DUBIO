@@ -13,9 +13,10 @@
     "adventure_scene": {
       "id": "adventure_benes_d1_dev",
       "_poznamka_dev": "Dočasně: rozhovor s Benešem v kanceláři pro ladění UI. Před návratem k scénáři smaž celý klíč adventure_scene u dne 1.",
-      "portrait": "benes",
+      "portrait": "src/skici/skica_okno.png",
+      "portrait_alt": "Ilustrace: okno soudcovské kanceláře",
       "portrait_label": "Alois Beneš",
-      "portrait_description": "Sedmdesátník, šedé vlasy, tmavý kabát. Člověk, který si na svůj věk nepřipouští slabost — ale ruce ho prozradí.",
+      "portrait_description": "Okno v kanceláři — šedé světlo, déšť na skle. Mezi větami je ticho, které patří i venku.",
       "trigger": "morning_after_fragment",
       "blocks_cases_until_complete": false,
       "screens": [
@@ -78,7 +79,8 @@
           "speaker": "Beneš",
           "text": "Nechci, abyste mě litoval. Nechci omluvu — ta Karlovi nepomůže. Chci jen, abyste věděl, co bylo. Co uděláte s tím věděním, to je Vaše věc. Vstal. Na chvíli se zastavil u dveří. Vy jste věděl, že ten spis byl tenký. Každý soudce to ví. Jen jste nepřečetl, co tam chybělo.",
           "choices": null,
-          "next": null
+          "next": null,
+          "morning_fragment_append": "Alois to řekl nahlas a na listu je totéž: Karel bral jídlo ze skladu, ne stroje, a v obžalobě stála sabotáž. Ben už nemá prostor si říkat, že šlo o nejasné formulace nebo o chybu v jednom odstavci.\n\nRok 1927 si vybaví jako rušný den s krátkým spisem. Neprošel ho pozorně; chtěl mít věc uzavřenou a odejít. Karel mezitím zemřel ve vazbě dřív, než proběhlo odvolání.\n\nSoudní provoz zůstane stejný. Ben ale cítí, že když říká, že jen dodržoval zákon, u tohoto případu to tak jednoduché není. S nikým o tom nemluví. Práci dělá jako vždycky, jen mu déle trvá soustředit se na běžné věci."
         },
         {
           "id": "d1dev_s5b",
@@ -106,7 +108,8 @@
           "speaker": "narrator",
           "text": "Beneš odešel. Obálka zůstala na stole. Ben ji vzal, přečetl list a uložil do kabátu — k srdci, ne do zásuvky. Švejda přinesl kávu a Ben mu poděkoval a díval se z okna. Venku šlo kolem pár lidí a žádný z nich nevěděl nic o Karlovi Benešovi.",
           "choices": null,
-          "next": null
+          "next": null,
+          "morning_fragment_append": "Ben si list přečetl až sám, když už Alois odešel, ale v hlavě mu pořád běží jeho věty. Na papíře je totéž: jídlo ze skladu a v obžalobě sabotáž.\n\nRok 1927 si vybaví jako rušný den s krátkým spisem. Neprošel ho pozorně; chtěl mít věc uzavřenou a odejít. Karel mezitím zemřel ve vazbě dřív, než proběhlo odvolání.\n\nSoudní provoz zůstane stejný. Ben ale cítí, že když říká, že jen dodržoval zákon, u tohoto případu to tak jednoduché není. S nikým o tom nemluví. Práci dělá jako vždycky, jen mu déle trvá soustředit se na běžné věci."
         }
       ]
     },
@@ -292,7 +295,7 @@
     "morning_fragment": "fragment_d7_nedele_rano",
     "cases": [],
     "desk_bez_spisu_titul": "Neděle",
-    "desk_bez_spisu_text": "Žádné spisy, žádná jednání. Neděle patří tomu, kdo si ji vezme.",
+    "desk_bez_spisu_text": "Žádné spisy, žádná jednání. Neděle patří tomu, kdo umí odpočívat.",
     "newspaper_conditional_lines": [
       {
         "condition": {
@@ -407,7 +410,7 @@
     ],
     "morning_fragment": null,
     "evening_choice": {
-      "text": "Vlčkův dopis přišel dopoledne — tentokrát ne chválou, ale upozorněním. Dnešní případ byl sledovaný. Ben to věděl ještě před rozsudkem. Teď je konec pracovního dne a výsledek je zapsaný v protokolu.",
+      "text": "Vlčkův dopis přišel dopoledne — tentokrát nikoliv s chválou, ale s upozorněním. Dnešní případ byl sledovaný. Ben to věděl ještě před rozsudkem. Teď je konec pracovního dne a výsledek je zapsaný v protokolu.",
       "options": [
         {
           "text": "Zapíšeš si stručnou poznámku o dnešním jednání. Jen fakta, bez hodnocení.",
@@ -506,7 +509,7 @@
       true
     ],
     "evening_choice": {
-      "text": "Alois Beneš přišel a odešel. Co řekl, zůstane v kanceláři ještě dlouho — nebo aspoň do té doby, než bude Ben muset udělat nějaké rozhodnutí, které to zpřesní.",
+      "text": "Alois Beneš přišel a odešel. Co řekl, zůstane v kanceláři ještě dlouho — nebo aspoň do té doby, než bude Ben muset udělat nějaké rozhodnutí.",
       "options": [
         {
           "text": "Zapíšeš si krátkou poznámku o Benešově návštěvě. Jen to, co řekl — doslova.",
@@ -526,9 +529,10 @@
     },
     "adventure_scene": {
       "id": "adventure_benes_d9",
-      "portrait": "benes",
+      "portrait": "src/skici/skica_okno.png",
+      "portrait_alt": "Ilustrace: okno soudcovské kanceláře",
       "portrait_label": "Alois Beneš",
-      "portrait_description": "Sedmdesátník, šedé vlasy, tmavý kabát. Člověk, který si na svůj věk nepřipouští slabost — ale ruce ho prozradí.",
+      "portrait_description": "Okno v kanceláři — šedé světlo, déšť na skle.",
       "trigger": "morning_after_fragment",
       "blocks_cases_until_complete": false,
       "screens": [
@@ -616,7 +620,7 @@
           "text": "Nechci, abyste mě litoval. Nechci omluvu — ta Karlovi nepomůže. Chci jen, abyste věděl, co bylo. Co uděláte s tím věděním, to je Vaše věc. Vstal. Na chvíli se zastavil u dveří. Vy jste věděl, že ten spis byl tenký. Každý soudce to ví. Jen jste nepřečetl, co tam chybělo.",
           "choices": null,
           "next": null,
-          "morning_fragment_append": "V zásuvce pod starými nálezy leží obálka od Aloise Beneše. Ben na ni celý den nemyslel — nebo si to aspoň říkal."
+          "morning_fragment_append": "Alois to řekl nahlas a na listu je totéž: Karel bral jídlo ze skladu, ne stroje, a v obžalobě stála sabotáž. Ben už nemá prostor si říkat, že šlo o nejasné formulace nebo o chybu v jednom odstavci.\n\nRok 1927 si vybaví jako rušný den s krátkým spisem. Neprošel ho pozorně; chtěl mít věc uzavřenou a odejít. Karel mezitím zemřel ve vazbě dřív, než proběhlo odvolání.\n\nSoudní provoz zůstane stejný. Ben ale cítí, že když říká, že jen dodržoval zákon, u tohoto případu to tak jednoduché není. S nikým o tom nemluví. Práci dělá jako vždycky, jen mu déle trvá soustředit se na běžné věci."
         },
         {
           "id": "s5b",
@@ -646,7 +650,7 @@
           "text": "Beneš odešel. Obálka zůstala na stole. Ben ji vzal, přečetl list a uložil do kabátu — k srdci, ne do zásuvky. Švejda přinesl kávu a Ben mu poděkoval a díval se z okna. Venku šlo kolem pár lidí a žádný z nich nevěděl nic o Karlovi Benešovi.",
           "choices": null,
           "next": null,
-          "morning_fragment_append": "V kapse kabátu je obálka od Aloise Beneše. Ben ví, co v ní je — teď musí vědět, co s tím."
+          "morning_fragment_append": "Ben si list přečetl až sám, když už Alois odešel, ale v hlavě mu pořád běží jeho věty. Na papíře je totéž: jídlo ze skladu a v obžalobě sabotáž.\n\nRok 1927 si vybaví jako rušný den s krátkým spisem. Neprošel ho pozorně; chtěl mít věc uzavřenou a odejít. Karel mezitím zemřel ve vazbě dřív, než proběhlo odvolání.\n\nSoudní provoz zůstane stejný. Ben ale cítí, že když říká, že jen dodržoval zákon, u tohoto případu to tak jednoduché není. S nikým o tom nemluví. Práci dělá jako vždycky, jen mu déle trvá soustředit se na běžné věci."
         }
       ]
     }
@@ -777,7 +781,7 @@
       true
     ],
     "evening_choice": {
-      "text": "Haas přišel osobně a odešel osobně. Na stole po něm nezůstalo nic — jen obálka nebo prázdné místo, podle toho, co Ben udělal. Termín operace matky je zítra.",
+      "text": "Haas přišel osobně a odešel osobně. Na stole po něm nezůstalo nic. Termín operace matky je zítra.",
       "options": [
         {
           "text": "Sepíšeš věcný záznam dne. Co kdo řekl, co kdo nabídl — bez hodnocení.",

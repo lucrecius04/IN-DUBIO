@@ -426,9 +426,10 @@
     },
     "adventure_scene": {
       "id": "adventure_benes_d9",
-      "portrait": "benes",
+      "portrait": "src/skici/skica_okno.png",
+      "portrait_alt": "Ilustrace: okno soudcovské kanceláře",
       "portrait_label": "Viktor Beneš",
-      "portrait_description": "Šedesátník, sivé vlasy, nenápadný oblek. Člověk, který si na nenápadnost dal záležet.",
+      "portrait_description": "Okno v kanceláři — šedé světlo, déšť na skle. Papír na stole je tenký; ticho stejně těžké.",
       "trigger": "morning_after_fragment",
       "blocks_cases_until_complete": false,
       "screens": [

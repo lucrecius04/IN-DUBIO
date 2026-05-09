@@ -49,13 +49,15 @@
   },
   {
     "id": "fragment_d6_morning",
-    "type": "letter",
+    "type": "fragment",
+    "narrative_image": "pressure",
     "title": "Anonymní zásilka",
-    "text": "Na pondělní poště byl i balíček bez zpáteční adresy — obálka z tuhého papíru, uvnitř jediná vizitka. Žádný průvodní dopis, žádné vysvětlení. Jen tištěné jméno:\n\nViktor Haas, průmyslník.\nTelefon, adresa v Bubenči.\n\nBen vizitku položil na kraj stolu vedle cigaretového pouzdra. Cestou do práce viděl na rohu nový plakát: POCHOD HLADU — STŘEDA — VÁCLAVSKÉ NÁMĚSTÍ. Pod ním někdo tužkou přepsal: Přijďte všichni.\n\nSložky na stole čekají. Vizitka taky čeká, ale jinak."
+    "text": "Na pondělní poště byl i balíček bez zpáteční adresy — obálka z tuhého papíru, uvnitř jediná vizitka. Žádný průvodní dopis, žádné vysvětlení. Jen tištěné jméno:\n\nViktor Haas, průmyslník.\nTelefon, adresa v Bubenči.\n\nBen vizitku položil na kraj stolu vedle cigaretového pouzdra. Cestou do práce viděl na rohu nový plakát: POCHOD HLADU — STŘEDA — VÁCLAVSKÉ NÁMĚSTÍ. Pod ním někdo tužkou přepsal: Přijďte všichni.\n\nSložky na stole čekají, stejně jako vizitka vedle nich."
   },
   {
     "id": "fragment_d7_nedele_rano",
-    "type": "letter",
+    "type": "fragment",
+    "narrative_image": "sunday",
     "title": "Neděle — prázdná budova",
     "text": "Soud v neděli nezasedá a Švejda zamyká budovu. Přesto si Ben vzal klíče.\n\nDoma by ho čekal prázdný stůl a Martinův dopis z pátku, na který ještě neodpověděl. Martin píše z Brna a ptá se na spravedlnost — teoreticky, jako student, ale Ben četl pod tím i otázku, na kterou sám nezná odpověď. Místo psaní si oblékl kabát a šel.\n\nV kanceláři je v neděli ticho jiného druhu — bez tabáku kolegů, bez kroků na chodbě. Jen papír a chlad. Ben otevřel okno a chvíli poslouchal město. Pak vzal pero a začal psát Martinovi. Napsal tři věty, přeškrtal dvě a nechal jednu: Mám se dobře. Práce pokračuje."
   },
@@ -63,7 +65,7 @@
     "id": "fragment_d7_nedele_vecer",
     "type": "dream",
     "title": "Nedělní večer",
-    "text": "Domů se vrátil před šestou. Uvařil čaj, protože káva byla od rána a víc ji nechtel. Z okna viděl sousedku věšet prádlo na šňůru nataženou přes dvůr — v březnu, v šest večer, ve tmě. Nezeptal se proč.\n\nZítra začíná druhý týden. Ben si lehl brzy a zkusil číst Lidové noviny, ale usnul ještě před hospodářskou rubrikou."
+    "text": "Domů se vrátil před šestou. Uvařil čaj, protože netknutou kávu z rána už nechtěl. Z okna viděl sousedku věšet prádlo na šňůru nataženou přes dvůr — v březnu, v šest večer, ve tmě. Nezeptal se proč.\n\nZítra začíná druhý týden. Ben si lehl brzy a zkusil číst Lidové noviny, ale usnul ještě před hospodářskou rubrikou."
   },
   {
     "id": "fragment_d8_morning",
@@ -87,7 +89,7 @@
     "id": "fragment_d11_morning_base",
     "type": "clipping",
     "title": "Ranní stůl — pondělí",
-    "text": "Na stole leží obálka, která tu nebyla v pátek. Tučné jméno odesilatele na zadní straně: Viktor Haas, Bubeneč.\n\nBen ji neotvírá hned. Na chodbě slyší kroky — dvoje, ne jedny — a Švejdův hlas, který někoho uvádí. Návštěvník přišel bez předchozí žádosti o jednání. To si může dovolit málokdo.\n\nPořad jednání pro dnešek leží přesně uprostřed stolu. Ben ho přečte, položí zpátky a sáhne po obálce.\n\nČtyři sta korun. Tolik potřebuje na matčinu operaci. Haas to zřejmě ví."
+    "text": "Na stole leží obálka, která tu nebyla v pátek. Tučné jméno odesilatele na zadní straně: Viktor Haas, Bubeneč.\n\nBen ji neotvírá hned. Na chodbě slyší kroky — dvoje, ne jedny — a Švejdův hlas, který někoho uvádí. Návštěvník přišel bez předchozí žádosti o jednání. To si může dovolit málokdo.\n\nPořad jednání pro dnešek leží přesně uprostřed stolu. Ben ho přečte, položí zpátky a sáhne po obálce.\n\nTři sta korun — v hotovosti, bez doprovodného listu. Na operaci v Podolí jich doktor účtuje čtyři sta; tahle suma Bena přiblíží, ale nezavře celý účet. Haas to zřejmě ví."
   },
   {
     "id": "fragment_d12_morning",
@@ -109,7 +111,8 @@
   },
   {
     "id": "fragment_d14_nedele_rano",
-    "type": "letter",
+    "type": "fragment",
+    "narrative_image": "sunday",
     "title": "Druhá neděle — Karasův telefonát",
     "text": "Druhá neděle v březnu je jiná než první.\n\nKaras zavolal ráno na telefon sousedky z přízemí — Ben nemá vlastní přístroj. Řekl jen: Přijdu odpoledne. Je to důležité. Vzpomínáš na Vídeň? A zavěsil.\n\nNa Vídeň vzpomíná Ben nerad. Vídeň znamená vzpomínka na přísahu, kterou oba složili jako studenti a oba porušili — každý jinak a v jiný rok. Karas to ví. Ben to ví.\n\nOdpoledne tedy bude jiné. Ben si uvařil kávu a čekal."
   },
@@ -141,13 +144,13 @@
     "id": "fragment_tyden_bonus_a",
     "type": "clipping",
     "title": "Poznámka do spisu",
-    "text": "Většinu spisů jsi tento týden poctivě prostudoval — ne přelétl pohledem, ale skutečně přečetl. Chodba o tom nevydá usnesení, ale zapisovatelka si všimla, že rozsudky trvaly déle než obvykle. Někdy to stačí."
+    "text": "Ben tento týden většinu spisů poctivě prostudoval. Nešlo jen o rychlé přečtení základních podkladů; u několika případů se skutečně zastavil a vrátil se k detailům. Chodba o tom nevydá usnesení, ale zapisovatelka si všimla, že některé rozsudky trvaly déle než obvykle."
   },
   {
     "id": "fragment_tyden_bonus_b",
     "type": "clipping",
     "title": "Úřední záznam",
-    "text": "Týden nabízel příležitosti, jak si práci ulehčit na úkor někoho jiného. Nevyužils je. Nikde to není zapsáno a nikdo ti za to nepoděkuje. Ale je to tak."
+    "text": "Týden nabízel příležitosti, jak si práci ulehčit na úkor někoho jiného. Ben je nevyužil. Nikde to není zapsáno a nikdo mu za to nepoděkuje, ale rozhodnutí padla bez úplatku."
   },
   {
     "id": "fragment_tyden_bonus_c",
@@ -159,25 +162,27 @@
     "id": "fragment_tyden_bonus_d",
     "type": "clipping",
     "title": "Týdenní vzorec",
-    "text": "Rozsudky tohoto týdne nesly jeden tón — konzistentní, čitelný, bez výkyvů podle toho, kdo co chtěl. Ministerstvo si toho nevšimne. Ale věřitelé a dlužníci, kteří prošli tvou síní, ano."
+    "text": "Rozsudky tohoto týdne nesly jeden tón: byly konzistentní a čitelné, bez výrazných výkyvů podle toho, kdo co chtěl. Ministerstvo si toho možná nevšimne, ale věřitelé a dlužníci, kteří prošli Benovou síní, ano."
   },
   {
     "id": "fragment_tyden_bonus_e",
     "type": "clipping",
     "title": "Těžké dny",
-    "text": "Byl to náročný týden — několik případů, které nešly rozseknout snadno. Přesto jsi je zkusil rozseknout poctivě. To není málo."
+    "text": "Byl to náročný týden s několika případy, které nešlo rozhodnout snadno. Ben se je přesto pokusil posoudit poctivě a bez zkratky."
   },
   {
     "id": "fragment_vyplata",
-    "type": "letter",
+    "type": "fragment",
+    "narrative_image": "skica_vyplata",
     "title": "Výplata",
-    "text": "Na stole leží obálka s výplatou: osmdesát korun na týden — přišla s úřední poštou, i když dnes soud nezasedá. Slušné peníze — dělník bere méně za celý měsíc. A přece: nájem, jídlo, uhlí, dluh u lékárny. A čtyři sta korun pro doktora Síbra.\n\nBen obálku schová do zásuvky. Spisy dnes nečekají; zůstane jen ticho kanceláře a papír, který si bere domů nebo nechává ležet."
+    "text": "S úřední poštou přišla obálka s týdenní výplatou: osmdesát korun. Soud dnes nezasedá, ale plat dorazil stejně jako vždy, podle pravidla a bez vysvětlení.\n\nBen peníze přepočítal a položil je vedle účtů. Nájem, jídlo, uhlí a dluh u lékárny z nich ukrojí většinu. Částku pro doktora Síbra tím nepokryje, ale aspoň na chvíli má z čeho zaplatit nejbližší výdaje.\n\nObálku potom zasunul do zásuvky. Na stole nezůstaly spisy, jen několik papírů, které bude muset vyřídit později."
   },
   {
     "id": "fragment_vyplata_druha",
-    "type": "letter",
+    "type": "fragment",
+    "narrative_image": "skica_vyplata",
     "title": "Výplata",
-    "text": "Zase neděle — a zase ta samá obálka: úřední razítko, stejná sazba, osmdesát korun. Není v tom překvapení ani pochvala; jen pravidlo, které platí, dokud platí úřad.\n\nBen ji nepočítá jako výhru. Spíš jako další dílek stejné skládačky: nájem, jídlo, uhlí, lékárna — a pořád ty čtyři sta korun, které Síbrovi dlužíš na matčinu operaci. Peníze z jednání nepřicházejí v neděli; dnes přidá jen tenhle pevný řádek.\n\nObálku zastrčí vedle minulého týdne. Zítra zase lavice a spisy. Dnes aspoň ví, že na chvíli nepřijde nic horšího než ticho."
+    "text": "Přišla další týdenní výplata: stejná obálka, stejné razítko a stejných osmdesát korun. Není to odměna navíc, jen pravidelná částka, se kterou může Ben na pár dní počítat.\n\nPeníze přidal k tomu, co zbylo z minulého týdne. Nájem, jídlo, uhlí a lékárna se znovu hlásí o své. Operace matky zůstává větší položkou, než jakou jedna výplata dokáže vyřešit.\n\nBen obálku uložil k ostatním dokladům. Zítra se soud znovu otevře a na stole budou čekat nové spisy."
   },
   {
     "id": "fragment_ekonomika_dluh_krize",

@@ -469,34 +469,54 @@
   transform: translateX(-50%);
   bottom: clamp(72px, 18vh, 140px);
   z-index: 8;
-  max-width: 420px;
+  max-width: 560px;
   width: calc(100% - 40px);
   margin: 0;
-  padding: 14px 18px;
+  padding: 24px 32px 26px;
   text-align: center;
-  font-family: var(--pismo-typewriter, 'IBM Plex Mono', monospace);
-  color: #231c12;
-  /* Plně krycí pozadí (žádná průhlednost přes dřevo stolu) */
-  background: linear-gradient(180deg, #f3ead8 0%, #e4d9c2 100%);
-  border: 1px solid #7a6a4e;
-  border-radius: 2px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
+  font-family: var(--pismo-narativ, 'EB Garamond', serif);
+  color: rgba(242, 229, 202, 0.94);
+  background:
+    linear-gradient(90deg, rgba(223, 182, 96, 0.12) 0 1px, transparent 1px calc(100% - 1px), rgba(223, 182, 96, 0.08) calc(100% - 1px)),
+    linear-gradient(180deg, rgba(223, 182, 96, 0.1) 0 1px, transparent 1px calc(100% - 1px), rgba(223, 182, 96, 0.08) calc(100% - 1px)),
+    radial-gradient(circle at 18% 12%, rgba(214, 176, 102, 0.14), transparent 34%),
+    linear-gradient(135deg, rgba(27, 18, 12, 0.96), rgba(7, 6, 5, 0.96));
+  border: 1px solid rgba(203, 166, 96, 0.32);
+  border-radius: 3px;
+  box-shadow:
+    0 0 0 1px rgba(255, 238, 196, 0.06) inset,
+    0 0 0 5px rgba(12, 8, 5, 0.28),
+    0 22px 52px rgba(0, 0, 0, 0.62);
+  pointer-events: none;
+}
+
+.desk-bez-spisu-hlaska::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(218, 184, 112, 0.14);
   pointer-events: none;
 }
 
 .desk-bez-spisu-hlaska__titul {
-  font-size: 11px;
-  letter-spacing: 0.12em;
+  display: inline-block;
+  padding: 4px 9px 3px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(218, 184, 112, 0.24);
+  background: rgba(0, 0, 0, 0.16);
+  font-family: var(--pismo-typewriter, 'IBM Plex Mono', monospace);
+  font-size: 10px;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  margin-bottom: 8px;
-  color: #3d3428;
+  color: rgba(226, 193, 126, 0.82);
 }
 
 .desk-bez-spisu-hlaska__text {
   margin: 0;
-  font-size: 13px;
-  line-height: 1.45;
-  font-style: italic;
+  font-size: clamp(17px, 1.45vw, 22px);
+  line-height: 1.46;
+  font-style: normal;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.32);
 }
 
 .slozka {
@@ -565,6 +585,15 @@
 .folder-spz {
   font-size: 9px;
   margin-bottom: 6px;
+}
+
+/* Interní tyč / obálka — bez fiktivního Sp. zn. na zelené (osobní) složce */
+.slozka.slozka--bez-uredni-spzn .folder-spz {
+  display: none;
+}
+
+.slozka.slozka--bez-uredni-spzn .folder-defendant:empty {
+  display: none;
 }
 
 .folder-title {

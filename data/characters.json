@@ -4,12 +4,6 @@
     "name": "Ministr Vlček",
     "dialogues": [
       {
-        "day": 14,
-        "condition": null,
-        "type": "visit",
-        "text": "Vraný, přestaňme si hrát na zdvořilosti. Oba víme, co se stalo před deseti lety. Jde mi o jeden konkrétní rozsudek. Jen jeden. A pak budeme kvit.\n\nOstatně — náklady na operaci Vaší matky jsou značné, že? Naše vláda má fond pro rodiny veřejných zaměstnanců. Stačí požádat správnou osobu."
-      },
-      {
         "day": 20,
         "condition": { "flag": "pravda_odhalena" },
         "type": "letter",
@@ -31,7 +25,7 @@
         "day": 10,
         "condition": null,
         "type": "visit",
-        "text": "Pane doktore, jmenuji se Věra Horáková. Píši pro Nezávislý deník. Sleduji Vaše rozsudky od prvního dne.\n\nNejsem tu, abych Vám dělala potíže. Jsem tu, protože někdo musí psát pravdu. A pravda — ta čeká na správného člověka, který ji osvobodí."
+        "text": "Pane doktore, jmenuji se Věra Horáková. Píšu pro Nezávislý deník a od vašeho nástupu sleduji, jak rozhodujete v napjatějších věcech.\n\nPřišla jsem bez ohlášení a prosila jsem vrátného o krátkou zastávku v předsíni. Nečekám od vás dnes žádné vyjádření k jednotlivému spisu a nic si nezapisuji. Chtěla jsem vás upozornit, že o vašich soudních dnech budu psát já, a abyste při rozhodování počítal s tím, že sál má i druhou stránku — veřejnou.\n\nNejsem tu, abych vám mařila řízení nebo nosila nátlak z redakce. Jsem tu proto, že po tomhle týdnu bude znovu řeč o tom, jak soud drží čáru mezi zákonem a politikou. Až budete chtít stručně vysvětlit stanovisko soudu k obecné věci, bez citlivých podrobností z konkrétního spisu, ozvěte se přes redakci. Dnes odcházím jen s tím, že víte, kdo vás bude veřejně citovat.\n\nBen odpověděl stručně a po jejím odchodu cítil spíše upozornění než hrozbu, ale věděl, že na veřejný ohlas bude muset myslet i u dalších výroků."
       },
       {
         "day": 17,
@@ -78,18 +72,20 @@
   },
   {
     "id": "benes",
-    "name": "Starý muž Beneš",
+    "name": "Benešovi",
     "dialogues": [
       {
         "day": 12,
         "condition": null,
         "type": "visit",
-        "text": "Pane doktore. Jmenuji se Josef Beneš. Přišel jsem vypovídat v případu číslo třiadvacet.\n\nAle... smím říct ještě jednu věc? Jednu větu?\n\nMůj bratr byl vězněm. Zemřel tam. V roce 1928. Jmenoval se Karel Beneš."
+        "visit_label": "Josef Beneš — svědek, bratr Karla",
+        "text": "V soudní budově jsou dny, kdy se jména skládají jako kostky — nevšímáš si jich, dokud nespadnou znovu na stejné políčko. Včera u tebe v kanceláři seděl Alois Beneš kvůli Karlovi. Dnes máš v plánu něco docela jiného: svědka v případu číslo třiadvacet, řádná výpověď, žádná soukromá audience. A přesto tě u dveří zastaví muž v šedém kabátě — jiný obličej než včera, stejná únava v ramenou, stejné příjmení na jazyku, jako by ho budova sama přinesla.\n\nPane doktore. Jmenuji se Josef Beneš. Přišel jsem vypovídat v případu číslo třiadvacet. Úředně patřím jen na seznam svědků — ale v tomhle domě se příjmení neztrácí v hluku.\n\nAle... smím říct ještě jednu věc? Jednu větu?\n\nMůj bratr byl vězněm. Zemřel tam. V roce 1928. Jmenoval se Karel Beneš.\n\nBen odvětil, co se k výslechu sluší — že bere na vědomí, že čas zaznamená. Hlas zněl klidně. Uvnitř ale cítil, jak mu minulost přitahuje obruč: nejdřív otec, teď bratr, zítra zase papír se stejným příjmením v jiné věci. Žádná hrozba v tom nebyla — jen opakující se důkaz, že se roku 2027 nedá utéct."
       },
       {
         "day": 20,
         "condition": { "flag": "benes_identified" },
         "type": "visit",
+        "visit_label": "Alois Beneš — otec Karla",
         "text": "Víte. Vidím to na Vás. Věděl jsem, že jednou přijdu před soudce, který ví.\n\nNechci nic. Nechci, abyste se omlouval. Nechci, abyste byl potrestán. Jsem stará troska.\n\nChci jen, abyste věděl, že Karel byl dobrý člověk."
       }
     ]
@@ -98,12 +94,6 @@
     "id": "haas",
     "name": "Průmyslník Haas",
     "dialogues": [
-      {
-        "day": 7,
-        "condition": null,
-        "type": "visit",
-        "text": "Pane doktore. Jsem Roman Haas. Jsem tu jako poškozená strana. Věřím, že zákon je jasný a Vaše rozhodnutí bude jasné také.\n\nZaujatost? Ale co — já nikoho neznám. Já jen žádám spravedlnost."
-      },
       {
         "day": 16,
         "condition": null,

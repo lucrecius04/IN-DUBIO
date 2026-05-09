@@ -16,7 +16,8 @@ const Narrative = (() => {
   const TYP_NADPIS = {
     letter:   'DOPIS',
     dream:    'SEN',
-    clipping: 'RÁNO'
+    clipping: 'RÁNO',
+    visit:    'NÁVŠTĚVA'
   };
 
   /** Název dne v týdnu (kalendář hry = stejný posun jako u data ve fragmentech). */
@@ -57,6 +58,7 @@ const Narrative = (() => {
     const den = Number(State.get('currentDay')) || 1;
     const sTitulem = {
       ...fragment,
+      day: den,
       title: doplnDenVTydneDoTitulku(fragment.title, den)
     };
     UI.zobrazFragment(sTitulem, callback);

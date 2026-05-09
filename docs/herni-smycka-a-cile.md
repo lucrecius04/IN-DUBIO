@@ -25,7 +25,7 @@ Hráč je soudce Benedikt Vraný. Hra probíhá po **dnech** řízených `data/d
 - Vyprší případné **ráno bonusy** (např. káva → +1 kapka).
 - Po uplynutí platnosti se vymaže `flags.records_free_until_day`.
 - Načtou se data dne, nastaví se **případy dne** (`Cases.nastavPripadyProDen`), aktualizují se **složky** na stole.
-- **Ekonomika ráno:** lékařský buff, Karasův dluh, **nedělní výplata** (+80 Kčs v **1. a 2. neděli** = dny 7 a 14), varování při bankrotu, dluh > 100, speciální **den 15** (modal krize / Haas — dříve den 23 u 20d scénáře).
+- **Ekonomika ráno:** lékařský buff, Karasův dluh, **nedělní výplata** (+80 Kčs v **1. a 2. neděli** = dny 7 a 14), varování při bankrotu, dluh > 100. Nabídka Haase (300 Kčs, matčina operace) je jen ve spisu **`tyc_haas_d11`** v den 15 — bez samostatného ráno modálu.
 - **Ranní fragment** podle `days.json` (u testovacího režimu může být den 1 zjednodušen).
 - **Revize spisů** — ve **15denní** verzi **vypnuty** (`MIGRACE_20-15.md`); data `review_card` v JSON se nečtou.
 - **Dialogy postav** jako dopisy/fragmenty (den 1 může být v testu přeskočen).

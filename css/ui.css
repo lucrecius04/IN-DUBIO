@@ -1070,6 +1070,7 @@ button.knihovna-link:hover {
   z-index: 200;
 }
 
+/* Ranní krize 23. března (Haas / Karas / operace) — stejný rám jako večer. */
 .vecer-panel {
   max-width: 480px;
 }
@@ -1311,51 +1312,100 @@ button.knihovna-link:hover {
 
 #modal-tyden-shrnuti {
   z-index: 205;
-  background: rgba(12, 10, 6, 0.88);
+  background:
+    radial-gradient(circle at 50% 44%, rgba(55, 31, 16, 0.5), transparent 44%),
+    rgba(8, 5, 3, 0.9);
 }
 
 .tyden-shrnuti-panel {
-  max-width: 460px;
-  width: min(460px, 94vw);
+  position: relative;
+  max-width: 620px;
+  width: min(620px, 94vw);
   margin: auto;
-  padding: 22px 24px 20px;
+  padding: 30px 34px 28px;
   box-sizing: border-box;
+  border: 1px solid rgba(203, 166, 96, 0.32);
+  border-radius: 3px;
+  background:
+    linear-gradient(90deg, rgba(223, 182, 96, 0.1) 0 1px, transparent 1px calc(100% - 1px), rgba(223, 182, 96, 0.08) calc(100% - 1px)),
+    linear-gradient(180deg, rgba(223, 182, 96, 0.1) 0 1px, transparent 1px calc(100% - 1px), rgba(223, 182, 96, 0.08) calc(100% - 1px)),
+    radial-gradient(circle at 18% 12%, rgba(214, 176, 102, 0.15), transparent 34%),
+    linear-gradient(135deg, rgba(27, 18, 12, 0.98), rgba(7, 6, 5, 0.98));
+  box-shadow:
+    0 0 0 1px rgba(255, 238, 196, 0.06) inset,
+    0 0 0 5px rgba(12, 8, 5, 0.34),
+    0 24px 62px rgba(0, 0, 0, 0.72);
+  color: rgba(242, 229, 202, 0.94);
+}
+
+.tyden-shrnuti-panel::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(218, 184, 112, 0.14);
+  pointer-events: none;
 }
 
 .tyden-shrnuti-cas {
+  display: inline-block;
+  width: fit-content;
+  padding: 4px 9px 3px;
   font-family: var(--pismo-typewriter);
   font-size: 10px;
-  letter-spacing: 0.28em;
-  color: var(--barva-text-slaby);
-  margin-bottom: 14px;
+  letter-spacing: 0.24em;
+  color: rgba(226, 193, 126, 0.82);
+  background: rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(218, 184, 112, 0.24);
+  margin-bottom: 18px;
   text-transform: uppercase;
 }
 
 .tyden-shrnuti-hlavni {
   font-family: var(--pismo-narativ);
-  font-size: 16px;
-  line-height: 1.75;
-  color: var(--barva-text);
-  font-style: italic;
-  margin: 0 0 18px;
+  font-size: clamp(18px, 1.35vw, 22px);
+  line-height: 1.7;
+  color: rgba(242, 229, 202, 0.94);
+  font-style: normal;
+  margin: 0 0 22px;
   white-space: pre-line;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.28);
 }
 
 .tyden-shrnuti-jemne {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  padding-left: 14px;
+  border-left: 1px solid rgba(226, 193, 126, 0.24);
 }
 
 .tyden-shrnuti-jemne-radek {
   font-family: var(--pismo-telo);
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--barva-text);
-  opacity: 0.92;
-  margin: 0 0 6px;
+  font-size: 13px;
+  line-height: 1.58;
+  color: rgba(238, 225, 198, 0.68);
+  margin: 0 0 8px;
 }
 
 #tyden-shrnuti-pokracovat {
   width: 100%;
+  min-height: 38px;
+  border: 1px solid rgba(214, 176, 102, 0.36);
+  border-radius: 2px;
+  background:
+    linear-gradient(90deg, rgba(218, 184, 112, 0.1), rgba(218, 184, 112, 0.035)),
+    rgba(0, 0, 0, 0.16);
+  color: rgba(238, 225, 198, 0.88);
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+#tyden-shrnuti-pokracovat:hover {
+  border-color: rgba(226, 193, 126, 0.6);
+  background:
+    linear-gradient(90deg, rgba(218, 184, 112, 0.2), rgba(218, 184, 112, 0.06)),
+    rgba(0, 0, 0, 0.12);
+  color: rgba(255, 245, 218, 0.98);
 }
 
 /* ==========================================
@@ -2062,6 +2112,106 @@ button.knihovna-link:hover {
   display: none;
 }
 
+/* Předepilog a epilog — v levém sloupci zůstane podtitul (večerní šablona ho jinak skrývá). */
+.narativ-scena--vecer.narativ-scena--konec-prelude .narativ-nadpis,
+.narativ-scena--vecer.narativ-scena--konec-hry .narativ-nadpis {
+  display: block;
+}
+
+/* --- Konec kampaně: předepilog (modal-konec-prelude) --- */
+#modal-konec-prelude .narativ-scena--konec-prelude .narativ-panel {
+  text-align: left;
+}
+
+#modal-konec-prelude .konec-prelude-uvod {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 11px;
+  line-height: 1.65;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(214, 190, 148, 0.72);
+  padding: 12px 14px;
+  margin: 0 0 18px;
+  border: 1px solid rgba(214, 176, 102, 0.22);
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.22);
+  box-shadow: 0 0 0 1px rgba(255, 240, 205, 0.04) inset;
+}
+
+#modal-konec-prelude .konec-prelude-nadpis {
+  margin: 0 0 16px;
+  padding: 0;
+  font-family: var(--pismo-nadpis, Georgia, serif);
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(255, 244, 220, 0.96);
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
+}
+
+#modal-konec-prelude .konec-prelude-telo {
+  margin: 0;
+}
+
+#modal-konec-prelude .konec-prelude-odstavec {
+  font-family: var(--pismo-narativ, "EB Garamond", serif);
+  font-size: clamp(16px, 1.1vw, 18px);
+  line-height: 1.78;
+  color: rgba(238, 225, 198, 0.9);
+  margin: 0 0 14px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.28);
+}
+
+#modal-konec-prelude .konec-prelude-odstavec:last-child {
+  margin-bottom: 0;
+}
+
+#modal-konec-prelude .narativ-scena--konec-prelude .narativ-actions {
+  margin-top: 36px;
+}
+
+/* --- Finální epilog (#konec-hry-overlay) --- */
+.konec-hry-wrap {
+  width: 100%;
+  max-width: min(1320px, calc(100vw - 32px));
+  margin: auto;
+}
+
+.konec-hry-panel.vecer-panel {
+  width: 100%;
+}
+
+.narativ-scena--konec-hry .konec-epilog {
+  text-align: left;
+  max-width: none;
+  margin: 0;
+}
+
+.narativ-scena--konec-hry .epilog-radek {
+  color: rgba(238, 225, 198, 0.88);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.28);
+}
+
+/* Jména postav — globální strong je tmavý (papír); v epilogu musí být čitelné. */
+.narativ-scena--konec-hry .epilog-radek strong {
+  color: rgba(255, 246, 222, 0.96);
+  font-weight: 700;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
+}
+
+.narativ-scena--konec-hry .epilog-radek--novak {
+  color: rgba(255, 246, 222, 0.98);
+  border-top-color: rgba(214, 176, 102, 0.28);
+}
+
+.narativ-scena--konec-hry .narativ-actions {
+  margin-top: 40px;
+}
+
+.narativ-scena--konec-hry #konec-restart.konec-restart {
+  animation: konecHryText 2s ease 2.2s both;
+}
+
 .narativ-shell .fragment-nadpis {
   margin: -2px 0 16px;
   padding-bottom: 14px;
@@ -2203,7 +2353,7 @@ button.knihovna-link:hover {
 }
 
 /* ==========================================
-   ADVENTURE SCÉNA
+   ADVENTURE SCÉNA — stejný „noir“ rámec jako narativní fragment
    ========================================== */
 
 #modal-adventure {
@@ -2211,85 +2361,73 @@ button.knihovna-link:hover {
   background: rgba(8, 6, 4, 0.9);
 }
 
-.modal-adventure-inner {
-  width: min(900px, 94vw);
-  min-height: min(520px, 84vh);
-  max-height: 88vh;
-  display: flex;
-  gap: 20px;
-  padding: 22px;
-  box-sizing: border-box;
+#modal-adventure .narativ-shell {
+  background:
+    radial-gradient(circle at 24% 18%, rgba(196, 163, 90, 0.14), transparent 32%),
+    linear-gradient(135deg, rgba(25, 17, 12, 0.99), rgba(6, 5, 4, 0.99));
+  border-color: rgba(196, 163, 90, 0.28);
 }
 
-.adventure-portrait-col {
-  width: 28%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+#modal-adventure .fragment-panel.narativ-shell,
+#modal-adventure > .narativ-shell {
+  background-color: #120c08 !important;
 }
 
-.adventure-portrait-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border: 1px solid rgba(100, 60, 20, 0.25);
+.narativ-scena--adventure .narativ-vizual {
+  gap: 12px;
 }
 
-.adventure-speaker-label {
-  min-height: 18px;
-  font-family: var(--pismo-typewriter);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  color: rgba(90, 62, 40, 0.72);
+/* Popis postavy pod kickerem — menší než titulek ilustrace ve fragmentu */
+.narativ-scena--adventure .adventure-nadpis-popis {
+  margin: -4px 0 10px;
+  padding-bottom: 0;
+  font-family: var(--pismo-narativ, "EB Garamond", serif);
+  font-size: clamp(14px, 1.05vw, 17px);
+  font-weight: 400;
+  line-height: 1.42;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: rgba(224, 202, 158, 0.82);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+}
+
+.narativ-scena--adventure .adventure-nadpis-popis::after {
+  display: none;
+}
+
+.narativ-scena--adventure .narativ-ilustrace--adventure-portret {
+  flex: 0 1 auto;
+  min-height: 200px;
+  max-height: min(360px, 40vh);
+}
+
+.narativ-scena--adventure .narativ-ilustrace--adventure-portret img {
+  max-height: min(340px, 38vh);
+  object-fit: cover;
+  object-position: center 15%;
+}
+
+.adventure-mluvci {
+  min-height: 1.15em;
+  margin-top: 2px;
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 10px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   text-align: center;
+  color: rgba(226, 193, 126, 0.88);
 }
 
-.adventure-content-col {
-  width: 72%;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
+.adventure-mluvci:empty {
+  display: none;
 }
 
-.adventure-text-body {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
-  font-family: var(--pismo-narativ);
-  font-size: 17px;
-  line-height: 1.75;
-  color: rgba(30, 15, 5, 0.9);
-  padding-right: 4px;
+#modal-adventure .adventure-dialog-text {
+  max-width: none;
 }
 
-.adventure-choices-container {
-  margin-top: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.adventure-choice-btn,
-.adventure-continue-btn {
-  width: 100%;
-  padding: 11px 14px;
-  border: 1px solid rgba(100, 60, 20, 0.3);
-  background: rgba(240, 232, 208, 0.5);
-  color: rgba(30, 15, 5, 0.88);
-  font-family: var(--pismo-telo);
-  font-size: 14px;
-  font-style: italic;
-  text-align: left;
-  cursor: pointer;
-  transition: background var(--prechod-rychly), border-color var(--prechod-rychly);
-}
-
-.adventure-choice-btn:hover,
-.adventure-continue-btn:hover {
-  background: rgba(248, 240, 220, 0.65);
-  border-color: rgba(200, 165, 90, 0.85);
+#modal-adventure .adventure-dialog-actions {
+  margin-top: 28px;
 }
 
 /* ==========================================
@@ -2531,27 +2669,46 @@ button.knihovna-link:hover {
   pointer-events: auto;
 }
 
+#modal-archiv .archiv-obsah--split-scroll {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.archiv-list-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 2px;
+}
+
 /* Posuvník v zápisníku — ne system „černý“, ale hnědý/pergamen vůči PNG */
 #modal-archiv .archiv-obsah,
-#modal-archiv .knihovna-panel {
+#modal-archiv .knihovna-panel,
+#modal-archiv .archiv-list-scroll {
   scrollbar-width: thin;
   scrollbar-color: rgba(105, 72, 42, 0.65) rgba(228, 212, 180, 0.42);
 }
 
 #modal-archiv .archiv-obsah::-webkit-scrollbar,
-#modal-archiv .knihovna-panel::-webkit-scrollbar {
+#modal-archiv .knihovna-panel::-webkit-scrollbar,
+#modal-archiv .archiv-list-scroll::-webkit-scrollbar {
   width: 8px;
 }
 
 #modal-archiv .archiv-obsah::-webkit-scrollbar-track,
-#modal-archiv .knihovna-panel::-webkit-scrollbar-track {
+#modal-archiv .knihovna-panel::-webkit-scrollbar-track,
+#modal-archiv .archiv-list-scroll::-webkit-scrollbar-track {
   background: rgba(232, 218, 188, 0.4);
   border-radius: 5px;
   margin: 2px 0;
 }
 
 #modal-archiv .archiv-obsah::-webkit-scrollbar-thumb,
-#modal-archiv .knihovna-panel::-webkit-scrollbar-thumb {
+#modal-archiv .knihovna-panel::-webkit-scrollbar-thumb,
+#modal-archiv .archiv-list-scroll::-webkit-scrollbar-thumb {
   background: linear-gradient(
     90deg,
     rgba(88, 58, 32, 0.55),
@@ -2562,7 +2719,8 @@ button.knihovna-link:hover {
 }
 
 #modal-archiv .archiv-obsah::-webkit-scrollbar-thumb:hover,
-#modal-archiv .knihovna-panel::-webkit-scrollbar-thumb:hover {
+#modal-archiv .knihovna-panel::-webkit-scrollbar-thumb:hover,
+#modal-archiv .archiv-list-scroll::-webkit-scrollbar-thumb:hover {
   background: rgba(72, 46, 26, 0.72);
 }
 
@@ -2572,6 +2730,10 @@ button.knihovna-link:hover {
   gap: 6px;
   margin-bottom: 14px;
   align-items: center;
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 1;
+  padding: 2px 0 8px;
 }
 
 .archiv-rozsudky-filtr-btn {

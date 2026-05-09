@@ -304,20 +304,54 @@ const Desk = (() => {
     setTimeout(() => el.classList.remove('nova-faze'), 600);
   }
 
+  /** Zatím vypnuto: modal s detailem novin po kliknutí na výřež (true = zapnout znovu). */
+  const _NOVINY_DETAIL_MODAL = false;
+
   /** Kontext pro modály novin / dopisu na ilustrovaném stole */
   let _stulNovinyKontext = null;
   /** Po přečtení Vlčkova dopisu (fragment) v daný den už nezobrazovat obálku na stole. */
   const _obalkaStoluPrecetenaProDen = new Set();
 
-  function _formatujDatumStolu(den) {
+  /** Kalendářní datum herního dne (den 1 = pondělí 2. 3. 1931) — musí sedět s titulními PNG novin. */
+  function _datumKalendareProHerniDen(den) {
     const ZACATEK = new Date(1931, 2, 2);
     const datum = new Date(ZACATEK);
     datum.setDate(datum.getDate() + Number(den) - 1);
+    return datum;
+  }
+
+  function _formatujDatumStolu(den) {
+    const datum = _datumKalendareProHerniDen(den);
     const MESICE = [
       'ledna', 'února', 'března', 'dubna', 'května', 'června',
       'července', 'srpna', 'září', 'října', 'listopadu', 'prosince'
     ];
     return `${datum.getDate()}. ${MESICE[datum.getMonth()]} ${datum.getFullYear()}`;
+  }
+
+  /** Sobota / neděle v herním kalendáři — na stole se noviny nezobrazují. */
+  function _jeVikendProHerniDen(denCislo) {
+    const d = Number(denCislo);
+    if (!Number.isFinite(d) || d < 1) return false;
+    const dow = _datumKalendareProHerniDen(d).getDay();
+    return dow === 0 || dow === 6;
+  }
+
+  /**
+   * Grafika novin na stole: `src/newspaper/news-{den}-{mesic}-31.png` (Po–Pá v březnu 1931).
+   * Víkend: celý prvek novin je skrytý (`nastavNovinyDen`); cesta se pro víkend nepoužívá.
+   * Neznámý den: záložní šablona.
+   */
+  function _cestaGrafikyNovin(denCislo) {
+    const srcZaloha = 'src/newspaper - nepouzivane.png';
+    const d = Number(denCislo);
+    if (!Number.isFinite(d) || d < 1) return srcZaloha;
+    const datum = _datumKalendareProHerniDen(d);
+    const dow = datum.getDay();
+    if (dow === 0 || dow === 6) return srcZaloha;
+    const denMesice = datum.getDate();
+    const mesic = datum.getMonth() + 1;
+    return `src/newspaper/news-${denMesice}-${mesic}-31.png`;
   }
 
   function _novinyMetaZDen(denDat) {
@@ -357,6 +391,29 @@ const Desk = (() => {
   function nastavNovinyDen(denDat, datumStr) {
     let denCislo = Number(State.get('currentDay'));
     if (!Number.isFinite(denCislo) || denCislo < 1) denCislo = 1;
+    const vikend = _jeVikendProHerniDen(denCislo);
+    const novinyBtn = document.getElementById('desk-scene-noviny');
+    if (novinyBtn) {
+      novinyBtn.classList.toggle('skryto', vikend);
+      if (vikend) {
+        novinyBtn.classList.remove('desk-scene-noviny--detail-vypnut');
+        novinyBtn.removeAttribute('tabindex');
+        novinyBtn.removeAttribute('title');
+        novinyBtn.setAttribute('aria-label', 'Noviny — o víkendu nevycházejí');
+        const tt = document.getElementById('desk-predmet-tooltip');
+        if (tt) tt.classList.remove('viditelny');
+      } else if (!_NOVINY_DETAIL_MODAL) {
+        novinyBtn.classList.add('desk-scene-noviny--detail-vypnut');
+        novinyBtn.setAttribute('tabindex', '-1');
+        novinyBtn.setAttribute('aria-label', 'Noviny na stole — podrobný text zatím není');
+        novinyBtn.removeAttribute('title');
+      } else {
+        novinyBtn.classList.remove('desk-scene-noviny--detail-vypnut');
+        novinyBtn.removeAttribute('tabindex');
+        novinyBtn.removeAttribute('title');
+        novinyBtn.setAttribute('aria-label', 'Noviny na stole');
+      }
+    }
     const denEfektivni =
       denDat ||
       (typeof DataLoader !== 'undefined' && DataLoader.ziskejDen
@@ -390,17 +447,17 @@ const Desk = (() => {
     }
 
     const novinyImg = document.querySelector('#desk-scene-noviny .desk-scene-noviny__grafika');
-    if (novinyImg) {
-      const dd = String(Math.max(1, Math.floor(denCislo))).padStart(2, '0');
-      const srcDen = 'src/newspaper/day-' + dd + '.png';
+    if (novinyImg && !vikend) {
+      const srcDen = _cestaGrafikyNovin(denCislo);
       const srcZaloha = 'src/newspaper - nepouzivane.png';
       novinyImg.onerror = function _novinyObrazekChybi() {
         this.onerror = null;
-        if (this.src.indexOf('day-') !== -1 && this.getAttribute('data-zaloha-src') !== '1') {
+        if (this.src.indexOf('/news-') !== -1 && this.getAttribute('data-zaloha-src') !== '1') {
           this.setAttribute('data-zaloha-src', '1');
           this.src = srcZaloha;
         }
       };
+      novinyImg.removeAttribute('data-zaloha-src');
       novinyImg.src = srcDen;
     }
 
@@ -444,6 +501,7 @@ const Desk = (() => {
   }
 
   function _otevriModalNoviny() {
+    if (!_NOVINY_DETAIL_MODAL) return;
     const denDat = _stulNovinyKontext;
     const modal = document.getElementById('modal-desk-noviny');
     if (!modal) return;
@@ -459,9 +517,7 @@ const Desk = (() => {
     if (elH) elH.textContent = meta.headline;
     if (elT) {
       elT.innerHTML = String(meta.telo || '—').replace(/\r\n/g, '\n').replace(/\n/g, '<br>');
-      if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
-        Knihovna.obalSlovnikemVElementu(elT);
-      }
+      /* Prokliky do encyklopedie u novin zatím vypnuté (titulek + lead bez <a>). */
     }
     _otevriModalStul(modal);
   }
@@ -491,6 +547,7 @@ const Desk = (() => {
     _novinyObaalkaInit = true;
 
     if (noviny) {
+      /* Viditelnost, aria a třída detail-vypnut řídí `nastavNovinyDen` (víkend = skryto). */
       noviny.addEventListener('click', () => _otevriModalNoviny());
       noviny.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -542,6 +599,17 @@ const Desk = (() => {
       if (mNov && mNov.classList.contains('aktivni')) _zavriModalStul(mNov);
       if (mDop && mDop.classList.contains('aktivni')) _zavriModalStul(mDop);
     });
+    _pripojTooltipNovinNaStole();
+    /* Před prvním `aktualizujVse` ve `spustDen` — víkend / třída detail-vypnut hned podle uloženého dne. */
+    if (typeof State !== 'undefined') {
+      let denProNoviny = Number(State.get('currentDay'));
+      if (!Number.isFinite(denProNoviny) || denProNoviny < 1) denProNoviny = 1;
+      const dd =
+        typeof DataLoader !== 'undefined' && DataLoader.ziskejDen
+          ? DataLoader.ziskejDen(denProNoviny)
+          : null;
+      nastavNovinyDen(dd, _formatujDatumStolu(denProNoviny));
+    }
   }
 
   function _aktualizujStulVase(den) {
@@ -959,6 +1027,67 @@ const Desk = (() => {
     const y = Math.min(e.clientY + 16, window.innerHeight - 100);
     tooltip.style.left = x + 'px';
     tooltip.style.top  = y + 'px';
+  }
+
+  let _novinyTooltipPripojeno = false;
+
+  /** Stejný `#desk-predmet-tooltip` jako u lampy — jen pracovní dny, když je modál výřezu vypnutý. */
+  function _pripojTooltipNovinNaStole() {
+    if (_novinyTooltipPripojeno) return;
+    const noviny = document.getElementById('desk-scene-noviny');
+    const tooltip = document.getElementById('desk-predmet-tooltip');
+    if (!noviny || !tooltip) return;
+    const nazevTooltip = tooltip.querySelector('.rys-tooltip-nazev');
+    const textTooltip = tooltip.querySelector('.rys-tooltip-text');
+    if (!nazevTooltip || !textTooltip) return;
+    _novinyTooltipPripojeno = true;
+
+    const NAZEV = 'Svobodný obzor';
+    const TEXT =
+      'Svobodný tisk svobodného Československa.';
+
+    let tooltipTimer = null;
+    let posledniUdalost = null;
+
+    function zrusitTooltip() {
+      clearTimeout(tooltipTimer);
+      tooltipTimer = null;
+      posledniUdalost = null;
+      tooltip.classList.remove('viditelny');
+    }
+
+    function maZobrazitTooltip() {
+      if (_NOVINY_DETAIL_MODAL) return false;
+      const d = Number(State.get('currentDay'));
+      if (!Number.isFinite(d) || d < 1) return false;
+      return !_jeVikendProHerniDen(d);
+    }
+
+    noviny.addEventListener('mousemove', (e) => {
+      if (!maZobrazitTooltip()) {
+        zrusitTooltip();
+        return;
+      }
+      posledniUdalost = e;
+      if (tooltip.classList.contains('viditelny')) {
+        _nastavPoziciTooltipu(e, tooltip);
+        return;
+      }
+      if (!tooltipTimer) {
+        tooltipTimer = setTimeout(() => {
+          tooltipTimer = null;
+          if (!maZobrazitTooltip() || !posledniUdalost) return;
+          nazevTooltip.textContent = NAZEV;
+          textTooltip.textContent = TEXT;
+          tooltip.classList.add('viditelny');
+          _nastavPoziciTooltipu(posledniUdalost, tooltip);
+        }, 450);
+      }
+    });
+
+    noviny.addEventListener('mouseleave', () => {
+      zrusitTooltip();
+    });
   }
 
   return {

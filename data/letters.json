@@ -209,7 +209,7 @@
     "phase": "forenoon",
     "title": "Dopis od ministra Vlčka",
     "salutation": "Vážený pane doktore,",
-    "body": "dovolím si Vás upozornit, že jeden z dnešních spisů se týká záležitosti, o kterou se zajímají osoby z širšího politického prostředí.\n\nNepředjímám Vaše rozhodnutí — to by bylo nepřípustné. Pouze konstatuji, že Váš verdikt bude sledován s nadstandardní pozorností a že rozvaha, kterou jste dosud projevoval, bude v tomto případě zvláště vítána.",
+    "body": "dovolím si Vás upozornit, že spis ve věci Jiřího Veselého se týká záležitosti, o kterou se zajímají osoby z širšího politického prostředí.\n\nNepředjímám Vaše rozhodnutí — to by bylo nepřípustné. Pouze konstatuji, že Váš verdikt bude sledován s nadstandardní pozorností a že rozvaha, kterou jste dosud projevoval, bude v tomto případě zvláště vítána.",
     "closing": "JUDr. Alexandr Vlček\nministr spravedlnosti",
     "postscript": null,
     "condition": null,
@@ -232,7 +232,7 @@
     "phase": "morning_after_fragment",
     "title": "Dopis od ministra Vlčka",
     "salutation": "Pane doktore,",
-    "body": "očekávám, že záležitost, o níž jsem psal, bude vyřešena vhodným způsobem.\n\nNebudu zastírat: klid v justici je společný zájem nás všech. Věřím, že to vidíte stejně jako já — a že Vaše rozhodnutí bude takovému zájmu odpovídat.",
+    "body": "navazuji na včerejší dopis o Jiřím Veselém. Rozsudek je zapsán, ale politický rámec té věci tím nekončí — očekávám, že celkový dopad bude vhodný.\n\nNebudu zastírat: klid v justici je společný zájem nás všech. Věřím, že to vidíte stejně jako já — a že i u dnešních spisů zůstanete u stejné rozvahy.",
     "closing": "Vlček",
     "postscript": null,
     "condition": null,
@@ -266,7 +266,7 @@
         }
       ]
     },
-    "archive_summary": "Vlček očekává vhodné vyřešení. Nátlak — poprvé bez zdvořilostní omáčky."
+    "archive_summary": "Vlček po Veselém stupňuje nátlak: ne jde o nové líčení, ale o linii a dopady; dnešní spisy má brát ve stejném světle."
   },
   {
     "id": "benes_d9",
@@ -274,7 +274,7 @@
     "from": "benes",
     "format": "note",
     "delivery": "desk",
-    "phase": "morning_after_fragment",
+    "phase": "morning_first",
     "title": "Složený lístek",
     "salutation": "",
     "body": "Pane doktore,\nbudu dnes čekat u soudu do desíti hodin.\nProsím Vás o chvíli Vašeho času.\nJde o mého syna Karla.\n\nAlois Beneš",
@@ -341,7 +341,7 @@
   },
   {
     "id": "vlcek_d11",
-    "day": 13,
+    "day": 15,
     "from": "vlcek",
     "format": "official",
     "delivery": "desk",
