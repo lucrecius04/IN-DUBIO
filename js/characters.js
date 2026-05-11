@@ -11,24 +11,24 @@ const Characters = (() => {
   const SEZNAM_VIZITEK = [
     {
       id: 'vlcek',
-      jmeno: 'VLČEK',
+      jmeno: 'Alexandr Vlček',
       role: 'Ministr',
-      popisKratky: 'Elegantní. Zdvořilý. Nebezpečný.',
-      popis: 'Elegantní. Zdvořilý. Nebezpečný.\nNikdy nevyhrožuje přímo.'
+      popisKratky: 'Ministr justice. K tobě hlavně dopisy.',
+      popis: 'Politický nadřízený justice. Oslovuje tě úředně, často písemně — zdvořilý úvod, těžká věta uprostřed, klid na konci. Působí jako člověk, který věří v pořádek instituce.'
     },
     {
       id: 'zavadova',
-      jmeno: 'ZÁVADOVÁ',
-      role: 'Sekretářka',
-      popisKratky: 'Slyší víc, než řekne.',
-      popis: 'Slyší víc, než řekne.\nDůvěra se buduje v detailech.'
+      jmeno: 'Eliška Závadová',
+      role: 'Novinářka',
+      popisKratky: 'Novinářka. Právní vzdělání, ostrý pozor.',
+      popis: 'Redaktorka ve Svobodném obzoru; část textů podepisuje jinak. Zná soud z hlediště i z chodby — mluví přesně, sleduje justici veřejně i osobně.'
     },
     {
       id: 'karas',
-      jmeno: 'KARAS',
-      role: 'Lichvář',
-      popisKratky: 'Úsměv jako smlouva.',
-      popis: 'Úsměv jako smlouva.\nPeníze rychle — podmínky později.'
+      jmeno: 'Ctibor Karas',
+      role: 'Kolega soudce',
+      popisKratky: 'Kolega z Vídně. Jediný, kdo říká Ben.',
+      popis: 'Soudce a přítel ze studentských let ve Vídni. U kávy je vřelý, v práci opatrný; někdy mlčí tak, že nevíš, kde končí přátelství a začíná ticho, které si nechává pro sebe.'
     }
   ];
 
@@ -38,7 +38,7 @@ const Characters = (() => {
     zavadova:
       'Důvěra roste → Odvaha a Naděje silnější.\nDůvěra na 0 → Naděje slábne.',
     karas:
-      'Důvěra roste → Integrita klesá.\nNa maximum → Varuje tě před Vlčkem; finance hrají roli.'
+      'Důvěra roste → Integrita klesá.\nNa vyšší úrovni máš od něj víc praktické opory — často za cenu toho, co si soudce nechce přiznat nahlas.'
   };
 
   function inicializuj() {
@@ -55,7 +55,7 @@ const Characters = (() => {
   }
 
   // Vrátí dialog pro postavu na daný den, respektuje podmínky
-  /** Dialogové podmínky `trust_*` u starých id (Horáková/Mašek) čtou nové klíče důvěry. */
+  /** Dialogové podmínky `trust_*` u starých id (pool JSON: horakova / Mašek) čtou klíče důvěry ve stavu. */
   function _duveraProDialog(postavaId) {
     const klic = { horakova: 'zavadova', masek: 'karas' }[postavaId] || postavaId;
     const povoleno = { vlcek: true, zavadova: true, karas: true };
@@ -109,7 +109,6 @@ const Characters = (() => {
       vlcek:     { letter: 'Dopis od Vlčka',     visit: 'Osobní návštěva' },
       zavadova:  { letter: 'Dopis od Závadové', visit: 'Osobní návštěva' },
       karas:     { letter: 'Dopis od Karase',   visit: 'Osobní návštěva' },
-      horakova:  { letter: 'Dopis od Horákové', visit: 'Osobní návštěva' },
       masek:     { letter: 'Dopis od Maška',    visit: 'Osobní návštěva' },
       benes:     { letter: 'Dopis od Beneše',   visit: 'Setkání s Benešem' },
       haas:      { letter: 'Dopis od Haase',    visit: 'Osobní návštěva' }
@@ -196,6 +195,14 @@ const Characters = (() => {
     return vysledek.slice(0, 25);
   }
 
+  /** Prázdná historie v profilu — neznamená „nikdy jste se neviděli“, jen chybí záznam s váhou pro příběh. */
+  function getHistoriePrazdnaZprava(npcId) {
+    if (npcId === 'karas') {
+      return 'Kolegu znáte z budovy každý den — sem patří jen významné chvíle příběhu. Zatím k nim nedošlo.';
+    }
+    return 'Sem patří jen významná setkání a události tohoto měsíce. Zatím k nim nedošlo.';
+  }
+
   function getPosledniSlova(npcId) {
     const lw = State.get('archive.npc_last_words');
     if (!lw || typeof lw !== 'object') return null;
@@ -215,6 +222,7 @@ const Characters = (() => {
     getSeznamVizitek,
     getVlivNaHrace,
     getHistorieSetkani,
+    getHistoriePrazdnaZprava,
     getHistorieRadkaTitulek,
     getPosledniSlova
   };

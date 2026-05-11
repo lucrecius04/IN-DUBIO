@@ -18,32 +18,32 @@
     ]
   },
   {
-    "id": "horakova",
-    "name": "Věra Horáková",
+    "id": "zavadova",
+    "name": "Eliška Závadová",
     "dialogues": [
       {
         "day": 10,
         "condition": null,
         "type": "visit",
-        "text": "Pane doktore, jmenuji se Věra Horáková. Píšu pro Nezávislý deník a od vašeho nástupu sleduji, jak rozhodujete v napjatějších věcech.\n\nPřišla jsem bez ohlášení a prosila jsem vrátného o krátkou zastávku v předsíni. Nečekám od vás dnes žádné vyjádření k jednotlivému spisu a nic si nezapisuji. Chtěla jsem vás upozornit, že o vašich soudních dnech budu psát já, a abyste při rozhodování počítal s tím, že sál má i druhou stránku — veřejnou.\n\nNejsem tu, abych vám mařila řízení nebo nosila nátlak z redakce. Jsem tu proto, že po tomhle týdnu bude znovu řeč o tom, jak soud drží čáru mezi zákonem a politikou. Až budete chtít stručně vysvětlit stanovisko soudu k obecné věci, bez citlivých podrobností z konkrétního spisu, ozvěte se přes redakci. Dnes odcházím jen s tím, že víte, kdo vás bude veřejně citovat.\n\nBen odpověděl stručně a po jejím odchodu cítil spíše upozornění než hrozbu, ale věděl, že na veřejný ohlas bude muset myslet i u dalších výroků."
+        "text": "Pane doktore, jmenuji se Eliška Závadová. Píšu do Svobodného obzoru — některé texty podepisuju jinak jménem, ale tady mluvím za sebe.\n\nProsila jsem vrátného, jestli můžu chvíli do předsíně. Dnes od vás nechci výrok ke konkrétnímu spisu a nic si nezapisuji. Jen abyste počítal s tím, že vaše první týdny zpět u soudu budu sledovat i z hlediště, ne jen z protokolu. Sál má i veřejnou stránku.\n\nNechci mařit řízení ani tahat za redakci nátlak. Když někdy budete chtít stručně vysvětlit obecný postoj soudu, bez citlivých podrobností z jedné kauzy, napište přes redakci. Dnes odcházím s tím, že víte, kdo vás bude v novinách číst.\n\nBen přikývl. Po jejím odchodu měl spíš pocit upozornění než hrozby — ale bylo jasné, že na ohlas tisku bude muset myslet u dalších případů."
       },
       {
         "day": 17,
         "condition": { "trust_min": 1 },
         "type": "visit",
-        "text": "Vím o Vlčkovi víc, než si myslí. Vím také, proč jste před deseti lety odešel. Ne — nechte mě dokončit. Nepřišla jsem s výhrůžkou. Přišla jsem s nabídkou. Spolupráce. Vaše informace, moje pero."
+        "text": "Vím o ministrovi Vlčkovi víc, než kolik se o něm běžně píše. Vím taky, proč jste před lety odešel z lavice — nechte mě doříct. Nepřišla jsem vám vyhrožovat. Přišla jsem nabídnout spolupráci: co z vaší strany půjde říct bez porušení povinností, já z toho udělám text, který drží fakta."
+      },
+      {
+        "day": 21,
+        "condition": { "flag": "zavadova_alliance" },
+        "type": "visit",
+        "text": "Věřím vám, pane doktore. Takové věci neříkám často. Buďte v příštích dnech opatrný. Vlček se hýbe."
       },
       {
         "day": 21,
         "condition": null,
         "type": "visit",
-        "text": "Musím Vám ukázat něco, co jsem našla. Dokumenty z ministerstva — Vlčkův seznam jmen. Soudci, prokurátori, svědci. Víte, co je tam společné? Všichni dostali případ, který se nehodil do Vlčkova světa. A všechni rozhodli jinak, než čekali.\n\nVčetně Vás. Před deseti lety."
-      },
-      {
-        "day": 21,
-        "condition": { "flag": "horakova_alliance" },
-        "type": "visit",
-        "text": "Věřím Vám, pane doktore. A to je věc, které nejsem zvyklá říkat. Buďte opatrný v příštích dnech. Vlček se pohybuje."
+        "text": "Musím vám ukázat, co se mi podařilo dohledat. Jsou to materiály z ministerstva — seznam jmen, který u Vlčka koluje. Soudci, prokurátoři, svědci. Společné je, že všem přistál případ, který se „nehodil“, a nakonec rozhodli jinak, než se čekalo.\n\nVy tam taky figurate — u jednoho starého případu.\n\nBen je proběhl a nechal je ležet. Nešlo o příkaz k okamžité reakci — spíš o důkaz, že si ministerstvo bere poznámky."
       }
     ]
   },
@@ -79,7 +79,7 @@
         "condition": null,
         "type": "visit",
         "visit_label": "Josef Beneš — svědek, bratr Karla",
-        "text": "V soudní budově jsou dny, kdy se jména skládají jako kostky — nevšímáš si jich, dokud nespadnou znovu na stejné políčko. Včera u tebe v kanceláři seděl Alois Beneš kvůli Karlovi. Dnes máš v plánu něco docela jiného: svědka v případu číslo třiadvacet, řádná výpověď, žádná soukromá audience. A přesto tě u dveří zastaví muž v šedém kabátě — jiný obličej než včera, stejná únava v ramenou, stejné příjmení na jazyku, jako by ho budova sama přinesla.\n\nPane doktore. Jmenuji se Josef Beneš. Přišel jsem vypovídat v případu číslo třiadvacet. Úředně patřím jen na seznam svědků — ale v tomhle domě se příjmení neztrácí v hluku.\n\nAle... smím říct ještě jednu věc? Jednu větu?\n\nMůj bratr byl vězněm. Zemřel tam. V roce 1928. Jmenoval se Karel Beneš.\n\nBen odvětil, co se k výslechu sluší — že bere na vědomí, že čas zaznamená. Hlas zněl klidně. Uvnitř ale cítil, jak mu minulost přitahuje obruč: nejdřív otec, teď bratr, zítra zase papír se stejným příjmením v jiné věci. Žádná hrozba v tom nebyla — jen opakující se důkaz, že se roku 2027 nedá utéct."
+        "text": "V soudní budově jsou dny, kdy se jména skládají jako kostky — nevšímáš si jich, dokud nespadnou znovu na stejné políčko. Včera u tebe v kanceláři seděl Alois Beneš kvůli Karlovi. Dnes máš v plánu něco docela jiného: svědka v případu číslo třiadvacet, řádná výpověď, žádná soukromá audience. A přesto tě u dveří zastaví muž v šedém kabátě — jiný obličej než včera, stejná únava v ramenou, stejné příjmení na jazyku, jako by ho budova sama přinesla.\n\nPane doktore. Jmenuji se Josef Beneš. Přišel jsem vypovídat v případu číslo třiadvacet. Úředně patřím jen na seznam svědků — ale v tomhle domě se příjmení neztrácí v hluku.\n\nAle... smím říct ještě jednu věc? Jednu větu?\n\nMůj bratr byl vězněm. Zemřel tam. V roce 1928. Jmenoval se Karel Beneš.\n\nBen odvětil, co se k výslechu sluší — že bere na vědomí, že čas zaznamená. Hlas zněl klidně. Uvnitř ale cítil, jak mu minulost přitahuje obruč: nejdřív otec, teď bratr, zítra zase papír se stejným příjmením v jiné věci. Žádná hrozba v tom nebyla — jen opakující se důkaz, že se roku 1927 nedá utéct."
       },
       {
         "day": 20,

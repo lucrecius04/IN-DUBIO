@@ -54,8 +54,8 @@ const Narrative = (() => {
       return;
     }
 
-    State.oznacFragment(id);
     const den = Number(State.get('currentDay')) || 1;
+    State.oznacFragment({ id: String(id), day: den });
     const sTitulem = {
       ...fragment,
       day: den,

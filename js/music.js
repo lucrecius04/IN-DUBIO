@@ -18,6 +18,15 @@ const Music = (() => {
   const CROSSFADE_SEKUND = 3;
   const VYCHOZI_HLASITOST = 0.4;
 
+  /** Během verdiktního zvuku: násobek hlasitosti hudby (0–1). */
+  const DUCK_VERDIKT_HLASITOST_MULT = 0.28;
+
+  /** Před verdiktem: plynulý pokles hlasitosti (stejná idea jako náběh zpět). */
+  const VERDIKT_RAMPA_DOLU_MS = 2600;
+
+  /** Po skončení ducku: délka náběhu zpět na plnou hlasitost ze slideru. */
+  const VERDIKT_RAMPA_ZPATKY_MS = 2600;
+
   let _hlasitost   = VYCHOZI_HLASITOST;
   let _zapnuto     = true;
   let _poInterakci = false;  // browser policy — zvuk povolí až po první interakci
@@ -34,6 +43,145 @@ const Music = (() => {
 
   // Stráž: crossfade nespustit dvakrát
   let _crossfadeProbiha = false;
+
+  /** Dočasné ztlumení hudby při vynesení rozsudku (SFX). */
+  let _verdiktDucking = false;
+  let _verdiktDuckTimer = null;
+  /** setInterval při plynulém náběhu hlasitosti po verdiktu. */
+  let _verdiktRampaId = null;
+  /** setInterval při plynulém poklesu před verdiktem. */
+  let _verdiktRampaDoluId = null;
+
+  function _zrusVerdiktRampu() {
+    if (_verdiktRampaId != null) {
+      clearInterval(_verdiktRampaId);
+      _verdiktRampaId = null;
+    }
+    if (_verdiktRampaDoluId != null) {
+      clearInterval(_verdiktRampaDoluId);
+      _verdiktRampaDoluId = null;
+    }
+  }
+
+  /** Po skončení ducku: lineární náběh z aktuální hlasitosti na `_hlasitost`. */
+  function _spustRampuHlasitostiPoVerdiktu() {
+    if (!_poInterakci || !_zapnuto) return;
+    if (_crossfadeProbiha) {
+      _aplikujHlasitostAktivnihoPrehravace();
+      return;
+    }
+    _zrusVerdiktRampu();
+    const p = _getAktivniPrehravac();
+    if (!p || !p.src || p.paused) return;
+    const cil = Math.min(1, _hlasitost);
+    const zac = p.volume;
+    if (zac >= cil - 0.002) {
+      p.volume = cil;
+      return;
+    }
+    const kroky = Math.max(1, Math.round(VERDIKT_RAMPA_ZPATKY_MS / 50));
+    const delta = (cil - zac) / kroky;
+    let k = 0;
+    _verdiktRampaId = setInterval(() => {
+      k++;
+      if (p.paused || !p.src) {
+        _zrusVerdiktRampu();
+        return;
+      }
+      const v = Math.min(cil, zac + delta * k);
+      p.volume = v;
+      if (k >= kroky || v >= cil - 0.0001) {
+        p.volume = cil;
+        _zrusVerdiktRampu();
+      }
+    }, 50);
+  }
+
+  function _hlasitostKPrehrani() {
+    const m = _verdiktDucking ? DUCK_VERDIKT_HLASITOST_MULT : 1;
+    return Math.min(1, _hlasitost * m);
+  }
+
+  /** Po změně duck / slideru — jen když neprobíhá crossfade. */
+  function _aplikujHlasitostAktivnihoPrehravace() {
+    if (!_poInterakci || !_zapnuto) return;
+    if (_crossfadeProbiha) return;
+    if (_verdiktRampaId != null) return;
+    if (_verdiktRampaDoluId != null) return;
+    const p = _getAktivniPrehravac();
+    if (p && p.src && !p.paused) p.volume = _hlasitostKPrehrani();
+  }
+
+  /** Před verdiktem: plynulý pokles z aktuální hlasitosti na úroveň ducku. */
+  function _spustRampuHlasitostiPredVerdiktem(onKomplet) {
+    if (!_poInterakci || !_zapnuto) {
+      if (typeof onKomplet === 'function') onKomplet();
+      return;
+    }
+    if (_crossfadeProbiha) {
+      if (typeof onKomplet === 'function') onKomplet();
+      return;
+    }
+    const p = _getAktivniPrehravac();
+    if (!p || !p.src || p.paused) {
+      if (typeof onKomplet === 'function') onKomplet();
+      return;
+    }
+    const cil = Math.min(1, _hlasitost * DUCK_VERDIKT_HLASITOST_MULT);
+    const zac = p.volume;
+    if (zac <= cil + 0.002) {
+      p.volume = cil;
+      if (typeof onKomplet === 'function') onKomplet();
+      return;
+    }
+    const kroky = Math.max(1, Math.round(VERDIKT_RAMPA_DOLU_MS / 50));
+    const delta = (cil - zac) / kroky;
+    let k = 0;
+    _verdiktRampaDoluId = setInterval(() => {
+      k++;
+      if (p.paused || !p.src) {
+        if (_verdiktRampaDoluId != null) {
+          clearInterval(_verdiktRampaDoluId);
+          _verdiktRampaDoluId = null;
+        }
+        return;
+      }
+      const v = Math.max(cil, zac + delta * k);
+      p.volume = v;
+      if (k >= kroky || v <= cil + 0.0001) {
+        p.volume = cil;
+        if (_verdiktRampaDoluId != null) {
+          clearInterval(_verdiktRampaDoluId);
+          _verdiktRampaDoluId = null;
+        }
+        if (typeof onKomplet === 'function') onKomplet();
+      }
+    }, 50);
+  }
+
+  /**
+   * Na danou dobu ztlumí hudbu (pro slyšitelnost verdiktního zvuku).
+   * @param {number} ms
+   */
+  function duckBehemVerdiktu(ms) {
+    if (!_poInterakci || !_zapnuto) return;
+    const trv = Math.max(0, Number(ms) || 0);
+    if (trv <= 0) return;
+    _zrusVerdiktRampu();
+    if (_verdiktDuckTimer) {
+      clearTimeout(_verdiktDuckTimer);
+      _verdiktDuckTimer = null;
+    }
+    _verdiktDucking = false;
+    _spustRampuHlasitostiPredVerdiktem(() => {
+      _verdiktDucking = true;
+    });
+    _verdiktDuckTimer = setTimeout(() => {
+      _verdiktDuckTimer = null;
+      _verdiktDucking = false;
+      _spustRampuHlasitostiPoVerdiktu();
+    }, trv);
+  }
 
   // --- INIT ---
 
@@ -145,12 +293,14 @@ const Music = (() => {
     if (!STOPY[nazev]) return;
     if (!_zapnuto) { _aktualniNazev = nazev; _cilovaNazev = nazev; return; }
 
+    _zrusVerdiktRampu();
+
     const src = STOPY[nazev];
     const aktivniPrehravac = _getAktivniPrehravac();
 
     // Nastav nový přehrávač
     aktivniPrehravac.src    = src;
-    aktivniPrehravac.volume = _hlasitost;
+    aktivniPrehravac.volume = _hlasitostKPrehrani();
     aktivniPrehravac.currentTime = 0;
 
     _aktualniNazev = nazev;
@@ -187,6 +337,8 @@ const Music = (() => {
     if (!STOPY[novaNazev]) return;
     if (!_zapnuto) { _aktualniNazev = novaNazev; _cilovaNazev = novaNazev; return; }
 
+    _zrusVerdiktRampu();
+
     const staryPrehravac = _getAktivniPrehravac();
     _prepniPrehravac();
     const novyPrehravac = _getAktivniPrehravac();
@@ -200,14 +352,15 @@ const Music = (() => {
     _aktualniNazev = novaNazev;
     _cilovaNazev   = novaNazev;
 
-    // Animace přechodu
+    // Animace přechodu (cílová hlasitost respektuje duck u verdiktu)
     const kroky  = (CROSSFADE_SEKUND * 1000) / 50;
-    const krokVol = _hlasitost / kroky;
     let   provedeno = 0;
 
     const interval = setInterval(() => {
       provedeno++;
-      const novyVol  = Math.min(_hlasitost, novyPrehravac.volume + krokVol);
+      const cil = _hlasitostKPrehrani();
+      const krokVol = cil / kroky;
+      const novyVol  = Math.min(cil, novyPrehravac.volume + krokVol);
       const staryVol = Math.max(0,          staryPrehravac.volume - krokVol);
 
       novyPrehravac.volume  = novyVol;
@@ -217,6 +370,7 @@ const Music = (() => {
         clearInterval(interval);
         staryPrehravac.pause();
         staryPrehravac.src = '';
+        novyPrehravac.volume = _hlasitostKPrehrani();
         _crossfadeProbiha  = false;
       }
     }, 50);
@@ -259,9 +413,10 @@ const Music = (() => {
     if (slider) {
       slider.addEventListener('input', () => {
         _hlasitost = parseInt(slider.value) / 100;
+        _zrusVerdiktRampu();
         const aktivniPrehravac = _getAktivniPrehravac();
         if (!_crossfadeProbiha) {
-          aktivniPrehravac.volume = _hlasitost;
+          aktivniPrehravac.volume = _hlasitostKPrehrani();
         }
       });
     }
@@ -275,7 +430,8 @@ const Music = (() => {
     spustPoInterakci,
     aktualizujStopu,
     nastavStopu,
-    nastavKontext
+    nastavKontext,
+    duckBehemVerdiktu
   };
 
 })();

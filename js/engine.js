@@ -76,30 +76,31 @@ const Engine = (() => {
   }
 
   function _aplikujTydenniBonusyPoModalu(kody) {
+    const denT = Number(State.get('currentDay')) || 1;
     State.set('tydenni_nasobek_moudrosti', 1);
     for (const k of kody) {
       if (k === 'A') {
         State.upravRys('Moudrost', 5);
-        State.oznacFragment('fragment_tyden_bonus_a');
+        State.oznacFragment({ id: 'fragment_tyden_bonus_a', day: denT });
       } else if (k === 'B') {
         State.upravRys('Integrita', 5);
         State.upravFrakci('Lid', 8);
-        State.oznacFragment('fragment_tyden_bonus_b');
+        State.oznacFragment({ id: 'fragment_tyden_bonus_b', day: denT });
       } else if (k === 'C') {
         State.upravRys('Odvaha', 3);
-        State.oznacFragment('fragment_tyden_bonus_c');
+        State.oznacFragment({ id: 'fragment_tyden_bonus_c', day: denT });
       } else if (k === 'D_stat') {
         State.upravFrakci('Moc', 10);
-        State.oznacFragment('fragment_tyden_bonus_d');
+        State.oznacFragment({ id: 'fragment_tyden_bonus_d', day: denT });
       } else if (k === 'D_lid') {
         State.upravFrakci('Lid', 10);
-        State.oznacFragment('fragment_tyden_bonus_d');
+        State.oznacFragment({ id: 'fragment_tyden_bonus_d', day: denT });
       } else if (k === 'D_mul') {
         State.set('tydenni_nasobek_moudrosti', 1.5);
-        State.oznacFragment('fragment_tyden_bonus_d');
+        State.oznacFragment({ id: 'fragment_tyden_bonus_d', day: denT });
       } else if (k === 'E') {
         State.upravRys('Odvaha', 5);
-        State.oznacFragment('fragment_tyden_bonus_e');
+        State.oznacFragment({ id: 'fragment_tyden_bonus_e', day: denT });
       }
     }
   }
@@ -843,7 +844,7 @@ const Engine = (() => {
             ? DataLoader.ziskejFragment(fid)
             : null;
         if (f) {
-          State.oznacFragment(fid);
+          State.oznacFragment({ id: fid, day: denS });
           await _cekejNaFragment(null, {
             ...f,
             day: denS,
@@ -1102,6 +1103,7 @@ const Engine = (() => {
     if (!dopis) {
       State.set('flags.' + klic, pending.slice(1));
       _obnovDopisyNaStoleProDen(_denData, den);
+      if (typeof Desk !== 'undefined' && Desk.aktualizujVse) Desk.aktualizujVse();
       State.uloz();
       return;
     }
@@ -1117,6 +1119,8 @@ const Engine = (() => {
           Desk.skryjObalkuStoluPoPreceniVlcka();
         }
       }
+      /* Po odebrání z fronty — např. druhá obálka zmizí po přečtení prvního dopisu */
+      if (typeof Desk !== 'undefined' && Desk.aktualizujVse) Desk.aktualizujVse();
       State.uloz();
     });
   }
@@ -1217,7 +1221,7 @@ const Engine = (() => {
     // Radky pro každou postavu — ze State a flags
     const postavyEpilog = {
       vlcek:     _epilogVlcek(typ, stav),
-      horakova:  _epilogHorakova(typ, stav),
+      zavadova:  _epilogZavadova(typ, stav),
       masek:     _epilogMasek(typ, stav),
       karas:     _epilogKaras(typ, stav),
       benes:     _epilogBenes(typ, stav),
@@ -1239,7 +1243,7 @@ const Engine = (() => {
 
   /**
    * Jedna epilogová větev z `data/endings_epilog.json` (`typy[typ][npcId]`).
-   * Horáková: { low, high } podle trust.zavadova. Beneš: unknown / identified / identified_hrdina (atentát|hrdina + identified).
+   * Závadová: { low, high } podle trust.zavadova. Beneš: unknown / identified / identified_hrdina (atentát|hrdina + identified).
    */
   function _epilogRadekZeSouboru(typ, npcId, stav) {
     if (typeof DataLoader === 'undefined' || typeof DataLoader.ziskejEndingsEpilog !== 'function') return null;
@@ -1249,7 +1253,7 @@ const Engine = (() => {
     if (!blok || typeof blok !== 'object') return null;
     const entry = blok[npcId];
     if (entry == null) return null;
-    if (npcId === 'horakova' && typeof entry === 'object' && !Array.isArray(entry)) {
+    if (npcId === 'zavadova' && typeof entry === 'object' && !Array.isArray(entry)) {
       const tr = Number(stav.trust && stav.trust.zavadova) || 0;
       const t = tr >= 2 ? entry.high : entry.low;
       return typeof t === 'string' && t.trim() ? t.trim() : null;
@@ -1282,14 +1286,13 @@ const Engine = (() => {
     return 'Vlček zůstal ve své funkci a pokračoval v práci stejným způsobem jako předtím.';
   }
 
-  function _epilogHorakova(typ, stav) {
-    const z = _epilogRadekZeSouboru(typ, 'horakova', stav);
+  function _epilogZavadova(typ, stav) {
+    const z = _epilogRadekZeSouboru(typ, 'zavadova', stav);
     if (z) return z;
-    /* Důvěra u Horákové je ve stavu pod klíčem zavadova (viz Characters._duveraProDialog / cases._duveraKlicProPozadavek). */
     const trust = Number(stav.trust && stav.trust.zavadova) || 0;
-    if (typ === 'hrdina')        return 'Horáková vydala sérii článků a pokračovala v práci i poté, co kvůli ní tři novináři přišli o místo.';
-    if (trust >= 2)              return 'Horáková napsala o Vraném text, který se nesoustředil jen na případ, ale i na člověka za soudcovským stolem.';
-    return 'Horáková sledovala případ z dálky a ve své práci se později věnovala jiným tématům.';
+    if (typ === 'hrdina')        return 'Závadová vydala sérii článků a v redakci pokračovala i poté, co kvůli ní přišli o místo tři kolegové.';
+    if (trust >= 2)              return 'Závadová napsala o Vraném text, který nešel jen o případ, ale i o člověka za stolem.';
+    return 'Závadová případ sledovala z větší dálky a brzy se v práci věnovala jiným tématům.';
   }
 
   function _epilogKaras(typ, stav) {
@@ -1373,7 +1376,7 @@ const Engine = (() => {
             ? DataLoader.ziskejFragment(id)
             : null;
         if (f) {
-          State.oznacFragment(id);
+          State.oznacFragment({ id, day: den });
           UI.zobrazFragment(_titulFragmentuSDnem(f, den), resolve);
         } else {
           Narrative.zobrazFragment(id, resolve);

@@ -462,6 +462,7 @@ const Desk = (() => {
     }
 
     const obalka = document.getElementById('desk-scene-obalka');
+    const obalkaDruha = document.getElementById('desk-scene-obalka-druha');
     if (obalka) {
       obalka.classList.remove('desk-scene-obalka--prvni-let');
       const preceteno = _obalkaStoluPrecetenaProDen.has(denCislo);
@@ -485,6 +486,13 @@ const Desk = (() => {
       } else {
         obalka.classList.remove('skryto');
       }
+      /* Dvě nezpracované obálky ve frontě stolu → druhý PNG pod prvním; po přečtení prvního jen jeden */
+      const zobrazDruhou = maDopis && maPendingDeskLetters && pending.length >= 2;
+      if (obalkaDruha) {
+        if (zobrazDruhou) obalkaDruha.classList.remove('skryto');
+        else obalkaDruha.classList.add('skryto');
+      }
+      obalka.classList.toggle('desk-scene-obalka--stack-horni', zobrazDruhou);
     }
   }
 
@@ -709,6 +717,8 @@ const Desk = (() => {
   function skryjObalkuStoluPoPreceniVlcka() {
     const obalka = document.getElementById('desk-scene-obalka');
     if (obalka) obalka.classList.add('skryto');
+    const obalkaDruha = document.getElementById('desk-scene-obalka-druha');
+    if (obalkaDruha) obalkaDruha.classList.add('skryto');
     const d = Number(State.get('currentDay'));
     if (Number.isFinite(d)) _obalkaStoluPrecetenaProDen.add(d);
   }

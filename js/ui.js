@@ -1172,6 +1172,9 @@ const UI = (() => {
     const dirty = !!options.dirty;
     const predchoziVerdikty = _wfDostupneVerdiktIdSet(pripad);
     State.odhalInfoPripadu(pripad.id, info.id, { path: dirty ? 'unofficial' : 'official' });
+    if (dirty && typeof SFX !== 'undefined' && SFX.pruzkumMimoZaznam) {
+      SFX.pruzkumMimoZaznam();
+    }
 
     const odhaleneEl = document.getElementById('pripad-odhalene-info');
     _zobrazOdhalenoInfo(odhaleneEl, info);
@@ -1185,7 +1188,10 @@ const UI = (() => {
     }
 
     _aktualizujPruzkumPanel(pripad, onRozsudek);
-    _wfPoPrvniAkciPruzkumu(pripad, onRozsudek, { predchoziVerdikty });
+    _wfPoPrvniAkciPruzkumu(pripad, onRozsudek, {
+      predchoziVerdikty,
+      bezRazitkaPriOdemceniVerdiktu: dirty
+    });
     Desk.aktualizujVse();
 
     const md = dirty ? 2 : 3;
@@ -2807,7 +2813,6 @@ const UI = (() => {
     vlcek: 'Vlček',
     zavadova: 'Závadová',
     karas: 'Karas',
-    horakova: 'Horáková',
     masek: 'Mašek',
     benes: 'Beneš',
     haas: 'Haas'
@@ -3444,10 +3449,20 @@ const UI = (() => {
 
   function _archivFragmentObjekt(zaznam) {
     const isInline = zaznam && typeof zaznam === 'object';
-    const id = isInline ? String(zaznam.id || zaznam.archiveId || '') : String(zaznam || '');
-    const f = isInline ? zaznam : DataLoader.ziskejFragment(id);
-    if (!f) return null;
-    return { isInline, id, f };
+    const idRaw = isInline ? (zaznam.id || zaznam.archiveId) : zaznam;
+    const id = String(idRaw == null ? '' : idRaw).trim();
+    if (!id) return null;
+    const base =
+      typeof DataLoader !== 'undefined' && DataLoader.ziskejFragment
+        ? DataLoader.ziskejFragment(id)
+        : null;
+    if (isInline) {
+      const f = Object.assign({}, base || {}, zaznam);
+      if (!base && !(f.title || f.text)) return null;
+      return { isInline: true, id, f };
+    }
+    if (!base) return null;
+    return { isInline: false, id, f: base };
   }
 
   function _archivFragmentKategorie(f) {
@@ -3724,6 +3739,14 @@ const UI = (() => {
   const _WF_VERDIKT_BLOK_TITUL = 'Tento rozsudek nelze uplatnit.';
   let _wfUnlockPulseTimer = null;
 
+  /** Platná nabídka úplatku u případu — šeptání u každé volby (včetně řádného verdiktu). */
+  function _wfJeOtevrenaNabidkaUplateku(pripad) {
+    if (!pripad) return false;
+    const u = Number(pripad.bribe_amount);
+    if (!Number.isFinite(u) || u <= 0) return false;
+    return typeof State !== 'undefined' && !State.get('flags.uplatek_prijat');
+  }
+
   function _wfPocetOdhalenychPruzkumu(pripad) {
     if (!pripad || !Array.isArray(pripad.hidden_info)) return 0;
     return pripad.hidden_info.filter(i => State.jeInfoOdhaleno(pripad.id, i.id)).length;
@@ -3826,13 +3849,15 @@ const UI = (() => {
     return n;
   }
 
-  function _wfSpustUnlockCeremonii(noveVerdikty) {
+  function _wfSpustUnlockCeremonii(noveVerdikty, bezZvukuRazitka) {
     const modal = document.getElementById('modal-pripad');
     const sec = document.getElementById('case-wf-sec-verdict');
     if (!modal || !sec || !noveVerdikty) return;
     modal.classList.add('case-wf-unlock-pulse');
     sec.classList.add('case-wf-unlock-pulse');
-    if (typeof SFX !== 'undefined' && SFX.rozsudekStamp) SFX.rozsudekStamp();
+    if (!bezZvukuRazitka && typeof SFX !== 'undefined' && SFX.rozsudekStamp) {
+      SFX.rozsudekStamp();
+    }
     if (_wfUnlockPulseTimer) clearTimeout(_wfUnlockPulseTimer);
     _wfUnlockPulseTimer = setTimeout(() => {
       modal.classList.remove('case-wf-unlock-pulse');
@@ -4552,7 +4577,7 @@ const UI = (() => {
         `<div class="case-wf-v-title">Přijmout úplatek (${uplatek} Kčs)</div>` +
         '<div class="case-wf-v-desc">Integrita utrpí — obálka je však na stole.</div>';
       btnU.addEventListener('click', () => {
-        if (typeof SFX !== 'undefined') SFX.rozsudekStamp();
+        if (typeof SFX !== 'undefined' && SFX.uplatekWhisper) SFX.uplatekWhisper();
         _zavriPripadModal();
         const uR = {
           id: 'uplatek',
@@ -4598,7 +4623,10 @@ const UI = (() => {
       confirmBtn.onclick = null;
 
       _wfVerdictStampTeardown();
-      if (typeof SFX !== 'undefined') SFX.rozsudekStamp();
+      if (typeof SFX !== 'undefined') {
+        if (SFX.rozsudekVerdikt) SFX.rozsudekVerdikt();
+        if (_wfJeOtevrenaNabidkaUplateku(pripad) && SFX.uplatekWhisper) SFX.uplatekWhisper();
+      }
       _wfVerdictStampShake(true);
       _zobrazPredohruConsequenceAKlik(pripad, r, onRozsudek);
     };
@@ -4617,9 +4645,13 @@ const UI = (() => {
     const pred = opts && opts.predchoziVerdikty instanceof Set ? opts.predchoziVerdikty : null;
     const po = _wfDostupneVerdiktIdSet(pripad);
     const nove = _wfSpoctiNoveVerdiktyPoOdemceni(pred, po);
+    const bezRazitkaOdemceni = !!(opts && opts.bezRazitkaPriOdemceniVerdiktu);
     if (nove > 0) {
-      _wfSpustUnlockCeremonii(nove);
+      _wfSpustUnlockCeremonii(nove, bezRazitkaOdemceni);
       zobrazStavovouZpravu(`Alternativa odemčena: ${nove} ${nove === 1 ? 'nová možnost rozsudku' : 'nové možnosti rozsudku'}.`);
+    } else if (!bezRazitkaOdemceni && typeof SFX !== 'undefined' && SFX.rozsudekStamp) {
+      /* Úřední cesta: razítko i když žádný nový verdikt (např. poslední krok průzkumu). Neoficiální má pruzkumMimoZaznam. */
+      SFX.rozsudekStamp();
     }
     _caseWfSetDots(3, 3);
     _wfNavHint('Vyberte verdikt a potvrďte rozsudek.');
@@ -5773,6 +5805,14 @@ const UI = (() => {
     _otevriModal('modal-fragment');
   }
 
+  /** Tři odpovědi Aloise Beneše (`days.json` obrazovka d1dev_s4) — jen na ně velmi tichý šept. */
+  const _ADVENTURE_ALOIS_BENES_TRI_VOLEB = new Set([
+    'Poslouchám Vás. Řekněte mi, co víte.',
+    'Případ byl pravomocně uzavřen. Nemohu ho znovu otevírat.',
+    'Vezmu to na vědomí. Ale nic Vám nemohu slíbit.'
+  ]);
+  const _VOL_WHISPER_ALOIS_BENES_VOLBA = 0.15;
+
   function zobrazAdventureScenu(scena, callback) {
     const screens = Array.isArray(scena && scena.screens) ? scena.screens : [];
     if (!screens.length) {
@@ -5812,6 +5852,8 @@ const UI = (() => {
     }
     let posledniVolba = {};
     let zavreno = false;
+
+    const adventureIdRaw = String((scena && scena.id) || '').trim();
 
     function zavritASkoncit() {
       if (zavreno) return;
@@ -5853,6 +5895,14 @@ const UI = (() => {
           btn.className = 'btn-vecer';
           btn.textContent = String(choice && choice.label ? choice.label : 'Pokračovat');
           btn.onclick = function() {
+            const lbl = String(choice && choice.label ? choice.label : '').trim();
+            if (
+              _ADVENTURE_ALOIS_BENES_TRI_VOLEB.has(lbl) &&
+              typeof SFX !== 'undefined' &&
+              SFX.uplatekWhisper
+            ) {
+              SFX.uplatekWhisper(_VOL_WHISPER_ALOIS_BENES_VOLBA);
+            }
             posledniVolba = {
               sets_flag: choice && choice.sets_flag ? choice.sets_flag : null,
               sets_flag_extra: choice && choice.sets_flag_extra ? choice.sets_flag_extra : null,
@@ -5886,8 +5936,7 @@ const UI = (() => {
     }
 
     zobrazScreen(screens[0].id);
-    const aid = String((scena && scena.id) || '').trim();
-    if (aid) odemkniPovestPodleUdalosti('adventure', aid);
+    if (adventureIdRaw) odemkniPovestPodleUdalosti('adventure', adventureIdRaw);
   }
 
   // --- ARCHIV (ŠUPLÍK) ---
@@ -6337,9 +6386,6 @@ const UI = (() => {
         }
       }
 
-      const krize = p.zustatek < 50
-        ? '<p class="finance-krize">Méně než 50 Kčs — každá koruna bolí.</p>'
-        : '';
       const rzMin = Number.isFinite(Number(p.rozsudekOdmenaMin)) ? Number(p.rozsudekOdmenaMin) : 0;
       const rzMax = Number.isFinite(Number(p.rozsudekOdmenaMax)) ? Number(p.rozsudekOdmenaMax) : 55;
       const rozsudekBlok =
@@ -6379,7 +6425,6 @@ const UI = (() => {
         skupinaPlatARozsudek +
         radekDluh +
         operaceHtml +
-        krize +
         '</div>';
       finSekce.appendChild(finHost);
       pravy.appendChild(finSekce);
@@ -6680,8 +6725,11 @@ const UI = (() => {
       for (const opt of _ARCHIV_ROZ_TYP_FILTRY) {
         const b = document.createElement('button');
         b.type = 'button';
+        const tridaTyp =
+          opt.id !== 'vse' ? ' archiv-rozsudky-filtr-btn--case-' + opt.id : '';
         b.className =
           'archiv-rozsudky-filtr-btn' +
+          tridaTyp +
           (_archivRozsudkyFiltrTyp === opt.id ? ' archiv-rozsudky-filtr-btn--aktivni' : '');
         b.dataset.filtrTyp = opt.id;
         b.textContent = opt.lab;
@@ -6748,7 +6796,7 @@ const UI = (() => {
       rozsudky.forEach(r => {
         const typZ = _archivRozsudekTypZaznamu(r);
         const item = document.createElement('div');
-        item.className = 'archiv-rozsudek-item';
+        item.className = 'archiv-rozsudek-item archiv-rozsudek-item--typ-' + typZ;
         const headBtn = document.createElement('button');
         headBtn.type = 'button';
         headBtn.className = 'archiv-rozsudek-toggle';
@@ -6830,7 +6878,7 @@ const UI = (() => {
         const b = document.createElement('button');
         b.type = 'button';
         b.className =
-          'archiv-rozsudky-filtr-btn' +
+          'archiv-rozsudky-filtr-btn archiv-fragmenty-filtr-btn archiv-fragmenty-filtr-btn--' + opt.id +
           (_archivFragmentyFiltrTyp === opt.id ? ' archiv-rozsudky-filtr-btn--aktivni' : '');
         b.dataset.filtrTyp = opt.id;
         b.textContent = opt.lab;
@@ -6917,6 +6965,17 @@ const UI = (() => {
       .replace(/>/g, '&gt;');
   }
 
+  /** Zavře návštěvu / historii u profilu a vrátí otevřený zápisník na Pověst → Lidé. */
+  function _zavriProfilPostavyAVratNaPovest() {
+    _zavriModal('modal-postava-historie-detail');
+    _zavriModal('modal-postava-profil');
+    const arch = document.getElementById('modal-archiv');
+    if (arch && arch.classList.contains('aktivni')) {
+      _povestArchivPodtab = 'lide';
+      _prepniArchivTab('postavy');
+    }
+  }
+
   function _otevriHistorieDetailModal(zaznam) {
     const nadpis = document.getElementById('postava-historie-detail-nadpis');
     const telo = document.getElementById('postava-historie-detail-text');
@@ -6938,21 +6997,16 @@ const UI = (() => {
   function _otevriProfilPostavy(npcId) {
     const v = Characters.getSeznamVizitek().find(x => x.id === npcId);
     if (!v) return;
+    const roleEl = document.getElementById('postava-profil-role');
     const jmeno = document.getElementById('postava-profil-jmeno');
-    const role = document.getElementById('postava-profil-role');
     const duveraEl = document.getElementById('postava-profil-duvera');
-    const popis = document.getElementById('postava-profil-popis');
     const vliv = document.getElementById('postava-profil-vliv');
     const historie = document.getElementById('postava-profil-historie');
-    if (!jmeno || !role || !duveraEl || !popis || !vliv || !historie) return;
+    if (!roleEl || !jmeno || !duveraEl || !vliv || !historie) return;
+    roleEl.textContent = String(v.role || '').trim() || '—';
     jmeno.textContent = v.jmeno;
-    role.textContent = v.role;
     duveraEl.dataset.npcId = v.id;
     duveraEl.textContent = Characters.getDuveraVizitka(v.id);
-    popis.innerHTML = v.popis.split('\n').join('<br>');
-    if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
-      Knihovna.obalSlovnikemVElementu(popis);
-    }
 
     const vlivText = Characters.getVlivNaHrace(npcId);
     vliv.innerHTML = vlivText
@@ -6969,7 +7023,7 @@ const UI = (() => {
     if (zaznamy.length === 0) {
       const p = document.createElement('p');
       p.className = 'postava-profil-historie-prazdne';
-      p.textContent = 'Zatím jste se nesetkali.';
+      p.textContent = Characters.getHistoriePrazdnaZprava(npcId);
       historie.appendChild(p);
     } else {
       const wrap = document.createElement('div');
@@ -7345,7 +7399,7 @@ const UI = (() => {
         }
         const profilPostavy = document.getElementById('modal-postava-profil');
         if (profilPostavy && profilPostavy.classList.contains('aktivni')) {
-          _zavriModal('modal-postava-profil');
+          _zavriProfilPostavyAVratNaPovest();
           return;
         }
         const modalDusledky = document.getElementById('modal-dusledky');
@@ -7378,7 +7432,7 @@ const UI = (() => {
     });
 
     document.getElementById('postava-profil-zavrit')?.addEventListener('click', () => {
-      _zavriModal('modal-postava-profil');
+      _zavriProfilPostavyAVratNaPovest();
     });
 
     document.getElementById('postava-historie-detail-zavrit')?.addEventListener('click', () => {
@@ -7399,9 +7453,11 @@ const UI = (() => {
           // Případ a archiv lze zavřít kliknutím vedle
           // Fragment vyžaduje explicitní akci
           if (overlay.id === 'modal-archiv' ||
-              overlay.id === 'modal-postava-historie-detail' ||
-              overlay.id === 'modal-postava-profil') {
+              overlay.id === 'modal-postava-historie-detail') {
             _zavriModal(overlay.id);
+          }
+          if (overlay.id === 'modal-postava-profil') {
+            _zavriProfilPostavyAVratNaPovest();
           }
           if (overlay.id === 'modal-dusledky') {
             _dusledkyPreskocAnimace();

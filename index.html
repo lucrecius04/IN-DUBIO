@@ -533,6 +533,48 @@
       pointer-events: none;
     }
 
+    /*
+     * Druhý dopis = spodní list ve stejné poloze jako jediný dopis na stole.
+     * Horní (#desk-scene-obalka + --stack-horni) leží nad ním posunutý — po přečtení prvního
+     * zmizí dekorace i posun; zůstane jedna obálka na stejném místě jako dřív spodní (bez skoku).
+     */
+    #stul.desk-scene-root .desk-scene-obalka-wrap .desk-scene-obalka-druha {
+      position: absolute;
+      left: 24%;
+      top: 23%;
+      width: min(22vw, 280px);
+      z-index: 0;
+      pointer-events: none;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      line-height: 0;
+      box-sizing: border-box;
+      transform: translateY(4px) rotate(-2.5deg);
+      transform-origin: center center;
+      filter:
+        brightness(0.8)
+        sepia(0.22)
+        saturate(0.78)
+        brightness(0.88)
+        contrast(0.94)
+        drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3))
+        drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
+      opacity: 1;
+    }
+
+    #stul.desk-scene-root .desk-scene-obalka-wrap .desk-scene-obalka-druha.skryto {
+      display: none !important;
+    }
+
+    #stul.desk-scene-root .desk-scene-obalka-wrap .desk-scene-obalka-druha .desk-scene-obalka__img--podklad {
+      display: block;
+      width: 100%;
+      height: auto;
+      vertical-align: top;
+      pointer-events: none;
+    }
+
     #stul.desk-scene-root .desk-scene-obalka-wrap #desk-scene-obalka {
       position: absolute;
       left: 24%;
@@ -576,6 +618,23 @@
       cursor: pointer;
       transform: translateY(0) rotate(-2.5deg);
       transform-origin: center center;
+      filter:
+        brightness(0.85)
+        sepia(0.25)
+        saturate(0.86)
+        brightness(0.94)
+        contrast(0.97)
+        drop-shadow(2px 8px 14px rgba(0, 0, 0, 0.5))
+        drop-shadow(0 4px 8px rgba(0, 0, 0, 0.38));
+    }
+
+    /* Dva dopisy: horní posunutá nad spodní (spodní = kanonická pozice jako u jednoho dopisu) */
+    #stul.desk-scene-root .desk-scene-obalka-wrap #desk-scene-obalka.desk-scene-obalka--stack-horni {
+      transform: translate(-12px, -18px) rotate(-4.2deg);
+    }
+
+    #stul.desk-scene-root .desk-scene-obalka-wrap #desk-scene-obalka.desk-scene-obalka--stack-horni:has(#desk-envelope.desk-predmet--hover) {
+      transform: translate(-12px, -22px) rotate(-4.2deg);
       filter:
         brightness(0.85)
         sepia(0.25)
@@ -1144,6 +1203,9 @@
   </div>
 
   <div class="desk-scene-obalka-wrap" aria-hidden="true">
+    <div id="desk-scene-obalka-druha" class="desk-scene-obalka-druha skryto" aria-hidden="true">
+      <img class="desk-scene-obalka__img desk-scene-obalka__img--podklad" src="src/envelope.png" alt="" decoding="async">
+    </div>
     <button type="button" id="desk-scene-obalka" class="desk-scene-obalka skryto" aria-label="Dopis na stole">
       <img id="desk-envelope" class="desk-scene-obalka__img" src="src/envelope.png" alt="" decoding="async">
     </button>
@@ -1493,32 +1555,41 @@
   </div>
 </div>
 
-<div id="modal-postava-profil" class="overlay" role="dialog" aria-modal="true">
-  <div class="panel-papir postava-profil-panel panel-papir--nastup">
-    <button type="button" class="postava-profil-zavrit" id="postava-profil-zavrit" aria-label="Zavřít">×</button>
-    <div class="postava-profil-dvousloupce">
-      <div class="postava-profil-levy">
-        <div class="postava-profil-jmeno" id="postava-profil-jmeno">—</div>
-        <div class="postava-profil-role" id="postava-profil-role">—</div>
-        <div class="postava-profil-duvera" id="postava-profil-duvera" data-npc-id="">—</div>
-        <div class="postava-profil-popis" id="postava-profil-popis"></div>
-        <div class="postava-profil-oddelovac" aria-hidden="true"></div>
-        <div class="postava-profil-sekce-nadpis">VLIV NA TEBE</div>
-        <div class="postava-profil-vliv-blok" id="postava-profil-vliv"></div>
+<div id="modal-postava-profil" class="overlay" role="dialog" aria-modal="true" aria-labelledby="postava-profil-role postava-profil-jmeno">
+  <div class="fragment-panel narativ-shell postava-profil-narativ panel-papir--nastup">
+    <button type="button" class="pripad-zavrit-x" id="postava-profil-zavrit" title="Zavřít" aria-label="Zavřít">✕</button>
+    <div class="postava-profil-jednopanel">
+      <p class="postava-profil-role-napis" id="postava-profil-role">—</p>
+      <h2 class="narativ-nadpis postava-profil-jmeno-nadpis" id="postava-profil-jmeno">—</h2>
+      <div class="postava-profil-stav-blok">
+        <div class="postava-profil-sekce-nadpis">STAV POVĚSTI</div>
+        <p class="postava-profil-duvera-hodnota" id="postava-profil-duvera" data-npc-id="">—</p>
       </div>
-      <div class="postava-profil-pravy">
+      <div class="postava-profil-oddelovac" aria-hidden="true"></div>
+      <div class="postava-profil-sekce-nadpis">VLIV NA TEBE</div>
+      <div class="postava-profil-vliv-blok" id="postava-profil-vliv"></div>
+      <div class="postava-profil-oddelovac postava-profil-oddelovac--tenky" aria-hidden="true"></div>
+      <div class="postava-profil-historie-sekce">
         <div class="postava-profil-sekce-nadpis">HISTORIE SETKÁNÍ</div>
-        <div class="postava-profil-historie-wrap" id="postava-profil-historie"></div>
+        <div class="postava-profil-historie-scroll">
+          <div class="postava-profil-historie-wrap" id="postava-profil-historie"></div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<div id="modal-postava-historie-detail" class="overlay" role="dialog" aria-modal="true">
-  <div class="panel-papir postava-historie-detail-panel panel-papir--nastup">
-    <button type="button" class="postava-profil-zavrit postava-historie-detail-zavrit" id="postava-historie-detail-zavrit" aria-label="Zavřít">×</button>
-    <div class="postava-historie-detail-nadpis" id="postava-historie-detail-nadpis"></div>
-    <div class="postava-historie-detail-text" id="postava-historie-detail-text"></div>
+<div id="modal-postava-historie-detail" class="overlay" role="dialog" aria-modal="true" aria-labelledby="postava-historie-detail-nadpis">
+  <div class="fragment-panel narativ-shell postava-historie-narativ panel-papir--nastup">
+    <button type="button" class="pripad-zavrit-x postava-historie-detail-zavrit" id="postava-historie-detail-zavrit" title="Zavřít" aria-label="Zavřít">✕</button>
+    <div class="postava-historie-jednopanel">
+      <div class="narativ-kicker postava-historie-kicker" aria-hidden="true">
+        <span class="narativ-kicker-main">Zápisník</span>
+        <span class="narativ-kicker-detail">Záznam</span>
+      </div>
+      <h2 class="narativ-nadpis postava-historie-detail-nadpis" id="postava-historie-detail-nadpis"></h2>
+      <div class="postava-historie-detail-text narativ-body" id="postava-historie-detail-text"></div>
+    </div>
   </div>
 </div>
 

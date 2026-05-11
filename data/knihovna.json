@@ -2,7 +2,7 @@
   "version": 2,
   "pribeh": {
     "perex": "Jste soudce Benedikt Vraný. Po roce přestávky vás vrátili do funkce — a vy víte, že to není laskavost.",
-    "body": "Krajský soud v Praze, březen 1931. Republika má deset let, hospodářská krize víc než rok a vám je čtyřiapadesát. Přestávce se říkalo zdravotní volno. Bylo to zdvořilejší než pravda.\n\nV roce 1927 jste podepsal rozsudek nad dělníkem Karlem Benešem. Důkazy byly slabé, tlak shora silný a vy jste byl tehdy nový člověk s ambicemi. Beneš zemřel ve vazbě dříve, než bylo rozhodnuto o odvolání. V roce 1930 vás odvolali — tiše, bez skandálu, s formulací o zdravotním stavu. Tři roky jste žil s tím, co jste podepsal. Teď vás vracejí zpátky, a to taky není náhoda.\n\nKaždý pracovní den přinesou dva spisy. Vynášíte rozsudky za dluhy, výtržnosti, podvody a sabotáže. Přicházejí dopisy — od ministra, od syna, od lidí, které neznáte. Matka leží v nemocnici. Město je v pohybu.\n\nSpravedlnost se nedá vyhrát. Lze o ní ale věčně usilovat.",
+    "body": "Krajský soud v Praze, březen 1931. Republika má deset let, hospodářská krize víc než rok a vám je čtyřiapadesát. Přestávce se říkalo zdravotní volno. Bylo to zdvořilejší než pravda.\n\nV roce 1927 jste podepsal rozsudek nad dělníkem Karlem Benešem. Spis jste tehdy neprošel pořádně — spěchal jste domů, manželka Anna byla nemocná. Důkazy byly slabé a vy jste si později vyprávěl, že na vás někdo tlačil shora. Ve skutečnosti to tak nebylo. Beneš zemřel ve vazbě dřív, než stihlo odvolání. Manželka vám mezitím zemřela — zčásti i proto, že po tom případu vám snížili plat a na léčbu už nezbylo dost.\n\nV roce 1930 vás odvolali tiše, bez skandálu, úředně ze zdravotních důvodů. Tři roky jste žil s tím, co jste podepsal. Teď vás vracejí zpátky — a to také není náhoda.\n\nKaždý pracovní den přinesou dva spisy. Rozhodujete o dluzích, výtržnostech, podvodech a politicky citlivých věcech. Chodí dopisy — od ministra, od syna, od lidí, které neznáte. Matka leží v nemocnici a na operaci chybí peníze. Město je v pohybu.\n\nSpravedlnost se nedá vyhrát. Dá se o ni ale pořád usilovat.",
     "rozhodnuti": [
       {
         "id": "A",
@@ -30,7 +30,7 @@
       },
       {
         "id": "E1",
-        "minDay": 9,
+        "minDay": 11,
         "exclusiveGroup": "E",
         "condition": "benes_pravda == prijal",
         "titulek": "Starý muž a jeho syn",
@@ -38,7 +38,7 @@
       },
       {
         "id": "E2",
-        "minDay": 9,
+        "minDay": 11,
         "exclusiveGroup": "E",
         "condition": "benes_pravda == odmitl",
         "titulek": "Zavřené dveře",
@@ -52,15 +52,15 @@
       },
       {
         "id": "G1",
-        "minDay": 12,
+        "minDay": 15,
         "exclusiveGroup": "G",
         "condition": "haas_kontakt == odmitnut",
         "titulek": "Odmítnutá obálka",
-        "text": "Haas přišel osobně. Nabídl peníze — tři sta korun, žádná smlouva, žádný podpis. Odmítl jsem. Nevím ještě, jak zaplatím operaci. Ale tuto cenu platit nechci."
+        "text": "Haas přišel osobně s hotovostí — tři sta korun, bez smlouvy a bez podpisu. Odmítl jsem. Nevím ještě, jak doženeme platbu za operaci. Tuhle cenu ale platit nechci."
       },
       {
         "id": "G2",
-        "minDay": 12,
+        "minDay": 15,
         "exclusiveGroup": "G",
         "condition": "haas_kontakt == zavazany",
         "titulek": "Tři sta korun",
@@ -68,7 +68,7 @@
       },
       {
         "id": "G3",
-        "minDay": 12,
+        "minDay": 15,
         "exclusiveGroup": "G",
         "condition": "osobni_cena == nerozhodl",
         "titulek": "Otevřená zásuvka",
@@ -76,20 +76,20 @@
       },
       {
         "id": "H1",
-        "minDay": 12,
+        "minDay": 16,
         "condition": "flag_rodny_list_pouzit == true",
         "titulek": "Nástroj nebo člověk",
-        "text": "Závadová přinesla věci, které jsem nečekal — dokumenty, jméno, spojení, která nedávají smysl dohromady a přitom dávají. Nevím ještě, jestli mě chce zachránit nebo použít. Možná obojí."
+        "text": "Závadová přinesla věci, které jsem nečekal — papíry, jména, souvislosti. Nevím ještě, jestli mě chce zachránit, nebo použít. Možná obojí."
       },
       {
         "id": "H2",
-        "minDay": 12,
+        "minDay": 16,
         "titulek": "Zrcadlo",
         "text": "Závadová řekla větu, která mi nejde z hlavy: někdo mohl tehdy pomoct a nepomohl. Nevím jistě, jestli mluvila o mně. Pravděpodobně ano."
       },
       {
         "id": "I1",
-        "minDay": 13,
+        "minDay": 17,
         "exclusiveGroup": "I",
         "condition": "karas_odmitl_odejit == true",
         "titulek": "Karas prosil",
@@ -97,7 +97,7 @@
       },
       {
         "id": "I2",
-        "minDay": 13,
+        "minDay": 17,
         "exclusiveGroup": "I",
         "condition": "karas_poslechl_odejit == true",
         "titulek": "Moje jméno, dvakrát",
@@ -105,13 +105,13 @@
       },
       {
         "id": "J",
-        "minDay": 14,
+        "minDay": 18,
         "titulek": "Poslední týden",
         "text": "Zbývají poslední dny. Martin píše, že přijede. Na stole leží spisy, které ještě musím podepsat. Podepisuji. Svět za oknem vypadá stejně jako první den — jen já ho čtu jinak."
       },
       {
         "id": "K",
-        "minDay": 15,
+        "minDay": 19,
         "titulek": "Poslední případ",
         "text": "Poslední den. Jeden spis. Celý měsíc se scvrkl na tuto lavici a tuto složku. Otázka, se kterou jsem začal — zda může být jeden člověk spravedlivý v nespravedlivém světě — zůstává bez odpovědi. Možná odpověď není v rozsudku. Možná je v tom, jak jsem se k němu dostal."
       }

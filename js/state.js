@@ -165,9 +165,10 @@ const State = (() => {
       }
     }
     for (const pid of curP) {
-      if (!seenP.has(pid)) {
-        seenP.add(pid);
-        mergedP.push(pid);
+      const mapId = pid === 'horakova' ? 'horackova' : pid;
+      if (!seenP.has(mapId)) {
+        seenP.add(mapId);
+        mergedP.push(mapId);
       }
     }
     _stav.flags.povest_odemcene_ids = mergedP;
@@ -186,6 +187,12 @@ const State = (() => {
     if (_stav.tydenni_statistiky && typeof _stav.tydenni_statistiky.uplatek_prijat === 'boolean' &&
         _stav.tydenni_statistiky.uplatek_prijat) {
       _stav.flags.uplatek_prijat = true;
+    }
+    if (_stav.flags.horakova_alliance === true) {
+      _stav.flags.zavadova_alliance = true;
+    }
+    if (typeof _stav.flags.zavadova_alliance !== 'boolean') {
+      _stav.flags.zavadova_alliance = false;
     }
   }
 
@@ -320,6 +327,7 @@ const State = (() => {
       haas_envelope_opened:   false,
       benes_identified:       false,
       horakova_alliance:      false,
+      zavadova_alliance:      false,
       vlcek_lunch_attended:   false,
       masek_document_signed:  false,
       pravda_odhalena:        false,
@@ -996,16 +1004,35 @@ const State = (() => {
   function oznacFragment(id) {
     _zarucArchivVerdikty();
     if (!Array.isArray(_stav.archive.fragments)) _stav.archive.fragments = [];
+    const arr = _stav.archive.fragments;
+
     if (id && typeof id === 'object') {
       const key = String(id.id || id.archiveId || '').trim();
-      if (key && _stav.archive.fragments.some(f =>
-        f && typeof f === 'object' && String(f.id || f.archiveId || '').trim() === key
-      )) {
+      if (!key) return;
+
+      const idxObj = arr.findIndex(
+        f => f && typeof f === 'object' && String(f.id || f.archiveId || '').trim() === key
+      );
+      if (idxObj !== -1) {
+        arr[idxObj] = { ...arr[idxObj], ...id };
         return;
       }
-      _stav.archive.fragments.push({ ...id });
-    } else if (!_stav.archive.fragments.includes(id)) {
-      _stav.archive.fragments.push(id);
+      const idxStr = arr.findIndex(x => x === key);
+      if (idxStr !== -1) {
+        arr[idxStr] = { ...id };
+        return;
+      }
+      arr.push({ ...id });
+      return;
+    }
+
+    const key = String(id || '').trim();
+    if (!key) return;
+    if (arr.some(f => f && typeof f === 'object' && String(f.id || f.archiveId || '').trim() === key)) {
+      return;
+    }
+    if (!arr.includes(key)) {
+      arr.push(key);
     }
   }
 

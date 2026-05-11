@@ -9,11 +9,30 @@ const SFX = (() => {
     stamp: 'stamp.wav',
     paper: 'paper.mp3',
     clock: 'single_clock.mp3',
+    newday: 'newday.mp3',
+    verdikt: 'verdikt.wav',
+    whisper: 'whisper.wav',
+    pruzkum_mimo_zaznam: 'pruzkum_mimo_zaznam.mp3',
     campfire: 'campfire.wav',
     steps1: 'steps1.wav',
     steps2: 'steps2.flac',
     pen_writing: 'pen_writing.mp3'
   };
+
+  /** Max. délka přehrání verdiktní stopy (soubor může být delší). */
+  const ROZSUDEK_VERDIKT_MAX_S = 10;
+
+  /** Stejná doba jako výše: hudba se ztlumí na tuto délku. */
+  const ROZSUDEK_DUCK_HUDBA_MS = ROZSUDEK_VERDIKT_MAX_S * 1000;
+
+  /** Zesílení gongu/verdiktu oproti `audio.volume = 1` (Web Audio GainNode). */
+  const VERDIKT_GAIN = 1.32;
+
+  /** Zesílení zvuku „další den“ (newday). */
+  const NEWDAY_GAIN = 1.28;
+
+  /** Neoficiální průzkum (mimo záznam) — krátký táhlý zvuk, soubor může být delší. */
+  const PRUZKUM_MIMO_ZAZNAM_MAX_S = 3;
 
   const VOL_PEN_WRITING = 0.3;
 
@@ -24,9 +43,9 @@ const SFX = (() => {
   let _ambient = null;
   let _kroky1Id = null;
   let _kroky2Id = null;
-  let _ctxClock = null;
   let _patraniHbCtx = null;
   let _patraniHbLast = 0;
+  let _ctxSfxMedia = null;
 
   function _cesta(klic) {
     const j = SOUBORY[klic];
@@ -98,36 +117,114 @@ const SFX = (() => {
 
   function prechodNaDalsiDen() {
     if (!_odemceno) return;
-    const url = _cesta('clock');
+    const url = _cesta('newday');
     if (!url) return;
     const a = new Audio(url);
     a.volume = 1;
+
     const AC = window.AudioContext || window.webkitAudioContext;
-    if (!AC) {
-      a.play().catch(() => {});
-      return;
+    if (AC) {
+      try {
+        if (!_ctxSfxMedia || _ctxSfxMedia.state === 'closed') _ctxSfxMedia = new AC();
+        _ctxSfxMedia.resume().catch(() => {});
+        const src = _ctxSfxMedia.createMediaElementSource(a);
+        const g = _ctxSfxMedia.createGain();
+        g.gain.value = NEWDAY_GAIN;
+        src.connect(g).connect(_ctxSfxMedia.destination);
+        a.addEventListener(
+          'ended',
+          () => {
+            try {
+              src.disconnect();
+              g.disconnect();
+            } catch (_e) {}
+          },
+          { once: true }
+        );
+      } catch (_e) {
+        /* fallback: bez zesílení */
+      }
     }
-    try {
-      if (!_ctxClock || _ctxClock.state === 'closed') _ctxClock = new AC();
-      _ctxClock.resume().catch(() => {});
-      const src = _ctxClock.createMediaElementSource(a);
-      const g = _ctxClock.createGain();
-      g.gain.value = 4.0;
-      src.connect(g).connect(_ctxClock.destination);
-      a.addEventListener(
-        'ended',
-        () => {
-          try {
-            src.disconnect();
-            g.disconnect();
-          } catch (_e) {}
-        },
-        { once: true }
-      );
-    } catch (_e) {
-      /* fallback bez zesílení */
-    }
+
     a.play().catch(() => {});
+  }
+
+  /** Vynesení rozsudku po potvrzení; mírně zesíleno přes GainNode, max. délka viz `ROZSUDEK_VERDIKT_MAX_S`. */
+  function rozsudekVerdikt() {
+    if (!_odemceno) return;
+    if (typeof Music !== 'undefined' && Music.duckBehemVerdiktu) {
+      Music.duckBehemVerdiktu(ROZSUDEK_DUCK_HUDBA_MS);
+    }
+    const url = _cesta('verdikt');
+    if (!url) return;
+    const a = new Audio(url);
+    a.volume = 1;
+    const maxMs = ROZSUDEK_VERDIKT_MAX_S * 1000;
+    const tid = setTimeout(() => {
+      try {
+        a.pause();
+      } catch (_e) {}
+    }, maxMs);
+    const vycisti = () => clearTimeout(tid);
+    a.addEventListener('ended', vycisti, { once: true });
+
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (AC) {
+      try {
+        if (!_ctxSfxMedia || _ctxSfxMedia.state === 'closed') _ctxSfxMedia = new AC();
+        _ctxSfxMedia.resume().catch(() => {});
+        const src = _ctxSfxMedia.createMediaElementSource(a);
+        const g = _ctxSfxMedia.createGain();
+        g.gain.value = VERDIKT_GAIN;
+        src.connect(g).connect(_ctxSfxMedia.destination);
+        a.addEventListener(
+          'ended',
+          () => {
+            try {
+              src.disconnect();
+              g.disconnect();
+            } catch (_e) {}
+          },
+          { once: true }
+        );
+      } catch (_e) {
+        /* bez zesílení */
+      }
+    }
+
+    a.play()
+      .then(() => {})
+      .catch(() => {
+        vycisti();
+      });
+  }
+
+  function uplatekWhisper(hlasitost) {
+    const v =
+      hlasitost !== undefined && hlasitost !== null ? Number(hlasitost) : 0.88;
+    _prehrajJednorazove('whisper', Number.isFinite(v) ? v : 0.88);
+  }
+
+  /** Odhalení zjištění cestou mimo spis (`path: unofficial`). */
+  function pruzkumMimoZaznam() {
+    if (!_odemceno) return;
+    const url = _cesta('pruzkum_mimo_zaznam');
+    if (!url) return;
+    const a = new Audio(url);
+    a.volume = 0.82;
+    const maxMs = PRUZKUM_MIMO_ZAZNAM_MAX_S * 1000;
+    const tid = setTimeout(() => {
+      try {
+        a.pause();
+      } catch (_e) {}
+    }, maxMs);
+    const vycisti = () => clearTimeout(tid);
+    a.addEventListener('ended', vycisti, { once: true });
+    a.play()
+      .then(() => {})
+      .catch(() => {
+        vycisti();
+      });
   }
 
   function penWriting() {
@@ -170,6 +267,9 @@ const SFX = (() => {
   return {
     spustPoInterakci,
     rozsudekStamp,
+    rozsudekVerdikt,
+    uplatekWhisper,
+    pruzkumMimoZaznam,
     slozkaPaper,
     prechodNaDalsiDen,
     penWriting,

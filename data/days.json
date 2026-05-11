@@ -16,7 +16,7 @@
       "portrait": "src/skici/skica_okno.png",
       "portrait_alt": "Ilustrace: okno soudcovské kanceláře",
       "portrait_label": "Alois Beneš",
-      "portrait_description": "Okno v kanceláři — šedé světlo, déšť na skle. Mezi větami je ticho, které patří i venku.",
+      "portrait_description": "Okno v kanceláři — šedé světlo, déšť na skle.",
       "trigger": "morning_after_fragment",
       "blocks_cases_until_complete": false,
       "screens": [

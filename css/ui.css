@@ -2915,9 +2915,9 @@ button.knihovna-link:hover {
 }
 
 .archiv-fragment-typ--dopis {
-  border-color: rgba(160, 120, 50, 0.45);
-  color: #5a3d18;
-  background: rgba(230, 210, 150, 0.48);
+  border-color: rgba(62, 88, 108, 0.48);
+  color: #243540;
+  background: rgba(188, 208, 224, 0.58);
 }
 
 .archiv-fragment-typ--denni {
@@ -2938,6 +2938,152 @@ button.knihovna-link:hover {
   background: rgba(218, 210, 196, 0.42);
 }
 
+/* Filtr záložky Záznamy: Dopisy — odlišná paleta od „Denních fragmentů“ */
+.archiv-fragmenty-filtr .archiv-fragmenty-filtr-btn--dopis {
+  border-color: rgba(62, 88, 108, 0.4);
+  color: #243540;
+  background: rgba(188, 208, 224, 0.42);
+}
+
+.archiv-fragmenty-filtr .archiv-fragmenty-filtr-btn--dopis:hover {
+  background: rgba(198, 218, 234, 0.78);
+  border-color: rgba(48, 78, 98, 0.48);
+}
+
+.archiv-fragmenty-filtr .archiv-fragmenty-filtr-btn--dopis.archiv-rozsudky-filtr-btn--aktivni {
+  background: rgba(130, 168, 198, 0.45);
+  border-color: rgba(38, 68, 92, 0.58);
+  box-shadow: inset 0 0 0 1px rgba(35, 65, 88, 0.14);
+}
+
+/* Filtr Záznamy: Sny — stejná fialová jako štítek SEN */
+.archiv-fragmenty-filtr .archiv-fragmenty-filtr-btn--sen {
+  border-color: rgba(92, 67, 128, 0.42);
+  color: #3d2d58;
+  background: rgba(205, 190, 230, 0.42);
+}
+
+.archiv-fragmenty-filtr .archiv-fragmenty-filtr-btn--sen:hover {
+  background: rgba(215, 200, 238, 0.78);
+  border-color: rgba(72, 52, 108, 0.48);
+}
+
+.archiv-fragmenty-filtr .archiv-fragmenty-filtr-btn--sen.archiv-rozsudky-filtr-btn--aktivni {
+  background: rgba(165, 140, 205, 0.48);
+  border-color: rgba(58, 40, 88, 0.58);
+  box-shadow: inset 0 0 0 1px rgba(50, 35, 78, 0.14);
+}
+
+/* Rozsudky — filtr tlačítka podle typu případu (řádek bez .archiv-fragmenty-filtr) */
+.archiv-rozsudky-filtr:not(.archiv-fragmenty-filtr) .archiv-rozsudky-filtr-btn--case-rutinni {
+  border-color: rgba(160, 120, 50, 0.52);
+  color: #4a3410;
+  background: rgba(230, 210, 150, 0.45);
+}
+
+.archiv-rozsudky-filtr:not(.archiv-fragmenty-filtr) .archiv-rozsudky-filtr-btn--case-rutinni:hover {
+  background: rgba(238, 220, 165, 0.82);
+  border-color: rgba(130, 95, 40, 0.6);
+}
+
+.archiv-rozsudky-filtr:not(.archiv-fragmenty-filtr)
+  .archiv-rozsudky-filtr-btn--case-rutinni.archiv-rozsudky-filtr-btn--aktivni {
+  background: rgba(212, 185, 110, 0.52);
+  border-color: rgba(110, 80, 30, 0.68);
+  box-shadow: inset 0 0 0 1px rgba(90, 65, 25, 0.12);
+}
+
+.archiv-rozsudky-filtr:not(.archiv-fragmenty-filtr) .archiv-rozsudky-filtr-btn--case-moralni {
+  border-color: rgba(35, 80, 150, 0.55);
+  color: #15325c;
+  background: rgba(145, 188, 245, 0.4);
+}
+
+.archiv-rozsudky-filtr:not(.archiv-fragmenty-filtr) .archiv-rozsudky-filtr-btn--case-moralni:hover {
+  background: rgba(165, 200, 250, 0.75);
+  border-color: rgba(28, 65, 125, 0.58);
+}
+
+.archiv-rozsudky-filtr:not(.archiv-fragmenty-filtr)
+  .archiv-rozsudky-filtr-btn--case-moralni.archiv-rozsudky-filtr-btn--aktivni {
+  background: rgba(110, 155, 215, 0.48);
+  border-color: rgba(22, 55, 110, 0.65);
+  box-shadow: inset 0 0 0 1px rgba(20, 50, 100, 0.12);
+}
+
+.archiv-rozsudky-filtr:not(.archiv-fragmenty-filtr) .archiv-rozsudky-filtr-btn--case-politicky {
+  border-color: rgba(150, 35, 35, 0.55);
+  color: #5c1414;
+  background: rgba(245, 168, 168, 0.4);
+}
+
+.archiv-rozsudky-filtr:not(.archiv-fragmenty-filtr) .archiv-rozsudky-filtr-btn--case-politicky:hover {
+  background: rgba(250, 188, 188, 0.78);
+  border-color: rgba(120, 28, 28, 0.58);
+}
+
+.archiv-rozsudky-filtr:not(.archiv-fragmenty-filtr)
+  .archiv-rozsudky-filtr-btn--case-politicky.archiv-rozsudky-filtr-btn--aktivni {
+  background: rgba(230, 130, 130, 0.48);
+  border-color: rgba(95, 22, 22, 0.68);
+  box-shadow: inset 0 0 0 1px rgba(80, 20, 20, 0.12);
+}
+
+.archiv-rozsudky-filtr:not(.archiv-fragmenty-filtr) .archiv-rozsudky-filtr-btn--case-osobni {
+  border-color: rgba(20, 95, 48, 0.52);
+  color: #0f301c;
+  background: rgba(126, 190, 145, 0.4);
+}
+
+.archiv-rozsudky-filtr:not(.archiv-fragmenty-filtr) .archiv-rozsudky-filtr-btn--case-osobni:hover {
+  background: rgba(145, 205, 165, 0.75);
+  border-color: rgba(18, 78, 40, 0.55);
+}
+
+.archiv-rozsudky-filtr:not(.archiv-fragmenty-filtr)
+  .archiv-rozsudky-filtr-btn--case-osobni.archiv-rozsudky-filtr-btn--aktivni {
+  background: rgba(95, 175, 120, 0.48);
+  border-color: rgba(14, 70, 36, 0.65);
+  box-shadow: inset 0 0 0 1px rgba(12, 55, 30, 0.12);
+}
+
+/* Rozsudky — řádek seznamu: levý pruh podle typu (chip už má barvu, toto sjednotí celý řádek) */
+.archiv-rozsudek-item--typ-rutinni {
+  border-left: 3px solid rgba(196, 163, 90, 0.9);
+}
+
+.archiv-rozsudek-item--typ-moralni {
+  border-left: 3px solid rgba(44, 74, 124, 0.88);
+}
+
+.archiv-rozsudek-item--typ-politicky {
+  border-left: 3px solid rgba(139, 26, 26, 0.88);
+}
+
+.archiv-rozsudek-item--typ-osobni {
+  border-left: 3px solid rgba(36, 110, 62, 0.88);
+}
+
+.archiv-rozsudek-item--typ-rutinni:hover {
+  border-color: rgba(200, 165, 90, 0.75);
+  border-left-color: rgba(196, 163, 90, 0.95);
+}
+
+.archiv-rozsudek-item--typ-moralni:hover {
+  border-color: rgba(35, 80, 150, 0.45);
+  border-left-color: rgba(44, 74, 124, 0.95);
+}
+
+.archiv-rozsudek-item--typ-politicky:hover {
+  border-color: rgba(150, 35, 35, 0.5);
+  border-left-color: rgba(139, 26, 26, 0.95);
+}
+
+.archiv-rozsudek-item--typ-osobni:hover {
+  border-color: rgba(20, 95, 48, 0.48);
+  border-left-color: rgba(36, 110, 62, 0.95);
+}
+
 .archiv-rozsudek-nazev {
   flex: 1;
   font-family: var(--pismo-telo);
@@ -2954,7 +3100,6 @@ button.knihovna-link:hover {
 
 .archiv-rozsudek-item:hover {
   background: rgba(248, 240, 220, 0.55);
-  border-color: rgba(200, 165, 90, 0.75);
   box-shadow: 0 0 0 1px rgba(200, 165, 90, 0.25);
 }
 
@@ -3361,52 +3506,231 @@ button.knihovna-link:hover {
   color: var(--barva-text-slaby);
 }
 
-/* Profil postavy (modal nad šuplíkem) */
+/* Profil postavy + detail historie — stejný noir rám jako fragment / večer */
 
+/* Nad #modal-archiv (215), aby profil neležel „pod“ zápisníkem */
 #modal-postava-profil {
-  z-index: 210;
+  z-index: 232;
 }
 
 #modal-postava-historie-detail {
-  z-index: 220;
+  z-index: 242;
 }
 
-.postava-historie-detail-panel {
+#modal-postava-profil .pripad-zavrit-x,
+#modal-postava-historie-detail .pripad-zavrit-x {
+  z-index: 12;
+}
+
+/* Profil + detail historie: modal výš na obrazovce (grafika „neutíká“ dolů) */
+#modal-postava-profil.aktivni,
+#modal-postava-historie-detail.aktivni {
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(16px, 3.5vh, 40px) 16px clamp(20px, 4vh, 48px);
+  box-sizing: border-box;
+}
+
+#modal-postava-profil .postava-profil-narativ {
+  width: min(520px, calc(100vw - 40px)) !important;
+  max-width: 520px !important;
+  height: min(82vh, 640px) !important;
+  max-height: min(82vh, 640px) !important;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#modal-postava-historie-detail .postava-historie-narativ {
+  width: min(480px, calc(100vw - 40px)) !important;
+  max-width: 480px !important;
+  height: min(76vh, 520px) !important;
+  max-height: min(76vh, 520px) !important;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Profil: jeden sloupec — role (horní štítek) → jméno → … → historie se scrollem */
+.postava-profil-role-napis {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: calc(100% - 40px);
+  margin: 0 0 10px;
+  padding: 4px 10px 3px;
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(226, 193, 126, 0.82);
+  line-height: 1.35;
+  border: 1px solid rgba(218, 184, 112, 0.24);
+  background: rgba(0, 0, 0, 0.16);
+  box-shadow: 0 0 0 1px rgba(255, 240, 205, 0.025) inset;
+  flex-shrink: 0;
+}
+
+.postava-profil-jednopanel {
   position: relative;
-  max-width: 520px;
-  width: 92%;
-  max-height: 82vh;
-  overflow-y: auto;
-  padding: 28px 24px 24px;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.28);
+  z-index: 2;
+  box-sizing: border-box;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: clamp(22px, 2.5vw, 36px) clamp(22px, 2.8vw, 32px) clamp(14px, 2vw, 20px);
 }
 
-.postava-historie-detail-nadpis {
-  font-family: var(--pismo-serif);
-  font-weight: bold;
-  font-size: 17px;
-  padding-right: 40px;
-  margin-bottom: 14px;
-  color: var(--barva-text);
+.postava-profil-jednopanel .postava-profil-jmeno-nadpis {
+  margin: 0 0 12px;
+  padding: 0 36px 0 0;
+  padding-bottom: 0;
+  font-size: clamp(20px, 1.85vw, 28px);
+  line-height: 1.2;
+  word-break: break-word;
+  flex-shrink: 0;
 }
 
-.postava-historie-detail-text {
-  font-size: 14px;
+.postava-profil-jednopanel .postava-profil-jmeno-nadpis::after {
+  display: none;
+}
+
+.postava-profil-stav-blok {
+  margin-bottom: 2px;
+  flex-shrink: 0;
+}
+
+.postava-profil-stav-blok .postava-profil-sekce-nadpis {
+  margin-bottom: 6px;
+}
+
+.postava-profil-duvera-hodnota {
+  margin: 0;
+  font-family: var(--pismo-narativ, serif);
+  font-size: clamp(16px, 1.15vw, 19px);
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(238, 225, 198, 0.92);
+  line-height: 1.45;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+}
+
+.postava-profil-jednopanel .postava-profil-oddelovac {
+  height: 0;
+  margin: 14px 0 12px;
+  border: none;
+  border-top: 1px solid rgba(218, 184, 112, 0.22);
+  background: linear-gradient(90deg, rgba(226, 193, 126, 0.35), transparent 70%);
+  border-radius: 0;
+  flex-shrink: 0;
+}
+
+.postava-profil-jednopanel .postava-profil-oddelovac--tenky {
+  margin: 12px 0 10px;
+  opacity: 0.85;
+}
+
+.postava-profil-jednopanel .postava-profil-sekce-nadpis {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  padding: 4px 10px 3px;
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(226, 193, 126, 0.78);
+  border: 1px solid rgba(218, 184, 112, 0.22);
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 1px rgba(255, 240, 205, 0.03) inset;
+}
+
+.postava-profil-jednopanel .postava-profil-vliv-blok {
+  font-size: clamp(13px, 0.9vw, 15px);
   line-height: 1.55;
-  color: var(--barva-text);
-  font-family: var(--pismo-telo);
+  color: rgba(242, 229, 202, 0.9);
+  font-family: var(--pismo-narativ, serif);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.28);
+  max-width: none;
+  flex-shrink: 0;
 }
 
-.postava-historie-detail-prazdne {
+.postava-profil-jednopanel .postava-profil-vliv-radek {
+  margin: 0 0 8px;
+}
+
+.postava-profil-jednopanel .postava-profil-vliv-radek:last-child {
+  margin-bottom: 0;
+}
+
+/* Historie: zbývající výška + vlastní scroll */
+.postava-profil-historie-sekce {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-top: 2px;
+}
+
+.postava-profil-historie-sekce > .postava-profil-sekce-nadpis {
+  flex-shrink: 0;
+}
+
+.postava-profil-historie-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 4px;
+  margin-right: -4px;
+  scrollbar-color: rgba(188, 138, 64, 0.5) rgba(0, 0, 0, 0.2);
+}
+
+.postava-profil-historie-wrap {
+  margin-bottom: 0;
+  width: 100%;
+  max-width: none;
+}
+
+.postava-profil-historie-prazdne {
   margin: 0;
   font-style: italic;
-  color: var(--barva-text-slaby);
+  color: rgba(224, 202, 158, 0.55);
+  font-size: 14px;
+  font-family: var(--pismo-narativ, serif);
+  line-height: 1.45;
 }
 
+/* Kompaktnější řádky historie v profilu */
+.postava-profil-historie-scroll .postava-historie-radky {
+  gap: 6px;
+}
+
+.postava-profil-historie-scroll .postava-historie-radek {
+  padding: 8px 10px;
+  gap: 8px;
+}
+
+.postava-profil-historie-scroll .postava-historie-radek-text {
+  font-size: clamp(12px, 0.88vw, 14px);
+  line-height: 1.4;
+}
+
+.postava-profil-historie-scroll .postava-historie-radek-sipka {
+  font-size: 16px;
+}
+
+/* Řádky historie — sdílené */
 .postava-historie-radky {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 .postava-historie-radek {
@@ -3414,187 +3738,114 @@ button.knihovna-link:hover {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 12px;
   width: 100%;
   margin: 0;
-  padding: 8px 10px;
+  padding: 12px 14px;
   text-align: left;
   font: inherit;
-  color: var(--barva-text);
-  background: var(--barva-papir-stary);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(238, 225, 198, 0.9);
+  background:
+    linear-gradient(90deg, rgba(218, 184, 112, 0.08), rgba(218, 184, 112, 0.02)),
+    rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(214, 176, 102, 0.28);
   border-radius: 2px;
   cursor: pointer;
-  transition: background var(--prechod-rychly), border-color var(--prechod-rychly);
+  transition:
+    background var(--prechod-rychly),
+    border-color var(--prechod-rychly),
+    box-shadow var(--prechod-rychly);
+  box-shadow: 0 0 0 1px rgba(255, 240, 205, 0.04) inset;
 }
 
 .postava-historie-radek:hover {
-  background: var(--barva-papir);
-  border-color: var(--barva-papir-tmava);
+  background:
+    linear-gradient(90deg, rgba(218, 184, 112, 0.14), rgba(218, 184, 112, 0.05)),
+    rgba(0, 0, 0, 0.28);
+  border-color: rgba(226, 193, 126, 0.42);
+}
+
+.postava-historie-radek:focus-visible {
+  outline: 2px solid rgba(226, 193, 126, 0.55);
+  outline-offset: 2px;
 }
 
 .postava-historie-radek-text {
   flex: 1 1 auto;
   min-width: 0;
-  font-size: 13px;
-  line-height: 1.35;
+  font-size: clamp(14px, 0.95vw, 16px);
+  line-height: 1.45;
+  font-family: var(--pismo-narativ, serif);
 }
 
 .postava-historie-radek-sipka {
   flex: 0 0 auto;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1;
-  color: var(--barva-text-slaby);
+  color: rgba(226, 193, 126, 0.65);
   font-family: var(--pismo-serif);
 }
 
-.postava-profil-panel {
+/* Detail jednoho setkání — jeden sloupec, úzký panel */
+.postava-historie-jednopanel {
   position: relative;
-  max-width: 720px;
-  width: 94%;
-  max-height: 88vh;
+  z-index: 2;
+  box-sizing: border-box;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: clamp(22px, 2.5vw, 34px) clamp(22px, 2.8vw, 30px) clamp(14px, 2vw, 20px);
+}
+
+.postava-historie-kicker {
+  margin: 0 0 10px;
+  flex-shrink: 0;
+}
+
+.postava-historie-jednopanel .postava-historie-detail-nadpis {
+  margin: 0 0 10px;
+  padding: 0 36px 0 0;
+  padding-bottom: 0;
+  font-size: clamp(17px, 1.45vw, 22px);
+  line-height: 1.2;
+  word-break: break-word;
+  flex-shrink: 0;
+}
+
+.postava-historie-jednopanel .postava-historie-detail-nadpis::after {
+  display: none;
+}
+
+.postava-historie-jednopanel .postava-historie-detail-text {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
   overflow-y: auto;
-  padding: 28px 24px 24px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
-}
-
-.postava-profil-dvousloupce {
-  display: grid;
-  grid-template-columns: 40% 1fr;
-  gap: 8px 24px;
-  align-items: start;
-  margin-top: 4px;
-}
-
-@media (max-width: 600px) {
-  .postava-profil-dvousloupce {
-    grid-template-columns: 1fr;
-  }
-}
-
-.postava-profil-levy {
-  min-width: 0;
-}
-
-.postava-profil-pravy {
-  min-width: 0;
-  border-left: 1px dotted var(--barva-papir-tmava);
-  padding-left: 20px;
-}
-
-@media (max-width: 600px) {
-  .postava-profil-pravy {
-    border-left: none;
-    padding-left: 0;
-    border-top: 1px dotted var(--barva-papir-tmava);
-    padding-top: 16px;
-    margin-top: 8px;
-  }
-}
-
-.postava-profil-oddelovac {
-  height: 0;
-  margin: 14px 0 12px;
-  border: none;
-  border-top: 1px dotted var(--barva-papir-tmava);
-}
-
-.postava-profil-vliv-blok {
-  font-size: 12px;
-  line-height: 1.45;
-  color: var(--barva-text);
-}
-
-.postava-profil-vliv-radek {
-  margin: 0 0 6px;
-}
-
-.postava-profil-vliv-radek:last-child {
-  margin-bottom: 0;
-}
-
-.postava-profil-zavrit {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 36px;
-  height: 36px;
-  padding: 0;
-  margin: 0;
-  border: none;
-  background: transparent;
-  font-size: 26px;
-  line-height: 1;
-  color: var(--barva-text-slaby);
-  cursor: pointer;
-  font-family: var(--pismo-serif);
-  transition: color var(--prechod-rychly);
-}
-
-.postava-profil-zavrit:hover {
-  color: var(--barva-text);
-}
-
-.postava-profil-jmeno {
-  font-family: var(--pismo-serif);
-  font-weight: bold;
-  font-size: 22px;
-  letter-spacing: 0.04em;
-  padding-right: 36px;
-  margin-bottom: 4px;
-}
-
-.postava-profil-role {
-  font-family: var(--pismo-typewriter);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--barva-text-slaby);
-  margin-bottom: 12px;
-}
-
-.postava-profil-duvera {
-  font-size: 15px;
-  font-style: italic;
-  letter-spacing: 0.02em;
-  margin-bottom: 16px;
-  font-family: var(--pismo-telo);
-  color: rgba(30, 15, 5, 0.88);
-}
-
-.postava-profil-popis {
-  font-style: italic;
   font-size: 14px;
-  line-height: 1.5;
-  color: var(--barva-text);
-  margin-bottom: 0;
+  line-height: 1.55;
+  color: rgba(242, 229, 202, 0.9);
+  scrollbar-color: rgba(188, 138, 64, 0.5) rgba(0, 0, 0, 0.2);
 }
 
-.postava-profil-pravy .postava-profil-sekce-nadpis {
-  margin-bottom: 10px;
-}
-
-.postava-profil-levy .postava-profil-sekce-nadpis {
-  margin-top: 0;
-  margin-bottom: 8px;
-}
-
-.postava-profil-sekce-nadpis {
-  font-family: var(--pismo-typewriter);
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  color: var(--barva-text-slaby);
-}
-
-.postava-profil-historie-wrap {
-  margin-bottom: 0;
-}
-
-.postava-profil-historie-prazdne {
+.postava-historie-detail-prazdne {
   margin: 0;
   font-style: italic;
-  color: var(--barva-text-slaby);
-  font-size: 13px;
+  color: rgba(224, 202, 158, 0.55);
+}
+
+@media (max-width: 720px) {
+  #modal-postava-historie-detail .postava-historie-narativ {
+    height: min(85vh, 580px) !important;
+    max-height: min(85vh, 580px) !important;
+  }
+
+  #modal-postava-profil .postava-profil-narativ {
+    height: min(86vh, 600px) !important;
+    max-height: min(86vh, 600px) !important;
+  }
 }
 
 /* ==========================================
@@ -3850,12 +4101,6 @@ button.knihovna-link:hover {
   margin-bottom: 2px;
 }
 
-#modal-archiv .archiv-stav-duse-pravy .finance-krize {
-  margin-top: 9px;
-  padding: 8px 10px;
-  font-size: 13px;
-}
-
 @media (max-width: 540px) {
   #modal-archiv .archiv-stav-duse-layout {
     grid-template-columns: 1fr;
@@ -3905,16 +4150,6 @@ button.knihovna-link:hover {
 .finance-widget .finance-castka { color: var(--barva-text-slaby); }
 .finance-widget .finance-castka--minus { color: var(--barva-cervena); }
 .finance-widget .finance-castka--plus  { color: var(--barva-zelena); }
-
-.finance-krize {
-  margin-top: 12px;
-  padding: 10px 12px;
-  font-size: 12px;
-  font-style: italic;
-  color: rgba(200, 160, 80, 0.95);
-  border: 1px solid rgba(200, 160, 80, 0.35);
-  background: rgba(40, 30, 10, 0.35);
-}
 
 /* ==========================================
    HAASOVA OBÁLKA
