@@ -135,11 +135,20 @@ const DataLoader = (() => {
       const opts = ins.options || {};
       for (const [key, opt] of Object.entries(opts)) {
         if (!opt || typeof opt !== 'object') continue;
-        const base = ins.label || 'Nedostatek důkazů';
+        /* `label: ""` = bez úředního prefixu (osobní volba — např. Haas, není „nedostatek důkazů“). */
+        let base;
+        if (ins.label !== undefined && ins.label !== null && String(ins.label).trim() === '') {
+          base = null;
+        } else {
+          base = typeof ins.label === 'string' && ins.label.trim() ? ins.label.trim() : 'Nedostatek důkazů';
+        }
+        const lab = String(opt.label || key).trim();
         out.push({
           id: `insufficient_${key}`,
-          text: `${base} — ${opt.label || key}`,
-          consequence: opt.label || '',
+          text: base ? `${base} — ${lab}` : lab,
+          consequence: typeof opt.description === 'string' && opt.description.trim()
+            ? opt.description.trim()
+            : lab,
           consequences: _poolEffectsNaConsequences(opt.effects),
           requires_moudrost_min: reqM
         });

@@ -697,20 +697,20 @@
     "newspaper_headline": "Sobota: město v přestávce — soudní budova zavřena.",
     "cases": [],
     "desk_bez_spisu_titul": "Sobota",
-    "desk_bez_spisu_text": "Budova je v sobotu zavřená. Ben přišel přes boční vchod, který Švejda nechává odemčený.",
+    "desk_bez_spisu_text": "Sobota bez jednání — na stole jen ticho a papír.",
     "morning_fragment": "fragment_d13_sobota_rano",
     "evening_choice": {
-      "text": "Druhá sobota v březnu a Ben sedí v kanceláři bez topení. Rozsudek z čtvrtka leží nedopsaný. Nebo si aspoň říká, že to je důvod, proč přišel.",
+      "text": "Před odchodem Ben přemýšlí, jak sobotu zakončit.",
       "options": [
         {
-          "text": "Dopíšeš rozsudek, zamkneš a jdeš domů. Sobota splnila svůj účel.",
+          "text": "Dáš dohromady drobnosti z týdne — poznámky, pořadač — zamkneš a odejdeš.",
           "effects": {
             "Moudrost": 2,
             "Vina": 1
           }
         },
         {
-          "text": "Necháš rozsudek ležet a jdeš se projít. Hlava potřebuje vzduch víc než papír.",
+          "text": "Necháš stůl tak, jak je, a vyjdeš ven. Hlava bere vzduch víc než prázdná místnost.",
           "effects": {
             "Nadeje": 2,
             "Vina": 1
@@ -890,7 +890,8 @@
     },
     "adventure_scene": {
       "id": "adventure_karas_d13",
-      "portrait": "assets/portraits/karas.png",
+      "portrait": "src/skici/skica_dvere.png",
+      "portrait_alt": "Dveře kanceláře",
       "portrait_label": "Ctibor Karas",
       "portrait_description": "Padesátník, unavená tvář, pečlivý oblek. Člověk, který si na únavu zvykl tak dávno, že ji přestal schovávat.",
       "trigger": "morning_after_fragment",
@@ -1062,7 +1063,7 @@
     ],
     "morning_fragment": "fragment_d18_rano",
     "evening_choice": {
-      "text": "Martinův dopis říká, že přijede o víkendu. Má něco říct — osobně. Ben dopis přečetl dvakrát a zatím neodpověděl. Neví, co napsat, aniž by musel lhát nebo říkat víc, než syn potřebuje vědět.",
+      "text": "Martinův dopis říká, že přijede o víkendu. Má něco říct — osobně.",
       "options": [
         {
           "text": "Napíšeš Martinovi pár řádků. Jen to, že se těšíš.",

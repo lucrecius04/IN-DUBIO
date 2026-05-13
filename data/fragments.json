@@ -104,10 +104,22 @@
     "text": "Kancelář se probouzí pomalu. Kovářová přišla o deset minut dřív než obvykle a seřadila složky bez ptaní. Na chodbě je neobvyklé ticho — chybí hlasy kolegů, kteří se ráno scházívají u kávovaru.\n\nV rádiu v sousední místnosti chytá zpravodajství přes šum: něco o bankách v Německu, pak přejde na jiné téma.\n\nDnes bude dlouhý den."
   },
   {
+    "id": "fragment_operace_den16_ano",
+    "type": "clipping",
+    "title": "Ráno — termín v Podolí",
+    "text": "Telefon v přízemí zvonil krátce. Sousedka volala nahoru: z Podolí.\n\nSestra mluvila stručně, úředně — jak mají zvyk, když nejde o diagnózu, ale o pořadníku. Matka nastoupila k příjmu, čtyři sta korun převzali při zápisu, jak stálo v dopise od MUDr. Síbra. Dnes je sedmnáctého března a v kalendáři to konečně není jen číslo, které se táhlo týdny před očima.\n\nBen poděkoval, zavěsil a chvíli stál u okna. Pak si sedl ke stolu — čekaly ho spisy, ale na okamžik je neotevřel."
+  },
+  {
+    "id": "fragment_operace_den16_ne",
+    "type": "clipping",
+    "title": "Ráno — dopis z Podolí",
+    "text": "Mezi ranní poštou byl obecný formulář a krátký dopis od ordinace — ne od Síbra osobně, ale pod jeho hlavičkou. Bez okolků: bez úhrady čtyř set korun při příjmu nelze termín držet. Operace se odkládá na neurčito; stav pacientky se prý zhoršuje a další kroky budou záviset na volných kapacitách a na tom, zda se podaří složit částku později.\n\nBen dopis přečetl dvakrát. Druhé čtení stejně nezměnilo součet na spořitelní knížce.\n\nSedmnáctého března mělo být rozhodnuto — a bylo. Jen ne tak, jak doufal."
+  },
+  {
     "id": "fragment_d13_sobota_rano",
     "type": "clipping",
     "title": "Druhá sobota v březnu",
-    "text": "Budova soudu je v sobotu zavřená a Švejda zamkl hlavní vchod ještě před osmou. Ben přesto přišel — přes boční vchod, který Švejda nechává pro případ jako je tento.\n\nChtěl dokončit přepis rozsudku, který mu leží na stole od čtvrtka. Nebo si aspoň říkal, že to je důvod.\n\nV kanceláři je zima. Kamna nevytápí od pátečního odpoledne. Ben si nechal kabát a pracoval s ním."
+    "text": "Budova soudu je v sobotu zavřená a Švejda zamkl hlavní vchod ještě před osmou. Ben přesto přišel — přes boční vchod, který Švejda nechává odemčený pro případy jako je tento.\n\nŽádný paragraf ho dnes netáhne zpátky za stůl. Spíš ho sem donesl zvyk a ticho, doma by stejně poslouchal hodiny a týden by se mu v hlavě točil v kruhu — tady je aspoň řád papíru a prázdná chodba.\n\nV kanceláři je zima. Kamna nevytápí od pátečního odpoledne. Ben si sedl a zůstal v kabátu."
   },
   {
     "id": "fragment_d14_nedele_rano",
@@ -132,7 +144,7 @@
     "id": "fragment_d18_rano",
     "type": "clipping",
     "title": "Čtvrtek — předposlední ráno",
-    "text": "Světlo za oknem je jiné než před třemi týdny — ostřejší, bledší, takové, které se v březnu ozve najednou a bez ohlášení.\n\nNa stole leží spisy, které nešly odložit na jindy. Martinův dopis z úterý říká, že přijede o víkendu. Ben si ho přečetl dvakrát a zatím neodepsal — neví, co říct o tom, co se tento týden stalo.\n\nNěkdy je poctivější nepsat nic, než psát slova, která by mohla být jen prázdná."
+    "text": "Světlo za oknem je jiné než před třemi týdny — ostřejší, bledší, takové, které se v březnu ozve najednou a bez ohlášení.\n\nNa stole leží spisy, které nešly odložit na jindy. Přišel dopis od Martina, píše v něm, že přijede o víkendu. Ben si ho přečetl dvakrát a zatím neodepsal — neví, co říct o tom, co se tento týden stalo.\n\nNěkdy je poctivější nepsat nic, než psát slova, která by mohla být jen prázdná."
   },
   {
     "id": "fragment_d20_odhaleni",

@@ -139,10 +139,6 @@
     }
   },
   "desk_predmety": {
-    "popelnik": {
-      "nazev": "POPELNÍK",
-      "tooltip": "Krátká pauza mezi svědky, paragrafy a vlastním svědomím."
-    },
     "obalka": {
       "nazev": "DOPIS",
       "tooltip": "Oficiální nebo poloviční slovo — vždycky něco měří a něco skrývá."

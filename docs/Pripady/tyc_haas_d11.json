@@ -242,36 +242,16 @@
           }
         }
       }
-    },
-    "insufficient_evidence": {
-      "options": {
-        "pozadit_cas": {
-          "label": "Požádat o čas — nechat obálku na stole do zítřka",
-          "description": "Ben řekne: potřebuji noc. Haas přikývne a odejde — bez obálky, která zůstane na stole. Ráno Ben rozhodne.",
-          "effects": {
-            "moudrost": 2,
-            "vina": 2,
-            "flags": [
-              {
-                "key": "flag_haas_ceka",
-                "value": true
-              }
-            ]
-          }
-        }
-      }
     }
   },
   "aftermath": {
     "guilty_vzit_obalku": "Haas odešel. Tři sta korun leží v zásuvce. Ben zavolal lékaři a domluvil operaci na čtvrtek. Matka řekla: jak jsi to sehnal? Ben řekl: ušetřil jsem. Matka přikývla. Neuvěřila mu.",
     "not_guilty_odmitnut_slušne": "Ben stál u okna a díval se za Haasem na ulici. Haas zastavil vůz — velký, tmavý — a odjel. Ben se otočil k telefonu. Deadline byl zítra a on měl osmdesát sedm korun.",
-    "not_guilty_odmitnut_s_komentarem": "Haas se zastavil u dveří a podíval se zpátky. Jeden pohled — beze slova. Pak odešel. Svejda přišel s kávou a nezeptal se na nic. Ben seděl a myslel na to, jak Haas věděl o čtyřech stech korunách.",
-    "insufficient_pozadit_cas": "Obálka leží na rohu stolu. Svejda kolem ní chodí a nedívá se na ni — nebo se dívá. Ben neví. Ráno přijde a rozhodne."
+    "not_guilty_odmitnut_s_komentarem": "Haas se zastavil u dveří a podíval se zpátky. Jeden pohled — beze slova. Pak odešel. Svejda přišel s kávou a nezeptal se na nic. Ben seděl a myslel na to, jak Haas věděl o čtyřech stech korunách."
   },
   "stamp_moment": {
     "guilty": "Ben zavřel šuplík. Tři sta korun je uvnitř. Haas je pryč. Deadline je zítra.",
-    "not_guilty": "Obálka zmizela v Haasově kapse. Ben stál u okna. Venku byl normální čtvrtek — pro všechny ostatní.",
-    "insufficient": "Obálka leží na stole. Svejda ji obchází. Ben ví, že ráno bude muset rozhodnout."
+    "not_guilty": "Obálka zmizela v Haasově kapse. Ben stál u okna. Venku byl normální čtvrtek — pro všechny ostatní."
   },
   "delayed_consequences": [
     {

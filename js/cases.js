@@ -624,6 +624,10 @@ const Cases = (() => {
     }
 
     if (typ === 'osobni') {
+      const pid = String(pripad && pripad.id || '').trim();
+      /** Haas / obálka — hotovost jen z varianty verdiktu (JSON), ne „úřední“ +30 za osobní spis. */
+      const bezTypoveOdmMerOsobni = pid === 'tyc_haas_d11';
+
       const po = rozsudek.personal_outcome;
       if (po === 'fair') {
         doplnek.traits.Integrita = (doplnek.traits.Integrita || 0) + 5;
@@ -637,8 +641,10 @@ const Cases = (() => {
         doplnek.traits.Moudrost = (doplnek.traits.Moudrost || 0) + 2;
         doplnek.traits.Vina = (doplnek.traits.Vina || 0) - 2;
       }
-      doplnek.finance = (Number(doplnek.finance) || 0) + 30;
-      doplnek._ui_finance_label = 'Odměna za uzavření osobního případu (+30 Kčs)';
+      if (!bezTypoveOdmMerOsobni) {
+        doplnek.finance = (Number(doplnek.finance) || 0) + 30;
+        doplnek._ui_finance_label = 'Odměna za uzavření osobního případu (+30 Kčs)';
+      }
     }
 
     const metaMix = _metaDoplnkyZaKvalituANormu(procesniKvalita, normativniSmer);

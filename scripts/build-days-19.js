@@ -11,7 +11,7 @@ const path = require('path');
 const OUT = path.join(__dirname, '..', 'data', 'days.json');
 
 const nedeleVolba3 = {
-  text: 'Jak strávíš neděli, Jakube?',
+  text: 'Jak strávíš neděli, Benedikte?',
   options: [
     {
       id: 'A',

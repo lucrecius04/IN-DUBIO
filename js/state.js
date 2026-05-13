@@ -142,6 +142,7 @@ const State = (() => {
     if (!_stav.trust || typeof _stav.trust !== 'object') _stav.trust = {};
     const F = [
       'dopis_operace_den8_viden', 'dopis_operace_den4_viden', 'operace_zaplacena', 'operace_odlozena',
+      'operace_vyhodnoceni_den16_rano',
       'uplatek_prijat', 'bankrot_varovani_zobrazeno',
       'dluh_pribeh_spusten'
     ];
@@ -335,6 +336,8 @@ const State = (() => {
       dopis_operace_den4_viden: false,
       operace_zaplacena:      false,
       operace_odlozena:       false,
+      /** Po ranním vyhodnocení termínu operace (den 16 / migrace starého save). */
+      operace_vyhodnoceni_den16_rano: false,
       /** Splacení půjčky u Karase — den, do kdy. */
       karas_dluh_do_dne:      null,
       /** Naděje +2/den od zítřka do tohoto dne (včetně). */

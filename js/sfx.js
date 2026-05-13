@@ -16,8 +16,15 @@ const SFX = (() => {
     campfire: 'campfire.wav',
     steps1: 'steps1.wav',
     steps2: 'steps2.flac',
-    pen_writing: 'pen_writing.mp3'
+    pen_writing: 'pen_writing.mp3',
+    /** Pátrání (osa stop): potvrzení / neúspěch — `assets/sounds/sfx/`. */
+    patrani_success: 'success.wav',
+    patrani_notsuccess: 'notsuccess.mp3'
   };
+
+  const VOL_PATRANI_USPECH = 0.88;
+  /** Neúspěch pátrání (notsuccess) — mírně tišeji. */
+  const VOL_PATRANI_NEUSPECH = 0.66;
 
   /** Max. délka přehrání verdiktní stopy (soubor může být delší). */
   const ROZSUDEK_VERDIKT_MAX_S = 10;
@@ -25,8 +32,11 @@ const SFX = (() => {
   /** Stejná doba jako výše: hudba se ztlumí na tuto délku. */
   const ROZSUDEK_DUCK_HUDBA_MS = ROZSUDEK_VERDIKT_MAX_S * 1000;
 
-  /** Zesílení gongu/verdiktu oproti `audio.volume = 1` (Web Audio GainNode). */
-  const VERDIKT_GAIN = 1.32;
+  /** Úspěch pátrání (piano): stejná rampa jako u verdiktu — 5 s ztlumení podkladu. */
+  const PATRANI_USPECH_DUCK_HUDBA_MS = 5000;
+
+  /** Zesílení gongu/verdiktu oproti `audio.volume = 1` (Web Audio GainNode). Nižší = tišší. */
+  const VERDIKT_GAIN = 1.05;
 
   /** Zesílení zvuku „další den“ (newday). */
   const NEWDAY_GAIN = 1.28;
@@ -47,6 +57,10 @@ const SFX = (() => {
   let _patraniHbLast = 0;
   let _ctxSfxMedia = null;
 
+  /** Jeden přednačtený přehrávač verdiktního zvonu — opakované `new Audio()` způsobovalo zpoždění při dekódování. */
+  let _verdiktAudio = null;
+  let _verdiktMaxTid = null;
+
   function _cesta(klic) {
     const j = SOUBORY[klic];
     return j ? BASE + j : '';
@@ -61,17 +75,42 @@ const SFX = (() => {
     a.play().catch(() => {});
   }
 
-  function _spustAmbient() {
+  function _zastavAmbient() {
     if (_ambient) {
-      _ambient.pause();
-      _ambient.src = '';
+      try {
+        _ambient.pause();
+      } catch (_e) {}
+      try {
+        _ambient.src = '';
+      } catch (_e2) {}
       _ambient = null;
     }
+  }
+
+  function _spustAmbient() {
+    _zastavAmbient();
     const a = new Audio(_cesta('campfire'));
     a.loop = true;
     a.volume = VOL_AMBIENT;
     _ambient = a;
     a.play().catch(() => {});
+  }
+
+  /**
+   * Druhá sobota (den 13): v naraci jsou kamna vychladlá — bez praskání.
+   * Jinak obnoví smyčku, pokud uživatel odemkl zvuk a ambient neběží.
+   */
+  function synchronizujAmbientPodleDne(den) {
+    if (!_odemceno) return;
+    const d = Number(den);
+    const bezKamna = Number.isFinite(d) && d === 13;
+    if (bezKamna) {
+      _zastavAmbient();
+      return;
+    }
+    if (!_ambient) {
+      _spustAmbient();
+    }
   }
 
   function _cyklusKroku(klic, intervalMs, ref) {
@@ -95,13 +134,49 @@ const SFX = (() => {
     }
   }
 
+  /** Připraví trvalý prvek pro verdikt (volá se po první interakci — začne stahovat buffer). */
+  function _inicializujTrvalyVerdikt() {
+    if (_verdiktAudio) return;
+    const url = _cesta('verdikt');
+    if (!url) return;
+    const a = new Audio();
+    a.preload = 'auto';
+    a.src = url;
+    a.volume = 1;
+    _verdiktAudio = a;
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (AC) {
+      try {
+        if (!_ctxSfxMedia || _ctxSfxMedia.state === 'closed') _ctxSfxMedia = new AC();
+        const src = _ctxSfxMedia.createMediaElementSource(a);
+        const g = _ctxSfxMedia.createGain();
+        g.gain.value = VERDIKT_GAIN;
+        src.connect(g).connect(_ctxSfxMedia.destination);
+      } catch (_e) {
+        /* přehrávání bez WAA zesílení */
+      }
+    }
+    try {
+      a.load();
+    } catch (_e) {
+      /* ignore */
+    }
+  }
+
   /**
    * Volat spolu s Music.spustPoInterakci() po první interakci uživatele.
+   * Spustí ambient, kroky; přednačte verdiktní zvuk kvůli latenci při potvrzení rozsudku.
    */
   function spustPoInterakci() {
     if (_odemceno) return;
     _odemceno = true;
-    _spustAmbient();
+    _inicializujTrvalyVerdikt();
+    if (_ctxSfxMedia && _ctxSfxMedia.state === 'suspended') {
+      _ctxSfxMedia.resume().catch(() => {});
+    }
+    synchronizujAmbientPodleDne(
+      typeof State !== 'undefined' && State.get ? Number(State.get('currentDay')) || 1 : 1
+    );
     _zastavKroky();
     _cyklusKroku('steps1', 1.5 * 60 * 1000, 1);
     _cyklusKroku('steps2', 2 * 60 * 1000, 2);
@@ -152,32 +227,69 @@ const SFX = (() => {
   /** Vynesení rozsudku po potvrzení; mírně zesíleno přes GainNode, max. délka viz `ROZSUDEK_VERDIKT_MAX_S`. */
   function rozsudekVerdikt() {
     if (!_odemceno) return;
+    _inicializujTrvalyVerdikt();
+    const maxMs = ROZSUDEK_VERDIKT_MAX_S * 1000;
+    const a = _verdiktAudio;
+    if (a && a.src) {
+      if (_verdiktMaxTid) {
+        clearTimeout(_verdiktMaxTid);
+        _verdiktMaxTid = null;
+      }
+      const vycistiTimer = () => {
+        if (_verdiktMaxTid) {
+          clearTimeout(_verdiktMaxTid);
+          _verdiktMaxTid = null;
+        }
+      };
+      const onEnded = () => vycistiTimer();
+      a.removeEventListener('ended', onEnded);
+      a.addEventListener('ended', onEnded, { once: true });
+      _verdiktMaxTid = setTimeout(() => {
+        try {
+          a.pause();
+        } catch (_e) {}
+        vycistiTimer();
+      }, maxMs);
+      try {
+        a.pause();
+        a.currentTime = 0;
+      } catch (_e) {}
+      if (typeof Music !== 'undefined' && Music.duckBehemVerdiktu) {
+        Music.duckBehemVerdiktu(ROZSUDEK_DUCK_HUDBA_MS);
+      }
+      if (_ctxSfxMedia) {
+        _ctxSfxMedia.resume().catch(() => {});
+      }
+      a.play().catch(() => {
+        vycistiTimer();
+      });
+      return;
+    }
+    /* Záloha: chybí soubor nebo inicializace */
     if (typeof Music !== 'undefined' && Music.duckBehemVerdiktu) {
       Music.duckBehemVerdiktu(ROZSUDEK_DUCK_HUDBA_MS);
     }
     const url = _cesta('verdikt');
     if (!url) return;
-    const a = new Audio(url);
-    a.volume = 1;
-    const maxMs = ROZSUDEK_VERDIKT_MAX_S * 1000;
+    const a2 = new Audio(url);
+    a2.volume = 1;
     const tid = setTimeout(() => {
       try {
-        a.pause();
+        a2.pause();
       } catch (_e) {}
     }, maxMs);
     const vycisti = () => clearTimeout(tid);
-    a.addEventListener('ended', vycisti, { once: true });
-
+    a2.addEventListener('ended', vycisti, { once: true });
     const AC = window.AudioContext || window.webkitAudioContext;
     if (AC) {
       try {
         if (!_ctxSfxMedia || _ctxSfxMedia.state === 'closed') _ctxSfxMedia = new AC();
         _ctxSfxMedia.resume().catch(() => {});
-        const src = _ctxSfxMedia.createMediaElementSource(a);
+        const src = _ctxSfxMedia.createMediaElementSource(a2);
         const g = _ctxSfxMedia.createGain();
         g.gain.value = VERDIKT_GAIN;
         src.connect(g).connect(_ctxSfxMedia.destination);
-        a.addEventListener(
+        a2.addEventListener(
           'ended',
           () => {
             try {
@@ -191,8 +303,7 @@ const SFX = (() => {
         /* bez zesílení */
       }
     }
-
-    a.play()
+    a2.play()
       .then(() => {})
       .catch(() => {
         vycisti();
@@ -231,6 +342,19 @@ const SFX = (() => {
     _prehrajJednorazove('pen_writing', VOL_PEN_WRITING);
   }
 
+  /** Potvrzená osa stop po pátrání (čas i pokusy). */
+  function patraniUspech() {
+    if (typeof Music !== 'undefined' && Music.duckBehemVerdiktu) {
+      Music.duckBehemVerdiktu(PATRANI_USPECH_DUCK_HUDBA_MS);
+    }
+    _prehrajJednorazove('patrani_success', VOL_PATRANI_USPECH);
+  }
+
+  /** Špatná dvojice, vypršení času, ukončení bez vazby apod. */
+  function patraniNeuspech() {
+    _prehrajJednorazove('patrani_notsuccess', VOL_PATRANI_NEUSPECH);
+  }
+
   /** urgency 0 = začátek lovu, 1 = konec — zrychluje interval a sílu úderu */
   function patraniHeartbeatTick(urgency01) {
     if (!_odemceno) return;
@@ -266,6 +390,7 @@ const SFX = (() => {
 
   return {
     spustPoInterakci,
+    synchronizujAmbientPodleDne,
     rozsudekStamp,
     rozsudekVerdikt,
     uplatekWhisper,
@@ -273,6 +398,8 @@ const SFX = (() => {
     slozkaPaper,
     prechodNaDalsiDen,
     penWriting,
+    patraniUspech,
+    patraniNeuspech,
     patraniHeartbeatTick,
     zastavPatraniHeartbeat
   };

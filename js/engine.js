@@ -371,6 +371,8 @@ const Engine = (() => {
     Finance.zkontrolujCilOperace();
     Desk.aktualizujVse();
 
+    await _vyhodnotMatcinuOperaciRano(den);
+
     /* Dopisy s fází morning_first: modál hned ráno před ranním fragmentem (např. Benešův lístek). */
     await _zpracujDopisyRanoPredFragmentem(den, _denData);
 
@@ -1354,6 +1356,52 @@ const Engine = (() => {
   }
 
   // --- HELPERS ---
+
+  /**
+   * Ráno dne operace (kalendář kampaně: 17. března = `Finance.OPERACE_DEADLINE_DEN`) — fragment + příznaky.
+   * Starý save po termínu: doplní `operace_odlozena` / příznak vyhodnocení bez modálu.
+   */
+  async function _vyhodnotMatcinuOperaciRano(den) {
+    if (typeof Finance === 'undefined' || typeof Finance.OPERACE_DEADLINE_DEN !== 'number') return;
+    const opDen = Finance.OPERACE_DEADLINE_DEN;
+    const d = Number(den);
+    if (!Number.isFinite(d) || d < 1) return;
+    if (State.get('flags.operace_vyhodnoceni_den16_rano') === true) return;
+
+    if (d > opDen) {
+      Finance.zkontrolujCilOperace();
+      if (State.get('flags.operace_zaplacena') === true) {
+        State.set('flags.operace_vyhodnoceni_den16_rano', true);
+        State.uloz();
+        if (typeof Desk !== 'undefined' && Desk.aktualizujVse) Desk.aktualizujVse();
+        return;
+      }
+      if (State.get('flags.operace_odlozena') !== true) {
+        State.set('flags.operace_odlozena', true);
+        State.upravRys('Vina', 10);
+        if (typeof State.vypoctiUzloveFlagy === 'function') State.vypoctiUzloveFlagy();
+      }
+      State.set('flags.operace_vyhodnoceni_den16_rano', true);
+      State.uloz();
+      if (typeof Desk !== 'undefined' && Desk.aktualizujVse) Desk.aktualizujVse();
+      return;
+    }
+
+    if (d !== opDen) return;
+
+    const paid = State.get('flags.operace_zaplacena') === true;
+    if (paid) {
+      await _cekejNaFragment('fragment_operace_den16_ano');
+    } else {
+      State.set('flags.operace_odlozena', true);
+      State.upravRys('Vina', 10);
+      if (typeof State.vypoctiUzloveFlagy === 'function') State.vypoctiUzloveFlagy();
+      await _cekejNaFragment('fragment_operace_den16_ne');
+    }
+    State.set('flags.operace_vyhodnoceni_den16_rano', true);
+    State.uloz();
+    if (typeof Desk !== 'undefined' && Desk.aktualizujVse) Desk.aktualizujVse();
+  }
 
   /** Titulek fragmentu s dnem v týdnu před kalendářním datem (viz Narrative.doplnDenVTydneDoTitulku). */
   function _titulFragmentuSDnem(baseF, den) {

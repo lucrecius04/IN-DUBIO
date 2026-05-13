@@ -13329,36 +13329,16 @@
               }
             }
           }
-        },
-        "insufficient_evidence": {
-          "options": {
-            "pozadit_cas": {
-              "label": "Požádat o čas — nechat obálku na stole do zítřka",
-              "description": "Ben řekne: potřebuji noc. Haas přikývne a odejde — bez obálky, která zůstane na stole. Ráno Ben rozhodne.",
-              "effects": {
-                "moudrost": 2,
-                "vina": 2,
-                "flags": [
-                  {
-                    "key": "flag_haas_ceka",
-                    "value": true
-                  }
-                ]
-              }
-            }
-          }
         }
       },
       "aftermath": {
         "guilty_vzit_obalku": "Haas odešel. Tři sta korun leží v zásuvce. Ben zavolal lékaři a domluvil operaci na čtvrtek. Matka řekla: jak jsi to sehnal? Ben řekl: ušetřil jsem. Matka přikývla. Neuvěřila mu.",
         "not_guilty_odmitnut_slušne": "Ben stál u okna a díval se za Haasem na ulici. Haas zastavil vůz — velký, tmavý — a odjel. Ben se otočil k telefonu. Deadline byl zítra a on měl osmdesát sedm korun.",
-        "not_guilty_odmitnut_s_komentarem": "Haas se zastavil u dveří a podíval se zpátky. Jeden pohled — beze slova. Pak odešel. Svejda přišel s kávou a nezeptal se na nic. Ben seděl a myslel na to, jak Haas věděl o čtyřech stech korunách.",
-        "insufficient_pozadit_cas": "Obálka leží na rohu stolu. Svejda kolem ní chodí a nedívá se na ni — nebo se dívá. Ben neví. Ráno přijde a rozhodne."
+        "not_guilty_odmitnut_s_komentarem": "Haas se zastavil u dveří a podíval se zpátky. Jeden pohled — beze slova. Pak odešel. Svejda přišel s kávou a nezeptal se na nic. Ben seděl a myslel na to, jak Haas věděl o čtyřech stech korunách."
       },
       "stamp_moment": {
         "guilty": "Ben zavřel šuplík. Tři sta korun je uvnitř. Haas je pryč. Deadline je zítra.",
-        "not_guilty": "Obálka zmizela v Haasově kapse. Ben stál u okna. Venku byl normální čtvrtek — pro všechny ostatní.",
-        "insufficient": "Obálka leží na stole. Svejda ji obchází. Ben ví, že ráno bude muset rozhodnout."
+        "not_guilty": "Obálka zmizela v Haasově kapse. Ben stál u okna. Venku byl normální čtvrtek — pro všechny ostatní."
       },
       "delayed_consequences": [
         {
@@ -13675,36 +13655,16 @@
               }
             }
           }
-        },
-        "insufficient_evidence": {
-          "options": {
-            "cas_na_rozmysleni": {
-              "label": "Požádat o čas na rozmyšlenou",
-              "description": "Ben řekne: dejte mi den. Zavadová přikývne a nechá prohlášení na stole. Odejde bez kufříku — kufřík zanechá jako záruku, že se vrátí.",
-              "effects": {
-                "moudrost": 3,
-                "vina": 2,
-                "flags": [
-                  {
-                    "key": "flag_zavadova_ceka",
-                    "value": true
-                  }
-                ]
-              }
-            }
-          }
         }
       },
       "aftermath": {
         "guilty_podepsat": "Zavadová vzala prohlášení, složila ho a uložila do kufříku. Podala ruku — pevně, jako obchodní partner. Řekla: 'Budeme v kontaktu.' Ben nevěděl, co to přesně znamená. Dozvěděl se postupně.",
         "not_guilty_odmitnut_formal": "Zavadová odešla bez komentáře. Svejda se zeptal, jestli chce Ben kávu. Ben řekl ano. Svejda přinesl kávu a nezeptal se, kdo ta žena byla. Ben byl za to vděčný.",
-        "not_guilty_odmitnut_s_konfrontaci": "Zavadová vzala kufřík a šla. U dveří se zastavila — jen na vteřinu, jako by chtěla říct ještě něco. Pak odešla. Ben seděl v prázdné kanceláři a slyšel, jak její kroky zmizí na chodbě. Pak byl klid.",
-        "insufficient_cas_na_rozmysleni": "Kufřík stál v rohu kanceláře celý zbytek dne. Svejda ho obcházel. Prohlášení leželo na stole. Ben pracoval na jiných spisech a dával pozor, aby se na prohlášení nedíval."
+        "not_guilty_odmitnut_s_konfrontaci": "Zavadová vzala kufřík a šla. U dveří se zastavila — jen na vteřinu, jako by chtěla říct ještě něco. Pak odešla. Ben seděl v prázdné kanceláři a slyšel, jak její kroky zmizí na chodbě. Pak byl klid."
       },
       "stamp_moment": {
         "guilty": "Zavadová zavřela kufřík. Cvaknutí zámku bylo velmi hlasité v tiché místnosti.",
-        "not_guilty": "Zavadová odešla. Kufřík s sebou. Prohlášení s sebou. Ben seděl sám — a poprvé po této sérii návštěv byl v kanceláři skutečně sám.",
-        "insufficient": "Kufřík stojí v rohu. Prohlášení leží na stole. Ben ví, že ráno bude jiný den — ale kufřík tam bude pořád."
+        "not_guilty": "Zavadová odešla. Kufřík s sebou. Prohlášení s sebou. Ben seděl sám — a poprvé po této sérii návštěv byl v kanceláři skutečně sám."
       },
       "delayed_consequences": [
         {

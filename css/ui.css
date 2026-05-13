@@ -3465,6 +3465,30 @@ button.knihovna-link:hover {
   margin: 16px 0 8px;
 }
 
+/* Příběh — časová kronika místo rozbalovacích záložek */
+.knihovna-pribeh-kronika {
+  clear: both;
+  margin-top: 4px;
+}
+
+.knihovna-pribeh-denik-radek {
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(30, 15, 5, 0.9);
+  text-align: left;
+}
+
+.knihovna-pribeh-denik-datum {
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  color: rgba(45, 28, 12, 0.95);
+}
+
+.knihovna-pribeh-denik-text {
+  font-weight: 400;
+}
+
 .knihovna-polozka--komorni > summary {
   font-size: 13px;
   font-weight: 500;

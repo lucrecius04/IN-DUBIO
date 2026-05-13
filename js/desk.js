@@ -121,6 +121,9 @@ const Desk = (() => {
       UI.syncPostavyDuvera();
     }
     _aktualizujDeskTestStats();
+    if (typeof SFX !== 'undefined' && SFX.synchronizujAmbientPodleDne) {
+      SFX.synchronizujAmbientPodleDne(stav.currentDay);
+    }
   }
 
   function _hvezdicky(hodnota) {
@@ -856,27 +859,32 @@ const Desk = (() => {
   }
 
   /**
-   * Ilustrované předměty na stole — tooltip z data/traits-text.json (getTraitText)
-   * a desk_predmety (viz .cursorrules).
+   * Ilustrované předměty na stole — u rysů stejný text jako záložka STAV duše v zápisníku
+   * (`Traits.getTraitText` → `notebook`, jinak `tooltip`); obálka z `desk_predmety`.
    */
   const _DESK_PREDMET_MAPA = [
     { id: 'desk-lamp', trait: 'Odvaha' },
     { id: 'desk-inkwell', trait: 'Integrita' },
     { id: 'desk-photo', trait: 'Vina' },
     { id: 'desk-envelope', atmosfera: 'obalka' },
-    { id: 'desk-ashtray-wrap', atmosfera: 'popelnik' }
+    { id: 'desk-notebook', trait: 'Moudrost' },
+    { id: 'desk-ashtray-wrap', trait: 'Nadeje' }
   ];
 
   function _textTooltipuPredmetuStolu(zaznam) {
     if (zaznam.trait && typeof Traits !== 'undefined' && Traits.getTraitText) {
       const h = Number(State.get('traits.' + zaznam.trait));
       const v = Number.isFinite(h) ? h : 50;
-      const { tooltip } = Traits.getTraitText(zaznam.trait, v);
+      const tt = Traits.getTraitText(zaznam.trait, v);
+      /* Stejné jako záložka STAV duše v zápisníku (`_vyplnArchivTab` → notebook). */
+      const nb = typeof tt.notebook === 'string' ? tt.notebook.trim() : '';
+      const tip = typeof tt.tooltip === 'string' ? tt.tooltip.trim() : '';
+      const text = nb || tip || '—';
       const nazev =
         typeof Traits.getTraitVisualLabel === 'function'
           ? Traits.getTraitVisualLabel(zaznam.trait)
           : zaznam.trait.toUpperCase();
-      return { nazev, text: tooltip || '—' };
+      return { nazev, text };
     }
     if (zaznam.atmosfera && typeof Traits !== 'undefined' && Traits.getDeskPredmetAtmosfera) {
       const { nazev, tooltip } = Traits.getDeskPredmetAtmosfera(zaznam.atmosfera);
@@ -909,7 +917,129 @@ const Desk = (() => {
     if (!el) return null;
     if (el.tagName === 'IMG') return el;
     if (zaznam.id === 'desk-ashtray-wrap') return el.querySelector('img');
+    if (zaznam.id === 'desk-notebook') {
+      const inner = el.querySelector && el.querySelector('.desk-notebook-inner');
+      return inner && inner.querySelector('img');
+    }
     return null;
+  }
+
+  /**
+   * Zápisník: stejná alfa jako desk-notebook-pixel-hover (PNG / SVG fallback).
+   */
+  function _pripojTooltipPredmetuZapisnik(zaznam, tooltip, nazevTooltip, textTooltip) {
+    const btn = document.getElementById('desk-notebook');
+    const inner = btn && btn.querySelector('.desk-notebook-inner');
+    const img = inner && inner.querySelector('img');
+    const svg = inner && inner.querySelector('.desk-notebook-svg');
+    if (!btn || !inner || !img || !svg) return;
+
+    const ALPHA_MIN = 28;
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    let ready = false;
+    let hitAktualni = false;
+
+    function _notebookPouzitSvg() {
+      return btn.classList.contains('desk-notebook--fallback');
+    }
+
+    function rasterizeZapisnik() {
+      ready = false;
+      try {
+        if (_notebookPouzitSvg()) {
+          const vb = svg.viewBox && svg.viewBox.baseVal;
+          const w = vb && vb.width ? vb.width : 56;
+          const h = vb && vb.height ? vb.height : 72;
+          canvas.width = w;
+          canvas.height = h;
+          ctx.clearRect(0, 0, w, h);
+          ctx.drawImage(svg, 0, 0, w, h);
+          ready = true;
+          return;
+        }
+        if (!img.naturalWidth || !img.naturalHeight) return;
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0);
+        ready = true;
+      } catch (_e) {
+        ready = false;
+      }
+    }
+
+    img.addEventListener('load', rasterizeZapisnik);
+    img.addEventListener('error', rasterizeZapisnik);
+    if (img.complete) rasterizeZapisnik();
+    new MutationObserver(() => rasterizeZapisnik()).observe(btn, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    let tooltipTimer = null;
+    let posledniUdalostNaAlfě = null;
+
+    function zrusitTooltip() {
+      clearTimeout(tooltipTimer);
+      tooltipTimer = null;
+      posledniUdalostNaAlfě = null;
+      tooltip.classList.remove('viditelny');
+    }
+
+    function jeNaAlfě(e) {
+      if (!ready) return false;
+      const rect = inner.getBoundingClientRect();
+      if (rect.width < 1 || rect.height < 1) return false;
+      const rx = (e.clientX - rect.left) / rect.width;
+      const ry = (e.clientY - rect.top) / rect.height;
+      if (rx < 0 || ry < 0 || rx > 1 || ry > 1) return false;
+      const x = Math.min(canvas.width - 1, Math.max(0, Math.floor(rx * canvas.width)));
+      const y = Math.min(canvas.height - 1, Math.max(0, Math.floor(ry * canvas.height)));
+      let alpha;
+      try {
+        alpha = ctx.getImageData(x, y, 1, 1).data[3];
+      } catch (_err) {
+        return false;
+      }
+      return alpha > ALPHA_MIN;
+    }
+
+    inner.addEventListener('mousemove', (e) => {
+      hitAktualni = jeNaAlfě(e);
+      if (!hitAktualni) {
+        zrusitTooltip();
+        return;
+      }
+      posledniUdalostNaAlfě = e;
+      if (tooltip.classList.contains('viditelny')) {
+        const tip = _textTooltipuPredmetuStolu(zaznam);
+        nazevTooltip.textContent = tip.nazev;
+        textTooltip.textContent = tip.text;
+        _nastavPoziciTooltipu(e, tooltip);
+        return;
+      }
+      if (!tooltipTimer) {
+        tooltipTimer = setTimeout(() => {
+          tooltipTimer = null;
+          if (!hitAktualni || !posledniUdalostNaAlfě) return;
+          const tip = _textTooltipuPredmetuStolu(zaznam);
+          nazevTooltip.textContent = tip.nazev;
+          textTooltip.textContent = tip.text;
+          tooltip.classList.add('viditelny');
+          _nastavPoziciTooltipu(posledniUdalostNaAlfě, tooltip);
+        }, 450);
+      }
+    });
+
+    inner.addEventListener('mouseleave', () => {
+      hitAktualni = false;
+      zrusitTooltip();
+    });
+
+    img.addEventListener('dragstart', (e) => {
+      e.preventDefault();
+    });
   }
 
   function _pripojTooltipPredmetuPixel(img, zaznam, tooltip, nazevTooltip, textTooltip) {
@@ -953,6 +1083,9 @@ const Desk = (() => {
       }
       posledniUdalostNaAlfě = e;
       if (tooltip.classList.contains('viditelny')) {
+        const tip = _textTooltipuPredmetuStolu(zaznam);
+        nazevTooltip.textContent = tip.nazev;
+        textTooltip.textContent = tip.text;
         _nastavPoziciTooltipu(e, tooltip);
         return;
       }
@@ -987,6 +1120,10 @@ const Desk = (() => {
     if (!nazevTooltip || !textTooltip) return;
 
     for (const zaznam of _DESK_PREDMET_MAPA) {
+      if (zaznam.id === 'desk-notebook') {
+        _pripojTooltipPredmetuZapisnik(zaznam, tooltip, nazevTooltip, textTooltip);
+        continue;
+      }
       const img = _predmetImgProZaznam(zaznam);
       if (!img) continue;
       _pripojTooltipPredmetuPixel(img, zaznam, tooltip, nazevTooltip, textTooltip);

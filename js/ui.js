@@ -545,7 +545,7 @@ const UI = (() => {
 
   function _wfCluePokusySpust(pripad, onRozsudek) {
     if (!pripad || _wfCluePouzivaTimedHunt(pripad) || !_wfClueMaPokusovyRezim(pripad)) return;
-    if (pripad._lightMode) return;
+    if (pripad._lightMode === true) return;
     const navazani =
       _wfCluePokusy.hasRun &&
       !_wfCluePokusy.closed &&
@@ -677,6 +677,7 @@ const UI = (() => {
 
   function _wfCluePokusyUkonciBezVysledku(pripad, onRozsudek) {
     if (!pripad || !_wfClueMaPokusovyRezim(pripad) || !_wfCluePokusy.active) return;
+    /* Ruční ukončení — bez zvuku neúspěchu (ten zůstává u vyčerpání pokusů / miny). */
     _wfCluePokusyKonecNeuspech(pripad);
     _wfClueResetVolby();
     _wfClueResetKandidata();
@@ -803,6 +804,7 @@ const UI = (() => {
       mod.style.removeProperty('--case-wf-hunt-vignette');
     }
     if (typeof SFX !== 'undefined' && SFX.zastavPatraniHeartbeat) SFX.zastavPatraniHeartbeat();
+    /* Ruční ukončení — bez zvuku neúspěchu (u vypršení času zůstává `patraniNeuspech` v timeru). */
     _wfCluePatraniUlozKonecNeuspech(pripad);
     _wfClueResetVolby();
     _wfClueResetKandidata();
@@ -1298,7 +1300,12 @@ const UI = (() => {
     const pokusyRezim = !!_wfClueMaPokusovyRezim(pripad);
     const runCfg = timed ? _wfCluePatraniRuntimeCfg(pripad) : null;
     const maxF = _wfClueFocusMax(pripad);
-    if (!pripad || (!timed && !pokusyRezim && maxF <= 0)) {
+    /* Light (osekaný) spis: bez pátrání — lupa nefunguje, schovat. */
+    if (
+      !pripad ||
+      pripad._lightMode === true ||
+      (!timed && !pokusyRezim && maxF <= 0)
+    ) {
       detail?.classList.add('skryto');
       headerWrap?.classList.add('skryto');
       document.getElementById('case-wf-clue-hud-header-vysledek')?.classList.add('skryto');
@@ -1717,6 +1724,7 @@ const UI = (() => {
   }
 
   function _wfCluePatraniSpust(pripad, onRozsudek) {
+    if (!pripad || pripad._lightMode === true) return;
     const cfg = _wfCluePatraniRuntimeCfg(pripad);
     if (!cfg) return;
     _wfCluePatrani.zahajitPovolenoPoInkoustu = false;
@@ -1780,6 +1788,7 @@ const UI = (() => {
       }
       _wfCluePatraniReset(true);
       _wfCluePatraniUlozKonecNeuspech(pripad);
+      if (typeof SFX !== 'undefined' && SFX.patraniNeuspech) SFX.patraniNeuspech();
       _wfClueResetVolby();
       _wfClueResetKandidata();
       _wfClueAplikujUzamceni(pripad);
@@ -1817,38 +1826,86 @@ const UI = (() => {
           .filter(Boolean);
     if (!paras.length) return;
 
+    let onEscape = null;
+    const zavrit = () => {
+      if (onEscape) document.removeEventListener('keydown', onEscape, true);
+      onEscape = null;
+      _wfClueNarativalniOverlayOdstran();
+      _wfClueVykresliPotvrzeni(pripad, onRozsudek);
+    };
+
     const wrap = document.createElement('div');
     wrap.id = 'case-wf-clue-narrative-overlay';
     wrap.className = 'case-wf-clue-narrative-overlay';
-    const card = document.createElement('div');
-    card.className = 'case-wf-clue-narrative-card';
-    card.setAttribute('role', 'dialog');
-    card.setAttribute('aria-modal', 'true');
-    const tit = document.createElement('div');
-    tit.className = 'case-wf-clue-narrative-title';
-    tit.textContent = 'Záznam z pátrání';
+    wrap.tabIndex = -1;
+    wrap.setAttribute('role', 'dialog');
+    wrap.setAttribute('aria-modal', 'true');
+
+    const inner = document.createElement('div');
+    inner.className = 'case-wf-clue-narrative-inner narativ-shell fragment-panel panel-papir--nastup';
+
+    const scena = document.createElement('div');
+    scena.className = 'narativ-scena narativ-scena--patrani-zapis';
+
+    const panel = document.createElement('section');
+    panel.className = 'narativ-panel';
+
+    const kicker = document.createElement('div');
+    kicker.className = 'narativ-kicker';
+    const kMain = document.createElement('span');
+    kMain.className = 'narativ-kicker-main';
+    kMain.textContent = 'Pátrání';
+    const kDet = document.createElement('span');
+    kDet.className = 'narativ-kicker-detail';
+    kDet.textContent = 'Zápis';
+    kicker.appendChild(kMain);
+    kicker.appendChild(kDet);
+
+    const nadpis = document.createElement('div');
+    nadpis.className = 'narativ-nadpis case-wf-clue-narrative-nadpis';
+    nadpis.textContent = 'Záznam z pátrání';
+
     const body = document.createElement('div');
-    body.className = 'case-wf-clue-narrative-body';
+    body.className = 'narativ-body fragment-text case-wf-clue-narrative-body';
     for (const p of paras) {
       const para = document.createElement('p');
       para.className = 'case-wf-clue-narr-p';
       para.textContent = p.replace(/\s+/g, ' ').trim();
       body.appendChild(para);
     }
+
+    const actions = document.createElement('div');
+    actions.className = 'narativ-actions';
     const ok = document.createElement('button');
     ok.type = 'button';
-    ok.className = 'case-wf-clue-narrative-ok';
+    ok.className = 'fragment-zavrit';
     ok.textContent = 'Rozumím';
-    ok.addEventListener('click', () => {
-      _wfClueNarativalniOverlayOdstran();
-      _wfClueVykresliPotvrzeni(pripad, onRozsudek);
-    });
-    card.appendChild(tit);
-    card.appendChild(body);
-    card.appendChild(ok);
-    wrap.appendChild(card);
+    ok.addEventListener('click', () => zavrit());
+    actions.appendChild(ok);
+
+    panel.appendChild(kicker);
+    panel.appendChild(nadpis);
+    panel.appendChild(body);
+    panel.appendChild(actions);
+
+    scena.appendChild(panel);
+    inner.appendChild(scena);
+    wrap.appendChild(inner);
+
+    onEscape = e => {
+      if (e.key !== 'Escape') return;
+      e.preventDefault();
+      zavrit();
+    };
+    document.addEventListener('keydown', onEscape, true);
+
     /* document.body: nad #modal-pripad (z-index 200) a nad vnitřním stacking contextem panelu (transform spisu). */
     document.body.appendChild(wrap);
+    requestAnimationFrame(() => {
+      inner.classList.remove('panel-papir--nastup');
+      void inner.offsetWidth;
+      inner.classList.add('panel-papir--nastup');
+    });
     ok.focus();
   }
 
@@ -1870,6 +1927,7 @@ const UI = (() => {
       State.vymazCluePatraniSession(pripad.id);
     }
     _wfCluePatraniReset(true);
+    if (typeof SFX !== 'undefined' && SFX.patraniUspech) SFX.patraniUspech();
     _wfClueResetVolby();
     _wfClueResetKandidata();
     _wfClueAplikujUzamceni(pripad);
@@ -1880,7 +1938,11 @@ const UI = (() => {
       _wfClueZobrazNarativPoPotvrzeni(pripad, onRozsudek, res.rewards);
     }
     _wfClueAplikujUzamceni(pripad);
-    _wfPoPrvniAkciPruzkumu(pripad, onRozsudek, { predchoziVerdikty });
+    _wfPoPrvniAkciPruzkumu(pripad, onRozsudek, {
+      predchoziVerdikty,
+      bezRazitkaPriOdemceniVerdiktu: true,
+      poPotvrzeniOsyPatrani: true
+    });
     Desk.aktualizujVse();
     State.uloz();
     const extra = opts.timeout === true
@@ -2243,6 +2305,11 @@ const UI = (() => {
 
     const vys = Cases.vyhodnotTwoClickRozpor(pripad, prvni.id, clueId);
     if (!vys || !vys.ok) {
+      const huntAktivni =
+        (pokusyCfg && _wfCluePokusy.active) || (timedCfg && _wfCluePatrani.active);
+      if (huntAktivni) {
+        if (typeof SFX !== 'undefined' && SFX.patraniNeuspech) SFX.patraniNeuspech();
+      } else if (typeof SFX !== 'undefined' && SFX.slozkaPaper) SFX.slozkaPaper();
       if (pokusyCfg && _wfCluePokusy.active) {
         _wfCluePokusyZalogujDvojici(prvni.id, clueId, 'miss');
       } else if (timedCfg && _wfCluePatrani.active) {
@@ -2250,7 +2317,6 @@ const UI = (() => {
       }
       prvni.el.classList.add('clue--miss');
       clueEl.classList.add('clue--miss');
-      if (typeof SFX !== 'undefined' && SFX.slozkaPaper) SFX.slozkaPaper();
       if (pokusyCfg && _wfCluePokusy.active) {
         const zust = Math.max(0, (Number(_wfCluePokusy.attemptsLeft) || 0) - 1);
         _wfCluePokusy.attemptsLeft = zust;
@@ -2326,7 +2392,10 @@ const UI = (() => {
 
     prvni.el.classList.remove('clue--selected');
     clueEl.classList.remove('clue--selected');
-    if (typeof SFX !== 'undefined' && SFX.penWriting) SFX.penWriting();
+    /* Během pátrání zní jen piano při finálním potvrzení (`patraniUspech`) — ne pera vedle něj. */
+    const tichoPeraPriPatrani =
+      (pokusyCfg && _wfCluePokusy.active) || (timedCfg && _wfCluePatrani.active);
+    if (!tichoPeraPriPatrani && typeof SFX !== 'undefined' && SFX.penWriting) SFX.penWriting();
     _wfClueKandidat = {
       pairId: vys.pairId,
       strength: vys.strength,
@@ -2499,6 +2568,7 @@ const UI = (() => {
           zbyvaSec: zbyvaZav
         });
         if (!potvrzeno) {
+          if (typeof SFX !== 'undefined' && SFX.patraniNeuspech) SFX.patraniNeuspech();
           _wfCluePatraniZastavTimer();
           _wfCluePatraniReset(true);
           _wfCluePatraniUlozKonecNeuspech(pZav);
@@ -2507,6 +2577,7 @@ const UI = (() => {
           _wfClueAplikujUzamceni(pZav);
         }
       } else {
+        if (typeof SFX !== 'undefined' && SFX.patraniNeuspech) SFX.patraniNeuspech();
         _wfCluePatraniZastavTimer();
         _wfCluePatraniReset(true);
         _wfCluePatraniUlozKonecNeuspech(pZav);
@@ -2754,25 +2825,39 @@ const UI = (() => {
       return;
     }
 
-    const protoVeta = 'Jménem republiky se vynáší tento rozsudek.';
+    /** Haas + Závadová (tyč): předehra bez slovníku soudu / rozsudku. */
+    const jeOsobniBezRozsudecniPrelude = _wfMaOsobniVerdiktBezTrestnihoRz(pripad);
+    const protoVeta = jeOsobniBezRozsudecniPrelude
+      ? ''
+      : 'Jménem republiky se vynáší tento rozsudek.';
     const raw = (rozsudek.consequence && String(rozsudek.consequence).trim())
       || (rozsudek.text && String(rozsudek.text).trim())
       || '—';
     const scena = document.getElementById('pripad-consequence-narativ-scena');
     if (scena) scena.className = 'narativ-scena narativ-scena--rozsudek narativ-scena--verdict';
     const kicker = document.getElementById('pripad-consequence-prelude-kicker');
-    if (kicker) kicker.textContent = 'ROZSUDEK';
     const panelKicker = document.querySelector('#pripad-consequence-prelude .pripad-consequence-panel-kicker');
-    if (panelKicker) panelKicker.textContent = 'ROZSUDEK';
     const nadpis = document.getElementById('pripad-consequence-prelude-nadpis');
-    if (nadpis) nadpis.textContent = 'Vynesení rozsudku';
     const panelNadpis = document.querySelector('#pripad-consequence-prelude .pripad-consequence-panel-nadpis');
-    if (panelNadpis) panelNadpis.textContent = 'Vynesení rozsudku';
+    if (jeOsobniBezRozsudecniPrelude) {
+      if (kicker) kicker.textContent = '';
+      if (panelKicker) panelKicker.textContent = '';
+      if (nadpis) nadpis.textContent = 'Rozhodnutí';
+      if (panelNadpis) panelNadpis.textContent = 'Rozhodnutí';
+    } else {
+      if (kicker) kicker.textContent = 'ROZSUDEK';
+      if (panelKicker) panelKicker.textContent = 'ROZSUDEK';
+      if (nadpis) nadpis.textContent = 'Vynesení rozsudku';
+      if (panelNadpis) panelNadpis.textContent = 'Vynesení rozsudku';
+    }
     _narativNastavObraz(
       document.getElementById('pripad-consequence-narativ-obraz'),
       'verdict'
     );
-    _wfNastavRichText(txtEl, `${protoVeta} ${raw}`);
+    const teloPredohry = jeOsobniBezRozsudecniPrelude
+      ? raw
+      : (protoVeta ? `${protoVeta} ${raw}` : raw);
+    _wfNastavRichText(txtEl, teloPredohry);
     prelude.querySelector('.pripad-consequence-prelude-inner')
       ?.classList.remove('pripad-consequence-prelude-inner--aftermath');
     const hint0 = prelude.querySelector('.pripad-consequence-prelude-hint');
@@ -3964,11 +4049,24 @@ const UI = (() => {
     return !!(pripad && String(pripad.id || '').trim() === 'tyc_zavadova_d12');
   }
 
+  /** Haasova obálka — nabídka peněz, ne trestní výrok. */
+  function _wfJeHaasObalkaOsobni(pripad) {
+    return !!(pripad && String(pripad.id || '').trim() === 'tyc_haas_d11');
+  }
+
+  /** UI bez slovníku „vinen / zprostit“ — osobní volba mimo obžalobu. */
+  function _wfMaOsobniVerdiktBezTrestnihoRz(pripad) {
+    return _wfJeZavadovaTyčOsobni(pripad) || _wfJeHaasObalkaOsobni(pripad);
+  }
+
   function _wfTitulSkupinyVerdiktu(pripad, grp) {
+    if (_wfJeHaasObalkaOsobni(pripad)) {
+      if (grp === 'guilty') return 'Přijmout';
+      if (grp === 'not_guilty') return 'Odmítnout';
+    }
     if (_wfJeZavadovaTyčOsobni(pripad)) {
       if (grp === 'guilty') return 'Přijmout';
       if (grp === 'not_guilty') return 'Odmítnout';
-      if (grp === 'insufficient') return 'Čas na rozmyšlenou';
     }
     if (grp === 'guilty') return 'Vinen';
     if (grp === 'not_guilty') return 'Zproštění / nevinen';
@@ -3977,15 +4075,20 @@ const UI = (() => {
   }
 
   function _wfPopisSkupinyVerdiktu(pripad, grp) {
+    if (_wfJeHaasObalkaOsobni(pripad)) {
+      if (grp === 'guilty') {
+        return 'Vzít hotovost v obálce — přijmout Haasův návrh.';
+      }
+      if (grp === 'not_guilty') {
+        return 'Odmítnout peníze i nepojmenovaný závazek.';
+      }
+    }
     if (_wfJeZavadovaTyčOsobni(pripad)) {
       if (grp === 'guilty') {
         return 'Podepsat prohlášení o kontaktu s právní sekcí — výměnou za stažení zprávy z ministerstva.';
       }
       if (grp === 'not_guilty') {
         return 'Odmítnout nabídku. Dostupné varianty závisejí na průzkumu (formální odmítnutí / konfrontace s padělkem).';
-      }
-      if (grp === 'insufficient') {
-        return 'Požádat o den na rozmyšlenou — prohlášení zatím nepodepsat ani nevrátit.';
       }
     }
     if (grp === 'guilty') return 'Obžalovaný spáchal skutek v podobě popsané obžalobou.';
@@ -3995,7 +4098,7 @@ const UI = (() => {
   }
 
   function _wfNadpisRozhodnutiVRozsudku(pripad) {
-    return _wfJeZavadovaTyčOsobni(pripad) ? 'Rozhodnutí' : 'Rozsudek';
+    return _wfMaOsobniVerdiktBezTrestnihoRz(pripad) ? 'Rozhodnutí' : 'Rozsudek';
   }
 
   function _wfVerdiktyDoSkupin(verdicts) {
@@ -4255,6 +4358,7 @@ const UI = (() => {
       if (sr) sr.remove();
       s2w.classList.add('skryto');
     }
+    document.getElementById('case-wf-sec-verdict')?.classList.remove('case-wf-sec-verdict--osobni-volba');
     if (leg) {
       leg.innerHTML = '';
       leg.classList.add('skryto');
@@ -4313,15 +4417,19 @@ const UI = (() => {
     effectsPanel.className = 'case-wf-step2-effects-panel';
     const grpLabel = _wfTitulSkupinyVerdiktu(pripad, grp);
     const rozhNadp = _wfNadpisRozhodnutiVRozsudku(pripad);
+    const osobniVw = _wfMaOsobniVerdiktBezTrestnihoRz(pripad);
+    const slovoVolbaVerdikt = osobniVw ? 'Volba' : 'Verdikt';
     detail.innerHTML =
       `<div class="case-wf-step2-detail-line"><strong>${rozhNadp}:</strong> ${grpLabel}</div>` +
-      `<div class="case-wf-step2-detail-line"><strong>Verdikt:</strong> —</div>` +
+      `<div class="case-wf-step2-detail-line"><strong>${slovoVolbaVerdikt}:</strong> —</div>` +
       `<div class="case-wf-step2-detail-line case-wf-step2-detail-line--reason"><strong>Odůvodnění:</strong> ` +
-      `<span class="case-wf-step2-detail-text">Vyberte variantu verdiktu.</span></div>`;
+      `<span class="case-wf-step2-detail-text">${
+        osobniVw ? 'Vyberte konkrétní možnost.' : 'Vyberte variantu verdiktu.'
+      }</span></div>`;
     effectsPanel.innerHTML =
       `<div class="case-wf-step2-effects-title"><strong>Efekty:</strong></div>` +
       `<div class="case-wf-step2-detail-effects">—</div>`;
-    if (lbl) lbl.textContent = 'VERDIKT';
+    if (lbl) lbl.textContent = osobniVw ? 'VOLBA' : 'VERDIKT';
     step2w.classList.remove('skryto');
     for (const r of polozky) {
       const b = document.createElement('button');
@@ -4391,7 +4499,7 @@ const UI = (() => {
             : '—';
           detail.innerHTML =
             `<div class="case-wf-step2-detail-line"><strong>${rozhNadp}:</strong> ${grpLabel}</div>` +
-            `<div class="case-wf-step2-detail-line"><strong>Verdikt:</strong> ${tit}</div>` +
+            `<div class="case-wf-step2-detail-line"><strong>${slovoVolbaVerdikt}:</strong> ${tit}</div>` +
             `<div class="case-wf-step2-detail-line case-wf-step2-detail-line--reason"><strong>Odůvodnění:</strong> ` +
             `<span class="case-wf-step2-detail-text">${popis || 'Bez doplňujícího odůvodnění.'}</span></div>`;
           effectsPanel.innerHTML =
@@ -4435,7 +4543,11 @@ const UI = (() => {
     }
     _wfVerdictStampBindMove();
     _caseWfSetDots(3, 3);
-    _wfNavHint('Vyberte konkrétní znění a potvrďte rozsudek.');
+    _wfNavHint(
+      osobniVw
+        ? 'Vyberte konkrétní znění a potvrďte rozhodnutí.'
+        : 'Vyberte konkrétní znění a potvrďte rozsudek.'
+    );
   }
 
   function _zobrazRozsudkyWireframe(pripad, onRozsudek) {
@@ -4455,6 +4567,9 @@ const UI = (() => {
     }
     if (_wfJeAktivniDopadovaVrstvaPripadu()) return;
     _wfResetVerdictUi();
+    document
+      .getElementById('case-wf-sec-verdict')
+      ?.classList.toggle('case-wf-sec-verdict--osobni-volba', !!(pripad && _wfMaOsobniVerdiktBezTrestnihoRz(pripad)));
     _wfPripadCallback = onRozsudek;
     const dostupne = _wfFiltrovatVerdiktyPodlePruzkumu(pripad, _wfFiltrovatVerdikty(pripad));
     const dostupneId = new Set(dostupne.map(v => String(v.id || '')));
@@ -4622,11 +4737,12 @@ const UI = (() => {
       confirmBtn.disabled = true;
       confirmBtn.onclick = null;
 
-      _wfVerdictStampTeardown();
+      /* Zvuk verdiktu hned v tom samém handleru (uživatelský gest) — před DOM úklidem kvůli latenci. */
       if (typeof SFX !== 'undefined') {
         if (SFX.rozsudekVerdikt) SFX.rozsudekVerdikt();
         if (_wfJeOtevrenaNabidkaUplateku(pripad) && SFX.uplatekWhisper) SFX.uplatekWhisper();
       }
+      _wfVerdictStampTeardown();
       _wfVerdictStampShake(true);
       _zobrazPredohruConsequenceAKlik(pripad, r, onRozsudek);
     };
@@ -4645,7 +4761,8 @@ const UI = (() => {
     const pred = opts && opts.predchoziVerdikty instanceof Set ? opts.predchoziVerdikty : null;
     const po = _wfDostupneVerdiktIdSet(pripad);
     const nove = _wfSpoctiNoveVerdiktyPoOdemceni(pred, po);
-    const bezRazitkaOdemceni = !!(opts && opts.bezRazitkaPriOdemceniVerdiktu);
+    const bezRazitkaOdemceni =
+      !!(opts && opts.bezRazitkaPriOdemceniVerdiktu) || !!(opts && opts.poPotvrzeniOsyPatrani);
     if (nove > 0) {
       _wfSpustUnlockCeremonii(nove, bezRazitkaOdemceni);
       zobrazStavovouZpravu(`Alternativa odemčena: ${nove} ${nove === 1 ? 'nová možnost rozsudku' : 'nové možnosti rozsudku'}.`);
@@ -4654,7 +4771,11 @@ const UI = (() => {
       SFX.rozsudekStamp();
     }
     _caseWfSetDots(3, 3);
-    _wfNavHint('Vyberte verdikt a potvrďte rozsudek.');
+    _wfNavHint(
+      _wfMaOsobniVerdiktBezTrestnihoRz(pripad)
+        ? 'Vyberte rozhodnutí a potvrďte.'
+        : 'Vyberte verdikt a potvrďte rozsudek.'
+    );
     _wfAktualizujRozporBox(pripad);
     const conEl = document.getElementById('case-wf-contradiction');
     if (conEl && !conEl.classList.contains('skryto')) {
@@ -4930,6 +5051,7 @@ const UI = (() => {
 
     const secV = document.getElementById('case-wf-sec-verdict');
     secV?.classList.remove('skryto');
+    secV?.classList.toggle('case-wf-sec-verdict--osobni-volba', !!_wfMaOsobniVerdiktBezTrestnihoRz(pripad));
 
     const archivRozsudky = State.get('archive.verdicts') || [];
     const pid = String(pripad.id || '');
@@ -6144,24 +6266,49 @@ const UI = (() => {
           ? Knihovna.vyfiltrujPribehRozhodnuti(rozhZdroj)
           : rozhZdroj;
       if (rozh.length) {
+        const rozhSerazene = rozh
+          .map((r, i) => ({ r, i }))
+          .sort((a, b) => {
+            const ma =
+              a.r && a.r.minDay != null && Number.isFinite(Number(a.r.minDay))
+                ? Number(a.r.minDay)
+                : 9999;
+            const mb =
+              b.r && b.r.minDay != null && Number.isFinite(Number(b.r.minDay))
+                ? Number(b.r.minDay)
+                : 9999;
+            if (ma !== mb) return ma - mb;
+            return a.i - b.i;
+          })
+          .map(x => x.r);
+        const kron = document.createElement('div');
+        kron.className = 'knihovna-pribeh-kronika';
         const hn = document.createElement('div');
         hn.className = 'knihovna-sekce-nadpis';
-        hn.textContent = 'Klíčová témata';
-        inner.appendChild(hn);
-        for (const r of rozh) {
-          const det = document.createElement('details');
-          det.className = 'knihovna-polozka knihovna-polozka--komorni';
-          const sum = document.createElement('summary');
-          sum.textContent = (r && r.titulek) ? String(r.titulek) : '—';
-          const telo = document.createElement('div');
-          telo.className = 'knihovna-telo';
+        hn.textContent = 'Kronika';
+        kron.appendChild(hn);
+        for (const r of rozhSerazene) {
           const tx = r && r.text ? String(r.text).trim() : '';
-          telo.innerHTML = tx
-            ? _escapeHtmlProfil(tx).replace(/\n/g, '<br>')
-            : '<p class="knihovna-telo-prazdne">—</p>';
-          det.appendChild(sum);
-          det.appendChild(telo);
-          inner.appendChild(det);
+          if (!tx) continue;
+          const p = document.createElement('p');
+          p.className = 'knihovna-pribeh-denik-radek';
+          const minD =
+            r && r.minDay != null && Number.isFinite(Number(r.minDay)) ? Number(r.minDay) : null;
+          const datTxt = minD != null ? _formatujDatumSpisu(minD) : '';
+          if (datTxt && datTxt !== '—') {
+            const dEl = document.createElement('span');
+            dEl.className = 'knihovna-pribeh-denik-datum';
+            dEl.textContent = datTxt + ' ';
+            p.appendChild(dEl);
+          }
+          const telo = document.createElement('span');
+          telo.className = 'knihovna-pribeh-denik-text';
+          telo.innerHTML = _escapeHtmlProfil(tx).replace(/\n/g, '<br>');
+          p.appendChild(telo);
+          kron.appendChild(p);
+        }
+        if (kron.querySelector('.knihovna-pribeh-denik-radek')) {
+          inner.appendChild(kron);
         }
       }
     } else if (_knihovnaPodpanel === 'pravidla') {
@@ -6349,25 +6496,38 @@ const UI = (() => {
 
       let operaceHtml = '';
       if (ukazOperaci) {
+        const opTermDen =
+          typeof Finance !== 'undefined' && Number.isFinite(Number(Finance.OPERACE_DEADLINE_DEN))
+            ? Number(Finance.OPERACE_DEADLINE_DEN)
+            : 16;
+        const vyhodnocenoOperace = State.get('flags.operace_vyhodnoceni_den16_rano') === true;
+        const terminZapis =
+          '<p class="finance-operace-text finance-operace-text--termin">Termín z dopisu MUDr. Síbera: <strong>17. března 1931</strong> — Nemocnice Podolí, <strong>400 Kčs</strong> při příjmu.</p>';
         if (p.operaceOdlozena === true) {
           operaceHtml =
             '<div class="finance-operace-blok">' +
             '<div class="finance-operace-podnadpis">Matčina operace</div>' +
-            '<p class="finance-operace-text">Operace u lékaře je odložena; další postup hlídejte ve spisu a ve večerních volbách.</p>' +
+            terminZapis +
+            '<p class="finance-operace-text">V uvedený den nebyla částka uhrazena včas — ordinace termín zrušila. Operace je odložena; další postup hlídejte ve spisu a ve večerních volbách.</p>' +
             '</div>';
         } else if (p.operaceZaplacena === true) {
+          const poTermu = vyhodnocenoOperace === true || denHry > opTermDen;
+          const stavTxt = poTermu
+            ? 'Poplatek byl uhrazen včas; matka nastoupila k příjmu v den uvedený výše.'
+            : 'Na poplatek u lékaře (' + p.operaceCil +
+              ' Kčs) máte naspořeno — podle dopisu splatné při příjmu v uvedený den.';
           operaceHtml =
             '<div class="finance-operace-blok">' +
             '<div class="finance-operace-podnadpis">Matčina operace</div>' +
-            '<p class="finance-operace-text">Na poplatek u lékaře (' + p.operaceCil +
-            ' Kčs) máte naspořeno.</p>' +
+            terminZapis +
+            '<p class="finance-operace-text">' + stavTxt + '</p>' +
             '</div>';
         } else {
           const chybi = Math.round(Number(p.chybiNaOperaci) || 0);
           const nd = Number(p.dnuDoDeadlineOperace) || 0;
           let lhutaTxt;
           if (nd <= 0) {
-            lhutaTxt = 'Lhůta operace v kampani dnes končí.';
+            lhutaTxt = 'Lhůta podle dopisu končí v kalendáři kampaně tímto dnem (17. března).';
           } else if (nd === 1) {
             lhutaTxt = 'Do uzávěrky lhůty v kampani zbývá 1 herní den.';
           } else {
@@ -6376,12 +6536,13 @@ const UI = (() => {
           operaceHtml =
             '<div class="finance-operace-blok">' +
             '<div class="finance-operace-podnadpis">Matčina operace</div>' +
+            terminZapis +
             '<div class="finance-radek finance-radek--operace">' +
             '<span>Chybí do cíle (' + p.operaceCil + ' Kčs)</span>' +
             '<span class="finance-castka">' + chybi + ' Kčs</span>' +
             '</div>' +
             '<p class="finance-operace-text">' + lhutaTxt + '</p>' +
-            '<p class="finance-operace-text finance-operace-text--hint">Podrobnosti a termín připomíná dopis od lékaře ve spisu.</p>' +
+            '<p class="finance-operace-text finance-operace-text--hint">Úplné znění je v dopise od lékaře ve spisu.</p>' +
             '</div>';
         }
       }
@@ -7779,11 +7940,27 @@ const UI = (() => {
       slozka.classList.remove('slozka--bez-uredni-spzn');
       return;
     }
+    /* Zelené složky (osobní případ) — bez nápisu na desce; hráč poznává obsah až po otevření. */
+    const jeOsobniTyp =
+      String(pripad.type || '').toLowerCase() === 'osobni' ||
+      slozka.classList.contains('slozka--typ-osobni');
+    if (jeOsobniTyp) {
+      if (spz) spz.textContent = '';
+      if (tit) tit.textContent = '';
+      if (obz) obz.textContent = '';
+      slozka.classList.add('slozka--bez-uredni-spzn');
+      return;
+    }
     const rawTit = ((pripad.title || '').trim() || 'Bez názvu');
-    if (tit) tit.textContent = rawTit.toLocaleUpperCase('cs-CZ');
 
     if (_pripadBezUredniSpisoveZnacky(pripad)) {
       if (spz) spz.textContent = '';
+      const titNorm = rawTit
+        .toLowerCase()
+        .normalize('NFKD')
+        .replace(/[\u0300-\u036f]/g, '');
+      /* Na ilustrované složce nechat prázdný horní řádek — „Složka“ jen jako interní název v datech, ne jako štítek. */
+      if (tit) tit.textContent = titNorm === 'slozka' ? '' : rawTit.toLocaleUpperCase('cs-CZ');
       const defJm = (pripad.defendant && pripad.defendant.name) ? String(pripad.defendant.name).trim() : '';
       const defOk = defJm && defJm !== '—' && defJm !== '-';
       if (obz) obz.textContent = defOk ? defJm : '';
@@ -7792,6 +7969,7 @@ const UI = (() => {
     }
 
     slozka.classList.remove('slozka--bez-uredni-spzn');
+    if (tit) tit.textContent = rawTit.toLocaleUpperCase('cs-CZ');
     const cisloSpisu = 47 + slotIndex;
     if (spz) spz.textContent = `Sp. zn. ${cisloSpisu}/1931`;
     if (obz) obz.textContent = (pripad.defendant && pripad.defendant.name) ? String(pripad.defendant.name) : '—';

@@ -298,36 +298,16 @@
           }
         }
       }
-    },
-    "insufficient_evidence": {
-      "options": {
-        "cas_na_rozmysleni": {
-          "label": "Požádat o čas na rozmyšlenou",
-          "description": "Ben řekne: dejte mi den. Zavadová přikývne a nechá prohlášení na stole. Odejde bez kufříku — kufřík zanechá jako záruku, že se vrátí.",
-          "effects": {
-            "moudrost": 3,
-            "vina": 2,
-            "flags": [
-              {
-                "key": "flag_zavadova_ceka",
-                "value": true
-              }
-            ]
-          }
-        }
-      }
     }
   },
   "aftermath": {
     "guilty_podepsat": "Zavadová vzala prohlášení, složila ho a uložila do kufříku. Podala ruku — pevně, jako obchodní partner. Řekla: 'Budeme v kontaktu.' Ben nevěděl, co to přesně znamená. Dozvěděl se postupně.",
     "not_guilty_odmitnut_formal": "Zavadová odešla bez komentáře. Svejda se zeptal, jestli chce Ben kávu. Ben řekl ano. Svejda přinesl kávu a nezeptal se, kdo ta žena byla. Ben byl za to vděčný.",
-    "not_guilty_odmitnut_s_konfrontaci": "Zavadová vzala kufřík a šla. U dveří se zastavila — jen na vteřinu, jako by chtěla říct ještě něco. Pak odešla. Ben seděl v prázdné kanceláři a slyšel, jak její kroky zmizí na chodbě. Pak byl klid.",
-    "insufficient_cas_na_rozmysleni": "Kufřík stál v rohu kanceláře celý zbytek dne. Svejda ho obcházel. Prohlášení leželo na stole. Ben pracoval na jiných spisech a dával pozor, aby se na prohlášení nedíval."
+    "not_guilty_odmitnut_s_konfrontaci": "Zavadová vzala kufřík a šla. U dveří se zastavila — jen na vteřinu, jako by chtěla říct ještě něco. Pak odešla. Ben seděl v prázdné kanceláři a slyšel, jak její kroky zmizí na chodbě. Pak byl klid."
   },
   "stamp_moment": {
     "guilty": "Zavadová zavřela kufřík. Cvaknutí zámku bylo velmi hlasité v tiché místnosti.",
-    "not_guilty": "Zavadová odešla. Kufřík s sebou. Prohlášení s sebou. Ben seděl sám — a poprvé po této sérii návštěv byl v kanceláři skutečně sám.",
-    "insufficient": "Kufřík stojí v rohu. Prohlášení leží na stole. Ben ví, že ráno bude jiný den — ale kufřík tam bude pořád."
+    "not_guilty": "Zavadová odešla. Kufřík s sebou. Prohlášení s sebou. Ben seděl sám — a poprvé po této sérii návštěv byl v kanceláři skutečně sám."
   },
   "delayed_consequences": [
     {

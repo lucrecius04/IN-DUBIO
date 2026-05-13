@@ -21,8 +21,8 @@ const Music = (() => {
   /** Během verdiktního zvuku: násobek hlasitosti hudby (0–1). */
   const DUCK_VERDIKT_HLASITOST_MULT = 0.28;
 
-  /** Před verdiktem: plynulý pokles hlasitosti (stejná idea jako náběh zpět). */
-  const VERDIKT_RAMPA_DOLU_MS = 2600;
+  /** Před verdiktem: krátký pokles hlasitosti (dlouhá rampa působila jako zpoždění oproti SFX). */
+  const VERDIKT_RAMPA_DOLU_MS = 140;
 
   /** Po skončení ducku: délka náběhu zpět na plnou hlasitost ze slideru. */
   const VERDIKT_RAMPA_ZPATKY_MS = 2600;
