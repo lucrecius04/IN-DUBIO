@@ -59,9 +59,15 @@
       },
       {
         "day": 19,
+        "condition": { "flag": "masek_document_signed" },
+        "type": "visit",
+        "text": "Benedikte. Dnes líčení Wolfa — víš, co leží ve spisu, víš, co jsi podepsal u Závadové. V sále se neptají na pravdu, ptají se, jestli držíš linii. Já už jsem u toho byl. Drž se toho, co od tebe čekají nahoře, a Vlček tě po pátku nechá dýchat.\n\nVím, co si teď myslíš. Myslel jsem si to taky. A pak přišla má dcera s tím, že chce jít studovat do Vídně, a já pochopil: systém vždy najde způsob, jak tě přimět."
+      },
+      {
+        "day": 19,
         "condition": null,
         "type": "visit",
-        "text": "Mám pro tebe nabídku. Jeden dokument. Podepíšeš, matce zaplatí operaci, Vlček tě nechá na pokoji. Stačí jeden podpis.\n\nVím, co si teď myslíš. Myslel jsem si to taky. A pak přišla má dcera s tím, že chce jít studovat do Vídně, a já pochopil: systém vždy najde způsob, jak tě přimět."
+        "text": "Benedikte, dnes líčení. Mám pro tebe nabídku — stejný druh papíru, jaký nosí Zavadová. Jeden podpis a sál dostane spis bez zbytečných otázek. Vlček tě po dnešku nechá na pokoji. Stačí jeden podpis.\n\nVím, co si teď myslíš. Myslel jsem si to taky. A pak přišla má dcera s tím, že chce jít studovat do Vídně, a já pochopil: systém vždy najde způsob, jak tě přimět."
       }
     ]
   },

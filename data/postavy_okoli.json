@@ -3,22 +3,22 @@
     "id": "svejda",
     "nazev": "Antonín Švejda",
     "role": "Vrátný soudu (63 let)",
-    "od_zacatku": true,
-    "expozice": "Švejda stojí u dveří už léta — dřív než ty přijdeš, dřív než odejde poslední lampa. Roznáší poštu, hlídá deštníky, uvaří kávu a mezi tím slyší jména, která se v síni nesmí říkat nahlas. K tobě promluví jednou větou, jako by hlásil stav počasí: nic navíc, nic zbytečného. Přesto máš pocit, že budova by bez něj hůř věděla, kdo zrovna přišel a kdo čeká venku. Je z něj úřední zvyk, který má paměť — a který si pamatuje tebe."
+    "expozice": "Švejda stojí u dveří už léta — dřív než ty přijdeš, dřív než odejde poslední lampa. Roznáší poštu, hlídá deštníky, uvaří kávu a mezi tím slyší jména, která se v síni nesmí říkat nahlas. K tobě promluví jednou větou, jako by hlásil stav počasí: nic navíc, nic zbytečného. Přesto máš pocit, že budova by bez něj hůř věděla, kdo zrovna přišel a kdo čeká venku. Je z něj úřední zvyk, který má paměť — a který si pamatuje tebe.",
+    "od_zacatku": true
   },
   {
     "id": "kovarova",
     "nazev": "Milena Kovářová",
     "role": "Zapisovatelka (28 let)",
-    "od_zacatku": true,
-    "expozice": "Kovářová sedí bokem od tebe s perem připraveným vždycky o půl taktu dřív, než padne verdikt. Mezi vámi platí pravidlo: ty mluvíš z úřadu, ona zapisuje přesně to, co má být v protokolu — ani slovo navíc, ani skulina pro dohady. Když se v sále zvedne napětí, ona ztichne dřív než porota, a přesto nic nevynechá. Její poctivost není kázání; je to řemeslo. U tebe máš jistotu, že slovo, které pronesl soudce, nezmizí v chodbě."
+    "expozice": "Kovářová sedí bokem od tebe s perem připraveným vždycky o půl taktu dřív, než padne verdikt. Mezi vámi platí pravidlo: ty mluvíš z úřadu, ona zapisuje přesně to, co má být v protokolu — ani slovo navíc, ani skulina pro dohady. Když se v sále zvedne napětí, ona ztichne dřív než porota, a přesto nic nevynechá. Její poctivost není kázání; je to řemeslo. U tebe máš jistotu, že slovo, které pronesl soudce, nezmizí v chodbě.",
+    "od_zacatku": true
   },
   {
     "id": "martin",
     "nazev": "Martin Vraný",
     "role": "Syn, student práv v Praze (24 let)",
-    "od_zacatku": true,
-    "expozice": "Martin ti píše z Prahy, kde studuje práva a ještě věří, že paragraf může být štít. V listech je kluk, který tě má rád, ale už ne jako dítě — začíná vidět svět za školou: tramvaje, noviny, řeči z přednášek. Ty v dopisech čteš nadšení, které ti někdy připadá nebezpečně čisté, a zároveň výčitku, kterou sis možná namlouval sám. Je to tvůj syn; je to i hlas z jiné generace, která ještě neví, co všechno stůl soudce unese."
+    "expozice": "Martin ti píše z Prahy, kde studuje práva a ještě věří, že paragraf může být štít. V listech je kluk, který tě má rád, ale už ne jako dítě — začíná vidět svět za školou: tramvaje, noviny, řeči z přednášek. Ty v dopisech čteš nadšení, které ti někdy připadá nebezpečně čisté, a zároveň výčitku, kterou sis možná namlouval sám. Je to tvůj syn; je to i hlas z jiné generace, která ještě neví, co všechno stůl soudce unese.",
+    "od_zacatku": true
   },
   {
     "id": "karas",
@@ -31,8 +31,8 @@
     "id": "masek",
     "nazev": "Kolega soudce Mašek",
     "role": "Soudce na témže krajském soudu",
-    "od_zacatku": true,
-    "expozice": "Mašek tě v kuloáru osloví „Benedikte“ a mluví o zákonu jako o stroji, který musí běžet, i když olej smrdí. Není z něj rádce svědomí; je z něj člověk, který už viděl pár pádů a pár návratů. K tobě je přímý: počítá s kompromisy, protože bez nich prý v téhle budově nikdo nevydrží. Jeho pragmatismus tě může rozčílit i uklidnit — podle toho, jestli zrovna potřebuješ naději, nebo varování."
+    "expozice": "Mašek tě v kuloáru osloví „Benedikte“ a mluví o zákonu jako o stroji, který musí běžet, i když olej smrdí. Není z něj rádce svědomí; je z něj člověk, který už viděl pár pádů a pár návratů. K tobě je přímý: počítá s kompromisy, protože bez nich prý v téhle budově nikdo nevydrží. Jeho pragmatismus tě může rozčílit i uklidnit — podle toho, jestli zrovna potřebuješ naději, nebo varování.",
+    "od_zacatku": true
   },
   {
     "id": "vlcek",
@@ -47,7 +47,10 @@
     "role": "Advokátka (41 let)",
     "expozice": "Horáčková sedí naproti tobě jako hlas klienta, který nemůže ztratit tvář ani případ. Je bystrá, připravená a v citlivých věcech nebezpečně přesná — tam, kde jde o čest, politiku nebo noviny, nepřistupuje k řízení jako k rutinní položce. V sále drží tempo výpovědi i právního taktu; mimo něj ví, že rozsudek má dohru i v chodbě. K tobě jako k soudci mluví s respektem k lavici, ale bez servility.",
     "odemkni_po_preceteni": [
-      { "typ": "pripad", "id": "tyc_horac_d7" }
+      {
+        "typ": "pripad",
+        "id": "tyc_horac_d7"
+      }
     ]
   },
   {
@@ -56,7 +59,10 @@
     "role": "Návštěvník soudu (71 let)",
     "expozice": "Beneš je starší muž, který k tobě nepřišel kvůli rozruchu ani kvůli novinám. Mluví tiše, skoro neslyšně pro chodbu za dveřmi, a přesto každé slovo drží místo. Chová se k tobě s úctou k úřadu, ale v očích má něco osobního — věc, která se nedá vyřídit razítkem. Nemá potřebu tě přeřčovat ani tlačit; spíš čeká, jestli ho soudce vyslechne jako člověka. U něj cítíš, že spravedlnost není jen paragraf, ale také čas, který už někomu utekl.",
     "odemkni_po_preceteni": [
-      { "typ": "adventure", "id": "adventure_benes_d9" }
+      {
+        "typ": "adventure",
+        "id": "adventure_benes_d9"
+      }
     ]
   },
   {
@@ -65,8 +71,14 @@
     "role": "Průmyslník (58 let)",
     "expozice": "Haas je muž z okruhu velkých peněz a velkých sporů — továrny, zakázky, smlouvy, jména v přílohách, která obyčejný člověk vidí jen okrajově. U soudu působí klidně: krátké věty, pevný tón, žádné zbytečné divadlo. Má zvyk mluvit v měřítku, kde rozhoduje majetek, termín a vliv, ne jediná emoce v přísálí. K tobě jako k soudci přistupuje zdvořile, ale s vědomím, že svět za lavicí má jiné rozlohy než jeden den na stole.",
     "odemkni_po_preceteni": [
-      { "typ": "fragment", "id": "fragment_d6_morning" },
-      { "typ": "pripad", "id": "tyc_haas_d11" }
+      {
+        "typ": "fragment",
+        "id": "fragment_d6_morning"
+      },
+      {
+        "typ": "pripad",
+        "id": "tyc_haas_d11"
+      }
     ]
   },
   {
@@ -75,7 +87,10 @@
     "role": "Novinářka, Svobodný obzor (38 let)",
     "expozice": "Závadová píše do Svobodného obzoru; některé články podepisuje jinak, u soudu ale jedná pod svým jménem. Má právní vzdělání a poznáš to na tom, jak umí rozlišit citlivé místo ve výpovědi od řeči do titulku. Sleduje justici nejen z protokolu — zajímá ji, jak rozhodnutí vypadá z hlediště a co z něj zůstane čtenáři v tramvaji. K tobě je zatím profesionálně ostražitá: nechce mařit řízení, ale ani ti dát pocit, že tisk nemá oči.",
     "odemkni_po_preceteni": [
-      { "typ": "pripad", "id": "tyc_zavadova_d12" }
+      {
+        "typ": "pripad",
+        "id": "tyc_zavadova_d12"
+      }
     ]
   }
 ]

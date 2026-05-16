@@ -116,7 +116,6 @@
       "text": "Procházka stojí u vchodu a přesunuje váhu z nohy na nohu. <span class=\"clue\" data-clue-id=\"decoy_poznamka_bez_podpisu\">Říká: 'Viděl jsem jednoho člověka. Chodí sem někdy — starší pán, civilu, šedý kabát. Říkám mu pane, on přikývne a jde dál. Nikdy ho nezastavuji, protože vypadá jako někdo, koho zastavovat nemám.'</span> Popis sedí na Beneše. Nebo na tucet jiných lidí.",
       "cost": 1,
       "dirty_unlock": {
-        "finance": -8,
         "traits": {
           "Integrita": -1,
           "Vina": 1
@@ -132,7 +131,6 @@
       "text": "Matrika: Anna Vránová, otec Josef, matka Hedvika Vránová rozená Haasová. Emil Haas — syn Hedvičina bratra. Anna a Emil jsou bratranci. Obchodní rejstřík Wolfovy firmy: <span class=\"clue\" data-clue-id=\"clue_anna_haas_rodina\">zakladatelé Wolf Alexander a Haas Emil jako tichý společník s podílem 30%. Firma zapsána dubna 1929 — osm měsíců po Wolfově propuštění z ministerstva.</span> Haasův podíl byl převeden na Annu v lednu 1931 — dva týdny před zahájením vyšetřování Wolfa.",
       "cost": 1,
       "dirty_unlock": {
-        "finance": -12,
         "traits": {
           "Integrita": -2,
           "Vina": 1
@@ -148,7 +146,6 @@
       "reveals": "context",
       "cost": 1,
       "dirty_unlock": {
-        "finance": -8,
         "traits": {
           "Vina": 2
         },
@@ -168,7 +165,7 @@
     "guilty": {
       "sentences": {
         "pouzit_dokument": {
-          "label": "Ponechat složku a použít informace",
+          "label": "Ponechat složku",
           "description": "Ben si složku nechá. Rodný list a výpis z rejstříku použije jako kontext při čtení Wolfova případu — nebo při rozhodnutí, komu věřit. Informace mění, co Ben vidí. Odkud složka přišla, zůstane otevřenou otázkou.",
           "effects": {
             "moudrost": 4,
@@ -223,43 +220,23 @@
           }
         }
       }
-    },
-    "insufficient_evidence": {
-      "options": {
-        "odlozit": {
-          "label": "Odložit — nechat složku ležet a vrátit se k ní",
-          "description": "Ben složku uzavře a dá do šuplíku. Nepřečetl ji celou. Nebo přečetl — ale nechce se rozhodnout dnes.",
-          "effects": {
-            "moudrost": 2,
-            "vina": 1,
-            "flags": [
-              {
-                "key": "flag_rodny_list_odlozen",
-                "value": true
-              }
-            ]
-          }
-        }
-      }
     }
   },
   "aftermath": {
     "guilty_pouzit_dokument": "Složka leží v zásuvce. Ben ví, co v ní je — a ví, že to ví. Anna Wolfová přestala být jen manželkou obžalovaného. Je to Haasova bratrankyně, spoluzakladatelka firmy, která existovala osm měsíců a pak zmizela do jejích rukou. Ben si to nese ke Wolfovu případu.",
     "not_guilty_odevzdat_statnimu": "Dvořák přijal složku beze slova. Přečetl první list, přikývl a řekl: 'Děkuji.' Ben čekal, co řekne dál. Dvořák neřekl nic dál.",
-    "not_guilty_znicit": "Složka zmizela. Ben seděl u stolu a přemýšlel, jestli to byl dobrý nápad. Odpověď nepřišla. Svejda přinesl kávu a nezeptal se na nic.",
-    "insufficient_odlozit": "Složka leží v šuplíku pod starými spisy. Ben o ní nemluvil se Svejdou. Svejda se nezeptal. V pátek složka pořád leží na místě — Ben ji před odchodem domů přesunul pod jiný svazek, aby nebyla vidět, kdyby někdo otevřel šuplík."
+    "not_guilty_znicit": "Složka zmizela. Ben seděl u stolu a přemýšlel, jestli to byl dobrý nápad. Odpověď nepřišla. Svejda přinesl kávu a nezeptal se na nic."
   },
   "stamp_moment": {
     "guilty": "Ben zavřel složku. Ruce nechal chvíli ležet na hnědém papíru. Pak otevřel šuplík.",
-    "not_guilty": "Složka zmizela — do Dvořákovy aktovky nebo do ohně. Ben se díval na prázdné místo na stole.",
-    "insufficient": "Složka je v šuplíku. Ben ví, kde je. To je pro tuto chvíli dost."
+    "not_guilty": "Složka zmizela — do Dvořákovy aktovky nebo do ohně. Ben se díval na prázdné místo na stole."
   },
   "delayed_consequences": [
     {
       "trigger": "guilty_pouzit_dokument",
       "delay_days": 1,
       "type": "fragment",
-          "text": "Další ráno leží složka v zásuvce pod nálezy. Ben ví, čí podpis je na dokumentu ze září osmadvacátého — a ví, proč Wolf prodal Haasův podíl na Annu dva týdny před zatčením."
+      "text": "Další ráno leží složka v zásuvce pod nálezy. Ben ví, čí podpis je na dokumentu ze září osmadvacátého — a ví, proč Wolf prodal Haasův podíl na Annu dva týdny před zatčením."
     },
     {
       "trigger": "not_guilty_odevzdat_statnimu",

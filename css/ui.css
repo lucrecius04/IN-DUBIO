@@ -1423,6 +1423,11 @@ button.knihovna-link:hover {
   border-color: rgba(196, 163, 90, 0.28);
 }
 
+/* Dopis: skořepina neseřezává stín/hover „Pokračovat“ u spodního okraje (velikost ilustrace beze změny). */
+#modal-fragment .narativ-shell.fragment-panel--dopis {
+  overflow: visible;
+}
+
 #modal-fragment .panel-papir.narativ-shell,
 #modal-vecer .panel-papir.narativ-shell {
   background-color: #120c08 !important;
@@ -2091,6 +2096,8 @@ button.knihovna-link:hover {
   padding: 0;
   background: transparent;
   pointer-events: none;
+  /* Jinak dědí z .narativ-panel overflow:hidden a ořeže stín tlačítka */
+  overflow: visible;
 }
 
 .narativ-scena--letter .narativ-panel::before,
@@ -2210,6 +2217,198 @@ button.knihovna-link:hover {
 
 .narativ-scena--konec-hry #konec-restart.konec-restart {
   animation: konecHryText 2s ease 2.2s both;
+}
+
+/* --- Souhrn kampaně po epilogu (#konec-statistiky-overlay) --- */
+#konec-statistiky-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(8, 6, 4, 0.88);
+}
+
+#konec-statistiky-overlay.skryto {
+  display: none;
+}
+
+.konec-statistiky-wrap {
+  width: 100%;
+  max-width: min(1320px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  margin: auto;
+}
+
+.konec-statistiky-panel.vecer-panel {
+  width: 100%;
+  max-height: calc(100vh - 32px);
+}
+
+.narativ-scena--konec-statistiky .narativ-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.konec-statistiky-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: min(62vh, 640px);
+  overflow-y: auto;
+  padding-right: 6px;
+  text-align: left;
+}
+
+.konec-stat-uvod {
+  margin: 0 0 14px;
+  color: rgba(238, 225, 198, 0.82);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.konec-stat-operace-text {
+  margin: 0;
+  color: rgba(238, 225, 198, 0.88);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.konec-stat-konec-chip {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 6px 12px;
+  border: 1px solid rgba(214, 176, 102, 0.35);
+  color: rgba(255, 246, 222, 0.95);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.konec-stat-sekce {
+  margin-bottom: 22px;
+}
+
+.konec-stat-sekce-nadpis {
+  margin: 0 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(214, 176, 102, 0.22);
+  color: rgba(255, 246, 222, 0.92);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.konec-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.konec-stat-karta {
+  padding: 10px 12px;
+  border: 1px solid rgba(214, 176, 102, 0.18);
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.konec-stat-karta-nazev {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(214, 176, 102, 0.85);
+}
+
+.konec-stat-karta-hvezdy {
+  margin: 8px 0 2px;
+  color: rgba(255, 246, 222, 0.9);
+  font-size: 1.05rem;
+  letter-spacing: 3px;
+  line-height: 1.2;
+}
+
+.konec-stat-list--frakce .konec-stat-radek {
+  align-items: flex-start;
+}
+
+.konec-stat-frakce-lore {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: rgba(238, 225, 198, 0.78);
+}
+
+.konec-stat-frakce-nyni {
+  display: block;
+  font-size: 0.92rem;
+  color: rgba(255, 246, 222, 0.92);
+}
+
+.konec-stat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.konec-stat-radek {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: rgba(238, 225, 198, 0.88);
+}
+
+.konec-stat-radek-label {
+  flex: 1 1 40%;
+  min-width: 120px;
+  color: rgba(214, 176, 102, 0.75);
+}
+
+.konec-stat-radek-hodnota {
+  flex: 1 1 50%;
+  text-align: right;
+}
+
+.konec-stat-tabulka-wrap {
+  overflow-x: auto;
+}
+
+.konec-stat-tabulka {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.konec-stat-tabulka th,
+.konec-stat-tabulka td {
+  padding: 6px 8px;
+  border-bottom: 1px solid rgba(214, 176, 102, 0.12);
+  text-align: left;
+  color: rgba(238, 225, 198, 0.88);
+}
+
+.konec-stat-tabulka th {
+  color: rgba(214, 176, 102, 0.8);
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.konec-stat-prazdne {
+  margin: 0;
+  font-style: italic;
+  color: rgba(238, 225, 198, 0.55);
+}
+
+.narativ-scena--konec-statistiky .narativ-actions {
+  margin-top: 20px;
+  flex-shrink: 0;
 }
 
 .narativ-shell .fragment-nadpis {
@@ -2930,12 +3129,6 @@ button.knihovna-link:hover {
   border-color: rgba(92, 67, 128, 0.42);
   color: #3d2d58;
   background: rgba(205, 190, 230, 0.42);
-}
-
-.archiv-fragment-typ--ostatni {
-  border-color: rgba(90, 90, 90, 0.34);
-  color: #4d443c;
-  background: rgba(218, 210, 196, 0.42);
 }
 
 /* Filtr záložky Záznamy: Dopisy — odlišná paleta od „Denních fragmentů“ */

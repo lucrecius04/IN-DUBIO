@@ -99,6 +99,7 @@ const UI = (() => {
     evening:   'src/skici/skica_domov.png',
     sunday:    'src/skici/skica_domov.png',
     aftermath: 'src/skici/skica_stul.png',
+    epilog:    'src/skici/epilog.png',
     verdict:   'src/skici/skica_slozky.png',
     pressure:  'src/skici/skica_dvere.png',
     corridor:  'src/skici/skica_prazdna_chodba.png',
@@ -1669,9 +1670,31 @@ const UI = (() => {
     return String(text == null ? '' : text).replace(/\r\n/g, '\n').replace(/\n/g, '<br>');
   }
 
-  function _wfNastavRichText(el, text) {
+  /** Odstraní existující tlačítka slovníku (data mohou mít prokliky z pool JSON). */
+  function _wfOdstranProklikySlovnikuZHtml(html) {
+    const s = String(html || '');
+    if (!s || typeof document === 'undefined') return s;
+    const wrap = document.createElement('div');
+    wrap.innerHTML = s;
+    wrap.querySelectorAll('button.knihovna-link').forEach(btn => {
+      btn.replaceWith(document.createTextNode(btn.textContent || ''));
+    });
+    return wrap.innerHTML;
+  }
+
+  /**
+   * @param {{ bezSlovniku?: boolean }} [opts] — bez prokliků do knihovny (např. předehra Rozsudek / Dohra).
+   */
+  function _wfNastavRichText(el, text, opts) {
     if (!el) return;
-    el.innerHTML = _wfRichTextHtml(text);
+    const bezSlovniku = !!(opts && opts.bezSlovniku);
+    let html = _wfRichTextHtml(text);
+    if (bezSlovniku) {
+      html = _wfOdstranProklikySlovnikuZHtml(html);
+      el.innerHTML = html;
+      return;
+    }
+    el.innerHTML = html;
     if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
       Knihovna.obalSlovnikemVElementu(el);
     }
@@ -2797,7 +2820,7 @@ const UI = (() => {
         document.getElementById('pripad-consequence-narativ-obraz'),
         'court'
       );
-      _wfNastavRichText(txtEl, _textAftermath(pripad, rozsudek));
+      _wfNastavRichText(txtEl, _textAftermath(pripad, rozsudek), { bezSlovniku: true });
       if (hintEl) {
         hintEl.textContent =
           'Stiskni Enter nebo pokračuj tlačítkem — spis se zavře a vrátíš se na stůl.';
@@ -2857,7 +2880,7 @@ const UI = (() => {
     const teloPredohry = jeOsobniBezRozsudecniPrelude
       ? raw
       : (protoVeta ? `${protoVeta} ${raw}` : raw);
-    _wfNastavRichText(txtEl, teloPredohry);
+    _wfNastavRichText(txtEl, teloPredohry, { bezSlovniku: true });
     prelude.querySelector('.pripad-consequence-prelude-inner')
       ?.classList.remove('pripad-consequence-prelude-inner--aftermath');
     const hint0 = prelude.querySelector('.pripad-consequence-prelude-hint');
@@ -3528,8 +3551,7 @@ const UI = (() => {
     { id: 'vse', lab: 'Všechny' },
     { id: 'dopis', lab: 'Dopisy' },
     { id: 'denni', lab: 'Denní fragmenty' },
-    { id: 'sen', lab: 'Sny' },
-    { id: 'ostatni', lab: 'Ostatní' }
+    { id: 'sen', lab: 'Sny' }
   ];
 
   function _archivFragmentObjekt(zaznam) {
@@ -3555,7 +3577,8 @@ const UI = (() => {
     if (typ === 'letter') return 'dopis';
     if (typ === 'dream') return 'sen';
     if (typ === 'clipping' || typ === 'fragment' || typ === 'morning' || typ === 'evening') return 'denni';
-    return 'ostatni';
+    /* Bez filtru „Ostatní“: neznámý typ se řadí mezi denní, ať není mimo všechny podzáložky. */
+    return 'denni';
   }
 
   function _archivFragmentKategorieLabel(kat) {
@@ -4054,12 +4077,25 @@ const UI = (() => {
     return !!(pripad && String(pripad.id || '').trim() === 'tyc_haas_d11');
   }
 
+  /** Osobní složka (13. března) — rozhodnutí o dokumentech, ne trestní výrok. */
+  function _wfJeZvratySlozkaOsobni(pripad) {
+    return !!(pripad && String(pripad.id || '').trim() === 'tyc_zvraty_d10');
+  }
+
   /** UI bez slovníku „vinen / zprostit“ — osobní volba mimo obžalobu. */
   function _wfMaOsobniVerdiktBezTrestnihoRz(pripad) {
-    return _wfJeZavadovaTyčOsobni(pripad) || _wfJeHaasObalkaOsobni(pripad);
+    return (
+      _wfJeZavadovaTyčOsobni(pripad) ||
+      _wfJeHaasObalkaOsobni(pripad) ||
+      _wfJeZvratySlozkaOsobni(pripad)
+    );
   }
 
   function _wfTitulSkupinyVerdiktu(pripad, grp) {
+    if (_wfJeZvratySlozkaOsobni(pripad)) {
+      if (grp === 'guilty') return 'Ponechat složku';
+      if (grp === 'not_guilty') return 'Předat nebo zničit';
+    }
     if (_wfJeHaasObalkaOsobni(pripad)) {
       if (grp === 'guilty') return 'Přijmout';
       if (grp === 'not_guilty') return 'Odmítnout';
@@ -4075,6 +4111,14 @@ const UI = (() => {
   }
 
   function _wfPopisSkupinyVerdiktu(pripad, grp) {
+    if (_wfJeZvratySlozkaOsobni(pripad)) {
+      if (grp === 'guilty') {
+        return 'Nechat dokumenty u sebe a pracovat s tím, co v nich je.';
+      }
+      if (grp === 'not_guilty') {
+        return 'Odevzdat je státnímu zástupci, nebo je zničit.';
+      }
+    }
     if (_wfJeHaasObalkaOsobni(pripad)) {
       if (grp === 'guilty') {
         return 'Vzít hotovost v obálce — přijmout Haasův návrh.';
@@ -6654,6 +6698,8 @@ const UI = (() => {
         for (const v of vizSeznam) {
           const sec = document.createElement('section');
           sec.className = 'povest-klicovy-clovek';
+          const idBez = String(v.id || '').replace(/[^a-zA-Z0-9_-]/g, '');
+          if (idBez) sec.id = 'povest-zaznam-' + idBez;
           const head = document.createElement('div');
           head.className = 'povest-klicovy-hlavicka';
           const tit = document.createElement('h3');
@@ -6788,6 +6834,7 @@ const UI = (() => {
           }
         }
         panel.appendChild(povestWrap);
+
       } else {
         const moc = Number(State.get('factions.Moc') ?? 50);
         const kapital = Number(State.get('factions.Kapital') ?? 50);
@@ -7025,6 +7072,8 @@ const UI = (() => {
       });
 
     } else if (tab === 'fragmenty') {
+      const povoleneFiltryFr = new Set(_ARCHIV_FRAGMENT_TYP_FILTRY.map(o => o.id));
+      if (!povoleneFiltryFr.has(_archivFragmentyFiltrTyp)) _archivFragmentyFiltrTyp = 'vse';
       const fragmentyVse = (State.get('archive.fragments') || [])
         .map(_archivFragmentObjekt)
         .filter(Boolean);
@@ -7677,7 +7726,9 @@ const UI = (() => {
 
     document.getElementById('menu-nova-hra')?.addEventListener('click', () => {
       _zavriMenu();
-      if (confirm('Opravdu začít novou hru? Neuložený postup bude ztracen.')) {
+      if (confirm(
+        'Opravdu začít novou hru?\n\nAktuální běh a automatické uložení se smažou. Ruční zálohy 1–5 v menu zůstanou — můžeš je načíst.'
+      )) {
         State.reset();
         location.reload();
       }
@@ -7899,12 +7950,63 @@ const UI = (() => {
 
     const restartBtn = document.getElementById('konec-restart');
     if (restartBtn) {
-      const novyRestart = restartBtn.cloneNode(true);
-      restartBtn.parentNode.replaceChild(novyRestart, restartBtn);
-      novyRestart.addEventListener('click', () => {
-        State.reset();
-        location.reload();
+      const novySouhrn = restartBtn.cloneNode(true);
+      restartBtn.parentNode.replaceChild(novySouhrn, restartBtn);
+      novySouhrn.addEventListener('click', () => {
+        zobrazSouhrnKampane();
       });
+    }
+  }
+
+  function _novaHraPoKonce() {
+    State.reset();
+    location.reload();
+  }
+
+  /** Po epilogu — přehled rysů, pověsti, spisů a trendů rozhodování. */
+  function zobrazSouhrnKampane(opts) {
+    const o = opts && typeof opts === 'object' ? opts : {};
+    const devPreview = o.devPreview === true;
+    const onZavrit = typeof o.onZavrit === 'function' ? o.onZavrit : null;
+
+    const overlayEpilog = document.getElementById('konec-hry-overlay');
+    const overlay = document.getElementById('konec-statistiky-overlay');
+    const obsah = document.getElementById('konec-statistiky-obsah');
+    const btnNova = document.getElementById('konec-statistiky-nova-hra');
+    if (!overlay || !obsah) {
+      if (devPreview && onZavrit) onZavrit();
+      else _novaHraPoKonce();
+      return;
+    }
+
+    if (overlayEpilog) overlayEpilog.classList.add('skryto');
+
+    const obrStat = document.getElementById('konec-statistiky-obraz');
+    if (obrStat && typeof _narativNastavObraz === 'function') {
+      _narativNastavObraz(obrStat, 'epilog');
+    }
+
+    if (typeof StatsSummary !== 'undefined' && StatsSummary.sestav && StatsSummary.vykresliDo) {
+      StatsSummary.vykresliDo(obsah, StatsSummary.sestav());
+    } else {
+      obsah.innerHTML = '<p class="konec-stat-prazdne">Souhrn není k dispozici.</p>';
+    }
+
+    overlay.classList.remove('skryto');
+
+    if (btnNova) {
+      const novy = btnNova.cloneNode(true);
+      btnNova.parentNode.replaceChild(novy, btnNova);
+      if (devPreview) {
+        novy.textContent = 'Zpět do hry';
+        novy.addEventListener('click', () => {
+          overlay.classList.add('skryto');
+          if (onZavrit) onZavrit();
+        });
+      } else {
+        novy.textContent = 'Nová hra';
+        novy.addEventListener('click', _novaHraPoKonce);
+      }
     }
   }
 
@@ -8242,6 +8344,7 @@ const UI = (() => {
     },
     zobrazPredKoncemAKonecHry,
     zobrazKonecHry,
+    zobrazSouhrnKampane,
     zobrazBtnDalsiDen,
     aktualizujSlozky,
     zobrazZatemneniPripravyStolu,

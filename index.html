@@ -1610,13 +1610,40 @@
         <section class="narativ-panel">
           <div class="konec-epilog narativ-body" id="konec-epilog"></div>
           <div class="narativ-actions">
-            <button type="button" class="fragment-zavrit konec-restart" id="konec-restart">Nová hra</button>
+            <button type="button" class="fragment-zavrit konec-restart" id="konec-restart">Přehled vyprávění →</button>
           </div>
         </section>
       </div>
     </div>
   </div>
 </div>
+
+
+<div id="konec-statistiky-overlay" class="skryto" role="dialog" aria-modal="true" aria-labelledby="konec-statistiky-nadpis">
+  <div class="konec-statistiky-wrap">
+    <div class="vecer-panel narativ-shell konec-statistiky-panel panel-papir--nastup">
+      <div class="narativ-scena narativ-scena--vecer narativ-scena--konec-statistiky">
+        <aside class="narativ-vizual" aria-hidden="true">
+          <div class="narativ-kicker">
+            <span class="narativ-kicker-main">IN DUBIO</span>
+            <span class="narativ-kicker-detail">Vyprávění</span>
+          </div>
+          <div class="narativ-nadpis" id="konec-statistiky-nadpis">Vyprávění</div>
+          <div class="narativ-ilustrace">
+            <img id="konec-statistiky-obraz" src="" alt="Přehled vyprávění" decoding="async">
+          </div>
+        </aside>
+        <section class="narativ-panel">
+          <div class="konec-statistiky-scroll" id="konec-statistiky-obsah"></div>
+          <div class="narativ-actions">
+            <button type="button" class="fragment-zavrit" id="konec-statistiky-nova-hra">Nová hra</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div id="stavova-zprava">—</div>
 
@@ -1702,6 +1729,7 @@
     <script src="js/narrative.js"></script>
 <script src="js/cases.js"></script>
 <script src="js/desk.js"></script>
+<script src="js/stats-summary.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/music.js"></script>
 <script src="js/sfx.js"></script>

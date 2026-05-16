@@ -450,9 +450,13 @@ const Engine = (() => {
       !odlozitAdventureNaPoNedeli;
 
     if (maSpustitAdventure && UI && typeof UI.zobrazAdventureScenu === 'function') {
-      UI.zobrazAdventureScenu(adventureScena, function(vysledek) {
-        _aplikujVysledekAdventure(vysledek, adventureDoneKey);
-        _pokracujSpustDen(_denData, den);
+      /* Čekat na konec scény — jinak `spustDen` skončí dřív než `_pokracujSpustDen` a `_dalsiDen`
+         vynuluje `_rozdeniPoPrepnuDne` → plachta zůstane tmavá (Beneš D11 / 12. března). */
+      await new Promise(resolve => {
+        UI.zobrazAdventureScenu(adventureScena, function(vysledek) {
+          _aplikujVysledekAdventure(vysledek, adventureDoneKey);
+          Promise.resolve(_pokracujSpustDen(_denData, den)).then(resolve, resolve);
+        });
       });
       return;
     }
@@ -511,6 +515,11 @@ const Engine = (() => {
     if (_rozdeniPoPrepnuDne && typeof UI !== 'undefined' && UI.skryjZatemneniPripravyStoluPoNacteni) {
       _rozdeniPoPrepnuDne = false;
       await UI.skryjZatemneniPripravyStoluPoNacteni();
+    } else if (typeof UI !== 'undefined' && UI.skryjZatemneniPripravyStoluPoNacteni) {
+      const plachta = document.getElementById('desk-priprava-overlay');
+      if (plachta && plachta.classList.contains('desk-priprava-overlay--aktivni')) {
+        await UI.skryjZatemneniPripravyStoluPoNacteni();
+      }
     }
     if (typeof UI !== 'undefined' && UI.skryjStulBlokaciDoModaluFragmentu) {
       UI.skryjStulBlokaciDoModaluFragmentu();
@@ -826,6 +835,13 @@ const Engine = (() => {
       Desk.aktualizujVse();
       Music.aktualizujStopu();
       await _cekejNaFragment(_denData.night_fragment);
+    }
+
+    /* Dočasně: náhled souhrnu kampaně po večeru dne 3 (ladění UI). Smaž `_dev_souhrn_po_veceru` v days.json. */
+    if (_denData?._dev_souhrn_po_veceru === true && typeof UI !== 'undefined' && UI.zobrazSouhrnKampane) {
+      await new Promise(resolve => {
+        UI.zobrazSouhrnKampane({ devPreview: true, onZavrit: resolve });
+      });
     }
 
     // Sobota večer — shrnutí týdne a tiché bonusy před přechodem na neděli

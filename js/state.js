@@ -939,6 +939,10 @@ const State = (() => {
     };
   }
 
+  /**
+   * Nový běh — vynuluje aktivní stav a autosave.
+   * Ruční zálohy 1–5 v localStorage zůstávají (lze načíst z menu).
+   */
   function reset() {
     _stav = JSON.parse(JSON.stringify(VYCHOZI_STAV));
     _normalizujTraitsFrakceATrust();
@@ -946,9 +950,6 @@ const State = (() => {
     _zarucTydenniRozsireni();
     localStorage.removeItem(SAVE_LEGACY);
     localStorage.removeItem(SAVE_AUTOSAVE);
-    for (let t = 1; t <= POCET_RUCNICH_ULOZENI; t++) {
-      localStorage.removeItem(_klicePozice(t));
-    }
     try {
       if (typeof Desk !== 'undefined' && typeof Desk.vyresetujCacheObalkyStolu === 'function') {
         Desk.vyresetujCacheObalkyStolu();
