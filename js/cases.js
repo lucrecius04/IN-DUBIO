@@ -5,6 +5,40 @@
 
 const Cases = (() => {
 
+  /**
+   * Balancovací konstanty — měnit zde, efekt se projeví napříč celou mechanikou.
+   * Viz docs/playtesting/Jizdni-rad-balancingu.md §2.
+   */
+  const BALANC = {
+    /** Finance navíc za uzavření nerutinního případu (typový příplatek). */
+    PRIPLATEK_MORALNI:   25,
+    PRIPLATEK_POLITICKY: 35,
+    PRIPLATEK_OSOBNI:    30,
+
+    /** Koeficient pro efekty skrytých (průzkumem odemčených) verdiktů. */
+    SKRYTY_VERDIKT_KOEF: 1.25,
+
+    /** Výchozí finanční penalizace dirty path (neoficiální zdroj) podle ceny slotu v kapkách. */
+    DIRTY_FINANCE_1_KAPKA: -12,
+    DIRTY_FINANCE_2_KAPKY: -20,
+
+    /** Meta-vrstva: procesní kvalita — bonus/malus Moudrosti a Viny. */
+    META_PROCESNI_VYSOKA_MOUD:  2,
+    META_PROCESNI_VYSOKA_INT:   1,
+    META_PROCESNI_VYSOKA_VINA: -1,
+    META_PROCESNI_STREDNI_MOUD: 1,
+    META_PROCESNI_NIZKA_MOUD:  -1,
+    META_PROCESNI_NIZKA_VINA:   1,
+
+    /** Meta-vrstva: normativní směr — frakční pohyby. */
+    META_NORM_LEGALISTNI_MOC:  2,
+    META_NORM_LEGALISTNI_LID: -2,
+    META_NORM_SOCIALNI_LID:    2,
+    META_NORM_SOCIALNI_MOC:   -1,
+    META_NORM_SOCIALNI_KAP:   -1,
+    META_NORM_VYVAZENY_INT:    1,
+  };
+
   // Aktuálně otevřené případy dne
   let _pripady = [];
   let _onRozsudekCallback = null;
@@ -488,7 +522,7 @@ const Cases = (() => {
     return out;
   }
 
-  const _SKRYTY_VERDIKT_KOEF = 1.25;
+  const _SKRYTY_VERDIKT_KOEF = BALANC.SKRYTY_VERDIKT_KOEF;
   const _SKRYTY_CAP = {
     traits: 12,
     factions: 12,
@@ -601,8 +635,8 @@ const Cases = (() => {
     }
 
     if (typ === 'moralni') {
-      doplnek.finance = (Number(doplnek.finance) || 0) + 25;
-      doplnek._ui_finance_label = 'Odměna za uzavření morálního případu (+25 Kčs)';
+      doplnek.finance = (Number(doplnek.finance) || 0) + BALANC.PRIPLATEK_MORALNI;
+      doplnek._ui_finance_label = `Odměna za uzavření morálního případu (+${BALANC.PRIPLATEK_MORALNI} Kčs)`;
     }
 
     if (typ === 'politicky') {
@@ -619,8 +653,8 @@ const Cases = (() => {
       if (pouzit && soulad) {
         doplnek.traits.Moudrost = (doplnek.traits.Moudrost || 0) + 3;
       }
-      doplnek.finance = (Number(doplnek.finance) || 0) + 35;
-      doplnek._ui_finance_label = 'Odměna za uzavření politického případu (+35 Kčs)';
+      doplnek.finance = (Number(doplnek.finance) || 0) + BALANC.PRIPLATEK_POLITICKY;
+      doplnek._ui_finance_label = `Odměna za uzavření politického případu (+${BALANC.PRIPLATEK_POLITICKY} Kčs)`;
     }
 
     if (typ === 'osobni') {
@@ -642,8 +676,8 @@ const Cases = (() => {
         doplnek.traits.Vina = (doplnek.traits.Vina || 0) - 2;
       }
       if (!bezTypoveOdmMerOsobni) {
-        doplnek.finance = (Number(doplnek.finance) || 0) + 30;
-        doplnek._ui_finance_label = 'Odměna za uzavření osobního případu (+30 Kčs)';
+        doplnek.finance = (Number(doplnek.finance) || 0) + BALANC.PRIPLATEK_OSOBNI;
+        doplnek._ui_finance_label = `Odměna za uzavření osobního případu (+${BALANC.PRIPLATEK_OSOBNI} Kčs)`;
       }
     }
 
@@ -711,7 +745,7 @@ const Cases = (() => {
 
   function _defaultDirtyFinanceDelta(costKapky) {
     const c = Math.max(1, Number(costKapky) || 1);
-    return c >= 2 ? -20 : -12;
+    return c >= 2 ? BALANC.DIRTY_FINANCE_2_KAPKY : BALANC.DIRTY_FINANCE_1_KAPKA;
   }
 
   function _dirtySpecProInfo(info) {
@@ -1651,28 +1685,28 @@ const Cases = (() => {
     const narativ = [];
 
     if (procesni && procesni.key === 'vysoka') {
-      doplnek.traits.Moudrost = (doplnek.traits.Moudrost || 0) + 2;
-      doplnek.traits.Integrita = (doplnek.traits.Integrita || 0) + 1;
-      doplnek.traits.Vina = (doplnek.traits.Vina || 0) - 1;
+      doplnek.traits.Moudrost = (doplnek.traits.Moudrost || 0) + BALANC.META_PROCESNI_VYSOKA_MOUD;
+      doplnek.traits.Integrita = (doplnek.traits.Integrita || 0) + BALANC.META_PROCESNI_VYSOKA_INT;
+      doplnek.traits.Vina = (doplnek.traits.Vina || 0) + BALANC.META_PROCESNI_VYSOKA_VINA;
       narativ.push('Postup byl procesně pečlivý.');
     } else if (procesni && procesni.key === 'stredni') {
-      doplnek.traits.Moudrost = (doplnek.traits.Moudrost || 0) + 1;
+      doplnek.traits.Moudrost = (doplnek.traits.Moudrost || 0) + BALANC.META_PROCESNI_STREDNI_MOUD;
       narativ.push('Postup byl procesně přijatelný.');
     } else {
-      doplnek.traits.Moudrost = (doplnek.traits.Moudrost || 0) - 1;
-      doplnek.traits.Vina = (doplnek.traits.Vina || 0) + 1;
+      doplnek.traits.Moudrost = (doplnek.traits.Moudrost || 0) + BALANC.META_PROCESNI_NIZKA_MOUD;
+      doplnek.traits.Vina = (doplnek.traits.Vina || 0) + BALANC.META_PROCESNI_NIZKA_VINA;
       narativ.push('Procesní opora rozsudku byla slabá.');
     }
 
     if (normativni && normativni.key === 'legalistni') {
-      doplnek.factions.Moc = (doplnek.factions.Moc || 0) + 2;
-      doplnek.factions.Lid = (doplnek.factions.Lid || 0) - 2;
+      doplnek.factions.Moc = (doplnek.factions.Moc || 0) + BALANC.META_NORM_LEGALISTNI_MOC;
+      doplnek.factions.Lid = (doplnek.factions.Lid || 0) + BALANC.META_NORM_LEGALISTNI_LID;
     } else if (normativni && normativni.key === 'socialni') {
-      doplnek.factions.Lid = (doplnek.factions.Lid || 0) + 2;
-      doplnek.factions.Moc = (doplnek.factions.Moc || 0) - 1;
-      doplnek.factions.Kapital = (doplnek.factions.Kapital || 0) - 1;
+      doplnek.factions.Lid = (doplnek.factions.Lid || 0) + BALANC.META_NORM_SOCIALNI_LID;
+      doplnek.factions.Moc = (doplnek.factions.Moc || 0) + BALANC.META_NORM_SOCIALNI_MOC;
+      doplnek.factions.Kapital = (doplnek.factions.Kapital || 0) + BALANC.META_NORM_SOCIALNI_KAP;
     } else {
-      doplnek.traits.Integrita = (doplnek.traits.Integrita || 0) + 1;
+      doplnek.traits.Integrita = (doplnek.traits.Integrita || 0) + BALANC.META_NORM_VYVAZENY_INT;
     }
 
     return { doplnek, narativ };

@@ -14,10 +14,10 @@ const Engine = (() => {
   const _SKIP_D1_INTRO_MODALS = false;
 
   /**
-   * Akce průzkumu (inkoust) na každý den s alespoň jedním případem. V ostré hře nastavit na 3.
-   * Nyní zvýšeno kvůli testování stop v případech.
+   * Akce průzkumu (inkoust) na každý pracovní den s alespoň jedním případem.
+   * Ostré nastavení: 3. Změnit sem + state.js resetDen() + VYCHOZI_STAV najednou.
    */
-  const _INVESTIGATION_ACTIONS_BASE_DEN_S_PRIPADY = 15;
+  const _INVESTIGATION_ACTIONS_BASE_DEN_S_PRIPADY = 3;
 
   /** První `spustDen` v relaci: zatemnění stolu do rozsvícení po přípravě (ne každé ráno). */
   let _stulPripravaMaRozsvitit = true;

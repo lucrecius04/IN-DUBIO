@@ -949,7 +949,11 @@ const State = (() => {
     _zarucRozhodovaciStyl();
     _zarucTydenniRozsireni();
     localStorage.removeItem(SAVE_LEGACY);
-    localStorage.removeItem(SAVE_AUTOSAVE);
+    /* Zapsat výchozí stav jako autosave — jinak _migrujAutosaveZeSlotu po reloadu
+       promuje ruční slot zpět na autosave a hra nenastartuje od D1. */
+    try {
+      localStorage.setItem(SAVE_AUTOSAVE, JSON.stringify(_stav));
+    } catch (_e) { /* ignore */ }
     try {
       if (typeof Desk !== 'undefined' && typeof Desk.vyresetujCacheObalkyStolu === 'function') {
         Desk.vyresetujCacheObalkyStolu();
@@ -1083,7 +1087,7 @@ const State = (() => {
 
   function resetDen() {
     _stav.casesResolvedToday = [];
-    _stav.investigationActionsLeft = 10;
+    _stav.investigationActionsLeft = 3;
     _stav.phase = 'morning';
     _zarucEkonomiku();
     const den = Number(_stav.currentDay);
