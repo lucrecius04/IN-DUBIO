@@ -7,9 +7,9 @@ const Finance = (() => {
   const OPERACE_CIL_KC = 400;
   /** Kalendář 15denní kampaně: deadline operace = D12 (pracovní) = den 16 (pondělí 3. týdne). */
   const OPERACE_DEADLINE_DEN = 16;
-  const DENNI_VYDAJE_KC = 55;
+  const DENNI_VYDAJE_KC = 48;
   /** Týdenní plat soudu — pevná částka; další příjem jen ze spisů, úplatků, dopisů apod. */
-  const VYPLATA_KC = 80;
+  const VYPLATA_KC = 90;
   /** Neděle v herním kalendáři: první a druhá neděle (den 1 = pondělí). */
   const VYPLATA_DNY = [7, 14];
 
@@ -43,7 +43,7 @@ const Finance = (() => {
   }
 
   /**
-   * Nedělní výplata +80 Kčs — idempotentně podle záznamu ve stavu.
+   * Nedělní výplata (VYPLATA_KC) — idempotentně podle záznamu ve stavu.
    * @returns {boolean} true pokud se právě připsalo
    */
   function aplikujNedelniVyplatu(den) {
@@ -66,14 +66,13 @@ const Finance = (() => {
   function prijmoutUplatek(castka, zdroj) {
     const c = Number(castka) || 0;
     upravit(c, `Úplatek od: ${zdroj}`);
-    State.upravRys('Integrita', -15);
+    /* Rysy z verdiktu `uplatek` — viz Cases.zpracujPrijetiUplatekPoModalu + `_aplikujDusledky`. */
     State.set('flags.uplatek_prijat', true);
     const t = State.get('tydenni_statistiky');
     if (t && typeof t === 'object') {
       t.uplatek_prijat = true;
       State.set('tydenni_statistiky', t);
     }
-    UI.zobrazStavovouZpravu(`Přijal jsi ${c} Kčs.`);
     zkontrolujCilOperace();
   }
 
@@ -119,7 +118,7 @@ const Finance = (() => {
   }
 
   /**
-   * Počet dní do příští nedělní výplaty (+80 Kčs), nebo null po poslední výplatě v kampani.
+   * Počet dní do příští nedělní výplaty, nebo null po poslední výplatě v kampani.
    */
   function _getDniDoDalsiNedelniVyplaty() {
     const den = Number(State.get('currentDay')) || 1;
@@ -162,9 +161,14 @@ const Finance = (() => {
   /**
    * Texty pro panel financí na stole (pravý sloupec).
    */
-  /** Nastaví příznak zaplacené operace při dosažení 400 Kčs (pokud nebyla odložena). */
+  /**
+   * Při dosažení 400 Kčs označí operaci jako zaplacenou — až od termínu (D16).
+   * Dříve lze šetřit (útěk / atentát) bez automatického „zaplaceno“; hráč platí v milníku nebo runner.
+   */
   function zkontrolujCilOperace() {
     if (State.get('flags.operace_odlozena') === true) return;
+    const den = Number(State.get('currentDay')) || 0;
+    if (den < OPERACE_DEADLINE_DEN) return;
     if ((Number(getZustatek()) || 0) >= OPERACE_CIL_KC) {
       State.set('flags.operace_zaplacena', true);
     }

@@ -83,7 +83,7 @@ const Engine = (() => {
         State.upravRys('Moudrost', 5);
         State.oznacFragment({ id: 'fragment_tyden_bonus_a', day: denT });
       } else if (k === 'B') {
-        State.upravRys('Integrita', 5);
+        State.upravRys('Integrita', 3);
         State.upravFrakci('Lid', 8);
         State.oznacFragment({ id: 'fragment_tyden_bonus_b', day: denT });
       } else if (k === 'C') {
@@ -208,6 +208,15 @@ const Engine = (() => {
 
   // --- DEN ---
 
+  /** Dva dny po úplatku: tíha svědomí (−3 INT, −2 Naděje) — rozložený dopad místo jednorázového propadu. */
+  function _aplikujRanniTihyUplatku() {
+    const zbyva = Number(State.get('flags.uplatek_tihy_zbyva')) || 0;
+    if (zbyva < 1) return;
+    State.upravRys('Integrita', -3);
+    State.upravRys('Nadeje', -2);
+    State.set('flags.uplatek_tihy_zbyva', zbyva - 1);
+  }
+
   /** Dopady dokončené adventure scény (sdílené mezi `spustDen` a odloženým spuštěním po neděli). */
   function _aplikujVysledekAdventure(vysledek, adventureDoneKey) {
     const out = vysledek && typeof vysledek === 'object' ? vysledek : {};
@@ -297,9 +306,16 @@ const Engine = (() => {
       return;
     }
 
+    _aplikujRanniTihyUplatku();
+
     // Neděle — nový pracovní týden: vynulovat týdenní statistiky (násobek Moudrosti řeší sobota večer)
     if (den % 7 === 0) {
       State.resetTydenniStatistikyNedele();
+      const vinaN = Number(State.get('traits.Vina')) || 0;
+      const nadN = Number(State.get('traits.Nadeje')) || 0;
+      if (vinaN <= 15 && nadN >= 78) {
+        State.set('pondeli_vina_emotivni', true);
+      }
     }
 
     // Pondělí — důsledky nedělní volby (inkoust navíc)
@@ -603,22 +619,22 @@ const Engine = (() => {
     const KONCE = [
       {
         type: 'korupce',
-        minDay: 11,
-        check: () => integ <= 20 && tv >= 2 && uplatek
+        minDay: 15,
+        check: () => uplatek && (integ <= 20 || integ <= 35)
       },
       {
         type: 'smireni',
-        minDay: 12,
+        minDay: 16,
         check: () => integ >= 60 && vina <= 20 && (operPl || fl.benes_identified === true)
       },
       {
         type: 'utek',
-        minDay: 13,
+        minDay: 17,
         check: () => tk >= 1 && bal > 300 && !operOd
       },
       {
         type: 'atentát',
-        minDay: 13,
+        minDay: 17,
         check: () =>
           integ >= 60 &&
           odv >= 80 &&
@@ -629,18 +645,18 @@ const Engine = (() => {
       },
       {
         type: 'rad',
-        minDay: 14,
+        minDay: 16,
         check: () => tv <= 0 && tz >= 3 && fl.masek_document_signed === true
       },
       {
         type: 'anna',
-        minDay: 14,
+        minDay: 18,
         check: () => vina <= 20 && bal < 100 && moudr >= 75 && !uplatek && !operPl
       },
       {
         type: 'hrdina',
-        minDay: 15,
-        check: () => integ >= 80 && odv >= 80
+        minDay: 19,
+        check: () => integ >= 78 && odv >= 78
       },
       {
         type: 'preziti',
@@ -655,6 +671,57 @@ const Engine = (() => {
     return null;
   }
 
+  /** Rys v pásmu 25–75 (design Přežití — mírně širší než 30–70 kvůli driftu z poolu). */
+  function _jeRysStredni(hodnota) {
+    const v = Number(hodnota);
+    return Number.isFinite(v) && v >= 25 && v <= 75;
+  }
+
+  /** Alespoň 3 z 5 hlavních rysů ve středním pásmu (4/5 bylo v praxi nedosažitelné). */
+  function _maStredniProfilRysu(traits) {
+    const t = traits || {};
+    const klice = ['Integrita', 'Odvaha', 'Moudrost', 'Vina', 'Nadeje'];
+    let vPasmu = 0;
+    for (const k of klice) {
+      if (_jeRysStredni(t[k])) vPasmu++;
+    }
+    return vPasmu >= 3;
+  }
+
+  /** Podíl případů s průzkumem za celou kampaň (0–1). */
+  function _pomerPruzkumuKampan() {
+    const k = State.get('kampan_statistiky');
+    if (!k || typeof k !== 'object') return 0;
+    const pc = Number(k.pripady_celkem) || 0;
+    if (pc < 1) return 0;
+    return (Number(k.pripady_s_prurzkumem) || 0) / pc;
+  }
+
+  /** Haas nezavázal (odmítnutá obálka); „otevřený“ kontakt neblokuje čisté větve. */
+  function _haasBezVazby(uzlove) {
+    return uzlove && uzlove.haas_kontakt !== 'zavazany';
+  }
+
+  /**
+   * Politický vzdor + pravda Beneše + vina z tvrdých rozsudků (oddělení od smíření / útěku).
+   * Tvrdé tresty mohou Moc zvedat — atentát je konfrontace, ne servilita (vyloučena jen extrémní loajalita).
+   */
+  function _profilAtentatu(uzlove, traits, flags, mocHodnota) {
+    if (!uzlove || flags.uplatek_prijat === true) return false;
+    if (uzlove.vlcek_vztah !== 'vzdor' || uzlove.benes_pravda !== 'prijal') return false;
+    if (!_haasBezVazby(uzlove)) return false;
+    const odv = Number(traits.Odvaha) || 0;
+    const vina = Number(traits.Vina) || 0;
+    const moc = Number(mocHodnota) || 50;
+    if (vina < 22 || odv < 72) return false;
+    if (moc >= 88 && vina < 45) return false;
+    return true;
+  }
+
+  /**
+   * Variabilní konce — pořadí: hnusné / únikové / čisté extrémy / střed / fallback D19.
+   * Soulad s docs/scenar/Konce_15dni.csv (Vlna D).
+   */
   function _vyhodnotVariabilniKonec() {
     if (State.get('gameOver')) return null;
     const st = State.get() || {};
@@ -671,78 +738,114 @@ const Engine = (() => {
     const bal = Number((st.finance && st.finance.balance) || 0) || 0;
     const f = st.flags || {};
     const factions = st.factions || {};
-    // Skutečný název v kódu: factions.Moc (dokument mluví obecně o "frakce/Moc").
     const mocHodnota = Number.isFinite(Number(factions.Moc)) ? Number(factions.Moc) : 50;
+    const integ = Number(t.Integrita) || 0;
+    const vina = Number(t.Vina) || 0;
+    const moudr = Number(t.Moudrost) || 0;
+    const odv = Number(t.Odvaha) || 0;
+    const nad = Number(t.Nadeje) || 0;
+    const uplatek = f.uplatek_prijat === true;
+    const operPl = f.operace_zaplacena === true;
+    const pruzkumKampan = _pomerPruzkumuKampan();
+    const pruzkumAnna = pruzkumKampan >= 0.72 || moudr >= 58;
+    const profilAtentat = _profilAtentatu(u, t, f, mocHodnota);
+    const osobniCenaAnna = u.osobni_cena === 'nerozhodl' || u.osobni_cena === 'odmitl';
+    /** Cesta k Anně — pravda, nezaplacená operace, vysoký průzkum (bez finance). */
+    const profilAnnaCesta = u.benes_pravda === 'prijal'
+      && _haasBezVazby(u)
+      && osobniCenaAnna
+      && vina <= 28
+      && pruzkumAnna
+      && !operPl
+      && !f.flag_rodny_list_pouzit;
+    /** Chudý archivář na Markové — u vysokého průzkumu mírně vyšší strop (investice do spisů). */
+    const annaChudy = bal < 130 || (pruzkumKampan >= 0.72 && bal < 165);
+    const annaKandidat = profilAnnaCesta && annaChudy;
+    /** Blokuje smíření jen když by jinak padla Anna (ne bohatý Benešův profil). */
+    const profilBlokujeSmireni = profilAnnaCesta && annaChudy;
 
-    // 2. KORUPCE (nejdříve D11)
-    if (den >= 11
+    // 2. KORUPCE (currentDay 15 = 16. 3., den Haase) — před kruhem; Konce_15dni: ≤35 s úplatkem
+    if (den >= 15
       && u.vlcek_vztah === 'kompromitovan'
       && u.haas_kontakt === 'zavazany'
-      && Number(t.Integrita) <= 20) {
+      && (integ <= 20 || (uplatek && integ <= 55))) {
       return 'korupce';
     }
 
-    // 5. SMÍŘENÍ (nejdříve D12)
-    if (den >= 12
+    // 8. ANNA (currentDay 18 = 19. 3., Marková) — před smířením
+    if (den >= 18
+      && annaKandidat) {
+      return 'anna';
+    }
+
+    // 5. SMÍŘENÍ (currentDay 16 = 17. 3., Zavadová) — ne annin chudý profil
+    if (den >= 16
+      && !profilBlokujeSmireni
+      && !profilAtentat
       && u.benes_pravda === 'prijal'
-      && u.haas_kontakt !== 'zavazany'
-      && Number(t.Integrita) >= 60
-      && Number(t.Vina) <= 20) {
+      && _haasBezVazby(u)
+      && integ >= 52
+      && vina <= 28
+      && moudr >= 48
+      && (operPl || u.osobni_cena === 'zaplatil' || bal >= 140)) {
       return 'smireni';
     }
 
-    // 4. ÚTĚK (nejdříve D13)
-    if (den >= 13
-      && u.haas_kontakt !== 'zavazany'
-      && u.osobni_cena === 'zaplatil'
-      // Skutečný název v kódu: trust.karas (ne flag karas_nabidl_odchod).
-      && (tr.karas !== undefined ? Number(tr.karas) >= 2 : false)
-      && bal > 300) {
-      return 'utek';
-    }
-
-    // 6. ATENTÁT (nejdříve D13)
-    if (den >= 13
-      && u.vlcek_vztah === 'vzdor'
-      && u.haas_kontakt === 'odmitnut'
-      && u.benes_pravda === 'prijal'
-      && Number(t.Odvaha) >= 80
-      && mocHodnota <= 20) {
-      return 'atentát';
-    }
-
-    // 7. KRUH (nejdříve D14)
-    if (den >= 14
+    // 7. KRUH (currentDay 16+, Zavadová / Mašek) — temná větev; při INT≤55+úplatek padá korupce výše
+    if (den >= 16
       && u.vlcek_vztah !== 'vzdor'
       && u.haas_kontakt === 'zavazany'
       && u.benes_pravda !== 'prijal'
+      && !profilAnnaCesta
+      && !(uplatek && integ <= 55 && u.vlcek_vztah === 'kompromitovan')
       && (f.masek_document_signed === true
           || (tr.zavadova !== undefined ? Number(tr.zavadova) >= 3 : false))) {
       return 'rad';
     }
 
-    // 8. ANNA (nejdříve D14)
-    // Skutečný kontrakt pruzkumProcent zatím není; v1 proxy přes Moudrost.
-    const pruzkumSplnen = Number(t.Moudrost) >= 60;
-    if (den >= 14
-      && u.benes_pravda === 'prijal'
-      && u.haas_kontakt === 'odmitnut'
-      && u.osobni_cena === 'nerozhodl'
-      && bal < 100
-      && pruzkumSplnen) {
-      return 'anna';
+    // 6. ATENTÁT (currentDay 17 = 18. 3., Karas)
+    if (den >= 17
+      && profilAtentat
+      && !operPl
+      && u.osobni_cena !== 'zaplatil'
+      && u.osobni_cena !== 'haasem') {
+      return 'atentát';
     }
 
-    // 3. HRDINA (nejdříve D15)
-    if (den >= 15
+    // 4. ÚTĚK (currentDay 17 = 18. 3., Karas)
+    if (den >= 17
+      && _haasBezVazby(u)
+      && !profilAtentat
+      && u.osobni_cena === 'zaplatil'
+      && (tr.karas !== undefined ? Number(tr.karas) >= 2 : false)
+      && bal > 260) {
+      return 'utek';
+    }
+
+    // 3. HRDINA (currentDay 19 = 20. 3., Velezrada) — vzdor + vysoká odvaha, ne čistý drift z poolu
+    if (den >= 19
+      && !uplatek
       && u.vlcek_vztah === 'vzdor'
-      && u.haas_kontakt === 'odmitnut'
-      && Number(t.Integrita) >= 80
-      && Number(t.Odvaha) >= 80) {
+      && _haasBezVazby(u)
+      && u.benes_pravda !== 'prijal'
+      && odv >= 88
+      && (integ >= 78 || vina <= 55)
+      && !f.flag_rodny_list_pouzit) {
       return 'hrdina';
     }
 
-    // 1. PŘEŽITÍ — výchozí až poslední kalendářní den kampaně (soulad s legacy minDay 19)
+    // 1. PŘEŽITÍ (currentDay 19 = 20. 3.) — neutrální Vlček, střední profil, rezignace ne euforie
+    if (den >= 19
+      && u.vlcek_vztah === 'neutral'
+      && _maStredniProfilRysu(t)
+      && u.haas_kontakt !== 'zavazany'
+      && integ >= 28 && integ <= 78
+      && vina >= 25 && vina <= 75
+      && nad >= 28 && nad <= 72) {
+      return 'preziti';
+    }
+
+    // Fallback — konec kampaně bez extrémní větve
     if (den >= 19) {
       return 'preziti';
     }
@@ -835,13 +938,6 @@ const Engine = (() => {
       Desk.aktualizujVse();
       Music.aktualizujStopu();
       await _cekejNaFragment(_denData.night_fragment);
-    }
-
-    /* Dočasně: náhled souhrnu kampaně po večeru dne 3 (ladění UI). Smaž `_dev_souhrn_po_veceru` v days.json. */
-    if (_denData?._dev_souhrn_po_veceru === true && typeof UI !== 'undefined' && UI.zobrazSouhrnKampane) {
-      await new Promise(resolve => {
-        UI.zobrazSouhrnKampane({ devPreview: true, onZavrit: resolve });
-      });
     }
 
     // Sobota večer — shrnutí týdne a tiché bonusy před přechodem na neděli

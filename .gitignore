@@ -1,0 +1,4 @@
+node_modules/
+artifacts/playtest/*.json
+artifacts/playtest/*.png
+# .gitkeep v artifacts/playtest/ zůstane

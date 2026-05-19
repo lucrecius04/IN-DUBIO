@@ -1,0 +1,19 @@
+{
+  "name": "in-dubio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "IN DUBIO — noir soudní hra. Dev nástroje a playtest runner.",
+  "scripts": {
+    "playtest": "node scripts/playtest-run.js rychlosoudce 19",
+    "playtest:rychlosoudce": "node scripts/playtest-run.js rychlosoudce 19",
+    "playtest:archivar": "node scripts/playtest-run.js archivar 19",
+    "playtest:milosrny": "node scripts/playtest-run.js milosrny 19",
+    "playtest:prisny": "node scripts/playtest-run.js prisny_statnik 19",
+    "playtest:konce": "node scripts/playtest-konce-matrix.js 19",
+    "playtest:konce:11": "node scripts/playtest-konce-matrix.js 11",
+    "serve": "npx serve ."
+  },
+  "devDependencies": {
+    "playwright": "^1.52.0"
+  }
+}

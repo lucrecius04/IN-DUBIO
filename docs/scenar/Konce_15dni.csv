@@ -1,9 +1,9 @@
-Konec;Nejdrive;INT;ODV;MOU;VIN;NAD;MOC;LID;KAP;Vlcek;Zavad;Karas;Benes;D7;D9;D11;NE2;Rod.list;Finance;Pruzkum;Emoce
-1. PREZITI;D15;30-70;30-70;--;30-70;30-70;30-70;--;--;1-2;0-1;1-2;--;--;--;--;--;--;--;--;Prazdnota
-2. KORUPCE;D11;<=20;--;--;--;--;--;--;--;>=2/Haas;--;--;--;Splnil;--;Prijal;--;--;--;--;Hnusnost
-3. HRDINA;D15;>=80;>=80;--;--;--;--;--;--;0;>=2;--;--;Odmitl;--;Odmitl;--;POUZIL;--;--;Horkosladko
-4. UTEK;D13;--;--;--;--;--;--;--;--;--;>=2;--;--;--;--;--;Poslechl;--;>300;--;Utek
-5. SMIRENI;D12;>=60;--;--;<=20;--;--;--;--;--;--;--;scena;--;Prijal;Odmitl;--;--;--;--;Klid
-6. ATENTAT;D13;>=60;>=80;--;--;--;<=20;--;--;0;--;--;--;Odmitl;--;Odmitl;Ignoroval;NEPOUZIL;--;--;Tragicka velikost
-7. KRUH;D14;--;--;--;--;--;--;--;--;odmitl;3;--;--;Odmitl;--;--;--;POUZIL;--;--;Temna ironie
-8. ANNA;D14;--;--;--;<=20;--;--;--;--;odmitl;odmitl;--;scena;Odmitl;Prijal;Odmitl;--;--;<100;80%+;Ticha katarze
+Konec;Nejdrive;INT;ODV;MOU;VIN;NAD;MOC;LID;KAP;Vlcek;Zavad;Karas;Benes;D7;D9;D11;NE2;Rod.list;Finance;Pruzkum;Emoce;Poznamka_engine
+1. PREZITI;D19;30-70;30-70;--;30-70;30-70;--;--;--;neutral;--;--;--;--;--;--;--;--;--;stredni profil 4/5 rysu;Klid;engine: currentDay 19 (20.3.) neutral Vlcek 4/5 rysu 30-70
+2. KORUPCE;D15;<=35 s uplatkem;--;--;--;--;--;--;--;kompromitovan;--;--;--;--;--;Splnil;--;--;--;Hnusnost;engine: currentDay 15 (16.3. Haas) uplatek+zavazany
+3. HRDINA;D19;>=78;>=78;--;<=55 nebo INT>=78;--;--;--;--;vzdor;ne zavazany;--;odmitl;--;Odmitl;--;NEPOUZIL;--;--;Horkosladko;engine: currentDay 19 (20.3.) vzdor+benes odmitl
+4. UTEK;D17;--;--;--;--;--;--;--;>=2;--;--;--;--;--;Poslechl;--;--;>260;--;Utek;engine: currentDay 17 (18.3. Karas) zaplatil operaci
+5. SMIRENI;D16;>=52;--;>=48;<=28;--;--;--;--;--;--;--;prijal;--;Prijal;--;--;>=140 nebo operace;Klid;engine: ne annaChudy; benes prijal bohaty
+6. ATENTAT;D17;--;>=72;--;>=22;--;<=28;--;--;vzdor;ne zavazany;--;prijal;Odmitl;--;Odmitl;NEPOUZIL;--;--;Tragicka velikost;engine: currentDay 17 (18.3. Karas) pred utekem
+7. KRUH;D16;--;--;--;--;--;--;--;odmitl;3;--;--;ne prijal;Odmitl;--;--;POUZIL;--;--;Temna ironie;engine: currentDay 16+ (17.3. Zavadova)
+8. ANNA;D18;--;>=58;<=28;--;--;--;--;ne zavazany;--;--;prijal;Odmitl;Prijal;Odmitl;--;--;<130 nebo <165 pri pruzkum>=72%;>=72% kampan;Ticha katarze;engine: D18 pred smirenim; operace nezaplacena (odmitl/nerozhodl)

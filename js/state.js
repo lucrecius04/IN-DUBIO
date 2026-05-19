@@ -262,6 +262,31 @@ const State = (() => {
     }
     if (typeof _stav.pondeli_moudrost_extra !== 'boolean') _stav.pondeli_moudrost_extra = false;
     if (typeof _stav.pondeli_vina_emotivni !== 'boolean') _stav.pondeli_vina_emotivni = false;
+    _zarucKampanStatistiky();
+  }
+
+  function _vychoziKampanStatistiky() {
+    return {
+      pripady_celkem: 0,
+      pripady_s_prurzkumem: 0,
+      verdikty_guilty: 0,
+      verdikty_ng: 0,
+      verdikty_insufficient: 0,
+      verdikty_tvrdy: 0,
+      uplatky_prijaty: 0
+    };
+  }
+
+  function _zarucKampanStatistiky() {
+    const def = _vychoziKampanStatistiky();
+    if (!_stav.kampan_statistiky || typeof _stav.kampan_statistiky !== 'object') {
+      _stav.kampan_statistiky = { ...def };
+      return;
+    }
+    const k = _stav.kampan_statistiky;
+    for (const key of Object.keys(def)) {
+      if (!Number.isFinite(Number(k[key]))) k[key] = def[key];
+    }
   }
 
   function _zarucRozhodovaciStyl() {
@@ -297,7 +322,7 @@ const State = (() => {
     investigationActionsLeft: 3,
 
     traits: {
-      Integrita: 70,
+      Integrita: 68,
       Odvaha:    50,
       Moudrost:  55,
       Vina:      60,   // min. 1 — viz upravRys (GDD)
@@ -413,6 +438,16 @@ const State = (() => {
       pripady_odlozeny: 0,
       tezke_rozsudky: 0,
       verdikty_smer: []
+    },
+    /** Kampaň: podíl případů s průzkumem (konec Anna, týdenní bonus A). */
+    kampan_statistiky: {
+      pripady_celkem: 0,
+      pripady_s_prurzkumem: 0,
+      verdikty_guilty: 0,
+      verdikty_ng: 0,
+      verdikty_insufficient: 0,
+      verdikty_tvrdy: 0,
+      uplatky_prijaty: 0
     },
     /** 1 nebo 1,5 — bonus D; nastavuje se v sobotu večer. */
     tydenni_nasobek_moudrosti: 1,
@@ -965,9 +1000,55 @@ const State = (() => {
 
   // --- Pomocné metody pro časté operace ---
 
+  /**
+   * Vlna G+: asymetrie — vysoká INT/ODV hůře roste, pokles INT rychlejší; nízká INT pomalu roste.
+   * Integrita má přísnější strop růstu (měkké větve končily často na 95–100).
+   * Vina: vysoká hůře klesá (zůstane tlak), nízká hůře roste (čisté větve).
+   */
+  function _efektivniDeltaRys(nazev, delta, aktualni) {
+    const d = Number(delta) || 0;
+    if (d === 0) return 0;
+    const v = Number(aktualni) || 0;
+    if (d > 0 && nazev === 'Integrita') {
+      if (v >= 85) return Math.ceil(d * 0.2);
+      if (v >= 72) return Math.ceil(d * 0.38);
+      if (v >= 58) return Math.ceil(d * 0.58);
+      if (v <= 38) return Math.ceil(d * 0.45);
+    }
+    if (d > 0 && nazev === 'Odvaha') {
+      if (v >= 85) return Math.ceil(d * 0.25);
+      if (v >= 70) return Math.ceil(d * 0.5);
+      if (v <= 38) return Math.ceil(d * 0.45);
+    }
+    if (d > 0 && nazev === 'Nadeje') {
+      if (v >= 85) return Math.ceil(d * 0.22);
+      if (v >= 70) return Math.ceil(d * 0.42);
+      if (v >= 55) return Math.ceil(d * 0.62);
+    }
+    if (d > 0 && nazev === 'Moudrost') {
+      if (v >= 88) return Math.ceil(d * 0.25);
+      if (v >= 76) return Math.ceil(d * 0.45);
+    }
+    if (d < 0 && (nazev === 'Integrita' || nazev === 'Odvaha')) {
+      if (v >= 55) return Math.floor(d * 1.35);
+      if (v >= 42) return Math.floor(d * 1.15);
+    }
+    if (d < 0 && nazev === 'Vina' && v <= 20) {
+      return Math.floor(d * 0.5);
+    }
+    if (d > 0 && nazev === 'Vina' && v >= 78) {
+      return Math.ceil(d * 0.55);
+    }
+    if (d < 0 && nazev === 'Vina' && v >= 82) {
+      return Math.floor(d * 0.65);
+    }
+    return d;
+  }
+
   function upravRys(nazev, delta) {
     const aktualni = _stav.traits[nazev] ?? 50;
-    let nova = Math.max(0, Math.min(100, aktualni + delta));
+    const eff = _efektivniDeltaRys(nazev, delta, aktualni);
+    let nova = Math.max(0, Math.min(100, aktualni + eff));
     if (nazev === 'Vina') {
       nova = Math.max(1, Math.min(100, nova));
     }
@@ -976,7 +1057,13 @@ const State = (() => {
 
   function upravFrakci(nazev, delta) {
     const aktualni = _stav.factions[nazev] ?? 50;
-    _stav.factions[nazev] = Math.max(0, Math.min(100, aktualni + delta));
+    let d = Number(delta) || 0;
+    if (d > 0 && aktualni >= 72) d = Math.ceil(d * 0.55);
+    else if (d > 0 && aktualni >= 58) d = Math.ceil(d * 0.78);
+    if (d < 0 && aktualni <= 28) d = Math.floor(d * 0.55);
+    else if (d < 0 && aktualni <= 42) d = Math.floor(d * 0.78);
+    d = Math.max(-8, Math.min(8, d));
+    _stav.factions[nazev] = Math.max(0, Math.min(100, aktualni + d));
   }
 
   const _DUVERA_NPC = { vlcek: true, zavadova: true, karas: true };
@@ -1091,10 +1178,14 @@ const State = (() => {
     _stav.phase = 'morning';
     _zarucEkonomiku();
     const den = Number(_stav.currentDay);
-    // Pevné denní výdaje −55 Kčs za každý dokončený den (při přechodu na další den).
+    // Pevné denní výdaje (Finance.DENNI_VYDAJE_KC) za každý dokončený den.
     if (Number.isFinite(den) && den >= 1) {
       const pred = Number(_stav.finance.balance) || 0;
-      upravFinance(-55);
+      const vydaje =
+        typeof Finance !== 'undefined' && Number.isFinite(Number(Finance.DENNI_VYDAJE_KC))
+          ? Number(Finance.DENNI_VYDAJE_KC)
+          : 48;
+      upravFinance(-vydaje);
       if (pred < 0) {
         upravDluh(20);
       }
@@ -1191,9 +1282,10 @@ const State = (() => {
     // Skutečný název v kódu: flag_vlcek_upozorneni (ne dokumentové vlcek_splnil_d7/d8).
     const vlcekKompromis = f.uplatek_prijat === true
       || (f.flag_vlcek_upozorneni === true && Number(t.Integrita) <= 35);
-    // Skutečný název v kódu: trust.vlcek (0..3), ne samostatný flag vlcek_odmitl_d11.
+    // Vzdor: odmítnutý úplatek / minimální důvěra Vlčkovi + odvaha (trust 1 = stále vzdor).
     const vlcekVzdor = f.uplatek_prijat !== true
-      && (Number.isFinite(Number(tr.vlcek)) ? Number(tr.vlcek) <= 0 : false)
+      && !vlcekKompromis
+      && (Number.isFinite(Number(tr.vlcek)) ? Number(tr.vlcek) <= 1 : false)
       && Number(t.Odvaha) >= 65;
     u.vlcek_vztah = vlcekKompromis ? 'kompromitovan' : (vlcekVzdor ? 'vzdor' : 'neutral');
 
@@ -1207,8 +1299,7 @@ const State = (() => {
     );
     u.haas_kontakt = haasZavazany ? 'zavazany' : (haasOtevren ? 'otevren' : 'odmitnut');
 
-    // benes_pravda
-    // v1 bez adventure scén: mapujeme přes benes_identified.
+    // benes_pravda — adventure může nastavit prijal/odmitl; identifikace ze spisu jen pokud stále nezna
     if (u.benes_pravda === 'nezna' && f.benes_identified === true) {
       u.benes_pravda = 'prijal';
     } else if (!['nezna', 'prijal', 'odmitl'].includes(String(u.benes_pravda))) {

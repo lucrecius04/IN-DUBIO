@@ -3872,6 +3872,7 @@ const UI = (() => {
   function _wfFiltrovatVerdiktyPodlePruzkumu(pripad, verdikty) {
     const arr = verdikty || [];
     if (!pripad || pripad._fromPool !== true) return arr;
+    if (String(pripad.type || '').toLowerCase() === 'osobni') return arr;
     if (!Array.isArray(pripad.hidden_info) || !pripad.hidden_info.length) return arr;
     if (typeof Cases !== 'undefined' && Cases.maInformacniPrahyVerdiktu && Cases.maInformacniPrahyVerdiktu(pripad)) {
       return arr;
@@ -4157,9 +4158,15 @@ const UI = (() => {
     return g;
   }
 
+  function _wfFormatDeltaHint(label, delta) {
+    const n = Math.round(Number(delta));
+    if (!Number.isFinite(n) || n === 0) return '';
+    return `${label}: ${n > 0 ? '+' : ''}${n}`;
+  }
+
   /**
-   * Předběžný hint pro kartu rozsudku: finance číslem, ostatní jen osy (bez směru/čísla).
-   * Cíl: nerozbít morální volbu min-max kalkulačkou, ale nenechat hráče naslepo.
+   * Předběžný hint pro kartu rozsudku — konkrétní čísla (finance, rysy, frakce).
+   * Sloučené důsledky včetně balanc úprav z Cases.pripravSlouceneDusledky.
    */
   function _wfVerdiktDopadovyHint(pripad, rozsudek) {
     if (!pripad || !rozsudek) return '';
@@ -4175,32 +4182,25 @@ const UI = (() => {
     const casti = [];
     const f = Number(merged.finance);
     if (Number.isFinite(f) && f !== 0) {
-      casti.push(`Finance: ${f > 0 ? '+' : ''}${Math.round(f)} Kčs.`);
+      casti.push(`Finance: ${f > 0 ? '+' : ''}${Math.round(f)} Kčs`);
     }
 
-    const osy = [];
     for (const [k, d] of Object.entries(merged.traits || {})) {
-      if (!Number.isFinite(Number(d)) || Number(d) === 0) continue;
-      osy.push(String(k));
+      const radek = _wfFormatDeltaHint(String(k), d);
+      if (radek) casti.push(radek);
     }
-    const frJmena = [];
+
     for (const [rawK, d] of Object.entries(merged.factions || {})) {
-      if (!Number.isFinite(Number(d)) || Number(d) === 0) continue;
       const mk = _mapLegacyFactionKlic(rawK);
       if (!mk) continue;
       const jm = _FAKCNI_NAZEV_ZOBRAZENI[mk] || mk;
-      if (jm && !frJmena.includes(jm)) frJmena.push(jm);
+      const radek = _wfFormatDeltaHint(jm, d);
+      if (radek) casti.push(radek);
     }
-    if (frJmena.length) {
-      osy.push('Frakce: ' + frJmena.join(', '));
-    }
+
     for (const [npcId, d] of Object.entries(merged.trust || {})) {
-      if (!Number.isFinite(Number(d)) || Number(d) === 0) continue;
-      osy.push('Důvěra: ' + (_NPC_TRUST_LABEL[npcId] || npcId));
-    }
-    if (osy.length) {
-      const uniq = Array.from(new Set(osy.map(x => String(x).trim()).filter(Boolean)));
-      if (uniq.length) casti.push(`Dopad na: ${uniq.join(', ')}.`);
+      const radek = _wfFormatDeltaHint(_NPC_TRUST_LABEL[npcId] || npcId, d);
+      if (radek) casti.push(radek);
     }
     const bonusInkoust = Array.isArray(merged.flags)
       ? merged.flags.reduce((sum, fl) => {
@@ -4212,9 +4212,9 @@ const UI = (() => {
       }, 0)
       : 0;
     if (bonusInkoust > 0) {
-      casti.push(`Inkoust: +${bonusInkoust} do dalšího pracovního dne.`);
+      casti.push(`Inkoust: +${bonusInkoust} do dalšího pracovního dne`);
     }
-    return casti.join(' ');
+    return casti.join(' · ');
   }
 
   /** Běží předehra nebo dopad — nesmí se znovu vykreslovat wireframe (jinak se znovu objeví Potvrdit). */
@@ -4504,9 +4504,13 @@ const UI = (() => {
         const badge = unlocked ? '<div class="case-wf-v-badge">Alternativa</div>' : '';
         const popis = _wfMaSmyslZobrazitPopisVerdiktu(pripad, r) ? String(r.consequence || '').trim() : '';
         const hintDopad = _wfVerdiktDopadovyHint(pripad, r);
+        const hintHtml = hintDopad
+          ? `<div class="case-wf-v-impact case-wf-v-impact--preview">${hintDopad}</div>`
+          : '';
         b.innerHTML =
           badge +
-          `<div class="case-wf-v-title">${_wfVerdiktTitulekProZobrazeni(pripad, r)}</div>`;
+          `<div class="case-wf-v-title">${_wfVerdiktTitulekProZobrazeni(pripad, r)}</div>` +
+          hintHtml;
         b.dataset.detailTitle = _wfVerdiktTitulekProZobrazeni(pripad, r);
         b.dataset.detailDesc = popis;
         b.dataset.detailImpact = hintDopad || '';
@@ -4521,7 +4525,7 @@ const UI = (() => {
           const popis = String(b.dataset.detailDesc || '').trim();
           const dopad = String(b.dataset.detailImpact || '').trim();
           const dopadyList = dopad
-            ? dopad.split('.').map(x => String(x || '').trim()).filter(Boolean)
+            ? dopad.split('·').map(x => String(x || '').trim()).filter(Boolean)
             : [];
           const efektyHtml = dopadyList.length
             ? `<ul class="case-wf-step2-effects-list">` +
@@ -4713,7 +4717,7 @@ const UI = (() => {
             badge +
             `<div class="case-wf-v-title">${_wfVerdiktTitulekProZobrazeni(pripad, rozsudek)}</div>` +
             popis +
-            (hintDopad ? `<div class="case-wf-v-impact">${hintDopad}</div>` : '');
+            (hintDopad ? `<div class="case-wf-v-impact case-wf-v-impact--preview">${hintDopad}</div>` : '');
         }
         btn.addEventListener('click', () => {
           if (btn.disabled) return;

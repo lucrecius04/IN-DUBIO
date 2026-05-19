@@ -276,6 +276,15 @@ const StatsSummary = (() => {
     const tyd = State.get('tydenni_statistiky') || {};
     const styl = State.get('rozhodovaci_styl') || {};
     const flags = State.get('flags') || {};
+    const kamp = State.get('kampan_statistiky') || {};
+    const pc = Number(kamp.pripady_celkem) || rozsudky.length || 0;
+    const pPr = Number(kamp.pripady_s_prurzkumem) || 0;
+    const zustatek = Math.round(Number(State.get('finance.balance')) || 0);
+    const vinaK = Number(State.get('traits.Vina')) || 50;
+    const cenaSpravedlnosti = Math.round(Math.max(0, zustatek - 20) / Math.max(1, 100 - vinaK));
+    const vGuilty = Number(kamp.verdikty_guilty) || 0;
+    const vNg = Number(kamp.verdikty_ng) || 0;
+    const vTvrdy = Number(kamp.verdikty_tvrdy) || 0;
     return {
       typKonce: State.get('endingType') || null,
       den: Number(State.get('currentDay')) || null,
@@ -299,11 +308,21 @@ const StatsSummary = (() => {
       operaceMatky: _textOperaceMatky(flags),
       povest: _povestPostavy(),
       finance: {
-        zustatek: Math.round(Number(State.get('finance.balance')) || 0),
+        zustatek,
         dluh: Math.round(Number(State.get('finance.dluh')) || 0),
         operaceZaplacena: flags.operace_zaplacena === true,
         operaceOdlozena: flags.operace_odlozena === true
       },
+      kampan: {
+        pripadyCelkem: pc,
+        pripadySPrurzkumem: pPr,
+        pomerPruzkum: pc > 0 ? Math.round((pPr / pc) * 100) : null,
+        verdiktyGuilty: vGuilty,
+        verdiktyNg: vNg,
+        verdiktyTvrdy: vTvrdy,
+        uplatky: Number(kamp.uplatky_prijaty) || 0
+      },
+      cenaSpravedlnosti,
       vypraveni: {
         rozsudky,
         trendy: _agregujTrendy(rozsudky),
@@ -372,6 +391,23 @@ const StatsSummary = (() => {
       chip.className = 'konec-stat-konec-chip';
       chip.textContent = 'Konec: ' + (TYPY_KONCE[typ] || typ);
       container.appendChild(chip);
+    }
+
+    if (data.cenaSpravedlnosti != null && Number.isFinite(data.cenaSpravedlnosti)) {
+      const karta = document.createElement('p');
+      karta.className = 'konec-stat-karta-text';
+      const k = data.kampan || {};
+      const pruz =
+        k.pomerPruzkum != null ? ` Průzkum u ${k.pomerPruzkum} % spisů.` : '';
+      const tvr =
+        k.verdiktyTvrdy > 0 ? ` Tvrdých verdiktů: ${k.verdiktyTvrdy}.` : '';
+      karta.textContent =
+        'Cena spravedlnosti (úspory vůči vině): ' +
+        data.cenaSpravedlnosti +
+        '.' +
+        pruz +
+        tvr;
+      container.appendChild(karta);
     }
 
     const gridRysy = document.createElement('div');

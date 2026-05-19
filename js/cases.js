@@ -16,14 +16,17 @@ const Cases = (() => {
     PRIPLATEK_OSOBNI:    30,
 
     /** Koeficient pro efekty skrytých (průzkumem odemčených) verdiktů. */
-    SKRYTY_VERDIKT_KOEF: 1.25,
+    SKRYTY_VERDIKT_KOEF: 1.15,
+
+    /** Škálování všech frakčních delt z rozsudků (JSON + meta + typové doplňky). Vlna A balanc. */
+    FRAKCE_DELTA_SCALE: 0.75,
 
     /** Výchozí finanční penalizace dirty path (neoficiální zdroj) podle ceny slotu v kapkách. */
     DIRTY_FINANCE_1_KAPKA: -12,
     DIRTY_FINANCE_2_KAPKY: -20,
 
     /** Meta-vrstva: procesní kvalita — bonus/malus Moudrosti a Viny. */
-    META_PROCESNI_VYSOKA_MOUD:  2,
+    META_PROCESNI_VYSOKA_MOUD:  1,
     META_PROCESNI_VYSOKA_INT:   1,
     META_PROCESNI_VYSOKA_VINA: -1,
     META_PROCESNI_STREDNI_MOUD: 1,
@@ -37,6 +40,43 @@ const Cases = (() => {
     META_NORM_SOCIALNI_MOC:   -1,
     META_NORM_SOCIALNI_KAP:   -1,
     META_NORM_VYVAZENY_INT:    1,
+
+    /** Vlna B: zpomalení růstu Viny u tvrdých trestních verdiktů (×0,75 pozitivní delta). */
+    VINA_GUILTY_TRESTNI_SCALE: 0.75,
+
+    /** Vlna B: jednorázový fragment po překročení prahu Viny. */
+    VINA_KRIZE_PRAG: 80,
+
+    /** Vlna C: guilty zvyšuje odměny, NG je zhoršuje — oddělení ekonomických větví. */
+    GUILTY_FINANCE_BONUS: 1.26,
+    NOT_GUILTY_FINANCE_BONUS_SCALE: 0.85,
+    NOT_GUILTY_FINANCE_PENAL_SCALE: 1.06,
+    INSUFFICIENT_FINANCE_BONUS_SCALE: 0.94,
+
+    /** Vlna C: fragmenty při extrémních frakcích. */
+    FRAKCE_KRIZE_PRAG: 72,
+
+    /** Vlna G: škálování delt rysů podle skupiny verdiktu (pestřejší profily). */
+    TRAIT_DELTA_SCALE_NG: 0.55,
+    /** NG: Integrita roste pomaleji než Odvaha (čisté větve nemají všichni INT 95+). */
+    TRAIT_DELTA_SCALE_NG_INT: 0.48,
+    /** NG: naděje z „spravedlivých“ verdiktů — méně růžových konců. */
+    TRAIT_DELTA_SCALE_NG_NAD: 0.58,
+    TRAIT_DELTA_SCALE_NG_MOU: 0.75,
+    /** Guilty: tvrdý trest bere naději víc než zákonný rámec. */
+    TRAIT_DELTA_SCALE_GUILTY_NEG_NAD: 1.12,
+    TRAIT_DELTA_SCALE_INSUFFICIENT: 0.85,
+    /** Kladná Integrita/Odvaha u guilty — trestní přísnost neroste „ctnost“. */
+    TRAIT_DELTA_SCALE_GUILTY_POS_INT_ODV: 0.35,
+    /** Záporná Integrita/Odvaha u guilty — pokles cti za tvrdý trest. */
+    TRAIT_DELTA_SCALE_GUILTY_NEG_INT_ODV: 1.35,
+    /** Max. absolutní změna jednoho rysu z jednoho rozsudku (po sloučení JSON + typ + meta). */
+    TRAIT_DELTA_CAP_PER_VERDIKT: 4,
+    TYP_POLITICKY_INT_SWING: 3,
+    TYP_OSOBNI_FAIR_INT: 2,
+    TYP_OSOBNI_FAIR_ODV: 1,
+    TYP_OSOBNI_BIAS_VINA: 4,
+    TYP_MORALNI_PRUZKUM_MOUD: 2,
   };
 
   // Aktuálně otevřené případy dne
@@ -454,7 +494,45 @@ const Cases = (() => {
     }
   }
 
+  function _zaznamenejKampanStatistiky(pripad, rozsudek) {
+    let k = State.get('kampan_statistiky');
+    if (!k || typeof k !== 'object') {
+      k = {
+        pripady_celkem: 0,
+        pripady_s_prurzkumem: 0,
+        verdikty_guilty: 0,
+        verdikty_ng: 0,
+        verdikty_insufficient: 0,
+        verdikty_tvrdy: 0,
+        uplatky_prijaty: 0
+      };
+      State.set('kampan_statistiky', k);
+    }
+    k.pripady_celkem = (Number(k.pripady_celkem) || 0) + 1;
+    if (_pocetOdhalenychInfo(pripad) > 0) {
+      k.pripady_s_prurzkumem = (Number(k.pripady_s_prurzkumem) || 0) + 1;
+    }
+    if (rozsudek) {
+      const rid = String(rozsudek.id || '').toLowerCase();
+      if (rid === 'uplatek') {
+        k.uplatky_prijaty = (Number(k.uplatky_prijaty) || 0) + 1;
+      } else {
+        const sk = _skupinaVerdiktuProBalanc(rid);
+        if (sk === 'guilty') k.verdikty_guilty = (Number(k.verdikty_guilty) || 0) + 1;
+        else if (sk === 'not_guilty') k.verdikty_ng = (Number(k.verdikty_ng) || 0) + 1;
+        else if (sk === 'insufficient') {
+          k.verdikty_insufficient = (Number(k.verdikty_insufficient) || 0) + 1;
+        }
+        if (_verdiktJeTvrdyNaZlocin(rozsudek)) {
+          k.verdikty_tvrdy = (Number(k.verdikty_tvrdy) || 0) + 1;
+        }
+      }
+    }
+  }
+
   function _zaznamenejTydenniStatistiky(pripad, rozsudek) {
+    _zaznamenejKampanStatistiky(pripad, rozsudek);
+
     const den = Number(State.get('currentDay'));
     if (!Number.isFinite(den) || den % 7 === 0) return;
 
@@ -618,7 +696,7 @@ const Cases = (() => {
     const narativ = [];
 
     if (typ === 'moralni' && pouzit) {
-      doplnek.traits.Moudrost = (doplnek.traits.Moudrost || 0) + 3;
+      doplnek.traits.Moudrost = (doplnek.traits.Moudrost || 0) + BALANC.TYP_MORALNI_PRUZKUM_MOUD;
     }
 
     const c0 = rozsudek.consequences || {};
@@ -642,12 +720,12 @@ const Cases = (() => {
     if (typ === 'politicky') {
       const stance = _inferPoliticalStance(rozsudek);
       if (stance === 'independent') {
-        doplnek.traits.Integrita = (doplnek.traits.Integrita || 0) + 8;
-        doplnek.factions.Moc = (doplnek.factions.Moc || 0) - 10;
+        doplnek.traits.Integrita = (doplnek.traits.Integrita || 0) + BALANC.TYP_POLITICKY_INT_SWING;
+        doplnek.factions.Moc = (doplnek.factions.Moc || 0) - 6;
         narativ.push('Rozhodl jsi nezávisle.');
       } else if (stance === 'system') {
-        doplnek.traits.Integrita = (doplnek.traits.Integrita || 0) - 8;
-        doplnek.factions.Moc = (doplnek.factions.Moc || 0) + 10;
+        doplnek.traits.Integrita = (doplnek.traits.Integrita || 0) - BALANC.TYP_POLITICKY_INT_SWING;
+        doplnek.factions.Moc = (doplnek.factions.Moc || 0) + 6;
         narativ.push('Systém si tvůj rozsudek zapíše.');
       }
       if (pouzit && soulad) {
@@ -664,11 +742,11 @@ const Cases = (() => {
 
       const po = rozsudek.personal_outcome;
       if (po === 'fair') {
-        doplnek.traits.Integrita = (doplnek.traits.Integrita || 0) + 5;
-        doplnek.traits.Odvaha = (doplnek.traits.Odvaha || 0) + 3;
+        doplnek.traits.Integrita = (doplnek.traits.Integrita || 0) + BALANC.TYP_OSOBNI_FAIR_INT;
+        doplnek.traits.Odvaha = (doplnek.traits.Odvaha || 0) + BALANC.TYP_OSOBNI_FAIR_ODV;
         narativ.push('Osobní vazby tě neovlivnily.');
       } else if (po === 'biased') {
-        doplnek.traits.Vina = (doplnek.traits.Vina || 0) + 8;
+        doplnek.traits.Vina = (doplnek.traits.Vina || 0) + BALANC.TYP_OSOBNI_BIAS_VINA;
         narativ.push('Doufáš že si toho nikdo nevšiml.');
       }
       if (pouzit) {
@@ -723,7 +801,7 @@ const Cases = (() => {
     const hiddenVerdictBoost = _jeSkrytyVerdiktOdemceny(pripad, rozsudek);
     const base = hiddenVerdictBoost ? _applyHiddenVerdictMultiplier(baseRaw) : baseRaw;
     const { doplnek, narativ, meta } = vypoctiTypoveDoplnky(pripad, rozsudek);
-    const merged = sloucitDusledky(base, doplnek);
+    const merged = _upravMergedBalanc(sloucitDusledky(base, doplnek), rozsudek);
     return {
       merged,
       typNarativ: narativ,
@@ -822,7 +900,7 @@ const Cases = (() => {
       text:        'Přijmout úplatek',
       consequence: 'Hotovost změní průběh dne — ne zákon.',
       consequences: {
-        traits:   { Integrita: -15 },
+        traits:   { Integrita: -12, Nadeje: -5, Vina: 3 },
         factions: {},
         trust:    {},
         finance:  castka,
@@ -834,6 +912,8 @@ const Cases = (() => {
     const dusledkyRadky = UI.vypoctiDusledkyRadky(merged);
 
     Finance.prijmoutUplatek(castka, pripad.title || '');
+    _aplikujDusledky(merged);
+    State.set('flags.uplatek_tihy_zbyva', 2);
     const den = State.get('currentDay');
     const typRazitka = _rozsudekNaTypRazitka(rozsudek.id);
     Desk.animujRazitko(typRazitka);
@@ -958,6 +1038,8 @@ const Cases = (() => {
 
     // Aplikuj důsledky (verdikt + typové doplnky jedním sloučením)
     _aplikujDusledky(merged);
+    _zkontrolujFragmentVinoveKrize();
+    _zkontrolujFragmentFrakcniKrize();
     if (typeof Finance !== 'undefined' && Finance.zkontrolujCilOperace) {
       Finance.zkontrolujCilOperace();
     }
@@ -1068,6 +1150,166 @@ const Cases = (() => {
     return klic;
   }
 
+  /** Vlna A: zmírnění frakčních skoků z rozsudků (×0,75, trunc směrem k nule). */
+  function _skalujFrakcniDelta(delta) {
+    const d = Number(delta) || 0;
+    if (d === 0) return 0;
+    const t = Math.trunc(d * BALANC.FRAKCE_DELTA_SCALE);
+    if (t !== 0) return t;
+    return d > 0 ? 1 : -1;
+  }
+
+  function _jeGuiltyTrestniVerdikt(verdictId) {
+    const v = String(verdictId || '').toLowerCase();
+    return v.startsWith('guilty_maximum') || v.startsWith('guilty_standard');
+  }
+
+  function _skupinaVerdiktuProBalanc(verdictId) {
+    const v = String(verdictId || '').toLowerCase();
+    if (v.startsWith('guilty')) return 'guilty';
+    if (v.startsWith('not_guilty')) return 'not_guilty';
+    if (v.startsWith('insufficient')) return 'insufficient';
+    return null;
+  }
+
+  /** Vlna C: odlišný dopad na finance podle skupiny verdiktu. */
+  function _skalujFinanceVerdikt(verdictId, delta) {
+    const d = Number(delta) || 0;
+    if (d === 0) return 0;
+    const sk = _skupinaVerdiktuProBalanc(verdictId);
+    if (sk === 'guilty' && d > 0) {
+      const t = Math.trunc(d * BALANC.GUILTY_FINANCE_BONUS);
+      return t !== 0 ? t : 1;
+    }
+    if (sk === 'not_guilty') {
+      if (d > 0) {
+        const t = Math.trunc(d * BALANC.NOT_GUILTY_FINANCE_BONUS_SCALE);
+        return t !== 0 ? t : (d > 0 ? 1 : 0);
+      }
+      const t = Math.trunc(d * BALANC.NOT_GUILTY_FINANCE_PENAL_SCALE);
+      return t !== 0 ? t : -1;
+    }
+    if (sk === 'insufficient' && d > 0) {
+      const t = Math.trunc(d * BALANC.INSUFFICIENT_FINANCE_BONUS_SCALE);
+      return t !== 0 ? t : 1;
+    }
+    return d;
+  }
+
+  /** Vlna B: menší růst Viny u maximum / standard (záporné delty beze změny). */
+  function _skalujVinaGuiltyVerdikt(verdictId, delta) {
+    const d = Number(delta) || 0;
+    if (d <= 0 || !_jeGuiltyTrestniVerdikt(verdictId)) return d;
+    const t = Math.trunc(d * BALANC.VINA_GUILTY_TRESTNI_SCALE);
+    return t !== 0 ? t : 1;
+  }
+
+  /** Vlna G: zmírnění růstu Integrita/Odvaha u NG a guilty; Moudrost u NG mírněji. */
+  function _skalujTraitDeltaVerdikt(verdictId, traitName, delta) {
+    const d = Number(delta) || 0;
+    if (d === 0) return 0;
+    const sk = _skupinaVerdiktuProBalanc(verdictId);
+    const tn = String(traitName || '');
+    let scale = 1;
+
+    if (sk === 'not_guilty') {
+      if (tn === 'Integrita') scale = BALANC.TRAIT_DELTA_SCALE_NG_INT;
+      else if (tn === 'Nadeje') scale = BALANC.TRAIT_DELTA_SCALE_NG_NAD;
+      else if (tn === 'Odvaha') scale = BALANC.TRAIT_DELTA_SCALE_NG;
+      else if (tn === 'Moudrost') scale = BALANC.TRAIT_DELTA_SCALE_NG_MOU;
+    } else if (sk === 'insufficient') {
+      scale = BALANC.TRAIT_DELTA_SCALE_INSUFFICIENT;
+    } else if (sk === 'guilty' && d > 0 && (tn === 'Integrita' || tn === 'Odvaha')) {
+      scale = BALANC.TRAIT_DELTA_SCALE_GUILTY_POS_INT_ODV;
+    } else if (sk === 'guilty' && d < 0 && (tn === 'Integrita' || tn === 'Odvaha')) {
+      scale = BALANC.TRAIT_DELTA_SCALE_GUILTY_NEG_INT_ODV;
+    } else if (sk === 'guilty' && d < 0 && tn === 'Nadeje') {
+      scale = BALANC.TRAIT_DELTA_SCALE_GUILTY_NEG_NAD;
+    }
+
+    const t = Math.trunc(d * scale);
+    if (t !== 0) return t;
+    return d > 0 ? 1 : -1;
+  }
+
+  function _omezTraitDeltasNaVerdikt(traits) {
+    if (!traits || typeof traits !== 'object') return traits;
+    const cap = BALANC.TRAIT_DELTA_CAP_PER_VERDIKT;
+    const out = {};
+    for (const [k, raw] of Object.entries(traits)) {
+      const n = Number(raw);
+      if (!Number.isFinite(n) || n === 0) continue;
+      out[k] = Math.max(-cap, Math.min(cap, n));
+    }
+    return out;
+  }
+
+  /**
+   * Sloučené důsledky před UI náhledem i aplikací — frakce ×0,75, Vina u guilty trestů ×0,75.
+   */
+  function _upravMergedBalanc(merged, rozsudek) {
+    if (!merged || typeof merged !== 'object') return merged;
+    const vid = String(rozsudek && rozsudek.id || '');
+
+    if (merged.traits && typeof merged.traits === 'object') {
+      const nt = {};
+      for (const [klic, delta] of Object.entries(merged.traits)) {
+        let d = _skalujTraitDeltaVerdikt(vid, klic, delta);
+        if (klic === 'Vina') d = _skalujVinaGuiltyVerdikt(vid, d);
+        if (d !== 0) nt[klic] = d;
+      }
+      merged.traits = _omezTraitDeltasNaVerdikt(nt);
+    }
+
+    if (Object.prototype.hasOwnProperty.call(merged, 'finance')) {
+      merged.finance = _skalujFinanceVerdikt(vid, merged.finance);
+    }
+
+    if (merged.factions && typeof merged.factions === 'object') {
+      const nf = {};
+      for (const [klic, delta] of Object.entries(merged.factions)) {
+        const sk = _skalujFrakcniDelta(delta);
+        if (sk !== 0) nf[klic] = sk;
+      }
+      merged.factions = nf;
+    }
+    return merged;
+  }
+
+  function _zkontrolujFragmentVinoveKrize() {
+    const vina = Number(State.get('traits.Vina')) || 0;
+    if (vina < BALANC.VINA_KRIZE_PRAG) return;
+    if (State.get('flags.vina_krize_80_zobrazeno')) return;
+    State.set('flags.vina_krize_80_zobrazeno', true);
+    setTimeout(() => {
+      if (typeof Narrative !== 'undefined' && Narrative.zobrazFragment) {
+        Narrative.zobrazFragment('fragment_vina_krize_80');
+      }
+    }, 2800);
+  }
+
+  function _zkontrolujFragmentFrakcniKrize() {
+    const prag = BALANC.FRAKCE_KRIZE_PRAG;
+    const moc = Number(State.get('factions.Moc')) || 0;
+    if (moc >= prag && !State.get('flags.moc_vysoka_zobrazeno')) {
+      State.set('flags.moc_vysoka_zobrazeno', true);
+      setTimeout(() => {
+        if (typeof Narrative !== 'undefined' && Narrative.zobrazFragment) {
+          Narrative.zobrazFragment('fragment_moc_vysoka');
+        }
+      }, 3000);
+    }
+    const lid = Number(State.get('factions.Lid')) || 0;
+    if (lid >= prag && !State.get('flags.lid_vysoka_zobrazeno')) {
+      State.set('flags.lid_vysoka_zobrazeno', true);
+      setTimeout(() => {
+        if (typeof Narrative !== 'undefined' && Narrative.zobrazFragment) {
+          Narrative.zobrazFragment('fragment_lid_vysoka');
+        }
+      }, 3200);
+    }
+  }
+
   function _aplikujDusledky(dusledky) {
     if (!dusledky) return;
 
@@ -1078,13 +1320,15 @@ const Cases = (() => {
       }
     }
 
-    // Frakce
+    // Frakce (už normalizované v pripravSlouceneDusledky / _upravMergedBalanc)
     if (dusledky.factions) {
       const ag = {};
       for (const [klic, delta] of Object.entries(dusledky.factions)) {
         const cil = _frakcniKlicDoStavu(klic);
         if (!cil) continue;
-        ag[cil] = (ag[cil] || 0) + Number(delta);
+        const d = Number(delta) || 0;
+        if (d === 0) continue;
+        ag[cil] = (ag[cil] || 0) + d;
       }
       for (const [nazev, soucet] of Object.entries(ag)) {
         if (!Number.isFinite(soucet) || soucet === 0) continue;
@@ -1209,6 +1453,32 @@ const Cases = (() => {
     return null;
   }
 
+  /** Krátké ID z JSON (vzit_obalku) ↔ složené ID z pool loaderu (guilty_vzit_obalku). */
+  function _verdiktIdVarianty(verdictId) {
+    const id = String(verdictId || '').trim();
+    if (!id) return [];
+    const out = [id];
+    if (id.startsWith('guilty_')) out.push(id.slice('guilty_'.length));
+    else if (id.startsWith('not_guilty_')) out.push(id.slice('not_guilty_'.length));
+    else if (id.startsWith('insufficient_')) out.push(id.slice('insufficient_'.length));
+    else {
+      out.push(`guilty_${id}`, `not_guilty_${id}`, `insufficient_${id}`);
+    }
+    return [...new Set(out.filter(Boolean))];
+  }
+
+  function _prahyMinProVerdikt(prahy, verdictId) {
+    if (!prahy || typeof prahy.get !== 'function') return null;
+    let best = null;
+    for (const v of _verdiktIdVarianty(verdictId)) {
+      if (!prahy.has(v)) continue;
+      const min = Number(prahy.get(v));
+      if (!Number.isFinite(min)) continue;
+      if (best === null || min < best) best = min;
+    }
+    return best;
+  }
+
   function _informacniPrahyMap(pripad, kind) {
     const cs = _clueSystem(pripad);
     const out = new Map();
@@ -1222,7 +1492,9 @@ const Cases = (() => {
       for (const raw of ids) {
         const id = String(raw || '').trim();
         if (!id) continue;
-        if (!out.has(id) || min < out.get(id)) out.set(id, min);
+        for (const alias of _verdiktIdVarianty(id)) {
+          if (!out.has(alias) || min < out.get(alias)) out.set(alias, min);
+        }
       }
     }
     return out;
@@ -1321,6 +1593,7 @@ const Cases = (() => {
    */
   function poolVerdiktProjdePoctemPrůzkumu(pripad, verdictId) {
     if (!pripad || pripad._fromPool !== true) return true;
+    if (String(pripad.type || '').toLowerCase() === 'osobni') return true;
     if (!Array.isArray(pripad.hidden_info) || !pripad.hidden_info.length) return true;
     if (maInformacniPrahyVerdiktu(pripad)) return true;
     const id = String(verdictId || '').trim();
@@ -1374,17 +1647,25 @@ const Cases = (() => {
     return !!potvrzeni;
   }
 
+  function _jeVerdiktVClueUnlocku(pripad, verdictId) {
+    const unlockVerdicts = _clueUnlockVerdictIds(pripad);
+    if (!unlockVerdicts.length) return false;
+    for (const v of _verdiktIdVarianty(verdictId)) {
+      if (unlockVerdicts.includes(v)) return true;
+    }
+    return false;
+  }
+
   function jeVerdiktOdemcenPoClue(pripad, verdictId) {
     const cs = _clueSystem(pripad);
     const vid = String(verdictId || '').trim();
     if (!cs || !vid) return true;
     const prahy = _informacniPrahyMap(pripad, 'verdicts');
-    if (prahy.has(vid)) {
+    const minPrah = _prahyMinProVerdikt(prahy, vid);
+    if (minPrah !== null) {
       const info = vypoctiInformovanostPripadu(pripad);
-      const min = Number(prahy.get(vid));
-      if (Number.isFinite(min) && info.pct >= min) return true;
-      const unlockVerdicts = _clueUnlockVerdictIds(pripad);
-      if (unlockVerdicts.includes(vid)) return true;
+      if (Number.isFinite(minPrah) && info.pct >= minPrah) return true;
+      if (_jeVerdiktVClueUnlocku(pripad, vid)) return true;
       return false;
     }
     const potvrzeni = _cluePotvrzeni(pripad);
@@ -1393,8 +1674,12 @@ const Cases = (() => {
     const unlockVerdicts = (rewards && Array.isArray(rewards.unlock_verdict_ids))
       ? rewards.unlock_verdict_ids.map(x => String(x || '').trim()).filter(Boolean)
       : [];
-    if (!unlockVerdicts.includes(vid)) return true;
-    return !!potvrzeni;
+    if (!unlockVerdicts.length) return true;
+    for (const v of _verdiktIdVarianty(vid)) {
+      if (!unlockVerdicts.includes(v)) continue;
+      return !!potvrzeni;
+    }
+    return true;
   }
 
   /** Krátký text pro tooltip u dostupného pool verdiktu — proč je k dispozici. */
@@ -1686,7 +1971,6 @@ const Cases = (() => {
 
     if (procesni && procesni.key === 'vysoka') {
       doplnek.traits.Moudrost = (doplnek.traits.Moudrost || 0) + BALANC.META_PROCESNI_VYSOKA_MOUD;
-      doplnek.traits.Integrita = (doplnek.traits.Integrita || 0) + BALANC.META_PROCESNI_VYSOKA_INT;
       doplnek.traits.Vina = (doplnek.traits.Vina || 0) + BALANC.META_PROCESNI_VYSOKA_VINA;
       narativ.push('Postup byl procesně pečlivý.');
     } else if (procesni && procesni.key === 'stredni') {
@@ -1705,9 +1989,8 @@ const Cases = (() => {
       doplnek.factions.Lid = (doplnek.factions.Lid || 0) + BALANC.META_NORM_SOCIALNI_LID;
       doplnek.factions.Moc = (doplnek.factions.Moc || 0) + BALANC.META_NORM_SOCIALNI_MOC;
       doplnek.factions.Kapital = (doplnek.factions.Kapital || 0) + BALANC.META_NORM_SOCIALNI_KAP;
-    } else {
-      doplnek.traits.Integrita = (doplnek.traits.Integrita || 0) + BALANC.META_NORM_VYVAZENY_INT;
     }
+    /* vyvážený směr — bez automatického +Integrita (Vlna G) */
 
     return { doplnek, narativ };
   }
@@ -1815,7 +2098,10 @@ const Cases = (() => {
       : revize.payload && c === 'B'
         ? revize.payload.uniqueEffectB
         : null;
-    const merged = sloucitDusledky(effects, extra && typeof extra === 'object' ? extra : null);
+    const merged = _upravMergedBalanc(
+      sloucitDusledky(effects, extra && typeof extra === 'object' ? extra : null),
+      null
+    );
     _aplikujDusledky(merged);
     if (typeof Finance !== 'undefined' && Finance.zkontrolujCilOperace) {
       Finance.zkontrolujCilOperace();
