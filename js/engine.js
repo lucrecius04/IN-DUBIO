@@ -66,13 +66,51 @@ const Engine = (() => {
         'Ben věnoval pozornost i těžším verdiktům a nenechal je projít jen jako další položky v pořadí.',
       E: 'Ben vynesl několik tvrdších rozsudků a jejich dopad na sobě cítil ještě po skončení pracovního týdne.'
     };
-    const jemneRadky = kody.map(k => J[k] || k).filter(Boolean);
+    const jemneRadky = _radkyZTydennichStatistik().concat(kody.map(k => J[k] || k).filter(Boolean));
 
     return {
       titulek: 'Konec pracovního týdne',
       hlavni: ramec + hlavni,
       jemneRadky
     };
+  }
+
+  /** Krátké věty z týdenních statistik (tvrdé tresty, průzkum, úplatek). */
+  function _radkyZTydennichStatistik() {
+    const t = State.get('tydenni_statistiky');
+    if (!t || typeof t !== 'object') return [];
+    const radky = [];
+    const vs = Array.isArray(t.verdikty_smer) ? t.verdikty_smer : [];
+    let tvrdy = 0;
+    let sPruzkum = 0;
+    for (const v of vs) {
+      if (v && v.tough) tvrdy++;
+      if (v && v.pruzkum) sPruzkum++;
+    }
+    const pc = Number(t.pripady_celkem) || 0;
+    if (tvrdy > 0) {
+      const sklon =
+        tvrdy === 1 ? 'tvrdý trest' : tvrdy >= 5 ? 'tvrdých trestů' : 'tvrdé tresty';
+      radky.push(`Tento týden ${tvrdy}× ${sklon}.`);
+    }
+    if (pc > 0 && sPruzkum > 0) {
+      radky.push(`U ${sPruzkum} z ${pc} spisů jste sáhl po průzkumu.`);
+    }
+    if (t.uplatek_prijat === true) {
+      radky.push('Úplatek tento týden vám zůstane v paměti déle než kterýkoli výrok.');
+    }
+    const k = State.get('kampan_statistiky');
+    if (k && typeof k === 'object') {
+      const kC = Number(k.pripady_celkem) || 0;
+      const kTv = Number(k.verdikty_tvrdy) || 0;
+      if (kC >= 8 && kTv > 0) {
+        const pct = Math.round((kTv / kC) * 100);
+        if (pct >= 40) {
+          radky.push(`Za kampaň už ${kTv} tvrdých rozsudků — soudní síň vás poznává jako přísného.`);
+        }
+      }
+    }
+    return radky;
   }
 
   function _aplikujTydenniBonusyPoModalu(kody) {
@@ -83,7 +121,9 @@ const Engine = (() => {
         State.upravRys('Moudrost', 5);
         State.oznacFragment({ id: 'fragment_tyden_bonus_a', day: denT });
       } else if (k === 'B') {
-        State.upravRys('Integrita', 3);
+        if ((Number(State.get('traits.Integrita')) || 0) < 80) {
+          State.upravRys('Integrita', 3);
+        }
         State.upravFrakci('Lid', 8);
         State.oznacFragment({ id: 'fragment_tyden_bonus_b', day: denT });
       } else if (k === 'C') {
@@ -758,17 +798,34 @@ const Engine = (() => {
       && pruzkumAnna
       && !operPl
       && !f.flag_rodny_list_pouzit;
-    /** Chudý archivář na Markové — u vysokého průzkumu mírně vyšší strop (investice do spisů). */
-    const annaChudy = bal < 130 || (pruzkumKampan >= 0.72 && bal < 165);
+    /** Chudý archivář na Markové — investice do spisů, ne do matky. */
+    const annaChudy = bal < 130
+      || (pruzkumKampan >= 0.72 && bal < 165)
+      || (pruzkumKampan >= 0.50 && bal < 170)
+      || (moudr >= 58 && pruzkumKampan >= 0.45 && bal < 175);
     const annaKandidat = profilAnnaCesta && annaChudy;
     /** Blokuje smíření jen když by jinak padla Anna (ne bohatý Benešův profil). */
     const profilBlokujeSmireni = profilAnnaCesta && annaChudy;
+    const bohatyProfilSmireni = bal >= 140 && pruzkumKampan < 0.65;
+    /** Měkké smíření — zaplacená operace snáší vyšší vinu než čistá větev. */
+    const vinaProSmireni = vina <= 35 || (operPl && vina <= 45);
 
-    // 2. KORUPCE (currentDay 15 = 16. 3., den Haase) — před kruhem; Konce_15dni: ≤35 s úplatkem
+    // 7. KRUH (D16+, Zavadová) — před korupcí: úplatek + INT 46–62, ne hluboký pád
+    if (den >= 16
+      && u.vlcek_vztah !== 'vzdor'
+      && u.haas_kontakt === 'zavazany'
+      && u.benes_pravda !== 'prijal'
+      && !profilAnnaCesta
+      && (f.masek_document_signed === true
+          || (tr.zavadova !== undefined ? Number(tr.zavadova) >= 3 : false))) {
+      return 'rad';
+    }
+
+    // 2. KORUPCE (D15+, Haas) — hluboká korupce (INT ≤45 s úplatkem), ne kruh na D16
     if (den >= 15
       && u.vlcek_vztah === 'kompromitovan'
       && u.haas_kontakt === 'zavazany'
-      && (integ <= 20 || (uplatek && integ <= 55))) {
+      && (integ <= 20 || (uplatek && integ <= 45))) {
       return 'korupce';
     }
 
@@ -785,22 +842,10 @@ const Engine = (() => {
       && u.benes_pravda === 'prijal'
       && _haasBezVazby(u)
       && integ >= 52
-      && vina <= 28
+      && vinaProSmireni
       && moudr >= 48
-      && (operPl || u.osobni_cena === 'zaplatil' || bal >= 140)) {
+      && (operPl || u.osobni_cena === 'zaplatil' || bohatyProfilSmireni)) {
       return 'smireni';
-    }
-
-    // 7. KRUH (currentDay 16+, Zavadová / Mašek) — temná větev; při INT≤55+úplatek padá korupce výše
-    if (den >= 16
-      && u.vlcek_vztah !== 'vzdor'
-      && u.haas_kontakt === 'zavazany'
-      && u.benes_pravda !== 'prijal'
-      && !profilAnnaCesta
-      && !(uplatek && integ <= 55 && u.vlcek_vztah === 'kompromitovan')
-      && (f.masek_document_signed === true
-          || (tr.zavadova !== undefined ? Number(tr.zavadova) >= 3 : false))) {
-      return 'rad';
     }
 
     // 6. ATENTÁT (currentDay 17 = 18. 3., Karas)
@@ -1251,7 +1296,7 @@ const Engine = (() => {
     }
 
     State.set('flags.haas_envelope_opened', true);
-    State.upravRys('Vina', +5);
+    State.upravRys('Vina', +5, { bezKampanStropu: true });
 
     const denHaas = State.get('currentDay');
     const fragment = DataLoader.ziskejFragment('haas_obalka');
@@ -1302,7 +1347,7 @@ const Engine = (() => {
         }
       });
 
-      State.upravRys('Vina', 3);
+      State.upravRys('Vina', 3, { bezKampanStropu: true });
       State.uloz();
       return;
     }
@@ -1490,7 +1535,7 @@ const Engine = (() => {
       }
       if (State.get('flags.operace_odlozena') !== true) {
         State.set('flags.operace_odlozena', true);
-        State.upravRys('Vina', 10);
+        State.upravRys('Vina', 10, { bezKampanStropu: true });
         if (typeof State.vypoctiUzloveFlagy === 'function') State.vypoctiUzloveFlagy();
       }
       State.set('flags.operace_vyhodnoceni_den16_rano', true);
@@ -1506,7 +1551,7 @@ const Engine = (() => {
       await _cekejNaFragment('fragment_operace_den16_ano');
     } else {
       State.set('flags.operace_odlozena', true);
-      State.upravRys('Vina', 10);
+      State.upravRys('Vina', 10, { bezKampanStropu: true });
       if (typeof State.vypoctiUzloveFlagy === 'function') State.vypoctiUzloveFlagy();
       await _cekejNaFragment('fragment_operace_den16_ne');
     }

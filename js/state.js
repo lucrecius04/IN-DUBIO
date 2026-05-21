@@ -1036,8 +1036,10 @@ const State = (() => {
     if (d < 0 && nazev === 'Vina' && v <= 20) {
       return Math.floor(d * 0.5);
     }
-    if (d > 0 && nazev === 'Vina' && v >= 78) {
-      return Math.ceil(d * 0.55);
+    if (d > 0 && nazev === 'Vina') {
+      if (v >= 90) return Math.ceil(d * 0.28);
+      if (v >= 85) return Math.ceil(d * 0.35);
+      if (v >= 72) return Math.ceil(d * 0.48);
     }
     if (d < 0 && nazev === 'Vina' && v >= 82) {
       return Math.floor(d * 0.65);
@@ -1045,11 +1047,15 @@ const State = (() => {
     return d;
   }
 
-  function upravRys(nazev, delta) {
+  /** @param {{ bezKampanStropu?: boolean }} [opts] příběhové skoky / úplatek mohou překročit strop 92 */
+  function upravRys(nazev, delta, opts) {
     const aktualni = _stav.traits[nazev] ?? 50;
     const eff = _efektivniDeltaRys(nazev, delta, aktualni);
     let nova = Math.max(0, Math.min(100, aktualni + eff));
     if (nazev === 'Vina') {
+      if (eff > 0 && !(opts && opts.bezKampanStropu)) {
+        nova = Math.min(92, nova);
+      }
       nova = Math.max(1, Math.min(100, nova));
     }
     _stav.traits[nazev] = nova;

@@ -73,6 +73,11 @@ const Finance = (() => {
       t.uplatek_prijat = true;
       State.set('tydenni_statistiky', t);
     }
+    let k = State.get('kampan_statistiky');
+    if (k && typeof k === 'object') {
+      k.uplatky_prijaty = (Number(k.uplatky_prijaty) || 0) + 1;
+      State.set('kampan_statistiky', k);
+    }
     zkontrolujCilOperace();
   }
 

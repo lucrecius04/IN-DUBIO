@@ -190,9 +190,16 @@ const Traits = (() => {
       const a = Number(m[1]);
       const b = Number(m[2]);
       if (v < a || v > b) continue;
+      let notebook = typeof obj.notebook === 'string' ? obj.notebook : '';
+      if (traitKey === 'vina' && v >= 85 && notebook) {
+        const dopln = v >= 92
+          ? ' Další tvrdý rozsudek už vás uvnitř tolik nezmění — těžké svědomí drží hranici.'
+          : ' Těžké svědomí — podobné případy bolí víc než zápisník ukáže.';
+        if (!notebook.includes(dopln.trim())) notebook += dopln;
+      }
       return {
         tooltip: typeof obj.tooltip === 'string' ? obj.tooltip : '',
-        notebook: typeof obj.notebook === 'string' ? obj.notebook : ''
+        notebook
       };
     }
     return { tooltip: '', notebook: '' };

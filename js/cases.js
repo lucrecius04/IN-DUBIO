@@ -43,6 +43,15 @@ const Cases = (() => {
 
     /** Vlna B: zpomalení růstu Viny u tvrdých trestních verdiktů (×0,75 pozitivní delta). */
     VINA_GUILTY_TRESTNI_SCALE: 0.75,
+    /** Vlna J/L1: guilty — menší růst Viny; trestní navíc ×0,75 výše. */
+    VINA_GUILTY_POS_SCALE: 0.45,
+    /** Vlna L1: NG — silnější úleva Viny (záporná delta ×1,15). */
+    VINA_NG_NEG_SCALE: 1.15,
+    /** Vlna L1: guilty při Vina ≥70 — max. +2 z jednoho verdiktu. */
+    VINA_GUILITY_HIGH_PRAG: 70,
+    VINA_GUILITY_HIGH_CAP: 2,
+    /** Vlna L1: kampaní strop z běžných rozsudků (výjimky: úplatek, příběh). */
+    VINA_KAMPAN_STROP: 92,
 
     /** Vlna B: jednorázový fragment po překročení prahu Viny. */
     VINA_KRIZE_PRAG: 80,
@@ -912,6 +921,7 @@ const Cases = (() => {
     const dusledkyRadky = UI.vypoctiDusledkyRadky(merged);
 
     Finance.prijmoutUplatek(castka, pripad.title || '');
+    merged._bez_vina_kampan_stropu = true;
     _aplikujDusledky(merged);
     State.set('flags.uplatek_tihy_zbyva', 2);
     const den = State.get('currentDay');
@@ -1196,11 +1206,17 @@ const Cases = (() => {
     return d;
   }
 
-  /** Vlna B: menší růst Viny u maximum / standard (záporné delty beze změny). */
+  /** Vlna B+J: menší růst Viny u guilty (obecně ×0,6; maximum/standard navíc ×0,75). */
   function _skalujVinaGuiltyVerdikt(verdictId, delta) {
     const d = Number(delta) || 0;
-    if (d <= 0 || !_jeGuiltyTrestniVerdikt(verdictId)) return d;
-    const t = Math.trunc(d * BALANC.VINA_GUILTY_TRESTNI_SCALE);
+    if (d <= 0) return d;
+    const sk = _skupinaVerdiktuProBalanc(verdictId);
+    if (sk !== 'guilty') return d;
+    let scale = BALANC.VINA_GUILTY_POS_SCALE;
+    if (_jeGuiltyTrestniVerdikt(verdictId)) {
+      scale *= BALANC.VINA_GUILTY_TRESTNI_SCALE;
+    }
+    const t = Math.trunc(d * scale);
     return t !== 0 ? t : 1;
   }
 
@@ -1213,7 +1229,8 @@ const Cases = (() => {
     let scale = 1;
 
     if (sk === 'not_guilty') {
-      if (tn === 'Integrita') scale = BALANC.TRAIT_DELTA_SCALE_NG_INT;
+      if (tn === 'Vina' && d < 0) scale = BALANC.VINA_NG_NEG_SCALE;
+      else if (tn === 'Integrita') scale = BALANC.TRAIT_DELTA_SCALE_NG_INT;
       else if (tn === 'Nadeje') scale = BALANC.TRAIT_DELTA_SCALE_NG_NAD;
       else if (tn === 'Odvaha') scale = BALANC.TRAIT_DELTA_SCALE_NG;
       else if (tn === 'Moudrost') scale = BALANC.TRAIT_DELTA_SCALE_NG_MOU;
@@ -1232,13 +1249,18 @@ const Cases = (() => {
     return d > 0 ? 1 : -1;
   }
 
-  function _omezTraitDeltasNaVerdikt(traits) {
+  function _omezTraitDeltasNaVerdikt(traits, verdictId) {
     if (!traits || typeof traits !== 'object') return traits;
     const cap = BALANC.TRAIT_DELTA_CAP_PER_VERDIKT;
+    const sk = _skupinaVerdiktuProBalanc(verdictId);
+    const vinaAkt = Number(State.get('traits.Vina')) || 0;
     const out = {};
     for (const [k, raw] of Object.entries(traits)) {
-      const n = Number(raw);
+      let n = Number(raw);
       if (!Number.isFinite(n) || n === 0) continue;
+      if (k === 'Vina' && n > 0 && sk === 'guilty' && vinaAkt >= BALANC.VINA_GUILITY_HIGH_PRAG) {
+        n = Math.min(n, BALANC.VINA_GUILITY_HIGH_CAP);
+      }
       out[k] = Math.max(-cap, Math.min(cap, n));
     }
     return out;
@@ -1258,7 +1280,7 @@ const Cases = (() => {
         if (klic === 'Vina') d = _skalujVinaGuiltyVerdikt(vid, d);
         if (d !== 0) nt[klic] = d;
       }
-      merged.traits = _omezTraitDeltasNaVerdikt(nt);
+      merged.traits = _omezTraitDeltasNaVerdikt(nt, vid);
     }
 
     if (Object.prototype.hasOwnProperty.call(merged, 'finance')) {
@@ -1313,10 +1335,13 @@ const Cases = (() => {
   function _aplikujDusledky(dusledky) {
     if (!dusledky) return;
 
+    const vinaOpts = dusledky._bez_vina_kampan_stropu ? { bezKampanStropu: true } : undefined;
+
     // Rysy
     if (dusledky.traits) {
       for (const [nazev, delta] of Object.entries(dusledky.traits)) {
-        State.upravRys(nazev, delta);
+        const opts = nazev === 'Vina' ? vinaOpts : undefined;
+        State.upravRys(nazev, delta, opts);
       }
     }
 
@@ -1354,8 +1379,24 @@ const Cases = (() => {
     if (dusledky.flags) {
       for (const flag of dusledky.flags) {
         State.set('flags.' + flag.key, flag.value);
+        if (flag.key === 'uplatek_prijat' && flag.value === true) {
+          _inkrementujKampanUplatky();
+        }
       }
     }
+  }
+
+  function _inkrementujKampanUplatky() {
+    let k = State.get('kampan_statistiky');
+    if (!k || typeof k !== 'object') {
+      k = {
+        pripady_celkem: 0, pripady_s_prurzkumem: 0,
+        verdikty_guilty: 0, verdikty_ng: 0, verdikty_insufficient: 0,
+        verdikty_tvrdy: 0, uplatky_prijaty: 0
+      };
+    }
+    k.uplatky_prijaty = (Number(k.uplatky_prijaty) || 0) + 1;
+    State.set('kampan_statistiky', k);
   }
 
   // --- Průzkum: soulad s odhalením, vzorce rozhodování ---

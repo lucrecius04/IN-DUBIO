@@ -9,9 +9,10 @@ Dokumentace pro **simulované / automatizované průchody** hrou (persony, repor
 | [`Jizdni-rad-balancingu.md`](./Jizdni-rad-balancingu.md) | Mapa konstant (kde v kódu leží každé číslo), pořadí balancovacích kroků, exploity k ověření, doporučení pro sjednocení inkoustu |
 | [`Plan-balancing-F-hratelnost.md`](./Plan-balancing-F-hratelnost.md) | Plán kalendáře konců, přežití vs. hrdina, ruční hratelnost |
 | [`Balanc-G-navrh-velicin.md`](./Balanc-G-navrh-velicin.md) | **Vlna G** — pestřejší rysy (škálování verdiktů, diminishing returns) |
-| [`Balanc-I-implementace.md`](./Balanc-I-implementace.md) | **Vlna I** — Naděje/Moudrost, úplatek v čase, kampan statistiky, epilog |
+| [`Balanc-I-implementace.md`](./Balanc-I-implementace.md) | **Vlny I–K** — rysy, konce, týdenní věty, Vina v situaci spisu |
 | [`Analyza-matice-konce-2026-05-19-run4.md`](./Analyza-matice-konce-2026-05-19-run4.md) | Matice 8 konců — běh 4 (7/8 zásah) |
-| [`Analyza-matice-konce-2026-05-20.md`](./Analyza-matice-konce-2026-05-20.md) | **Finální matice 8/8** + Integrita/Naděje + návrhy vlny I+ |
+| [`Analyza-matice-konce-2026-05-20.md`](./Analyza-matice-konce-2026-05-20.md) | Matice 8/8 (průběžná) + vlny I–K |
+| [`Analyza-matice-konce-2026-05-20-final.md`](./Analyza-matice-konce-2026-05-20-final.md) | **Referenční 8/8** — co je hotové, Vina (vlna L), F6 |
 
 **Zdroj pravdy pro stav hry:** `js/state.js` (`VYCHOZI_STAV`, `archive`, `tydenni_statistiky`, `revealedInfo`, …).
 

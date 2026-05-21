@@ -4905,6 +4905,15 @@ const UI = (() => {
           'Třesou se ti ruce; dnes bude těžké udržet pozornost u detailů.\n\n' + situace;
       }
     }
+    const vinaSpis = Number(State.get('traits.Vina')) || 0;
+    if (vinaSpis > 80) {
+      situace =
+        'Včerejší rozsudky vás ještě dohání. Dnes čtete spis ostřeji — s pocitem, že na každém řádku něco zůstalo viset.\n\n' +
+        situace;
+    } else if (vinaSpis >= 70) {
+      situace =
+        'Těžší výroky z posledních dnů vám ještě leží v hlavě.\n\n' + situace;
+    }
     if (typeof Cases !== 'undefined' && Cases.ziskejClueFocusMax && State.inicializujClueFocusPokudTreba) {
       State.inicializujClueFocusPokudTreba(pripad.id, Cases.ziskejClueFocusMax(pripad));
     }
