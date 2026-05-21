@@ -80,9 +80,21 @@ const StatsSummary = (() => {
     return '—';
   }
 
+  function _typZaznamuRozsudku(r) {
+    const raw = r && r.caseType != null ? String(r.caseType).trim().toLowerCase() : '';
+    if (raw === 'rutinni' || raw === 'moralni' || raw === 'politicky' || raw === 'osobni') return raw;
+    return 'rutinni';
+  }
+
   function _skupinaVerdiktu(r) {
     const id = String(r && r.verdictId || '').toLowerCase();
     if (id === 'uplatek') return 'uplatek';
+    if (_typZaznamuRozsudku(r) === 'osobni') {
+      if (id.startsWith('insufficient')) return 'nedostatek';
+      if (id.startsWith('not_guilty')) return 'odmitnuto';
+      if (id.startsWith('guilty')) return 'prijato';
+      return 'osobni_jine';
+    }
     if (id.startsWith('insufficient')) return 'nedostatek';
     if (id.startsWith('not_guilty')) return 'zprosteni';
     if (id.startsWith('guilty')) return 'vinen';
@@ -158,7 +170,16 @@ const StatsSummary = (() => {
 
   function _agregujTrendy(rozsudky) {
     const n = rozsudky.length;
-    const v = { vinen: 0, zprosteni: 0, nedostatek: 0, uplatek: 0, ostatni: 0 };
+    const v = {
+      vinen: 0,
+      zprosteni: 0,
+      nedostatek: 0,
+      uplatek: 0,
+      prijato: 0,
+      odmitnuto: 0,
+      osobni_jine: 0,
+      ostatni: 0
+    };
     const proc = { nizka: 0, stredni: 0, vysoka: 0 };
     const norm = { legalistni: 0, socialni: 0, vyvazeny: 0 };
     const path = { plus: 0, minus: 0, neutral: 0, soucet: 0 };
@@ -179,6 +200,9 @@ const StatsSummary = (() => {
       else if (g === 'zprosteni') v.zprosteni++;
       else if (g === 'nedostatek') v.nedostatek++;
       else if (g === 'uplatek') v.uplatek++;
+      else if (g === 'prijato') v.prijato++;
+      else if (g === 'odmitnuto') v.odmitnuto++;
+      else if (g === 'osobni_jine') v.osobni_jine++;
       else v.ostatni++;
 
       const pk = r && r.procesniKvalita != null ? String(r.procesniKvalita).trim() : '';
@@ -226,7 +250,10 @@ const StatsSummary = (() => {
         v.vinen ? `vina / trest ${v.vinen}× (${pct(v.vinen)} %)` : '',
         v.zprosteni ? `zproštění ${v.zprosteni}× (${pct(v.zprosteni)} %)` : '',
         v.nedostatek ? `odloženo ${v.nedostatek}× (${pct(v.nedostatek)} %)` : '',
+        v.prijato ? `přijato / ponecháno ${v.prijato}× (${pct(v.prijato)} %)` : '',
+        v.odmitnuto ? `odmítnuto ${v.odmitnuto}× (${pct(v.odmitnuto)} %)` : '',
         v.uplatek ? `úplatek ${v.uplatek}×` : '',
+        v.osobni_jine ? `osobní volba ${v.osobni_jine}×` : '',
         v.ostatni ? `jiný výrok ${v.ostatni}×` : ''
       ].filter(Boolean).join(' · '),
       procesni: proc,
@@ -468,8 +495,8 @@ const StatsSummary = (() => {
     if (tr.pathN > 0) {
       const avg = Math.round((tr.path.soucet / tr.pathN) * 10) / 10;
       souhrn.appendChild(_radek(
-        'Procesní podklad z cest',
-        `+${tr.path.plus} / −${tr.path.minus} / 0=${tr.path.neutral}, průměr ${avg > 0 ? '+' : ''}${avg}`
+        'Průzkumné cesty',
+        `posílily ${tr.path.plus}×, oslabily ${tr.path.minus}×, neutrálně ${tr.path.neutral}× · průměr ${avg > 0 ? '+' : ''}${avg}`
       ));
     }
     if (tr.prumerInformovanost != null) {

@@ -118,64 +118,64 @@
     ]
   },
   "pravidla": {
-    "perex": "Zkrácený přehled mechanismů — podrobnosti zůstávají ve hře a v nástrojích (zápisník, spisy).",
+    "perex": "Stručný přehled postupu u spisu a významu symbolů u rozhodnutí. Podrobnosti o světě a pojmech jsou ve Slovníku.",
     "body": "",
     "bloky": [
       {
-        "title": "Verdikty",
-        "body": "Každý uzavřený případ se promítne do financí, duše soudce, frakcí a důvěry vybraných postav. V archivu (zápisník) najdete přehled rozsudků a stav."
+        "title": "Jak den probíhá",
+        "body": "Pracovní den začíná u soudu. Na stole leží jeden až tři spisy. Každý se uzavře rozsudkem a volbou konkrétního verdiktu.\n\nPo vyřízení spisů často následuje večerní volba — odpočinek, setkání, něco mezi tím. Ovlivňuje vnitřní stav soudce i vztahy k lidem kolem.\n\nV neděli se soudní věci nevedou. Může přijít kratší scéna nebo rozhodnutí mimo síň. O sobotě se někdy objeví stručné shrnutí uplynulého týdne.\n\nPříběh může skončit dřív, než dojdou všechny spisy na stole. Záleží na tom, jak se dlouhodobě rozhodovalo — ne na jednom dni."
       },
       {
-        "title": "Alternativní verdikty",
-        "body": "Možnosti označené jako „Alternativa“ často mají nižší okamžitý finance efekt než tradiční tresty, ale výrazněji hýbou rysy, pověstí u frakcí a někdy i důvěrou postav.\n\nU vybraných variant může být navíc odložený procesní bonus: +1 až +2 sdílené akce průzkumu (inkoust) na další ráno. Ve výběru variant to uvidíš přímo v hintu jako `Inkoust: +1/+2 do dalšího pracovního dne`. Ber to jako důsledek netradičního postupu, ne jako jistou odměnu po každém případu."
+        "title": "Případ krok za krokem",
+        "body": "Otevřený spis má čtyři části:\n\n1. Spis — situace, obvinění, síla podkladů.\n2. Svědectví — výpovědi, často s volbou tónu.\n3. Průzkum — skryté stopy za kapkami inkoustu. Není nutný, ale mění nabídku rozhodnutí.\n4. Rozsudek — nejdřív směr (vina, nevinen, nedostatek důkazů, u zelených spisů přijmout nebo odmítnout), potom konkrétní verdikt. Po potvrzení následuje krátký text a návrat k dalšímu spisu.\n\nUzavřené případy zůstávají v zápisníku — záložka Rozsudky. Význam shrnutí tam viz Archiv rozsudků."
       },
       {
-        "title": "Průzkum a stopy",
-        "body": "Ve spisech můžeš odhalovat skryté informace za sdílené denní akce.\n\nPátrání (Two-Click) je doplněk k průzkumu: v textu spisu páruješ dvě stopy, které spolu věcně souvisí. Potvrzená vazba zpřesňuje obraz případu a může odemknout další varianty rozsudku nebo bonus.\n\nPátrání není povinné, ale při složitějších spisech se vyplatí.\n\nČasovač je nastaven tak, aby po spuštění bylo na začátku vidět 60 sekund.\n\nKolik času ve skutečnosti dostaneš, ovlivňuje i duševní stav postavy: vyšší Vina a nízká Naděje čas pátrání zkracují.\n\nKdyž si během pátrání přikoupíš další pokus, běh navazuje na předchozí tempo a bývá kratší než první pokus. Je to záměr: další pokusy představují tlak a únavu, ne čistý restart."
+        "title": "Průzkum a inkoust",
+        "body": "Na odhalení stop ve spisu slouží sdílené kapky inkoustu v rámci dne — obvykle tři, někdy víc po události nebo po zvláštním verdiktu.\n\nKaždá akce průzkumu stojí jiný počet kapek podle typu (výslech, záznamy, informátor, konfrontace a podobně).\n\nPřípad lze uzavřít i s nevyužitým inkoustem. Podklad bývá slabší a rozhodnutí hůř obstojí u pozdější kontroly.\n\nNeoficiální zdroj může přinést stopu navíc, ale stojí peníze a někdy čest. Před volbou je uvedena cena."
       },
       {
-        "title": "Síla vazby a „měkké“ spojení",
-        "body": "Silná a střední vazba z pátrání jde vždy potvrdit a zapsat do spisu (osa koherence). Nuance typu „sama o sobě to ještě neprokazuje vše“ patří do textu po potvrzení, ne do mechaniky, která by vazbu neukládala.\n\nSlabá vazba může zůstat jen náznakem: hra tě může upozornit, že jde o souvislost bez plné důkazní síly, a tuto „měkkou“ roli nemusí ukládat stejně jako u silné či střední vazby."
+        "title": "Pátrání (spojení stop)",
+        "body": "Ve spisu lze spárovat dvě stopy, které k sobě patří.\n\nSilná nebo střední vazba se zapíše do spisu a posílí koherenci — jak pevně drží potvrzená souvislost. Slabá vazba může zůstat jen náznakem bez plné důkazní síly. Text upozorní, že jde o měkčí spojení.\n\nVyšší koherence pomáhá procesu rozhodnutí a může odemknout další varianty verdiktu. Nízká nebo chybějící koherence zvyšuje riziko, že se k věci později vrátí revize."
       },
       {
-        "title": "Procesní kvalita a revize",
-        "body": "Informovanost (lišta ve spisu) a rozsah průzkumu ovlivňují, jak „pevně“ vypadá váš postup vůči institucím: u slabšího podkladu častěji přibývá tlak na Moudrost a Vinu a roste šance, že se k uzavřené věci později vrátí krátká revize spisu. To nemusí znamenat morálně špatné rozhodnutí — jde o riziko procesního omylu a o to, že spis neobstojí tak snadno při kontrole.\n\nU případů z poolu neexistuje jediné předepsané ID verdiktu z kódu; šedá zóna stojí na důkazech a kompromisech. Nátlak typu „úřad očekává výsledek X“ nebo korupce řešte vždy v konkrétním příběhu případu (text, volby, důsledky), ne globálním přepínači „správně/špatně“.\n\nRozhodnutí ostře proti tomu, co spis a nápovědy z průzkumu naznačují, se promítají přes slabší proces a souhrnné důsledky."
+        "title": "Rozsudek a efekty",
+        "body": "U každé varianty verdiktu je náhled dopadů ještě před potvrzením.\n\nFinance se uvádí přesně v korunách. Rysy, frakce a důvěra se ukazují barevnými šipkami nahoru nebo dolů — podle síly změny, ne jako přesná čísla.\n\nPo potvrzení následuje krátký text důsledku. Celkový stav soudce a vztahů je v zápisníku na stole.\n\nOznačení „Alternativa“ často znamená méně peněz hned, ale větší posun postoje a frakcí. Někdy přidá kapky inkoustu na další pracovní den — v náhledu jako Inkoust: +…\n\nÚplatek v případu je zvláštní volba: hotovost, ale tíha na integritu a vinu. Úřad si to pamatuje."
       },
       {
-        "title": "Podklad spisu a koherence stop",
-        "body": "Podklad spisu je orientační síla důkazů, které máš před rozsudkem. Nízký = rozhoduješ s tenkou oporou a soud častěji chybuje. Střední = spis je použitelný, ale vyplatí se doplnit průzkum. Silný = podklady jsou pevné a procesně stabilnější.\n\nKoherence stop říká, jak pevně drží potvrzená osa pátrání (two-click). Nepotvrzená = vazba zatím není ověřená. Slabá = náznak, ne jistota. Střední = použitelná opora. Silná = pevně potvrzená vazba.\n\nDopad koherence v praxi: vyšší koherence zlepšuje procesní kvalitu rozhodnutí (nižší riziko procesní chyby), může odemykat některé alternativní varianty rozsudku a posiluje stabilitu dopadů po rozsudku. Nízká nebo nepotvrzená koherence naopak zvyšuje nejistotu, že se věc v čase vrátí jako revize. Tyto ukazatele nejsou příkaz ke konkrétní volbě; jsou to orientační informace o riziku rozhodnutí."
+        "title": "Podklad spisu a proces",
+        "body": "Podklad spisu říká, jak silné jsou důkazy před rozsudkem — nízký, střední nebo silný. Slabý podklad znamená tenčí oporu rozhodnutí a větší riziko, že se k věci někdo vrátí. Silný podklad dává stabilnější proces.\n\nInformovanost v liště spisu a rozsah průzkumu spolu určují procesní kvalitu. Slabý postup neznamená nutně špatný výsledek pro obviněného — může jít o procesní chybu, pozdější revizi nebo jiný verdikt, než by důkazy snesly.\n\nU většiny případů neexistuje jediná správná volba. Rozhodují důkazy, kompromisy a okolnosti konkrétní kauzy. Nátlak úřadu nebo korupce se řeší vždy v daném spisu, ne jedním obecným pravidlem.\n\nPo uzavření spisu se v archivu ukládá i odvozená procesní stopa (slabší / přijatelné / pečlivé) — viz Archiv rozsudků."
       },
       {
-        "title": "Typy případů — rutinní, morální, politický, osobní",
-        "body": "Rutinní: klasická soudní agenda — skutek ve spisu, tresty a náhrady; často více obhajitelných výstupů a důraz na průzkum a párování stop. Morální: zákon nestačí sám o sobě — tření mezi lidmi, institucemi nebo škodou, která není jen „čísla v řádcích“; v důsledcích verdiktů typicky výraznější práce s Integritou a Nadějí, průzkum posiluje Moudrost a soulad s hinty může výrazně hýbat frakcemi. Politický: rozhodnutí má politický odstín (vztah k moci, úřadu, Vlčkovi); silněji se projevuje u frakce Moc a u Integrity; průzkum v souladu s nápovědou přidává Moudrost. Osobní: Benedikt není úplně mimo hru — vazba na něj, na rodinu nebo na minulost; u variant „férově / se stranou“ se mění Integrita, Odvaha a Vina jinak než u čistě cizího sporu.\n\nTypové příplatky: morální spis (modrá složka) +25 Kčs, politický (červená) +35 Kčs, osobní (zelená) +30 Kčs navíc oproti rutinní zlaté složce. Po uzavření barevného spisu přibude také +1 sdílená akce průzkumu (kapka inkoustu).\n\nJak případ odladit od rutiny (nápady pro autory): časový tlak z titulku soudu nebo z tisku; jedna drahá neoficiální stopa s jasnou morální cenou; odkaz na starší spis nebo na osobu z jiného dne; přítomnost veřejnosti nebo odborů v síni; souběžný civilní a trestní náboj; jednorázová výjimka z procedury, která má jméno a tvář, ne jen číslo paragrafu.\n\nDalší odlišení typů mimo peníze a čísla statů (lze mixovat v obsahu): jiná úvodní lišta nebo poznámka („tento spis hlídá ministerstvo“); u politických vyšší riziko revize nebo citlivější archivní stopa; u osobních vždy srozumitelná volba férově / se stranou; u morálních silnější vazba na večerní volby nebo delší dopadové texty; odlišné záhlaví spisu; u jednoho typu přísnější limit na neoficiální zdroj; stres nebo časovač při pátrání jen u vybraného typu. Nic z toho není povinné — jde o nástroje, aby barevná složka působila jako jiný druh práce."
+        "title": "Archiv rozsudků",
+        "body": "V zápisníku na stole, záložka Rozsudky. Každý uzavřený spis tu zůstane jako záznam s datem, barvou složky a názvem kauzy.\n\nFiltry nahoře zužují seznam — všechny typy, nebo jen rutinní, morální, politický, osobní. Šedé shrnutí pod filtry platí jen pro právě zobrazený výběr, ne pro celou kariéru.\n\nSměr rozhodnutí — kolik výroků šlo kterým směrem. U zlatých, modrých a červených spisů: vina a trest, zproštění, nedostatek důkazů, případně úplatek. U zelených osobních spisů: přijato / ponecháno (obálka, složka) nebo odmítnuto. Není to hodnocení správnosti, jen přehled stylu rozhodování.\n\nProcesní stopa — jak pevně byl veden spis před výrokem. Slabší znamená málo průzkumu, nízkou informovanost nebo měkké spojení stop. Pečlivé naopak. Nesmí se zaměnit s podkladem spisu v liště u otevřeného případu — archiv ukládá zpětný souhrn po rozsudku.\n\nNormativní odstín — kam tíhl konkrétní verdikt vůči zákonu a lidem v kauze. Přísnější k zákonu (tvrdší tresty, důraz na rámec), sociálnější (úleva, ohled na okolnosti), nebo vyvážené. Pomáhá vidět dlouhodobý ráz soudce, ne jen jednotlivé tresty.\n\nPrůzkumné cesty — jak šly stopy zjišťovat. Úřední výslech a záznamy obvykle posílí důkazní oporu (+), neoficiální zdroj ji naopak oslabí (−), někdy beze změny (0). Průměr říká, zda průzkum celkově spis posílil nebo oslabil.\n\nRozkliknutím řádku: dopady na peníze, rysy a frakce (šipky nebo čísla podle nastavení), souhrn kroků mimo spis, u některých záznamů vliv průzkumných cest. Tlačítko Detail otevře spis jen ke čtení.\n\nPo skončení příběhu lze v menu přepnout na zobrazení statistik. Epilog pak ukáže i širší přehled."
       },
       {
-        "title": "Konce běhu",
-        "body": "Hra má několik konců podle dlouhodobého chování a klíčových voleb. Po dohrání lze v menu odemknout jemnější zobrazení statistik."
+        "title": "Rysy soudce",
+        "body": "V zápisníku na stole jsou pět rysů v rozsahu 0–100: Integrita, Odvaha, Moudrost, Vina, Naděje.\n\nIntegrita určuje, které možnosti se vůbec nabídnou. Klesá u úplatků a tvrdých kompromisů.\nOdvaha odemyká nebo skrývá tvrdší verdikty. Velmi nízká odvaha zužuje volbu na bezpečnější cesty.\nMoudrost roste průzkumem. Vysoká moudrost odhalí ve spise víc vrstev a nesrovnalostí.\nVina je tíha minulých rozhodnutí. Těžké tresty a osobní linie ji zvedají. Vysoká vina mění tón spisu a způsob pátrání.\nNaděje klesá u proher a cynismu. Velmi nízká naděje stahuje příběh k chmurnějšímu konci.\n\nFrakce a důvěra k vybraným lidem jdou vedle rysů — viz sekce Frakce a důvěra."
       },
       {
-        "title": "Frakce „Moc“",
-        "body": "Zjednodušený pól státní správy a bezpečnostních struktur. Není to jedna postava ani jedna strana — tlak, který doléhá na soudce z „oficiální“ strany."
+        "title": "Finance",
+        "body": "Na začátku je omezená hotovost. U běžných spisů (zlatá, modrá, červená složka) přibývají po verdiktu poplatky nebo odměny podle konkrétní volby v náhledu. Morální a politické uzavření může navíc přidat krátký typový příplatek (+25 / +35 Kčs oproti rutinnímu). U některých složek navíc kapka inkoustu.\n\nZelené osobní spisy peníze nemění paušálem za typ. Jde o rozhodnutí přijmout nebo odmítnout — hotovost nebo náklad jen tam, kde to říká daná scéna (např. obálka s penězi), ne jako poplatek za uzavření spisu.\n\nKaždý den se strhávají životní náklady, obvykle kolem 48 Kčs. Výplata přichází v milníkových dnech. Přehled peněz je u soudu v části financí.\n\nDluh a velké výdaje řeší příběhové volby. Dlouhodobá chudoba nebo bohatství ovlivňují směr závěru — archiv a epilog to shrnou."
       },
       {
-        "title": "Dny a fáze",
-        "body": "Hra je rozdělena na dny; během dne řešíte případy, večer často následuje volba s dopady na stav. Některé akce se resetují s novým dnem."
+        "title": "Frakce a důvěra",
+        "body": "Frakce (0–100): Moc (stát, úřad), Kapitál (podnik), Lid (dělníci, ulice). Verdikty je posouvají. Extrémy otevírají fragmenty nebo tlak v textech.\n\nDůvěra (0–3 u vybraných postav): ministr Vlček, redaktorka Zavadová, advokát Karas. Roste i klesá rozhodnutími mimo soud — dopisy, večerní volby, milníky.\n\nVlček reaguje na odvahu a kompromisy. Zavadová na to, co se zapíše do spisů. Karas na peníze a osobní linii operace."
       },
       {
-        "title": "Sdílené akce průzkumu",
-        "body": "Za den je k dispozici omezený počet akcí na odhalování stop ve spisu. Po vyčerpání lze případ uzavřít i bez plného průzkumu — s jiným rozsahem informací."
+        "title": "Typy spisů",
+        "body": "Barva složky určuje typ práce.\n\nZlatá — rutinní agenda, tresty, náhrady.\nModrá — morální kauzy, kde zákon nestačí. Víc integrita a naděje.\nČervená — politický tlak moci a úřadu. Silněji frakce Moc.\nZelená — osobní linie. Často bez obžalovaného: přijmout nebo odmítnout, ponechat, předat, podepsat. Hlavně rysy, důvěra a vlajky příběhu, ne poplatky jako u běžné agendy.\n\nTyp ovlivňuje tón i doplňky k průzkumu, ne jen barvu složky."
       },
       {
-        "title": "Třetí spis (od 3. týdne)",
-        "body": "První dva týdny máš na stole vždy dva spisy. Od začátku třetího týdne (od 15. herního dne) se může objevit třetí — jen když na to máš u soudu reputaci: úřad ti věří, že zátěž ustojíš. Důležitá je hlavně důvěra instituce (procedura, poctivost práce); Moudrost a další rysy hrají vedlejší roli. Politické frakce (Moc, Lid, Kapital) spíš ovlivní, jak ten třetí spis „voní“ a kdo ho na tebe nabalí — nejsou stejné jako instituce a nemají být hlavním spínačem.\n\nTřetí spis není povinnost: můžeš vynést dva rozsudky a den ukončit i s třetím spisem nedotčeným. Třetí kauza se v kampani nabízí nejvýše desetkrát; v souboru `pool_cases_light_akt1.json` je pro ni připravený samostatný soubor kauz (cíl kolem 15 kousků). Když se ti věci často vrací v revizi, úřad ti další spisy spíš nepřidá — musí být cítit důsledek."
+        "title": "Třetí spis",
+        "body": "Na začátku období u soudu leží na stole vždy dva spisy. Později může úřad nabídnout třetí — pokud reputace poctivé práce drží (hlavně integrita a slušný proces).\n\nTřetí spis není povinný. Den lze uzavřít po dvou rozsudcích.\n\nJde o kratší kauzy, méně textu a užší verdikty. Spíš atmosféra města než hlavní zápletka. Příliš mnoho revizí a slabých rozhodnutí třetí nabídku utne."
       },
       {
-        "title": "Spis light",
-        "body": "Třetí položka na stole má být kratší záležitost: méně textu, méně průzkumných větví a užší nabídka rozsudků než u plné kauzy. Děj není svázaný s hlavním příběhem hry — jde o samostatné městské nebo úřední incidenty, které doplňují atmosféru doby. Technicky jde o položky v `pool_cases_light_akt1.json` se značkou „light“ (viz pravidla pro autory v repozitáři)."
+        "title": "Konce příběhu",
+        "body": "Příběh má osm různých konců. Ten, který nastane, záleží na dlouhodobém chování Bena — integritě, odvaze, vině, naději, penězích, vztahu k moci, k tisku i k lidem z minulosti. Rozhodují i klíčové milníky v osobní linii.\n\nTypy konců vycházejí z toho, jak se Benedikt choval celé období u soudu i mimo něj.\n\nPo skončení příběhu se zobrazí podrobnější statistiky."
       },
       {
-        "title": "Ukládání",
-        "body": "Postup se ukládá v prohlížeči (localStorage): automatické uložení a dvě ruční zálohy. Na jiném zařízení uložená pozice není."
+        "title": "Zápisník a uložení",
+        "body": "Zápisník na stole: Stav (rysy), Rozsudky (archiv výroků a shrnutí trendů — viz Archiv rozsudků), Pověst (lidé a frakce), Záznamy (přečtené fragmenty), Knihovna (příběh, pravidla, slovník).\n\nPrůběh se ukládá v prohlížeči — automaticky a do pěti ručních uložení."
       }
     ]
   },

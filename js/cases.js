@@ -13,7 +13,6 @@ const Cases = (() => {
     /** Finance navíc za uzavření nerutinního případu (typový příplatek). */
     PRIPLATEK_MORALNI:   25,
     PRIPLATEK_POLITICKY: 35,
-    PRIPLATEK_OSOBNI:    30,
 
     /** Koeficient pro efekty skrytých (průzkumem odemčených) verdiktů. */
     SKRYTY_VERDIKT_KOEF: 1.15,
@@ -745,10 +744,6 @@ const Cases = (() => {
     }
 
     if (typ === 'osobni') {
-      const pid = String(pripad && pripad.id || '').trim();
-      /** Haas / obálka — hotovost jen z varianty verdiktu (JSON), ne „úřední“ +30 za osobní spis. */
-      const bezTypoveOdmMerOsobni = pid === 'tyc_haas_d11';
-
       const po = rozsudek.personal_outcome;
       if (po === 'fair') {
         doplnek.traits.Integrita = (doplnek.traits.Integrita || 0) + BALANC.TYP_OSOBNI_FAIR_INT;
@@ -762,10 +757,7 @@ const Cases = (() => {
         doplnek.traits.Moudrost = (doplnek.traits.Moudrost || 0) + 2;
         doplnek.traits.Vina = (doplnek.traits.Vina || 0) - 2;
       }
-      if (!bezTypoveOdmMerOsobni) {
-        doplnek.finance = (Number(doplnek.finance) || 0) + BALANC.PRIPLATEK_OSOBNI;
-        doplnek._ui_finance_label = `Odměna za uzavření osobního případu (+${BALANC.PRIPLATEK_OSOBNI} Kčs)`;
-      }
+      /** Osobní tycové spisy: finance jen z JSON verdiktu (obálka +300), ne typový +30. */
     }
 
     const metaMix = _metaDoplnkyZaKvalituANormu(procesniKvalita, normativniSmer);

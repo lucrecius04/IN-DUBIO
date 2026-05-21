@@ -928,7 +928,7 @@ button.knihovna-link:hover {
 
 .rozsudek-efekt-delta {
   flex-shrink: 0;
-  font-weight: 700;
+  font-weight: 400;
   font-variant-numeric: tabular-nums;
   font-family: var(--pismo-typewriter);
   letter-spacing: 0.02em;
@@ -936,10 +936,39 @@ button.knihovna-link:hover {
 
 .rozsudek-efekt-delta--plus {
   color: #2e7d32;
+  font-weight: 600;
 }
 
 .rozsudek-efekt-delta--minus {
   color: #c62828;
+  font-weight: 600;
+}
+
+/* Šipky u verdiktů — barevné, tučné jen ▲▼ */
+.wf-delta-sipky {
+  display: inline-block;
+  font-weight: 700;
+  font-family: var(--pismo-typewriter);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.wf-delta-sipky--neutral {
+  color: #6b5a42;
+  font-weight: 400;
+}
+
+.wf-delta-sipky--up.wf-delta-sipky--tier1 { color: #4caf50; }
+.wf-delta-sipky--up.wf-delta-sipky--tier2 { color: #2e7d32; }
+.wf-delta-sipky--up.wf-delta-sipky--tier3 { color: #1b5e20; }
+
+.wf-delta-sipky--down.wf-delta-sipky--tier1 { color: #ef5350; }
+.wf-delta-sipky--down.wf-delta-sipky--tier2 { color: #c62828; }
+.wf-delta-sipky--down.wf-delta-sipky--tier3 { color: #7b0000; }
+
+.wf-delta-pasmo {
+  font-weight: 400;
+  color: inherit;
 }
 
 .btn-rozsudek {
@@ -2992,6 +3021,14 @@ button.knihovna-link:hover {
 
 .archiv-rozsudky-trendy-line--hlavni {
   font-weight: 600;
+}
+
+.archiv-rozsudky-trendy-line--hint {
+  margin-top: 2px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: rgba(45, 28, 12, 0.58);
+  font-style: italic;
 }
 
 .archiv-rozsudek-typ-chip {
