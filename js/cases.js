@@ -462,6 +462,17 @@ const Cases = (() => {
       return;
     }
 
+    if (
+      typeof Tutorial !== 'undefined' &&
+      Tutorial.jeSlozkaOtevrelitelna &&
+      !Tutorial.jeSlozkaOtevrelitelna(index)
+    ) {
+      UI.zobrazStavovouZpravu(
+        'Nejdřív uzavřete první spis rozsudkem. Úvod lze kdykoli přeskočit tlačítkem v nápovědě.'
+      );
+      return;
+    }
+
     try {
       if (State.jePripadUzavren(pripad.id)) {
         console.log('[Cases] otevírám případ jen ke čtení (už vyřešeno):', pripad.id);
@@ -477,6 +488,9 @@ const Cases = (() => {
         const pZobraz = _pripravPripadLightRezim(pripad);
         console.log('[Cases] otevírám modál případu:', pripad.id, pripad._lightMode ? '(light)' : '', '(title, situation, svědectví, rozsudky z JSON)');
         UI.zobrazPripad(pZobraz, (p, r) => zpracujRozsudek(pripad, r));
+        if (typeof Tutorial !== 'undefined' && Tutorial.priOtevreniPripadu) {
+          Tutorial.priOtevreniPripadu(pZobraz);
+        }
       };
 
       const denN = Number(State.get('currentDay'));
@@ -1142,6 +1156,10 @@ const Cases = (() => {
 
     // Zkontroluj konec dne (true = dovolit variabilní MIGRACE_20-15)
     setTimeout(() => Engine.zkontrolujKonecDne(true), 500);
+
+    if (typeof Tutorial !== 'undefined' && Tutorial.priRozsudku) {
+      Tutorial.priRozsudku(pripad);
+    }
 
     if (_onRozsudekCallback) _onRozsudekCallback(pripad, rozsudek);
   }

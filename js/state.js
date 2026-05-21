@@ -92,6 +92,20 @@ const State = (() => {
     _normalizujTraitsFrakceATrust();
     _normalizujSettings();
     _normalizujStatsDisplay();
+    _normalizujTutorial();
+  }
+
+  function _normalizujTutorial() {
+    if (!_stav.flags || typeof _stav.flags !== 'object') return;
+    if (typeof _stav.flags.tutorial_completed !== 'boolean') {
+      _stav.flags.tutorial_completed = false;
+    }
+    if (typeof _stav.flags.tutorial_skipped !== 'boolean') {
+      _stav.flags.tutorial_skipped = false;
+    }
+    if (!Array.isArray(_stav.flags.tutorial_steps_done)) {
+      _stav.flags.tutorial_steps_done = [];
+    }
   }
 
   function _normalizujSettings() {
@@ -376,6 +390,10 @@ const State = (() => {
       records_free_until_day: null,
       /** Po dohrání běhu: nabídka režimu zobrazení statistik v menu. */
       stats_display_unlocked: false,
+      /** Úvodní průvodce — den 1, nová hra (viz tutorial.js). */
+      tutorial_completed: false,
+      tutorial_skipped: false,
+      tutorial_steps_done: [],
       /**
        * Pořadí odemčených id z data/postavy_okoli.json (zápisník → Pověst).
        * Základ = lidé, které Ben už zná (viz postavy_okoli od_zacatku).

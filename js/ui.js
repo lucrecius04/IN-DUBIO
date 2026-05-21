@@ -26,6 +26,9 @@ const UI = (() => {
   function _zavriModal(id) {
     const el = document.getElementById(id);
     if (!el) return;
+    if (id === 'modal-pripad' && typeof Tutorial !== 'undefined' && Tutorial.zavriVeSpisu) {
+      Tutorial.zavriVeSpisu();
+    }
     el.classList.remove('aktivni');
   }
 
@@ -415,6 +418,9 @@ const UI = (() => {
 
   /** Hráč zapnul v menu režim „Pátrání na čas“ a případ má v datech enabled timed_hunt. */
   function _wfCluePouzivaTimedHunt(pripad) {
+    if (typeof Tutorial !== 'undefined' && Tutorial.vynucBezCasovehoPatrani && Tutorial.vynucBezCasovehoPatrani(pripad)) {
+      return false;
+    }
     if (!_wfClueTimedHuntZJsonu(pripad)) return false;
     if (typeof State === 'undefined' || !State.get) return false;
     return State.get('settings.patraniNaCas') === true;
@@ -1174,6 +1180,7 @@ const UI = (() => {
   function _wfDokonciOdhaleniPruzkumu(pripad, info, onRozsudek, options = {}) {
     const dirty = !!options.dirty;
     const predchoziVerdikty = _wfDostupneVerdiktIdSet(pripad);
+    const predPocetOdhaleni = _wfPocetOdhalenychPruzkumu(pripad);
     State.odhalInfoPripadu(pripad.id, info.id, { path: dirty ? 'unofficial' : 'official' });
     if (dirty && typeof SFX !== 'undefined' && SFX.pruzkumMimoZaznam) {
       SFX.pruzkumMimoZaznam();
@@ -1191,6 +1198,14 @@ const UI = (() => {
     }
 
     _aktualizujPruzkumPanel(pripad, onRozsudek);
+    if (
+      predPocetOdhaleni === 0 &&
+      _wfPocetOdhalenychPruzkumu(pripad) > 0 &&
+      typeof Tutorial !== 'undefined' &&
+      Tutorial.priPrvnimOdhaleniStopy
+    ) {
+      Tutorial.priPrvnimOdhaleniStopy(pripad);
+    }
     _wfPoPrvniAkciPruzkumu(pripad, onRozsudek, {
       predchoziVerdikty,
       bezRazitkaPriOdemceniVerdiktu: dirty
@@ -3946,9 +3961,53 @@ const UI = (() => {
     });
   }
 
+  let _wfSekceNavHook = false;
+
+  /** Klepnutí na štítek sekce (Spis, Svědectví, Průzkum, Rozsudek) — scroll + tutorial u Rozsudku. */
+  function _wfPripadSekceNavInicializuj() {
+    if (_wfSekceNavHook) return;
+    const mod = document.getElementById('modal-pripad');
+    if (!mod) return;
+    _wfSekceNavHook = true;
+    mod.addEventListener('click', e => {
+      const lab = e.target.closest('.case-wf-section-label');
+      if (!lab) return;
+      const sec = lab.closest('.case-wf-section');
+      if (!sec || !sec.id) return;
+      const body = document.getElementById('case-wf-body');
+      const cekaTutVerdikt =
+        sec.id === 'case-wf-sec-verdict' &&
+        typeof Tutorial !== 'undefined' &&
+        Tutorial.cekaVerdictTutorial &&
+        Tutorial.cekaVerdictTutorial();
+      if (body && !cekaTutVerdikt) {
+        const r = sec.getBoundingClientRect();
+        const br = body.getBoundingClientRect();
+        body.scrollTop += r.top - br.top - 10;
+      }
+      if (sec.id === 'case-wf-sec-verdict') {
+        const p = _wfClueAktivniPripad;
+        if (p && typeof Tutorial !== 'undefined' && Tutorial.priKlikNaRozsudek) {
+          Tutorial.priKlikNaRozsudek(p);
+        }
+      }
+    }, true);
+  }
+
   function _wfNavHint(text) {
     const el = document.getElementById('case-wf-nav-hint');
     if (el) el.textContent = text;
+  }
+
+  /** Hint ve spisu — tutorial má přednost před výchozím textem. */
+  function _wfNavHintTutorial(pripad, phase, fallback, extraCtx) {
+    let text = fallback;
+    if (typeof Tutorial !== 'undefined' && Tutorial.navHintProPripad && pripad) {
+      const ctx = Object.assign({ phase: phase || 'open' }, extraCtx || {});
+      const t = Tutorial.navHintProPripad(pripad, ctx);
+      if (t) text = t;
+    }
+    _wfNavHint(text);
   }
 
   /** Lišta informovanosti v modálu — podle počtu odhalených kroků průzkumu u tohoto případu. */
@@ -4770,7 +4829,9 @@ const UI = (() => {
     }
     _wfVerdictStampBindMove();
     _caseWfSetDots(3, 3);
-    _wfNavHint(
+    _wfNavHintTutorial(
+      pripad,
+      'verdict_step2',
       osobniVw
         ? 'Vyberte konkrétní znění a potvrďte rozhodnutí.'
         : 'Vyberte konkrétní znění a potvrďte rozsudek.'
@@ -4869,6 +4930,11 @@ const UI = (() => {
         step1.appendChild(b);
       }
       _wfRozsudekVyber = { mode: 'twostep', grp: null };
+      _wfNavHintTutorial(
+        pripad,
+        'verdict_step1',
+        'Nejdřív zvolte směr rozhodnutí, potom konkrétní znění.'
+      );
     } else {
       if (step1Wrap) step1Wrap.classList.add('skryto');
       const leg = document.getElementById('case-wf-verdict-legacy');
@@ -4998,7 +5064,9 @@ const UI = (() => {
       SFX.rozsudekStamp();
     }
     _caseWfSetDots(3, 3);
-    _wfNavHint(
+    _wfNavHintTutorial(
+      pripad,
+      'verdict',
       _wfMaOsobniVerdiktBezTrestnihoRz(pripad)
         ? 'Vyberte rozhodnutí a potvrďte.'
         : 'Vyberte verdikt a potvrďte rozsudek.'
@@ -5013,6 +5081,8 @@ const UI = (() => {
 
   function zobrazPripad(pripad, onRozsudek) {
     if (!pripad) return;
+
+    if (typeof Tutorial !== 'undefined' && Tutorial.zavriVeSpisu) Tutorial.zavriVeSpisu();
 
     if (pripad.id) odemkniPovestPodleUdalosti('pripad', String(pripad.id));
 
@@ -5153,18 +5223,22 @@ const UI = (() => {
 
     _caseWfSetDots(0, 0);
     setTimeout(() => _caseWfSetDots(1, 1), 400);
-    _wfNavHint(
+    _wfNavHintTutorial(
+      pripad,
+      'open',
       maSkryte
         ? zbyvaAkci <= 0 && jizOdhalene.length === 0
           ? 'Dnešní sdílené akce průzkumu už došly — základní rozsudek (naslepo) je k dispozici; další možnosti by odemkl průzkum.'
           : 'Základní verdikty máte hned; průzkum (sdílené akce za den) rozšíří tresty a zdůvodnění.'
-        : 'Vyberte rozsudek a potvrďte.'
+        : 'Vyberte rozsudek a potvrďte.',
+      { maSkryte, zbyvaAkci, jizOdhalene: jizOdhalene.length }
     );
 
     Desk.nastavAktivniSpis(pripad);
 
     if (typeof SFX !== 'undefined') SFX.slozkaPaper();
     _wfCluePatraniHudUpdate(pripad, onRozsudek);
+    _wfPripadSekceNavInicializuj();
     _otevriModal('modal-pripad');
     Desk.animujPrichodSpisu();
   }
@@ -5934,6 +6008,10 @@ const UI = (() => {
       : (volba && volba.prompt != null ? volba.prompt : '');
     if (vecerTxt) _wfNastavRichText(vecerTxt, uvodniText);
 
+    if (typeof Tutorial !== 'undefined' && Tutorial.nastavVecerHintD1) {
+      Tutorial.nastavVecerHintD1();
+    }
+
     const volbyEl = document.getElementById('vecer-volby');
     volbyEl.innerHTML = '';
 
@@ -5951,12 +6029,18 @@ const UI = (() => {
       btn.addEventListener('click', () => {
         if (!_wfMoznostMaDostatekZdroju(moznost)) return;
         _zavriModal('modal-vecer');
+        if (typeof Tutorial !== 'undefined' && Tutorial.priVeceruDokoncen) {
+          Tutorial.priVeceruDokoncen();
+        }
         if (callback) callback(moznost);
       });
       volbyEl.appendChild(btn);
     }
 
     _otevriModal('modal-vecer');
+    if (typeof Tutorial !== 'undefined' && Tutorial.priVecerniVolbe) {
+      Tutorial.priVecerniVolbe();
+    }
   }
 
   /** Nedělní volba A–E — stejný modal jako večer, jiný nadpis. */
@@ -8244,8 +8328,14 @@ const UI = (() => {
   function zobrazBtnDalsiDen(show) {
     const btn = document.getElementById('btn-dalsi-den');
     if (!btn) return;
-    if (show) btn.classList.add('viditelny');
-    else      btn.classList.remove('viditelny');
+    if (show) {
+      btn.classList.add('viditelny');
+      if (typeof Tutorial !== 'undefined' && Tutorial.priZobrazeniDalsihoDne) {
+        Tutorial.priZobrazeniDalsihoDne();
+      }
+    } else {
+      btn.classList.remove('viditelny');
+    }
   }
 
   /** Tyčové / osobní položky bez řádného spisu — na stole jen titul (obálka, návštěva…), ne fiktivní Sp. zn. */
@@ -8362,15 +8452,32 @@ const UI = (() => {
       const nazev = (pripad.title || '').trim() || 'Bez názvu';
       _vyplnFolderLabelBlok(slozka, pripad, i);
 
+      slozka.classList.remove('slozka--tutorial-locked');
+
+      const uzamcenoTutorial =
+        typeof Tutorial !== 'undefined' &&
+        Tutorial.jeSlozkaOtevrelitelna &&
+        !Tutorial.jeSlozkaOtevrelitelna(i);
+
       if (typeof State !== 'undefined' && State.jePripadUzavren && State.jePripadUzavren(pripad.id)) {
         slozka.classList.add('slozka--vyresena');
         slozka.classList.remove('slozka--aktivni');
         slozka.style.cursor = 'pointer';
         _pridejRazitekImg(folder);
         _slozkaMeta(slotNazvy[i] + ' — ' + nazev + ' (vyřešeno)', nazev + ' — vyřešeno');
+      } else if (uzamcenoTutorial) {
+        slozka.classList.remove('slozka--vyresena', 'slozka--aktivni');
+        slozka.classList.add('slozka--tutorial-locked');
+        slozka.style.cursor = 'not-allowed';
+        _odstranRazitekImg(folder);
+        _slozkaMeta(
+          slotNazvy[i] + ' — ' + nazev + ' (po prvním spisu)',
+          'Nejdřív uzavřete první spis rozsudkem, nebo přeskočte úvod v nápovědě.'
+        );
       } else {
-        slozka.classList.remove('slozka--vyresena');
+        slozka.classList.remove('slozka--vyresena', 'slozka--tutorial-locked');
         slozka.classList.add('slozka--aktivni');
+        slozka.style.cursor = 'pointer';
         _odstranRazitekImg(folder);
         _slozkaMeta(slotNazvy[i] + ' — ' + nazev, nazev);
       }
@@ -8554,6 +8661,9 @@ const UI = (() => {
     zavriVsechnyModaly,
     obnovUIDataPoNacteniSlotu,
     zobrazPripad,
+    ziskejAktivniPripadVeSpisu() {
+      return _wfClueAktivniPripad;
+    },
     zobrazPripadReadonly,
     zobrazDusledkyRozsudku,
     vypoctiDusledkyRadky,

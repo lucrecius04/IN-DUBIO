@@ -1,0 +1,364 @@
+/* Úvodní průvodce — den 1, nová hra */
+
+/* Druhá složka na stole — až po prvním spisu (nebo přeskočení úvodu) */
+.slozka--tutorial-locked {
+  opacity: 0.42;
+  cursor: not-allowed;
+  filter: saturate(0.55);
+}
+
+.slozka--tutorial-locked .folder {
+  pointer-events: none;
+}
+
+#tutorial-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 92;
+  pointer-events: none;
+}
+
+#tutorial-overlay.tutorial-overlay--aktivni {
+  pointer-events: auto;
+}
+
+/* Nad modálem večerní volby (z-index 200) */
+#tutorial-overlay.tutorial-overlay--nad-modalem {
+  z-index: 220;
+}
+
+/* Nápověda v modálu spisu — ztmavení, blokace kliků, panel nahoře */
+#modal-pripad.tutorial-case-locked .pripad-panel--wireframe {
+  overflow: hidden;
+}
+
+#modal-pripad .tutorial-case-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: max(16px, min(8vh, 72px)) 20px 20px;
+  box-sizing: border-box;
+}
+
+#modal-pripad .tutorial-case-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: rgba(6, 4, 2, 0.55);
+  pointer-events: auto;
+}
+
+/* Čtyři panelové zóny místo box-shadow 9999px — bez „visících“ čar u spodu spisu */
+#modal-pripad .tutorial-case-dim-part {
+  position: fixed;
+  z-index: 2;
+  pointer-events: auto;
+  background: rgba(6, 4, 2, 0.58);
+}
+
+#modal-pripad .tutorial-case-spotlight-frame {
+  position: fixed;
+  z-index: 2;
+  pointer-events: none;
+  box-sizing: border-box;
+  border: 2px solid rgba(255, 232, 190, 0.78);
+  border-radius: 10px;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Starší jednoduchý výřez (bez 9999px stínu) — pro jiné kroky ve spisu */
+#modal-pripad .tutorial-case-spotlight {
+  position: fixed;
+  z-index: 2;
+  pointer-events: auto;
+  background: transparent;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 232, 190, 0.78);
+  box-shadow: none;
+}
+
+#modal-pripad .tutorial-case-layer.tutorial-case-layer--positioned {
+  display: block;
+  padding: 0;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+#modal-pripad .tutorial-case-layer.tutorial-case-layer--positioned .tutorial-panel-wrap {
+  pointer-events: auto;
+  position: fixed;
+  z-index: 3;
+  max-width: min(440px, calc(100vw - 32px));
+  max-height: min(72vh, 520px);
+  overflow-y: auto;
+}
+
+#modal-pripad .tutorial-case-layer .tutorial-panel-wrap {
+  pointer-events: auto;
+  position: relative;
+  z-index: 3;
+  max-width: min(440px, calc(100% - 32px));
+  max-height: min(72vh, 520px);
+  overflow-y: auto;
+}
+
+.tutorial-panel-wrap--ve-spisu {
+  max-width: min(380px, calc(100vw - 40px));
+}
+
+.tutorial-zvyrazneni-cil {
+  outline: 2px solid rgba(255, 232, 190, 0.85) !important;
+  outline-offset: 3px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 4px rgba(255, 232, 190, 0.15);
+}
+
+#tutorial-overlay .tutorial-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  pointer-events: auto;
+}
+
+#tutorial-overlay .tutorial-backdrop--medium {
+  background: rgba(8, 5, 3, 0.44);
+}
+
+#tutorial-overlay .tutorial-backdrop--strong {
+  background: rgba(6, 4, 2, 0.52);
+}
+
+#tutorial-overlay.tutorial-overlay--aktivni .tutorial-backdrop {
+  opacity: 1;
+}
+
+/* Výřez — ztmaví jen okolí, uvnitř zůstane stůl/zápisník bez příkrovu */
+.tutorial-spotlight {
+  position: fixed;
+  background: transparent;
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 2px rgba(255, 232, 190, 0.72),
+    0 0 0 9999px rgba(8, 5, 3, 0.65),
+    0 6px 22px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: 1;
+  transition:
+    top 0.28s ease,
+    left 0.28s ease,
+    width 0.28s ease,
+    height 0.28s ease;
+}
+
+.tutorial-spotlight::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  border: 1px dashed rgba(255, 240, 210, 0.35);
+  pointer-events: none;
+}
+
+.tutorial-panel-wrap {
+  position: fixed;
+  z-index: 3;
+  max-width: min(400px, calc(100vw - 32px));
+  pointer-events: auto;
+  filter: drop-shadow(0 12px 36px rgba(0, 0, 0, 0.5));
+}
+
+.tutorial-panel-wrap .tutorial-panel {
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  border-radius: 4px;
+  border: 1px solid rgba(72, 48, 30, 0.55);
+  background:
+    linear-gradient(165deg, rgba(255, 252, 244, 0.98) 0%, rgba(235, 220, 196, 0.96) 48%, rgba(218, 200, 172, 0.94) 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 12px 32px rgba(30, 18, 10, 0.28);
+  overflow: visible;
+}
+
+.tutorial-panel-wrap .tutorial-panel::before {
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border-color: rgba(90, 62, 40, 0.22);
+}
+
+.tutorial-panel-inner {
+  position: relative;
+  padding: 20px 22px 16px;
+}
+
+.tutorial-panel-zahlavi {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(72, 48, 30, 0.2);
+}
+
+.tutorial-panel-znak {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(72, 48, 30, 0.35);
+  background:
+    radial-gradient(circle at 35% 25%, rgba(255, 250, 238, 0.95), rgba(200, 175, 140, 0.85));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  color: rgba(62, 38, 24, 0.75);
+  box-shadow: 0 2px 6px rgba(40, 24, 12, 0.15);
+}
+
+.tutorial-panel-zahlavi-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.tutorial-panel-kicker {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(92, 58, 36, 0.65);
+  margin-bottom: 4px;
+}
+
+.tutorial-panel-title {
+  font-family: var(--pismo-serif, Georgia, serif);
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: #2e2014;
+  margin: 0;
+  line-height: 1.28;
+}
+
+.tutorial-panel-body {
+  font-family: var(--pismo-serif, Georgia, serif);
+  font-size: 14px;
+  line-height: 1.58;
+  color: #443528;
+  margin: 0 0 16px;
+  white-space: pre-line;
+}
+
+.tutorial-panel-body--odrazky {
+  font-size: 13.5px;
+  line-height: 1.62;
+}
+
+#modal-pripad .tutorial-case-layer .tutorial-panel-body {
+  font-size: 13.5px;
+  line-height: 1.58;
+  max-height: none;
+}
+
+.tutorial-panel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 4px;
+}
+
+.tutorial-btn-skip {
+  margin-right: auto;
+  font-family: var(--pismo-serif, Georgia, serif);
+  font-size: 12.5px;
+  padding: 6px 4px;
+  border: none;
+  background: transparent;
+  color: rgba(68, 48, 32, 0.58);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.tutorial-btn-skip:hover {
+  color: rgba(68, 48, 32, 0.9);
+}
+
+.tutorial-panel-wrap .tutorial-btn-continue.btn {
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 9px 20px;
+}
+
+/* Šipka k zvýrazněné oblasti (panel nad stolem) */
+.tutorial-panel-wrap--above-spotlight .tutorial-panel-inner::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid rgba(228, 212, 188, 0.98);
+  filter: drop-shadow(0 1px 0 rgba(72, 48, 30, 0.2));
+}
+
+.tutorial-panel-wrap--nad-zapisnikem .tutorial-panel-inner::after {
+  bottom: -11px;
+}
+
+/* Panel vlevo od cíle (lupa v záhlaví spisu) */
+.tutorial-panel-wrap--left-spotlight .tutorial-panel-inner::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid rgba(228, 212, 188, 0.98);
+  filter: drop-shadow(1px 0 0 rgba(72, 48, 30, 0.2));
+}
+
+@media (max-width: 720px) {
+  .tutorial-panel-wrap {
+    max-width: calc(100vw - 24px);
+  }
+
+  .tutorial-panel-inner {
+    padding: 16px 16px 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .tutorial-panel-wrap.tutorial-panel-wrap--force-bottom {
+    left: 12px !important;
+    right: 12px !important;
+    bottom: 12px !important;
+    top: auto !important;
+    max-width: none;
+  }
+
+  .tutorial-panel-wrap.tutorial-panel-wrap--force-bottom .tutorial-panel-inner::after {
+    display: none;
+  }
+}

@@ -216,6 +216,7 @@ const Engine = (() => {
 
     // Nastav UI listenery
     UI.inicializuj();
+    if (typeof Tutorial !== 'undefined' && Tutorial.inicializuj) Tutorial.inicializuj();
     Desk.inicializujTooltipyRysu();
     Desk.inicializujTooltipyPredmetuStolu();
     if (Desk.inicializujNovinyAObaalkaStolu) Desk.inicializujNovinyAObaalkaStolu();
@@ -233,6 +234,7 @@ const Engine = (() => {
       if (!folder) continue;
       const onSlozkaClick = (event) => {
         if (slozka.classList.contains('slozka--ceka')) return;
+        if (slozka.classList.contains('slozka--tutorial-locked')) return;
         const folderEl = slozka.querySelector('.folder');
         if (!folderEl) return;
         const ht = folderEl._slozkaRasterHitTest;
@@ -584,6 +586,35 @@ const Engine = (() => {
     // Skrýt tlačítko do vyřešení případů; po F5 / resume znovu sladit s uloženým casesResolvedToday
     UI.zobrazBtnDalsiDen(false);
     zkontrolujKonecDne(false);
+
+    if (
+      dCislo === 1 &&
+      typeof Tutorial !== 'undefined' &&
+      Tutorial.jeAktivni &&
+      Tutorial.jeAktivni() &&
+      typeof Tutorial.poPripraveStolu === 'function' &&
+      !Tutorial.krokHotovy('desk_hotovo')
+    ) {
+      setTimeout(() => {
+        if (typeof Tutorial !== 'undefined' && Tutorial.poPripraveStolu) {
+          Tutorial.poPripraveStolu();
+        }
+      }, 720);
+    }
+
+    if (
+      dCislo === 2 &&
+      typeof Tutorial !== 'undefined' &&
+      Tutorial.cekaFinaleDen2 &&
+      Tutorial.cekaFinaleDen2() &&
+      typeof Tutorial.poStartuDne2 === 'function'
+    ) {
+      setTimeout(() => {
+        if (typeof Tutorial !== 'undefined' && Tutorial.poStartuDne2) {
+          Tutorial.poStartuDne2();
+        }
+      }, 900);
+    }
 
   }
 

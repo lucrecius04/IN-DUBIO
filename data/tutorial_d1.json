@@ -1,0 +1,103 @@
+{
+  "version": 2,
+  "desk_steps": [
+    {
+      "id": "desk_intro",
+      "title": "První den u soudu",
+      "body": "Na stole leží dva spisy — nejdřív vyřiďte ten vlevo rozsudkem; druhá složka se odemkne až potom (nebo hned po přeskočení úvodu). Tlačítko Další den přijde až po obou spisech.\n\nZápisník vlevo drží přehled o vašem stavu, archivu výroků a pravidlech hry.",
+      "panel_placement": "top",
+      "dim_backdrop": "strong"
+    },
+    {
+      "id": "desk_notebook",
+      "title": "Zápisník",
+      "body": "V zápisníku na stole najdete:\n\n• Stav — rysy soudce (integrita, vina, naděje…)\n• Rozsudky — archiv uzavřených spisů a shrnutí trendů\n• Pověst — lidé kolem vás a postavení frakcí\n• Záznamy — přečtené dopisy a ranní útržky\n• Knihovna — pravidla hry, příběh a slovníček pojmů",
+      "spotlight": "#desk-notebook-wrapper",
+      "panel_placement": "above",
+      "panel_gap": 26
+    }
+  ],
+  "case_steps": [
+    {
+      "id": "case_intro_spis",
+      "title": "Jak číst spis",
+      "body": "Každá složka otevře stejné okno — jeden scroll od situace dolů. Tuto nápovědu uvidíte jen při prvním spisu v den 1.\n\nPostup: přečtěte Spis a Svědectví, vyzkoušejte Průzkum a pátrání, až budete připraveni klepněte na štítek Rozsudek dole. Na stole máte dva spisy — druhý se odemkne po uzavření prvního.",
+      "no_spotlight": true
+    },
+    {
+      "id": "case_patrani_lupa",
+      "title": "Pátrání (spojení stop)",
+      "body_lead": "Vpravo u spisu je tlačítko s lupou — odtud spouštíte pátrání mezi stopami.",
+      "knihovna_blok": "Pátrání (spojení stop)",
+      "spotlight": "#case-wf-clue-hud-action",
+      "panel_placement": "left",
+      "panel_gap": 20
+    },
+    {
+      "id": "case_pruzum_inkoust",
+      "title": "Průzkum a inkoust",
+      "body_lead": "V sekci Průzkum volíte řádnou nebo neoficiální cestu; ve svědectví hledejte kapky inkoustu.",
+      "knihovna_blok": "Průzkum a inkoust",
+      "spotlight": "#modal-pripad #case-wf-sec-pruzkum .case-wf-pruzkum-row",
+      "panel_placement": "left_of_spis",
+      "panel_gap": 18,
+      "scroll_in_body": "#case-wf-sec-pruzkum"
+    }
+  ],
+  "verdict_on_click": {
+    "id": "case_rozsudek_nav",
+    "title": "Rozsudek a verdikty",
+    "body_lead": "Klepnutím na štítek Rozsudek jste v této sekci. Nejdřív zvolte směr rozhodnutí, potom konkrétní verdikt.",
+    "knihovna_blok": "Rozsudek a efekty",
+    "spotlight": "#modal-pripad #case-wf-step2-wrap",
+    "panel_placement": "left_of_spis",
+    "panel_gap": 16,
+    "scroll_in_body": "#case-wf-step2-wrap"
+  },
+  "case_hints": {
+    "pool_a1_bozena_slepice": {
+      "open": "Spis čtěte shora dolů. Po průzkumu klepněte na štítek Rozsudek.",
+      "verdict": "Vyberte směr a potvrďte znění rozsudku."
+    },
+    "tyc_horak_d1": {
+      "open": "Kapky inkoustu ve svědectví odhalí stopy. Pak pátrání nebo štítek Rozsudek.",
+      "open_no_actions": "Kapky inkoustu odhalí stopy. Sdílené akce průzkumu došly — rozsudek je k dispozici i bez dalšího pátrání.",
+      "after_first_clue": "Dvě související stopy spárujte v pátrání — silnější vazba posílí podklad.",
+      "verdict": "Základní verdikty jsou hned; průzkum rozšíří nabídku trestů a zdůvodnění.",
+      "verdict_step1": "Nejdřív zvolte směr rozhodnutí (vina, nevinen, nedostatek důkazů…).",
+      "verdict_step2": "Vyberte konkrétní znění. Náhled ukáže finance v Kčs a ostatní dopady šipkami."
+    }
+  },
+  "stavove_po_rozsudku": {
+    "pool_a1_bozena_slepice": "První spis je uzavřen. Druhá složka čeká.",
+    "tyc_horak_d1": "Druhý spis je uzavřen. Večer přinese krátkou volbu — ovlivní vnitřní stav soudce."
+  },
+  "evening_hint_d1": "První den končí krátkou volbou — každá možnost mírně posune rysy soudce (integrita, vina, naděje…) a důvěru jedné postavy. Zvolte jednu a přejděte do noci.",
+  "evening_step": {
+    "id": "evening_d1",
+    "title": "Večerní volba",
+    "body": "První den končí krátkou volbou — nejde jen o atmosféru. Každá možnost mírně mění rysy soudce a vztahy k lidem kolem Bena.\n\nVyberte jednu možnost a pokračujte do noci.",
+    "panel_placement": "top",
+    "dim_backdrop": "medium",
+    "overlay_nad_modalem": true
+  },
+  "next_day_step": {
+    "id": "next_day_d1",
+    "title": "Další den",
+    "body": "Oba spisy jsou uzavřené. Klepněte na tlačítko vpravo dole — otevře se večerní volba, pak noc a ráno druhého dne.\n\nNa stole může ležet dopis; přečtěte ho před přechodem, jinak hra upozorní.",
+    "spotlight": "#btn-dalsi-den",
+    "panel_placement": "above",
+    "panel_gap": 22,
+    "dim_backdrop": "medium"
+  },
+  "notebook_reminder": "V zápisníku v záložce Rozsudky uvidíte záznam dnešních výroků.",
+  "day2_final_step": {
+    "id": "day2_knihovna_pravidla",
+    "title": "Pravidla a mechaniky",
+    "body": "Chcete si připomenout pravidla nebo mechaniky hry? Vše důležité je v zápisníku — záložka Knihovna, sekce Pravidla.\n\nTam najdete průzkum, pátrání, rozsudky, rysy soudce a další. Tímto končí úvodní průvodce.",
+    "spotlight": "#desk-notebook-wrapper",
+    "panel_placement": "above",
+    "panel_gap": 26,
+    "dim_backdrop": "strong"
+  }
+}

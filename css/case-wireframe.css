@@ -2429,6 +2429,12 @@
   line-height: 1;
   letter-spacing: 0.15em;
   text-transform: uppercase;
+  cursor: pointer;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-sec-verdict .case-wf-section-label:hover {
+  border-color: rgba(92, 68, 42, 0.42);
+  background: rgba(255, 248, 232, 0.92);
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-section-label::before {

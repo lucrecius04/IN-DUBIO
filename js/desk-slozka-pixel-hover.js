@@ -128,7 +128,7 @@
     obs.observe(folder, { attributes: true, attributeFilter: ['data-art'] });
 
     function setHover(on) {
-      if (slozka.classList.contains('slozka--ceka')) {
+      if (slozka.classList.contains('slozka--ceka') || slozka.classList.contains('slozka--tutorial-locked')) {
         slozka.classList.remove('slozka--hover');
         return;
       }
@@ -137,7 +137,9 @@
 
     /** Stejný práh jako hover — pro klik v engine.js (ne celý obdélník .folder). */
     function hitTestOpaque(clientX, clientY) {
-      if (!ready || slozka.classList.contains('slozka--ceka')) return false;
+      if (!ready || slozka.classList.contains('slozka--ceka') || slozka.classList.contains('slozka--tutorial-locked')) {
+        return false;
+      }
       const rect = folder.getBoundingClientRect();
       if (rect.width < 1 || rect.height < 1) return false;
       const rx = (clientX - rect.left) / folder.offsetWidth;
