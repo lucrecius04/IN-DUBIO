@@ -1697,54 +1697,158 @@
 
 <div id="stavova-zprava">—</div>
 
-<div id="modal-menu" class="overlay modal-menu-overlay skryto">
-  <div class="menu-panel">
-    <div class="logo-hry-brand logo-hry-brand--menu">
-      <img
-        class="logo-hry-brand-img logo-hry-brand-img--main logo-hry-brand-img--menu skryto"
-        id="menu-logo-main-img"
-        src="assets/branding/in-dubio-logo-main.png"
-        alt="IN DUBIO"
-        decoding="async"
-      >
-      <div class="menu-nazev branding-brand-fallback" id="menu-logo-main-fallback">IN DUBIO</div>
+<div id="modal-menu" class="overlay modal-menu-overlay skryto" role="dialog" aria-modal="true" aria-labelledby="menu-hlavni-nadpis">
+  <div class="menu-panel menu-panel--dark panel-papir panel-papir--nastup">
+    <button type="button" class="menu-zavrit-x pripad-zavrit-x" id="menu-zavrit-x" title="Zavřít (Esc)" aria-label="Zavřít menu">✕</button>
+
+    <header class="menu-hlavicka menu-hlavicka--dark">
+      <div class="logo-hry-brand logo-hry-brand--menu">
+        <img
+          class="logo-hry-brand-img logo-hry-brand-img--main logo-hry-brand-img--menu skryto"
+          id="menu-logo-main-img"
+          src="assets/branding/in-dubio-logo-menu.png"
+          alt="IN DUBIO"
+          decoding="async"
+        >
+        <div class="menu-nazev branding-brand-fallback" id="menu-logo-main-fallback">IN DUBIO</div>
+      </div>
+      <p class="menu-popis" id="menu-hlavni-nadpis">Soudní hra · Střední Evropa, 1931</p>
+    </header>
+
+    <div class="menu-obsah-grid">
+      <aside class="menu-levy-sloupec">
+        <section class="menu-sekce menu-sekce--hra" aria-labelledby="menu-sekce-hra">
+          <h2 class="menu-sekce-nadpis" id="menu-sekce-hra">Hra</h2>
+          <div class="menu-akce-stack">
+            <button type="button" id="menu-zavrit" class="menu-akce menu-akce--primarni">Pokračovat ve hře</button>
+            <button type="button" id="menu-nova-hra" class="menu-akce menu-akce--varovani">Nová hra</button>
+          </div>
+        </section>
+
+        <section class="menu-sekce menu-sekce--nastaveni" aria-labelledby="menu-sekce-nastaveni">
+          <h2 class="menu-sekce-nadpis" id="menu-sekce-nastaveni">Nastavení</h2>
+          <div class="menu-nastaveni-radek menu-nastaveni-radek--toggle-dole">
+            <div class="menu-nastaveni-text">
+              <span class="menu-nastaveni-label">Pátrání na čas</span>
+              <span class="menu-nastaveni-hint">Časový limit vytváří tlak při pátrání.</span>
+            </div>
+            <button type="button" id="menu-patrani-na-cas" class="menu-toggle-btn" aria-pressed="false">Vypnuto</button>
+          </div>
+
+          <div id="menu-stats-display-wrap" class="menu-stats-display-wrap skryto">
+            <div class="menu-nastaveni-radek menu-nastaveni-radek--stats">
+              <div class="menu-nastaveni-text">
+                <span class="menu-nastaveni-label">Zobrazení statistik</span>
+                <span class="menu-nastaveni-hint">Odemkne se po dohrání běhu. Přepíná archiv, dopady a důsledky.</span>
+              </div>
+            </div>
+            <div class="menu-stats-volby">
+              <button type="button" class="menu-stats-volba menu-stats-mode-btn" data-stats-mode="intuitive">Intuitivní</button>
+              <button type="button" class="menu-stats-volba menu-stats-mode-btn" data-stats-mode="hybrid">Smíšený</button>
+              <button type="button" class="menu-stats-volba menu-stats-mode-btn" data-stats-mode="spreadsheet">Tabulkový</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="menu-sekce menu-sekce--info" aria-labelledby="menu-sekce-info">
+          <h2 class="menu-sekce-nadpis" id="menu-sekce-info">Informace</h2>
+          <div class="menu-info-radek">
+            <button type="button" class="menu-info-link" id="menu-o-hre-text">O hře</button>
+            <button type="button" class="menu-studio-badge" id="menu-o-hre" aria-label="O hře">
+              <img
+                class="menu-studio-badge-img skryto"
+                id="menu-studio-badge-img"
+                src="assets/branding/legio-ultima.png"
+                alt="Legio Ultima"
+                decoding="async"
+              >
+              <span class="menu-studio-badge-fallback" id="menu-studio-badge-fallback">LEGIO ULTIMA</span>
+            </button>
+          </div>
+        </section>
+      </aside>
+
+      <section class="menu-pravy-sloupec menu-sekce menu-sekce--ulozeni" aria-labelledby="menu-sekce-ulozeni">
+        <div class="menu-sekce-zahlavi">
+          <h2 class="menu-sekce-nadpis" id="menu-sekce-ulozeni">Uložení a načtení</h2>
+          
+        </div>
+
+        <div class="menu-slot menu-slot--auto">
+          <div class="menu-slot-popis">
+            <span class="menu-slot-jmeno">Automatické uložení</span>
+            <span class="menu-slot-stav" id="menu-auto-stav">—</span>
+          </div>
+          <button type="button" id="menu-nacist-auto" class="menu-slot-btn menu-slot-btn--nacist">Načíst</button>
+        </div>
+
+        <div class="menu-slot-seznam menu-slot-seznam--compact" id="menu-slot-seznam">
+          <div class="menu-slot" data-slot="1">
+            <div class="menu-slot-popis">
+              <span class="menu-slot-jmeno">Ruční záloha 1</span>
+              <span class="menu-slot-stav" id="menu-slot-stav-1">Prázdná</span>
+            </div>
+            <div class="menu-slot-akce">
+              <button type="button" id="menu-ulozit-1" class="menu-slot-btn menu-slot-btn--ulozit">Uložit</button>
+              <button type="button" id="menu-nacist-1" class="menu-slot-btn menu-slot-btn--nacist">Načíst</button>
+            </div>
+          </div>
+          <div class="menu-slot" data-slot="2">
+            <div class="menu-slot-popis">
+              <span class="menu-slot-jmeno">Ruční záloha 2</span>
+              <span class="menu-slot-stav" id="menu-slot-stav-2">Prázdná</span>
+            </div>
+            <div class="menu-slot-akce">
+              <button type="button" id="menu-ulozit-2" class="menu-slot-btn menu-slot-btn--ulozit">Uložit</button>
+              <button type="button" id="menu-nacist-2" class="menu-slot-btn menu-slot-btn--nacist">Načíst</button>
+            </div>
+          </div>
+          <div class="menu-slot" data-slot="3">
+            <div class="menu-slot-popis">
+              <span class="menu-slot-jmeno">Ruční záloha 3</span>
+              <span class="menu-slot-stav" id="menu-slot-stav-3">Prázdná</span>
+            </div>
+            <div class="menu-slot-akce">
+              <button type="button" id="menu-ulozit-3" class="menu-slot-btn menu-slot-btn--ulozit">Uložit</button>
+              <button type="button" id="menu-nacist-3" class="menu-slot-btn menu-slot-btn--nacist">Načíst</button>
+            </div>
+          </div>
+          <div class="menu-slot" data-slot="4">
+            <div class="menu-slot-popis">
+              <span class="menu-slot-jmeno">Ruční záloha 4</span>
+              <span class="menu-slot-stav" id="menu-slot-stav-4">Prázdná</span>
+            </div>
+            <div class="menu-slot-akce">
+              <button type="button" id="menu-ulozit-4" class="menu-slot-btn menu-slot-btn--ulozit">Uložit</button>
+              <button type="button" id="menu-nacist-4" class="menu-slot-btn menu-slot-btn--nacist">Načíst</button>
+            </div>
+          </div>
+          <div class="menu-slot" data-slot="5">
+            <div class="menu-slot-popis">
+              <span class="menu-slot-jmeno">Ruční záloha 5</span>
+              <span class="menu-slot-stav" id="menu-slot-stav-5">Prázdná</span>
+            </div>
+            <div class="menu-slot-akce">
+              <button type="button" id="menu-ulozit-5" class="menu-slot-btn menu-slot-btn--ulozit">Uložit</button>
+              <button type="button" id="menu-nacist-5" class="menu-slot-btn menu-slot-btn--nacist">Načíst</button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-    <div class="menu-popis">Textová soudní hra, 1931</div>
-    <button id="menu-nova-hra" class="menu-polozka">Nová hra</button>
-    <div class="menu-dvojice-nadpis">Automatické uložení</div>
-    <button type="button" id="menu-nacist-auto" class="menu-polozka">—</button>
-    <div class="menu-dvojice-nadpis">Ruční zálohy — uložit</div>
-    <div class="menu-dvojice">
-      <button type="button" id="menu-ulozit-1" class="menu-polozka menu-polozka--pul">Záloha 1</button>
-      <button type="button" id="menu-ulozit-2" class="menu-polozka menu-polozka--pul">Záloha 2</button>
-      <button type="button" id="menu-ulozit-3" class="menu-polozka menu-polozka--pul">Záloha 3</button>
+  </div>
+</div>
+
+<div id="modal-menu-dialog" class="overlay menu-dialog-overlay" role="dialog" aria-modal="true" aria-labelledby="menu-dialog-nadpis">
+  <div class="menu-dialog-panel panel-papir panel-papir--nastup">
+    <button type="button" class="menu-dialog-zavrit pripad-zavrit-x" id="menu-dialog-zavrit" title="Zavřít" aria-label="Zavřít dialog">✕</button>
+    <div class="menu-dialog-kicker" id="menu-dialog-kicker">Menu</div>
+    <h2 class="menu-dialog-nadpis" id="menu-dialog-nadpis">—</h2>
+    <div class="menu-dialog-text" id="menu-dialog-text">—</div>
+    <div class="menu-dialog-actions" id="menu-dialog-actions">
+      <button type="button" class="menu-dialog-btn menu-dialog-btn--secondary" id="menu-dialog-cancel">Zrušit</button>
+      <button type="button" class="menu-dialog-btn menu-dialog-btn--primary" id="menu-dialog-confirm">Pokračovat</button>
     </div>
-    <div class="menu-dvojice">
-      <button type="button" id="menu-ulozit-4" class="menu-polozka menu-polozka--pul">Záloha 4</button>
-      <button type="button" id="menu-ulozit-5" class="menu-polozka menu-polozka--pul">Záloha 5</button>
-    </div>
-    <div class="menu-dvojice-nadpis">Ruční zálohy — načíst</div>
-    <div class="menu-dvojice">
-      <button type="button" id="menu-nacist-1" class="menu-polozka menu-polozka--pul">Záloha 1</button>
-      <button type="button" id="menu-nacist-2" class="menu-polozka menu-polozka--pul">Záloha 2</button>
-      <button type="button" id="menu-nacist-3" class="menu-polozka menu-polozka--pul">Záloha 3</button>
-    </div>
-    <div class="menu-dvojice">
-      <button type="button" id="menu-nacist-4" class="menu-polozka menu-polozka--pul">Záloha 4</button>
-      <button type="button" id="menu-nacist-5" class="menu-polozka menu-polozka--pul">Záloha 5</button>
-    </div>
-    <div class="menu-dvojice-nadpis">Pátrání (spisy s osou stop)</div>
-    <p class="menu-stats-display-hint">Výchozí režim je hraní na počet pokusů. Časový limit lze znovu zapnout (náročnější).</p>
-    <button type="button" id="menu-patrani-na-cas" class="menu-polozka">Pátrání na čas: vypnuto</button>
-    <div id="menu-stats-display-wrap" class="menu-stats-display-wrap skryto">
-      <div class="menu-dvojice-nadpis">Zobrazení statistik</div>
-      <p class="menu-stats-display-hint">Dostupné po dohrání běhu — přepíná archiv, dopady a modál důsledků.</p>
-      <button type="button" class="menu-polozka menu-stats-mode-btn" data-stats-mode="intuitive">Intuitivní (příběh, bez čísel)</button>
-      <button type="button" class="menu-polozka menu-stats-mode-btn" data-stats-mode="hybrid">Smíšený (výchozí — pásma a šipky)</button>
-      <button type="button" class="menu-polozka menu-stats-mode-btn" data-stats-mode="spreadsheet">Tabulkový (vše číselně)</button>
-    </div>
-    <button id="menu-o-hre" class="menu-polozka">O hře</button>
-    <button id="menu-zavrit" class="menu-polozka menu-polozka--zavrit">Zpět do hry</button>
   </div>
 </div>
 

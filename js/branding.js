@@ -3,7 +3,8 @@
  *
  * Soubory vlož do assets/branding/:
  *   in-dubio-wordmark.png  — pouze název (horní lišta + úvodní obrazovka)
- *   in-dubio-logo-main.png — hlavní logo (menu + kredity po epilogu)
+ *   in-dubio-logo-main.png — hlavní logo (epilog + kredity po epilogu)
+ *   in-dubio-logo-menu.png — menu varianta bez dlouhého klíče
  *   legio-ultima.png         — logo studia Legio Ultima (kredity)
  *
  * PNG na průhledném nebo černém pozadí; bez souboru zůstane textový fallback.
@@ -14,6 +15,7 @@ const Branding = (() => {
   const SOUBORY = {
     wordmark: 'assets/branding/in-dubio-wordmark.png',
     logoMain: 'assets/branding/in-dubio-logo-main.png',
+    logoMenu: 'assets/branding/in-dubio-logo-menu.png',
     studio:   'assets/branding/legio-ultima.png'
   };
 
@@ -26,6 +28,10 @@ const Branding = (() => {
     img.dataset.brandingNapojeno = '1';
 
     const ukazText = () => {
+      if (img.id === 'menu-logo-main-img' && img.getAttribute('src') !== SOUBORY.logoMain) {
+        img.setAttribute('src', SOUBORY.logoMain);
+        return;
+      }
       img.classList.add('skryto');
       fallback.classList.remove('skryto');
     };

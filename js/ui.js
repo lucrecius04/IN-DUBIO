@@ -32,6 +32,70 @@ const UI = (() => {
     el.classList.remove('aktivni');
   }
 
+  /**
+   * Jednotný tmavý dialog pro menu (místo alert/confirm).
+   * @returns {Promise<boolean>} true = potvrzeno, false = zrušeno/zavřeno
+   */
+  function _zobrazMenuDialog(opts) {
+    const o = opts && typeof opts === 'object' ? opts : {};
+    const modal = document.getElementById('modal-menu-dialog');
+    const kicker = document.getElementById('menu-dialog-kicker');
+    const nadpis = document.getElementById('menu-dialog-nadpis');
+    const text = document.getElementById('menu-dialog-text');
+    const confirmBtn = document.getElementById('menu-dialog-confirm');
+    const cancelBtn = document.getElementById('menu-dialog-cancel');
+    const closeBtn = document.getElementById('menu-dialog-zavrit');
+    if (!modal || !nadpis || !text || !confirmBtn || !cancelBtn || !closeBtn) {
+      return Promise.resolve(window.confirm(String(o.text || o.title || 'Pokračovat?')));
+    }
+
+    kicker.textContent = String(o.kicker || 'Menu').trim() || 'Menu';
+    nadpis.textContent = String(o.title || 'Potvrzení').trim() || 'Potvrzení';
+    const rawText = String(o.text || '').trim();
+    const escapedText = _escapeHtmlProfil(rawText).replace(/\n/g, '<br>');
+    if (o.showStudioLogo === true) {
+      text.classList.add('menu-dialog-text--with-studio');
+      text.innerHTML =
+        '<div class="menu-dialog-studio-wrap">' +
+          '<img class="menu-dialog-studio-img" src="assets/branding/legio-ultima.png" alt="Legio Ultima" decoding="async">' +
+        '</div>' +
+        '<div class="menu-dialog-copy">' + escapedText + '</div>';
+    } else {
+      text.classList.remove('menu-dialog-text--with-studio');
+      text.innerHTML = escapedText;
+    }
+    confirmBtn.textContent = String(o.confirmText || 'Pokračovat').trim() || 'Pokračovat';
+    cancelBtn.textContent = String(o.cancelText || 'Zrušit').trim() || 'Zrušit';
+    cancelBtn.classList.toggle('skryto', o.cancelHidden === true);
+
+    return new Promise(resolve => {
+      let hotovo = false;
+      const done = (ok) => {
+        if (hotovo) return;
+        hotovo = true;
+        _zavriModal('modal-menu-dialog');
+        modal.removeEventListener('click', onBackdrop);
+        confirmBtn.removeEventListener('click', onConfirm);
+        cancelBtn.removeEventListener('click', onCancel);
+        closeBtn.removeEventListener('click', onCancel);
+        resolve(ok);
+      };
+      const onConfirm = () => done(true);
+      const onCancel = () => done(false);
+      const onBackdrop = (e) => {
+        if (e.target === modal) done(false);
+      };
+
+      confirmBtn.addEventListener('click', onConfirm);
+      cancelBtn.addEventListener('click', onCancel);
+      closeBtn.addEventListener('click', onCancel);
+      modal.addEventListener('click', onBackdrop);
+      _otevriModal('modal-menu-dialog');
+      if (o.cancelHidden === true) confirmBtn.focus();
+      else cancelBtn.focus();
+    });
+  }
+
   function zavriVsechnyModaly() {
     document.querySelectorAll('.overlay.aktivni').forEach(m => m.classList.remove('aktivni'));
   }
@@ -7660,7 +7724,7 @@ const UI = (() => {
     const b = document.getElementById('menu-patrani-na-cas');
     if (!b) return;
     const on = State.get('settings.patraniNaCas') === true;
-    b.textContent = on ? 'Pátrání na čas: zapnuto' : 'Pátrání na čas: vypnuto';
+    b.textContent = on ? 'Zapnuto' : 'Vypnuto';
     b.setAttribute('aria-pressed', on ? 'true' : 'false');
   }
 
@@ -7746,39 +7810,51 @@ const UI = (() => {
   }
 
   function _aktualizujTextyMenuSlotu() {
+    const autoStav = document.getElementById('menu-auto-stav');
     const autoBtn = document.getElementById('menu-nacist-auto');
-    if (autoBtn) {
-      const a = State.peekAutosave();
-      if (a) {
-        autoBtn.textContent = 'Načíst automatické uložení — den ' + a.currentDay;
-        autoBtn.disabled = false;
-        autoBtn.title = 'Načíst poslední automatické uložení (během hry se přepisuje)';
-      } else {
-        autoBtn.textContent = 'Žádné automatické uložení';
-        autoBtn.disabled = true;
-        autoBtn.title = 'Automatické uložení vznikne po chvíli hraní';
-      }
+    const a = State.peekAutosave();
+    if (autoStav) {
+      autoStav.textContent = a ? 'Den ' + a.currentDay : 'Zatím žádné';
+      autoStav.classList.toggle('menu-slot-stav--obsazeno', !!a);
     }
+    if (autoBtn) {
+      autoBtn.disabled = !a;
+      autoBtn.title = a
+        ? 'Načíst automatické uložení (den ' + a.currentDay + ')'
+        : 'Automatické uložení vznikne po chvíli hraní';
+    }
+    const autoRow = document.querySelector('.menu-slot--auto');
+    if (autoRow) autoRow.classList.toggle('menu-slot--obsazeno', !!a);
+
     const nSlot = Number(State.pocetRucnichUlozeni) || 5;
     for (let poz = 1; poz <= nSlot; poz++) {
-      const txt = _textProSlotUlozeni(poz);
-      const maUlozku = !!State.peekUlozene(poz);
+      const ulozeno = State.peekUlozene(poz);
+      const maUlozku = !!ulozeno;
+      const stavEl = document.getElementById('menu-slot-stav-' + poz);
+      if (stavEl) {
+        stavEl.textContent = maUlozku
+          ? ('Den ' + ulozeno.currentDay)
+          : 'Prázdná';
+        stavEl.classList.toggle('menu-slot-stav--obsazeno', maUlozku);
+      }
       const ulozBtn = document.getElementById('menu-ulozit-' + poz);
       const nacistBtn = document.getElementById('menu-nacist-' + poz);
       if (ulozBtn) {
-        ulozBtn.textContent = txt;
+        ulozBtn.textContent = 'Uložit';
         ulozBtn.disabled = false;
         ulozBtn.title = maUlozku
-          ? 'Přepsat tuto ruční zálohu aktuální hrou'
-          : 'Uložit aktuální postup do této prázdné zálohy';
+          ? 'Přepsat ruční zálohu ' + poz + ' (nyní den ' + ulozeno.currentDay + ')'
+          : 'Uložit aktuální postup do prázdné zálohy ' + poz;
       }
       if (nacistBtn) {
-        nacistBtn.textContent = txt;
+        nacistBtn.textContent = 'Načíst';
         nacistBtn.disabled = !maUlozku;
         nacistBtn.title = maUlozku
-          ? 'Načíst ruční zálohu z této pozice'
+          ? 'Načíst ruční zálohu ' + poz + ' (den ' + ulozeno.currentDay + ')'
           : 'V této záloze není uložená hra';
       }
+      const row = document.querySelector('.menu-slot[data-slot="' + poz + '"]');
+      if (row) row.classList.toggle('menu-slot--obsazeno', maUlozku);
     }
     _aktualizujMenuStatsZobrazeni();
     _aktualizujMenuPatraniNastaveni();
@@ -7814,7 +7890,14 @@ const UI = (() => {
       'Na jiném zařízení nebo v jiném prohlížeči uložená pozice není; ' +
       'po vymazání dat stránky nebo v soukromém okně může zmizet.\n\n' +
       'Verze: 0.1 (vývoj)';
-    alert(text);
+    void _zobrazMenuDialog({
+      kicker: 'Informace',
+      title: 'O hře a ukládání',
+      text,
+      showStudioLogo: true,
+      confirmText: 'Rozumím',
+      cancelHidden: true
+    });
   }
 
   // --- INICIALIZACE LISTENERY ---
@@ -7822,6 +7905,10 @@ const UI = (() => {
   function inicializuj() {
     if (typeof Branding !== 'undefined' && Branding.inicializuj) {
       Branding.inicializuj();
+      Branding.napojFallback(
+        document.getElementById('menu-studio-badge-img'),
+        document.getElementById('menu-studio-badge-fallback')
+      );
     }
 
     // Zápisník na stole — archiv (záložka Rozsudky)
@@ -8042,47 +8129,64 @@ const UI = (() => {
       _zavriMenu();
     });
 
-    document.getElementById('menu-nova-hra')?.addEventListener('click', () => {
+    document.getElementById('menu-zavrit-x')?.addEventListener('click', () => {
       _zavriMenu();
-      if (confirm(
-        'Opravdu začít novou hru?\n\nAktuální běh a automatické uložení se smažou. Ruční zálohy 1–5 v menu zůstanou — můžeš je načíst.'
-      )) {
+    });
+
+    document.getElementById('menu-nova-hra')?.addEventListener('click', () => {
+      void _zobrazMenuDialog({
+        kicker: 'Nová hra',
+        title: 'Začít nový běh?',
+        text:
+          'Aktuální rozehraný běh a automatické uložení se smažou.\n\n' +
+          'Ruční zálohy 1–5 v menu zůstanou zachované a můžeš je později načíst.',
+        confirmText: 'Začít znovu',
+        cancelText: 'Zpět'
+      }).then(ok => {
+        if (!ok) return;
+        _zavriMenu();
         State.reset();
         location.reload();
-      }
+      });
     });
 
     function _handlerUlozPozici(pozice) {
       const denAktualni = Number(State.get('currentDay'));
       const stara = State.peekUlozene(pozice);
-      let ok;
-      if (stara) {
-        ok = window.confirm(
-          'Opravdu přepsat ruční zálohu?\n\n' +
-          'V této záloze je uložen den ' + stara.currentDay + '.\n' +
-          'Aktuální běžící hra je den ' + denAktualni + ' — po uložení zde zůstane jen tento stav.\n\n' +
-          'Pokračovat a přepsat?'
+      const title = stara ? 'Přepsat ruční zálohu?' : 'Uložit do ruční zálohy?';
+      const body = stara
+        ? (
+          'V záloze ' + pozice + ' je uložen den ' + stara.currentDay + '.\n' +
+          'Aktuální hra je den ' + denAktualni + '.\n\n' +
+          'Po potvrzení zůstane v tomto slotu jen nový stav.'
+        )
+        : (
+          'Uložit aktuální postup (den ' + denAktualni + ') do prázdné zálohy ' + pozice + '.\n\n' +
+          'Později můžeš načíst jinou zálohu; neuložené změny v jiném slotu se nepřepíšou samy.'
         );
-      } else {
-        ok = window.confirm(
-          'Uložit aktuální postup (den ' + denAktualni + ') do této prázdné zálohy?\n\n' +
-          'Později můžete načíst jinou zálohu; neuložené změny v jiné pozici ztratíte, pokud je nepřepíšete úmyslně.'
-        );
-      }
-      if (!ok) return;
-      if (!State.uloz(pozice)) {
+
+      void _zobrazMenuDialog({
+        kicker: 'Uložení',
+        title,
+        text: body,
+        confirmText: stara ? 'Přepsat' : 'Uložit',
+        cancelText: 'Zrušit'
+      }).then(ok => {
+        if (!ok) return;
+        if (!State.uloz(pozice)) {
+          zobrazStavovouZpravu(
+            'Uložení se nepodařilo (prohlížeč blokuje úložiště, soukromé okno nebo zaplněný disk).'
+          );
+          return;
+        }
+        _aktualizujTextyMenuSlotu();
+        _zavriMenu();
         zobrazStavovouZpravu(
-          'Uložení se nepodařilo (prohlížeč blokuje úložiště, soukromé okno nebo zaplněný disk).'
+          stara
+            ? 'Uloženo — záloha přepsána (den ' + denAktualni + ').'
+            : 'Hra uložena do zálohy (den ' + denAktualni + ').'
         );
-        return;
-      }
-      _aktualizujTextyMenuSlotu();
-      _zavriMenu();
-      zobrazStavovouZpravu(
-        stara
-          ? 'Uloženo — záloha přepsána (den ' + denAktualni + ').'
-          : 'Hra uložena do zálohy (den ' + denAktualni + ').'
-      );
+      });
     }
 
     {
@@ -8099,24 +8203,28 @@ const UI = (() => {
         return;
       }
       const denAktualni = Number(State.get('currentDay'));
-      const ok = window.confirm(
-        'Opravdu načíst automatické uložení?\n\n' +
-        'V automatickém uložení je den ' + ulozene.currentDay + '.\n' +
-        'Aktuálně hrajete den ' + denAktualni + ' — po načtení tento postup nahradí uložený stav.\n\n' +
-        '(Ruční zálohy 1 a 2 zůstanou beze změny.)\n\n' +
-        'Načíst?'
-      );
-      if (!ok) return;
-      const nacten = State.nactiJenAutosave();
-      if (!nacten) {
-        zobrazStavovouZpravu('Automatické uložení se nepodařilo načíst.');
-        return;
-      }
-      Engine.syncFromSavedState();
-      obnovUIDataPoNacteniSlotu();
-      _aktualizujTextyMenuSlotu();
-      _zavriMenu();
-      zobrazStavovouZpravu('Automatické uložení načteno — den ' + ulozene.currentDay + '.');
+      void _zobrazMenuDialog({
+        kicker: 'Načtení',
+        title: 'Načíst automatické uložení?',
+        text:
+          'V automatickém uložení je den ' + ulozene.currentDay + '.\n' +
+          'Aktuálně hraješ den ' + denAktualni + '.\n\n' +
+          'Po načtení se běžící stav nahradí uloženým postupem. Ruční zálohy zůstanou beze změny.',
+        confirmText: 'Načíst',
+        cancelText: 'Zpět'
+      }).then(ok => {
+        if (!ok) return;
+        const nacten = State.nactiJenAutosave();
+        if (!nacten) {
+          zobrazStavovouZpravu('Automatické uložení se nepodařilo načíst.');
+          return;
+        }
+        Engine.syncFromSavedState();
+        obnovUIDataPoNacteniSlotu();
+        _aktualizujTextyMenuSlotu();
+        _zavriMenu();
+        zobrazStavovouZpravu('Automatické uložení načteno — den ' + ulozene.currentDay + '.');
+      });
     }
 
     document.getElementById('menu-nacist-auto')?.addEventListener('click', () => _handlerNactiAutosave());
@@ -8128,24 +8236,28 @@ const UI = (() => {
         return;
       }
       const denAktualni = Number(State.get('currentDay'));
-      const ok = window.confirm(
-        'Opravdu načíst ruční zálohu?\n\n' +
-        'V záloze je uložen den ' + ulozene.currentDay + '.\n' +
-        'Aktuálně hrajete den ' + denAktualni + ' — po načtení tento postup nahradí uložený stav.\n\n' +
-        '(Nejprve si můžete běžící hru uložit do druhé zálohy.)\n\n' +
-        'Načíst?'
-      );
-      if (!ok) return;
-      const nacten = State.nacti(pozice);
-      if (!nacten) {
-        zobrazStavovouZpravu('Uloženou hru se nepodařilo načíst.');
-        return;
-      }
-      Engine.syncFromSavedState();
-      obnovUIDataPoNacteniSlotu();
-      _aktualizujTextyMenuSlotu();
-      _zavriMenu();
-      zobrazStavovouZpravu('Hra načtena — den ' + ulozene.currentDay + '.');
+      void _zobrazMenuDialog({
+        kicker: 'Načtení',
+        title: 'Načíst ruční zálohu ' + pozice + '?',
+        text:
+          'V záloze je uložen den ' + ulozene.currentDay + '.\n' +
+          'Aktuálně hraješ den ' + denAktualni + '.\n\n' +
+          'Po načtení se běžící stav nahradí uloženým postupem. Pokud chceš současný běh zachovat, nejdřív ho ulož do jiného slotu.',
+        confirmText: 'Načíst',
+        cancelText: 'Zpět'
+      }).then(ok => {
+        if (!ok) return;
+        const nacten = State.nacti(pozice);
+        if (!nacten) {
+          zobrazStavovouZpravu('Uloženou hru se nepodařilo načíst.');
+          return;
+        }
+        Engine.syncFromSavedState();
+        obnovUIDataPoNacteniSlotu();
+        _aktualizujTextyMenuSlotu();
+        _zavriMenu();
+        zobrazStavovouZpravu('Hra načtena — den ' + ulozene.currentDay + '.');
+      });
     }
 
     {
@@ -8156,6 +8268,10 @@ const UI = (() => {
     }
 
     document.getElementById('menu-o-hre')?.addEventListener('click', () => {
+      _zobrazOHre();
+    });
+
+    document.getElementById('menu-o-hre-text')?.addEventListener('click', () => {
       _zobrazOHre();
     });
 
