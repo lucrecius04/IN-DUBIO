@@ -7820,6 +7820,10 @@ const UI = (() => {
   // --- INICIALIZACE LISTENERY ---
 
   function inicializuj() {
+    if (typeof Branding !== 'undefined' && Branding.inicializuj) {
+      Branding.inicializuj();
+    }
+
     // Zápisník na stole — archiv (záložka Rozsudky)
     document.getElementById('desk-notebook')?.addEventListener('click', () => {
       if (typeof SFX !== 'undefined') SFX.penWriting();
@@ -8267,9 +8271,133 @@ const UI = (() => {
       const novySouhrn = restartBtn.cloneNode(true);
       restartBtn.parentNode.replaceChild(novySouhrn, restartBtn);
       novySouhrn.addEventListener('click', () => {
-        zobrazSouhrnKampane();
+        spustKreditniSekvenci(() => zobrazSouhrnKampane());
       });
     }
+  }
+
+  const KREDITY_MS = {
+    zatmaveni: 1900,
+    fadeLogo: 1600,
+    drzeniHra: 3000,
+    drzeniStudio: 3600,
+    mezera: 550
+  };
+
+  function _kredityResetVrstvy() {
+    const root = document.getElementById('konec-kredity-overlay');
+    const hra = document.getElementById('konec-kredity-hra');
+    const studio = document.getElementById('konec-kredity-studio');
+    if (hra) {
+      hra.classList.remove('konec-kredity-logo-slot--viditelny');
+      hra.setAttribute('aria-hidden', 'true');
+    }
+    if (studio) {
+      studio.classList.remove('konec-kredity-logo-slot--viditelny');
+      studio.setAttribute('aria-hidden', 'true');
+    }
+    if (root) {
+      root.classList.add('skryto');
+      root.setAttribute('aria-hidden', 'true');
+    }
+    const plachta = document.getElementById('desk-priprava-overlay');
+    if (plachta) {
+      plachta.classList.remove(
+        'desk-priprava-overlay--aktivni',
+        'desk-priprava-overlay--pomalu',
+        'desk-priprava-overlay--rozdeni',
+        'desk-priprava-overlay--propustne'
+      );
+      plachta.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  function _kredityNastavLogaFallback() {
+    if (typeof Branding !== 'undefined' && Branding.inicializuj) {
+      Branding.inicializuj();
+    }
+  }
+
+  /**
+   * Po epilogu: zatmavení → logo hry → zatmavení → logo studia → souhrn (callback).
+   * Klik na obrazovku celou sekvenci přeskočí.
+   */
+  async function spustKreditniSekvenci(onHotovo) {
+    const root = document.getElementById('konec-kredity-overlay');
+    const hra = document.getElementById('konec-kredity-hra');
+    const studio = document.getElementById('konec-kredity-studio');
+    const plocha = document.getElementById('konec-kredity-plocha');
+    const epilog = document.getElementById('konec-hry-overlay');
+
+    if (!root || !hra) {
+      if (typeof onHotovo === 'function') onHotovo();
+      return;
+    }
+
+    _kredityNastavLogaFallback();
+
+    let preskoceno = false;
+    const cekTimery = [];
+
+    const cek = ms => new Promise(resolve => {
+      if (preskoceno) {
+        resolve();
+        return;
+      }
+      const t = window.setTimeout(() => {
+        const idx = cekTimery.indexOf(t);
+        if (idx !== -1) cekTimery.splice(idx, 1);
+        resolve();
+      }, ms);
+      cekTimery.push(t);
+    });
+
+    const preskoc = () => {
+      if (preskoceno) return;
+      preskoceno = true;
+      while (cekTimery.length) window.clearTimeout(cekTimery.pop());
+    };
+
+    const zobrazLogo = async (slot, drzeniMs) => {
+      if (!slot || preskoceno) return;
+      slot.setAttribute('aria-hidden', 'false');
+      await cek(40);
+      if (preskoceno) return;
+      slot.classList.add('konec-kredity-logo-slot--viditelny');
+      await cek(drzeniMs);
+      if (preskoceno) return;
+      slot.classList.remove('konec-kredity-logo-slot--viditelny');
+      await cek(KREDITY_MS.fadeLogo);
+      slot.setAttribute('aria-hidden', 'true');
+      await cek(KREDITY_MS.mezera);
+    };
+
+    const onKlik = () => preskoc();
+    plocha?.addEventListener('click', onKlik);
+    root.addEventListener('click', onKlik);
+
+    if (epilog) epilog.classList.add('skryto');
+
+    root.classList.remove('skryto');
+    root.setAttribute('aria-hidden', 'false');
+    hra.classList.remove('konec-kredity-logo-slot--viditelny');
+    if (studio) studio.classList.remove('konec-kredity-logo-slot--viditelny');
+
+    if (typeof zobrazZatemneniPripravyStoluPomalu === 'function') {
+      await zobrazZatemneniPripravyStoluPomalu();
+    } else {
+      await cek(KREDITY_MS.zatmaveni);
+    }
+
+    if (!preskoceno) await zobrazLogo(hra, KREDITY_MS.drzeniHra);
+    if (!preskoceno && studio) await zobrazLogo(studio, KREDITY_MS.drzeniStudio);
+
+    while (cekTimery.length) window.clearTimeout(cekTimery.pop());
+    _kredityResetVrstvy();
+    plocha?.removeEventListener('click', onKlik);
+    root.removeEventListener('click', onKlik);
+
+    if (typeof onHotovo === 'function') onHotovo();
   }
 
   function _novaHraPoKonce() {
@@ -8684,6 +8812,7 @@ const UI = (() => {
     },
     zobrazPredKoncemAKonecHry,
     zobrazKonecHry,
+    spustKreditniSekvenci,
     zobrazSouhrnKampane,
     zobrazBtnDalsiDen,
     aktualizujSlozky,

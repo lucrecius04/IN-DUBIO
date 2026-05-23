@@ -73,7 +73,7 @@ Po **rozsudku** (`Cases.zpracujRozsudek`) se může spustit konec hry:
 
 Konce nastaví `gameOver`, `endingType`, uloží stav a hudbu epilogu. **Řádky epilogu** (postavy + Ben) sestaví `Engine._sestavEpilog(typ)` především z **`data/endings_epilog.json`** (`typy[endingType]`, načtení `DataLoader.ziskejEndingsEpilog()`; výběr větví např. Beneš / Horáková viz `_napojeni` v JSON a `Engine._epilogRadekZeSouboru`). Chybí-li soubor, typ v datech nebo konkrétní řetězec, použije se **záložní text** v `js/engine.js`.
 
-**UI:** `Engine.spustKonec` volá **`UI.zobrazPredKoncemAKonecHry(typ, epilog)`** — modál **`#modal-konec-prelude`** z **`data/ending_prelude.json`**, po potvrzení **`UI.zobrazKonecHry`** (`#konec-hry-overlay`). Chybí-li DOM předepilogu, data předepilogu nebo exportovaná funkce, jde se rovnou na **`zobrazKonecHry`**.
+**UI:** `Engine.spustKonec` volá **`UI.zobrazPredKoncemAKonecHry(typ, epilog)`** — modál **`#modal-konec-prelude`** z **`data/ending_prelude.json`**, po potvrzení **`UI.zobrazKonecHry`** (`#konec-hry-overlay`). Tlačítko „Přehled vyprávění“ spustí **`UI.spustKreditniSekvenci`** (zatmavení → IN DUBIO → logo studia v **`assets/branding/legio-ultima.png`**) a pak **`UI.zobrazSouhrnKampane`**. Chybí-li DOM předepilogu, data předepilogu nebo exportovaná funkce, jde se rovnou na **`zobrazKonecHry`**.
 
 > **Poznámka:** V `story.mdc` je rozpracováno **osm naratálních konců** (Přežití, Korupce, Hrdina, Útěk, Smíření, Atentát, Kruh, Anna). V kódu jsou **vyvolané typy** konce vázané na `endingType`; texty epilogu pro daný typ jsou v **`endings_epilog.json`** (klíče musí odpovídat `endingType`). Plné mapování všech naratálních variant na podmínky ve hře je cíl designu; tento soubor popisuje **co dnes engine umí spustit** a obecný denní tok.
 

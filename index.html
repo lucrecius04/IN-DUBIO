@@ -89,15 +89,17 @@
     }
 
     .desk-scene-header-left {
-      flex: 0 0 auto;
+      flex: 0 1 auto;
       min-width: 0;
+      max-width: min(540px, 56vw);
     }
 
     .desk-scene-header-left .logo-hry-nazev--lista {
       position: static;
-      font-size: clamp(22px, 2.1vw, 30px);
-      letter-spacing: 0.22em;
-      padding: 2px 0;
+      font-size: clamp(24px, 3vw, 34px);
+      letter-spacing: 0.14em;
+      padding: 0;
+      line-height: 1;
     }
 
     .desk-scene-header-center {
@@ -1067,8 +1069,19 @@
   z-index: 2000; cursor: pointer;
   transition: opacity 1.35s ease;
 ">
-  <div class="logo-hry-nazev logo-hry-nazev--uvod">IN DUBIO</div>
-  <div style="font-family: 'IBM Plex Mono', Consolas, 'Courier New', monospace; font-size: 12px; color: rgba(240,220,180,0.5); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 48px; animation: konecHryText 2s ease 0.5s both;">Střední Evropa, 1931</div>
+  <div class="logo-hry-brand logo-hry-brand--uvod">
+      <img
+        class="logo-hry-brand-img logo-hry-brand-img--wordmark logo-hry-brand-img--uvod skryto"
+        id="uvod-wordmark-img"
+        src="assets/branding/in-dubio-wordmark.png"
+        alt="IN DUBIO"
+        decoding="async"
+        loading="eager"
+        fetchpriority="high"
+      >
+    <div class="logo-hry-nazev logo-hry-nazev--uvod branding-brand-fallback" id="uvod-wordmark-fallback">IN DUBIO</div>
+  </div>
+  <div class="uvod-podtitul" style="font-family: 'IBM Plex Mono', Consolas, 'Courier New', monospace; font-size: 12px; color: rgba(240,220,180,0.5); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 48px; animation: konecHryText 2s ease 0.5s both;">Střední Evropa, 1931</div>
   <div style="font-family: Georgia, serif; font-size: 14px; color: rgba(240,220,180,0.3); font-style: italic; max-width: 500px; text-align: center; line-height: 2; margin-bottom: 48px; animation: konecHryText 2s ease 1s both;">
     JUDr. Benedikt Vraný. Soudce. <br>Zákon a spravedlnost nejsou vždy totéž.
   </div>
@@ -1085,7 +1098,17 @@
   <div class="desk-scene-top">
     <div class="desk-scene-header-main">
       <div class="desk-scene-header-left">
-        <div class="logo-hry-nazev logo-hry-nazev--lista" id="logo-hry-nazev">IN DUBIO</div>
+        <div class="logo-hry-brand logo-hry-brand--lista">
+          <img
+            class="logo-hry-brand-img logo-hry-brand-img--wordmark logo-hry-brand-img--lista skryto"
+            id="logo-hry-wordmark-img"
+            src="assets/branding/in-dubio-wordmark.png"
+            alt="IN DUBIO"
+            decoding="async"
+            loading="eager"
+          >
+          <div class="logo-hry-nazev logo-hry-nazev--lista branding-brand-fallback" id="logo-hry-wordmark-fallback">IN DUBIO</div>
+        </div>
       </div>
       <div class="desk-scene-header-center">
         <span id="kalendar-datum" class="kalendar-datum">pondělí, 2. března 1931</span>
@@ -1594,6 +1617,32 @@
   </div>
 </div>
 
+<!-- Kredity po epilogu: zatmavení → IN DUBIO → studio → souhrn statistik -->
+<div id="konec-kredity-overlay" class="konec-kredity-overlay skryto" aria-hidden="true">
+  <div class="konec-kredity-plocha" id="konec-kredity-plocha" title="Kliknutím přeskočíte">
+    <div class="konec-kredity-logo-slot" id="konec-kredity-hra" aria-hidden="true">
+      <img
+        class="konec-kredity-hra-img logo-hry-brand-img logo-hry-brand-img--main logo-hry-brand-img--kredity skryto"
+        id="konec-kredity-hra-img"
+        src="assets/branding/in-dubio-logo-main.png"
+        alt="IN DUBIO"
+        decoding="async"
+      >
+      <div class="logo-hry-nazev logo-hry-nazev--kredity konec-kredity-hra-fallback" id="konec-kredity-hra-fallback">IN DUBIO</div>
+    </div>
+    <div class="konec-kredity-logo-slot" id="konec-kredity-studio" aria-hidden="true">
+      <img
+        class="konec-kredity-studio-img skryto"
+        id="konec-kredity-studio-img"
+        src="assets/branding/legio-ultima.png"
+        alt="Legio Ultima"
+        decoding="async"
+      >
+      <p class="konec-kredity-studio-fallback skryto" id="konec-kredity-studio-fallback">LEGIO ULTIMA</p>
+    </div>
+  </div>
+</div>
+
 <div id="konec-hry-overlay" class="skryto">
   <div class="konec-hry-wrap">
     <div class="vecer-panel narativ-shell konec-hry-panel panel-papir--nastup">
@@ -1650,7 +1699,16 @@
 
 <div id="modal-menu" class="overlay modal-menu-overlay skryto">
   <div class="menu-panel">
-    <div class="menu-nazev">IN DUBIO</div>
+    <div class="logo-hry-brand logo-hry-brand--menu">
+      <img
+        class="logo-hry-brand-img logo-hry-brand-img--main logo-hry-brand-img--menu skryto"
+        id="menu-logo-main-img"
+        src="assets/branding/in-dubio-logo-main.png"
+        alt="IN DUBIO"
+        decoding="async"
+      >
+      <div class="menu-nazev branding-brand-fallback" id="menu-logo-main-fallback">IN DUBIO</div>
+    </div>
     <div class="menu-popis">Textová soudní hra, 1931</div>
     <button id="menu-nova-hra" class="menu-polozka">Nová hra</button>
     <div class="menu-dvojice-nadpis">Automatické uložení</div>
@@ -1733,6 +1791,7 @@
 <script src="js/cases.js"></script>
 <script src="js/desk.js"></script>
 <script src="js/stats-summary.js"></script>
+<script src="js/branding.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/tutorial.js"></script>
 <script src="js/music.js"></script>

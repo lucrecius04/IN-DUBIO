@@ -2248,6 +2248,92 @@ button.knihovna-link:hover {
   animation: konecHryText 2s ease 2.2s both;
 }
 
+/* --- Kredity po epilogu (#konec-kredity-overlay) --- */
+#konec-kredity-overlay.konec-kredity-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#konec-kredity-overlay.skryto {
+  display: none;
+  pointer-events: none;
+}
+
+.konec-kredity-plocha {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.konec-kredity-logo-slot {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 6vw, 64px);
+  box-sizing: border-box;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.6s ease;
+}
+
+.konec-kredity-logo-slot--viditelny {
+  opacity: 1;
+}
+
+.logo-hry-nazev--kredity {
+  font-size: clamp(36px, 7vw, 56px);
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: #f0e8d0;
+  text-align: center;
+  animation: none;
+}
+
+.konec-kredity-studio-img {
+  display: block;
+  max-width: min(340px, 62vw);
+  max-height: min(48vh, 520px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.konec-kredity-hra-img.skryto,
+.konec-kredity-hra-fallback.skryto {
+  display: none;
+}
+
+.konec-kredity-studio-fallback {
+  font-family: var(--pismo-nadpis);
+  font-size: clamp(16px, 2.8vw, 24px);
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  color: rgba(240, 232, 208, 0.92);
+  text-align: center;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.konec-kredity-studio-fallback.skryto,
+.konec-kredity-studio-img.skryto {
+  display: none;
+}
+
 /* --- Souhrn kampaně po epilogu (#konec-statistiky-overlay) --- */
 #konec-statistiky-overlay {
   position: fixed;
@@ -4909,7 +4995,12 @@ button.knihovna-link:hover {
   letter-spacing: 5px;
   text-transform: uppercase;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
-  margin-bottom: 6px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.logo-hry-brand--menu .menu-nazev {
+  margin-bottom: 0;
 }
 
 .menu-popis {

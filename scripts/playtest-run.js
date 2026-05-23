@@ -410,17 +410,21 @@ async function zpracujDopisyNaStole(page) {
  * Opakuje se dokud je #modal-adventure aktivní (max 20 kol).
  */
 /**
- * Po spustKonec: prelude (#modal-konec-prelude) → epilog (#konec-hry-overlay).
+ * Po spustKonec: prelude → epilog → kredity → souhrn statistik.
  * Vrací true pokud hra skončila (gameOver).
  */
 async function zpracujEpilogKonce(page) {
-  for (let i = 0; i < 40; i++) {
+  for (let i = 0; i < 55; i++) {
     const stav = await page.evaluate(() => ({
       gameOver: !!State.get('gameOver'),
       prelude: !!document.getElementById('modal-konec-prelude')?.classList.contains('aktivni'),
       epilog: !document.getElementById('konec-hry-overlay')?.classList.contains('skryto'),
+      kredity: !document.getElementById('konec-kredity-overlay')?.classList.contains('skryto'),
+      statistiky: !document.getElementById('konec-statistiky-overlay')?.classList.contains('skryto'),
     }));
-    if (!stav.gameOver && !stav.prelude && !stav.epilog) return false;
+    if (!stav.gameOver && !stav.prelude && !stav.epilog && !stav.kredity && !stav.statistiky) {
+      return false;
+    }
 
     if (stav.prelude) {
       console.log('[run] Epilog — prelude, pokračuji…');
@@ -434,8 +438,15 @@ async function zpracujEpilogKonce(page) {
       console.log(`[run] Epilog zobrazen (endingType=${await page.evaluate(() => State.get('endingType'))})`);
       try {
         await page.click('#konec-restart');
-        await pauza(400);
+        await pauza(12000);
       } catch { /* overlay zůstane — pro snapshot stačí */ }
+      continue;
+    }
+    if (stav.kredity) {
+      await pauza(800);
+      continue;
+    }
+    if (stav.statistiky) {
       return true;
     }
     if (stav.gameOver) {

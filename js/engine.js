@@ -13,6 +13,9 @@ const Engine = (() => {
    */
   const _SKIP_D1_INTRO_MODALS = false;
 
+  /** Náhled sekvence log (zatmavení → IN DUBIO → studio) po skončení dne 1 — vypnout před release. */
+  const _TEST_KREDITY_PO_D1 = true;
+
   /**
    * Akce průzkumu (inkoust) na každý pracovní den s alespoň jedním případem.
    * Ostré nastavení: 3. Změnit sem + state.js resetDen() + VYCHOZI_STAV najednou.
@@ -1016,6 +1019,16 @@ const Engine = (() => {
       await _cekejNaFragment(_denData.night_fragment);
     }
 
+    /* Test: stejná kreditní sekvence jako po epilogu — po dni 1, před přechodem na den 2. */
+    if (
+      _TEST_KREDITY_PO_D1 &&
+      Number(State.get('currentDay')) === 1 &&
+      typeof UI !== 'undefined' &&
+      typeof UI.spustKreditniSekvenci === 'function'
+    ) {
+      await UI.spustKreditniSekvenci();
+    }
+
     // Sobota večer — shrnutí týdne a tiché bonusy před přechodem na neděli
     const denS = Number(State.get('currentDay'));
     if (Number.isFinite(denS) && denS % 7 === 6) {
@@ -1676,6 +1689,10 @@ const Engine = (() => {
   });
 
   function _inicializujUvod() {
+    if (typeof Branding !== 'undefined' && Branding.inicializuj) {
+      Branding.inicializuj();
+    }
+
     const overlay = document.getElementById('uvod-overlay');
     if (!overlay) { inicializuj(); return; }
 
