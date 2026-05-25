@@ -4345,7 +4345,8 @@ button.knihovna-link:hover {
 }
 
 #modal-archiv .archiv-stav-finance-label {
-  display: inline-flex;
+  display: inline-grid;
+  grid-template-columns: 56px 1fr;
   align-items: center;
   gap: 12px;
   min-width: 0;
@@ -4361,23 +4362,27 @@ button.knihovna-link:hover {
 #modal-archiv .archiv-stav-duse-pravy .finance-widget .finance-radek--zustatek {
   font-size: 15px;
   padding-top: 0;
-  padding-bottom: 6px;
-  margin-bottom: 2px;
+  padding-bottom: 2px;
+  margin-bottom: 0;
   border-bottom: 1px solid rgba(100, 60, 20, 0.28);
 }
 
 #modal-archiv .archiv-stav-duse-pravy .finance-radek--zustatek {
   align-items: center;
+  min-height: 56px;
 }
 
 #modal-archiv .archiv-stav-duse-pravy .finance-radek--zustatek .archiv-stav-duse-ikona {
-  width: 70px;
-  height: 70px;
+  width: 56px;
+  height: 56px;
+  overflow: visible;
+  justify-self: center;
 }
 
 #modal-archiv .archiv-stav-duse-pravy .finance-radek--zustatek .archiv-stav-duse-ikona img {
-  width: 64px;
-  height: 64px;
+  width: 96px;
+  height: 96px;
+  transform: translateY(1px);
 }
 
 /* Řádek „Za 7 dní celkem“ — bez čárkované čáry nad blokem Příští plat / odměna */
@@ -5481,6 +5486,12 @@ button.knihovna-link:hover {
   color: rgba(230, 216, 190, 0.9);
 }
 
+.menu-dialog-panel.menu-dialog-panel--wide {
+  width: min(920px, calc(100vw - 36px));
+  max-width: 920px;
+  padding: 26px 32px 22px;
+}
+
 .menu-dialog-panel::before {
   border-color: rgba(146, 108, 58, 0.16);
 }
@@ -5518,16 +5529,20 @@ button.knihovna-link:hover {
 .menu-dialog-studio-wrap {
   margin: 0;
   display: flex;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 4px 0;
 }
 
 .menu-dialog-studio-img {
   display: block;
-  max-width: min(240px, 34vw);
-  max-height: 240px;
-  width: auto;
+  width: min(100%, 260px);
+  max-width: 260px;
   height: auto;
+  max-height: min(72vh, 320px);
   object-fit: contain;
+  object-position: center center;
   mix-blend-mode: screen;
   filter: brightness(1.08) contrast(1.18);
   opacity: 0.98;
@@ -5535,13 +5550,14 @@ button.knihovna-link:hover {
 
 .menu-dialog-text--with-studio {
   display: grid;
-  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
-  gap: 20px;
-  align-items: start;
+  grid-template-columns: minmax(200px, 260px) minmax(0, 1fr);
+  gap: 28px;
+  align-items: stretch;
 }
 
 .menu-dialog-copy {
   min-width: 0;
+  align-self: center;
 }
 
 .menu-dialog-actions {
@@ -5604,9 +5620,29 @@ button.knihovna-link:hover {
     margin-top: 0;
   }
 
+}
+
+@media (max-width: 720px) {
+  .menu-dialog-panel.menu-dialog-panel--wide {
+    width: min(560px, calc(100vw - 28px));
+    max-width: 560px;
+  }
+
   .menu-dialog-text--with-studio {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .menu-dialog-studio-wrap {
+    justify-content: flex-start;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .menu-dialog-studio-img {
+    max-width: min(200px, 56vw);
+    max-height: 200px;
   }
 }
 

@@ -109,7 +109,7 @@ const Engine = (() => {
       if (kC >= 8 && kTv > 0) {
         const pct = Math.round((kTv / kC) * 100);
         if (pct >= 40) {
-          radky.push(`Za kampaň už ${kTv} tvrdých rozsudků — soudní síň vás poznává jako přísného.`);
+          radky.push(`Po návratu do úřadu už ${kTv} tvrdých rozsudků — soudní síň vás poznává jako přísného.`);
         }
       }
     }

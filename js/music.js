@@ -14,9 +14,14 @@ const Music = (() => {
     danger:       'assets/sounds/music/In Dubio - Danger.mp3',
     epilog:       'assets/sounds/music/In Dubio - Epilog.mp3'
   };
+  /** Začátek 3. týdne kampaně (kalendářní den). Od tohoto dne běží pouze Danger. */
+  const TRETI_TYDEN_OD_DNE = 15;
 
   const CROSSFADE_SEKUND = 3;
   const VYCHOZI_HLASITOST = 0.4;
+  const MENU_PRECHOD_STLUM_MS = 700;
+  const MENU_PRECHOD_TICHO_MS = 2000;
+  const MENU_PRECHOD_NABEH_MS = 2200;
 
   /** Během verdiktního zvuku: násobek hlasitosti hudby (0–1). */
   const DUCK_VERDIKT_HLASITOST_MULT = 0.28;
@@ -40,6 +45,10 @@ const Music = (() => {
   let _aktualniNazev = null;   // název právě hrající stopy
   let _cilovaNazev   = null;   // název, na který se přepneme
   let _kontext       = 'neutral'; // 'neutral' | 'tension' | 'weight'
+  /** Tension smí hrát pouze během aktivního pátrání. */
+  let _patraniAktivni = false;
+  /** Další stopa pro běžný režim stolu (střídání ordinary/weight). */
+  let _deskPristiStopa = 'ordinary_day';
 
   // Stráž: crossfade nespustit dvakrát
   let _crossfadeProbiha = false;
@@ -51,6 +60,90 @@ const Music = (() => {
   let _verdiktRampaId = null;
   /** setInterval při plynulém poklesu před verdiktem. */
   let _verdiktRampaDoluId = null;
+  /** Časovače pro „zklidněný“ přechod přes ticho (menu). */
+  let _menuPrechodTimer = null;
+  let _menuPrechodFadeInId = null;
+  let _menuPrechodFadeOutId = null;
+
+  function _zrusMenuPrechod() {
+    if (_menuPrechodTimer != null) {
+      clearTimeout(_menuPrechodTimer);
+      _menuPrechodTimer = null;
+    }
+    if (_menuPrechodFadeInId != null) {
+      clearInterval(_menuPrechodFadeInId);
+      _menuPrechodFadeInId = null;
+    }
+    if (_menuPrechodFadeOutId != null) {
+      clearInterval(_menuPrechodFadeOutId);
+      _menuPrechodFadeOutId = null;
+    }
+  }
+
+  function _spustLinearnyFade(prehravac, fromVol, toVol, trvaniMs, saveTo, onDone) {
+    const dur = Math.max(0, Number(trvaniMs) || 0);
+    const from = Math.max(0, Math.min(1, Number(fromVol) || 0));
+    const to = Math.max(0, Math.min(1, Number(toVol) || 0));
+    if (!prehravac || dur <= 0) {
+      if (prehravac) prehravac.volume = to;
+      if (typeof onDone === 'function') onDone();
+      return;
+    }
+    const kroky = Math.max(1, Math.round(dur / 50));
+    const delta = (to - from) / kroky;
+    let k = 0;
+    prehravac.volume = from;
+    const id = setInterval(() => {
+      k++;
+      if (!prehravac.src) {
+        clearInterval(id);
+        if (saveTo === 'in') _menuPrechodFadeInId = null;
+        if (saveTo === 'out') _menuPrechodFadeOutId = null;
+        return;
+      }
+      const v = Math.max(0, Math.min(1, from + delta * k));
+      prehravac.volume = v;
+      if (k >= kroky) {
+        clearInterval(id);
+        prehravac.volume = to;
+        if (saveTo === 'in') _menuPrechodFadeInId = null;
+        if (saveTo === 'out') _menuPrechodFadeOutId = null;
+        if (typeof onDone === 'function') onDone();
+      }
+    }, 50);
+    if (saveTo === 'in') _menuPrechodFadeInId = id;
+    if (saveTo === 'out') _menuPrechodFadeOutId = id;
+  }
+
+  function _prechodPresTicho(nazev) {
+    if (!STOPY[nazev]) return;
+    if (!_poInterakci) { _cilovaNazev = nazev; return; }
+    if (!_zapnuto) { _aktualniNazev = nazev; _cilovaNazev = nazev; return; }
+    _zrusVerdiktRampu();
+    _zrusMenuPrechod();
+    _crossfadeProbiha = false;
+    const aktivni = _getAktivniPrehravac();
+    const maAktivni = !!(aktivni && aktivni.src && !aktivni.paused);
+    const startVol = maAktivni ? aktivni.volume : 0;
+    const poStlumu = () => {
+      if (_prehravacA) { _prehravacA.pause(); _prehravacA.src = ''; }
+      if (_prehravacB) { _prehravacB.pause(); _prehravacB.src = ''; }
+      _menuPrechodTimer = setTimeout(() => {
+        _menuPrechodTimer = null;
+        _spustStopu(nazev);
+        const p = _getAktivniPrehravac();
+        if (!p) return;
+        const cil = _hlasitostKPrehrani();
+        p.volume = 0;
+        _spustLinearnyFade(p, 0, cil, MENU_PRECHOD_NABEH_MS, 'in');
+      }, MENU_PRECHOD_TICHO_MS);
+    };
+    if (maAktivni) {
+      _spustLinearnyFade(aktivni, startVol, 0, MENU_PRECHOD_STLUM_MS, 'out', poStlumu);
+    } else {
+      poStlumu();
+    }
+  }
 
   function _zrusVerdiktRampu() {
     if (_verdiktRampaId != null) {
@@ -252,6 +345,41 @@ const Music = (() => {
     aktualizujStopu();
   }
 
+  /**
+   * Přepíná hudební režim pátrání.
+   * Když je aktivní, vždy se cíluje stopa Tension; mimo pátrání nikdy.
+   * @param {boolean} aktivni
+   */
+  function nastavPatraniAktivni(aktivni) {
+    const novy = aktivni === true;
+    if (_patraniAktivni === novy) return;
+    _patraniAktivni = novy;
+    if (_patraniAktivni) {
+      // Při startu pátrání přepni okamžitě na Tension (nečekat na konec stopy).
+      nastavStopu('tension');
+    } else {
+      // Po ukončení pátrání vrať hudbu okamžitě dle běžného stavu hry.
+      nastavStopu(_urcStopu());
+    }
+  }
+
+  /**
+   * Návrat z menu do hry:
+   * Theme plynule zhasne crossfadem a naváže cílová stopa dle aktuálního stavu.
+   */
+  function navratZMenu() {
+    if (!_poInterakci) return;
+    let cil = _urcStopu();
+    // Bezpečnost: po menu nechceme zůstávat na Theme.
+    if (cil === 'theme') cil = _deskPristiStopa || 'ordinary_day';
+    _prechodPresTicho(cil);
+  }
+
+  /** Přechod do menu (Theme) přes krátké zklidnění. */
+  function prechodDoMenu() {
+    _prechodPresTicho('theme');
+  }
+
   // --- VÝBĚR STOPY ---
 
   function _urcStopu() {
@@ -264,16 +392,26 @@ const Music = (() => {
       const vina  = stav.traits?.Vina ?? 50;
 
       if (stav.gameOver)             return 'epilog';
-      if (den >= 21)                 return 'danger';
-
-      if (_kontext === 'tension')    return 'tension';
-      if (phase === 'night')         return 'weight';
-      if (vina > 70)                 return 'weight';
-      if (_kontext === 'weight')     return 'weight';
-
-      return 'ordinary_day';
+      if (den >= TRETI_TYDEN_OD_DNE) return 'danger';
+      if (_patraniAktivni)           return 'tension';
+      // Běžný provoz stolu: na přeskáčku Ordinary <-> Weight.
+      return _deskPristiStopa;
     } catch (_) {
       return 'ordinary_day';
+    }
+  }
+
+  function _jeDeskStopa(nazev) {
+    return nazev === 'ordinary_day' || nazev === 'weight';
+  }
+
+  function _opacnaDeskStopa(nazev) {
+    return nazev === 'ordinary_day' ? 'weight' : 'ordinary_day';
+  }
+
+  function _aktualizujDeskSekvenciPoPrepnuti(nazev) {
+    if (_jeDeskStopa(nazev)) {
+      _deskPristiStopa = _opacnaDeskStopa(nazev);
     }
   }
 
@@ -306,6 +444,7 @@ const Music = (() => {
     _aktualniNazev = nazev;
     _cilovaNazev   = nazev;
     _crossfadeProbiha = false;
+    _aktualizujDeskSekvenciPoPrepnuti(nazev);
 
     aktivniPrehravac.play().catch(() => {});
   }
@@ -318,8 +457,11 @@ const Music = (() => {
 
     const zbyvaCas = prehravac.duration - prehravac.currentTime;
     if (zbyvaCas <= CROSSFADE_SEKUND && zbyvaCas > 0) {
-      // Zjistíme cílovou stopu — buď změněná, nebo stejná (smyčka)
-      const cil = _cilovaNazev || _aktualniNazev;
+      // Zjistíme cílovou stopu — v desk režimu střídáme Ordinary <-> Weight.
+      const navrh = _urcStopu();
+      const cil = (_jeDeskStopa(_aktualniNazev) && _jeDeskStopa(navrh))
+        ? _opacnaDeskStopa(_aktualniNazev)
+        : (_cilovaNazev || navrh || _aktualniNazev);
       _crossfadeProbiha = true;
       _crossfadeTo(cil);
     }
@@ -351,6 +493,7 @@ const Music = (() => {
 
     _aktualniNazev = novaNazev;
     _cilovaNazev   = novaNazev;
+    _aktualizujDeskSekvenciPoPrepnuti(novaNazev);
 
     // Animace přechodu (cílová hlasitost respektuje duck u verdiktu)
     const kroky  = (CROSSFADE_SEKUND * 1000) / 50;
@@ -431,6 +574,9 @@ const Music = (() => {
     aktualizujStopu,
     nastavStopu,
     nastavKontext,
+    nastavPatraniAktivni,
+    prechodDoMenu,
+    navratZMenu,
     duckBehemVerdiktu
   };
 

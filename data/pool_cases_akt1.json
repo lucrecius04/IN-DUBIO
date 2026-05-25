@@ -8293,6 +8293,9 @@
           "type": "fragment",
           "text": "Grafologický posudek: záznamy v zápisníku Horáčkové pořízeny dvěma různými pery. Část zápisů doplněna pravděpodobně den po schůzi. Veselý byl zatím propuštěn na svobodu."
         }
+      ],
+      "continues_from": [
+        "tyc_horak_d1"
       ]
     },
     {
@@ -9579,6 +9582,9 @@
           "type": "fragment",
           "text": "Jan Červenka se vrátil do práce po šesti týdnech. Záložna mu oznámila, že jeho pozice byla obsazena. Dostal výpověď s dvoutýdenní výplatou. Alžběta Červenková podala stížnost k obchodnímu soudu."
         }
+      ],
+      "continues_from": [
+        "pool_a1_pospisil_vycep"
       ]
     },
     {
@@ -10426,6 +10432,9 @@
           "type": "fragment",
           "text": "Soudní znalec Hora — ten z úněticko-žižkovské hranice — byl jmenován pro průzkum parcely 48/1. Napsal Benovi krátkou poznámku: 'Zajímavé zadání, pane doktore. Přijdu připraven.'"
         }
+      ],
+      "continues_from": [
+        "pool_a1_bozena_cest"
       ]
     },
     {
@@ -10798,6 +10807,9 @@
           "type": "fragment",
           "text": "Ernst Grünbaum napsal otci, že přijet nemůže — situace v Berlíně se komplikuje. Grünbaum dopis přečetl, složil a schoval do šuplíku vedle Ernstovy fotografie."
         }
+      ],
+      "continues_from": [
+        "pool_a1_hranice_zed"
       ]
     },
     {
@@ -11222,6 +11234,9 @@
           "type": "fragment",
           "text": "Červenka se vrátil do práce. Záložna mu přidělila novou pozici — bez přístupu k výkazům transakcí. Účetní bez výkazů. Červenka to přijal. Nic neřekl."
         }
+      ],
+      "continues_from": [
+        "tyc_pospisil_2"
       ]
     },
     {
@@ -11582,6 +11597,9 @@
           "type": "fragment",
           "text": "Vávra nastoupil do nové práce — expedient v záložně na Smíchově. Nástupní mzda o dvacet korun nižší. Napsal Markové do Beneš & syn krátký dopis s poděkováním. Marková odpověděla jednou větou: 'Zapisuji si jen fakta.'"
         }
+      ],
+      "continues_from": [
+        "pool_a1_markova_svedkyne"
       ]
     },
     {
@@ -11975,6 +11993,9 @@
           "type": "fragment",
           "text": "Sešit zůstal uzamčen v archívu soudu. Za šest měsíců ho nikdo nevyzvedl. Marková na nové práci si koupila nový. Menší, tmavší."
         }
+      ],
+      "continues_from": [
+        "tyc_markova_2"
       ]
     },
     {
@@ -12374,6 +12395,9 @@
           "type": "fragment",
           "text": "V červnu přišel Křížovi dopis z Berlína. Ernst psal, že otec se trochu zlepšil — mluví celé věty, pomalu. Jedno ze slov je Kříž. Druhé je šachy. Ernst psal: 'Kdybyste chtěl přijít.' Nevíme, jestli Kříž přišel."
         }
+      ],
+      "continues_from": [
+        "tyc_hranice_2"
       ]
     },
     {
@@ -12812,6 +12836,9 @@
           "type": "epilogue_fragment",
           "text": "Wolf je volný. Dokument zůstane ve spisu bez vysvětlení. Případ bude odložen — na neurčito, jak to chodí s případy, o jejichž uzavření nikdo nestojí."
         }
+      ],
+      "continues_from": [
+        "tyc_zavadova_d12"
       ]
     },
     {
@@ -13330,6 +13357,9 @@
           "type": "fragment",
           "text": "Vlčkův dopis přišel odpoledne. Krátký — dvě věty. 'Slyšel jsem o včerejší návštěvě. Doufám, že rozhovor proběhl v souladu s pravidly.' Ben si přečetl větu dvakrát."
         }
+      ],
+      "continues_from": [
+        "tyc_zvraty_d10"
       ]
     },
     {
@@ -13662,6 +13692,9 @@
           "type": "fragment",
           "text": "Vlček přišel osobně. Nemluvil dlouho. Řekl: 'Doufám, že vaše nové kontakty chápou, jak tady věci fungují.' Odešel. Ben nerozuměl, odkud Vlček ví. Pak pochopil, že Vlček ví vždy."
         }
+      ],
+      "continues_from": [
+        "tyc_haas_d11"
       ]
     },
     {
@@ -14424,6 +14457,9 @@
           "type": "fragment",
           "text": "Knot & Svoboda zaslala Boženě nový návrh smlouvy. Jabloně za 220 korun. Přiložena kopie rozsudku."
         }
+      ],
+      "continues_from": [
+        "pool_a1_bozena_slepice"
       ]
     },
     {

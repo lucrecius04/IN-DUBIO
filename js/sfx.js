@@ -17,12 +17,16 @@ const SFX = (() => {
     steps1: 'steps1.wav',
     steps2: 'steps2.flac',
     pen_writing: 'pen_writing.mp3',
+    envelope: 'envelope.wav',
     /** Pátrání (osa stop): potvrzení / neúspěch — `assets/sounds/sfx/`. */
     patrani_success: 'success.wav',
+    patrani_success_medium: 'success_2.wav',
     patrani_notsuccess: 'notsuccess.mp3'
   };
 
   const VOL_PATRANI_USPECH = 0.88;
+  const VOL_PATRANI_USPECH_MEDIUM = 1.0;
+  const GAIN_PATRANI_USPECH_MEDIUM = 2.3;
   /** Neúspěch pátrání (notsuccess) — mírně tišeji. */
   const VOL_PATRANI_NEUSPECH = 0.66;
 
@@ -45,6 +49,7 @@ const SFX = (() => {
   const PRUZKUM_MIMO_ZAZNAM_MAX_S = 3;
 
   const VOL_PEN_WRITING = 0.3;
+  const VOL_DOPIS_ENVELOPE = 0.52;
 
   const VOL_AMBIENT = 0.90;
   const VOL_KROKY = 1.30;
@@ -56,10 +61,28 @@ const SFX = (() => {
   let _patraniHbCtx = null;
   let _patraniHbLast = 0;
   let _ctxSfxMedia = null;
+  let _menuRezim = false;
+  const _aktivniJednorazove = new Set();
 
   /** Jeden přednačtený přehrávač verdiktního zvonu — opakované `new Audio()` způsobovalo zpoždění při dekódování. */
   let _verdiktAudio = null;
   let _verdiktMaxTid = null;
+
+  function _registrujJednorazoveAudio(a) {
+    if (!a) return;
+    _aktivniJednorazove.add(a);
+    const vycisti = () => _aktivniJednorazove.delete(a);
+    a.addEventListener('ended', vycisti, { once: true });
+    a.addEventListener('error', vycisti, { once: true });
+  }
+
+  function _zastavAktivniJednorazove() {
+    _aktivniJednorazove.forEach((a) => {
+      try { a.pause(); } catch (_e) {}
+      try { a.src = ''; } catch (_e2) {}
+    });
+    _aktivniJednorazove.clear();
+  }
 
   function _cesta(klic) {
     const j = SOUBORY[klic];
@@ -67,11 +90,48 @@ const SFX = (() => {
   }
 
   function _prehrajJednorazove(klic, hlasitost) {
-    if (!_odemceno) return;
+    if (!_odemceno || _menuRezim) return;
     const src = _cesta(klic);
     if (!src) return;
     const a = new Audio(src);
     a.volume = Math.max(0, Math.min(1, Number(hlasitost) || 1));
+    _registrujJednorazoveAudio(a);
+    a.play().catch(() => {});
+  }
+
+  /** Jednorázový zvuk se zesílením přes WebAudio GainNode (>1.0). */
+  function _prehrajJednorazoveZesilene(klic, hlasitost, gainBoost) {
+    if (!_odemceno || _menuRezim) return;
+    const src = _cesta(klic);
+    if (!src) return;
+    const a = new Audio(src);
+    a.volume = Math.max(0, Math.min(1, Number(hlasitost) || 1));
+    _registrujJednorazoveAudio(a);
+
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (AC) {
+      try {
+        if (!_ctxSfxMedia || _ctxSfxMedia.state === 'closed') _ctxSfxMedia = new AC();
+        _ctxSfxMedia.resume().catch(() => {});
+        const media = _ctxSfxMedia.createMediaElementSource(a);
+        const g = _ctxSfxMedia.createGain();
+        g.gain.value = Math.max(1, Number(gainBoost) || 1);
+        media.connect(g).connect(_ctxSfxMedia.destination);
+        a.addEventListener(
+          'ended',
+          () => {
+            try {
+              media.disconnect();
+              g.disconnect();
+            } catch (_e) {}
+          },
+          { once: true }
+        );
+      } catch (_e) {
+        /* fallback: bez zesílení */
+      }
+    }
+
     a.play().catch(() => {});
   }
 
@@ -88,6 +148,7 @@ const SFX = (() => {
   }
 
   function _spustAmbient() {
+    if (_menuRezim) return;
     _zastavAmbient();
     const a = new Audio(_cesta('campfire'));
     a.loop = true;
@@ -115,7 +176,7 @@ const SFX = (() => {
 
   function _cyklusKroku(klic, intervalMs, ref) {
     const tick = () => {
-      _prehrajJednorazove(klic, VOL_KROKY);
+      if (!_menuRezim) _prehrajJednorazove(klic, VOL_KROKY);
       if (ref === 1) _kroky1Id = setTimeout(tick, intervalMs);
       else _kroky2Id = setTimeout(tick, intervalMs);
     };
@@ -132,6 +193,12 @@ const SFX = (() => {
       clearTimeout(_kroky2Id);
       _kroky2Id = null;
     }
+  }
+
+  function _spustKrokySmycky() {
+    _zastavKroky();
+    _cyklusKroku('steps1', 1.5 * 60 * 1000, 1);
+    _cyklusKroku('steps2', 2 * 60 * 1000, 2);
   }
 
   /** Připraví trvalý prvek pro verdikt (volá se po první interakci — začne stahovat buffer). */
@@ -177,9 +244,7 @@ const SFX = (() => {
     synchronizujAmbientPodleDne(
       typeof State !== 'undefined' && State.get ? Number(State.get('currentDay')) || 1 : 1
     );
-    _zastavKroky();
-    _cyklusKroku('steps1', 1.5 * 60 * 1000, 1);
-    _cyklusKroku('steps2', 2 * 60 * 1000, 2);
+    _spustKrokySmycky();
   }
 
   function rozsudekStamp() {
@@ -191,11 +256,12 @@ const SFX = (() => {
   }
 
   function prechodNaDalsiDen() {
-    if (!_odemceno) return;
+    if (!_odemceno || _menuRezim) return;
     const url = _cesta('newday');
     if (!url) return;
     const a = new Audio(url);
     a.volume = 1;
+    _registrujJednorazoveAudio(a);
 
     const AC = window.AudioContext || window.webkitAudioContext;
     if (AC) {
@@ -226,7 +292,7 @@ const SFX = (() => {
 
   /** Vynesení rozsudku po potvrzení; mírně zesíleno přes GainNode, max. délka viz `ROZSUDEK_VERDIKT_MAX_S`. */
   function rozsudekVerdikt() {
-    if (!_odemceno) return;
+    if (!_odemceno || _menuRezim) return;
     _inicializujTrvalyVerdikt();
     const maxMs = ROZSUDEK_VERDIKT_MAX_S * 1000;
     const a = _verdiktAudio;
@@ -273,6 +339,7 @@ const SFX = (() => {
     if (!url) return;
     const a2 = new Audio(url);
     a2.volume = 1;
+    _registrujJednorazoveAudio(a2);
     const tid = setTimeout(() => {
       try {
         a2.pause();
@@ -318,11 +385,12 @@ const SFX = (() => {
 
   /** Odhalení zjištění cestou mimo spis (`path: unofficial`). */
   function pruzkumMimoZaznam() {
-    if (!_odemceno) return;
+    if (!_odemceno || _menuRezim) return;
     const url = _cesta('pruzkum_mimo_zaznam');
     if (!url) return;
     const a = new Audio(url);
     a.volume = 0.82;
+    _registrujJednorazoveAudio(a);
     const maxMs = PRUZKUM_MIMO_ZAZNAM_MAX_S * 1000;
     const tid = setTimeout(() => {
       try {
@@ -342,12 +410,26 @@ const SFX = (() => {
     _prehrajJednorazove('pen_writing', VOL_PEN_WRITING);
   }
 
+  /** Otevření dopisu (obálka, modál fragmentu). */
+  function dopisEnvelope() {
+    _prehrajJednorazove('envelope', VOL_DOPIS_ENVELOPE);
+  }
+
   /** Potvrzená osa stop po pátrání (čas i pokusy). */
   function patraniUspech() {
     if (typeof Music !== 'undefined' && Music.duckBehemVerdiktu) {
       Music.duckBehemVerdiktu(PATRANI_USPECH_DUCK_HUDBA_MS);
     }
     _prehrajJednorazove('patrani_success', VOL_PATRANI_USPECH);
+  }
+
+  /** Střední vazba při pátrání (nezaměňovat s finálním potvrzením). */
+  function patraniUspechStredni() {
+    _prehrajJednorazoveZesilene(
+      'patrani_success_medium',
+      VOL_PATRANI_USPECH_MEDIUM,
+      GAIN_PATRANI_USPECH_MEDIUM
+    );
   }
 
   /** Špatná dvojice, vypršení času, ukončení bez vazby apod. */
@@ -357,7 +439,7 @@ const SFX = (() => {
 
   /** urgency 0 = začátek lovu, 1 = konec — zrychluje interval a sílu úderu */
   function patraniHeartbeatTick(urgency01) {
-    if (!_odemceno) return;
+    if (!_odemceno || _menuRezim) return;
     const u = Math.max(0, Math.min(1, Number(urgency01) || 0));
     if (u < 0.38) return;
     const now = typeof performance !== 'undefined' ? performance.now() : Date.now();
@@ -388,6 +470,31 @@ const SFX = (() => {
     _patraniHbLast = 0;
   }
 
+  function nastavMenuRezim(aktivni) {
+    const on = aktivni === true;
+    if (_menuRezim === on) return;
+    _menuRezim = on;
+    if (_menuRezim) {
+      _zastavAmbient();
+      _zastavKroky();
+      zastavPatraniHeartbeat();
+      if (_verdiktAudio) {
+        try { _verdiktAudio.pause(); } catch (_e) {}
+      }
+      if (_verdiktMaxTid) {
+        clearTimeout(_verdiktMaxTid);
+        _verdiktMaxTid = null;
+      }
+      _zastavAktivniJednorazove();
+      return;
+    }
+    if (!_odemceno) return;
+    synchronizujAmbientPodleDne(
+      typeof State !== 'undefined' && State.get ? Number(State.get('currentDay')) || 1 : 1
+    );
+    _spustKrokySmycky();
+  }
+
   return {
     spustPoInterakci,
     synchronizujAmbientPodleDne,
@@ -398,9 +505,12 @@ const SFX = (() => {
     slozkaPaper,
     prechodNaDalsiDen,
     penWriting,
+    dopisEnvelope,
     patraniUspech,
+    patraniUspechStredni,
     patraniNeuspech,
     patraniHeartbeatTick,
-    zastavPatraniHeartbeat
+    zastavPatraniHeartbeat,
+    nastavMenuRezim
   };
 })();

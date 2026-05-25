@@ -481,7 +481,7 @@ const Cases = (() => {
       }
 
       if (typProZobrazeni(pripad) === 'politicky') {
-        Music.nastavKontext('tension');
+        Music.nastavKontext('weight');
       }
 
       const otevriNorm = () => {

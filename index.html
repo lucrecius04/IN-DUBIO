@@ -192,6 +192,90 @@
       cursor: default;
     }
 
+    /* Lampa na stole — jemné atmosférické mikrozablikání (výchozí). */
+    @keyframes deskLampFlickerSoft {
+      0%, 100% {
+        opacity: 1;
+        filter:
+          drop-shadow(0 0 28px rgba(255, 188, 75, 0.42))
+          brightness(1);
+      }
+      14% {
+        opacity: 0.96;
+        filter:
+          drop-shadow(0 0 20px rgba(255, 188, 75, 0.28))
+          brightness(0.93);
+      }
+      29% {
+        opacity: 1;
+        filter:
+          drop-shadow(0 0 34px rgba(255, 188, 75, 0.53))
+          brightness(1.07);
+      }
+      57% {
+        opacity: 0.94;
+        filter:
+          drop-shadow(0 0 18px rgba(255, 188, 75, 0.24))
+          brightness(0.9);
+      }
+      72% {
+        opacity: 0.98;
+        filter:
+          drop-shadow(0 0 31px rgba(255, 188, 75, 0.48))
+          brightness(1.04);
+      }
+    }
+
+    /* Krizový stav (nízká Naděje/Odvaha) — znatelnější cuknutí světla. */
+    @keyframes deskLampFlickerStrong {
+      0%, 100% {
+        opacity: 1;
+        filter:
+          drop-shadow(0 0 28px rgba(255, 188, 75, 0.42))
+          brightness(1);
+      }
+      12% {
+        opacity: 0.9;
+        filter:
+          drop-shadow(0 0 16px rgba(255, 188, 75, 0.2))
+          brightness(0.86);
+      }
+      18% {
+        opacity: 0.98;
+        filter:
+          drop-shadow(0 0 30px rgba(255, 188, 75, 0.48))
+          brightness(1.05);
+      }
+      43% {
+        opacity: 0.88;
+        filter:
+          drop-shadow(0 0 14px rgba(255, 188, 75, 0.18))
+          brightness(0.82);
+      }
+      48% {
+        opacity: 0.97;
+        filter:
+          drop-shadow(0 0 31px rgba(255, 188, 75, 0.5))
+          brightness(1.06);
+      }
+      66% {
+        opacity: 0.92;
+        filter:
+          drop-shadow(0 0 19px rgba(255, 188, 75, 0.24))
+          brightness(0.9);
+      }
+    }
+
+    .desk-scene-assets #desk-lamp.desk-lamp--flicker-soft {
+      animation: deskLampFlickerSoft 3.9s ease-in-out infinite;
+      will-change: filter, opacity;
+    }
+
+    .desk-scene-assets #desk-lamp.desk-lamp--flicker-strong {
+      animation: deskLampFlickerStrong 2.2s steps(1, end) infinite;
+      will-change: filter, opacity;
+    }
+
     .desk-scene-assets #desk-lamp.desk-predmet--hover {
       cursor: help;
     }
@@ -1328,6 +1412,10 @@
     </div>
 
     <div class="case-wf-body" id="case-wf-body">
+      <div class="case-wf-section case-wf-section--chain skryto" id="case-wf-chain-notice" aria-live="polite">
+        <div class="case-wf-section-label case-wf-section-label--static" id="case-wf-chain-notice-label">Navazuje na spis</div>
+        <div class="case-wf-chain-notice-body" id="case-wf-chain-notice-body"></div>
+      </div>
       <div class="case-wf-section" id="case-wf-sec-spis">
         <div class="case-wf-section-label">Spis</div>
         <div class="case-wf-meta-row">

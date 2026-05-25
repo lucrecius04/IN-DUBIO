@@ -102,8 +102,9 @@
   left: auto;
   top: auto;
   bottom: auto;
-  height: auto;
-  max-height: 84vh;
+  /* Stejná výsledná výška jako panel spisu (aspect-ratio 1269/1415). */
+  height: calc(min(84vh, calc(min(720px, 88vw, calc(84vh * 1269 / 1415)) * 1415 / 1269)) - 16px);
+  max-height: calc(min(84vh, calc(min(720px, 88vw, calc(84vh * 1269 / 1415)) * 1415 / 1269)) - 16px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -115,7 +116,7 @@
   min-height: 0;
   box-sizing: border-box;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 #modal-pripad:has(#case-wf-clue-hud-slot.skryto) .pripad-patrani-rail {
@@ -471,6 +472,76 @@
 
 #modal-pripad .pripad-panel--wireframe .pripad-zahlavi-lead:empty {
   display: none;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-section--chain.skryto {
+  display: none;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-section-label--static {
+  cursor: default;
+  pointer-events: none;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-section--chain {
+  border-left-color: rgba(102, 73, 43, 0.42);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-chain-notice-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 11px;
+  line-height: 1.55;
+  color: #8b7355;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-chain-notice-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 10px;
+  align-items: start;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-chain-order {
+  color: rgba(93, 71, 46, 0.82);
+  min-width: 28px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-chain-notice-current {
+  color: #3b2b1f;
+  font-style: italic;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-chain-notice-link,
+#modal-pripad .pripad-panel--wireframe .case-wf-chain-notice-muted,
+#modal-pripad .pripad-panel--wireframe .case-wf-chain-notice-current {
+  justify-self: start;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-chain-notice-link {
+  padding: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: #3d2b1f;
+  text-decoration: underline;
+  text-decoration-color: rgba(139, 115, 85, 0.55);
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-chain-notice-link:hover {
+  color: #2a1c12;
+  text-decoration-color: rgba(92, 68, 42, 0.78);
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-chain-notice-muted {
+  color: rgba(139, 115, 85, 0.72);
+  font-style: italic;
 }
 
 #modal-pripad .pripad-panel--wireframe .pripad-zahlavi-akce {
@@ -842,6 +913,82 @@
   background: rgba(196, 163, 90, 0.16);
 }
 
+/* Aktivní pátrání: ztmavit celé pozadí modalu, aby stůl ustoupil do pozadí. */
+#modal-pripad.case-wf-clue-hunt-active {
+  background: rgba(3, 2, 1, 0.9) !important;
+  transition: background 0.32s ease;
+}
+
+#modal-pripad.case-wf-patrani-lock-ui .pripad-panel--wireframe .case-wf-body {
+  position: relative;
+}
+
+#modal-pripad.case-wf-patrani-lock-ui .pripad-panel--wireframe .case-wf-body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: auto;
+}
+
+#modal-pripad.case-wf-patrani-lock-ui .pripad-panel--wireframe .case-wf-clue-hud-header-wrap,
+#modal-pripad.case-wf-patrani-lock-ui .pripad-panel--wireframe #case-wf-clue-hud-confirm,
+#modal-pripad.case-wf-patrani-lock-ui .pripad-panel--wireframe #case-wf-clue-hud-abort {
+  position: relative;
+  z-index: 8;
+  pointer-events: auto;
+}
+
+#modal-pripad.case-wf-patrani-lock-ui .pripad-panel--wireframe .pripad-zahlavi .pripad-zavrit-x {
+  z-index: 9;
+  pointer-events: auto;
+}
+
+#modal-pripad.case-wf-patrani-lock-ui .pripad-panel--wireframe #pripad-zpet-do-archivu {
+  pointer-events: none !important;
+}
+
+#modal-pripad.case-wf-ink-splash .pripad-panel--wireframe {
+  position: relative;
+  overflow: hidden;
+}
+
+#modal-pripad.case-wf-ink-splash .pripad-panel--wireframe::before {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: -12% -8%;
+  z-index: 7;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 24% 38%, rgba(33, 24, 17, 0.52) 0 17%, transparent 46%),
+    radial-gradient(circle at 72% 61%, rgba(48, 36, 24, 0.45) 0 14%, transparent 42%),
+    radial-gradient(circle at 46% 20%, rgba(22, 16, 11, 0.42) 0 12%, transparent 36%),
+    radial-gradient(ellipse at center, rgba(66, 52, 36, 0.36) 0%, rgba(22, 16, 11, 0) 63%);
+  mix-blend-mode: normal;
+  opacity: 0;
+  transform: scale(0.92);
+  animation: caseWfInkSplash 0.9s ease-out forwards;
+}
+
+@keyframes caseWfInkSplash {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+    filter: blur(0.6px);
+  }
+  28% {
+    opacity: 0.9;
+    transform: scale(1);
+    filter: blur(0.2px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.03);
+    filter: blur(1px);
+  }
+}
+
 #modal-pripad .pripad-panel--wireframe .clue--selected {
   background: rgba(245, 216, 110, 0.52) !important;
   color: #2f2318 !important;
@@ -974,8 +1121,11 @@
 
 #modal-pripad .case-wf-clue-hud-log {
   position: relative;
+  flex: 1 1 auto;
   width: 100%;
-  max-height: min(40vh, 360px);
+  min-height: 220px;
+  height: auto;
+  max-height: none;
   overflow: auto;
   margin: 0;
   padding: 6px 8px;
@@ -1044,6 +1194,10 @@
   color: #8c6a2f;
 }
 
+#modal-pripad .pripad-panel--wireframe .case-wf-clue-log-item--repeat .case-wf-clue-log-res {
+  color: #9a4a4a;
+}
+
 #modal-pripad .pripad-panel--wireframe .case-wf-clue-log-item--medium .case-wf-clue-log-res {
   color: #35618f;
 }
@@ -1072,9 +1226,9 @@
   top: auto;
   width: 100%;
   max-width: none;
-  max-height: min(46vh, 400px);
+  max-height: none;
   min-height: 0;
-  flex: 0 1 auto;
+  flex: 1 1 auto;
   align-self: stretch;
   pointer-events: auto;
   z-index: 5;
@@ -1101,8 +1255,8 @@
 
 @media (max-width: 1280px) {
   #modal-pripad .pripad-patrani-rail .case-wf-clue-hud-log {
-    max-height: min(38vh, 320px);
-    flex: 0 1 auto;
+    max-height: none;
+    flex: 1 1 auto;
   }
 }
 
@@ -1288,7 +1442,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
-  align-items: center;
+  align-items: start;
   width: 100%;
 }
 
@@ -1328,6 +1482,7 @@
   color: #6b3e2e;
   font-style: italic;
   padding: 4px 2px 0;
+  margin-top: -2px;
 }
 
 #modal-pripad .pripad-panel--wireframe .case-wf-info-btn {
@@ -1800,6 +1955,15 @@
 #modal-pripad[data-verdict-mode="readonly"] #case-wf-step2-wrap,
 #modal-pripad[data-verdict-mode="readonly"] #case-wf-verdict-legacy,
 #modal-pripad[data-verdict-mode="readonly"] #case-wf-confirm-rozsudek,
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly #case-wf-header-akce,
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .case-wf-clue-hud-header-anchor,
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .case-wf-clue-hud-header-wrap,
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .case-wf-clue-hud-header-vysledek,
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly .pripad-patrani-rail {
+  display: none !important;
+}
+
+#modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly #case-wf-sec-pruzkum .case-wf-pruzkum-row,
 #modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly #case-wf-step1-wrap,
 #modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly #case-wf-step2-wrap,
 #modal-pripad .pripad-panel--wireframe.pripad-panel--pripad-readonly #case-wf-verdict-legacy,
@@ -2257,6 +2421,27 @@
 
 #modal-pripad .pripad-panel--wireframe .case-wf-nav-hint {
   display: none;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-sec-verdict.case-wf-verdict-disabled-by-hunt {
+  opacity: 0.74;
+}
+
+#modal-pripad .pripad-panel--wireframe #case-wf-sec-verdict.case-wf-verdict-disabled-by-hunt .case-wf-verdict-opt,
+#modal-pripad .pripad-panel--wireframe #case-wf-sec-verdict.case-wf-verdict-disabled-by-hunt #case-wf-confirm-rozsudek {
+  pointer-events: none;
+}
+
+#modal-pripad .pripad-panel--wireframe .case-wf-verdict-hunt-lock-note {
+  margin: 8px 0 12px;
+  padding: 8px 10px;
+  border: 1px dashed rgba(92, 68, 42, 0.45);
+  border-radius: 8px;
+  background: rgba(244, 236, 219, 0.72);
+  color: #5a3d2c;
+  font-family: var(--pismo-typewriter, monospace);
+  font-size: 11px;
+  line-height: 1.45;
 }
 
 #modal-pripad .pripad-panel--wireframe .rozsudky-shrnuti {

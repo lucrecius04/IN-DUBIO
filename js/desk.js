@@ -38,12 +38,18 @@ const Desk = (() => {
       // lampa: jasná = vysoká odvaha
       aktualizuj(hodnota) {
         const lampa = document.getElementById('lampa');
+        const deskLamp = document.getElementById('desk-lamp');
         if (!lampa) return;
         lampa.classList.remove('lampa--vysoka', 'lampa--stredni', 'lampa--nizka', 'lampa--blika');
         if (hodnota >= 70)      lampa.classList.add('lampa--vysoka');
         else if (hodnota >= 40) lampa.classList.add('lampa--stredni');
         else if (hodnota >= 20) lampa.classList.add('lampa--nizka');
         else                    lampa.classList.add('lampa--nizka', 'lampa--blika');
+        if (deskLamp) {
+          deskLamp.classList.remove('desk-lamp--flicker-soft', 'desk-lamp--flicker-strong');
+          if (hodnota < 20) deskLamp.classList.add('desk-lamp--flicker-strong');
+          else deskLamp.classList.add('desk-lamp--flicker-soft');
+        }
       }
     },
     Moudrost: {
@@ -58,9 +64,19 @@ const Desk = (() => {
     Nadeje: {
       // Lampa bliká při velmi nízké naději
       aktualizuj(hodnota) {
+        const deskLamp = document.getElementById('desk-lamp');
         if (hodnota < 20) {
           const lampa = document.getElementById('lampa');
           if (lampa) lampa.classList.add('lampa--blika');
+          if (deskLamp) {
+            deskLamp.classList.remove('desk-lamp--flicker-soft');
+            deskLamp.classList.add('desk-lamp--flicker-strong');
+          }
+          return;
+        }
+        if (deskLamp && !deskLamp.classList.contains('desk-lamp--flicker-soft')) {
+          deskLamp.classList.remove('desk-lamp--flicker-strong');
+          deskLamp.classList.add('desk-lamp--flicker-soft');
         }
       }
     }
@@ -543,6 +559,7 @@ const Desk = (() => {
     if (typeof Knihovna !== 'undefined' && Knihovna.obalSlovnikemVElementu) {
       Knihovna.obalSlovnikemVElementu(telo);
     }
+    if (typeof SFX !== 'undefined' && SFX.dopisEnvelope) SFX.dopisEnvelope();
     _otevriModalStul(modal);
   }
 
