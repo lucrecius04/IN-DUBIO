@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "generated_for": "ultra-min narrative audit",
+    "source": "data/letters.json",
+    "note": "first sentence only + routing fields"
+  },
+  "letters": [
+    {
+      "id": "vlcek_d1",
+      "sender": null,
+      "recipient": null,
+      "delivery": "desk",
+      "phase": "morning_after_fragment",
+      "day_hint": 1,
+      "subject": null,
+      "hook": "dovoluji si Vás přivítat zpět ve výkonu funkce.",
+      "reaction_prompt": ""
+    },
+    {
+      "id": "martin_d2",
+      "sender": null,
+      "recipient": null,
+      "delivery": "desk",
+      "phase": "morning_after_fragment",
+      "day_hint": 2,
+      "subject": null,
+      "hook": "profesor Kalousek dnes přednášel o ústavním právu a já jsem si uvědomil, proč jsem na tato práva šel.",
+      "reaction_prompt": ""
+    },
+    {
+      "id": "masek_d3",
+      "sender": null,
+      "recipient": null,
+      "delivery": "desk",
+      "phase": "morning_after_fragment",
+      "day_hint": 3,
+      "subject": null,
+      "hook": "Benedikte, vítej zpátky.",
+      "reaction_prompt": ""
+    },
+    {
+      "id": "doktor_d4",
+      "sender": null,
+      "recipient": null,
+      "delivery": "desk",
+      "phase": "morning_after_fragment",
+      "day_hint": 4,
+      "subject": null,
+      "hook": "potvrzuji termín chirurgického zákroku u Vaší paní matky, Alžběty Vraná, na den 17.",
+      "reaction_prompt": "Čtyři sta korun."
+    },
+    {
+      "id": "vlcek_d4",
+      "sender": null,
+      "recipient": null,
+      "delivery": "desk",
+      "phase": "morning_after_fragment",
+      "day_hint": 4,
+      "subject": null,
+      "hook": "s potěšením sleduji, že případy ve Vašem rejstříku jsou řešeny s náležitou rozvahou a bez zbytečných průtahů.",
+      "reaction_prompt": "Pochvala od ministra."
+    },
+    {
+      "id": "vlcek_d6",
+      "sender": null,
+      "recipient": null,
+      "delivery": "desk",
+      "phase": "morning_after_fragment",
+      "day_hint": 6,
+      "subject": null,
+      "hook": "sledoval jsem Vaše rozsudky prvního týdne s pozorností.",
+      "reaction_prompt": ""
+    },
+    {
+      "id": "martin_d6",
+      "sender": null,
+      "recipient": null,
+      "delivery": "desk",
+      "phase": "morning_after_fragment",
+      "day_hint": 8,
+      "subject": null,
+      "hook": "profesor dnes řekl věc, která mi nejde z hlavy: Právo bez svědomí je jen nástroj.",
+      "reaction_prompt": ""
+    },
+    {
+      "id": "vlcek_d7",
+      "sender": null,
+      "recipient": null,
+      "delivery": "desk",
+      "phase": "forenoon",
+      "day_hint": 9,
+      "subject": null,
+      "hook": "dovolím si Vás upozornit, že spis ve věci Jiřího Veselého se týká záležitosti, o kterou se zajímají osoby z širšího politického prostředí.",
+      "reaction_prompt": ""
+    },
+    {
+      "id": "vlcek_d8",
+      "sender": null,
+      "recipient": null,
+      "delivery": "desk",
+      "phase": "morning_after_fragment",
+      "day_hint": 10,
+      "subject": null,
+      "hook": "navazuji na včerejší dopis o Jiřím Veselém.",
+      "reaction_prompt": "Dopis leží na stole."
+    },
+    {
+      "id": "benes_d9",
+      "sender": null,
+      "recipient": null,
+      "delivery": "desk",
+      "phase": "morning_first",
+      "day_hint": 11,
+      "subject": null,
+      "hook": "Pane doktore, budu dnes čekat u soudu do desíti hodin.",
+      "reaction_prompt": ""
+    },
+    {
+      "id": "martin_d10",
+      "sender": null,
+      "recipient": null,
+      "delivery": "desk",
+      "phase": "morning_after_fragment",
+      "day_hint": 12,
+      "subject": null,
+      "hook": "četl jsem v novinách o starém případu.",
+      "reaction_prompt": "Martin píše o Tvém případu."
+    },
+    {
+      "id": "vlcek_d11",
+      "sender": null,
+      "recipient": null,
+      "delivery": "desk",
+      "phase": "morning_after_fragment",
+      "day_hint": 15,
+      "subject": null,
+      "hook": "nemám ve zvyku se opakovat.",
+      "reaction_prompt": "Hrozba."
+    },
+    {
+      "id": "martin_d14",
+      "sender": null,
+      "recipient": null,
+      "delivery": "desk",
+      "phase": "morning_after_fragment",
+      "day_hint": 18,
+      "subject": null,
+      "hook": "přijedu o víkendu.",
+      "reaction_prompt": ""
+    },
+    {
+      "id": "vlcek_d13",
+      "sender": null,
+      "recipient": null,
+      "delivery": "desk",
+      "phase": "morning_after_fragment",
+      "day_hint": 16,
+      "subject": null,
+      "hook": "vidím, že moje předchozí sdělení nebyla dostatečně srozumitelná.",
+      "reaction_prompt": "Fond pro rodinné příslušníky."
+    },
+    {
+      "id": "vlcek_d14_letter",
+      "sender": null,
+      "recipient": null,
+      "delivery": "desk",
+      "phase": "morning_after_fragment",
+      "day_hint": 18,
+      "subject": null,
+      "hook": "toto je můj poslední dopis v této věci.",
+      "reaction_prompt": ""
+    }
+  ]
+}

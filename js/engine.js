@@ -26,6 +26,7 @@ const Engine = (() => {
   let _stulPripravaMaRozsvitit = true;
   /** Po kliknutí „Další den“: rozednění až po dokončení `_pokracujSpustDen` (nebo fallback při game over). */
   let _rozdeniPoPrepnuDne = false;
+  const _FLAG_INFO_TRETI_LIGHT_SPIS = 'flags.treti_light_spis_info_zobrazeno';
 
   function _vyhodnotTydenniBonusyKody() {
     const st = State.get('tydenni_statistiky');
@@ -565,6 +566,7 @@ const Engine = (() => {
     await _spustAdventurePoNedeliPokud(dDat);
 
     await _zpracujDialogyDne(dCislo);
+    await _zobrazInfoOTretimLightSpisuPokudPrvne(pripady);
 
     State.set('phase', 'forenoon');
     Desk.aktualizujVse();
@@ -941,20 +943,23 @@ const Engine = (() => {
     if (State.get('gameOver')) return;
     const variabilniOk = allowVariabilni === true;
     const pripadyNactene = Cases.getPripady();
-    const vsechnyIds = pripadyNactene.map(p => p && p.id).filter(Boolean);
+    const povinneIds = _povinnePripadyProKonecDne(pripadyNactene);
     const denKonec = Number(State.get('currentDay'));
     const denProKontrolu = Number.isFinite(denKonec) && denKonec > 0 ? denKonec : 1;
 
     // Žádné případy dnes → bez kontroly variabilních konců (prázdný den / neděle bez spisů)
-    if (vsechnyIds.length === 0) {
+    if (povinneIds.length === 0) {
       State.set('phase', 'evening');
       Desk.aktualizujVse();
       UI.zobrazBtnDalsiDen(true);
       return;
     }
 
-    // Všechny případy vyřešeny v tento den (pool může opakovat id — globální archiv nestačí)
-    const vsechnyVyreseny = vsechnyIds.every(id =>
+    // Povinný rozsah pro konec dne:
+    // - vždy slot I + II (hlavní spisy),
+    // - slot III jen pokud není v light režimu.
+    // Light třetí spis je dobrovolná agenda.
+    const vsechnyVyreseny = povinneIds.every(id =>
       typeof State.jePripadUzavrenVDen === 'function'
         ? State.jePripadUzavrenVDen(id, denProKontrolu)
         : (State.get('casesResolvedToday') || []).includes(id)
@@ -988,6 +993,49 @@ const Engine = (() => {
     State.set('phase', 'evening');
     Desk.aktualizujVse();
     setTimeout(() => UI.zobrazBtnDalsiDen(true), 800);
+  }
+
+  function _povinnePripadyProKonecDne(pripadyNactene) {
+    const arr = Array.isArray(pripadyNactene) ? pripadyNactene : [];
+    const unik = new Set();
+
+    // První dva sloty jsou vždy povinné, pokud mají přiřazený spis.
+    for (let i = 0; i <= 1; i++) {
+      const p = arr[i];
+      const id = p && p.id != null ? String(p.id).trim() : '';
+      if (id) unik.add(id);
+    }
+
+    // Třetí a další sloty: povinné jen pokud nejde o light režim.
+    for (let i = 2; i < arr.length; i++) {
+      const p = arr[i];
+      if (!p || p._lightMode === true) continue;
+      const id = p.id != null ? String(p.id).trim() : '';
+      if (id) unik.add(id);
+    }
+
+    return Array.from(unik);
+  }
+
+  function _maTretiLightSpis(pripady) {
+    if (!Array.isArray(pripady)) return false;
+    const p1 = pripady[0];
+    const p2 = pripady[1];
+    const p3 = pripady[2];
+    return !!(p1 && p1.id && p2 && p2.id && p3 && p3.id && p3._lightMode === true);
+  }
+
+  async function _zobrazInfoOTretimLightSpisuPokudPrvne(pripady) {
+    if (!_maTretiLightSpis(pripady)) return;
+    if (State.get(_FLAG_INFO_TRETI_LIGHT_SPIS) === true) return;
+    State.set(_FLAG_INFO_TRETI_LIGHT_SPIS, true);
+    await _cekejNaFragment(null, {
+      type: 'fragment',
+      title: 'Třetí spis na stole',
+      text:
+        'Dnes máte na stole tři složky. Pro ukončení dne jsou povinné první dva hlavní spisy. Třetí, zkrácený spis je dobrovolný — můžete ho uzavřít navíc, nebo nechat na později.',
+      narrative_image: 'morning'
+    });
   }
 
   async function _dalsiDen() {

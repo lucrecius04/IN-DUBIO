@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "generated_for": "ultra-min narrative audit",
+    "source": "data/fragments.json",
+    "note": "first sentence only"
+  },
+  "fragments": [
+    {
+      "id": "fragment_d1_morning",
+      "type": "clipping",
+      "title": "Ranní výstřižek — 2. března 1931",
+      "hook": "VRANÝ ZPĚT U STOLU Dr."
+    },
+    {
+      "id": "fragment_d1_night",
+      "type": "dream",
+      "title": "Sen — první noc",
+      "hook": "V noci se Benovi zdálo o soudní síni — prázdné, tiché, s lavicemi přesně zarovnanými jako při slavnostním zasedání."
+    },
+    {
+      "id": "fragment_d2_rano",
+      "type": "clipping",
+      "title": "Ráno — úterý u soudu",
+      "hook": "Druhý den šel Benedikt kratší cestou — přes Havelský trh, kde se obchoduje od rána."
+    },
+    {
+      "id": "fragment_d3_noviny",
+      "type": "clipping",
+      "title": "Ranní list — 4. března 1931",
+      "hook": "STARÝ ROZSUDEK, NOVÉ OTÁZKY Rubrika Svobodného obzoru se vrátila k případu dělníka Karla Beneše, odsouzeného roku 1927 a zemřelého ve vazbě dříve, než bylo rozhodnuto o jeho odvolání."
+    },
+    {
+      "id": "fragment_d4_rano",
+      "type": "clipping",
+      "title": "Ráno — čtvrtek",
+      "hook": "Mezi spisy leží dnes ráno i obálka s kulatým razítkem ordinace."
+    },
+    {
+      "id": "fragment_d5_tichy_rano",
+      "type": "clipping",
+      "title": "Ráno — sobota u soudu",
+      "hook": "Sobota dopoledne a budova je jiná — bez jednacích síní v plném chodu, bez kroků, které spěchají na devátou."
+    },
+    {
+      "id": "fragment_d5_tichy_noc",
+      "type": "dream",
+      "title": "Noc beze snu",
+      "hook": "Usnul brzy a spal celou noc bez probuzení."
+    },
+    {
+      "id": "fragment_d5_patek_trh",
+      "type": "clipping",
+      "title": "Páteční trh",
+      "hook": "Páteční trh na Havelském náměstí se ve srovnání s úterkem napůl rozložil — méně stánků, víc lidí, kteří se prošli a nekoupili nic."
+    },
+    {
+      "id": "fragment_d6_morning",
+      "type": "fragment",
+      "title": "Anonymní zásilka",
+      "hook": "Na pondělní poště byl i balíček bez zpáteční adresy — obálka z tuhého papíru, uvnitř jediná vizitka."
+    },
+    {
+      "id": "fragment_d7_nedele_rano",
+      "type": "fragment",
+      "title": "Neděle — prázdná budova",
+      "hook": "Soud v neděli nezasedá a Švejda zamyká budovu."
+    },
+    {
+      "id": "fragment_d7_nedele_vecer",
+      "type": "dream",
+      "title": "Nedělní večer",
+      "hook": "Domů se vrátil před šestou."
+    },
+    {
+      "id": "fragment_d8_morning",
+      "type": "clipping",
+      "title": "Středa — tři složky",
+      "hook": "Před budovou soudu stál policejní vůz s běžícím motorem."
+    },
+    {
+      "id": "fragment_d9_morning",
+      "type": "clipping",
+      "title": "Ráno — předvolání bez předvolání",
+      "hook": "Na chodbě potkal Karase."
+    },
+    {
+      "id": "fragment_d10_morning",
+      "type": "clipping",
+      "title": "Ranní list — 13. března 1931",
+      "hook": "Ranní vydání Svobodného obzoru leží na stole rozevřené — Švejda ho přinesl jako obvykle."
+    },
+    {
+      "id": "fragment_d11_morning_base",
+      "type": "clipping",
+      "title": "Ranní stůl — pondělí",
+      "hook": "Na stole leží obálka, která tu nebyla v pátek."
+    },
+    {
+      "id": "fragment_d12_morning",
+      "type": "dream",
+      "title": "Sen — noc před středou",
+      "hook": "V noci se mu zdálo, že hledá klíč."
+    },
+    {
+      "id": "fragment_d12_echo_base",
+      "type": "clipping",
+      "title": "Středa — ranní ticho",
+      "hook": "Kancelář se probouzí pomalu."
+    },
+    {
+      "id": "fragment_operace_den16_ano",
+      "type": "clipping",
+      "title": "Ráno — termín v Podolí",
+      "hook": "Telefon v přízemí zvonil krátce."
+    },
+    {
+      "id": "fragment_operace_den16_ne",
+      "type": "clipping",
+      "title": "Ráno — dopis z Podolí",
+      "hook": "Mezi ranní poštou byl obecný formulář a krátký dopis od ordinace — ne od Síbra osobně, ale pod jeho hlavičkou."
+    },
+    {
+      "id": "fragment_d13_sobota_rano",
+      "type": "clipping",
+      "title": "Druhá sobota v březnu",
+      "hook": "Budova soudu je v sobotu zavřená a Švejda zamkl hlavní vchod ještě před osmou."
+    },
+    {
+      "id": "fragment_d14_nedele_rano",
+      "type": "fragment",
+      "title": "Druhá neděle — Karasův telefonát",
+      "hook": "Druhá neděle v březnu je jiná než první."
+    },
+    {
+      "id": "fragment_d14_nedele_vecer",
+      "type": "dream",
+      "title": "Nedělní večer — po Karasovi",
+      "hook": "Karas odešel před čtvrtou."
+    },
+    {
+      "id": "fragment_d15_night",
+      "type": "dream",
+      "title": "Sen — poslední noc",
+      "hook": "V noci se vrátil rok 1927."
+    },
+    {
+      "id": "fragment_d18_rano",
+      "type": "clipping",
+      "title": "Čtvrtek — předposlední ráno",
+      "hook": "Světlo za oknem je jiné než před třemi týdny — ostřejší, bledší, takové, které se v březnu ozve najednou a bez ohlášení."
+    },
+    {
+      "id": "fragment_d20_odhaleni",
+      "type": "letter",
+      "title": "Poslední pracovní den — nález",
+      "hook": "V budově je ráno neobvyklé ticho."
+    },
+    {
+      "id": "fragment_tyden_bonus_a",
+      "type": "clipping",
+      "title": "Poznámka do spisu",
+      "hook": "Ben tento týden většinu spisů poctivě prostudoval."
+    },
+    {
+      "id": "fragment_tyden_bonus_b",
+      "type": "clipping",
+      "title": "Úřední záznam",
+      "hook": "Týden nabízel příležitosti, jak si práci ulehčit na úkor někoho jiného."
+    },
+    {
+      "id": "fragment_tyden_bonus_c",
+      "type": "clipping",
+      "title": "Poznámka",
+      "hook": "Všechny spisy odevzdány včas, žádný případ odložen přes lhůtu."
+    },
+    {
+      "id": "fragment_tyden_bonus_d",
+      "type": "clipping",
+      "title": "Týdenní vzorec",
+      "hook": "Rozsudky tohoto týdne nesly jeden tón: byly konzistentní a čitelné, bez výrazných výkyvů podle toho, kdo co chtěl."
+    },
+    {
+      "id": "fragment_tyden_bonus_e",
+      "type": "clipping",
+      "title": "Těžké dny",
+      "hook": "Byl to náročný týden s několika případy, které nešlo rozhodnout snadno."
+    },
+    {
+      "id": "fragment_vyplata",
+      "type": "fragment",
+      "title": "Výplata",
+      "hook": "S úřední poštou přišla obálka s týdenní výplatou: osmdesát korun."
+    },
+    {
+      "id": "fragment_vyplata_druha",
+      "type": "fragment",
+      "title": "Výplata",
+      "hook": "Přišla další týdenní výplata: stejná obálka, stejné razítko a stejných osmdesát korun."
+    },
+    {
+      "id": "fragment_ekonomika_dluh_krize",
+      "type": "clipping",
+      "title": "Dluh",
+      "hook": "Dopisy z lékárny přicházejí pravidelně — zdvořilé, krátké, s datem splatnosti."
+    },
+    {
+      "id": "fragment_vina_krize_80",
+      "type": "clipping",
+      "title": "Tíha",
+      "hook": "Večer, když síň ztichne, Ben zůstane u stolu o samotě."
+    },
+    {
+      "id": "fragment_moc_vysoka",
+      "type": "clipping",
+      "title": "Tlak z ministerstva",
+      "hook": "V posledních dnech se každý spis dotýká něčeho většího než obviněného — úřadu, strany, firmy s razítkem."
+    },
+    {
+      "id": "fragment_lid_vysoka",
+      "type": "clipping",
+      "title": "Hlas z ulice",
+      "hook": "Noviny píší o případech, které Ben uzavřel tento týden — někdy správně, někdy zkresleně."
+    },
+    {
+      "id": "fragment_d28_rano",
+      "type": "letter",
+      "title": "Dopis od syna Martina",
+      "hook": "Dopis přišel z Brna ve čtvrtek ráno."
+    },
+    {
+      "id": "haas_obalka",
+      "type": "letter",
+      "title": "Obálka od Haasova advokáta",
+      "hook": "Vážený pane doktore, dovolujeme si Vás informovat, že náš klient, pan průmyslník Viktor Haas, přiložil k tomuto dopisu výraz své osobní úcty — v hotovosti, tři sta korun."
+    }
+  ]
+}

@@ -1,0 +1,258 @@
+{
+  "meta": {
+    "generated_for": "ultra-min spine audit",
+    "source": "docs/scenar/pool_cases_akt1_story_core.json",
+    "note": "description + aftermath/verdict labels only"
+  },
+  "cases": [
+    {
+      "id": "tyc_horak_d1",
+      "title": "Krádež chleba",
+      "slot": "pool",
+      "type": "routine",
+      "available_days": [
+        1
+      ],
+      "defendant_name": "Tomáš Horák",
+      "premise": "Tomáš Horák vstoupil v úterý ráno do pekárny Antonína Mráze na rohu Seifertovy ulice.",
+      "aftermath_keys": [
+        "guilty_standard",
+        "guilty_maximum",
+        "guilty_lenient",
+        "not_guilty_bagatelni",
+        "not_guilty_krajni_nouze",
+        "insufficient_close"
+      ],
+      "verdict_labels": [
+        "Pokuta 20 Kčs, náhrada škody 2 Kčs 40 haléřů",
+        "30 dní vězení a náhrada škody",
+        "Podmíněné upuštění od potrestání — napomenutí",
+        "Zproštění — nepatrná škoda, žádná recidiva",
+        "Alternativa: Zproštění — krajní nouze dle §2 trestního zákona",
+        "Zastavení — neúčelnost trestního řízení"
+      ]
+    },
+    {
+      "id": "tyc_pospisil_2",
+      "title": "Hospodský a tichá hrozba",
+      "slot": "pool",
+      "type": "routine",
+      "available_days": [
+        6
+      ],
+      "defendant_name": "Emil Pospíšil",
+      "premise": "V sobotu 7.",
+      "aftermath_keys": [
+        "guilty_standard",
+        "guilty_maximum",
+        "guilty_lenient",
+        "guilty_alternative",
+        "not_guilty_formal",
+        "not_guilty_with_comment"
+      ],
+      "verdict_labels": [
+        "Pokuta 300 Kčs za porušení povinností provozovatele",
+        "Pokuta 800 Kčs a podmíněné pozastavení živnostenského listu",
+        "Napomenutí — incident nepředvídatelný",
+        "Alternativa: Zastavení — navrhovatelka nemá aktivní legitimaci",
+        "Zproštění — náhlý střet, povinnost zasáhnout nenastala",
+        "Alternativa: Zproštění — navrhovatelka jednala v omylu o příčině",
+        "Přerušit — doplnit výslech poškozeného Jana Červenky"
+      ]
+    },
+    {
+      "id": "tyc_horac_d7",
+      "title": "Svědkyně",
+      "slot": "pool",
+      "type": "politicky",
+      "available_days": [
+        7
+      ],
+      "defendant_name": "Jiří Veselý",
+      "premise": "Tiskař Jiří Veselý přednášel na uzavřené stranické schůzi.",
+      "aftermath_keys": [
+        "guilty_standard",
+        "guilty_maximum",
+        "guilty_lenient",
+        "not_guilty_formal",
+        "not_guilty_with_comment",
+        "insufficient_reopen",
+        "insufficient_close"
+      ],
+      "verdict_labels": [
+        "Pokuta 500 Kčs za pobuřování",
+        "6 měsíců podmíněně a pokuta 1 000 Kčs",
+        "Napomenutí — neurčitost výroku vylučuje přesnou kvalifikaci",
+        "Zproštění — jediný svědek, neurčitost výroku",
+        "Alternativa: Zproštění — svědectví získané politickým dohledem",
+        "Přerušit — vyžádat zápisník Horáčkové jako listinný důkaz",
+        "Zastavení — nedostatečná průkaznost jediného svědectví"
+      ]
+    },
+    {
+      "id": "tyc_bozena_3",
+      "title": "Stavební zájem",
+      "slot": "pillar",
+      "type": "politicky",
+      "available_days": [
+        10
+      ],
+      "defendant_name": "Božena Kučerová",
+      "premise": "Dvě věci se staly ve stejný týden.",
+      "aftermath_keys": [
+        "standardni_nahrada",
+        "vyssi_nahrada",
+        "alternative",
+        "pozastavit",
+        "zamitout_trasu",
+        "nezavisly_pruzkum"
+      ],
+      "verdict_labels": [
+        "Námitky zamítnout — vyvlastnění potvrzeno, náhrada 2 200 Kčs",
+        "Námitky částečně přijmout — vyvlastnění potvrzeno, náhrada zvýšena na 4 000 Kčs",
+        "Alternativa: Vyvlastnění podmíněno nezávislým novým průzkumem",
+        "Námitky přijmout — řízení pozastavit pro procesní vadu",
+        "Alternativa: Námitky přijmout — vyvlastnění zamítnout, střet zájmů advokáta",
+        "Přerušit — nařídit nezávislý geodetický průzkum parcely 48/1"
+      ]
+    },
+    {
+      "id": "tyc_hranice_2",
+      "title": "Německý dopis",
+      "slot": "pool",
+      "type": "politicky",
+      "available_days": [
+        8
+      ],
+      "defendant_name": "Wilhelm Grünbaum",
+      "premise": "Zeď mezi Grünbaumem a Křížem stojí, kde stála — nebo skoro.",
+      "aftermath_keys": [
+        "napomenuti",
+        "formal",
+        "with_comment",
+        "prerusit"
+      ],
+      "verdict_labels": [
+        "Napomenutí — kontakt s cizí organizací bez náležité opatrnosti",
+        "Zastavit — znaky trestného činu nenaplněny",
+        "Alternativa: Zastavit — podnět podán bez faktického podkladu, konstatovat zneužití",
+        "Přerušit — vyžádat překlad celé korespondence"
+      ]
+    },
+    {
+      "id": "tyc_zvraty_d10",
+      "title": "Složka",
+      "slot": "pool",
+      "type": "osobni",
+      "available_days": [
+        12
+      ],
+      "defendant_name": "—",
+      "premise": "Ráno přišel Svejda jako obvykle — s poštou, s kávou, s prázdným výrazem.",
+      "aftermath_keys": [
+        "guilty_pouzit_dokument",
+        "not_guilty_odevzdat_statnimu",
+        "not_guilty_znicit"
+      ],
+      "verdict_labels": [
+        "Ponechat složku",
+        "Odevzdat státnímu zástupci jako anonymní podnět",
+        "Zničit složku — nikdy ji Ben neviděl"
+      ]
+    },
+    {
+      "id": "tyc_haas_d11",
+      "title": "Obálka",
+      "slot": "pool",
+      "type": "osobni",
+      "available_days": [
+        15
+      ],
+      "defendant_name": "—",
+      "premise": "Svejda tentokrát klepal třikrát a čekal.",
+      "aftermath_keys": [
+        "guilty_vzit_obalku",
+        "not_guilty_odmitnut_slušne",
+        "not_guilty_odmitnut_s_komentarem"
+      ],
+      "verdict_labels": [
+        "Vzít obálku",
+        "Odmítnout — vrátit obálku",
+        "Alternativa: Odmítnout a říct proč"
+      ]
+    },
+    {
+      "id": "tyc_zavadova_d12",
+      "title": "Víme vše",
+      "slot": "pool",
+      "type": "osobni",
+      "available_days": [
+        16
+      ],
+      "defendant_name": "—",
+      "premise": "Milena Zavadová přišla v úterý dopoledne, bez ohlášení, s kufříkem z hnědé kůže, který vypadal, jako by ho nosila všude a vždy.",
+      "aftermath_keys": [
+        "guilty_podepsat",
+        "not_guilty_odmitnut_formal",
+        "not_guilty_odmitnut_s_konfrontaci"
+      ],
+      "verdict_labels": [
+        "Podepsat prohlášení",
+        "Odmítnout — vrátit prohlášení",
+        "Alternativa: Odmítnout a konfrontovat s padělkem"
+      ]
+    },
+    {
+      "id": "tyc_markova_3",
+      "title": "Sešit jako důkaz",
+      "slot": "pool",
+      "type": "moral_dilemma",
+      "available_days": [
+        18
+      ],
+      "defendant_name": "Věra Marková",
+      "premise": "Věra Marková, která dvakrát zachránila jiné lidi přesností svých záznamů, teď čelí obžalobě z padělání záznamů.",
+      "aftermath_keys": [
+        "mirny",
+        "maximum",
+        "formal",
+        "with_comment",
+        "grafolog"
+      ],
+      "verdict_labels": [
+        "Pokuta 500 Kčs — pozměnění dokladů bez osobního obohacení",
+        "18 měsíců podmíněně — padělání dokladů",
+        "Zproštění — přepis na pokyn nadřízeného, záměr padělání neprokázán",
+        "Alternativa: Zproštění Markové + podnět k šetření Beneše st.",
+        "Přerušit — grafologický posudek srovnávacích vzorků Beneše st."
+      ]
+    },
+    {
+      "id": "tyc_velezrada_d15",
+      "title": "Velezrada",
+      "slot": "pool",
+      "type": "politicky",
+      "available_days": [
+        19
+      ],
+      "defendant_name": "Alexander Wolf",
+      "premise": "Alexander Wolf sedí u stolu a je klidný způsobem, který Ben za čtrnáct let u soudu viděl jen zřídka — klidný ne ze zatvrdlosti, ale ze smíření.",
+      "aftermath_keys": [
+        "guilty_standard",
+        "guilty_maximum",
+        "guilty_alternative",
+        "not_guilty_formal",
+        "not_guilty_with_comment",
+        "insufficient_prerusit"
+      ],
+      "verdict_labels": [
+        "8 let těžkého žaláře za velezradu",
+        "15 let těžkého žaláře — přitěžující okolnosti",
+        "Alternativa: Odsouzení za poradenství v rozporu se zákonem — 2 roky podmíněně",
+        "Zproštění — klíčový dokument sporný, pochybnost v prospěch obžalovaného",
+        "Alternativa: Zproštění — padělání klíčového důkazu, podnět k šetření",
+        "Vrátit k doplnění — grafologický posudek a ověření poradenských smluv"
+      ]
+    }
+  ]
+}

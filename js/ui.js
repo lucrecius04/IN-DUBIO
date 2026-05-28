@@ -1730,7 +1730,6 @@ const UI = (() => {
         `</div></div>` +
         `<div class="case-wf-clue-hud-actions case-wf-clue-hud-actions--detail">` +
         `<button type="button" class="case-wf-clue-hud-btn skryto" id="case-wf-clue-hud-confirm">Potvrdit vazbu</button>` +
-        `<button type="button" class="case-wf-clue-hud-btn skryto case-wf-clue-hud-btn--abort" id="case-wf-clue-hud-abort">Ukončit pátrání</button>` +
         `</div>`;
       slot.insertBefore(detail, slot.firstChild);
     } else if (detail.parentElement !== slot) {
@@ -1770,16 +1769,6 @@ const UI = (() => {
       ink.className = 'case-wf-clue-hud-btn';
       ink.textContent = 'Obnovit (−1 inkoust)';
       lockAct.insertBefore(ink, lockAct.firstChild);
-    }
-
-    const actRow = detail?.querySelector('.case-wf-clue-hud-actions--detail');
-    if (actRow && !document.getElementById('case-wf-clue-hud-abort')) {
-      const ab = document.createElement('button');
-      ab.type = 'button';
-      ab.id = 'case-wf-clue-hud-abort';
-      ab.className = 'case-wf-clue-hud-btn skryto case-wf-clue-hud-btn--abort';
-      ab.textContent = 'Ukončit pátrání';
-      actRow.appendChild(ab);
     }
 
     return document.getElementById('case-wf-clue-hud-detail');
@@ -1837,7 +1826,6 @@ const UI = (() => {
     const lockWrap = document.getElementById('case-wf-clue-focus-lock');
     const actionBtn = document.getElementById('case-wf-clue-hud-action');
     const confirmBtn = document.getElementById('case-wf-clue-hud-confirm');
-    const abortBtn = document.getElementById('case-wf-clue-hud-abort');
     const unlockInk = document.getElementById('case-wf-clue-unlock-ink');
     const unlockWis = document.getElementById('case-wf-clue-unlock-wis');
 
@@ -1939,26 +1927,6 @@ const UI = (() => {
           ? 'Potvrdit aktuálně nalezenou vazbu.'
           : 'Zatím nebyla nalezena žádná vazba.';
       }
-      if (abortBtn) {
-        abortBtn.classList.remove('skryto');
-        abortBtn.disabled = false;
-        abortBtn.title =
-          'Okamžitě ukončí pátrání. Potvrzená vazba se neuloží; pokus propadne — další běh za inkoust nebo Moudrost.';
-        abortBtn.onclick = async () => {
-          if (!_wfCluePatrani.active) return;
-          const ok = await _zobrazMenuDialog({
-            kicker: 'Pátrání',
-            title: 'Ukončit pátrání?',
-            text:
-              'Potvrzená vazba se neuloží a ztratíte tento pokus.\n\n' +
-              'Další běh lze spustit jednou akcí průzkumu (−1 inkoust) nebo za −2 Moudrosti.',
-            confirmText: 'Ukončit pátrání',
-            cancelText: 'Pokračovat v pátrání'
-          });
-          if (!ok) return;
-          _wfCluePatraniUkonciBezVysledku(pripad, onRozsudek);
-        };
-      }
     } else if (pokusyRezim && pokActive && !pokClosed) {
       if (timeEl) {
         timeEl.classList.remove('skryto');
@@ -1978,23 +1946,6 @@ const UI = (() => {
           ? 'Zapíše aktuální osu do spisu a ukončí pátrání.'
           : 'Nejprve najděte dvojici stop.';
       }
-      if (abortBtn) {
-        abortBtn.classList.remove('skryto');
-        abortBtn.disabled = false;
-        abortBtn.title = 'Ukončí pátrání bez uložení vazby; stopy se uzamknou.';
-        abortBtn.onclick = async () => {
-          if (!pokActive) return;
-          const ok = await _zobrazMenuDialog({
-            kicker: 'Pátrání',
-            title: 'Ukončit pátrání?',
-            text: 'Opravdu ukončit pátrání bez uložení vazby?',
-            confirmText: 'Ukončit pátrání',
-            cancelText: 'Pokračovat v pátrání'
-          });
-          if (!ok) return;
-          _wfCluePokusyUkonciBezVysledku(pripad, onRozsudek);
-        };
-      }
     } else if (pokusyRezim && pokHasRun && pokClosed) {
       if (timeEl) {
         timeEl.classList.remove('skryto');
@@ -2011,12 +1962,6 @@ const UI = (() => {
         confirmBtn.disabled = true;
         confirmBtn.title = '';
       }
-      if (abortBtn) {
-        abortBtn.classList.add('skryto');
-        abortBtn.disabled = true;
-        abortBtn.title = '';
-        abortBtn.onclick = null;
-      }
     } else if (timed && _wfCluePatrani.hasRun) {
       if (timeEl) {
         timeEl.classList.remove('skryto');
@@ -2031,12 +1976,6 @@ const UI = (() => {
         confirmBtn.disabled = true;
         confirmBtn.title = '';
       }
-      if (abortBtn) {
-        abortBtn.classList.add('skryto');
-        abortBtn.disabled = true;
-        abortBtn.title = '';
-        abortBtn.onclick = null;
-      }
     } else {
       if (timeEl) timeEl.classList.add('skryto');
       if (bestEl) bestEl.classList.add('skryto');
@@ -2044,12 +1983,6 @@ const UI = (() => {
         confirmBtn.classList.add('skryto');
         confirmBtn.disabled = true;
         confirmBtn.title = '';
-      }
-      if (abortBtn) {
-        abortBtn.classList.add('skryto');
-        abortBtn.disabled = true;
-        abortBtn.title = '';
-        abortBtn.onclick = null;
       }
       if (actionBtn) {
         if (timed && runCfg) {
@@ -2767,11 +2700,21 @@ const UI = (() => {
         'clue--focus-locked'
       );
     }
+    const prvniVyskytId = new Set();
+    const jePrvniVyskyt = (id) => {
+      if (!id) return false;
+      if (prvniVyskytId.has(id)) return false;
+      prvniVyskytId.add(id);
+      return true;
+    };
+
     if (matched && !lzePoStredni) {
       for (const el of clues) {
         const id = String(el.dataset.clueId || '').trim();
         el.classList.add('clue--locked');
-        if (pairIds.has(id)) {
+        // Pokud je stejná clue v textu vícekrát, zvýrazni jen první výskyt.
+        // Zabrání to dojmu, že se "našlo" více stop, než hráč skutečně spojil.
+        if (pairIds.has(id) && jePrvniVyskyt(id)) {
           el.classList.add('clue--match-persist');
           if (matchCls) el.classList.add(matchCls);
         }
@@ -2779,7 +2722,7 @@ const UI = (() => {
     } else if (matched && lzePoStredni) {
       for (const el of clues) {
         const id = String(el.dataset.clueId || '').trim();
-        if (pairIds.has(id)) {
+        if (pairIds.has(id) && jePrvniVyskyt(id)) {
           el.classList.add('clue--match-persist');
           if (matchCls) el.classList.add(matchCls);
         }
@@ -3554,6 +3497,8 @@ const UI = (() => {
   let _knihovnaAnchorId = null;
   /** Po otevření zápisníku na Pověst: scroll na záznam postavy (id z postavy_okoli.json). */
   let _povestZapisnikAnchorId = null;
+  /** Krátká ochrana proti ghost-click reopen/click-through u detailu historie. */
+  let _postavaHistorieDetailIgnoreOpenUntil = 0;
   /** Filtr záložky Rozsudky: všechny typy nebo jeden z rutinní | morální | politický | osobní. */
   let _archivRozsudkyFiltrTyp = 'vse';
   /** Filtr záložky Záznamy: nové narativní typy. */
@@ -5257,6 +5202,36 @@ const UI = (() => {
       c.disabled = true;
     }
     _wfVerdictStampTeardown();
+  }
+
+  async function _wfPotvrdUkonceniAktivnihoPatrani() {
+    const p = _wfClueAktivniPripad;
+    if (!p) return true;
+    if (_wfCluePatrani.active && _wfCluePouzivaTimedHunt(p)) {
+      const ok = await _zobrazMenuDialog({
+        kicker: 'Pátrání',
+        title: 'Ukončit pátrání bez uložení?',
+        text:
+          'Máte rozběhnuté pátrání na čas.\n\n' +
+          'Když teď spis zavřete, aktuální nález se neuloží a tento pokus propadne.',
+        confirmText: 'Ukončit bez uložení',
+        cancelText: 'Pokračovat v pátrání'
+      });
+      return !!ok;
+    }
+    if (_wfCluePokusy.active && _wfClueMaPokusovyRezim(p)) {
+      const ok = await _zobrazMenuDialog({
+        kicker: 'Pátrání',
+        title: 'Ukončit pátrání bez uložení?',
+        text:
+          'Máte rozběhnuté pátrání.\n\n' +
+          'Když teď spis zavřete, aktuální nález se neuloží.',
+        confirmText: 'Ukončit bez uložení',
+        cancelText: 'Pokračovat v pátrání'
+      });
+      return !!ok;
+    }
+    return true;
   }
 
   function _wfVyplnStep2(grp, polozky, pripad, onRozsudek, dostupneIdSet) {
@@ -8113,6 +8088,7 @@ const UI = (() => {
   }
 
   function _otevriHistorieDetailModal(zaznam) {
+    if (Date.now() < _postavaHistorieDetailIgnoreOpenUntil) return;
     const nadpis = document.getElementById('postava-historie-detail-nadpis');
     const telo = document.getElementById('postava-historie-detail-text');
     if (!nadpis || !telo) return;
@@ -8128,6 +8104,13 @@ const UI = (() => {
       telo.innerHTML = '<p class="postava-historie-detail-prazdne">Úplný text není k dispozici.</p>';
     }
     _otevriModal('modal-postava-historie-detail');
+  }
+
+  function _zavriHistorieDetailModal(e) {
+    if (e && typeof e.preventDefault === 'function') e.preventDefault();
+    if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
+    _postavaHistorieDetailIgnoreOpenUntil = Date.now() + 420;
+    _zavriModal('modal-postava-historie-detail');
   }
 
   function _otevriProfilPostavy(npcId) {
@@ -8174,6 +8157,7 @@ const UI = (() => {
           '<span class="postava-historie-radek-text">' + _escapeHtmlProfil(txt) + '</span>' +
           '<span class="postava-historie-radek-sipka" aria-hidden="true">›</span>';
         btn.addEventListener('click', (ev) => {
+          ev.preventDefault();
           ev.stopPropagation();
           _otevriHistorieDetailModal(z);
         });
@@ -8513,7 +8497,9 @@ const UI = (() => {
     });
 
     // Zavřít případ tlačítkem X
-    document.getElementById('pripad-zavrit-x')?.addEventListener('click', () => {
+    document.getElementById('pripad-zavrit-x')?.addEventListener('click', async () => {
+      const ok = await _wfPotvrdUkonceniAktivnihoPatrani();
+      if (!ok) return;
       _zavriPripadModal();
     });
 
@@ -8567,7 +8553,7 @@ const UI = (() => {
         }
         const historieDetail = document.getElementById('modal-postava-historie-detail');
         if (historieDetail && historieDetail.classList.contains('aktivni')) {
-          _zavriModal('modal-postava-historie-detail');
+          _zavriHistorieDetailModal(e);
           return;
         }
         const profilPostavy = document.getElementById('modal-postava-profil');
@@ -8608,8 +8594,8 @@ const UI = (() => {
       _zavriProfilPostavyAVratNaPovest();
     });
 
-    document.getElementById('postava-historie-detail-zavrit')?.addEventListener('click', () => {
-      _zavriModal('modal-postava-historie-detail');
+    document.getElementById('postava-historie-detail-zavrit')?.addEventListener('click', (e) => {
+      _zavriHistorieDetailModal(e);
     });
 
     // Taby archivu
@@ -8627,9 +8613,14 @@ const UI = (() => {
           // Fragment vyžaduje explicitní akci
           if (overlay.id === 'modal-archiv' ||
               overlay.id === 'modal-postava-historie-detail') {
-            _zavriModal(overlay.id);
+            if (overlay.id === 'modal-postava-historie-detail') {
+              _zavriHistorieDetailModal(e);
+            } else {
+              _zavriModal(overlay.id);
+            }
           }
           if (overlay.id === 'modal-postava-profil') {
+            if (Date.now() < _postavaHistorieDetailIgnoreOpenUntil) return;
             _zavriProfilPostavyAVratNaPovest();
           }
           if (overlay.id === 'modal-dusledky') {

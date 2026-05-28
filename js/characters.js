@@ -34,11 +34,11 @@ const Characters = (() => {
 
   const VLIV_NA_HRACE = {
     vlcek:
-      'Důvěra roste → Integrita klesá každý den.\nDůvěra na 0 → Eskalace, osobní návštěva.',
+      'Nízká důvěra: vztah je napjatější a častěji vede ke konfliktu.\nVysoká důvěra: vztah je vstřícnější a umožňuje spolupráci.',
     zavadova:
-      'Důvěra roste → Odvaha a Naděje silnější.\nDůvěra na 0 → Naděje slábne.',
+      'Nízká důvěra: vztah je chladnější a spolupráce se otevírá hůř.\nVysoká důvěra: vztah je vstřícnější a umožňuje spolupráci.',
     karas:
-      'Důvěra roste → Integrita klesá.\nNa vyšší úrovni máš od něj víc praktické opory — často za cenu toho, co si soudce nechce přiznat nahlas.'
+      'Nízká důvěra: Karas drží větší odstup a nechává tě víc samotného.\nVysoká důvěra: je otevřenější praktické podpoře a spolupráci.'
   };
 
   function inicializuj() {

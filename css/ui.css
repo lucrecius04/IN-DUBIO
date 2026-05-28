@@ -3862,12 +3862,18 @@ button.knihovna-link:hover {
   z-index: 12;
 }
 
-/* Profil + detail historie: modal výš na obrazovce (grafika „neutíká“ dolů) */
-#modal-postava-profil.aktivni,
-#modal-postava-historie-detail.aktivni {
+/* Profil: držíme mírně výš; detail historie naopak centrovat kvůli čitelnosti a stabilitě kliků. */
+#modal-postava-profil.aktivni {
   align-items: flex-start;
   justify-content: center;
   padding: clamp(16px, 3.5vh, 40px) 16px clamp(20px, 4vh, 48px);
+  box-sizing: border-box;
+}
+
+#modal-postava-historie-detail.aktivni {
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
   box-sizing: border-box;
 }
 

@@ -1,0 +1,1205 @@
+{
+  "meta": {
+    "id": "indubio-auditor-packet-ultra-v1",
+    "generated_at": "2026-05-28T21:26:00.466Z",
+    "purpose": "Phase 1 dramaturgy audit + branching consistency (8 endings)",
+    "language": "cs",
+    "notes": [
+      "Token-optimized dataset",
+      "No rewrites requested in phase 1",
+      "Game is branching, evaluate non-linearly"
+    ]
+  },
+  "canon": {
+    "start_here": "docs/scenar/KANON_0_START_HERE.md",
+    "day_mapping": "docs/scenar/KALENDAR_1931_MAPA_DNU.md",
+    "style_rules": "docs/scenar/AUDIT_Styl_a_Zanry.md"
+  },
+  "required_constraints": [
+    "Zachovat 8 koncu a vetveni.",
+    "Neprepisovat texty v 1. kole, jen audit a rizika.",
+    "Posuzovat po dnech i po vetvich."
+  ],
+  "compact_tables": {
+    "mapa_15dni_csv": "Datum ISO;currentDay;Pracovni den (W);Datum;Tyd;Slot 1 (hlavni);Typ S1;Vrstva S1;Slot 2 (vedlejsi);Typ S2;Vrstva S2;Slot 3 (light);Dopis/Udalost;Ranni fragment;Vecerni volba;Noviny;Poznamky\n1931-03-02;1;W1;2.3.;Po;Bozena 1 (slepice);Rut;Tyc;Kradez chleba (Horak);Rut;Tyc;--;Vlckuv uvitaci dopis;Mlha. Fronta u pekarny.;Psat Martinovi / Spisy;OBR: Krize pokracuje;Tutorial. Haas zminen v zaznamech Horaka.\n1931-03-03;2;W2;3.3.;Ut;Pool: rutinni;Rut;Pool;Pool: rutinni;Rut;Pool;--;Martin: studium. Pekar +3 Kc/den.;Pekar zvysil ceny.;Prochazka / Hospoda;TEXT: Nezam 15%;Echo: doporucit pool s Haas stopou (lekarna/Weiss).\n1931-03-04;3;W3;4.3.;St;Pospisil 1 (hospoda);Rut;Tyc;Markova 1 (svedkyne);Rut;Tyc;--;--;Svejda: Dnes je klid.;Kava s Karasem;TEXT: Vlada slibila pomoc;Karas se vyptava. Podpis (hacek). Zavedeni vztahu.\n1931-03-05;4;W4;5.3.;Ct;Bozena 2 (absurdita);Rut;Tyc;Hranice 1 (34 cm);Rut;Tyc;--;DOPIS DOKTORA (400 Kc, termin 17. 3. pri prijmu, Podoli). Vlcek: pochvala.;Deti hraji fotbal.;Spisy / Prochazka;TEXT: Exekuce rolniku;COUNTDOWN od D4 k 17. 3. (viz letters doktor_d4 + finance.js OPERACE_DEADLINE_DEN herni den 16).\n1931-03-06;5;W5;6.3.;Pa;Pool: moralni;Mor;Pool;Pool: rutinni;Rut;Pool;--;--;Sobotni trh. Mene stanku.;--;TEXT: Fronta u uradu;Prvni moralni dilema. Echo: doporucit Nemocenska/Stavba.\n1931-03-07;6;-;7.3.;So;-- SOBOTA --;--;--;--;--;--;--;Sobotni shrnuti + bonusy;--;--;--;Dva bonusy: Peclivy / Nezavisly.\n1931-03-08;7;-;8.3.;Ne;-- NEDELE --;--;--;--;--;--;--;Nedelni volba (Matka/Prochazka/Spisy);--;--;--;Prvni nedele. Zavedeni matky.\n1931-03-09;8;W6;9.3.;Po;Pool: moralni;Mor;Pool;Pospisil 2 (strach);Rut;Tyc;--;HAASOVA VIZITKA (bez textu). Martin: o spravedlnosti.;Plakat: POCHOD HLADU;Psat Martinovi;OBR: Deprese sili;Haas vi. Fin<80: vizitka sviti. Pospisil se boji.\n1931-03-10;9;W7;10.3.;Ut;Horackova svedkyne;Pol;Tyc;Pool: politicky/moralni;Pol;Pool;--;Vlcek: Rad bych upozornil na pripad...;Svejda: Ceka tu nekdo.;Hospoda;TEXT: Nemecke spolky;VETVENI 1. Vlcek naznaci verdikt.\n1931-03-11;10;W8;11.3.;St;Bozena 3 (korupce+tragedie);Mor;Tyc;Hranice 2 (Nemec);Pol;Tyc;Pool light (podminene);Vlcek: Ocekavam... (natlak);Policejni auto.;Prochazka;TEXT: Pochod hladu;Bozena finale. Hranice: narodnostni. TRETI SPIS poprve. IDs: tyc_bozena_3, tyc_hranice_2.\n1931-03-12;11;W9;12.3.;Ct;BENES PRIJDE;Osob;Tyc;Pool: moralni;Mor;Pool;Pool light;Benesuv listek predem. Ucet za uhli -15 Kc.;Karas na chodbe. Nepozdravi.;Psat Martinovi (zvl);TEXT: Creditanstalt;VETVENI 2. Benesova pravda. Vina+3.\n1931-03-13;12;W10;13.3.;Pa;Pool: rutinni (tiskarna);Rut;Pool;ZVRATY: rodny list + Anna/Haas;Osob;Tyc;Pool light;DVA ZVRATY. Martin: pripad z novin.;Kabinet zamknuty zvenku.;--;OBR: Politicke napeti;Alexander Wolf + Anna Vrana Podoli Haas. Ironicky twist. IDs: pool_a1_tiskarna, tyc_zvraty_d10.\n1931-03-14;13;-;14.3.;So;-- SOBOTA --;--;--;--;--;--;--;Sobotni shrnuti;--;--;--;Bonus: Peclivy / Nezavisly.\n1931-03-15;14;-;15.3.;Ne;-- NEDELE --;--;--;--;--;--;--;KLICOVA NEDELE. Karas: Vzpominas na Viden? Odejdi.;--;--;--;Matka = posledni sance. Hrac vi o Haasovi. KONTROLA KONCU: Korupce / Utek.\n1931-03-16;15;W11;16.3.;Po;Pool: rutinni (weiss);Rut;Pool;HAAS OSOBNE (300 Kc);Osob;Tyc;Pool light;Haasova obalka na stole. Vlcek: hrozba (dopis vlcek_d11).;Ruce se tresou.;Psat Martinovi;TEXT: Tise pred bouri;VETVENI 3. Operace matky 17. 3. vecer D11 v days.json zitra. Konec KORUPCE mozny. IDs: pool_a1_weiss, tyc_haas_d11.\n1931-03-17;16;W12;17.3.;Ut;Pool: moralni (stara rana);Mor;Pool;Zavadova: Vime vse + podvrh;Osob;Tyc;Pool light;Zavadova odhali podvrh + dopis Vlcek d13 (fond matka, letters vlcek_d13).;Nikdo na chodbe. Ticho.;Prochazka;TEXT: Rikaji o nem veci;Bratr. Podvrh. Konec SMIRENI mozny. IDs: pool_a1_stara_rana, tyc_zavadova_d12.\n1931-03-18;17;W13;18.3.;St;KARAS - osobni scena;Osob;Tyc;Bozena alt / Pool;Pol;Pool;Pool light;--;Svejda mlci.;-- (Karasova scena vecer);OBR: Skandal?;VETVENI 4. Konec UTEK / ATENTAT mozny.\n1931-03-19;18;W14;19.3.;Ct;Markova OBZALOVANA;Mor;Tyc;Pool: posledni;Mor/Pol;Pool;Pool light;Martin: Prijedu o vikendu. + dopis Vlcek d14 posledni (letters vlcek_d14_letter).;Posledni rano. Svetlo jine.;-- (automaticky vecer);TEXT: Posledni den?;Konec RAD / ANNA mozny. ID: tyc_markova_3.\n1931-03-20;19;W15;20.3.;Pa;VELEZRADA (finalni pripad);Pol;Tyc;-- (jen 1 pripad);--;--;--;--;Soudni sin. Naposledy.;--;OBR: Finale;EPILOG. Konec HRDINA / PREZITI. ID tyc_velezrada_d15.\n",
+    "konce_csv": "﻿Konec;INT;ODV;MOU;VIN;NAD;MOC;LID;KAP;Vlcek;Zavad;Karas;Benes;D8;D13;D16;D18;Rod.list;Finance;Pruzkum;Emoce\r\n1. PREZITI;30-70;30-70;--;30-70;30-70;30-70;--;--;1-2;0-1;1-2;--;--;--;--;--;--;--;--;Prazdnota\r\n2. KORUPCE;<=20;--;--;--;--;--;--;--;>=2/Haas;--;--;--;Splnil;--;Prijal;--;--;--;--;Hnusnost\r\n3. HRDINA;>=80;>=80;--;--;--;--;--;--;0;>=2;--;--;Odmitl;--;Odmitl;--;POUZIL;--;--;Horkosladko\r\n4. UTEK;--;--;--;--;--;--;--;--;--;>=2;--;--;--;--;--;Poslechl;--;>300;--;Utek\r\n5. SMIRENI;>=60;--;--;<=20;--;--;--;--;--;--;--;scena;--;Prijal;Odmitl;--;--;--;--;Klid\r\n6. ATENTAT;>=60;>=80;--;--;--;<=20;--;--;0;--;--;--;Odmitl;--;Odmitl;Ignoroval;NEPOUZIL;--;--;Tragicka velikost\r\n7. RAD;--;--;--;--;--;--;--;--;odmitl;3;--;--;Odmitl;--;--;--;POUZIL;--;--;Temna ironie\r\n8. ANNA;--;--;--;<=20;--;--;--;--;odmitl;odmitl;--;scena;Odmitl;Prijal;Odmitl;--;--;<100;80%+;Ticha katarze\r\n"
+  },
+  "branching_rules_summary_md": "# IN DUBIO — Kanonický systém flagů (Akt 1, 15 dní)\n\nTento dokument je **jediný zdroj pravdy** pro flagy, VĚTVENÍ a podmínky konců.\nPři jakémkoli rozporu mezi tímto souborem a jiným dokumentem platí tento.\n\nFlagy jsou uloženy v `State.flags`. Nastavují je: verdikty případů, adventure scény (Beneš D9, Karas D13), večerní volby, dopisy.\n\n---\n\n## 4 uzlové flagy\n\n### 1. `vlcek_vztah`\n**Co měří:** Jak Ben reagoval na Vlčkův tlak v průběhu celé hry.\n\n| Hodnota | Kdy se nastaví | Narativní identita |\n|---------|---------------|-------------------|\n| `neutral` | Výchozí. Ben lavíroval — ani vzdor ani kapitulace. | Nejnebezpečnější pro atentát. |\n| `kompromitovan` | Ben ustoupil Vlčkovu naznačení alespoň 1× na D7 (VĚTVENÍ 1) A přijal nátlak na D8. | Vlček to zaregistroval. Cesta ke KORUPCI. |\n| `vzdor` | Ben odmítl explicitně na D7 + D11 (obě VĚTVENÍ). | Vlček ho píše do jiného sloupce. Cesta k ATENTÁTU nebo HRDINOVI. |\n\n**Kde se nastavuje:**\n- `D7` (VĚTVENÍ 1): Horáčkový rozsudek + večerní volba „Vlčkův dopis — odpovědět jak?\"\n- `D8`: Rozsudek Božena 3 — pokud Ben odsoudil podle Vlčkova naznačení → `kompromitovan`\n- `D11` (VĚTVENÍ 3): Haas osobně — pokud Ben odmítl Haase + Vlčkovu hrozbu → `vzdor`\n\n---\n\n### 2. `haas_kontakt`\n**Co měří:** Jak hluboko Ben zašel v kontaktu s Haasem.\n\n| Hodnota | Kdy se nastaví | Narativní identita |\n|---------|---------------|-------------------|\n| `odmitnut` | Ben odmítl vizitku (D6), nepoužil rodný list (D10), odmítl obálku (D11). | Čistý. Cesta k ATENTÁTU nebo HRDINOVI. |\n| `otevren` | Ben přijal informaci (rodný list D10 nebo Benešovu pravdu D9) ale ne peníze. | Ambivalentní — záleží na ostatním. |\n| `zavazany` | Ben přijal obálku 300 Kčs na D11 NEBO použil rodný list jako páku. | Kompromitovaný. Cesta ke KORUPCI nebo KRUHU. |\n\n**Kde se nastavuje:**\n- `D6`: Haasova vizitka — přijmout nebo odložit (efekt jen na `otevren`)\n- `D10`: ZVRATY — co Ben udělá s rodným listem Wolf + Anna → `otevren` nebo `odmitnut`\n- `D11` (VĚTVENÍ 3): Haas osobně — obálka 300 Kčs → `zavazany` nebo `odmitnut`\n\n---\n\n### 3. `benes_pravda`\n**Co měří:** Zda Ben přijal Benešovo svědectví jako pravdu.\n\n| Hodnota | Kdy se nastaví | Narativní identita |\n|---------|---------------|-------------------|\n| `nezna` | Výchozí. Beneš nepřišel nebo Ben scénu odmítl. | Jen pokud hráč zcela ignoroval signály. |\n| `prijal` | Ben v adventure scéně D9 zvolil: věřím ti / vezmu dokument. | Ví víc než ostatní. Cesta ke SMÍŘENÍ nebo ATENTÁTU. |\n| `odmitl` | Ben dokument odmítl nebo Benešovi nevěřil. | Zůstává v instituci. Cesta k PŘEŽITÍ nebo KRUHU. |\n\n**Kde se nastavuje:**\n- `D9`: Adventure scéna Beneš — jediné rozhodnutí, nastavuje flag okamžitě.\n\n---\n\n### 4. `osobni_cena`\n**Co měří:** Co Ben udělal s operací matky (**400 Kčs** při příjmu, **17. března 1931** — viz `data/letters.json` `doktor_d4`, ranní kontext `fragment_d4_rano`). **Pracovní den D12** v `Mapa_15dni.csv` = **úterý 17. 3.** (stejný kalendářní den jako operace v příběhu).\n\n| Hodnota | Kdy se nastaví | Narativní identita |\n|---------|---------------|-------------------|\n| `zaplatil` | Ben sehnal 400 Kčs legitimní cestou (spoření, půjčka od Karase D13). | Zachoval integritu. Cesta k ANNĚ nebo HRDINOVI. |\n| `haasem` | Ben použil Haasovu obálku (300 Kčs) na operaci. | Kompromis přes peníze. Cesta ke KORUPCI nebo ÚTĚKU. |\n| `nerozhodl` | Po uplynutí lhůty Ben **nezaplatil** 400 Kčs (nebo matka operaci odmítla). | Tichá tragédie. Cesta k ANNĚ nebo SMÍŘENÍ. |\n| `odmitl` | Ben vědomě rozhodl peníze nedát — jiné priority. | Nejtvrdší cesta. |\n\n**Kde se nastavuje (kanon dat + kód):**\n- **`D4`:** dopis doktora + příznaky countdownu (`letters.json` / `engine.js`).\n- **Countdown ve hře:** `js/finance.js` → `OPERACE_DEADLINE_DEN = 16` (`currentDay`; úterý **17. 3.** vůči startu v `days.json`), `getDnuDoDeadline()`.\n- **`Finance.zkontrolujCilOperace()`:** při zůstatku **≥ 400** → `flags.operace_zaplacena` (platba „včas“ dle ekonomiky).\n- **`D11` (VĚTVENÍ 3):** Haas osobně — přijetí obálky → `haas_kontakt` / `operace_zaplacena` podle implementace případu.\n- **`D13`:** Karas nabídne půjčku → při přijetí a dostatečném zůstatku → cesta k `zaplatil`.\n- **Výpočet uzlového `osobni_cena` v `js/state.js` (`vypoctiUzloveFlagy`):** pokud není `operace_zaplacena` ani `operace_odložena`, od **`currentDay >= 12`** se mapuje **`nerozhodl`** (odlišné číslo od `OPERACE_DEADLINE_DEN` — při údržbě kód sjednotit na jednu konstantu).\n\n---\n\n## 8 konců — podmínky\n\nKaždý konec potřebuje **max 2 uzlové flagy** + případně 1 pomocný flag. Engine kontroluje od D11, v pořadí priority.\n\n| # | Konec | Nejdříve | Primární podmínky | Pomocné |\n|---|-------|----------|-------------------|---------|\n| 2 | **KORUPCE** | D11 | `vlcek_vztah == kompromitovan` + `haas_kontakt == zavazany` | INT ≤ 20 |\n| 5 | **SMÍŘENÍ** | D12 (pracovní — den Závadové / podvrhu, viz `Mapa_15dni.csv`) | `benes_pravda == prijal` + `osobni_cena != haasem` | INT ≥ 60, VIN ≤ 20 |\n| 4 | **ÚTĚK** | D13 | `haas_kontakt != zavazany` + `osobni_cena == zaplatil` + Karas D13 nabídl odchod | Finance > 300 |\n| 6 | **ATENTÁT** | D13 | `vlcek_vztah == vzdor` + `haas_kontakt == odmitnut` + `benes_pravda == prijal` | ODV ≥ 80, MOC ≤ 20 |\n| 7 | **KRUH** | D14 | `vlcek_vztah != vzdor` + `haas_kontakt == zavazany` + `benes_pravda == odmitl` | Zavadová ≥ 3 |\n| 8 | **ANNA** | D14 | `benes_pravda == prijal` + `haas_kontakt == odmitnut` + `osobni_cena == nerozhodl` | Finance < 100, průzkum ≥ 80 % |\n| 3 | **HRDINA** | D15 | `vlcek_vztah == vzdor` + `haas_kontakt == odmitnut` | INT ≥ 80, ODV ≥ 80 |\n| 1 | **PŘEŽITÍ** | D15 | Výchozí — žádné jiné podmínky nesplněny | — |\n\n---\n\n## Pomocné flagy (atomické, nastavují uzlové)\n\nTyto flagy nastavují verdikty a scény — uzlové flagy z nich vycházejí.\n\n| Flag | Typ | Kdy | Nastavuje |\n|------|-----|-----|-----------|\n| `flag_vlcek_d7_ustoupil` | bool | D7 verdikt Horáčková — odsouzení dle naznačení | `vlcek_vztah → kompromitovan` (podmíněně) |\n| `flag_vlcek_d8_splnil` | bool | D8 verdikt Božena 3 — podle Vlčkova zadání | `vlcek_vztah → kompromitovan` (potvrzení) |\n| `flag_vlcek_d11_odmitl` | bool | D11 VĚTVENÍ 3 — Ben explicitně odmítl Vlčka | `vlcek_vztah → vzdor` (podmíněně) |\n| `flag_rodny_list_pouzit` | bool | D10 — Ben použil dokument Wolf+Anna | `haas_kontakt → otevren` |\n| `flag_haas_obalka` | bool | D11 — Ben přijal 300 Kčs | `haas_kontakt → zavazany` + `osobni_cena → haasem` |\n| `flag_benes_scena_prijal` | bool | D9 adventure scéna | `benes_pravda → prijal` |\n| `flag_karas_pujcka` | bool | D13 adventure scéna | `osobni_cena → zaplatil` (pokud finance ≥ 400) |\n| `flag_vlcek_upozorneni` | bool | D7 — soud konstatoval infiltraci | Narativní, ovlivňuje Vlčkovu linii (dopisy `vlcek_*` v `letters.json` jsou doručovány vždy; důvěra `trust.vlcek` řídí jiné projevy) |\n| `flag_pospisil_dluzi` | bool | D6 verdikt Pospíšil 2 | Narativní, ovlivňuje D11 beat |\n| `flag_markova_zpochybnena` | bool | D3 verdikt Marková 1 | Narativní, ovlivňuje D14 |\n\n---\n\n## Uzlové flagy — logika výpočtu\n\nEngine přepočítá uzlové flagy po každém dni (ne po každém verdiktu):\n\n```javascript\n// vlcek_vztah\nif (flags.flag_vlcek_d8_splnil && flags.flag_vlcek_d7_ustoupil) {\n  flags.vlcek_vztah = 'kompromitovan';\n} else if (flags.flag_vlcek_d11_odmitl && !flags.flag_vlcek_d8_splnil) {\n  flags.vlcek_vztah = 'vzdor';\n} else {\n  flags.vlcek_vztah = 'neutral';\n}\n\n// haas_kontakt\nif (flags.flag_haas_obalka) {\n  flags.haas_kontakt = 'zavazany';\n} else if (flags.flag_rodny_list_pouzit || flags.flag_benes_scena_prijal) {\n  flags.haas_kontakt = 'otevren';\n} else {\n  flags.haas_kontakt = 'odmitnut';\n}\n\n// benes_pravda — nastavena přímo v D9 scéně, nemění se\n\n// osobni_cena\nif (flags.flag_haas_obalka && State.finance >= 400) {\n  flags.osobni_cena = 'haasem';\n} else if (flags.flag_karas_pujcka && State.finance >= 400) {\n  flags.osobni_cena = 'zaplatil';\n} else if (State.currentDay >= 12 && State.finance < 400) {\n  // Pozn.: v produkčním kódu viz `js/state.js` — zvažte sjednocení s Finance.OPERACE_DEADLINE_DEN (16).\n  flags.osobni_cena = 'nerozhodl';\n}\n```\n\n---\n\n## Adventure scény — technická specifikace\n\n### Formát (stejný pro D9 i D13)\n\n```json\n{\n  \"type\": \"adventure_scene\",\n  \"portrait\": \"benes\",\n  \"screens\": [\n    {\n      \"text\": \"Text dialogu nebo narativu. Max 4 věty.\",\n      \"speaker\": \"Beneš / Karas / Ben / narrator\",\n      \"choices\": null\n    },\n    {\n      \"text\": \"...\",\n      \"speaker\": \"Beneš\",\n      \"choices\": [\n        { \"label\": \"Věřím vám.\", \"flag\": \"flag_benes_scena_prijal\", \"value\": true, \"next\": 3 },\n        { \"label\": \"Nevěřím.\", \"flag\": \"flag_benes_scena_prijal\", \"value\": false, \"next\": 4 },\n        { \"label\": \"Vezmu dokument, ale nic neslibuji.\", \"flag\": \"flag_benes_scena_prijal\", \"value\": true, \"next\": 5 }\n      ]\n    }\n  ]\n}\n```\n\n**UI:** Portrét vlevo (statický obrázek nebo inicialový placeholder), text uprostřed, volby dole jako tlačítka. Bez časového limitu. Bez pátrání, bez průzkumu, bez rozsudku.\n\n**Napojení na engine:** Adventure scéna se spustí místo slotu 1 daného dne. Po scéně engine nastaví flagy a pokračuje normálně (slot 2 případu zůstává).\n\n---\n\n## Co tento dokument NEŘEŠÍ\n\n- Přesné číselné efekty (rysy, finance, frakce) — to je `Balancing.csv`, ladí se po průchodu\n- Epilogové texty každého konce — to je `story.mdc` a separátní soubory\n- Přesné formulace dialogů Beneše a Karase — to jsou autorské texty, ne flagy\n",
+  "data_ultra": {
+    "days": {
+      "meta": {
+        "generated_for": "ultra-min dramaturgy audit",
+        "source": "data/days.json",
+        "note": "No long prose blocks; only structure + short hooks"
+      },
+      "days": [
+        {
+          "date_iso": "1931-03-02",
+          "currentDay": 1,
+          "w": "W1",
+          "dow": "Po",
+          "headline": "Hospodářská krize pokračuje: nezaměstnanost je opět vyšší.",
+          "morning_fragment_id": "fragment_d1_morning",
+          "evening_fragment_id": null,
+          "night_fragment_id": "fragment_d1_night",
+          "cases": [
+            "pool_a1_bozena_slepice",
+            "tyc_horak_d1"
+          ],
+          "cases_light": null,
+          "letters": [
+            "vlcek_d1"
+          ],
+          "has_nedelni_volba": false,
+          "has_evening_choice": true,
+          "evening_choice_options": 2,
+          "evening_hook": "Stůl je čistý.",
+          "has_adventure_scene": false,
+          "adventure_scene_id": null,
+          "special_events": null
+        },
+        {
+          "date_iso": "1931-03-03",
+          "currentDay": 2,
+          "w": "W2",
+          "dow": "Ut",
+          "headline": "Nezaměstnanost přes patnáct procent: čísla dráždí i redakce.",
+          "morning_fragment_id": "fragment_d2_rano",
+          "evening_fragment_id": null,
+          "night_fragment_id": null,
+          "cases": [
+            "pool_a1_lekarna",
+            "pool_a1_weiss"
+          ],
+          "cases_light": null,
+          "letters": [
+            "martin_d2"
+          ],
+          "has_nedelni_volba": false,
+          "has_evening_choice": true,
+          "evening_choice_options": 2,
+          "evening_hook": "Martinův dopis leží na rohu stolu.",
+          "has_adventure_scene": false,
+          "adventure_scene_id": null,
+          "special_events": null
+        },
+        {
+          "date_iso": "1931-03-04",
+          "currentDay": 3,
+          "w": "W3",
+          "dow": "St",
+          "headline": "Vláda slíbila pomoc regionům — odpůrci mluví o prázdných symbolech.",
+          "morning_fragment_id": "fragment_d3_noviny",
+          "evening_fragment_id": null,
+          "night_fragment_id": null,
+          "cases": [
+            "pool_a1_pospisil_vycep",
+            "pool_a1_markova_svedkyne"
+          ],
+          "cases_light": null,
+          "letters": [
+            "masek_d3"
+          ],
+          "has_nedelni_volba": false,
+          "has_evening_choice": true,
+          "evening_choice_options": 2,
+          "evening_hook": "Třetí den.",
+          "has_adventure_scene": false,
+          "adventure_scene_id": null,
+          "special_events": null
+        },
+        {
+          "date_iso": "1931-03-05",
+          "currentDay": 4,
+          "w": "W4",
+          "dow": "Ct",
+          "headline": "Exekuce na venkově: usedlosti v tlaku, úřady mluví o pořádku.",
+          "morning_fragment_id": "fragment_d4_rano",
+          "evening_fragment_id": null,
+          "night_fragment_id": null,
+          "cases": [
+            "pool_a1_bozena_cest",
+            "pool_a1_hranice_zed"
+          ],
+          "cases_light": null,
+          "letters": [
+            "doktor_d4",
+            "vlcek_d4"
+          ],
+          "has_nedelni_volba": false,
+          "has_evening_choice": true,
+          "evening_choice_options": 3,
+          "evening_hook": "Dopis od doktora Síbra leží v zásuvce.",
+          "has_adventure_scene": false,
+          "adventure_scene_id": null,
+          "special_events": null
+        },
+        {
+          "date_iso": "1931-03-06",
+          "currentDay": 5,
+          "w": "W5",
+          "dow": "Pa",
+          "headline": "Fronta u podatelny roste: na razítka prý nestačí hodiny.",
+          "morning_fragment_id": "fragment_d5_patek_trh",
+          "evening_fragment_id": null,
+          "night_fragment_id": "fragment_d5_tichy_noc",
+          "cases": [
+            "pool_a1_nemocenska",
+            "pool_a1_vytrznost"
+          ],
+          "cases_light": null,
+          "letters": [],
+          "has_nedelni_volba": false,
+          "has_evening_choice": false,
+          "evening_choice_options": 0,
+          "evening_hook": "",
+          "has_adventure_scene": false,
+          "adventure_scene_id": null,
+          "special_events": null
+        },
+        {
+          "date_iso": "1931-03-07",
+          "currentDay": 6,
+          "w": "-",
+          "dow": "So",
+          "headline": "Sobotní vydání: úřady hlásí klid, ulice mluví opatrněji.",
+          "morning_fragment_id": "fragment_d5_tichy_rano",
+          "evening_fragment_id": null,
+          "night_fragment_id": null,
+          "cases": [],
+          "cases_light": null,
+          "letters": [
+            "vlcek_d6"
+          ],
+          "has_nedelni_volba": false,
+          "has_evening_choice": false,
+          "evening_choice_options": 0,
+          "evening_hook": "",
+          "has_adventure_scene": false,
+          "adventure_scene_id": null,
+          "special_events": null
+        },
+        {
+          "date_iso": "1931-03-08",
+          "currentDay": 7,
+          "w": "-",
+          "dow": "Ne",
+          "headline": "Nedělní list: menší rozsah, stejné nejisté vyhlídky.",
+          "morning_fragment_id": "fragment_d7_nedele_rano",
+          "evening_fragment_id": "fragment_d7_nedele_vecer",
+          "night_fragment_id": null,
+          "cases": [],
+          "cases_light": null,
+          "letters": [],
+          "has_nedelni_volba": true,
+          "has_evening_choice": false,
+          "evening_choice_options": 0,
+          "evening_hook": "",
+          "has_adventure_scene": false,
+          "adventure_scene_id": null,
+          "special_events": null
+        },
+        {
+          "date_iso": "1931-03-09",
+          "currentDay": 8,
+          "w": "W6",
+          "dow": "Po",
+          "headline": "Ekonomická deprese sílí: škrty ve mzdách, odbory mluví o tvrdším postoji.",
+          "morning_fragment_id": "fragment_d6_morning",
+          "evening_fragment_id": null,
+          "night_fragment_id": null,
+          "cases": [
+            "pool_a1_stara_rana",
+            "tyc_pospisil_2"
+          ],
+          "cases_light": null,
+          "letters": [
+            "martin_d6"
+          ],
+          "has_nedelni_volba": false,
+          "has_evening_choice": true,
+          "evening_choice_options": 2,
+          "evening_hook": "Haasova vizitka leží na okraji stolu tam, kde jsi ji ráno položil.",
+          "has_adventure_scene": false,
+          "adventure_scene_id": null,
+          "special_events": null
+        },
+        {
+          "date_iso": "1931-03-10",
+          "currentDay": 9,
+          "w": "W7",
+          "dow": "Ut",
+          "headline": "Německé spolky pod drobnohledem — ministerstvo zatím nehodlá věc komentovat.",
+          "morning_fragment_id": null,
+          "evening_fragment_id": null,
+          "night_fragment_id": null,
+          "cases": [
+            "tyc_horac_d7",
+            "pool_a1_vyveseni"
+          ],
+          "cases_light": null,
+          "letters": [
+            "vlcek_d7"
+          ],
+          "has_nedelni_volba": false,
+          "has_evening_choice": true,
+          "evening_choice_options": 2,
+          "evening_hook": "Vlčkův dopis přišel dopoledne — tentokrát nikoliv s chválou, ale s upozorněním.",
+          "has_adventure_scene": false,
+          "adventure_scene_id": null,
+          "special_events": null
+        },
+        {
+          "date_iso": "1931-03-11",
+          "currentDay": 10,
+          "w": "W8",
+          "dow": "St",
+          "headline": "Plakát zve na pochod hladu — úřady vyzývají ke klidu a k rozumu.",
+          "morning_fragment_id": "fragment_d8_morning",
+          "evening_fragment_id": null,
+          "night_fragment_id": null,
+          "cases": [
+            "tyc_bozena_3",
+            "tyc_hranice_2",
+            "pool_a1_spravce"
+          ],
+          "cases_light": [
+            false,
+            false,
+            true
+          ],
+          "letters": [
+            "vlcek_d8"
+          ],
+          "has_nedelni_volba": false,
+          "has_evening_choice": true,
+          "evening_choice_options": 2,
+          "evening_hook": "Tři spisy, Vlčkův dopis, Švejdův pohled při odchodu.",
+          "has_adventure_scene": false,
+          "adventure_scene_id": null,
+          "special_events": null
+        },
+        {
+          "date_iso": "1931-03-12",
+          "currentDay": 11,
+          "w": "W9",
+          "dow": "Ct",
+          "headline": "Creditanstalt ve středu zájmu: banky jednají o likviditě, trh je nervózní.",
+          "morning_fragment_id": "fragment_d9_morning",
+          "evening_fragment_id": null,
+          "night_fragment_id": null,
+          "cases": [
+            "pool_a1_spravce",
+            "pool_a1_bytova_komise",
+            "pool_a1_nemocenska"
+          ],
+          "cases_light": [
+            false,
+            false,
+            true
+          ],
+          "letters": [
+            "benes_d9"
+          ],
+          "has_nedelni_volba": false,
+          "has_evening_choice": true,
+          "evening_choice_options": 2,
+          "evening_hook": "Alois Beneš přišel a odešel.",
+          "has_adventure_scene": true,
+          "adventure_scene_id": "adventure_benes_d9",
+          "special_events": null
+        },
+        {
+          "date_iso": "1931-03-13",
+          "currentDay": 12,
+          "w": "W10",
+          "dow": "Pa",
+          "headline": "Politické napětí roste: justice pod drobnohledem tisku i veřejnosti.",
+          "morning_fragment_id": "fragment_d10_morning",
+          "evening_fragment_id": null,
+          "night_fragment_id": null,
+          "cases": [
+            "pool_a1_tiskarna",
+            "tyc_zvraty_d10",
+            "pool_a1_nemocenska"
+          ],
+          "cases_light": [
+            false,
+            false,
+            true
+          ],
+          "letters": [
+            "martin_d10"
+          ],
+          "has_nedelni_volba": false,
+          "has_evening_choice": true,
+          "evening_choice_options": 2,
+          "evening_hook": "Martinův dopis leží na stole a Ben ho přečetl dvakrát.",
+          "has_adventure_scene": false,
+          "adventure_scene_id": null,
+          "special_events": null
+        },
+        {
+          "date_iso": "1931-03-14",
+          "currentDay": 13,
+          "w": "-",
+          "dow": "So",
+          "headline": "Sobota: město v přestávce — soudní budova zavřena.",
+          "morning_fragment_id": "fragment_d13_sobota_rano",
+          "evening_fragment_id": null,
+          "night_fragment_id": null,
+          "cases": [],
+          "cases_light": null,
+          "letters": [],
+          "has_nedelni_volba": false,
+          "has_evening_choice": true,
+          "evening_choice_options": 2,
+          "evening_hook": "Před odchodem Ben přemýšlí, jak sobotu zakončit.",
+          "has_adventure_scene": false,
+          "adventure_scene_id": null,
+          "special_events": null
+        },
+        {
+          "date_iso": "1931-03-15",
+          "currentDay": 14,
+          "w": "-",
+          "dow": "Ne",
+          "headline": "Druhá neděle v březnu: město zvolnilo, nervozita trvá.",
+          "morning_fragment_id": "fragment_d14_nedele_rano",
+          "evening_fragment_id": "fragment_d14_nedele_vecer",
+          "night_fragment_id": null,
+          "cases": [],
+          "cases_light": null,
+          "letters": [],
+          "has_nedelni_volba": true,
+          "has_evening_choice": false,
+          "evening_choice_options": 0,
+          "evening_hook": "",
+          "has_adventure_scene": false,
+          "adventure_scene_id": null,
+          "special_events": null
+        },
+        {
+          "date_iso": "1931-03-16",
+          "currentDay": 15,
+          "w": "W11",
+          "dow": "Po",
+          "headline": "Tiše před bouří: redakce čtou mezi řádky každé oficiální uklidňování.",
+          "morning_fragment_id": "fragment_d11_morning_base",
+          "evening_fragment_id": null,
+          "night_fragment_id": null,
+          "cases": [
+            "pool_a1_weiss",
+            "tyc_haas_d11",
+            "pool_a1_exekuce"
+          ],
+          "cases_light": [
+            false,
+            false,
+            true
+          ],
+          "letters": [
+            "vlcek_d11"
+          ],
+          "has_nedelni_volba": false,
+          "has_evening_choice": true,
+          "evening_choice_options": 2,
+          "evening_hook": "Haas přišel osobně a odešel osobně.",
+          "has_adventure_scene": false,
+          "adventure_scene_id": null,
+          "special_events": null
+        },
+        {
+          "date_iso": "1931-03-17",
+          "currentDay": 16,
+          "w": "W12",
+          "dow": "Ut",
+          "headline": "Říkají o něm věci — titulky i šeptanda u výloh se neshodují.",
+          "morning_fragment_id": "fragment_d12_echo_base",
+          "evening_fragment_id": null,
+          "night_fragment_id": null,
+          "cases": [
+            "pool_a1_stara_rana",
+            "tyc_zavadova_d12",
+            "pool_a1_trafika"
+          ],
+          "cases_light": [
+            false,
+            false,
+            true
+          ],
+          "letters": [
+            "vlcek_d13"
+          ],
+          "has_nedelni_volba": false,
+          "has_evening_choice": true,
+          "evening_choice_options": 2,
+          "evening_hook": "Závadová přinesla věci, které Ben nečekal.",
+          "has_adventure_scene": false,
+          "adventure_scene_id": null,
+          "special_events": null
+        },
+        {
+          "date_iso": "1931-03-18",
+          "currentDay": 17,
+          "w": "W13",
+          "dow": "St",
+          "headline": "Skandál na obzoru? Krátké zmínky bez jmen — a přesto drží celou stránku.",
+          "morning_fragment_id": "fragment_d12_morning",
+          "evening_fragment_id": null,
+          "night_fragment_id": null,
+          "cases": [
+            "pool_a1_vyveseni",
+            "pool_a1_druha_ruka",
+            "pool_a1_revizor"
+          ],
+          "cases_light": [
+            false,
+            false,
+            true
+          ],
+          "letters": [],
+          "has_nedelni_volba": false,
+          "has_evening_choice": true,
+          "evening_choice_options": 2,
+          "evening_hook": "Karas přišel a řekl, co přišel říct.",
+          "has_adventure_scene": true,
+          "adventure_scene_id": "adventure_karas_d13",
+          "special_events": null
+        },
+        {
+          "date_iso": "1931-03-19",
+          "currentDay": 18,
+          "w": "W14",
+          "dow": "Ct",
+          "headline": "Poslední dny: noviny si troufnou na otázku, která nepatří na titulní stranu.",
+          "morning_fragment_id": "fragment_d18_rano",
+          "evening_fragment_id": null,
+          "night_fragment_id": "fragment_d15_night",
+          "cases": [
+            "tyc_markova_3",
+            "pool_a1_posledni_vule",
+            "pool_a1_spravce"
+          ],
+          "cases_light": [
+            false,
+            false,
+            true
+          ],
+          "letters": [
+            "martin_d14",
+            "vlcek_d14_letter"
+          ],
+          "has_nedelni_volba": false,
+          "has_evening_choice": true,
+          "evening_choice_options": 2,
+          "evening_hook": "Martinův dopis říká, že přijede o víkendu.",
+          "has_adventure_scene": false,
+          "adventure_scene_id": null,
+          "special_events": null
+        },
+        {
+          "date_iso": "1931-03-20",
+          "currentDay": 19,
+          "w": "W15",
+          "dow": "Pa",
+          "headline": "Finále týdne u soudu: město sleduje lavici i chodbu stejně netrpělivě.",
+          "morning_fragment_id": "fragment_d15_morning",
+          "evening_fragment_id": null,
+          "night_fragment_id": null,
+          "cases": [
+            "tyc_velezrada_d15"
+          ],
+          "cases_light": null,
+          "letters": [],
+          "has_nedelni_volba": false,
+          "has_evening_choice": true,
+          "evening_choice_options": 2,
+          "evening_hook": "Poslední den.",
+          "has_adventure_scene": false,
+          "adventure_scene_id": null,
+          "special_events": [
+            "finale_15d"
+          ]
+        }
+      ]
+    },
+    "fragments": {
+      "meta": {
+        "generated_for": "ultra-min narrative audit",
+        "source": "data/fragments.json",
+        "note": "first sentence only"
+      },
+      "fragments": [
+        {
+          "id": "fragment_d1_morning",
+          "type": "clipping",
+          "title": "Ranní výstřižek — 2. března 1931",
+          "hook": "VRANÝ ZPĚT U STOLU Dr."
+        },
+        {
+          "id": "fragment_d1_night",
+          "type": "dream",
+          "title": "Sen — první noc",
+          "hook": "V noci se Benovi zdálo o soudní síni — prázdné, tiché, s lavicemi přesně zarovnanými jako při slavnostním zasedání."
+        },
+        {
+          "id": "fragment_d2_rano",
+          "type": "clipping",
+          "title": "Ráno — úterý u soudu",
+          "hook": "Druhý den šel Benedikt kratší cestou — přes Havelský trh, kde se obchoduje od rána."
+        },
+        {
+          "id": "fragment_d3_noviny",
+          "type": "clipping",
+          "title": "Ranní list — 4. března 1931",
+          "hook": "STARÝ ROZSUDEK, NOVÉ OTÁZKY Rubrika Svobodného obzoru se vrátila k případu dělníka Karla Beneše, odsouzeného roku 1927 a zemřelého ve vazbě dříve, než bylo rozhodnuto o jeho odvolání."
+        },
+        {
+          "id": "fragment_d4_rano",
+          "type": "clipping",
+          "title": "Ráno — čtvrtek",
+          "hook": "Mezi spisy leží dnes ráno i obálka s kulatým razítkem ordinace."
+        },
+        {
+          "id": "fragment_d5_tichy_rano",
+          "type": "clipping",
+          "title": "Ráno — sobota u soudu",
+          "hook": "Sobota dopoledne a budova je jiná — bez jednacích síní v plném chodu, bez kroků, které spěchají na devátou."
+        },
+        {
+          "id": "fragment_d5_tichy_noc",
+          "type": "dream",
+          "title": "Noc beze snu",
+          "hook": "Usnul brzy a spal celou noc bez probuzení."
+        },
+        {
+          "id": "fragment_d5_patek_trh",
+          "type": "clipping",
+          "title": "Páteční trh",
+          "hook": "Páteční trh na Havelském náměstí se ve srovnání s úterkem napůl rozložil — méně stánků, víc lidí, kteří se prošli a nekoupili nic."
+        },
+        {
+          "id": "fragment_d6_morning",
+          "type": "fragment",
+          "title": "Anonymní zásilka",
+          "hook": "Na pondělní poště byl i balíček bez zpáteční adresy — obálka z tuhého papíru, uvnitř jediná vizitka."
+        },
+        {
+          "id": "fragment_d7_nedele_rano",
+          "type": "fragment",
+          "title": "Neděle — prázdná budova",
+          "hook": "Soud v neděli nezasedá a Švejda zamyká budovu."
+        },
+        {
+          "id": "fragment_d7_nedele_vecer",
+          "type": "dream",
+          "title": "Nedělní večer",
+          "hook": "Domů se vrátil před šestou."
+        },
+        {
+          "id": "fragment_d8_morning",
+          "type": "clipping",
+          "title": "Středa — tři složky",
+          "hook": "Před budovou soudu stál policejní vůz s běžícím motorem."
+        },
+        {
+          "id": "fragment_d9_morning",
+          "type": "clipping",
+          "title": "Ráno — předvolání bez předvolání",
+          "hook": "Na chodbě potkal Karase."
+        },
+        {
+          "id": "fragment_d10_morning",
+          "type": "clipping",
+          "title": "Ranní list — 13. března 1931",
+          "hook": "Ranní vydání Svobodného obzoru leží na stole rozevřené — Švejda ho přinesl jako obvykle."
+        },
+        {
+          "id": "fragment_d11_morning_base",
+          "type": "clipping",
+          "title": "Ranní stůl — pondělí",
+          "hook": "Na stole leží obálka, která tu nebyla v pátek."
+        },
+        {
+          "id": "fragment_d12_morning",
+          "type": "dream",
+          "title": "Sen — noc před středou",
+          "hook": "V noci se mu zdálo, že hledá klíč."
+        },
+        {
+          "id": "fragment_d12_echo_base",
+          "type": "clipping",
+          "title": "Středa — ranní ticho",
+          "hook": "Kancelář se probouzí pomalu."
+        },
+        {
+          "id": "fragment_operace_den16_ano",
+          "type": "clipping",
+          "title": "Ráno — termín v Podolí",
+          "hook": "Telefon v přízemí zvonil krátce."
+        },
+        {
+          "id": "fragment_operace_den16_ne",
+          "type": "clipping",
+          "title": "Ráno — dopis z Podolí",
+          "hook": "Mezi ranní poštou byl obecný formulář a krátký dopis od ordinace — ne od Síbra osobně, ale pod jeho hlavičkou."
+        },
+        {
+          "id": "fragment_d13_sobota_rano",
+          "type": "clipping",
+          "title": "Druhá sobota v březnu",
+          "hook": "Budova soudu je v sobotu zavřená a Švejda zamkl hlavní vchod ještě před osmou."
+        },
+        {
+          "id": "fragment_d14_nedele_rano",
+          "type": "fragment",
+          "title": "Druhá neděle — Karasův telefonát",
+          "hook": "Druhá neděle v březnu je jiná než první."
+        },
+        {
+          "id": "fragment_d14_nedele_vecer",
+          "type": "dream",
+          "title": "Nedělní večer — po Karasovi",
+          "hook": "Karas odešel před čtvrtou."
+        },
+        {
+          "id": "fragment_d15_night",
+          "type": "dream",
+          "title": "Sen — poslední noc",
+          "hook": "V noci se vrátil rok 1927."
+        },
+        {
+          "id": "fragment_d18_rano",
+          "type": "clipping",
+          "title": "Čtvrtek — předposlední ráno",
+          "hook": "Světlo za oknem je jiné než před třemi týdny — ostřejší, bledší, takové, které se v březnu ozve najednou a bez ohlášení."
+        },
+        {
+          "id": "fragment_d20_odhaleni",
+          "type": "letter",
+          "title": "Poslední pracovní den — nález",
+          "hook": "V budově je ráno neobvyklé ticho."
+        },
+        {
+          "id": "fragment_tyden_bonus_a",
+          "type": "clipping",
+          "title": "Poznámka do spisu",
+          "hook": "Ben tento týden většinu spisů poctivě prostudoval."
+        },
+        {
+          "id": "fragment_tyden_bonus_b",
+          "type": "clipping",
+          "title": "Úřední záznam",
+          "hook": "Týden nabízel příležitosti, jak si práci ulehčit na úkor někoho jiného."
+        },
+        {
+          "id": "fragment_tyden_bonus_c",
+          "type": "clipping",
+          "title": "Poznámka",
+          "hook": "Všechny spisy odevzdány včas, žádný případ odložen přes lhůtu."
+        },
+        {
+          "id": "fragment_tyden_bonus_d",
+          "type": "clipping",
+          "title": "Týdenní vzorec",
+          "hook": "Rozsudky tohoto týdne nesly jeden tón: byly konzistentní a čitelné, bez výrazných výkyvů podle toho, kdo co chtěl."
+        },
+        {
+          "id": "fragment_tyden_bonus_e",
+          "type": "clipping",
+          "title": "Těžké dny",
+          "hook": "Byl to náročný týden s několika případy, které nešlo rozhodnout snadno."
+        },
+        {
+          "id": "fragment_vyplata",
+          "type": "fragment",
+          "title": "Výplata",
+          "hook": "S úřední poštou přišla obálka s týdenní výplatou: osmdesát korun."
+        },
+        {
+          "id": "fragment_vyplata_druha",
+          "type": "fragment",
+          "title": "Výplata",
+          "hook": "Přišla další týdenní výplata: stejná obálka, stejné razítko a stejných osmdesát korun."
+        },
+        {
+          "id": "fragment_ekonomika_dluh_krize",
+          "type": "clipping",
+          "title": "Dluh",
+          "hook": "Dopisy z lékárny přicházejí pravidelně — zdvořilé, krátké, s datem splatnosti."
+        },
+        {
+          "id": "fragment_vina_krize_80",
+          "type": "clipping",
+          "title": "Tíha",
+          "hook": "Večer, když síň ztichne, Ben zůstane u stolu o samotě."
+        },
+        {
+          "id": "fragment_moc_vysoka",
+          "type": "clipping",
+          "title": "Tlak z ministerstva",
+          "hook": "V posledních dnech se každý spis dotýká něčeho většího než obviněného — úřadu, strany, firmy s razítkem."
+        },
+        {
+          "id": "fragment_lid_vysoka",
+          "type": "clipping",
+          "title": "Hlas z ulice",
+          "hook": "Noviny píší o případech, které Ben uzavřel tento týden — někdy správně, někdy zkresleně."
+        },
+        {
+          "id": "fragment_d28_rano",
+          "type": "letter",
+          "title": "Dopis od syna Martina",
+          "hook": "Dopis přišel z Brna ve čtvrtek ráno."
+        },
+        {
+          "id": "haas_obalka",
+          "type": "letter",
+          "title": "Obálka od Haasova advokáta",
+          "hook": "Vážený pane doktore, dovolujeme si Vás informovat, že náš klient, pan průmyslník Viktor Haas, přiložil k tomuto dopisu výraz své osobní úcty — v hotovosti, tři sta korun."
+        }
+      ]
+    },
+    "letters": {
+      "meta": {
+        "generated_for": "ultra-min narrative audit",
+        "source": "data/letters.json",
+        "note": "first sentence only + routing fields"
+      },
+      "letters": [
+        {
+          "id": "vlcek_d1",
+          "sender": null,
+          "recipient": null,
+          "delivery": "desk",
+          "phase": "morning_after_fragment",
+          "day_hint": 1,
+          "subject": null,
+          "hook": "dovoluji si Vás přivítat zpět ve výkonu funkce.",
+          "reaction_prompt": ""
+        },
+        {
+          "id": "martin_d2",
+          "sender": null,
+          "recipient": null,
+          "delivery": "desk",
+          "phase": "morning_after_fragment",
+          "day_hint": 2,
+          "subject": null,
+          "hook": "profesor Kalousek dnes přednášel o ústavním právu a já jsem si uvědomil, proč jsem na tato práva šel.",
+          "reaction_prompt": ""
+        },
+        {
+          "id": "masek_d3",
+          "sender": null,
+          "recipient": null,
+          "delivery": "desk",
+          "phase": "morning_after_fragment",
+          "day_hint": 3,
+          "subject": null,
+          "hook": "Benedikte, vítej zpátky.",
+          "reaction_prompt": ""
+        },
+        {
+          "id": "doktor_d4",
+          "sender": null,
+          "recipient": null,
+          "delivery": "desk",
+          "phase": "morning_after_fragment",
+          "day_hint": 4,
+          "subject": null,
+          "hook": "potvrzuji termín chirurgického zákroku u Vaší paní matky, Alžběty Vraná, na den 17.",
+          "reaction_prompt": "Čtyři sta korun."
+        },
+        {
+          "id": "vlcek_d4",
+          "sender": null,
+          "recipient": null,
+          "delivery": "desk",
+          "phase": "morning_after_fragment",
+          "day_hint": 4,
+          "subject": null,
+          "hook": "s potěšením sleduji, že případy ve Vašem rejstříku jsou řešeny s náležitou rozvahou a bez zbytečných průtahů.",
+          "reaction_prompt": "Pochvala od ministra."
+        },
+        {
+          "id": "vlcek_d6",
+          "sender": null,
+          "recipient": null,
+          "delivery": "desk",
+          "phase": "morning_after_fragment",
+          "day_hint": 6,
+          "subject": null,
+          "hook": "sledoval jsem Vaše rozsudky prvního týdne s pozorností.",
+          "reaction_prompt": ""
+        },
+        {
+          "id": "martin_d6",
+          "sender": null,
+          "recipient": null,
+          "delivery": "desk",
+          "phase": "morning_after_fragment",
+          "day_hint": 8,
+          "subject": null,
+          "hook": "profesor dnes řekl věc, která mi nejde z hlavy: Právo bez svědomí je jen nástroj.",
+          "reaction_prompt": ""
+        },
+        {
+          "id": "vlcek_d7",
+          "sender": null,
+          "recipient": null,
+          "delivery": "desk",
+          "phase": "forenoon",
+          "day_hint": 9,
+          "subject": null,
+          "hook": "dovolím si Vás upozornit, že spis ve věci Jiřího Veselého se týká záležitosti, o kterou se zajímají osoby z širšího politického prostředí.",
+          "reaction_prompt": ""
+        },
+        {
+          "id": "vlcek_d8",
+          "sender": null,
+          "recipient": null,
+          "delivery": "desk",
+          "phase": "morning_after_fragment",
+          "day_hint": 10,
+          "subject": null,
+          "hook": "navazuji na včerejší dopis o Jiřím Veselém.",
+          "reaction_prompt": "Dopis leží na stole."
+        },
+        {
+          "id": "benes_d9",
+          "sender": null,
+          "recipient": null,
+          "delivery": "desk",
+          "phase": "morning_first",
+          "day_hint": 11,
+          "subject": null,
+          "hook": "Pane doktore, budu dnes čekat u soudu do desíti hodin.",
+          "reaction_prompt": ""
+        },
+        {
+          "id": "martin_d10",
+          "sender": null,
+          "recipient": null,
+          "delivery": "desk",
+          "phase": "morning_after_fragment",
+          "day_hint": 12,
+          "subject": null,
+          "hook": "četl jsem v novinách o starém případu.",
+          "reaction_prompt": "Martin píše o Tvém případu."
+        },
+        {
+          "id": "vlcek_d11",
+          "sender": null,
+          "recipient": null,
+          "delivery": "desk",
+          "phase": "morning_after_fragment",
+          "day_hint": 15,
+          "subject": null,
+          "hook": "nemám ve zvyku se opakovat.",
+          "reaction_prompt": "Hrozba."
+        },
+        {
+          "id": "martin_d14",
+          "sender": null,
+          "recipient": null,
+          "delivery": "desk",
+          "phase": "morning_after_fragment",
+          "day_hint": 18,
+          "subject": null,
+          "hook": "přijedu o víkendu.",
+          "reaction_prompt": ""
+        },
+        {
+          "id": "vlcek_d13",
+          "sender": null,
+          "recipient": null,
+          "delivery": "desk",
+          "phase": "morning_after_fragment",
+          "day_hint": 16,
+          "subject": null,
+          "hook": "vidím, že moje předchozí sdělení nebyla dostatečně srozumitelná.",
+          "reaction_prompt": "Fond pro rodinné příslušníky."
+        },
+        {
+          "id": "vlcek_d14_letter",
+          "sender": null,
+          "recipient": null,
+          "delivery": "desk",
+          "phase": "morning_after_fragment",
+          "day_hint": 18,
+          "subject": null,
+          "hook": "toto je můj poslední dopis v této věci.",
+          "reaction_prompt": ""
+        }
+      ]
+    },
+    "story_core_cases": {
+      "meta": {
+        "generated_for": "ultra-min spine audit",
+        "source": "docs/scenar/pool_cases_akt1_story_core.json",
+        "note": "description + aftermath/verdict labels only"
+      },
+      "cases": [
+        {
+          "id": "tyc_horak_d1",
+          "title": "Krádež chleba",
+          "slot": "pool",
+          "type": "routine",
+          "available_days": [
+            1
+          ],
+          "defendant_name": "Tomáš Horák",
+          "premise": "Tomáš Horák vstoupil v úterý ráno do pekárny Antonína Mráze na rohu Seifertovy ulice.",
+          "aftermath_keys": [
+            "guilty_standard",
+            "guilty_maximum",
+            "guilty_lenient",
+            "not_guilty_bagatelni",
+            "not_guilty_krajni_nouze",
+            "insufficient_close"
+          ],
+          "verdict_labels": [
+            "Pokuta 20 Kčs, náhrada škody 2 Kčs 40 haléřů",
+            "30 dní vězení a náhrada škody",
+            "Podmíněné upuštění od potrestání — napomenutí",
+            "Zproštění — nepatrná škoda, žádná recidiva",
+            "Alternativa: Zproštění — krajní nouze dle §2 trestního zákona",
+            "Zastavení — neúčelnost trestního řízení"
+          ]
+        },
+        {
+          "id": "tyc_pospisil_2",
+          "title": "Hospodský a tichá hrozba",
+          "slot": "pool",
+          "type": "routine",
+          "available_days": [
+            6
+          ],
+          "defendant_name": "Emil Pospíšil",
+          "premise": "V sobotu 7.",
+          "aftermath_keys": [
+            "guilty_standard",
+            "guilty_maximum",
+            "guilty_lenient",
+            "guilty_alternative",
+            "not_guilty_formal",
+            "not_guilty_with_comment"
+          ],
+          "verdict_labels": [
+            "Pokuta 300 Kčs za porušení povinností provozovatele",
+            "Pokuta 800 Kčs a podmíněné pozastavení živnostenského listu",
+            "Napomenutí — incident nepředvídatelný",
+            "Alternativa: Zastavení — navrhovatelka nemá aktivní legitimaci",
+            "Zproštění — náhlý střet, povinnost zasáhnout nenastala",
+            "Alternativa: Zproštění — navrhovatelka jednala v omylu o příčině",
+            "Přerušit — doplnit výslech poškozeného Jana Červenky"
+          ]
+        },
+        {
+          "id": "tyc_horac_d7",
+          "title": "Svědkyně",
+          "slot": "pool",
+          "type": "politicky",
+          "available_days": [
+            7
+          ],
+          "defendant_name": "Jiří Veselý",
+          "premise": "Tiskař Jiří Veselý přednášel na uzavřené stranické schůzi.",
+          "aftermath_keys": [
+            "guilty_standard",
+            "guilty_maximum",
+            "guilty_lenient",
+            "not_guilty_formal",
+            "not_guilty_with_comment",
+            "insufficient_reopen",
+            "insufficient_close"
+          ],
+          "verdict_labels": [
+            "Pokuta 500 Kčs za pobuřování",
+            "6 měsíců podmíněně a pokuta 1 000 Kčs",
+            "Napomenutí — neurčitost výroku vylučuje přesnou kvalifikaci",
+            "Zproštění — jediný svědek, neurčitost výroku",
+            "Alternativa: Zproštění — svědectví získané politickým dohledem",
+            "Přerušit — vyžádat zápisník Horáčkové jako listinný důkaz",
+            "Zastavení — nedostatečná průkaznost jediného svědectví"
+          ]
+        },
+        {
+          "id": "tyc_bozena_3",
+          "title": "Stavební zájem",
+          "slot": "pillar",
+          "type": "politicky",
+          "available_days": [
+            10
+          ],
+          "defendant_name": "Božena Kučerová",
+          "premise": "Dvě věci se staly ve stejný týden.",
+          "aftermath_keys": [
+            "standardni_nahrada",
+            "vyssi_nahrada",
+            "alternative",
+            "pozastavit",
+            "zamitout_trasu",
+            "nezavisly_pruzkum"
+          ],
+          "verdict_labels": [
+            "Námitky zamítnout — vyvlastnění potvrzeno, náhrada 2 200 Kčs",
+            "Námitky částečně přijmout — vyvlastnění potvrzeno, náhrada zvýšena na 4 000 Kčs",
+            "Alternativa: Vyvlastnění podmíněno nezávislým novým průzkumem",
+            "Námitky přijmout — řízení pozastavit pro procesní vadu",
+            "Alternativa: Námitky přijmout — vyvlastnění zamítnout, střet zájmů advokáta",
+            "Přerušit — nařídit nezávislý geodetický průzkum parcely 48/1"
+          ]
+        },
+        {
+          "id": "tyc_hranice_2",
+          "title": "Německý dopis",
+          "slot": "pool",
+          "type": "politicky",
+          "available_days": [
+            8
+          ],
+          "defendant_name": "Wilhelm Grünbaum",
+          "premise": "Zeď mezi Grünbaumem a Křížem stojí, kde stála — nebo skoro.",
+          "aftermath_keys": [
+            "napomenuti",
+            "formal",
+            "with_comment",
+            "prerusit"
+          ],
+          "verdict_labels": [
+            "Napomenutí — kontakt s cizí organizací bez náležité opatrnosti",
+            "Zastavit — znaky trestného činu nenaplněny",
+            "Alternativa: Zastavit — podnět podán bez faktického podkladu, konstatovat zneužití",
+            "Přerušit — vyžádat překlad celé korespondence"
+          ]
+        },
+        {
+          "id": "tyc_zvraty_d10",
+          "title": "Složka",
+          "slot": "pool",
+          "type": "osobni",
+          "available_days": [
+            12
+          ],
+          "defendant_name": "—",
+          "premise": "Ráno přišel Svejda jako obvykle — s poštou, s kávou, s prázdným výrazem.",
+          "aftermath_keys": [
+            "guilty_pouzit_dokument",
+            "not_guilty_odevzdat_statnimu",
+            "not_guilty_znicit"
+          ],
+          "verdict_labels": [
+            "Ponechat složku",
+            "Odevzdat státnímu zástupci jako anonymní podnět",
+            "Zničit složku — nikdy ji Ben neviděl"
+          ]
+        },
+        {
+          "id": "tyc_haas_d11",
+          "title": "Obálka",
+          "slot": "pool",
+          "type": "osobni",
+          "available_days": [
+            15
+          ],
+          "defendant_name": "—",
+          "premise": "Svejda tentokrát klepal třikrát a čekal.",
+          "aftermath_keys": [
+            "guilty_vzit_obalku",
+            "not_guilty_odmitnut_slušne",
+            "not_guilty_odmitnut_s_komentarem"
+          ],
+          "verdict_labels": [
+            "Vzít obálku",
+            "Odmítnout — vrátit obálku",
+            "Alternativa: Odmítnout a říct proč"
+          ]
+        },
+        {
+          "id": "tyc_zavadova_d12",
+          "title": "Víme vše",
+          "slot": "pool",
+          "type": "osobni",
+          "available_days": [
+            16
+          ],
+          "defendant_name": "—",
+          "premise": "Milena Zavadová přišla v úterý dopoledne, bez ohlášení, s kufříkem z hnědé kůže, který vypadal, jako by ho nosila všude a vždy.",
+          "aftermath_keys": [
+            "guilty_podepsat",
+            "not_guilty_odmitnut_formal",
+            "not_guilty_odmitnut_s_konfrontaci"
+          ],
+          "verdict_labels": [
+            "Podepsat prohlášení",
+            "Odmítnout — vrátit prohlášení",
+            "Alternativa: Odmítnout a konfrontovat s padělkem"
+          ]
+        },
+        {
+          "id": "tyc_markova_3",
+          "title": "Sešit jako důkaz",
+          "slot": "pool",
+          "type": "moral_dilemma",
+          "available_days": [
+            18
+          ],
+          "defendant_name": "Věra Marková",
+          "premise": "Věra Marková, která dvakrát zachránila jiné lidi přesností svých záznamů, teď čelí obžalobě z padělání záznamů.",
+          "aftermath_keys": [
+            "mirny",
+            "maximum",
+            "formal",
+            "with_comment",
+            "grafolog"
+          ],
+          "verdict_labels": [
+            "Pokuta 500 Kčs — pozměnění dokladů bez osobního obohacení",
+            "18 měsíců podmíněně — padělání dokladů",
+            "Zproštění — přepis na pokyn nadřízeného, záměr padělání neprokázán",
+            "Alternativa: Zproštění Markové + podnět k šetření Beneše st.",
+            "Přerušit — grafologický posudek srovnávacích vzorků Beneše st."
+          ]
+        },
+        {
+          "id": "tyc_velezrada_d15",
+          "title": "Velezrada",
+          "slot": "pool",
+          "type": "politicky",
+          "available_days": [
+            19
+          ],
+          "defendant_name": "Alexander Wolf",
+          "premise": "Alexander Wolf sedí u stolu a je klidný způsobem, který Ben za čtrnáct let u soudu viděl jen zřídka — klidný ne ze zatvrdlosti, ale ze smíření.",
+          "aftermath_keys": [
+            "guilty_standard",
+            "guilty_maximum",
+            "guilty_alternative",
+            "not_guilty_formal",
+            "not_guilty_with_comment",
+            "insufficient_prerusit"
+          ],
+          "verdict_labels": [
+            "8 let těžkého žaláře za velezradu",
+            "15 let těžkého žaláře — přitěžující okolnosti",
+            "Alternativa: Odsouzení za poradenství v rozporu se zákonem — 2 roky podmíněně",
+            "Zproštění — klíčový dokument sporný, pochybnost v prospěch obžalovaného",
+            "Alternativa: Zproštění — padělání klíčového důkazu, podnět k šetření",
+            "Vrátit k doplnění — grafologický posudek a ověření poradenských smluv"
+          ]
+        }
+      ]
+    }
+  },
+  "expected_output_shape": {
+    "sections": [
+      "Top 10 dramaturgickych rizik",
+      "Denni tabulka: co/proc/dopad/riziko",
+      "Vetveni a 8 koncu: konzistence a slaba mista",
+      "3-vlny plan oprav bez prepisu v 1. kroku"
+    ]
+  }
+}

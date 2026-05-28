@@ -1,0 +1,757 @@
+{
+  "meta": {
+    "source": "data/pool_cases_akt1.json",
+    "generated_for": "story spine review (core branches + pillar cases)",
+    "included_cases": 10,
+    "rule": "slot==pillar OR id starts with tyc_"
+  },
+  "cases": [
+    {
+      "id": "tyc_horak_d1",
+      "slot": "pool",
+      "type": "routine",
+      "available_days": [
+        1
+      ],
+      "title": "Krádež chleba",
+      "case_number": "Sp. zn. 58/1931",
+      "defendant": {
+        "name": "Tomáš Horák",
+        "occupation": "nádeník",
+        "detail": "bez stálého zaměstnání od října 1930, ženatý, čtyři děti (3–11 let), bydliště Žižkov, Chelčického 14"
+      },
+      "charge": "Krádež dle §171 trestního zákona",
+      "description": "Tomáš Horák vstoupil v úterý ráno do pekárny Antonína Mráze na rohu Seifertovy ulice. Vzal dva bochníky z regálu u dveří a odešel bez zaplacení. Zaměstnanec Petr Vlček ho zadržel na ulici. Horák nekladl odpor, bochníky vydal a řekl: <em>'Mám doma čtyři děti a od včerejška nic.'</em> Antonín Mráz trvá na trestním oznámení. Případ je technicky jasný. Nic jiného o něm jasné není.",
+      "aftermath": {
+        "guilty_standard": "Horák zaplatil pokutu — půjčil si od souseda. Mráz dostal náhradu. Příští pondělí přišel Horák znovu do Waltrovky. Vzali ho na tři dny jako výpomoc.",
+        "guilty_maximum": "Horák odešel s policistou. Marie Horáková šla s dětmi k sestře na Vinohrady. Za měsíc se vrátili. Dveře bytu byly zamčené — pronajímatel vyměnil zámek za neplacení.",
+        "guilty_lenient": "Horák dostal napomenutí. Mráz mu podal ruku. Nevěděl proč — udělal to. Horák mu vrátil dvě koruny a čtyřicet haléřů o tři týdny později, v den, kdy ho Waltrovka přijala na stálé místo.",
+        "not_guilty_bagatelni": "Horák odešel volný. Mráz za ním šel na chodbu a dal mu bochník. Nic neřekl. Horák taky ne. Ben to viděl z okna soudní síně.",
+        "not_guilty_krajni_nouze": "Rozsudek vyšel v odpoledních novinách — dvě věty na pátá straně. Ráno přišly tři dopisy. Dva nadávaly. Jeden psal děkuji. Byl bez podpisu.",
+        "insufficient_close": "Případ uzavřen bez záznamu. Horák odešel. Mráz podal stížnost na postup soudu k zemskému úřadu. Dostane odpověď za šest týdnů."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "not_guilty_krajni_nouze",
+          "delay_days": 3,
+          "type": "fragment",
+          "text": "Vlček přinesl ranní poštu. Mezi spisy jeden list bez záhlaví: 'Krajní nouze není výmluva. Je to pozvání.' Bez podpisu. Ben nevěděl, zda je to výhrůžka nebo souhlas."
+        },
+        {
+          "trigger": "guilty_maximum",
+          "delay_days": 4,
+          "type": "fragment",
+          "text": "Svobodný obzor, čtvrtá strana: Žižkovský nádeník dostal měsíc vězení za dva bochníky. Redakce přijímá příspěvky na rodinu. Do tří dnů přišlo čtyřicet dva korun."
+        }
+      ],
+      "verdict_narrative": [
+        {
+          "path": "guilty.sentences.standard",
+          "label": "Pokuta 20 Kčs, náhrada škody 2 Kčs 40 haléřů",
+          "description": "Krádež je prokázána. Pokuta odpovídá hodnotě odcizeného s přihlédnutím k okolnostem. Horák musí zaplatit — z čeho, to zákon neřeší.",
+          "consequence": null
+        },
+        {
+          "path": "guilty.sentences.maximum",
+          "label": "30 dní vězení a náhrada škody",
+          "description": "Vězení má odradit ostatní. Čtyři děti zůstanou bez otce a bez příjmu na měsíc. Marie Horáková ještě není zdravá.",
+          "consequence": null
+        },
+        {
+          "path": "guilty.sentences.lenient",
+          "label": "Podmíněné upuštění od potrestání — napomenutí",
+          "description": "Zákon umožňuje podmíněné upuštění od trestu při nepatrné škodě a první krádeži. Horák dostane napomenutí a povinnost vrátit 2 Kčs 40 haléřů.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.bagatelni",
+          "label": "Zproštění — nepatrná škoda, žádná recidiva",
+          "description": "Škoda 2 Kčs 40 haléřů je nepatrná. Horák nekradl ze zištnosti, nevykazoval útěk ani odpor. Trestní stíhání je nepřiměřené.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.krajni_nouze",
+          "label": "Alternativa: Zproštění — krajní nouze dle §2 trestního zákona",
+          "description": "Krajní nouze vylučuje protiprávnost činu, je-li odvráceno bezprostřední nebezpečí hrozící životu nebo zdraví. Čtyři děti bez jídla od předchozího dne a vyčerpaná podpora mohou tuto podmínku naplňovat. Precedent.",
+          "consequence": null
+        },
+        {
+          "path": "insufficient_evidence.options.close",
+          "label": "Zastavení — neúčelnost trestního řízení",
+          "description": "Čin je sice prokázán, ale zájem společnosti na potrestání je zjevně nižší než náklady řízení a dopad na rodinu. Věc se zastavuje bez záznamu.",
+          "consequence": null
+        }
+      ]
+    },
+    {
+      "id": "tyc_pospisil_2",
+      "slot": "pool",
+      "type": "routine",
+      "available_days": [
+        6
+      ],
+      "title": "Hospodský a tichá hrozba",
+      "case_number": "Sp. zn. 98/1931",
+      "defendant": {
+        "name": "Emil Pospíšil",
+        "occupation": "hostinský",
+        "detail": "provozuje U Zlatého sudu na Žižkově — tatáž osoba jako Sp. zn. 94/1931; tentokrát čelí stížnosti za incident ze 7. března 1931"
+      },
+      "charge": "Porušení povinností provozovatele hostince dle §22 živnostenského řádu",
+      "description": "V sobotu 7. března se v U Zlatého sudu strhla hádka. Dva muži u vedlejšího stolu. Jan Červenka — host, jehož Pospíšil zná léta — dostal úder pěstí do tváře a spadl ze židle. Útočník odešel. Červenka strávil čtyři dny v nemocnici se zlomeným lícním obloukem. Kdo byl útočník, nikdo z přítomných svědků nedokázal říci jméno. Nebo nechtěl. Alžběta Červenková obviňuje Pospíšila, že útočníka znal, celou věc viděl — a nezasáhl. Pospíšil říká, že šlo o nenadálý střet, který nemohl předvídat. Ben si všímá jedné věci: Pospíšil sedí u stolu a třese se. Tohle není obvyklá nervozita z výslechu.",
+      "aftermath": {
+        "guilty_standard": "Pospíšil zaplatil. Vrátil se do hospody. Bárta přišel ten večer a sedl si na své místo. Nic neřekl. Pospíšil mu přinesl pivo — na dům.",
+        "guilty_maximum": "Podmíněné pozastavení. Pospíšil provozoval dál — ale každý incident teď hrozí zavřením. Dělníci z Waltrovky o tom věděli a chodili dřív, aby byly do desíti.",
+        "guilty_lenient": "Napomenutí. Alžběta Červenková odešla nespokojena. Jan Červenka přišel za tři týdny do hospody sám — bez komentáře sedl ke svému stolu.",
+        "guilty_alternative": "Případ zastaven pro procesní vadu. Alžběta Červenková podala novou stížnost — tentokrát jménem manžela. Soud ji přijal. Případ pokračuje v jiném řízení.",
+        "not_guilty_formal": "Pospíšil zproštěn. Alžběta Červenková podala odvolání. Jan Červenka odvolání nepodepsal.",
+        "not_guilty_with_comment": "Ben v rozsudku napsal, že žaloba míří na nesprávný subjekt. Pospíšil odešel bez výrazu. Na chodbě počkal, až odejdou ostatní — pak si sedl na lavici a držel hlavu v rukách."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "not_guilty_with_comment",
+          "delay_days": 5,
+          "type": "fragment",
+          "text": "Pospíšil přišel na soud sám. Odešel sám. Cestou domů ho někdo oslovil na rohu Seifertovy ulice — muž, kterého Ben nikdy neviděl. Pospíšil se zastavil. Mluvili dvě minuty. Pak Pospíšil šel dál. Nevzal si jídelní kabel. Dělníci z Waltrovky seděli do desíti a čekali."
+        },
+        {
+          "trigger": "guilty_standard",
+          "delay_days": 4,
+          "type": "fragment",
+          "text": "Jan Červenka se vrátil do práce po šesti týdnech. Záložna mu oznámila, že jeho pozice byla obsazena. Dostal výpověď s dvoutýdenní výplatou. Alžběta Červenková podala stížnost k obchodnímu soudu."
+        }
+      ],
+      "verdict_narrative": [
+        {
+          "path": "guilty.sentences.standard",
+          "label": "Pokuta 300 Kčs za porušení povinností provozovatele",
+          "description": "Pospíšil nezasáhl včas. Zákon povinnost zasáhnout stanoví. Pokuta bez ztráty licence — hospoda zůstane otevřená.",
+          "consequence": null
+        },
+        {
+          "path": "guilty.sentences.maximum",
+          "label": "Pokuta 800 Kčs a podmíněné pozastavení živnostenského listu",
+          "description": "Pospíšil znal útočníka a nezabránil incidentu. Podmíněné pozastavení — při recidivě zavírá.",
+          "consequence": null
+        },
+        {
+          "path": "guilty.sentences.lenient",
+          "label": "Napomenutí — incident nepředvídatelný",
+          "description": "Střet byl rychlý, Pospíšil volal pomoc. Napomenutí jako výstraha bez finanční sankce.",
+          "consequence": null
+        },
+        {
+          "path": "guilty.sentences.alternative",
+          "label": "Alternativa: Zastavení — navrhovatelka nemá aktivní legitimaci",
+          "description": "Poškozeným je manžel, nikoli manželka. Alžběta Červenková podat stížnost za manžela nemůže — zákon ji k tomu neopravňuje. Případ se zastavuje pro procesní vadu.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.formal",
+          "label": "Zproštění — náhlý střet, povinnost zasáhnout nenastala",
+          "description": "Incident trval sekundy. Zákon ukládá povinnost zasáhnout při trvajícím pohoršení — ne předcházet nepředvídatelné ráně.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.with_comment",
+          "label": "Alternativa: Zproštění — navrhovatelka jednala v omylu o příčině",
+          "description": "Červenka byl napaden z důvodů, které nesouvisejí s provozem hospody. Pospíšil byl v situaci, kde zasáhnout nemohl bez ohrožení vlastní osoby. Soud konstatuje, že žaloba míří na nesprávný subjekt.",
+          "consequence": null
+        },
+        {
+          "path": "insufficient_evidence.options.reopen",
+          "label": "Přerušit — doplnit výslech poškozeného Jana Červenky",
+          "description": "Stížnost podala manželka. Poškozený Jan Červenka nebyl předvolán. Bez jeho výpovědi nelze posoudit, zda Pospíšil věděl o hrozbě předem.",
+          "consequence": null
+        }
+      ]
+    },
+    {
+      "id": "tyc_horac_d7",
+      "slot": "pool",
+      "type": "politicky",
+      "available_days": [
+        7
+      ],
+      "title": "Svědkyně",
+      "case_number": "Sp. zn. 101/1931",
+      "defendant": {
+        "name": "Jiří Veselý",
+        "occupation": "tiskař, člen místního výboru sociální demokracie",
+        "detail": "zaměstnanec tiskárny Orbis, Smíchov; ženatý, jedno dítě; člen redakční rady stranického tisku"
+      },
+      "charge": "Pobuřování dle §15 zákona na ochranu republiky č. 50/1923 Sb.",
+      "description": "Tiskař Jiří Veselý přednášel na uzavřené stranické schůzi. Schůze byla uzavřená — ale ministerstvo vnitra o ní vědělo. Jana Horáčková, úřednice oddělení politického dohledu, podala zprávu, z níž vychází obžaloba. Veselý popírá přesný obsah svých slov a popírá výzvu k nezákonným prostředkům. Horáčková trvá na svém. Otázka stojí takto: co přesně zaznělo v sále Na Příkopě osmnáctého února — a proč je jedinou svědkyní žena z ministerstva, která tam seděla jako host.",
+      "aftermath": {
+        "guilty_standard": "Veselý zaplatil pět set korun. Orbis ho nepropustil — ale přesunul ho z politického tisku na technické zakázky. Horáčková podala v březnu ještě dvě zprávy.",
+        "guilty_maximum": "Veselý dostal podmínku a záznam. Stranický výbor ho odvolal z redakční rady — ne z přesvědčení, ale ze strachu. V dílně ho přivítali potleskem. Orbis zvažoval propuštění. Neprovedl to.",
+        "guilty_lenient": "Napomenutí. Veselý odešel. V Právu lidu krátký článek: 'Soud uznal nejistotu výroku.' Horáčková podala stížnost na nedostatečný trest.",
+        "not_guilty_formal": "Veselý zproštěn. Horáčková opustila soudní síň bez výrazu. Za tři dny přišel Vlčkův dopis — nic konkrétního, jen věta: 'Případ byl sledován s pozorností.'",
+        "not_guilty_with_comment": "Ben v rozsudku napsal, že svědectví získané infiltrací uzavřené schůze pod falešnou identitou nelze použít jako důkaz. Ministerstvo vnitra podalo stížnost. Vlček dal Benovi vědět ještě tentýž den odpoledne — osobně, na chodbě.",
+        "insufficient_reopen": "Zápisník předán soudu. Grafolog zjistil, že část zápisů byla doplněna jiným inkoustem — pravděpodobně po schůzi. Horáčková to nevysvětlila. Případ pokračuje před jiným senátem.",
+        "insufficient_close": "Případ zastaven. Veselý odešel volný. Horáčková podala novou zprávu o schůzi, která se konala o týden později."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "not_guilty_with_comment",
+          "delay_days": 2,
+          "type": "letter",
+          "text": "Vlček přišel osobně. Nenechal nic písemného. Řekl jen: 'Případ Horáčková byl sledován s pozorností. Vaše odůvodnění bude předmětem konzultace s ministerstvem.' Odešel dřív, než Ben stačil odpovědět."
+        },
+        {
+          "trigger": "not_guilty_with_comment",
+          "delay_days": 4,
+          "type": "fragment",
+          "text": "Právo lidu, titulní strana: 'Soud odmítl zpravodajské svědectví ministerstva vnitra. Precedent v zákoně na ochranu republiky.' Lidové noviny, str. 3: 'Soudce překročil rámec trestního řízení.' Národní listy: bez komentáře."
+        },
+        {
+          "trigger": "guilty_standard",
+          "delay_days": 3,
+          "type": "fragment",
+          "text": "Horáčková podala v březnu ještě dvě zprávy — obě z uzavřených schůzí. Obě vedou k obžalobám. Zápisník je nyní předkládán jako standardní důkaz."
+        },
+        {
+          "trigger": "insufficient_reopen",
+          "delay_days": 5,
+          "type": "fragment",
+          "text": "Grafologický posudek: záznamy v zápisníku Horáčkové pořízeny dvěma různými pery. Část zápisů doplněna pravděpodobně den po schůzi. Veselý byl zatím propuštěn na svobodu."
+        }
+      ],
+      "verdict_narrative": [
+        {
+          "path": "guilty.sentences.standard",
+          "label": "Pokuta 500 Kčs za pobuřování",
+          "description": "Výzva k odporu na stranické schůzi, byť v uzavřeném prostředí, naplňuje znaky pobuřování dle §15. Horáčkové svědectví nebylo vyvráceno. Pokuta bez vězení zohledňuje první delikt a charakter sdělení.",
+          "consequence": null
+        },
+        {
+          "path": "guilty.sentences.maximum",
+          "label": "6 měsíců podmíněně a pokuta 1 000 Kčs",
+          "description": "Výzva k nezákonným prostředkům je přímé ohrožení veřejného pořádku. Podmíněný trest se záznamem omezí Veselého v politické činnosti.",
+          "consequence": null
+        },
+        {
+          "path": "guilty.sentences.lenient",
+          "label": "Napomenutí — neurčitost výroku vylučuje přesnou kvalifikaci",
+          "description": "Výrok byl pronesen v kontextu právní obhajoby odborových práv. Bez druhého svědka nelze prokázat přesné znění. Napomenutí jako výstraha.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.formal",
+          "label": "Zproštění — jediný svědek, neurčitost výroku",
+          "description": "Obžaloba stojí výhradně na svědectví jediné osoby. Přesné znění výroku je sporné — dva přítomní uvádějí odlišné verze. Pochybnost jde v prospěch obžalovaného.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.with_comment",
+          "label": "Alternativa: Zproštění — svědectví získané politickým dohledem",
+          "description": "Soud konstatuje, že svědkyně se na schůzi dostavila jako výkon politického dohledu ministerstva vnitra za pomoci legendy o příbuzenském vztahu. Takto získané svědectví nelze jako důkaz akceptovat.",
+          "consequence": null
+        },
+        {
+          "path": "insufficient_evidence.options.reopen",
+          "label": "Přerušit — vyžádat zápisník Horáčkové jako listinný důkaz",
+          "description": "Soud přeruší a nařídí předložení zápisníku ke grafologickému přezkoumání — zjistit, kdy byly záznamy pořízeny a zda odpovídají originálu.",
+          "consequence": null
+        },
+        {
+          "path": "insufficient_evidence.options.close",
+          "label": "Zastavení — nedostatečná průkaznost jediného svědectví",
+          "description": "Jedno svědectví bez koroborujícího důkazu nestačí k odsouzení za trestný čin pobuřování. Případ se zastavuje.",
+          "consequence": null
+        }
+      ]
+    },
+    {
+      "id": "tyc_bozena_3",
+      "slot": "pillar",
+      "type": "politicky",
+      "available_days": [
+        10
+      ],
+      "title": "Stavební zájem",
+      "case_number": "Sp. zn. 108/1931",
+      "defendant": {
+        "name": "Božena Kučerová",
+        "occupation": "chalupářka",
+        "detail": "tatáž osoba jako ve věcech Sp. zn. 91/1931 (slepice) a 92/1931 (urážka na cti). Tentokrát nečelí přestupku. Čelí vyvlastnění."
+      },
+      "charge": "Řízení o námitkách proti vyvlastnění dle §§ 365–370 občanského zákoníku ve spojení se zákonem č. 126/1927 Sb. o stavbě silnic",
+      "description": "Dvě věci se staly ve stejný týden. Václav Šebek prodal svůj statek firmě PRAGA ROADS za cenu, o níž se v Úněticích nemluví. A Boženě přišlo oznámení, že její zahrada s jabloněmi — ta, kvůli níž čelila dvěma soudům — má být vyvlastněna ve veřejném zájmu. Trasa silnice Praha–Horoměřice vede přes čtyři pozemky. Tři jsou obecní nebo opuštěné. Jeden je Boženin. Projektant tvrdí, že alternativa přes obecní louku by prodloužila trasu o 340 metrů a zvýšila náklady. Božena tvrdí, že louka je rovná a prázdná a 340 metrů nikomu neuškodí. JUDr. Knot zastupuje PRAGA ROADS.",
+      "aftermath": {
+        "standardni_nahrada": "Vyvlastnění potvrzeno. Božena dostala 2 200 Kčs — méně než za jabloně prosila. Šebek dostal servisní přístup k nové silnici. Knot dostal honorář. Silnice se začala stavět v dubnu. Jabloně byly vykáceny 3. března — den, kdy Ben vynášel jiný rozsudek.",
+        "vyssi_nahrada": "Vyvlastnění potvrzeno, náhrada navýšena. Knot podal odvolání proti výši náhrady. PRAGA ROADS zaplatila nakonec 3 800 Kčs — po smíru. Božena vzala peníze a přestěhovala se k dceři. Jabloně šly dolů v dubnu.",
+        "alternative": "Vyvlastnění odloženo. Nezávislý průzkum objednán soudem. PRAGA ROADS přesunula část stavby na jiný úsek. Geodesia Praha dostala od zadavatele výpověď zakázky. Jabloně stojí — zatím.",
+        "pozastavit": "Řízení vráceno k přepracování. PRAGA ROADS najala nového projektanta. Nový návrh trasy — tentokrát přes obecní louku s odvodňovacím systémem — přišel v květnu. Božena dostala nové oznámení. Tentokrát o jiném pozemku.",
+        "zamitout_trasu": "Vyvlastnění zamítnuto. Knot podal odvolání do čtyřiadvaceti hodin. Ben dostal od Vlčka dopis téhož odpoledne — ne o případu. O délce pracovní doby soudců. Tón byl jiný než dřív. Božena přinesla Benovi vejce.",
+        "nezavisly_pruzkum": "Průzkum nařízen. Geodesia Praha ze zakázky vypadla. Jmenovaný soudní znalec zjistil podmáčení v hloubce 1,8 metru — hlubší, než Slavík uváděl, ale stále problematické. Odvodňovací systém by stál 22 000 Kčs. PRAGA ROADS zaplatila."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "zamitout_trasu",
+          "delay_days": 1,
+          "type": "letter",
+          "text": "Vlčkův dopis přišel odpoledne. Nepsalo se v něm o případu Kučerové. Psalo se o tom, že soudci jsou povinni volit nejjasnější výklad zákona a vyhýbat se komentářům přesahujícím rámec projednávané věci. Poslední věta: 'Věřím, že toto doporučení pochopíte ve správném kontextu.' Ben ho přečetl dvakrát."
+        },
+        {
+          "trigger": "zamitout_trasu",
+          "delay_days": 3,
+          "type": "fragment",
+          "text": "V novinách krátká zpráva: PRAGA ROADS podala odvolání ve věci vyvlastnění v Úněticích. Odvolací soud přijme věc k projednání. Jméno soudce prvního stupně v článku není."
+        },
+        {
+          "trigger": "standardni_nahrada",
+          "delay_days": 2,
+          "type": "fragment",
+          "text": "Knot & Svoboda zapsala novou zakázku — výkup parcel podél plánované silnice Praha–Kladno. Stejná firma PRAGA ROADS. Stejný projektant Slavík. Stejná Geodesia Praha."
+        },
+        {
+          "trigger": "alternative",
+          "delay_days": 4,
+          "type": "fragment",
+          "text": "Soudní znalec Hora — ten z úněticko-žižkovské hranice — byl jmenován pro průzkum parcely 48/1. Napsal Benovi krátkou poznámku: 'Zajímavé zadání, pane doktore. Přijdu připraven.'"
+        }
+      ],
+      "verdict_narrative": [
+        {
+          "path": "guilty.sentences.standardni_nahrada",
+          "label": "Námitky zamítnout — vyvlastnění potvrzeno, náhrada 2 200 Kčs",
+          "description": "Zákonné podmínky vyvlastnění jsou splněny. Technický průzkum existuje. Náhrada je ve výši katastrální hodnoty. Jabloně po nebožtíkovi budou vykáceny do jara.",
+          "consequence": null
+        },
+        {
+          "path": "guilty.sentences.vyssi_nahrada",
+          "label": "Námitky částečně přijmout — vyvlastnění potvrzeno, náhrada zvýšena na 4 000 Kčs",
+          "description": "Soud potvrzuje vyvlastnění ale konstatuje, že ocenění provedla firma závislá na stavebníkovi. Spravedlivá náhrada je vyšší. Božena přijde o zahradu — ale dostane víc než katastr.",
+          "consequence": null
+        },
+        {
+          "path": "guilty.sentences.alternative",
+          "label": "Alternativa: Vyvlastnění podmíněno nezávislým novým průzkumem",
+          "description": "Soud potvrzuje zákonný zájem na silnici, ale zpochybňuje průzkum provedený dodavatelem závislým na stavebníkovi. Vyvlastnění odloženo do výsledku nezávislého geodetického posudku. Jabloně stojí dál — prozatím.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.pozastavit",
+          "label": "Námitky přijmout — řízení pozastavit pro procesní vadu",
+          "description": "Průzkum byl objednán po odmítnutí obce, nikoli před návrhem trasy. Trasa existovala před svým odůvodněním. Procesní vada — řízení se vrací k přepracování podkladů.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.zamitout_trasu",
+          "label": "Alternativa: Námitky přijmout — vyvlastnění zamítnout, střet zájmů advokáta",
+          "description": "JUDr. Knot je akcionářem PRAGA ROADS a současně jejich advokátem v tomto řízení. Soud zamítá vyvlastnění pro střet zájmů zástupce a pochybnou nezávislost průzkumu. Jabloně zůstanou. Knot podá odvolání téhož dne.",
+          "consequence": null
+        },
+        {
+          "path": "insufficient_evidence.options.nezavisly_pruzkum",
+          "label": "Přerušit — nařídit nezávislý geodetický průzkum parcely 48/1",
+          "description": "Soud přeruší řízení a nařídí průzkum louky provedený znalcem jmenovaným soudem — ne Geodesia Praha. Výsledek průzkumu rozhodne.",
+          "consequence": null
+        }
+      ]
+    },
+    {
+      "id": "tyc_hranice_2",
+      "slot": "pool",
+      "type": "politicky",
+      "available_days": [
+        8
+      ],
+      "title": "Německý dopis",
+      "case_number": "Sp. zn. 109/1931",
+      "defendant": {
+        "name": "Wilhelm Grünbaum",
+        "occupation": "penzionovaný učitel",
+        "detail": "tatáž osoba jako ve věci Sp. zn. 93/1931 (zeď, 34 cm). Tentokrát nečelí sporu o zeď — čelí udání pro korespondenci se synem v Berlíně."
+      },
+      "charge": "Šíření protistátní propagandy dle §14 zákona na ochranu republiky č. 50/1923 Sb.",
+      "description": "Zeď mezi Grünbaumem a Křížem stojí, kde stála — nebo skoro. Ale v únoru přišel z Berlína dopis. Ernstův. S hlavičkou, která Kříže znepokojila. Šel na policii. Wilhelm Grünbaum napsal synovi o potvrzení vlastnictví domu — kvůli německé dědické daní, říká. Kříž říká, že šlo o kontakt s nacistickou organizací. Zákon na ochranu republiky zná slovo protistátní. Nezná slovo sousedská zloba.",
+      "aftermath": {
+        "napomenuti": "Grünbaum dostal napomenutí. Ernstovi o tom nenapsal — nebo napsal, nevíme. Kříž šel domů. Na zahradě zalil růže. Grünbaumovy rostou u zdi. Zeď stojí, kde stála.",
+        "formal": "Řízení zastaveno. Grünbaum vyšel na chodbu a zastavil se. Venku svítilo slunce. Pak se otočil a šel domů. Kříž čekal na autobus na druhé straně ulice. Nepodívali se na sebe.",
+        "with_comment": "Řízení zastaveno, Kříž v protokolu. Ben v odůvodnění napsal, že sousedský spor nelze řešit zákonem na ochranu republiky. Komisař Marek si odůvodnění zkopíroval pro vlastní archiv. Bez komentáře.",
+        "prerusit": "Překlad přišel za tři týdny. Dvaadvacet stran. Dědické záležitosti, zdraví, počasí v Berlíně. Jeden odstavec o synově nové práci. Žádná politika. Soud případ zastavil. Nikdo se neomluvil."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "with_comment",
+          "delay_days": 3,
+          "type": "fragment",
+          "text": "V Národních listech krátká zpráva: Soud v Bubenči zamítl podnět na německého důchodce — konstatoval zneužití zákona na ochranu republiky. Komisař Marek si výstřižek přiložil ke spisu. Bez komentáře."
+        },
+        {
+          "trigger": "formal",
+          "delay_days": 4,
+          "type": "fragment",
+          "text": "Grünbaum napsal synovi Ernstovi. Krátký dopis — česky, ne německy. Ernst odpověděl: přijede na Vánoce. Kříž potkal Grünbauma u kašny. Pozdravil ho. Grünbaum pozdravil zpátky. Bylo to poprvé od října."
+        },
+        {
+          "trigger": "napomenuti",
+          "delay_days": 5,
+          "type": "fragment",
+          "text": "Ernst Grünbaum napsal otci, že přijet nemůže — situace v Berlíně se komplikuje. Grünbaum dopis přečetl, složil a schoval do šuplíku vedle Ernstovy fotografie."
+        }
+      ],
+      "verdict_narrative": [
+        {
+          "path": "guilty.sentences.napomenuti",
+          "label": "Napomenutí — kontakt s cizí organizací bez náležité opatrnosti",
+          "description": "Zákon formálně naplněn nebyl, ale kontakt s německou organizací bez informování státních úřadů lze označit za neprozíravost. Napomenutí bez záznamu.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.formal",
+          "label": "Zastavit — znaky trestného činu nenaplněny",
+          "description": "Kontakt s administrativní organizací za účelem dědického řízení nesplňuje podmínky §14. Organizace není sledovaná. Podnět nemá právní základ.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.with_comment",
+          "label": "Alternativa: Zastavit — podnět podán bez faktického podkladu, konstatovat zneužití",
+          "description": "Kříž přiznal, že nezná obsah korespondence. Soud zastavuje a konstatuje, že podnět byl podán bez věcného podkladu a v kontextu sousedského sporu. Grünbaum je zprostřen — a Kříž dostane poznámku do protokolu.",
+          "consequence": null
+        },
+        {
+          "path": "insufficient_evidence.options.prerusit",
+          "label": "Přerušit — vyžádat překlad celé korespondence",
+          "description": "Soud přeruší do předložení plného překladu dopisů Grünbaum–Ernst. Grünbaum souhlasí. Kříž souhlasí. Nikdo nevíří, co překlad ukáže.",
+          "consequence": null
+        }
+      ]
+    },
+    {
+      "id": "tyc_zvraty_d10",
+      "slot": "pool",
+      "type": "osobni",
+      "available_days": [
+        12
+      ],
+      "title": "Složka",
+      "case_number": "Sp. zn. interní — bez čísla",
+      "defendant": {
+        "name": "—",
+        "occupation": "—",
+        "detail": "Tento případ nemá obžalovaného. Je to dokument nalezený na Benově stole."
+      },
+      "charge": "Bez obžaloby. Ben nalezl složku, která tam nebyla, když odcházel domů.",
+      "description": "Ráno přišel Svejda jako obvykle — s poštou, s kávou, s prázdným výrazem. Pak se zastavil u dveří a řekl: 'Pane doktore, ta složka na stole — to jste přinesl vy?' Ben se podíval. Na stole ležela hnědá papírová složka s tkaničkou, bez adresy, bez jména. Svejda ji tam nedal. Ben ji tam nedal. Někdo ji tam dal přes noc.",
+      "aftermath": {
+        "guilty_pouzit_dokument": "Složka leží v zásuvce. Ben ví, co v ní je — a ví, že to ví. Anna Wolfová přestala být jen manželkou obžalovaného. Je to Haasova bratrankyně, spoluzakladatelka firmy, která existovala osm měsíců a pak zmizela do jejích rukou. Ben si to nese ke Wolfovu případu.",
+        "not_guilty_odevzdat_statnimu": "Dvořák přijal složku beze slova. Přečetl první list, přikývl a řekl: 'Děkuji.' Ben čekal, co řekne dál. Dvořák neřekl nic dál.",
+        "not_guilty_znicit": "Složka zmizela. Ben seděl u stolu a přemýšlel, jestli to byl dobrý nápad. Odpověď nepřišla. Svejda přinesl kávu a nezeptal se na nic."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "guilty_pouzit_dokument",
+          "delay_days": 1,
+          "type": "fragment",
+          "text": "Další ráno leží složka v zásuvce pod nálezy. Ben ví, čí podpis je na dokumentu ze září osmadvacátého — a ví, proč Wolf prodal Haasův podíl na Annu dva týdny před zatčením."
+        },
+        {
+          "trigger": "not_guilty_odevzdat_statnimu",
+          "delay_days": 2,
+          "type": "fragment",
+          "text": "Dvořák zmínil při jednání jeden nový detail — příbuznost Anny Wolfové s Haasem. Připojil to k obžalobě jako upřesňující poznámku. Ben si všiml, odkud to vzal."
+        }
+      ],
+      "verdict_narrative": [
+        {
+          "path": "guilty.sentences.pouzit_dokument",
+          "label": "Ponechat složku",
+          "description": "Ben si složku nechá. Rodný list a výpis z rejstříku použije jako kontext při čtení Wolfova případu — nebo při rozhodnutí, komu věřit. Informace mění, co Ben vidí. Odkud složka přišla, zůstane otevřenou otázkou.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.odevzdat_statnimu",
+          "label": "Odevzdat státnímu zástupci jako anonymní podnět",
+          "description": "Ben dokumenty odevzdá bez komentáře. Zbavuje se odpovědnosti — ale i informace. Dvořák si složku vezme, přikývne a Ben neví, co s ní udělá.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.znicit",
+          "label": "Zničit složku — nikdy ji Ben neviděl",
+          "description": "Spálit, skartovat, vyhodit. Složka zmizí. Informace zmizí. Kdo ji poslal — nevěděl by Ben, jestli uspěl nebo ne.",
+          "consequence": null
+        }
+      ]
+    },
+    {
+      "id": "tyc_haas_d11",
+      "slot": "pool",
+      "type": "osobni",
+      "available_days": [
+        15
+      ],
+      "title": "Obálka",
+      "case_number": "Sp. zn. interní — bez čísla",
+      "defendant": {
+        "name": "—",
+        "occupation": "—",
+        "detail": "Tento případ nemá obžalovaného. Je to návštěva Emila Haase."
+      },
+      "charge": "Bez obžaloby. Emil Haas přišel osobně.",
+      "description": "Svejda tentokrát klepal třikrát a čekal. Pak otevřel dveře a řekl jen: 'Je tu někdo.' Ben se podíval. Ve dveřích stál muž, kterého znal jen ze jméne a z vizitky, která přišla v únoru — výrobce strojů z Holešovic, který má bratra nebo bratrance v Drážďanech nebo v Berlíně a jehož jméno se v posledních týdnech objevovalo na místech, kde být nemělo. Emil Haas byl asi šedesát let starý, tmavý oblek, střižený přesně. Přišel bez obhájce, bez sekretáře, bez svědka. Sám.",
+      "aftermath": {
+        "guilty_vzit_obalku": "Haas odešel. Tři sta korun leží v zásuvce. Ben zavolal lékaři a domluvil operaci na čtvrtek. Matka řekla: jak jsi to sehnal? Ben řekl: ušetřil jsem. Matka přikývla. Neuvěřila mu.",
+        "not_guilty_odmitnut_slušne": "Ben stál u okna a díval se za Haasem na ulici. Haas zastavil vůz — velký, tmavý — a odjel. Ben se otočil k telefonu. Deadline byl zítra a on měl osmdesát sedm korun.",
+        "not_guilty_odmitnut_s_komentarem": "Haas se zastavil u dveří a podíval se zpátky. Jeden pohled — beze slova. Pak odešel. Svejda přišel s kávou a nezeptal se na nic. Ben seděl a myslel na to, jak Haas věděl o čtyřech stech korunách."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "guilty_vzit_obalku",
+          "delay_days": 1,
+          "type": "fragment",
+          "text": "Matka má operaci domluvenu na čtvrtek. Ben to ví. Ví taky, odkud peníze jsou. Wolfův případ přijde v pátek."
+        },
+        {
+          "trigger": "not_guilty_odmitnut_s_komentarem",
+          "delay_days": 2,
+          "type": "fragment",
+          "text": "Vlčkův dopis přišel odpoledne. Krátký — dvě věty. 'Slyšel jsem o včerejší návštěvě. Doufám, že rozhovor proběhl v souladu s pravidly.' Ben si přečetl větu dvakrát."
+        }
+      ],
+      "verdict_narrative": [
+        {
+          "path": "guilty.sentences.vzit_obalku",
+          "label": "Vzít obálku",
+          "description": "Tři sta korun. Ben ji vezme. Deadline je zítra. Matka dostane operaci. Haas odejde a Ben bude vědět, co udělal — a bude to vědět každý den, než přijde Wolfův případ.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.odmitnut_slusne",
+          "label": "Odmítnout — vrátit obálku",
+          "description": "Ben obálku vezme do ruky a pak ji položí zpátky. 'Nemohu.' Haas přikývne. Odejde. Tři sta korun zůstane na stole — nebo ne, Haas si je vezme. Deadline je zítra a Ben má osmdesát sedm korun.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.odmitnut_s_komentarem",
+          "label": "Alternativa: Odmítnout a říct proč",
+          "description": "Ben vrátí obálku a řekne: 'Vím, co děláte. A vím, proč přicházíte teď.' Haas se na něj podívá — dlouho, bez výrazu. Pak obálku vezme a odejde. Nic dalšího.",
+          "consequence": null
+        }
+      ]
+    },
+    {
+      "id": "tyc_zavadova_d12",
+      "slot": "pool",
+      "type": "osobni",
+      "available_days": [
+        16
+      ],
+      "title": "Víme vše",
+      "case_number": "Sp. zn. interní — bez čísla",
+      "defendant": {
+        "name": "—",
+        "occupation": "—",
+        "detail": "Tento případ nemá obžalovaného. Je to návštěva Mileny Zavadové."
+      },
+      "charge": "Bez obžaloby. Milena Zavadová přišla se sdělením.",
+      "description": "Milena Zavadová přišla v úterý dopoledne, bez ohlášení, s kufříkem z hnědé kůže, který vypadal, jako by ho nosila všude a vždy. Seděla přímo, mluvila jasně a věci říkala v takovém pořadí, že Ben neměl chvíli na to, aby se zeptal na předchozí, než přišla další. Pracuje pro Kruh svědomí — tak to řekla, bez vysvětlení, co Kruh je, jako by to bylo samozřejmé. Možná proto, že pro ni bylo.",
+      "aftermath": {
+        "guilty_podepsat": "Zavadová vzala prohlášení, složila ho a uložila do kufříku. Podala ruku — pevně, jako obchodní partner. Řekla: 'Budeme v kontaktu.' Ben nevěděl, co to přesně znamená. Dozvěděl se postupně.",
+        "not_guilty_odmitnut_formal": "Zavadová odešla bez komentáře. Svejda se zeptal, jestli chce Ben kávu. Ben řekl ano. Svejda přinesl kávu a nezeptal se, kdo ta žena byla. Ben byl za to vděčný.",
+        "not_guilty_odmitnut_s_konfrontaci": "Zavadová vzala kufřík a šla. U dveří se zastavila — jen na vteřinu, jako by chtěla říct ještě něco. Pak odešla. Ben seděl v prázdné kanceláři a slyšel, jak její kroky zmizí na chodbě. Pak byl klid."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "guilty_podepsat",
+          "delay_days": 2,
+          "type": "fragment",
+          "text": "Přišel dopis bez odesílatele. Uvnitř jeden list — seznam jmen, u každého krátká poznámka. Benovo jméno bylo třetí. Poznámka u něj: 'V kontaktu od 17. března.' Ben list přečetl a spálil. Nebo ne."
+        },
+        {
+          "trigger": "not_guilty_odmitnut_s_konfrontaci",
+          "delay_days": 1,
+          "type": "fragment",
+          "text": "Karas zavolal ráno — neobvyklé, Karas nevolá. Řekl jen: 'Slyšel jsem o včerejšku. Uděláte správnou věc.' Zavěsil dřív, než Ben stihl odpovědět."
+        },
+        {
+          "trigger": "guilty_podepsat",
+          "delay_days": 3,
+          "type": "fragment",
+          "text": "Vlček přišel osobně. Nemluvil dlouho. Řekl: 'Doufám, že vaše nové kontakty chápou, jak tady věci fungují.' Odešel. Ben nerozuměl, odkud Vlček ví. Pak pochopil, že Vlček ví vždy."
+        }
+      ],
+      "verdict_narrative": [
+        {
+          "path": "guilty.sentences.podepsat",
+          "label": "Podepsat prohlášení",
+          "description": "Malý papír, velká cena. Ben podepíše. Zavadová si vezme prohlášení, poděkuje a odejde. Zpráva zmizí z archivu — nebo nezmizí, závisí na tom, co Zavadová skutečně může udělat. Ben to nikdy s jistotou neví.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.odmitnut_formal",
+          "label": "Odmítnout — vrátit prohlášení",
+          "description": "Ben posune papír zpátky přes stůl. Zavadová ho vezme. Odejde. Zpráva z ministerstva — padělaná nebo ne — zůstane tam, kde je. Ben neví kde.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.odmitnut_s_konfrontaci",
+          "label": "Alternativa: Odmítnout a konfrontovat s padělkem",
+          "description": "Ben odmítne a řekne, co ví o sériovém čísle. Zavadová odejde. Zavadová ví, že Ben ví o padělku — a Ben ví, že Zavadová ví. To je jiná situace než pouhé odmítnutí.",
+          "consequence": null
+        }
+      ]
+    },
+    {
+      "id": "tyc_markova_3",
+      "slot": "pool",
+      "type": "moral_dilemma",
+      "available_days": [
+        18
+      ],
+      "title": "Sešit jako důkaz",
+      "case_number": "Sp. zn. 118/1931",
+      "defendant": {
+        "name": "Věra Marková",
+        "occupation": "účetní",
+        "detail": "zaměstnankyně firmy Beneš & syn, Karlín — tatáž osoba jako ve věci Sp. zn. 95/1931 (svědkyně u Čermáka) a Sp. zn. 112/1931 (svědkyně ve prospěch Vávry). Tentokrát sedí na druhé straně stolu."
+      },
+      "charge": "Padělání obchodních dokladů dle §201 trestního zákona a porušení obchodní věrnosti dle §200",
+      "description": "Věra Marková, která dvakrát zachránila jiné lidi přesností svých záznamů, teď čelí obžalobě z padělání záznamů. Přesně ona. Přesnost jako zbraň i jako štít — a teď jako důkaz viny. Beneš ml. předložil účetní knihy a vlastní revizní zprávu. Marková přiznala, že záznamy opravovala — ale říká, že opravovala chyby, které tam neudělala ona. Sešit — ten záhadný sešit z D3 a D10 — je nyní v rukou soudu. A v sešitu je víc, než všichni čekali.",
+      "aftermath": {
+        "mirny": "Marková zaplatila pět set korun — úspory z půl roku. Beneš ml. ji propustil o tři dny později. Nového zaměstnání se dočkala za šest týdnů — v menší firmě, za méně peněz. Sešit vzala s sebou.",
+        "maximum": "Podmínka. Marková šla domů. Sešit zůstal u soudu — jako důkazní materiál, uzamčený. Bez sešitu vypadala jako jiný člověk. Menší.",
+        "formal": "Marková zproštěna. Beneš ml. ji nepropustil — nemohl si dovolit ztratit další zaměstnance a průtahy. Přišla druhý den ráno, sedla si na své místo a otevřela knihy. Nikdo ji nepozdravil. Ona taky ne.",
+        "with_comment": "Marková zproštěna, šetření Beneše st. zahájeno. Rudolf Beneš st. byl v nemocnici v Krči — kardiologické problémy. Beneš ml. přišel za Benem na chodbu. Neřekl nic — jen se podíval. Ben vydržel pohled.",
+        "grafolog": "Grafologický posudek přišel za čtrnáct dní. Původní záznamy psal Rudolf Beneš st. — shoda 91 procent. Marková byla zproštěna. Soud nařídil prošetření Beneše st. Byl propuštěn z nemocnice týden poté."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "with_comment",
+          "delay_days": 3,
+          "type": "fragment",
+          "text": "Rudolf Beneš st. přijal návštěvu z nemocnice — syna Karla. Šedesát minut. Sestra zaznamenala zvýšený tep. Karel Beneš ml. odešel bez rozloučení. Beneš st. požádal o papír a pero."
+        },
+        {
+          "trigger": "formal",
+          "delay_days": 4,
+          "type": "fragment",
+          "text": "Marková přišla ráno na pracoviště. Na jejím stole ležely nové knihy — prázdné, nepopsané. U nich lístek od Beneše ml.: 'Od zítřka vedete evidenci jinak. Bez vlastních poznámek.' Marková lístek přečetla. Vzala pero. Zapsala datum. Čas. A pak pokračovala."
+        },
+        {
+          "trigger": "maximum",
+          "delay_days": 5,
+          "type": "fragment",
+          "text": "Sešit zůstal uzamčen v archívu soudu. Za šest měsíců ho nikdo nevyzvedl. Marková na nové práci si koupila nový. Menší, tmavší."
+        }
+      ],
+      "verdict_narrative": [
+        {
+          "path": "guilty.sentences.mirny",
+          "label": "Pokuta 500 Kčs — pozměnění dokladů bez osobního obohacení",
+          "description": "Marková záznamy pozměnila — grafologický posudek to potvrzuje pro přepis. Motiv osobního zisku chybí. Pokuta bez vězení, bez ztráty zaměstnání — Beneš ml. ji ale propustí stejně.",
+          "consequence": null
+        },
+        {
+          "path": "guilty.sentences.maximum",
+          "label": "18 měsíců podmíněně — padělání dokladů",
+          "description": "Přepis dokladů je prokázán. Rozsah 6 800 Kčs je značný. Podmínka — Marková jde domů, ale má záznam a přijde o práci. Sešit zůstane u soudu jako důkazní materiál.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.formal",
+          "label": "Zproštění — přepis na pokyn nadřízeného, záměr padělání neprokázán",
+          "description": "Marková přepisovala záznamy na pokyn spolumajitele firmy. Osobní záměr padělat chybí. Sešit dokumentuje původní čísla — projev vůle záchovat pravdu, nikoli ji skrýt. Pokud soud v D3 zpochybnil Markovino svědectví (viz Sp. zn. 95/1931), toto zproštění jej přehodnocuje — bylo správné ji pochybovat? Nebo právě sešit dokazuje, že ne?",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.with_comment",
+          "label": "Alternativa: Zproštění Markové + podnět k šetření Beneše st.",
+          "description": "Marková zproštěna. Soud konstatuje, že záznamy psal Rudolf Beneš st. a Marková přepisovala na jeho pokyn. Podnět k šetření Beneše st. za manipulaci s doklady — ač jeho zdravotní stav řízení komplikuje.",
+          "consequence": null
+        },
+        {
+          "path": "insufficient_evidence.options.grafolog",
+          "label": "Přerušit — grafologický posudek srovnávacích vzorků Beneše st.",
+          "description": "Soud přeruší do doložení grafologického posudku, který porovná sklon písma původních záznamů s Benešem st. Ten nemůže svědčit — ale vzorky jeho písma existují.",
+          "consequence": null
+        }
+      ]
+    },
+    {
+      "id": "tyc_velezrada_d15",
+      "slot": "pool",
+      "type": "politicky",
+      "available_days": [
+        19
+      ],
+      "title": "Velezrada",
+      "case_number": "Sp. zn. 124/1931",
+      "defendant": {
+        "name": "Alexander Wolf",
+        "occupation": "průmyslový poradce, správce trustu",
+        "detail": "bývalý vedoucí oddělení průmyslových licencí na Ministerstvu obchodu, propuštěn 1928. Žije v Praze, příjmy z poradenské činnosti pro zahraniční firmy. Ženatý — manželka Anna, rozená Vránová."
+      },
+      "charge": "Velezrada dle §1 a §2 zákona na ochranu republiky č. 50/1923 Sb.",
+      "description": "Alexander Wolf sedí u stolu a je klidný způsobem, který Ben za čtrnáct let u soudu viděl jen zřídka — klidný ne ze zatvrdlosti, ale ze smíření. Jako by výsledek dnešního dne pro něj nebyl otázkou. Státní zástupce Dvořák předložil dvě stě stránek dokumentace: přesuny financí, šifrované dopisy, schůzky v hotelích. A jeden dokument z roku 1928 — podepsaný Wolfem, adresovaný Haasovi — který popisuje rozmístění zbrojní výroby v severních Čechách. Obhájce Wolf říká, že dokument je padělán. Že nikdy neexistoval v originále. Že Wolfova propast začala přesně tím, že v září osmadvacátého odmítl tento dokument podepsat — a někdo ho podepsal za něj.",
+      "aftermath": {
+        "guilty_standard": "Wolf byl odveden. Anna stála na chodbě a nedívala se za ním — dívala se na zeď naproti. Ben odcházel kolem a zastavil se. Nevěděl co říct. Ona taky ne. Zeď byla zeď.",
+        "guilty_maximum": "Patnáct let. Wolf přikývl — jednou, pomalu, jako člověk, který se připravoval na horší. Anna nebyla v soudní síni. Odešla při prvním čtení obžaloby a nešla zpátky.",
+        "guilty_alternative": "Podmínka. Wolf odešel s Annou — ruka v ruce, poprvé co Ben viděl něco takového u soudu. Dvořák podal odvolání do druhého dne. Ministerstvo vydalo prohlášení: případ bude přezkoumán.",
+        "not_guilty_formal": "Wolf zproštěn. Dvořák složil spisy a beze slova odešel. Wolf se otočil k Benovi a udělal jednu jedinou věc — přikývl. Ne jako poděkování, spíš jako potvrzení, že Ben pochopil co v té místnosti bylo na stole. Anna čekala na chodbě a Ben ji minul bez pohledu, protože by nevydržel.",
+        "not_guilty_with_comment": "Soud dal podnět k šetření padělku. Dvořák zbledl — poprvé za celé řízení. Wolf odešel. Ben seděl sám v prázdné soudní síni a díval se na stůl před sebou. Pak vstal, vzal kabát a šel. Venku byl pátek.",
+        "insufficient_prerusit": "Případ vrácen. Wolf zůstal ve vazbě. Ben podepisoval usnesení a věděl, co to znamená — přidat měsíce ke dni, kdy Wolf čeká na výsledek, který Ben mohl dát dnes."
+      },
+      "delayed_consequences": [
+        {
+          "trigger": "not_guilty_with_comment",
+          "delay_days": 0,
+          "type": "epilogue_fragment",
+          "text": "Šetření padělku bylo zahájeno. Jméno, které se v průběhu šetření objeví, závisí na tom, co Ben ví — a komu o tom řekl."
+        },
+        {
+          "trigger": "guilty_standard",
+          "delay_days": 0,
+          "type": "epilogue_fragment",
+          "text": "Wolf byl odveden. Kdo podepsal dokument v září osmadvacátého, zůstane bez odpovědi."
+        },
+        {
+          "trigger": "not_guilty_formal",
+          "delay_days": 0,
+          "type": "epilogue_fragment",
+          "text": "Wolf je volný. Dokument zůstane ve spisu bez vysvětlení. Případ bude odložen — na neurčito, jak to chodí s případy, o jejichž uzavření nikdo nestojí."
+        }
+      ],
+      "verdict_narrative": [
+        {
+          "path": "guilty.sentences.standard",
+          "label": "8 let těžkého žaláře za velezradu",
+          "description": "Transakce s Haasem jsou doložené a ve výši odpovídající odměně za předání citlivých informací. Sporný podpis nepopírá ostatní důkazy. Wolf jde na osm let. Anna zůstane sama v domě v Bubenči.",
+          "consequence": null
+        },
+        {
+          "path": "guilty.sentences.maximum",
+          "label": "15 let těžkého žaláře — přitěžující okolnosti",
+          "description": "Plný rozsah obžaloby přijat. Wolf dostane patnáct let — to je jeho zbytek života, prakticky. Anna Wolfová se otočila a odešla ze sálu ještě před vyhlášením.",
+          "consequence": null
+        },
+        {
+          "path": "guilty.sentences.alternative",
+          "label": "Alternativa: Odsouzení za poradenství v rozporu se zákonem — 2 roky podmíněně",
+          "description": "Velezrada neprokázána pro spornost klíčového dokumentu. Ale transakce s Haasem existovaly — bez jasné legální opory. Podmíněný trest za překročení poradenských hranic. Wolf odejde domů — ale s cejchem, který ho bude následovat.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.formal",
+          "label": "Zproštění — klíčový dokument sporný, pochybnost v prospěch obžalovaného",
+          "description": "Velezrada dle §1 a §2 zákona na ochranu republiky neprokázána — klíčový dokument je sporný a datum podpisu nesedí s datem propuštění obžalovaného. Transakce s firmou Haas und Söhne samy o sobě nenaplňují skutkovou podstatu §50/1923 bez prokázaného předání státního tajemství. Případné jiné delikty nejsou předmětem této obžaloby. In dubio pro reo.",
+          "consequence": null
+        },
+        {
+          "path": "not_guilty.approaches.with_comment",
+          "label": "Alternativa: Zproštění — padělání klíčového důkazu, podnět k šetření",
+          "description": "Soud konstatuje, že dokument ze září 1928 nese datum po Wolfově propuštění a nese znaky padělku. Wolf je zproštěn. Soud dává podnět k šetření původu dokumentu — což znamená, že někdo jiný bude muset odpovídat. Kdo, to závisí na tom, co Ben ví.",
+          "consequence": null
+        },
+        {
+          "path": "insufficient_evidence.options.prerusit",
+          "label": "Vrátit k doplnění — grafologický posudek a ověření poradenských smluv",
+          "description": "Případ se vrátí. Wolf zůstane ve vazbě. Bude to trvat měsíce — a mezitím se může stát mnoho věcí.",
+          "consequence": null
+        }
+      ]
+    }
+  ]
+}

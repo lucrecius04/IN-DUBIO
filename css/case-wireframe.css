@@ -665,15 +665,6 @@
   cursor: not-allowed;
 }
 
-#modal-pripad .case-wf-clue-hud-btn--abort {
-  border-color: rgba(180, 96, 96, 0.55);
-  color: #e8c4c4;
-}
-
-#modal-pripad .case-wf-clue-hud-btn--abort:hover {
-  background: rgba(95, 42, 42, 0.55);
-}
-
 #modal-pripad .case-wf-clue-focus-lock {
   margin-top: 8px;
   padding: 8px;
@@ -932,8 +923,14 @@
 }
 
 #modal-pripad.case-wf-patrani-lock-ui .pripad-panel--wireframe .case-wf-clue-hud-header-wrap,
-#modal-pripad.case-wf-patrani-lock-ui .pripad-panel--wireframe #case-wf-clue-hud-confirm,
-#modal-pripad.case-wf-patrani-lock-ui .pripad-panel--wireframe #case-wf-clue-hud-abort {
+#modal-pripad.case-wf-patrani-lock-ui .pripad-panel--wireframe #case-wf-clue-hud-confirm {
+  position: relative;
+  z-index: 8;
+  pointer-events: auto;
+}
+
+/* Během lock režimu musí jít stopy dál klikat (jinak je překryje .case-wf-body::before). */
+#modal-pripad.case-wf-patrani-lock-ui .pripad-panel--wireframe .clue[data-clue-id] {
   position: relative;
   z-index: 8;
   pointer-events: auto;

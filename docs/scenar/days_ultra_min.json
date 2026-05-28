@@ -1,0 +1,498 @@
+{
+  "meta": {
+    "generated_for": "ultra-min dramaturgy audit",
+    "source": "data/days.json",
+    "note": "No long prose blocks; only structure + short hooks"
+  },
+  "days": [
+    {
+      "date_iso": "1931-03-02",
+      "currentDay": 1,
+      "w": "W1",
+      "dow": "Po",
+      "headline": "Hospodářská krize pokračuje: nezaměstnanost je opět vyšší.",
+      "morning_fragment_id": "fragment_d1_morning",
+      "evening_fragment_id": null,
+      "night_fragment_id": "fragment_d1_night",
+      "cases": [
+        "pool_a1_bozena_slepice",
+        "tyc_horak_d1"
+      ],
+      "cases_light": null,
+      "letters": [
+        "vlcek_d1"
+      ],
+      "has_nedelni_volba": false,
+      "has_evening_choice": true,
+      "evening_choice_options": 2,
+      "evening_hook": "Stůl je čistý.",
+      "has_adventure_scene": false,
+      "adventure_scene_id": null,
+      "special_events": null
+    },
+    {
+      "date_iso": "1931-03-03",
+      "currentDay": 2,
+      "w": "W2",
+      "dow": "Ut",
+      "headline": "Nezaměstnanost přes patnáct procent: čísla dráždí i redakce.",
+      "morning_fragment_id": "fragment_d2_rano",
+      "evening_fragment_id": null,
+      "night_fragment_id": null,
+      "cases": [
+        "pool_a1_lekarna",
+        "pool_a1_weiss"
+      ],
+      "cases_light": null,
+      "letters": [
+        "martin_d2"
+      ],
+      "has_nedelni_volba": false,
+      "has_evening_choice": true,
+      "evening_choice_options": 2,
+      "evening_hook": "Martinův dopis leží na rohu stolu.",
+      "has_adventure_scene": false,
+      "adventure_scene_id": null,
+      "special_events": null
+    },
+    {
+      "date_iso": "1931-03-04",
+      "currentDay": 3,
+      "w": "W3",
+      "dow": "St",
+      "headline": "Vláda slíbila pomoc regionům — odpůrci mluví o prázdných symbolech.",
+      "morning_fragment_id": "fragment_d3_noviny",
+      "evening_fragment_id": null,
+      "night_fragment_id": null,
+      "cases": [
+        "pool_a1_pospisil_vycep",
+        "pool_a1_markova_svedkyne"
+      ],
+      "cases_light": null,
+      "letters": [
+        "masek_d3"
+      ],
+      "has_nedelni_volba": false,
+      "has_evening_choice": true,
+      "evening_choice_options": 2,
+      "evening_hook": "Třetí den.",
+      "has_adventure_scene": false,
+      "adventure_scene_id": null,
+      "special_events": null
+    },
+    {
+      "date_iso": "1931-03-05",
+      "currentDay": 4,
+      "w": "W4",
+      "dow": "Ct",
+      "headline": "Exekuce na venkově: usedlosti v tlaku, úřady mluví o pořádku.",
+      "morning_fragment_id": "fragment_d4_rano",
+      "evening_fragment_id": null,
+      "night_fragment_id": null,
+      "cases": [
+        "pool_a1_bozena_cest",
+        "pool_a1_hranice_zed"
+      ],
+      "cases_light": null,
+      "letters": [
+        "doktor_d4",
+        "vlcek_d4"
+      ],
+      "has_nedelni_volba": false,
+      "has_evening_choice": true,
+      "evening_choice_options": 3,
+      "evening_hook": "Dopis od doktora Síbra leží v zásuvce.",
+      "has_adventure_scene": false,
+      "adventure_scene_id": null,
+      "special_events": null
+    },
+    {
+      "date_iso": "1931-03-06",
+      "currentDay": 5,
+      "w": "W5",
+      "dow": "Pa",
+      "headline": "Fronta u podatelny roste: na razítka prý nestačí hodiny.",
+      "morning_fragment_id": "fragment_d5_patek_trh",
+      "evening_fragment_id": null,
+      "night_fragment_id": "fragment_d5_tichy_noc",
+      "cases": [
+        "pool_a1_nemocenska",
+        "pool_a1_vytrznost"
+      ],
+      "cases_light": null,
+      "letters": [],
+      "has_nedelni_volba": false,
+      "has_evening_choice": false,
+      "evening_choice_options": 0,
+      "evening_hook": "",
+      "has_adventure_scene": false,
+      "adventure_scene_id": null,
+      "special_events": null
+    },
+    {
+      "date_iso": "1931-03-07",
+      "currentDay": 6,
+      "w": "-",
+      "dow": "So",
+      "headline": "Sobotní vydání: úřady hlásí klid, ulice mluví opatrněji.",
+      "morning_fragment_id": "fragment_d5_tichy_rano",
+      "evening_fragment_id": null,
+      "night_fragment_id": null,
+      "cases": [],
+      "cases_light": null,
+      "letters": [
+        "vlcek_d6"
+      ],
+      "has_nedelni_volba": false,
+      "has_evening_choice": false,
+      "evening_choice_options": 0,
+      "evening_hook": "",
+      "has_adventure_scene": false,
+      "adventure_scene_id": null,
+      "special_events": null
+    },
+    {
+      "date_iso": "1931-03-08",
+      "currentDay": 7,
+      "w": "-",
+      "dow": "Ne",
+      "headline": "Nedělní list: menší rozsah, stejné nejisté vyhlídky.",
+      "morning_fragment_id": "fragment_d7_nedele_rano",
+      "evening_fragment_id": "fragment_d7_nedele_vecer",
+      "night_fragment_id": null,
+      "cases": [],
+      "cases_light": null,
+      "letters": [],
+      "has_nedelni_volba": true,
+      "has_evening_choice": false,
+      "evening_choice_options": 0,
+      "evening_hook": "",
+      "has_adventure_scene": false,
+      "adventure_scene_id": null,
+      "special_events": null
+    },
+    {
+      "date_iso": "1931-03-09",
+      "currentDay": 8,
+      "w": "W6",
+      "dow": "Po",
+      "headline": "Ekonomická deprese sílí: škrty ve mzdách, odbory mluví o tvrdším postoji.",
+      "morning_fragment_id": "fragment_d6_morning",
+      "evening_fragment_id": null,
+      "night_fragment_id": null,
+      "cases": [
+        "pool_a1_stara_rana",
+        "tyc_pospisil_2"
+      ],
+      "cases_light": null,
+      "letters": [
+        "martin_d6"
+      ],
+      "has_nedelni_volba": false,
+      "has_evening_choice": true,
+      "evening_choice_options": 2,
+      "evening_hook": "Haasova vizitka leží na okraji stolu tam, kde jsi ji ráno položil.",
+      "has_adventure_scene": false,
+      "adventure_scene_id": null,
+      "special_events": null
+    },
+    {
+      "date_iso": "1931-03-10",
+      "currentDay": 9,
+      "w": "W7",
+      "dow": "Ut",
+      "headline": "Německé spolky pod drobnohledem — ministerstvo zatím nehodlá věc komentovat.",
+      "morning_fragment_id": null,
+      "evening_fragment_id": null,
+      "night_fragment_id": null,
+      "cases": [
+        "tyc_horac_d7",
+        "pool_a1_vyveseni"
+      ],
+      "cases_light": null,
+      "letters": [
+        "vlcek_d7"
+      ],
+      "has_nedelni_volba": false,
+      "has_evening_choice": true,
+      "evening_choice_options": 2,
+      "evening_hook": "Vlčkův dopis přišel dopoledne — tentokrát nikoliv s chválou, ale s upozorněním.",
+      "has_adventure_scene": false,
+      "adventure_scene_id": null,
+      "special_events": null
+    },
+    {
+      "date_iso": "1931-03-11",
+      "currentDay": 10,
+      "w": "W8",
+      "dow": "St",
+      "headline": "Plakát zve na pochod hladu — úřady vyzývají ke klidu a k rozumu.",
+      "morning_fragment_id": "fragment_d8_morning",
+      "evening_fragment_id": null,
+      "night_fragment_id": null,
+      "cases": [
+        "tyc_bozena_3",
+        "tyc_hranice_2",
+        "pool_a1_spravce"
+      ],
+      "cases_light": [
+        false,
+        false,
+        true
+      ],
+      "letters": [
+        "vlcek_d8"
+      ],
+      "has_nedelni_volba": false,
+      "has_evening_choice": true,
+      "evening_choice_options": 2,
+      "evening_hook": "Tři spisy, Vlčkův dopis, Švejdův pohled při odchodu.",
+      "has_adventure_scene": false,
+      "adventure_scene_id": null,
+      "special_events": null
+    },
+    {
+      "date_iso": "1931-03-12",
+      "currentDay": 11,
+      "w": "W9",
+      "dow": "Ct",
+      "headline": "Creditanstalt ve středu zájmu: banky jednají o likviditě, trh je nervózní.",
+      "morning_fragment_id": "fragment_d9_morning",
+      "evening_fragment_id": null,
+      "night_fragment_id": null,
+      "cases": [
+        "pool_a1_spravce",
+        "pool_a1_bytova_komise",
+        "pool_a1_nemocenska"
+      ],
+      "cases_light": [
+        false,
+        false,
+        true
+      ],
+      "letters": [
+        "benes_d9"
+      ],
+      "has_nedelni_volba": false,
+      "has_evening_choice": true,
+      "evening_choice_options": 2,
+      "evening_hook": "Alois Beneš přišel a odešel.",
+      "has_adventure_scene": true,
+      "adventure_scene_id": "adventure_benes_d9",
+      "special_events": null
+    },
+    {
+      "date_iso": "1931-03-13",
+      "currentDay": 12,
+      "w": "W10",
+      "dow": "Pa",
+      "headline": "Politické napětí roste: justice pod drobnohledem tisku i veřejnosti.",
+      "morning_fragment_id": "fragment_d10_morning",
+      "evening_fragment_id": null,
+      "night_fragment_id": null,
+      "cases": [
+        "pool_a1_tiskarna",
+        "tyc_zvraty_d10",
+        "pool_a1_nemocenska"
+      ],
+      "cases_light": [
+        false,
+        false,
+        true
+      ],
+      "letters": [
+        "martin_d10"
+      ],
+      "has_nedelni_volba": false,
+      "has_evening_choice": true,
+      "evening_choice_options": 2,
+      "evening_hook": "Martinův dopis leží na stole a Ben ho přečetl dvakrát.",
+      "has_adventure_scene": false,
+      "adventure_scene_id": null,
+      "special_events": null
+    },
+    {
+      "date_iso": "1931-03-14",
+      "currentDay": 13,
+      "w": "-",
+      "dow": "So",
+      "headline": "Sobota: město v přestávce — soudní budova zavřena.",
+      "morning_fragment_id": "fragment_d13_sobota_rano",
+      "evening_fragment_id": null,
+      "night_fragment_id": null,
+      "cases": [],
+      "cases_light": null,
+      "letters": [],
+      "has_nedelni_volba": false,
+      "has_evening_choice": true,
+      "evening_choice_options": 2,
+      "evening_hook": "Před odchodem Ben přemýšlí, jak sobotu zakončit.",
+      "has_adventure_scene": false,
+      "adventure_scene_id": null,
+      "special_events": null
+    },
+    {
+      "date_iso": "1931-03-15",
+      "currentDay": 14,
+      "w": "-",
+      "dow": "Ne",
+      "headline": "Druhá neděle v březnu: město zvolnilo, nervozita trvá.",
+      "morning_fragment_id": "fragment_d14_nedele_rano",
+      "evening_fragment_id": "fragment_d14_nedele_vecer",
+      "night_fragment_id": null,
+      "cases": [],
+      "cases_light": null,
+      "letters": [],
+      "has_nedelni_volba": true,
+      "has_evening_choice": false,
+      "evening_choice_options": 0,
+      "evening_hook": "",
+      "has_adventure_scene": false,
+      "adventure_scene_id": null,
+      "special_events": null
+    },
+    {
+      "date_iso": "1931-03-16",
+      "currentDay": 15,
+      "w": "W11",
+      "dow": "Po",
+      "headline": "Tiše před bouří: redakce čtou mezi řádky každé oficiální uklidňování.",
+      "morning_fragment_id": "fragment_d11_morning_base",
+      "evening_fragment_id": null,
+      "night_fragment_id": null,
+      "cases": [
+        "pool_a1_weiss",
+        "tyc_haas_d11",
+        "pool_a1_exekuce"
+      ],
+      "cases_light": [
+        false,
+        false,
+        true
+      ],
+      "letters": [
+        "vlcek_d11"
+      ],
+      "has_nedelni_volba": false,
+      "has_evening_choice": true,
+      "evening_choice_options": 2,
+      "evening_hook": "Haas přišel osobně a odešel osobně.",
+      "has_adventure_scene": false,
+      "adventure_scene_id": null,
+      "special_events": null
+    },
+    {
+      "date_iso": "1931-03-17",
+      "currentDay": 16,
+      "w": "W12",
+      "dow": "Ut",
+      "headline": "Říkají o něm věci — titulky i šeptanda u výloh se neshodují.",
+      "morning_fragment_id": "fragment_d12_echo_base",
+      "evening_fragment_id": null,
+      "night_fragment_id": null,
+      "cases": [
+        "pool_a1_stara_rana",
+        "tyc_zavadova_d12",
+        "pool_a1_trafika"
+      ],
+      "cases_light": [
+        false,
+        false,
+        true
+      ],
+      "letters": [
+        "vlcek_d13"
+      ],
+      "has_nedelni_volba": false,
+      "has_evening_choice": true,
+      "evening_choice_options": 2,
+      "evening_hook": "Závadová přinesla věci, které Ben nečekal.",
+      "has_adventure_scene": false,
+      "adventure_scene_id": null,
+      "special_events": null
+    },
+    {
+      "date_iso": "1931-03-18",
+      "currentDay": 17,
+      "w": "W13",
+      "dow": "St",
+      "headline": "Skandál na obzoru? Krátké zmínky bez jmen — a přesto drží celou stránku.",
+      "morning_fragment_id": "fragment_d12_morning",
+      "evening_fragment_id": null,
+      "night_fragment_id": null,
+      "cases": [
+        "pool_a1_vyveseni",
+        "pool_a1_druha_ruka",
+        "pool_a1_revizor"
+      ],
+      "cases_light": [
+        false,
+        false,
+        true
+      ],
+      "letters": [],
+      "has_nedelni_volba": false,
+      "has_evening_choice": true,
+      "evening_choice_options": 2,
+      "evening_hook": "Karas přišel a řekl, co přišel říct.",
+      "has_adventure_scene": true,
+      "adventure_scene_id": "adventure_karas_d13",
+      "special_events": null
+    },
+    {
+      "date_iso": "1931-03-19",
+      "currentDay": 18,
+      "w": "W14",
+      "dow": "Ct",
+      "headline": "Poslední dny: noviny si troufnou na otázku, která nepatří na titulní stranu.",
+      "morning_fragment_id": "fragment_d18_rano",
+      "evening_fragment_id": null,
+      "night_fragment_id": "fragment_d15_night",
+      "cases": [
+        "tyc_markova_3",
+        "pool_a1_posledni_vule",
+        "pool_a1_spravce"
+      ],
+      "cases_light": [
+        false,
+        false,
+        true
+      ],
+      "letters": [
+        "martin_d14",
+        "vlcek_d14_letter"
+      ],
+      "has_nedelni_volba": false,
+      "has_evening_choice": true,
+      "evening_choice_options": 2,
+      "evening_hook": "Martinův dopis říká, že přijede o víkendu.",
+      "has_adventure_scene": false,
+      "adventure_scene_id": null,
+      "special_events": null
+    },
+    {
+      "date_iso": "1931-03-20",
+      "currentDay": 19,
+      "w": "W15",
+      "dow": "Pa",
+      "headline": "Finále týdne u soudu: město sleduje lavici i chodbu stejně netrpělivě.",
+      "morning_fragment_id": "fragment_d15_morning",
+      "evening_fragment_id": null,
+      "night_fragment_id": null,
+      "cases": [
+        "tyc_velezrada_d15"
+      ],
+      "cases_light": null,
+      "letters": [],
+      "has_nedelni_volba": false,
+      "has_evening_choice": true,
+      "evening_choice_options": 2,
+      "evening_hook": "Poslední den.",
+      "has_adventure_scene": false,
+      "adventure_scene_id": null,
+      "special_events": [
+        "finale_15d"
+      ]
+    }
+  ]
+}

@@ -1,5 +1,9 @@
 # Scénář — vstupní brána (`docs/scenar/`)
 
+> PRVNI KROK: otevri `KANON_0_START_HERE.md` (master vstupni bod pro AI i cloveka).
+> Tento soubor zustava rozcestnikem slozky; kanonicka priorita je v KANON 0.
+> Pro znackovani dnu pouzivej `KALENDAR_1931_MAPA_DNU.md` (datum je primarni osa).
+
 Tato složka je **jedno místo** pro denní mapu, případy ve dnech, vlákna, dopisy a balanci. Lore a postavy zůstávají ve **Story Bible** (v3.0, 15 prac. dní) — [`../InDubio_StoryBible_v2_Cursor.txt`](../InDubio_StoryBible_v2_Cursor.txt); technické mechaniky hry v **`.cursor/rules/`** a v [`../spis-patrani-pruzkum-rozsudek.md`](../spis-patrani-pruzkum-rozsudek.md).
 
 ---

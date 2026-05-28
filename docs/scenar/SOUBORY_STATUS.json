@@ -1,0 +1,268 @@
+{
+  "_schema": "indubio-soubory-status-v1",
+  "_description": "Status zdroju pro scenar a naraci. Nemit bezduvodne bez aktualizace KANON_0_START_HERE.md.",
+  "_status_values": ["ACTIVE", "LEGACY", "UNCERTAIN"],
+  "files": [
+    {
+      "path": "docs/scenar/KANON_0_START_HERE.md",
+      "status": "ACTIVE",
+      "reason": "Master vstupni bod pro lidi i AI."
+    },
+    {
+      "path": "docs/scenar/KALENDAR_1931_MAPA_DNU.md",
+      "status": "ACTIVE",
+      "reason": "Definitivni standard mapovani data, currentDay a pracovnich dni."
+    },
+    {
+      "path": "docs/scenar/AUDIT_Dramaturgie_Template.md",
+      "status": "ACTIVE",
+      "reason": "Prvni faze auditu: denni kauzalita, dopady a orientace hrace."
+    },
+    {
+      "path": "docs/scenar/AUDIT_Drobnokresba_Postav_a_Sveta.md",
+      "status": "ACTIVE",
+      "reason": "Sablona pro realisticke prohloubeni postav a sveta pred prepisy."
+    },
+    {
+      "path": "docs/scenar/AUDITOR_PACKET_ULTRA_v1.json",
+      "status": "ACTIVE",
+      "reason": "Jednosouborovy token-optimized balicek pro externi audit."
+    },
+    {
+      "path": "docs/scenar/ReadMeScenar.md",
+      "status": "ACTIVE",
+      "reason": "Brana ke scenarovym CSV a pravidlum slozky."
+    },
+    {
+      "path": "docs/InDubio_StoryBible_v2_Cursor.txt",
+      "status": "ACTIVE",
+      "reason": "Plny autorsky kanon vypraveni."
+    },
+    {
+      "path": ".cursor/rules/story.mdc",
+      "status": "ACTIVE",
+      "reason": "Kratky kanon postav, oblouku a koncu."
+    },
+    {
+      "path": ".cursor/rules/core.mdc",
+      "status": "ACTIVE",
+      "reason": "Globalni pravidla projektu a mapa zdroju pravdy."
+    },
+    {
+      "path": ".cursor/rules/cases.mdc",
+      "status": "ACTIVE",
+      "reason": "Kanon mechanik spisu a textoveho tonu v pripadech."
+    },
+    {
+      "path": ".cursor/rules/economy.mdc",
+      "status": "ACTIVE",
+      "reason": "Ekonomicke pravidla s narativnimi dopady."
+    },
+    {
+      "path": ".cursor/rules/traits-factions.mdc",
+      "status": "UNCERTAIN",
+      "reason": "Castecne riziko nesouladu dnu oproti aktualni mape 15d."
+    },
+    {
+      "path": "docs/scenar/Mapa_15dni.csv",
+      "status": "ACTIVE",
+      "reason": "Hlavni osa pracovnich dni kampane."
+    },
+    {
+      "path": "docs/scenar/Pripady_15dni.csv",
+      "status": "ACTIVE",
+      "reason": "Plan pripadu po dnech a slotech."
+    },
+    {
+      "path": "docs/scenar/Vlakna_15dni.csv",
+      "status": "ACTIVE",
+      "reason": "Plan narativnich vlaken."
+    },
+    {
+      "path": "docs/scenar/Dopisy_15dni.csv",
+      "status": "ACTIVE",
+      "reason": "Plan dopisove osy."
+    },
+    {
+      "path": "docs/scenar/Konce_15dni.csv",
+      "status": "ACTIVE",
+      "reason": "15d prehled koncu pouzivany pri testech."
+    },
+    {
+      "path": "docs/scenar/Konce.csv",
+      "status": "ACTIVE",
+      "reason": "Designovy prehled podminek koncu."
+    },
+    {
+      "path": "docs/scenar/Milniky-dynamika-akt1.md",
+      "status": "ACTIVE",
+      "reason": "Milniky pacingu a rytmu kampane."
+    },
+    {
+      "path": "docs/scenar/Balancing.csv",
+      "status": "ACTIVE",
+      "reason": "Balanc a predikce pro testovani."
+    },
+    {
+      "path": "docs/scenar/Predikce_triggery.csv",
+      "status": "ACTIVE",
+      "reason": "Designove prahy triggeru (non-runtime)."
+    },
+    {
+      "path": "docs/scenar/Balance_V0.md",
+      "status": "ACTIVE",
+      "reason": "Guardrails a hratelnostni limity."
+    },
+    {
+      "path": "docs/world-reference.md",
+      "status": "ACTIVE",
+      "reason": "Dobove a fakticke zasazeni 1931."
+    },
+    {
+      "path": "docs/analyza_soudni_reci_1925-1935.md",
+      "status": "ACTIVE",
+      "reason": "Styl soudni reci a jazykove hranice."
+    },
+    {
+      "path": "data/days.json",
+      "status": "ACTIVE",
+      "reason": "Runtime orchestrator narace po dnech."
+    },
+    {
+      "path": "data/fragments.json",
+      "status": "ACTIVE",
+      "reason": "Primarni textovy zdroj fragmentu."
+    },
+    {
+      "path": "data/letters.json",
+      "status": "ACTIVE",
+      "reason": "Primarni textovy zdroj dopisu."
+    },
+    {
+      "path": "data/pool_cases_akt1.json",
+      "status": "ACTIVE",
+      "reason": "Primarni texty spisu a nasledku."
+    },
+    {
+      "path": "data/ending_prelude.json",
+      "status": "ACTIVE",
+      "reason": "Runtime uvod pred epilogem."
+    },
+    {
+      "path": "data/endings_epilog.json",
+      "status": "ACTIVE",
+      "reason": "Runtime epilogove texty."
+    },
+    {
+      "path": "data/knihovna.json",
+      "status": "ACTIVE",
+      "reason": "Slovnik a pribehove poznamky v UI."
+    },
+    {
+      "path": "data/postavy_okoli.json",
+      "status": "ACTIVE",
+      "reason": "Narativni doplnek postav v archive."
+    },
+    {
+      "path": "data/traits-text.json",
+      "status": "ACTIVE",
+      "reason": "Texty rysu pro UI a tonalitu."
+    },
+    {
+      "path": "data/tutorial_d1.json",
+      "status": "ACTIVE",
+      "reason": "Tutorialova vrstva textu pro onboarding."
+    },
+    {
+      "path": "data/characters.json",
+      "status": "UNCERTAIN",
+      "reason": "Historicky zdroj casti dialogu, vyzaduje prubezne overeni runtime napojeni."
+    },
+    {
+      "path": "data/pool_cases_light_akt1.json",
+      "status": "UNCERTAIN",
+      "reason": "Light pool je konceptualne aktivni, obsahove nestabilni."
+    },
+    {
+      "path": "docs/scenar/Pripady.csv",
+      "status": "UNCERTAIN",
+      "reason": "Generovany prehled, odvozenina z runtime dat."
+    },
+    {
+      "path": "docs/scenar/Statistiky.csv",
+      "status": "UNCERTAIN",
+      "reason": "Analyticky podklad, ne primarni kanon textu."
+    },
+    {
+      "path": "docs/scenar/MIGRACE_20-15.md",
+      "status": "UNCERTAIN",
+      "reason": "Historicka migrace, casti vyzaduji prubeznou aktualizaci."
+    },
+    {
+      "path": "docs/scenar/ARCHIV_20D_README.md",
+      "status": "LEGACY",
+      "reason": "Archivni index 20denni vetve."
+    },
+    {
+      "path": "docs/scenar/Mapa_20dni.csv",
+      "status": "LEGACY",
+      "reason": "Stara 20denni mapa, nepouzivat pro aktualni vyvoj."
+    },
+    {
+      "path": "docs/scenar/Vlakna.csv",
+      "status": "LEGACY",
+      "reason": "Historicka verze vlaken (pred 15d migraci)."
+    },
+    {
+      "path": "docs/scenar/Dopisy.csv",
+      "status": "LEGACY",
+      "reason": "Historicka verze dopisove osy."
+    },
+    {
+      "path": "docs/scenar/InDubio_20dni_Mapa-scenar.md",
+      "status": "LEGACY",
+      "reason": "Archivni textova mapa 20d verze."
+    },
+    {
+      "path": "data/letters_stare.json",
+      "status": "LEGACY",
+      "reason": "Stary zdroj dopisu, nenapojovat."
+    },
+    {
+      "path": "data/epilogy.json",
+      "status": "LEGACY",
+      "reason": "Paralelni stary epilogovy zdroj."
+    },
+    {
+      "path": "data/novy pripad.json",
+      "status": "LEGACY",
+      "reason": "Draft soubor mimo hlavni pipeline."
+    },
+    {
+      "path": "data/sample_case_horak.json",
+      "status": "LEGACY",
+      "reason": "Sample soubor mimo hlavni pipeline."
+    },
+    {
+      "path": "docs/scenar/CURSOR_IMPLEMENTACE_FLAGY.md",
+      "status": "LEGACY",
+      "reason": "Historicky implementacni artefakt."
+    },
+    {
+      "path": "docs/scenar/CURSOR_PATCH_V1_OPRAVENY.md",
+      "status": "LEGACY",
+      "reason": "Jednorazovy patch log, ne kanon."
+    },
+    {
+      "path": "docs/scenar/PROMPT_Knihovna_Pribeh_rozhodnuti.md",
+      "status": "UNCERTAIN",
+      "reason": "Prompt podklad pro AI, ne primarni runtime kanon."
+    },
+    {
+      "path": "docs/scenar/FLAGS_VETVENI_KONCE.md",
+      "status": "UNCERTAIN",
+      "reason": "Technicky prehled vetveni, drzet v souladu s engine a story."
+    }
+  ]
+}
+
