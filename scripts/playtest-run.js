@@ -405,6 +405,33 @@ async function zpracujDopisyNaStole(page) {
 }
 
 /**
+ * Tutorial panel v D1 může blokovat kliky na UI (overlay ve spisu i obecný overlay).
+ * Pro testovací běhy ho vždy zavřeme/skipneme, aby neblokoval přechod dne.
+ */
+async function zavriTutorialPokudOtevren(page) {
+  const zavreno = await page.evaluate(() => {
+    const kandidati = [
+      '#tutorial-case-layer .tutorial-btn-continue',
+      '#tutorial-case-layer .tutorial-btn-skip',
+      '#tutorial-overlay .tutorial-btn-continue',
+      '#tutorial-overlay .tutorial-btn-skip',
+    ];
+    for (const sel of kandidati) {
+      const btn = document.querySelector(sel);
+      if (btn && btn.offsetParent !== null && !btn.disabled) {
+        btn.click();
+        return true;
+      }
+    }
+    return false;
+  });
+  if (zavreno) {
+    await pauza(450);
+    console.log('[run] Tutorial panel zavřen (fallback).');
+  }
+}
+
+/**
  * Projde adventure scénu klikáním přes obrazovky.
  * Každá obrazovka má buď "Pokračovat →" (bez voleb) nebo výběrová tlačítka — vybírá první.
  * Opakuje se dokud je #modal-adventure aktivní (max 20 kol).
@@ -1316,6 +1343,7 @@ function sestavVychoziAutosave(persona) {
       uplatek_prijat: false, bankrot_varovani_zobrazeno: false,
       dluh_pribeh_spusten: false, rano_bonus_inkoust_z_kavy: false,
       records_free_until_day: null, stats_display_unlocked: false,
+      tutorial_skipped: true, tutorial_completed: true,
       povest_odemcene_ids: ['svejda', 'kovarova', 'martin', 'karas', 'masek', 'vlcek']
     },
     uzlove: {
@@ -1549,6 +1577,7 @@ async function hraj(page, persona, targetDays) {
 
     // Přečíst nevyřízené dopisy na stole (jinak _dalsiDen() vrátí brzy)
     await zpracujDopisyNaStole(page);
+    await zavriTutorialPokudOtevren(page);
 
     // Nedělní volba (nedelni_volba) se zobrazuje uvnitř spustDen() PŘED tlačítkem "Další den".
     // Zkontrolujeme a zpracujeme #modal-vecer, aby se tlačítko zpřístupnilo.
@@ -1574,6 +1603,7 @@ async function hraj(page, persona, targetDays) {
     // Klik na Další den — čekáme až tlačítko existuje a není disabled
     console.log(`[run] Klikám na "Další den"…`);
     try {
+      await zavriTutorialPokudOtevren(page);
       await page.waitForSelector('#btn-dalsi-den:not([disabled]):not(.skryto)', { state: 'visible', timeout: TIMEOUT_MS });
       await page.click('#btn-dalsi-den');
       await pauza(DAY_PAUSE_MS);

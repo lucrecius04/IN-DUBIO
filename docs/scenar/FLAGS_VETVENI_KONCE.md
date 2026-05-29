@@ -1,9 +1,14 @@
 # IN DUBIO — Kanonický systém flagů (Akt 1, 15 dní)
 
-Tento dokument je **jediný zdroj pravdy** pro flagy, VĚTVENÍ a podmínky konců.
-Při jakémkoli rozporu mezi tímto souborem a jiným dokumentem platí tento.
+> **Poslední sync s runtime:** 29. 5. 2026
+> **Zdroje:** `js/state.js` `vypoctiUzloveFlagy()`, `js/engine.js` `_vyhodnotVariabilniKonec()`
+>
+> Tento dokument popisuje runtime implementaci. Při jakémkoli rozporu
+> mezi tímto souborem a běžícím kódem platí kód.
 
-Flagy jsou uloženy v `State.flags`. Nastavují je: verdikty případů, adventure scény (Beneš D9, Karas D13), večerní volby, dopisy.
+Flagy jsou uloženy v `State.flags` (pomocné) a `State.uzlove` (uzlové).
+Nastavují je: verdikty případů, adventure scény (Beneš den 11, Karas den 17),
+večerní volby, dopisy, ekonomické milníky.
 
 ---
 
@@ -12,178 +17,172 @@ Flagy jsou uloženy v `State.flags`. Nastavují je: verdikty případů, adventu
 ### 1. `vlcek_vztah`
 **Co měří:** Jak Ben reagoval na Vlčkův tlak v průběhu celé hry.
 
-| Hodnota | Kdy se nastaví | Narativní identita |
-|---------|---------------|-------------------|
-| `neutral` | Výchozí. Ben lavíroval — ani vzdor ani kapitulace. | Nejnebezpečnější pro atentát. |
-| `kompromitovan` | Ben ustoupil Vlčkovu naznačení alespoň 1× na D7 (VĚTVENÍ 1) A přijal nátlak na D8. | Vlček to zaregistroval. Cesta ke KORUPCI. |
-| `vzdor` | Ben odmítl explicitně na D7 + D11 (obě VĚTVENÍ). | Vlček ho píše do jiného sloupce. Cesta k ATENTÁTU nebo HRDINOVI. |
+| Hodnota | Kdy se nastaví (runtime) | Narativní identita |
+|---------|--------------------------|-------------------|
+| `neutral` | Výchozí. Žádná z podmínek kompromitace/vzdoru není splněna. | Lavírování. |
+| `kompromitovan` | `uplatek_prijat == true` NEBO (`flag_vlcek_upozorneni == true` A `Integrita ≤ 35`) | Vlček to zaregistroval. Cesta ke KORUPCI. |
+| `vzdor` | `uplatek_prijat != true` A NOT kompromitován A `trust.vlcek ≤ 1` A `Odvaha ≥ 65` | Vlček ho píše do jiného sloupce. Cesta k ATENTÁTU nebo HRDINOVI. |
 
-**Kde se nastavuje:**
-- `D7` (VĚTVENÍ 1): Horáčkový rozsudek + večerní volba „Vlčkův dopis — odpovědět jak?"
-- `D8`: Rozsudek Božena 3 — pokud Ben odsoudil podle Vlčkova naznačení → `kompromitovan`
-- `D11` (VĚTVENÍ 3): Haas osobně — pokud Ben odmítl Haase + Vlčkovu hrozbu → `vzdor`
+**Runtime kód** (`state.js` `vypoctiUzloveFlagy`):
+```javascript
+const vlcekKompromis = f.uplatek_prijat === true
+  || (f.flag_vlcek_upozorneni === true && Number(t.Integrita) <= 35);
+const vlcekVzdor = f.uplatek_prijat !== true
+  && !vlcekKompromis
+  && (Number.isFinite(Number(tr.vlcek)) ? Number(tr.vlcek) <= 1 : false)
+  && Number(t.Odvaha) >= 65;
+u.vlcek_vztah = vlcekKompromis ? 'kompromitovan' : (vlcekVzdor ? 'vzdor' : 'neutral');
+```
 
 ---
 
 ### 2. `haas_kontakt`
 **Co měří:** Jak hluboko Ben zašel v kontaktu s Haasem.
 
-| Hodnota | Kdy se nastaví | Narativní identita |
-|---------|---------------|-------------------|
-| `odmitnut` | Ben odmítl vizitku (D6), nepoužil rodný list (D10), odmítl obálku (D11). | Čistý. Cesta k ATENTÁTU nebo HRDINOVI. |
-| `otevren` | Ben přijal informaci (rodný list D10 nebo Benešovu pravdu D9) ale ne peníze. | Ambivalentní — záleží na ostatním. |
-| `zavazany` | Ben přijal obálku 300 Kčs na D11 NEBO použil rodný list jako páku. | Kompromitovaný. Cesta ke KORUPCI nebo KRUHU. |
+| Hodnota | Kdy se nastaví (runtime) | Narativní identita |
+|---------|--------------------------|-------------------|
+| `odmitnut` | Výchozí. Žádná z podmínek otevření/závazku není splněna. | Čistý. |
+| `otevren` | `benes_identified == true` NEBO `haas_envelope_opened == true` NEBO `flag_rodny_list_pouzit == true` (bez úplatku) | Ambivalentní. |
+| `zavazany` | `uplatek_prijat == true` | Kompromitovaný. |
 
-**Kde se nastavuje:**
-- `D6`: Haasova vizitka — přijmout nebo odložit (efekt jen na `otevren`)
-- `D10`: ZVRATY — co Ben udělá s rodným listem Wolf + Anna → `otevren` nebo `odmitnut`
-- `D11` (VĚTVENÍ 3): Haas osobně — obálka 300 Kčs → `zavazany` nebo `odmitnut`
+**Runtime kód:**
+```javascript
+const haasZavazany = f.uplatek_prijat === true;
+const haasOtevren = !haasZavazany && (
+  f.benes_identified === true
+  || f.haas_envelope_opened === true
+  || f.flag_rodny_list_pouzit === true
+);
+u.haas_kontakt = haasZavazany ? 'zavazany' : (haasOtevren ? 'otevren' : 'odmitnut');
+```
 
 ---
 
 ### 3. `benes_pravda`
 **Co měří:** Zda Ben přijal Benešovo svědectví jako pravdu.
 
-| Hodnota | Kdy se nastaví | Narativní identita |
-|---------|---------------|-------------------|
-| `nezna` | Výchozí. Beneš nepřišel nebo Ben scénu odmítl. | Jen pokud hráč zcela ignoroval signály. |
-| `prijal` | Ben v adventure scéně D9 zvolil: věřím ti / vezmu dokument. | Ví víc než ostatní. Cesta ke SMÍŘENÍ nebo ATENTÁTU. |
-| `odmitl` | Ben dokument odmítl nebo Benešovi nevěřil. | Zůstává v instituci. Cesta k PŘEŽITÍ nebo KRUHU. |
+| Hodnota | Kdy se nastaví (runtime) | Narativní identita |
+|---------|--------------------------|-------------------|
+| `nezna` | Výchozí. | Ignoroval signály. |
+| `prijal` | Adventure scéna Beneš (den 11): `sets_uzlovy.benes_pravda = 'prijal'`. Nebo `benes_identified == true` (ze spisu). | Ví víc než ostatní. |
+| `odmitl` | Adventure scéna Beneš (den 11): `sets_uzlovy.benes_pravda = 'odmitl'`. | Zůstává v instituci. |
 
-**Kde se nastavuje:**
-- `D9`: Adventure scéna Beneš — jediné rozhodnutí, nastavuje flag okamžitě.
-
----
-
-### 4. `osobni_cena`
-**Co měří:** Co Ben udělal s operací matky (**400 Kčs** při příjmu, **17. března 1931** — viz `data/letters.json` `doktor_d4`, ranní kontext `fragment_d4_rano`). **Pracovní den D12** v `Mapa_15dni.csv` = **úterý 17. 3.** (stejný kalendářní den jako operace v příběhu).
-
-| Hodnota | Kdy se nastaví | Narativní identita |
-|---------|---------------|-------------------|
-| `zaplatil` | Ben sehnal 400 Kčs legitimní cestou (spoření, půjčka od Karase D13). | Zachoval integritu. Cesta k ANNĚ nebo HRDINOVI. |
-| `haasem` | Ben použil Haasovu obálku (300 Kčs) na operaci. | Kompromis přes peníze. Cesta ke KORUPCI nebo ÚTĚKU. |
-| `nerozhodl` | Po uplynutí lhůty Ben **nezaplatil** 400 Kčs (nebo matka operaci odmítla). | Tichá tragédie. Cesta k ANNĚ nebo SMÍŘENÍ. |
-| `odmitl` | Ben vědomě rozhodl peníze nedát — jiné priority. | Nejtvrdší cesta. |
-
-**Kde se nastavuje (kanon dat + kód):**
-- **`D4`:** dopis doktora + příznaky countdownu (`letters.json` / `engine.js`).
-- **Countdown ve hře:** `js/finance.js` → `OPERACE_DEADLINE_DEN = 16` (`currentDay`; úterý **17. 3.** vůči startu v `days.json`), `getDnuDoDeadline()`.
-- **`Finance.zkontrolujCilOperace()`:** při zůstatku **≥ 400** → `flags.operace_zaplacena` (platba „včas“ dle ekonomiky).
-- **`D11` (VĚTVENÍ 3):** Haas osobně — přijetí obálky → `haas_kontakt` / `operace_zaplacena` podle implementace případu.
-- **`D13`:** Karas nabídne půjčku → při přijetí a dostatečném zůstatku → cesta k `zaplatil`.
-- **Výpočet uzlového `osobni_cena` v `js/state.js` (`vypoctiUzloveFlagy`):** pokud není `operace_zaplacena` ani `operace_odložena`, od **`currentDay >= 12`** se mapuje **`nerozhodl`** (odlišné číslo od `OPERACE_DEADLINE_DEN` — při údržbě kód sjednotit na jednu konstantu).
-
----
-
-## 8 konců — podmínky
-
-Každý konec potřebuje **max 2 uzlové flagy** + případně 1 pomocný flag. Engine kontroluje od D11, v pořadí priority.
-
-| # | Konec | Nejdříve | Primární podmínky | Pomocné |
-|---|-------|----------|-------------------|---------|
-| 2 | **KORUPCE** | D11 | `vlcek_vztah == kompromitovan` + `haas_kontakt == zavazany` | INT ≤ 20 |
-| 5 | **SMÍŘENÍ** | D12 (pracovní — den Závadové / podvrhu, viz `Mapa_15dni.csv`) | `benes_pravda == prijal` + `osobni_cena != haasem` | INT ≥ 60, VIN ≤ 20 |
-| 4 | **ÚTĚK** | D13 | `haas_kontakt != zavazany` + `osobni_cena == zaplatil` + Karas D13 nabídl odchod | Finance > 300 |
-| 6 | **ATENTÁT** | D13 | `vlcek_vztah == vzdor` + `haas_kontakt == odmitnut` + `benes_pravda == prijal` | ODV ≥ 80, MOC ≤ 20 |
-| 7 | **KRUH** | D14 | `vlcek_vztah != vzdor` + `haas_kontakt == zavazany` + `benes_pravda == odmitl` | Zavadová ≥ 3 |
-| 8 | **ANNA** | D14 | `benes_pravda == prijal` + `haas_kontakt == odmitnut` + `osobni_cena == nerozhodl` | Finance < 100, průzkum ≥ 80 % |
-| 3 | **HRDINA** | D15 | `vlcek_vztah == vzdor` + `haas_kontakt == odmitnut` | INT ≥ 80, ODV ≥ 80 |
-| 1 | **PŘEŽITÍ** | D15 | Výchozí — žádné jiné podmínky nesplněny | — |
-
----
-
-## Pomocné flagy (atomické, nastavují uzlové)
-
-Tyto flagy nastavují verdikty a scény — uzlové flagy z nich vycházejí.
-
-| Flag | Typ | Kdy | Nastavuje |
-|------|-----|-----|-----------|
-| `flag_vlcek_d7_ustoupil` | bool | D7 verdikt Horáčková — odsouzení dle naznačení | `vlcek_vztah → kompromitovan` (podmíněně) |
-| `flag_vlcek_d8_splnil` | bool | D8 verdikt Božena 3 — podle Vlčkova zadání | `vlcek_vztah → kompromitovan` (potvrzení) |
-| `flag_vlcek_d11_odmitl` | bool | D11 VĚTVENÍ 3 — Ben explicitně odmítl Vlčka | `vlcek_vztah → vzdor` (podmíněně) |
-| `flag_rodny_list_pouzit` | bool | D10 — Ben použil dokument Wolf+Anna | `haas_kontakt → otevren` |
-| `flag_haas_obalka` | bool | D11 — Ben přijal 300 Kčs | `haas_kontakt → zavazany` + `osobni_cena → haasem` |
-| `flag_benes_scena_prijal` | bool | D9 adventure scéna | `benes_pravda → prijal` |
-| `flag_karas_pujcka` | bool | D13 adventure scéna | `osobni_cena → zaplatil` (pokud finance ≥ 400) |
-| `flag_vlcek_upozorneni` | bool | D7 — soud konstatoval infiltraci | Narativní, ovlivňuje Vlčkovu linii (dopisy `vlcek_*` v `letters.json` jsou doručovány vždy; důvěra `trust.vlcek` řídí jiné projevy) |
-| `flag_pospisil_dluzi` | bool | D6 verdikt Pospíšil 2 | Narativní, ovlivňuje D11 beat |
-| `flag_markova_zpochybnena` | bool | D3 verdikt Marková 1 | Narativní, ovlivňuje D14 |
-
----
-
-## Uzlové flagy — logika výpočtu
-
-Engine přepočítá uzlové flagy po každém dni (ne po každém verdiktu):
-
+**Runtime kód:**
 ```javascript
-// vlcek_vztah
-if (flags.flag_vlcek_d8_splnil && flags.flag_vlcek_d7_ustoupil) {
-  flags.vlcek_vztah = 'kompromitovan';
-} else if (flags.flag_vlcek_d11_odmitl && !flags.flag_vlcek_d8_splnil) {
-  flags.vlcek_vztah = 'vzdor';
-} else {
-  flags.vlcek_vztah = 'neutral';
-}
-
-// haas_kontakt
-if (flags.flag_haas_obalka) {
-  flags.haas_kontakt = 'zavazany';
-} else if (flags.flag_rodny_list_pouzit || flags.flag_benes_scena_prijal) {
-  flags.haas_kontakt = 'otevren';
-} else {
-  flags.haas_kontakt = 'odmitnut';
-}
-
-// benes_pravda — nastavena přímo v D9 scéně, nemění se
-
-// osobni_cena
-if (flags.flag_haas_obalka && State.finance >= 400) {
-  flags.osobni_cena = 'haasem';
-} else if (flags.flag_karas_pujcka && State.finance >= 400) {
-  flags.osobni_cena = 'zaplatil';
-} else if (State.currentDay >= 12 && State.finance < 400) {
-  // Pozn.: v produkčním kódu viz `js/state.js` — zvažte sjednocení s Finance.OPERACE_DEADLINE_DEN (16).
-  flags.osobni_cena = 'nerozhodl';
+if (u.benes_pravda === 'nezna' && f.benes_identified === true) {
+  u.benes_pravda = 'prijal';
+} else if (!['nezna', 'prijal', 'odmitl'].includes(String(u.benes_pravda))) {
+  u.benes_pravda = 'nezna';
 }
 ```
 
 ---
 
+### 4. `osobni_cena`
+**Co měří:** Co Ben udělal s operací matky (400 Kčs, deadline den 16 = úterý 17. 3.).
+
+| Hodnota | Kdy se nastaví (runtime) | Narativní identita |
+|---------|--------------------------|-------------------|
+| `zaplatil` | `operace_zaplacena == true` (bez úplatku) | Zachoval integritu. |
+| `haasem` | `operace_zaplacena == true` A `uplatek_prijat == true` | Kompromis přes peníze. |
+| `odmitl` | `operace_odlozena == true` | Matka čeká. |
+| `nerozhodl` | Výchozí; explicitní fallback od `currentDay >= 16` (= `Finance.OPERACE_DEADLINE_DEN`). | Tichá tragédie. |
+
+**Klíčové milníky:**
+- `Finance.zkontrolujCilOperace()`: nastaví `operace_zaplacena = true` pokud `balance >= 400` a `den >= 16` a `!operace_odlozena`.
+- `Engine._vyhodnotMatcinuOperaciRano(16)`: pokud `!operace_zaplacena` → `operace_odlozena = true` + Vina +10. **Point of no return.**
+- Po dni 16 nelze operaci „odomknout" — `zkontrolujCilOperace()` vrací `return` při `operace_odlozena == true`.
+
+**Runtime kód:**
+```javascript
+if (f.operace_zaplacena === true && f.uplatek_prijat === true) {
+  u.osobni_cena = 'haasem';
+} else if (f.operace_zaplacena === true) {
+  u.osobni_cena = 'zaplatil';
+} else if (f.operace_odlozena === true) {
+  u.osobni_cena = 'odmitl';
+} else if (Number.isFinite(den) && den >= 16) {
+  // Sjednoceno s Finance.OPERACE_DEADLINE_DEN (16).
+  u.osobni_cena = 'nerozhodl';
+}
+```
+
+---
+
+## 8 konců — podmínky (runtime pořadí)
+
+Engine kontroluje konce v `_vyhodnotVariabilniKonec()` po uzavření posledního spisu dne,
+od `currentDay >= 11`. Pořadí je prioritní — první splněný konec vyhrává.
+
+| # | Konec | minDay | Primární podmínky (uzlové flagy) | Stat / trust / flags podmínky | Finance |
+|---|-------|--------|----------------------------------|-------------------------------|---------|
+| 1 | **KRUH** | 16 | `vlcek ≠ vzdor` + `haas = zavazany` + `benes ≠ prijal` | `masek_document_signed` NEBO `trust.zavadova ≥ 3` | — |
+| 2 | **KORUPCE** | 15 | `vlcek = kompromitovan` + `haas = zavazany` | INT ≤ 20 NEBO (úplatek + INT ≤ 45) | — |
+| 3 | **ANNA** | 18 | `benes = prijal` + `haas ≠ zavazany` + `osobni_cena ∈ {nerozhodl, odmitl}` | VIN ≤ 28 + (průzkum ≥ 72 % NEBO moudr ≥ 58) + NOT operPl + NOT rodný_list | bal < 130–175 |
+| 4 | **SMÍŘENÍ** | 16 | `benes = prijal` + `haas ≠ zavazany` | INT ≥ 52 + VIN ≤ 35 (s operací ≤ 45) + MOUDR ≥ 48 + NOT profilAtentat | operPl NEBO zaplatil NEBO bal ≥ 140 |
+| 5 | **ATENTÁT** | 17 | `vlcek = vzdor` + `haas ≠ zavazany` + `benes = prijal` | ODV ≥ 72 + VIN ≥ 22 + NOT úplatek + NOT operPl + osobni_cena ∉ {zaplatil, haasem} | — |
+| 6 | **ÚTĚK** | 17 | `haas ≠ zavazany` | `karas_poslechl_odejit` + `trust.karas ≥ 2` + NOT profilAtentat | bal > 260 |
+| 7 | **HRDINA** | 19 | `vlcek = vzdor` + `haas ≠ zavazany` + `benes ≠ prijal` | ODV ≥ 88 + (INT ≥ 78 NEBO VIN ≤ 55) + NOT úplatek + NOT rodný_list | — |
+| 8 | **PŘEŽITÍ** | 19 | `vlcek = neutral` + `haas ≠ zavazany` | ≥ 3/5 rysů v pásmu 25–75, INT 28–78, VIN 25–75, NAD 28–72 | — |
+| 9 | **PŘEŽITÍ** (fallback) | 19 | *(žádné jiné podmínky nesplněny)* | — | — |
+
+**Poznámky:**
+- HRDINA vyžaduje `benes_pravda ≠ prijal` — hrdina jedná z principu, ne z vědomí konkrétní viny.
+- ÚTĚK závisí na `flags.karas_poslechl_odejit` (Karasova adventure scéna den 17), ne na `osobni_cena`.
+- ANNA: finance threshold má varianty podle průzkumu (viz `annaChudy` v engine.js).
+
+---
+
+## Pomocné flagy (runtime)
+
+| Flag | Typ | Kdy se nastaví | Využití |
+|------|-----|----------------|---------|
+| `uplatek_prijat` | bool | Přijetí úplatku (Finance.prijmoutUplatek) | `vlcek_vztah`, `haas_kontakt`, `osobni_cena`, konce |
+| `operace_zaplacena` | bool | Finance.zkontrolujCilOperace() při bal ≥ 400 a den ≥ 16 | `osobni_cena` |
+| `operace_odlozena` | bool | Engine._vyhodnotMatcinuOperaciRano(16) při !zaplacena | `osobni_cena` |
+| `benes_identified` | bool | Ze spisu / adventure scény | `haas_kontakt`, `benes_pravda` |
+| `haas_envelope_opened` | bool | Otevření Haasovy obálky | `haas_kontakt` |
+| `flag_rodny_list_pouzit` | bool | Použití dokumentu Wolf+Anna (D10) | `haas_kontakt`, konce ANNA, HRDINA |
+| `flag_vlcek_upozorneni` | bool | D7 — soud konstatoval infiltraci | `vlcek_vztah` |
+| `masek_document_signed` | bool | Podpis Maškova dokumentu | Konec KRUH |
+| `karas_poslechl_odejit` | bool | Karas D13 adventure — volba „Odejdu" | Konec ÚTĚK |
+| `karas_odmitl_odejit` | bool | Karas D13 adventure — volba „Nepůjdu" | Narativní |
+| `karas_chce_info` | bool | Karas D13 adventure — volba „Řekněte víc" | Narativní |
+| `karas_nabidl_odchod` | bool | Karas D13 adventure — pod-volba obálka (obě větve) | Narativní |
+| `flag_pospisil_dluzi` | bool | D6 verdikt Pospíšil 2 | Narativní (D11 beat) |
+| `flag_markova_zpochybnena` | bool | D3 verdikt Marková 1 | Narativní (D14) |
+
+---
+
 ## Adventure scény — technická specifikace
 
-### Formát (stejný pro D9 i D13)
+Formát je stejný pro obě scény (Beneš den 11, Karas den 17):
 
 ```json
 {
   "type": "adventure_scene",
-  "portrait": "benes",
+  "portrait": "cesta/k/obrazku.png",
+  "trigger": "morning_after_fragment",
   "screens": [
-    {
-      "text": "Text dialogu nebo narativu. Max 4 věty.",
-      "speaker": "Beneš / Karas / Ben / narrator",
-      "choices": null
-    },
-    {
-      "text": "...",
-      "speaker": "Beneš",
+    { "id": "s1", "speaker": "narrator", "text": "...", "choices": null, "next": "s2" },
+    { "id": "s2", "speaker": "Beneš/Karas", "text": "...",
       "choices": [
-        { "label": "Věřím vám.", "flag": "flag_benes_scena_prijal", "value": true, "next": 3 },
-        { "label": "Nevěřím.", "flag": "flag_benes_scena_prijal", "value": false, "next": 4 },
-        { "label": "Vezmu dokument, ale nic neslibuji.", "flag": "flag_benes_scena_prijal", "value": true, "next": 5 }
+        { "label": "...", "sets_flag": "nazev_flagu", "sets_uzlovy": { "benes_pravda": "prijal" }, "effects": { "Vina": 3 }, "next": "s3" }
       ]
     }
   ]
 }
 ```
 
-**UI:** Portrét vlevo (statický obrázek nebo inicialový placeholder), text uprostřed, volby dole jako tlačítka. Bez časového limitu. Bez pátrání, bez průzkumu, bez rozsudku.
+**UI:** Portrét vlevo, text uprostřed, volby dole. Bez časového limitu.
 
-**Napojení na engine:** Adventure scéna se spustí místo slotu 1 daného dne. Po scéně engine nastaví flagy a pokračuje normálně (slot 2 případu zůstává).
+**Napojení na engine:** `_aplikujVysledekAdventure` → `sets_flag` + `sets_uzlovy` + `effects` → `vypoctiUzloveFlagy()` → `uloz()`.
 
 ---
 
 ## Co tento dokument NEŘEŠÍ
 
-- Přesné číselné efekty (rysy, finance, frakce) — to je `Balancing.csv`, ladí se po průchodu
-- Epilogové texty každého konce — to je `story.mdc` a separátní soubory
-- Přesné formulace dialogů Beneše a Karase — to jsou autorské texty, ne flagy
+- Přesné číselné efekty (rysy, finance, frakce) — to je `Balancing.csv`
+- Epilogové texty — to je `story.mdc` a separátní soubory
+- Přesné formulace dialogů — to jsou autorské texty
+- Legacy ending system (`_vyhodnotVariabilniKonecLegacy`) — fallback pro staré save soubory

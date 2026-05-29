@@ -830,9 +830,6 @@
             {
               "label": "Odejdu. Co je potřeba udělat?",
               "sets_flag": "karas_poslechl_odejit",
-              "sets_uzlovy": {
-                "osobni_cena": "zaplatil"
-              },
               "effects": {
                 "Odvaha": -5,
                 "Vina": 3
@@ -875,9 +872,6 @@
             {
               "label": "Vzít obálku.",
               "sets_flag": "karas_nabidl_odchod",
-              "sets_uzlovy": {
-                "osobni_cena": "zaplatil"
-              },
               "effects": {
                 "Vina": 2
               },

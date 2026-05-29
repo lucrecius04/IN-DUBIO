@@ -62,13 +62,8 @@ const Engine = (() => {
       A:
         'Ben se u většiny spisů opíral o průzkum a nespokojil se s rychlým přečtením základních podkladů.',
       B:
-        'Ben během týdne nepřijal úplatek a nenechal si zaplatit za mlčení ani za pohodlnější rozhodnutí.',
-      C: 'Ben během týdne neodkládal rozhodnutí a nenechal žádný spis ležet stranou jen proto, že byl nepříjemný.',
-      D_stat: 'Benovy rozsudky během týdne výrazně posílily pozici státní moci a ministerstvo si toho mohlo všimnout.',
-      D_lid: 'Benovy rozsudky během týdne častěji vycházely vstříc lidem mimo úřady a vlivné kanceláře.',
-      D_mul:
-        'Ben věnoval pozornost i těžším verdiktům a nenechal je projít jen jako další položky v pořadí.',
-      E: 'Ben vynesl několik tvrdších rozsudků a jejich dopad na sobě cítil ještě po skončení pracovního týdne.'
+        'Ben během týdne nepřijal úplatek a nenechal si zaplatit za mlčení ani za pohodlnější rozhodnutí.'
+      // Bonusy C, D_stat, D_lid, D_mul, E: smazáno (MIGRACE_20-15, nikdy generováno).
     };
     const jemneRadky = _radkyZTydennichStatistik().concat(kody.map(k => J[k] || k).filter(Boolean));
 
@@ -130,34 +125,16 @@ const Engine = (() => {
         }
         State.upravFrakci('Lid', 8);
         State.oznacFragment({ id: 'fragment_tyden_bonus_b', day: denT });
-      } else if (k === 'C') {
-        State.upravRys('Odvaha', 3);
-        State.oznacFragment({ id: 'fragment_tyden_bonus_c', day: denT });
-      } else if (k === 'D_stat') {
-        State.upravFrakci('Moc', 10);
-        State.oznacFragment({ id: 'fragment_tyden_bonus_d', day: denT });
-      } else if (k === 'D_lid') {
-        State.upravFrakci('Lid', 10);
-        State.oznacFragment({ id: 'fragment_tyden_bonus_d', day: denT });
-      } else if (k === 'D_mul') {
-        State.set('tydenni_nasobek_moudrosti', 1.5);
-        State.oznacFragment({ id: 'fragment_tyden_bonus_d', day: denT });
-      } else if (k === 'E') {
-        State.upravRys('Odvaha', 5);
-        State.oznacFragment({ id: 'fragment_tyden_bonus_e', day: denT });
       }
+      // Bonusy C, D, E: smazáno (MIGRACE_20-15, nikdy generováno).
     }
   }
 
   function _fragmentyProTydenniBonusy(kody) {
     const map = {
       A: 'fragment_tyden_bonus_a',
-      B: 'fragment_tyden_bonus_b',
-      C: 'fragment_tyden_bonus_c',
-      D_stat: 'fragment_tyden_bonus_d',
-      D_lid: 'fragment_tyden_bonus_d',
-      D_mul: 'fragment_tyden_bonus_d',
-      E: 'fragment_tyden_bonus_e'
+      B: 'fragment_tyden_bonus_b'
+      // C, D_*, E: smazáno (MIGRACE_20-15).
     };
     const out = [];
     const seen = new Set();
@@ -897,7 +874,7 @@ const Engine = (() => {
     if (den >= 17
       && _haasBezVazby(u)
       && !profilAtentat
-      && u.osobni_cena === 'zaplatil'
+      && f.karas_poslechl_odejit === true
       && (tr.karas !== undefined ? Number(tr.karas) >= 2 : false)
       && bal > 260) {
       return 'utek';

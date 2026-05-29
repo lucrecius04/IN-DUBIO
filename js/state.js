@@ -1337,7 +1337,8 @@ const State = (() => {
       u.osobni_cena = 'zaplatil';
     } else if (f.operace_odlozena === true) {
       u.osobni_cena = 'odmitl';
-    } else if (Number.isFinite(den) && den >= 12) {
+    } else if (Number.isFinite(den) && den >= 16) {
+      // Sjednoceno s Finance.OPERACE_DEADLINE_DEN (16).
       u.osobni_cena = 'nerozhodl';
     }
 

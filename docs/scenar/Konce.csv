@@ -1,9 +1,10 @@
-﻿Konec;INT;ODV;MOU;VIN;NAD;MOC;LID;KAP;Vlcek;Zavad;Karas;Benes;D8;D13;D16;D18;Rod.list;Finance;Pruzkum;Emoce
-1. PREZITI;30-70;30-70;--;30-70;30-70;30-70;--;--;1-2;0-1;1-2;--;--;--;--;--;--;--;--;Prazdnota
-2. KORUPCE;<=20;--;--;--;--;--;--;--;>=2/Haas;--;--;--;Splnil;--;Prijal;--;--;--;--;Hnusnost
-3. HRDINA;>=80;>=80;--;--;--;--;--;--;0;>=2;--;--;Odmitl;--;Odmitl;--;POUZIL;--;--;Horkosladko
-4. UTEK;--;--;--;--;--;--;--;--;--;>=2;--;--;--;--;--;Poslechl;--;>300;--;Utek
-5. SMIRENI;>=60;--;--;<=20;--;--;--;--;--;--;--;scena;--;Prijal;Odmitl;--;--;--;--;Klid
-6. ATENTAT;>=60;>=80;--;--;--;<=20;--;--;0;--;--;--;Odmitl;--;Odmitl;Ignoroval;NEPOUZIL;--;--;Tragicka velikost
-7. RAD;--;--;--;--;--;--;--;--;odmitl;3;--;--;Odmitl;--;--;--;POUZIL;--;--;Temna ironie
-8. ANNA;--;--;--;<=20;--;--;--;--;odmitl;odmitl;--;scena;Odmitl;Prijal;Odmitl;--;--;<100;80%+;Ticha katarze
+Konec;Poradi;minDay;vlcek_vztah;haas_kontakt;benes_pravda;osobni_cena;Stat podminky;Runtime flagy;Finance;Emoce
+KRUH;1;16;!=vzdor;zavazany;!=prijal;--;--;masek_document_signed NEBO trust.zavadova>=3;--;Temna ironie
+KORUPCE;2;15;kompromitovan;zavazany;--;--;INT<=20 NEBO (uplatek+INT<=45);--;--;Hnusnost
+ANNA;3;18;--;!=zavazany;prijal;nerozhodl NEBO odmitl;VIN<=28 + (pruzkum>=72% NEBO moudr>=58);NOT operPl + NOT rodny_list;bal<130-175;Ticha katarze
+SMIRENI;4;16;--;!=zavazany;prijal;--;INT>=52 + VIN<=35(45) + MOUDR>=48;NOT profilAtentat + (operPl NEBO zaplatil NEBO bal>=140);--;Klid
+ATENTAT;5;17;vzdor;!=zavazany;prijal;!=zaplatil + !=haasem;ODV>=72 + VIN>=22;NOT uplatek + NOT operPl;--;Tragicka velikost
+UTEK;6;17;--;!=zavazany;--;--;--;karas_poslechl_odejit + trust.karas>=2 + NOT profilAtentat;bal>260;Utek
+HRDINA;7;19;vzdor;!=zavazany;!=prijal;--;ODV>=88 + (INT>=78 NEBO VIN<=55);NOT uplatek + NOT rodny_list;--;Horkosladko
+PREZITI;8;19;neutral;!=zavazany;--;--;>=3/5 rysu 25-75 + INT 28-78 + VIN 25-75 + NAD 28-72;--;--;Prazdnota
+PREZITI (fallback);9;19;--;--;--;--;--;(zadne jine podminky nesplneny);--;Prazdnota

@@ -16,6 +16,7 @@ MOC (Vlček): „Kruh nás zachrání." — Kruh slouží moci, ne lidem.
 LID (Závadová, Kruh svědomí): „Spravedlnost nás zachrání." — jejich spravedlnost vyžaduje novou nespravedlnost.
 KAPITÁL (Haas): „Prosperita nás zachrání." — prosperita postavena na vykořisťování.
 BENOVA LEŽ: „Jen jsem dodržoval zákon." — nikdo netlačil. Nepřečetl spis z lhostejnosti. Muž zemřel.
+*TERMINOLOGIE: „Kruh" v Třech lžích (MOC/Vlček) = jeho kruh moci/vlivu. „Kruh svědomí" = Závadové organizace. Konec KRUH (#7) patří Závadové. FLAGS_VETVENI_KONCE.md — synchronizováno s runtime 29. 5. 2026.*
 
 ## POSTAVY
 
@@ -129,9 +130,9 @@ Odvaha < 10: Ben odkládá. Systém ho přehlíží. → PŘEŽITÍ
 
 2. KORUPCE: Integrita ★☆ + (Vlček ≥2 NEBO Haas přijat). Vlčkův muž. Nové pero = Vlčkovo. „Lampa nesvítí. Už ji nepotřebuješ."
 
-3. HRDINA: Integrita ★★★★★ + Odvaha ★★★★★ + Závadová ≥2 + Vlček 0 + odmítl Haase + POUŽIL rodný list. Správná věc špatným způsobem. „Noviny dnes píšou tvoje jméno. Zítra ho zapomenou."
+3. HRDINA: Integrita ★★★★★ + Odvaha ★★★★★ + Závadová ≥2 + Vlček 0 + odmítl Haase + POUŽIL rodný list. Správná věc špatným způsobem. „Noviny dnes píšou tvoje jméno. Zítra ho zapomenou." *Runtime: benes_pravda ≠ prijal. Hrdina jedná z principu, ne z vědomí konkrétní viny.*
 
-4. ÚTĚK: Finance >300 + Závadová ≥2 + **D13** poslechl Karase. Sám, neotvořený dopis v kufru. „Vlak odjíždí v šest. Neohlížíš se."
+4. ÚTĚK: **karas_poslechl_odejit** (Karasova adventure scéna den 17) + trust.karas ≥ 2 + bal > 260 + haas ≠ zavazany. Nezávislý na operaci matky. Sám, neotvořený dopis v kufru. „Vlak odjíždí v šest. Neohlížíš se."
 
 5. SMÍŘENÍ: Vina ★☆ + **D9** Beneš přijat + Integrita >60 + odmítl Haase. Poprvé napíše pravdu Martinovi. „Kalamář je prázdný. Pero leží na stole."
 
